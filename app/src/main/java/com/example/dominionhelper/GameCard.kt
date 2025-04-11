@@ -3,7 +3,7 @@ package com.example.dominionhelper
 import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Composable
 
-data class GameCard (
+data class GameCard(
     val name: String,
     val expansion: Expansion,
     val types: List<Type>,
@@ -35,3 +35,10 @@ data class GameCard (
     }
 
 }
+
+data class Expansion(
+    val name: String,
+    val number: Int, // Number of the expansion
+    @DrawableRes val imageResId: Int, // Image for the expansion
+    val gameCards: List<GameCard> // List of cards in this expansion
+)
