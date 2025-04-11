@@ -4,16 +4,17 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
-import androidx.activity.result.launch
-import androidx.compose.animation.core.copy
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -34,13 +35,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.dominionhelper.ui.theme.DominionHelperTheme
+import com.example.dominionhelper.R
 import androidx.compose.material3.Card
-import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.DrawerValue.*
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -63,11 +65,21 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Outline
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch
+import kotlin.text.toFloat
 
 fun getSampleExpansions(): List<Expansion> {
     return listOf(
@@ -82,16 +94,16 @@ fun getSampleExpansions(): List<Expansion> {
                     types = listOf(GameCard.Type.ACTION),
                     effects = listOf(GameCard.Effect.CARD, GameCard.Effect.ACTION),
                     cost = 3,
-                    imageResId = R.drawable.ic_launcher_foreground,
+                    imageResId = R.drawable.village,
                     onClick = {}
                 ),
                 GameCard(
-                    name = "Smithy",
+                    name = "Gardens",
                     expansion = GameCard.Expansion.BASE,
-                    types = listOf(GameCard.Type.ACTION),
-                    effects = listOf(GameCard.Effect.CARD),
+                    types = listOf(GameCard.Type.VICTORY),
+                    effects = listOf(),
                     cost = 4,
-                    imageResId = R.drawable.ic_launcher_foreground,
+                    imageResId = R.drawable.gardens,
                     onClick = {}
                 ),
                 GameCard(
@@ -105,7 +117,7 @@ fun getSampleExpansions(): List<Expansion> {
                         GameCard.Effect.GOLD
                     ),
                     cost = 5,
-                    imageResId = R.drawable.ic_launcher_foreground,
+                    imageResId = R.drawable.market,
                     onClick = {}
                 )
             )
@@ -134,7 +146,7 @@ fun getSampleExpansions(): List<Expansion> {
                     expansion = GameCard.Expansion.BASE,
                     types = listOf(GameCard.Type.ACTION),
                     effects = listOf(GameCard.Effect.CARD, GameCard.Effect.ACTION),
-                    cost = 5,
+                    cost = 6,
                     imageResId = R.drawable.ic_launcher_foreground,
                     onClick = {}
                 )
@@ -169,24 +181,27 @@ class MainActivity : ComponentActivity() {
 fun MainScreen() {
     val expansions = getSampleExpansions()
     var selectedExpansion by remember { mutableStateOf<Expansion?>(null) }
-    var isSearchActive by remember { mutableStateOf(false) } // NEW: Search state
-    var searchText by remember { mutableStateOf("") } // NEW: Search text
+    var selectedCard by remember { mutableStateOf<GameCard?>(null) }
+    var isSearchActive by remember { mutableStateOf(false) }
+    var searchText by remember { mutableStateOf("") }
 
     val drawerState = rememberDrawerState(initialValue = Closed)
     val scope = rememberCoroutineScope()
 
-    // BackHandler to manage back navigation
-    BackHandler(enabled = selectedExpansion != null || isSearchActive) {
+    // BackHandler:
+    BackHandler(enabled = selectedExpansion != null || isSearchActive || selectedCard != null) {
         if (isSearchActive) {
             isSearchActive = false // Close search
+        } else if (selectedCard != null) {
+            selectedCard = null // Deselect the card
         } else {
             selectedExpansion = null // Go back to expansions
         }
     }
 
-    // NEW: List of options
     val options = listOf("Option 1", "Option 2", "Option 3")
     var selectedOption by remember { mutableStateOf(options[0]) } // Initially select the first option
+
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
@@ -212,7 +227,7 @@ fun MainScreen() {
             topBar = {
                 TopAppBar(
                     title = {
-                        // Conditionally show the search field or nothing
+                        // Conditionally show the search field
                         if (isSearchActive) {
                             // TODO placeholder text is cut off
                             TextField(
@@ -266,7 +281,7 @@ fun MainScreen() {
                     actions = {
                         IconButton(onClick = {
                             isSearchActive = !isSearchActive
-                        }) { // Modified: Toggle search
+                        }) {
                             Icon(Icons.Filled.Search, contentDescription = "Localized description")
                         }
                         IconButton(onClick = { /* TODO Handle dice click */ }) {
@@ -286,6 +301,8 @@ fun MainScreen() {
                 )
             }
         ) { innerPadding ->
+
+            // View list of expansions
             if (selectedExpansion == null) {
                 ExpansionGrid(
                     expansions = expansions, onExpansionClick = { expansion ->
@@ -293,11 +310,30 @@ fun MainScreen() {
                     },
                     modifier = Modifier.padding(innerPadding)
                 )
-            } else {
+
+            // View a list of cards
+            } else if (selectedCard == null) {
                 CardList(
-                    cardList = selectedExpansion!!.gameCards,
+                    cardList = selectedExpansion!!.gameCards, onCardClick = { card ->
+                        selectedCard = card
+                    },
                     modifier = Modifier.padding(innerPadding)
                 )
+
+            // View a single card
+            } else {
+                Box(modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding)) {
+                    Image(
+                        painter = painterResource(id = selectedCard!!.imageResId),
+                        contentDescription = "Card Image",
+                        modifier = Modifier.fillMaxSize()
+                    )
+                    IconButton(onClick = { selectedCard = null }) {
+                        Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
+                    }
+                }
             }
         }
     }
@@ -365,37 +401,83 @@ fun ExpansionView(expansion: Expansion, onClick: () -> Unit) {
     }
 }
 
-// CardView displays a single card, with an image and a name
+// CardList is a composable function that creates a list of cards
 @Composable
-fun CardView(card: GameCard) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp, 8.dp, 8.dp, 0.dp)
+fun CardList(cardList: List<GameCard>, modifier: Modifier, onCardClick: (GameCard) -> Unit) {
+    LazyColumn(
+        modifier = modifier
     ) {
-        Row(
-            modifier = Modifier.padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Image(
-                painter = painterResource(id = card.imageResId),
-                contentDescription = "${card.name} Image",
-                modifier = Modifier.size(48.dp)
-            )
-            Spacer(modifier = Modifier.width(16.dp))
-            Column {
-                Text(text = card.name)
-            }
+        items(cardList) { card ->
+            CardView(card, onClick = { onCardClick(card) })
         }
     }
 }
 
-// CardList is a composable function that creates a list of cards
+// CardView displays a single card, with an image and a name
 @Composable
-fun CardList(cardList: List<GameCard>, modifier: Modifier) {
-    LazyColumn {
-        items(cardList) { card ->
-            CardView(card)
+fun CardView(card: GameCard, onClick: () -> Unit) {
+    val topCropPercentage = 0.10f // 10%
+    val bottomCropPercentage = 0.50f // 50%
+    val visibleHeightPercentage = 1f - topCropPercentage - bottomCropPercentage
+    val imageWidth = 80.dp // Set the image width.
+    val cardImageHeight = 100f//imageWidth / visibleHeightPercentage //calculate the card image height using the percentages.
+
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick)
+            .padding(8.dp, 4.dp)
+    ) {
+        Row(
+            modifier = Modifier
+                .padding(16.dp)
+                .height(50.dp),//cardImageHeight), // <--- Set the Row's height here
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Box( //NEW: use Box to display the image
+                modifier = Modifier
+                    .weight(0.3f) // Take up 30% of the available width
+            ) {
+                Image(
+                    painter = painterResource(id = card.imageResId),
+                    contentDescription = card.name,
+                    modifier = Modifier
+                        .width(imageWidth)
+                        .fillMaxHeight()
+                        .clip(
+                            object : Shape {
+                                override fun createOutline(
+                                    size: androidx.compose.ui.geometry.Size,
+                                    layoutDirection: LayoutDirection,
+                                    density: Density
+                                ): Outline {
+                                    val path = Path().apply {
+                                        val topCropAmount = size.height * topCropPercentage
+                                        val bottomCropAmount = size.height * bottomCropPercentage
+                                        val rect = Rect(
+                                            0f,
+                                            topCropAmount,
+                                            size.width,
+                                            size.height - bottomCropAmount
+                                        )
+                                        addRect(rect)
+                                    }
+                                    return Outline.Generic(path)
+                                }
+                            }
+                        ),
+                    contentScale = ContentScale.Crop // Crop to maintain aspect ratio
+                )
+            }
+            Spacer(modifier = Modifier.width(16.dp))
+            Column(
+                modifier = Modifier
+                    .weight(0.7f) // Take up 70% of the available width
+                    .height(50.dp)//cardImageHeight) // <--- Set the column's height here
+            ) {
+                Text(text = card.name,
+                    modifier = Modifier.height(IntrinsicSize.Min)) // <--- set the text height here
+            }
         }
     }
 }
