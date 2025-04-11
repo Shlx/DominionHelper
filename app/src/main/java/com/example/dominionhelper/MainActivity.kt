@@ -4,11 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
+import androidx.activity.result.launch
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
@@ -35,13 +35,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.dominionhelper.ui.theme.DominionHelperTheme
-import com.example.dominionhelper.R
 import androidx.compose.material3.Card
 import androidx.compose.material3.DrawerValue.*
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -70,7 +68,6 @@ import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
@@ -78,10 +75,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-import kotlin.text.toFloat
 
-fun getSampleExpansions(): List<Expansion> {
+/*fun getSampleExpansions(): List<Expansion> {
     return listOf(
         Expansion(
             name = "Base",
@@ -95,7 +93,6 @@ fun getSampleExpansions(): List<Expansion> {
                     effects = listOf(GameCard.Effect.CARD, GameCard.Effect.ACTION),
                     cost = 3,
                     imageResId = R.drawable.village,
-                    onClick = {}
                 ),
                 GameCard(
                     name = "Gardens",
@@ -104,7 +101,6 @@ fun getSampleExpansions(): List<Expansion> {
                     effects = listOf(),
                     cost = 4,
                     imageResId = R.drawable.gardens,
-                    onClick = {}
                 ),
                 GameCard(
                     name = "Market",
@@ -118,7 +114,6 @@ fun getSampleExpansions(): List<Expansion> {
                     ),
                     cost = 5,
                     imageResId = R.drawable.market,
-                    onClick = {}
                 )
             )
         ),
@@ -139,7 +134,6 @@ fun getSampleExpansions(): List<Expansion> {
                     ),
                     cost = 5,
                     imageResId = R.drawable.ic_launcher_foreground,
-                    onClick = {}
                 ),
                 GameCard(
                     name = "Laboratory",
@@ -148,18 +142,31 @@ fun getSampleExpansions(): List<Expansion> {
                     effects = listOf(GameCard.Effect.CARD, GameCard.Effect.ACTION),
                     cost = 6,
                     imageResId = R.drawable.ic_launcher_foreground,
-                    onClick = {}
                 )
             )
         )
     )
-}
-
+}*/
 
 class MainActivity : ComponentActivity() {
 
+    val applicationScope = CoroutineScope(SupervisorJob())
+    private val database by lazy { AppDatabase.getDatabase(this, applicationScope) }
+    private val gameCardDao by lazy { database.gameCardDao() }
+    private val expansionDao by lazy { database.expansionDao() }
+
+    var gameCards: List<GameCard> by mutableStateOf(emptyList())
+    var expansions: List<Expansion> by mutableStateOf(emptyList())
+    var selectedExpansion: Int? by mutableStateOf(null)
+    var selectedCard: GameCard? by mutableStateOf(null)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        applicationScope.launch {
+            expansions = expansionDao.getAll()
+            gameCards = gameCardDao.getAll()
+        }
 
         setContent {
             DominionHelperTheme {
@@ -168,7 +175,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainScreen()
+                    MainScreen(expansions, gameCards, selectedExpansion, { expansion ->
+                        selectedExpansion = expansion.id
+                    })
                 }
             }
         }
@@ -178,9 +187,14 @@ class MainActivity : ComponentActivity() {
 // State handling and view selection
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen() {
-    val expansions = getSampleExpansions()
-    var selectedExpansion by remember { mutableStateOf<Expansion?>(null) }
+fun MainScreen(
+    expansions: List<Expansion>,
+    gameCards: List<GameCard>,
+    selectedExpansion: Int?,
+    onExpansionClick: (Expansion) -> Unit
+) {
+
+    var selectedExpansion by remember { mutableStateOf<Int?>(null) }
     var selectedCard by remember { mutableStateOf<GameCard?>(null) }
     var isSearchActive by remember { mutableStateOf(false) }
     var searchText by remember { mutableStateOf("") }
@@ -306,7 +320,7 @@ fun MainScreen() {
             if (selectedExpansion == null) {
                 ExpansionGrid(
                     expansions = expansions, onExpansionClick = { expansion ->
-                        selectedExpansion = expansion
+                        selectedExpansion = expansion.id
                     },
                     modifier = Modifier.padding(innerPadding)
                 )
@@ -314,7 +328,7 @@ fun MainScreen() {
             // View a list of cards
             } else if (selectedCard == null) {
                 CardList(
-                    cardList = selectedExpansion!!.gameCards, onCardClick = { card ->
+                    cardList = gameCards.filter { it.expansionId == selectedExpansion }, onCardClick = { card ->
                         selectedCard = card
                     },
                     modifier = Modifier.padding(innerPadding)
