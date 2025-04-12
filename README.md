@@ -5,8 +5,10 @@ Todos / Features:
 - Quick loading, small app size (JOAD is 17MB)
 - Great UI / UX
 - Freeware (ads / donations?)
-
 - Check "Jack of all Dominion" and "Dominion Randomizer" apps, boardgamegeek, dominion wiki
+
+---
+  
 - Picking random cards, including how many from each included set (min / max range), e.g. 2 expansions, 5 cards each
 - Ability to swipe away unwanted cards to get a new replacement
 - Letting the user know what non supply decks + mats they need (Horses, spoils, etc.)
