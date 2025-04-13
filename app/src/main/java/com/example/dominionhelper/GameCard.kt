@@ -20,8 +20,9 @@ data class GameCard(
     val effects: List<Effect>, // And this
     val cost: Int,
     val imageResId: Int, // Name of the drawable
-    @ColumnInfo(name = "is_favorite") val isFavorite: Boolean = false,
-    @ColumnInfo(name = "is_banned") val isBanned: Boolean = false
+    val link: String, // Link to the card's wiki page
+    /*@ColumnInfo(name = "is_favorite")*/ val isFavorite: Boolean = false,
+    /*@ColumnInfo(name = "is_banned")*/ val isBanned: Boolean = false
 ) {
     enum class Expansion(val id: Int) {
         BASE(0), INTRIGUE(1)
@@ -32,7 +33,7 @@ data class GameCard(
     }
 
     enum class Effect {
-        CARD, ACTION, BUY, GOLD
+        CARD, ACTION, BUY, GOLD, TRASH
     }
 }
 
@@ -49,13 +50,17 @@ interface GameCardDao {
     @Query("SELECT * FROM cards")
     fun getAllFlow(): Flow<List<GameCard>>
 
-    @Query("SELECT * FROM cards WHERE is_favorite = 1")
+    @Query("SELECT * FROM cards WHERE isfavorite = 1")
     suspend fun getFavorites(): List<GameCard>
 
-    @Query("SELECT * FROM cards WHERE is_banned = 1")
+    @Query("SELECT * FROM cards WHERE isbanned = 1")
     suspend fun getBanned(): List<GameCard>
     // Add more queries as needed (e.g., get by name, expansion, etc.)
 
-    @Query("DELETE FROM expansions")
-    suspend fun delete(): Unit
+    @Query("SELECT * FROM cards WHERE LOWER(name) LIKE LOWER(:letters)")
+    fun getFilteredCards(letters: String): Flow<List<GameCard>>
+
+    @Query("DELETE FROM cards")
+    suspend fun delete()
+
 }

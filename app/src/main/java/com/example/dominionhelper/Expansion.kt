@@ -17,8 +17,8 @@ data class Expansion(
     val name: String,
     //val gameCards: List<GameCard>,
     val imageResId: Int, // Name of the drawable
-    @ColumnInfo(name = "is_favorite") val isFavorite: Boolean = false,
-    @ColumnInfo(name = "is_owned") val isOwned: Boolean = false
+    /*@ColumnInfo(name = "is_favorite")*/ val isFavorite: Boolean = false,
+    /*@ColumnInfo(name = "is_owned")*/ val isOwned: Boolean = false
 )
 
 // DAO for Expansions
@@ -33,11 +33,12 @@ interface ExpansionDao {
     @Query("SELECT * FROM expansions")
     fun getAllFlow(): Flow<List<Expansion>>
 
-    @Query("SELECT * FROM expansions WHERE is_favorite = 1")
+    @Query("SELECT * FROM expansions WHERE isfavorite = 1")
     suspend fun getFavorites(): List<Expansion>
 
-    @Query("DELETE FROM expansions")
-    suspend fun delete(): Unit
-
     // Add more queries as needed (e.g., get by name)
+
+    @Query("DELETE FROM expansions")
+    suspend fun delete()
+
 }

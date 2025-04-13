@@ -51,18 +51,18 @@ abstract class AppDatabase : RoomDatabase() {
 
             // Create Base expansion cards
             val baseCards = listOf(
-                GameCard(0, "Village", GameCard.Expansion.BASE.id, listOf(GameCard.Type.ACTION), listOf(GameCard.Effect.ACTION, GameCard.Effect.CARD), 3,R.drawable.village, false,false),
-                GameCard(1, "Gardens", GameCard.Expansion.BASE.id, listOf(GameCard.Type.VICTORY), emptyList(), 4,R.drawable.gardens, false,false),
-                GameCard(2, "Market", GameCard.Expansion.BASE.id, listOf(GameCard.Type.ACTION), listOf(GameCard.Effect.ACTION,GameCard.Effect.CARD,GameCard.Effect.BUY,GameCard.Effect.GOLD), 5,R.drawable.market, false,false),
-                GameCard(3, "Smithy", GameCard.Expansion.BASE.id, listOf(GameCard.Type.ACTION), listOf(GameCard.Effect.CARD), 4,R.drawable.smithy, false,false)
+                GameCard(0, "Village", GameCard.Expansion.BASE.id, listOf(GameCard.Type.ACTION), listOf(GameCard.Effect.ACTION, GameCard.Effect.CARD), 3,R.drawable.village, "a",false,false),
+                GameCard(1, "Gardens", GameCard.Expansion.BASE.id, listOf(GameCard.Type.VICTORY), emptyList(), 4,R.drawable.gardens, "a",false,false),
+                GameCard(2, "Market", GameCard.Expansion.BASE.id, listOf(GameCard.Type.ACTION), listOf(GameCard.Effect.ACTION,GameCard.Effect.CARD,GameCard.Effect.BUY,GameCard.Effect.GOLD), 5,R.drawable.market, "a",false,false),
+                GameCard(3, "Smithy", GameCard.Expansion.BASE.id, listOf(GameCard.Type.ACTION), listOf(GameCard.Effect.CARD), 4,R.drawable.smithy, "a",false,false)
 
             )
 
             // Create Intrigue expansion cards
             val intrigueCards = listOf(
-                GameCard(4, "Courtyard", GameCard.Expansion.INTRIGUE.id, listOf(GameCard.Type.ACTION), listOf(GameCard.Effect.CARD), 2, R.drawable.village, false,false),
-                GameCard(5, "Nobles", GameCard.Expansion.INTRIGUE.id, listOf(GameCard.Type.ACTION,GameCard.Type.VICTORY), listOf(GameCard.Effect.ACTION,GameCard.Effect.CARD), 6,R.drawable.village, false,false),
-                GameCard(6, "Pawn", GameCard.Expansion.INTRIGUE.id, listOf(GameCard.Type.ACTION), listOf(GameCard.Effect.ACTION,GameCard.Effect.CARD,GameCard.Effect.BUY,GameCard.Effect.GOLD), 2,R.drawable.village, false,false)
+                GameCard(4, "Courtyard", GameCard.Expansion.INTRIGUE.id, listOf(GameCard.Type.ACTION), listOf(GameCard.Effect.CARD), 2, R.drawable.village, "a",false,false),
+                GameCard(5, "Nobles", GameCard.Expansion.INTRIGUE.id, listOf(GameCard.Type.ACTION,GameCard.Type.VICTORY), listOf(GameCard.Effect.ACTION,GameCard.Effect.CARD), 6,R.drawable.village, "a",false,false),
+                GameCard(6, "Pawn", GameCard.Expansion.INTRIGUE.id, listOf(GameCard.Type.ACTION), listOf(GameCard.Effect.ACTION,GameCard.Effect.CARD,GameCard.Effect.BUY,GameCard.Effect.GOLD), 2,R.drawable.village, "a",false,false)
             )
             gameCardDao.insertAll(baseCards+intrigueCards)
 
