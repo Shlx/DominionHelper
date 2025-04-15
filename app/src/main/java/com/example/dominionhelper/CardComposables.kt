@@ -8,13 +8,18 @@ import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -63,7 +68,7 @@ fun CardView(card: GameCard, onClick: () -> Unit) {
                 .height(50.dp),//cardImageHeight), // <--- Set the Row's height here
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Box( //NEW: use Box to display the image
+            Box(
                 modifier = Modifier
                     .weight(0.3f) // Take up 30% of the available width
             ) {
@@ -107,6 +112,22 @@ fun CardView(card: GameCard, onClick: () -> Unit) {
                 Text(text = card.name,
                     modifier = Modifier.height(IntrinsicSize.Min)) // <--- set the text height here
             }
+        }
+    }
+}
+
+@Composable
+fun CardDetail(card: GameCard, onBackClick: () -> Unit, modifier: Modifier) {
+    Box(
+        modifier = modifier
+    ) {
+        Image(
+            painter = painterResource(id = card.imageResId),
+            contentDescription = "Card Image",
+            modifier = Modifier.fillMaxSize()
+        )
+        IconButton(onClick = { onBackClick() }) {
+            Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
         }
     }
 }

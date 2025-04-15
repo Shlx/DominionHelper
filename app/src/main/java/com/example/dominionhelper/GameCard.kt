@@ -58,9 +58,18 @@ interface GameCardDao {
     // Add more queries as needed (e.g., get by name, expansion, etc.)
 
     @Query("SELECT * FROM cards WHERE LOWER(name) LIKE LOWER(:letters)")
-    fun getFilteredCards(letters: String): Flow<List<GameCard>>
+    suspend fun getFilteredCards(letters: String): /*Flow<*/List<GameCard>//>
 
     @Query("DELETE FROM cards")
     suspend fun delete()
+
+    @Query("SELECT * FROM cards WHERE id = :id")
+    suspend fun getCardById(id: Int): GameCard
+
+    @Query("SELECT * FROM cards ORDER BY RANDOM() LIMIT :count")
+    suspend fun getRandomCards(count: Int): List<GameCard> {
+        val allCards = getAll()
+        return allCards.shuffled().take(count)
+    }
 
 }

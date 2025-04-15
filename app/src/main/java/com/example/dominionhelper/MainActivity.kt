@@ -1,6 +1,7 @@
 package com.example.dominionhelper
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
@@ -41,6 +42,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -64,15 +66,6 @@ import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
 
-    /*private val applicationScope by lazy { CoroutineScope(SupervisorJob()) }
-    private val database by lazy { AppDatabase.getDatabase(this, applicationScope) }
-    private val gameCardDao by lazy { database.gameCardDao() }
-    private val expansionDao by lazy { database.expansionDao() }*/
-
-    // Move to MyApplication class?
-    // Do I need these here, in the class scope? Maybe enough to put them in onCreate
-    private val applicationScope = CoroutineScope(SupervisorJob())
-
     // !! mutableStateOf automatically updates UI elements reliant on the values when they change
     var expansions: List<Expansion> by mutableStateOf(emptyList())
     var gameCards: List<GameCard> by mutableStateOf(emptyList())
@@ -80,11 +73,12 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val database = AppDatabase.getDatabase(this, applicationScope)
-        val gameCardDao = database.gameCardDao()
-        val expansionDao = database.expansionDao()
+        val dominionHelper = application as DominionHelper
+        val gameCardDao = dominionHelper.gameCardDao
+        val expansionDao = dominionHelper.expansionDao
+        val scope = dominionHelper.applicationScope
 
-        applicationScope.launch { // vs lifecyclescope?
+        scope.launch { // vs lifecyclescope?
             expansions = expansionDao.getAll() // TODO: Flow?
             gameCards = gameCardDao.getAll() // TODO: Get those when an expansion is clicked
         }
@@ -138,16 +132,31 @@ class MainActivity : ComponentActivity() {
                                     isSearchActive,
                                     { isSearchActive = !isSearchActive },
                                     searchText,
-                                    { searchText = it }
-                                    //{ selectedCard = null }
+                                    { searchText = it },
+                                    onRandomCardsClicked = {
+                                        scope.launch {
+                                            //gameCards = gameCards.shuffled().take(5)
+                                            gameCards = gameCardDao.getRandomCards(3)
+                                            Log.i("Random cards", ""+gameCards.size)
+                                            // TODO: This shows a random amount of cards.
+                                            // -> Callback function once the call is definitely complete
+                                        }
+                                    }
                                 )
                             }
                         ) { innerPadding ->
 
-                            if (false) // if Suche aktiv -> show cards
+                            LaunchedEffect(key1 = searchText, key2 = isSearchActive) {
+                                if (isSearchActive && searchText.length >= 2) {
+                                    gameCards = gameCardDao.getFilteredCards("%$searchText%")
+                                } else {
+                                    gameCards = gameCardDao.getAll()
+                                }
+                            }
 
                             // View list of expansions
-                            else if (selectedExpansion == null) {
+                            if (selectedExpansion == null && searchText.length <= 1) {
+                                Log.i("Grid", "view expansion list")
                                 ExpansionGrid(
                                     expansions = expansions, onExpansionClick = { expansion ->
                                         selectedExpansion = expansion.id
@@ -157,8 +166,12 @@ class MainActivity : ComponentActivity() {
 
                                 // View a list of cards
                             } else if (selectedCard == null) {
+                                if (!isSearchActive) {
+                                    gameCards = gameCards.filter { it.expansionId == selectedExpansion }
+                                }
+                                Log.i("Grid", "view card list")
                                 CardList(
-                                    cardList = gameCards.filter { it.expansionId == selectedExpansion },
+                                    cardList = gameCards,
                                     onCardClick = { card ->
                                         selectedCard = card
                                     },
@@ -167,20 +180,12 @@ class MainActivity : ComponentActivity() {
 
                                 // View a single card
                             } else {
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxSize()
-                                        .padding(innerPadding)
-                                ) {
-                                    Image(
-                                        painter = painterResource(id = selectedCard!!.imageResId),
-                                        contentDescription = "Card Image",
-                                        modifier = Modifier.fillMaxSize()
-                                    )
-                                    IconButton(onClick = { selectedCard = null }) {
-                                        Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
-                                    }
-                                }
+                                Log.i("Grid", "view card detail")
+                                CardDetail(
+                                    card = selectedCard!!,
+                                    onBackClick = { selectedCard = null },
+                                    modifier = Modifier.padding(innerPadding)
+                                )
                             }
                         }
                     }
@@ -191,7 +196,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun DrawerContent(selectedOption: String, onOptionSelected: (String) -> Unit, drawerState: DrawerState) {
+fun DrawerContent(
+    selectedOption: String,
+    onOptionSelected: (String) -> Unit,
+    drawerState: DrawerState
+) {
     val scope = rememberCoroutineScope()
     val options = listOf("Option 1", "Option 2", "Option 3")
 
@@ -215,12 +224,12 @@ fun DrawerContent(selectedOption: String, onOptionSelected: (String) -> Unit, dr
 @Composable
 fun TopBar(
     scope: CoroutineScope,
-    drawerState: androidx.compose.material3.DrawerState,
+    drawerState: DrawerState,
     isSearchActive: Boolean,
     onSearchClicked: () -> Unit,
     searchText: String,
     onSearchTextChange: (String) -> Unit,
-    //onCardClicked: () -> Unit
+    onRandomCardsClicked: () -> Unit
 ) {
     TopAppBar(
         title = {
@@ -281,7 +290,9 @@ fun TopBar(
             }) {
                 Icon(Icons.Filled.Search, contentDescription = "Localized description")
             }
-            IconButton(onClick = { /* TODO Handle dice click */ }) {
+            IconButton(onClick = {
+                onRandomCardsClicked()
+            }) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_launcher_foreground),
                     contentDescription = "Localized description",

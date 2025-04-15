@@ -59,7 +59,7 @@ fun ExpansionView(expansion: Expansion, onClick: () -> Unit) {
             .clickable(onClick = onClick)
             .height(150.dp)
     ) {
-        Box( // NEW: Box for positioning
+        Box(
             modifier = Modifier.fillMaxSize()
         ) {
             Image(
