@@ -56,6 +56,7 @@ fun CardView(card: GameCard, onClick: () -> Unit) {
     val imageWidth = 80.dp // Set the image width.
     val cardImageHeight = 100f//imageWidth / visibleHeightPercentage //calculate the card image height using the percentages.
 
+    // TODO: This is garbage
     Card(
         modifier = Modifier
             .fillMaxWidth()

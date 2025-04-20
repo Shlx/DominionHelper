@@ -1,7 +1,6 @@
 // GameCard.kt
 package com.example.dominionhelper
 
-import androidx.room.ColumnInfo
 import androidx.room.Dao
 import androidx.room.Entity
 import androidx.room.Insert

@@ -5,8 +5,6 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,10 +12,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -53,16 +52,13 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
 // Prop drilling: passing lots of data down through mutliple levels (bad)
 // by lazy: loading data only when needed (good)
 // Composables vs. ViewModels
-// Application class: global state holder and entry point, managing singletons, Timber / Crashlytics / Firebase
-// Move dao etc there? -> yea
-// Can I easily call Application functions from within activities? -> getApplication() (val myApplication = application as MyApplication)
-// Even better: Use dependency injection to call DAOs TODO later on
+// Better than using myApplication: use dependency injection to call DAOs TODO later on
+// TODO: Use 2 databases: one for cards and expansions, one for user data like favorites
 
 class MainActivity : ComponentActivity() {
 
@@ -97,7 +93,9 @@ class MainActivity : ComponentActivity() {
                     var searchText by remember { mutableStateOf("") }
 
                     val drawerState = rememberDrawerState(initialValue = Closed)
-                    val scope = rememberCoroutineScope()
+                    var isLoading by remember {mutableStateOf(false)}
+                    var showRandomCards by remember {mutableStateOf(false)}
+                    //val scope = rememberCoroutineScope()
 
                     // BackHandler:
                     BackHandler(enabled = selectedExpansion != null || isSearchActive || selectedCard != null || drawerState.isOpen) {
@@ -134,12 +132,15 @@ class MainActivity : ComponentActivity() {
                                     searchText,
                                     { searchText = it },
                                     onRandomCardsClicked = {
+                                        // Get ApplicationContext scope here?
                                         scope.launch {
                                             //gameCards = gameCards.shuffled().take(5)
+                                            //isLoading = true
                                             gameCards = gameCardDao.getRandomCards(3)
                                             Log.i("Random cards", ""+gameCards.size)
-                                            // TODO: This shows a random amount of cards.
-                                            // -> Callback function once the call is definitely complete
+                                            //isLoading = false
+                                            showRandomCards = true
+                                            // Callback function once the call is definitely complete?
                                         }
                                     }
                                 )
@@ -155,7 +156,9 @@ class MainActivity : ComponentActivity() {
                             }
 
                             // View list of expansions
-                            if (selectedExpansion == null && searchText.length <= 1) {
+                            // TODO: Geht hier rein on randomized cards
+                            // -> Neue activity für card list?
+                            if (selectedExpansion == null && searchText.length <= 1 && !showRandomCards) {
                                 Log.i("Grid", "view expansion list")
                                 ExpansionGrid(
                                     expansions = expansions, onExpansionClick = { expansion ->
@@ -166,7 +169,8 @@ class MainActivity : ComponentActivity() {
 
                                 // View a list of cards
                             } else if (selectedCard == null) {
-                                if (!isSearchActive) {
+                                if (!isSearchActive && !showRandomCards) {
+                                    // Use db for this?
                                     gameCards = gameCards.filter { it.expansionId == selectedExpansion }
                                 }
                                 Log.i("Grid", "view card list")
@@ -179,13 +183,15 @@ class MainActivity : ComponentActivity() {
                                 )
 
                                 // View a single card
-                            } else {
+                            } else if (!isLoading){
                                 Log.i("Grid", "view card detail")
                                 CardDetail(
                                     card = selectedCard!!,
                                     onBackClick = { selectedCard = null },
                                     modifier = Modifier.padding(innerPadding)
                                 )
+                            } else {
+                                CircularProgressIndicator()
                             }
                         }
                     }
@@ -269,7 +275,7 @@ fun TopBar(
             // Conditionally show the back button or hamburger menu
             if (isSearchActive) {
                 IconButton(onClick = { onSearchClicked() }) {
-                    Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
+                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
                 }
             } else {
                 IconButton(onClick = {
