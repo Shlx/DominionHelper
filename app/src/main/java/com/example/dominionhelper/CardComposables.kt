@@ -16,7 +16,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -30,6 +30,7 @@ import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
@@ -37,7 +38,7 @@ import androidx.compose.ui.unit.dp
 
 // CardList is a composable function that creates a list of cards
 @Composable
-fun CardList(cardList: List<GameCard>, modifier: Modifier, onCardClick: (GameCard) -> Unit) {
+fun CardList(cardList: List<Card>, modifier: Modifier, onCardClick: (Card) -> Unit) {
     LazyColumn(
         modifier = modifier
     ) {
@@ -49,12 +50,15 @@ fun CardList(cardList: List<GameCard>, modifier: Modifier, onCardClick: (GameCar
 
 // CardView displays a single card, with an image and a name
 @Composable
-fun CardView(card: GameCard, onClick: () -> Unit) {
+fun CardView(card: Card, onClick: () -> Unit) {
     val topCropPercentage = 0.10f // 10%
     val bottomCropPercentage = 0.50f // 50%
     val visibleHeightPercentage = 1f - topCropPercentage - bottomCropPercentage
     val imageWidth = 80.dp // Set the image width.
     val cardImageHeight = 100f//imageWidth / visibleHeightPercentage //calculate the card image height using the percentages.
+
+    val context = LocalContext.current
+    val drawableId = getDrawableId(context, card.imageName)
 
     // TODO: This is garbage
     Card(
@@ -74,7 +78,7 @@ fun CardView(card: GameCard, onClick: () -> Unit) {
                     .weight(0.3f) // Take up 30% of the available width
             ) {
                 Image(
-                    painter = painterResource(id = card.imageResId),
+                    painter = painterResource(id = drawableId),
                     contentDescription = card.name,
                     modifier = Modifier
                         .width(imageWidth)
@@ -118,17 +122,21 @@ fun CardView(card: GameCard, onClick: () -> Unit) {
 }
 
 @Composable
-fun CardDetail(card: GameCard, onBackClick: () -> Unit, modifier: Modifier) {
+fun CardDetail(card: Card, onBackClick: () -> Unit, modifier: Modifier) {
+
+    val context = LocalContext.current
+    val drawableId = getDrawableId(context, card.imageName)
+
     Box(
         modifier = modifier
     ) {
         Image(
-            painter = painterResource(id = card.imageResId),
+            painter = painterResource(id = drawableId),
             contentDescription = "Card Image",
             modifier = Modifier.fillMaxSize()
         )
         IconButton(onClick = { onBackClick() }) {
-            Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
+            Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
         }
     }
 }

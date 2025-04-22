@@ -6,30 +6,28 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
 class Converters {
+
     @TypeConverter
-    fun fromType(value: List<GameCard.Type>): String {
-        val gson = Gson()
-        val type = object : TypeToken<List<GameCard.Type>>() {}.type
-        return gson.toJson(value, type)
+    fun fromSet(value: Set): String {
+        return value.name
     }
 
     @TypeConverter
-    fun toType(value: String): List<GameCard.Type> {
-        val gson = Gson()
-        val type = object : TypeToken<List<GameCard.Type>>() {}.type
-        return gson.fromJson(value, type)
+    fun toSet(value: String): Set {
+        return Set.valueOf(value)
     }
 
     @TypeConverter
-    fun fromEffect(value: List<GameCard.Effect>): String {
+    fun fromTypeList(value: List<Type>): String {
         val gson = Gson()
-        val type = object : TypeToken<List<GameCard.Effect>>() {}.type
-        return gson.toJson(value, type)
+        return gson.toJson(value)
     }
+
     @TypeConverter
-    fun toEffect(value: String): List<GameCard.Effect> {
+    fun toTypeList(value: String): List<Type> {
         val gson = Gson()
-        val type = object : TypeToken<List<GameCard.Effect>>() {}.type
+        val type = object : TypeToken<List<Type>>() {}.type
         return gson.fromJson(value, type)
     }
+
 }

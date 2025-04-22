@@ -23,6 +23,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -51,7 +52,10 @@ fun ExpansionGrid(
 // ExpansionView displays a single expansion
 @Composable
 fun ExpansionView(expansion: Expansion, onClick: () -> Unit) {
-    var isChecked by remember { mutableStateOf(false) } // NEW: Checkbox state
+    var isChecked by remember { mutableStateOf(false) }
+
+    val context = LocalContext.current
+    val drawableId = getDrawableId(context, expansion.imageName)
 
     Card(
         modifier = Modifier
@@ -63,7 +67,7 @@ fun ExpansionView(expansion: Expansion, onClick: () -> Unit) {
             modifier = Modifier.fillMaxSize()
         ) {
             Image(
-                painter = painterResource(id = expansion.imageResId),
+                painter = painterResource(id = drawableId),
                 contentDescription = "${expansion.name} Expansion Image",
                 modifier = Modifier
                     .size(48.dp)

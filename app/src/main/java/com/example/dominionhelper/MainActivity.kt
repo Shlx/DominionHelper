@@ -64,19 +64,19 @@ class MainActivity : ComponentActivity() {
 
     // !! mutableStateOf automatically updates UI elements reliant on the values when they change
     var expansions: List<Expansion> by mutableStateOf(emptyList())
-    var gameCards: List<GameCard> by mutableStateOf(emptyList())
+    var gameCards: List<Card> by mutableStateOf(emptyList())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val dominionHelper = application as DominionHelper
-        val gameCardDao = dominionHelper.gameCardDao
+        val cardDao = dominionHelper.cardDao
         val expansionDao = dominionHelper.expansionDao
         val scope = dominionHelper.applicationScope
 
         scope.launch { // vs lifecyclescope?
             expansions = expansionDao.getAll() // TODO: Flow?
-            gameCards = gameCardDao.getAll() // TODO: Get those when an expansion is clicked
+            gameCards = cardDao.getAll() // TODO: Get those when an expansion is clicked
         }
 
         setContent {
@@ -87,15 +87,14 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 
-                    var selectedExpansion by remember { mutableStateOf<Int?>(null) }
-                    var selectedCard by remember { mutableStateOf<GameCard?>(null) }
+                    var selectedExpansion by remember { mutableStateOf<Set?>(null) }
+                    var selectedCard by remember { mutableStateOf<Card?>(null) }
                     var isSearchActive by remember { mutableStateOf(false) }
                     var searchText by remember { mutableStateOf("") }
 
                     val drawerState = rememberDrawerState(initialValue = Closed)
                     var isLoading by remember {mutableStateOf(false)}
                     var showRandomCards by remember {mutableStateOf(false)}
-                    //val scope = rememberCoroutineScope()
 
                     // BackHandler:
                     BackHandler(enabled = selectedExpansion != null || isSearchActive || selectedCard != null || drawerState.isOpen) {
@@ -136,7 +135,7 @@ class MainActivity : ComponentActivity() {
                                         scope.launch {
                                             //gameCards = gameCards.shuffled().take(5)
                                             //isLoading = true
-                                            gameCards = gameCardDao.getRandomCards(3)
+                                            gameCards = cardDao.getRandomCards(10)
                                             Log.i("Random cards", ""+gameCards.size)
                                             //isLoading = false
                                             showRandomCards = true
@@ -149,9 +148,9 @@ class MainActivity : ComponentActivity() {
 
                             LaunchedEffect(key1 = searchText, key2 = isSearchActive) {
                                 if (isSearchActive && searchText.length >= 2) {
-                                    gameCards = gameCardDao.getFilteredCards("%$searchText%")
+                                    gameCards = cardDao.getFilteredCards("%$searchText%")
                                 } else {
-                                    gameCards = gameCardDao.getAll()
+                                    gameCards = cardDao.getAll()
                                 }
                             }
 
@@ -162,7 +161,7 @@ class MainActivity : ComponentActivity() {
                                 Log.i("Grid", "view expansion list")
                                 ExpansionGrid(
                                     expansions = expansions, onExpansionClick = { expansion ->
-                                        selectedExpansion = expansion.id
+                                        selectedExpansion = expansion.set
                                     },
                                     modifier = Modifier.padding(innerPadding)
                                 )
@@ -171,7 +170,7 @@ class MainActivity : ComponentActivity() {
                             } else if (selectedCard == null) {
                                 if (!isSearchActive && !showRandomCards) {
                                     // Use db for this?
-                                    gameCards = gameCards.filter { it.expansionId == selectedExpansion }
+                                    gameCards = gameCards.filter { it.set == selectedExpansion }
                                 }
                                 Log.i("Grid", "view card list")
                                 CardList(

@@ -1,0 +1,158 @@
+[
+  {
+    "set": "BASE",
+    "name": "Base",
+    "image_name": "set_unknown"
+  },
+  {
+    "set": "BASE_1E",
+    "name": "Base (1st Edition)",
+    "image_name": "set_dominion_1e"
+  },
+  {
+    "set": "BASE_2E",
+    "name": "Base (2nd Edition)",
+    "image_name": "set_dominion_2e"
+  },
+  {
+    "set": "INTRIGUE",
+    "name": "Intrigue",
+    "image_name": "set_unknown"
+  },
+  {
+    "set": "INTRIGUE_1E",
+    "name": "Intrigue (1st Edition)",
+    "image_name": "set_intrigue_1e"
+  },
+  {
+    "set": "INTRIGUE_2E",
+    "name": "Intrigue (2nd Edition)",
+    "image_name": "set_intrigue_2e"
+  },
+  {
+    "set": "SEASIDE",
+    "name": "Seaside",
+    "image_name": "set_unknown"
+  },
+  {
+    "set": "SEASIDE_1E",
+    "name": "Seaside (1st Edition)",
+    "image_name": "set_seaside_1e"
+  },
+  {
+    "set": "SEASIDE_2E",
+    "name": "Seaside (2nd Edition)",
+    "image_name": "set_seaside_1e"
+  },
+  {
+    "set": "ALCHEMY",
+    "name": "Alchemy",
+    "image_name": "set_alchemy"
+  },
+{
+    "set": "PROSPERITY",
+    "name": "Prosperity",
+    "image_name": "set_prosperity"
+  },
+
+  {
+    "set": "PROSPERITY_1E",
+    "name": "Prosperity (1st Edition)",
+    "image_name": "set_prosperity"
+  },
+  {
+    "set": "PROSPERITY_2E",
+    "name": "Prosperity (2nd Edition)",
+    "image_name": "set_prosperity"
+  },
+  {
+    "set": "CORNUCOPIA",
+    "name": "Cornucopia",
+    "image_name": "set_cornucopia"
+  },
+  {
+    "set": "HINTERLANDS",
+    "name": "Hinterlands",
+    "image_name": "set_hinterlands"
+  },
+  {
+    "set": "HINTERLANDS_1E",
+    "name": "Hinterlands (1st Edition)",
+    "image_name": "set_hinterlands"
+  },
+  {
+    "set": "HINTERLANDS_2E",
+    "name": "Hinterlands (2nd Edition)",
+    "image_name": "set_hinterlands"
+  },
+  {
+    "set": "DARK_AGES",
+    "name": "Dark Ages",
+    "image_name": "set_dark_ages"
+  },
+  {
+    "set": "GUILDS",
+    "name": "Guilds",
+    "image_name": "set_guilds"
+  },
+  {
+    "set": "ADVENTURES",
+    "name": "Adventures",
+    "image_name": "set_adventures"
+  },
+  {
+    "set": "EMPIRES",
+    "name": "Empires",
+    "image_name": "set_empires"
+  },
+  {
+    "set": "NOCTURNE",
+    "name": "Nocturne",
+    "image_name": "set_nocturne"
+  },
+  {
+    "set": "RENAISSANCE",
+    "name": "Renaissance",
+    "image_name": "set_renaissance"
+  },
+  {
+    "set": "MENAGERIE",
+    "name": "Menagerie",
+    "image_name": "set_menagerie"
+  },
+  {
+    "set": "ALLIES",
+    "name": "Allies",
+    "image_name": "set_allies"
+  },
+  {
+    "set": "PLUNDER",
+    "name": "Plunder",
+    "image_name": "set_plunder"
+  },
+{
+    "set": "RISING_SUN",
+    "name": "Rising Sun",
+    "image_name": "set_rising_sun"
+  },
+  {
+    "set": "PROMO",
+    "name": "Promo",
+    "image_name": "set_promo"
+  },
+  {
+    "set": "CORNUCOPIA_GUILDS",
+    "name": "Cornucopia & Guilds",
+    "image_name": "set_unknown"
+  },
+  {
+    "set": "CORNUCOPIA_GUILDS_1E",
+    "name": "Cornucopia & Guilds (1st Edition)",
+    "image_name": "set_unknown"
+  },
+  {
+    "set": "CORNUCOPIA_GUILDS_2E",
+    "name": "Cornucopia & Guilds (2nd Edition)",
+    "image_name": "set_unknown"
+  }
+]
