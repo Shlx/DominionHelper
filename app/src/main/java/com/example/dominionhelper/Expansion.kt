@@ -14,7 +14,7 @@ import com.google.gson.annotations.SerializedName
 import com.google.gson.reflect.TypeToken
 import java.io.IOException
 
-@Entity(tableName = "expansion")
+@Entity(tableName = "expansions")
 data class Expansion(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val set: Set,
@@ -52,9 +52,15 @@ interface ExpansionDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(expansions: List<Expansion>)
 
-    @Query("SELECT * FROM expansion")
+    @Query("SELECT * FROM expansions")
     fun getAll(): List<Expansion>
 
-    @Query("SELECT * FROM expansion WHERE isOwned = 1")
+    @Query("SELECT * FROM expansions WHERE isOwned = 1")
     fun getOwned(): Flow<List<Expansion>>
+
+    @Query("SELECT * FROM expansions WHERE id = :id")
+    suspend fun getExpansionById(id: Int): Expansion?
+
+    @Query("UPDATE expansions SET isOwned = :isOwned WHERE id = :id")
+    suspend fun updateIsOwned(id: Int, isOwned: Boolean)
 }

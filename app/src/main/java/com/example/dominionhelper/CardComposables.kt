@@ -1,20 +1,28 @@
 package com.example.dominionhelper
 
+import android.util.Log
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Card
@@ -22,121 +30,245 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.Rect
-import androidx.compose.ui.graphics.Outline
-import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.Density
-import androidx.compose.ui.unit.LayoutDirection
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 
 // CardList is a composable function that creates a list of cards
 @Composable
-fun CardList(cardList: List<Card>, modifier: Modifier, onCardClick: (Card) -> Unit) {
+fun CardList(cardList: List<Card>, modifier: Modifier, onCardClick: (Card) -> Unit, expansionDao: ExpansionDao) {
     LazyColumn(
         modifier = modifier
     ) {
         items(cardList) { card ->
-            CardView(card, onClick = { onCardClick(card) })
+            CardView(card, onClick = { onCardClick(card) }, expansionDao = expansionDao)
         }
     }
 }
 
 // CardView displays a single card, with an image and a name
 @Composable
-fun CardView(card: Card, onClick: () -> Unit) {
-    val topCropPercentage = 0.10f // 10%
-    val bottomCropPercentage = 0.50f // 50%
-    val visibleHeightPercentage = 1f - topCropPercentage - bottomCropPercentage
-    val imageWidth = 80.dp // Set the image width.
-    val cardImageHeight = 100f//imageWidth / visibleHeightPercentage //calculate the card image height using the percentages.
-
+fun CardView(card: Card, onClick: () -> Unit, expansionDao: ExpansionDao) {
     val context = LocalContext.current
     val drawableId = getDrawableId(context, card.imageName)
 
-    // TODO: This is garbage
+    // Get the keyboard controller
+    val keyboardController = LocalSoftwareKeyboardController.current
+
+    var expansionImageId by remember { mutableStateOf(0) }
+
+    LaunchedEffect(key1 = card.set) {
+
+        val applicationScope = CoroutineScope(SupervisorJob())
+        applicationScope.launch {
+            val expansion = expansionDao.getAll().firstOrNull { it.set == card.set }
+            expansionImageId = expansion?.let { getDrawableId(context, it.imageName) } ?: R.drawable.ic_launcher_foreground
+        }
+
+    }
+
+
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable(onClick = onClick)
+            .clickable {
+                keyboardController?.hide()
+                onClick()
+            }
             .padding(8.dp, 4.dp)
+            .height(80.dp) // TODO: Switch to constants
     ) {
         Row(
-            modifier = Modifier
-                .padding(16.dp)
-                .height(50.dp),//cardImageHeight), // <--- Set the Row's height here
+            modifier = Modifier.fillMaxSize(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Box(
+            // Vertical Bar
+            ColoredBar(
+               barColors = card.getColorByTypes(),
+               modifier = Modifier
+                   .fillMaxHeight(),
+            )
+
+            // Image and Name
+            Row(
                 modifier = Modifier
-                    .weight(0.3f) // Take up 30% of the available width
+                    .fillMaxSize(),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Image(
-                    painter = painterResource(id = drawableId),
-                    contentDescription = card.name,
+                // Image
+                Box(
                     modifier = Modifier
-                        .width(imageWidth)
-                        .fillMaxHeight()
-                        .clip(
-                            object : Shape {
-                                override fun createOutline(
-                                    size: androidx.compose.ui.geometry.Size,
-                                    layoutDirection: LayoutDirection,
-                                    density: Density
-                                ): Outline {
-                                    val path = Path().apply {
-                                        val topCropAmount = size.height * topCropPercentage
-                                        val bottomCropAmount = size.height * bottomCropPercentage
-                                        val rect = Rect(
-                                            0f,
-                                            topCropAmount,
-                                            size.width,
-                                            size.height - bottomCropAmount
-                                        )
-                                        addRect(rect)
-                                    }
-                                    return Outline.Generic(path)
-                                }
-                            }
+                        .weight(0.3f)
+                        .padding(8.dp)
+                        .clip(RoundedCornerShape(16.dp))
+                ) {
+
+                    Image(
+                        painter = painterResource(id = drawableId),
+                        contentDescription = stringResource(
+                            id = R.string.card_image_content_description,
+                            card.name
                         ),
-                    contentScale = ContentScale.Crop // Crop to maintain aspect ratio
-                )
-            }
-            Spacer(modifier = Modifier.width(16.dp))
-            Column(
-                modifier = Modifier
-                    .weight(0.7f) // Take up 70% of the available width
-                    .height(50.dp)//cardImageHeight) // <--- Set the column's height here
-            ) {
-                Text(text = card.name,
-                    modifier = Modifier.height(IntrinsicSize.Min)) // <--- set the text height here
+                        // TODO: Treasure and Victory cards need slightly different values
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .fillMaxWidth()
+                            .graphicsLayer {
+                                scaleX = if (card.landscape) 2.1f else 2.5f
+                                scaleY = if (card.landscape) 2.1f else 2.5f
+                            }
+                            .offset {
+                                IntOffset(
+                                    x = 0,
+                                    y = if (card.landscape) 13 else 31
+                                )
+                            }
+                    )
+
+                }
+
+                // Name and Icon
+                Box(
+                    modifier = Modifier
+                        .weight(0.85f)
+                        .fillMaxHeight()
+                        .padding(8.dp)
+                ) {
+                    Text(
+                        text = card.name,
+                        textAlign = TextAlign.Start,
+                        fontSize = 20.sp
+                    )
+
+                    // Expansion Icon
+                    Box(modifier = Modifier.align(Alignment.CenterEnd)
+                        .padding(8.dp)) {
+                        if (expansionImageId != 0) {
+                            AsyncImage(
+                                model = expansionImageId,
+                                contentDescription = "${card.set} Expansion Image",
+                                modifier = Modifier
+                                    .size(48.dp),
+                                contentScale = ContentScale.Fit
+                            )
+                        } else {
+                            Image(
+                                painter = painterResource(R.drawable.ic_launcher_foreground),
+                                contentDescription = "Unknown Image",
+                                modifier = Modifier
+                                    .size(48.dp)
+                            )
+                        }
+                    }
+                }
             }
         }
     }
 }
 
 @Composable
-fun CardDetail(card: Card, onBackClick: () -> Unit, modifier: Modifier) {
+fun ColoredBar(barColors: List<Color>, modifier: Modifier = Modifier) {
+    if (barColors.size > 2) {
+        Log.e("ColoredBar", "barColors list must contain at most two colors.")
+        barColors.dropLast(1)
+    }
+
+    val color1 = barColors.firstOrNull() ?: Color.Transparent
+    val color2 = barColors.getOrNull(1) ?: color1
+
+    val animatedColor1 by animateColorAsState(
+        targetValue = color1,
+        animationSpec = tween(durationMillis = 1000), label = "color1"
+    )
+
+    val animatedColor2 by animateColorAsState(
+        targetValue = color2,
+        animationSpec = tween(durationMillis = 1000), label = "color2"
+    )
+
+    val brush = if (barColors.size == 1) {
+        Brush.verticalGradient(listOf(animatedColor1, animatedColor1))
+    } else {
+        Brush.verticalGradient(listOf(animatedColor1, animatedColor2))
+    }
+
+    Box(
+        modifier = modifier
+            .fillMaxHeight()
+            .width(8.dp)
+            .background(brush)
+    )
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun CardDetailPager(
+    cardList: List<Card>,
+    initialCard: Card,
+    onBackClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    // Find the initial index of the card
+    val initialIndex = cardList.indexOf(initialCard)
+    val pagerState = rememberPagerState(initialPage = initialIndex, pageCount = {cardList.size})
+    Column {
+        Box {
+            IconButton(
+                onClick = { onBackClick() },
+                modifier = Modifier.padding(16.dp)
+            ) {
+                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+            }
+        }
+        HorizontalPager(
+            state = pagerState,
+            modifier = modifier
+                .fillMaxSize(),
+        ) { page ->
+            // Display the card for the current page
+            // TODO: Always prints the next card as well
+            Log.i("CardDetailPager", "Displaying ${cardList[page].name}")
+            CardDetail(card = cardList[page])
+        }
+    }
+}
+
+@Composable
+fun CardDetail(card: Card) {
 
     val context = LocalContext.current
     val drawableId = getDrawableId(context, card.imageName)
 
     Box(
-        modifier = modifier
+        modifier = Modifier.fillMaxSize()
     ) {
         Image(
             painter = painterResource(id = drawableId),
             contentDescription = "Card Image",
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.FillBounds
         )
-        IconButton(onClick = { onBackClick() }) {
-            Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
-        }
     }
 }

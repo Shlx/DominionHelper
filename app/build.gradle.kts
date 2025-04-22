@@ -51,7 +51,6 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.cardview)
-    //implementation(libs.androidx.room.compiler)
     implementation(libs.androidx.room.common.jvm)
     implementation(libs.androidx.room.runtime.android)
     implementation(libs.androidx.sqlite.android)
@@ -62,9 +61,11 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation("com.google.code.gson:gson:2.10.1")
+    implementation(libs.gson)
 
-    implementation("androidx.room:room-runtime:2.7.0")
-    kapt("androidx.room:room-compiler:2.7.0") // Use kapt for Kotlin!
-    implementation("androidx.room:room-ktx:2.7.0")
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.androidx.room.compiler) // Use kapt for Kotlin!
+    implementation(libs.androidx.room.ktx)
+    implementation("androidx.compose.foundation:foundation:1.7.8")
+    implementation("io.coil-kt:coil-compose:2.6.0")
 }

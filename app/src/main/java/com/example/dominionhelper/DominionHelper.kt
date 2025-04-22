@@ -18,7 +18,7 @@ class DominionHelper : Application() {
         Room.databaseBuilder(
             applicationContext,
             AppDatabase::class.java,
-            "dominion_database"
+            getString(R.string.database_name)
         )
             .addCallback(object : RoomDatabase.Callback() {
                 override fun onCreate(db: SupportSQLiteDatabase) {

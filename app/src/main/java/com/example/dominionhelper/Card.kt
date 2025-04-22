@@ -2,6 +2,7 @@ package com.example.dominionhelper
 
 import android.content.Context
 import android.util.Log
+import androidx.compose.ui.graphics.Color
 import androidx.room.Dao
 import androidx.room.Entity
 import androidx.room.Insert
@@ -19,7 +20,7 @@ import com.google.gson.stream.JsonReader
 import com.google.gson.stream.JsonToken
 
 
-@Entity(tableName = "card")
+@Entity(tableName = "cards")
 data class Card(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val name: String,
@@ -29,7 +30,45 @@ data class Card(
     val landscape: Boolean,
     val types: List<Type>,
     @SerializedName("image_name") val imageName: String
-)
+) {
+    fun getColorByTypes(): List<Color> {
+        var list = mutableListOf<Color>()
+        if (types.contains(Type.TREASURE)) {
+            list.add(Color(0xFFF7DC7E))
+        }
+        if (types.contains(Type.DURATION)) {
+            list.add(Color(0xFFE78845))
+        }
+        if (types.contains(Type.REACTION)) {
+            list.add(Color(0xFF67AAD9))
+        }
+        if (types.contains(Type.RESERVE)) {
+            list.add(Color(0xFFD7BC86))
+        }
+        if (types.contains(Type.VICTORY)) {
+            list.add(Color(0xFFA2CB85))
+        }
+        if (types.contains(Type.CURSE)) {
+            list.add(Color(0xFFB18EBC))
+        }
+        if (types.contains(Type.RUINS)) {
+            list.add(Color(0xFF875F3C))
+        }
+        if (types.contains(Type.NIGHT)) {
+            list.add(Color(0xFF535353))
+        }
+        if (types.contains(Type.SHELTER)) {
+            if (types.contains(Type.ACTION)) {
+                list.add(Color(0xFFF3EEE2))
+            }
+            list.add(Color(0xFFEF876F))
+        }
+        if (list.isEmpty()) {
+            list.add(Color(0xFFF3EEE2))
+        }
+        return list
+    }
+}
 
 enum class Set {
     BASE,
@@ -180,14 +219,27 @@ class TypeTypeAdapter : TypeAdapter<Type>() {
 @Dao
 interface CardDao {
 
-    @Query("SELECT * FROM card")
+    @Query("SELECT * FROM cards")
     suspend fun getAll(): List<Card>
 
-    @Query("SELECT * FROM card WHERE name LIKE :filter")
+    @Query("SELECT * FROM cards WHERE name LIKE :filter")
     suspend fun getFilteredCards(filter: String): List<Card>
 
-    @Query("SELECT * FROM card ORDER BY RANDOM() LIMIT :amount")
+    @Query("SELECT * FROM cards WHERE `set` = :expansion")
+    suspend fun getCardsByExpansion(expansion: Set): List<Card>
+
+    @Query("SELECT * FROM cards ORDER BY RANDOM() LIMIT :amount")
     suspend fun getRandomCards(amount: Int): List<Card>
+
+    @Query("""
+        SELECT c.* FROM cards AS c
+        INNER JOIN expansions AS e ON c.`set` = e.`set`
+        WHERE e.isOwned = 1
+        AND c.landscape = 0
+        ORDER BY RANDOM()
+        LIMIT :amount
+    """)
+    suspend fun getRandomCardsFromOwnedExpansions(amount: Int): List<Card>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(cards: List<Card>)

@@ -59,6 +59,7 @@ import kotlinx.coroutines.launch
 // Composables vs. ViewModels
 // Better than using myApplication: use dependency injection to call DAOs TODO later on
 // TODO: Use 2 databases: one for cards and expansions, one for user data like favorites
+// TODO: Use coil or glide to load images to avoid "image decoding logging dropped" warnings
 
 class MainActivity : ComponentActivity() {
 
@@ -75,8 +76,7 @@ class MainActivity : ComponentActivity() {
         val scope = dominionHelper.applicationScope
 
         scope.launch { // vs lifecyclescope?
-            expansions = expansionDao.getAll() // TODO: Flow?
-            gameCards = cardDao.getAll() // TODO: Get those when an expansion is clicked
+            expansions = expansionDao.getAll() // Always having all expansions loaded is fine. I don't think we need a Flow here either
         }
 
         setContent {
@@ -87,7 +87,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 
-                    var selectedExpansion by remember { mutableStateOf<Set?>(null) }
+                    var selectedExpansion by remember { mutableStateOf<Expansion?>(null) }
                     var selectedCard by remember { mutableStateOf<Card?>(null) }
                     var isSearchActive by remember { mutableStateOf(false) }
                     var searchText by remember { mutableStateOf("") }
@@ -97,22 +97,30 @@ class MainActivity : ComponentActivity() {
                     var showRandomCards by remember {mutableStateOf(false)}
 
                     // BackHandler:
-                    BackHandler(enabled = selectedExpansion != null || isSearchActive || selectedCard != null || drawerState.isOpen) {
+                    BackHandler(enabled = selectedExpansion != null || drawerState.isOpen || isSearchActive) {
                         if (drawerState.isOpen) {
                             scope.launch {
-                                drawerState.close() // Close drawer
+                                Log.i("Back Handler", "Close drawer")
+                                drawerState.close()
                             }
+
                         } else if (isSearchActive) {
-                            isSearchActive = false // Close search
+                            Log.i("Back Handler", "Deactivate search")
+                            isSearchActive = false
+
                         } else if (selectedCard != null) {
-                            selectedCard = null // Deselect the card
-                        } else {
-                            selectedExpansion = null // Go back to expansions
+                            Log.i("Back Handler", "Deselect card -> Return to card list")
+                            selectedCard = null
+
+                        } else if (selectedExpansion != null) {
+                            Log.i("Back Handler", "Deselect expansion -> Return to expansion list")
+                            selectedExpansion = null
                         }
                     }
 
                     var selectedOption by remember { mutableStateOf("") } // Initially select the first option
 
+                    // Currently broken - java.lang.IllegalStateException: A MonotonicFrameClock is not available in this CoroutineContext. Callers should supply an appropriate MonotonicFrameClock using withContext.
                     ModalNavigationDrawer(
                         drawerState = drawerState,
                         drawerContent = {
@@ -133,59 +141,66 @@ class MainActivity : ComponentActivity() {
                                     onRandomCardsClicked = {
                                         // Get ApplicationContext scope here?
                                         scope.launch {
-                                            //gameCards = gameCards.shuffled().take(5)
-                                            //isLoading = true
-                                            gameCards = cardDao.getRandomCards(10)
-                                            Log.i("Random cards", ""+gameCards.size)
+
+                                            //isLoading = true // Probably not needed?
+                                            gameCards = cardDao.getRandomCardsFromOwnedExpansions(10)
+                                            Log.i("Random cards", "Generated ${gameCards.size} cards")
                                             //isLoading = false
                                             showRandomCards = true
-                                            // Callback function once the call is definitely complete?
                                         }
-                                    }
+                                    },
+                                    selectedExpansion = selectedExpansion
                                 )
                             }
                         ) { innerPadding ->
 
+                            // TODO: Option to order by cost / type / alphabetical
                             LaunchedEffect(key1 = searchText, key2 = isSearchActive) {
                                 if (isSearchActive && searchText.length >= 2) {
+                                    Log.i("LaunchedEffect", "Getting cards by search text ${searchText}")
                                     gameCards = cardDao.getFilteredCards("%$searchText%")
-                                } else {
-                                    gameCards = cardDao.getAll()
-                                }
+                                }/* else if (selectedExpansion != null) {
+                                    Log.i("LaunchedEffect", "Getting cards from expansion ${selectedExpansion!!.name}")
+                                    gameCards = cardDao.getCardsByExpansion(selectedExpansion!!.set)
+                                }*/
                             }
 
                             // View list of expansions
                             // TODO: Geht hier rein on randomized cards
                             // -> Neue activity für card list?
                             if (selectedExpansion == null && searchText.length <= 1 && !showRandomCards) {
-                                Log.i("Grid", "view expansion list")
+                                Log.i("MainActivity", "View expansion list")
                                 ExpansionGrid(
-                                    expansions = expansions, onExpansionClick = { expansion ->
-                                        selectedExpansion = expansion.set
+                                    expansions = expansions,
+                                    expansionDao = expansionDao,
+                                    onExpansionClick = { expansion ->
+                                        selectedExpansion = expansion
+                                        scope.launch {
+                                            Log.i("MainActivity", "Getting cards from expansion ${selectedExpansion!!.name}")
+                                            gameCards = cardDao.getCardsByExpansion(expansion.set)
+                                        }
                                     },
                                     modifier = Modifier.padding(innerPadding)
                                 )
 
                                 // View a list of cards
                             } else if (selectedCard == null) {
-                                if (!isSearchActive && !showRandomCards) {
-                                    // Use db for this?
-                                    gameCards = gameCards.filter { it.set == selectedExpansion }
-                                }
-                                Log.i("Grid", "view card list")
+                                Log.i("MainActivity", "View card list (${gameCards.size} cards)")
                                 CardList(
                                     cardList = gameCards,
                                     onCardClick = { card ->
                                         selectedCard = card
                                     },
+                                    expansionDao = expansionDao,
                                     modifier = Modifier.padding(innerPadding)
                                 )
 
                                 // View a single card
                             } else if (!isLoading){
-                                Log.i("Grid", "view card detail")
-                                CardDetail(
-                                    card = selectedCard!!,
+                                Log.i("MainActivity", "View card detail (${selectedCard?.name})")
+                                CardDetailPager(
+                                    cardList = gameCards,
+                                    initialCard = selectedCard!!,
                                     onBackClick = { selectedCard = null },
                                     modifier = Modifier.padding(innerPadding)
                                 )
@@ -234,7 +249,8 @@ fun TopBar(
     onSearchClicked: () -> Unit,
     searchText: String,
     onSearchTextChange: (String) -> Unit,
-    onRandomCardsClicked: () -> Unit
+    onRandomCardsClicked: () -> Unit,
+    selectedExpansion: Expansion? = null
 ) {
     TopAppBar(
         title = {
@@ -264,6 +280,10 @@ fun TopBar(
                         disabledContainerColor = Color.Black.copy(alpha = 0.0f) // Completely transparent
                     )
                 )
+            } else if (selectedExpansion != null) {
+                Text(selectedExpansion.name) // Display expansion name
+            } else {
+                Text("Dominion Helper")
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(
