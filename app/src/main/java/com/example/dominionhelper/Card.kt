@@ -4,11 +4,14 @@ import android.content.Context
 import android.util.Log
 import androidx.compose.ui.graphics.Color
 import androidx.room.Dao
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.Insert
+import androidx.room.Junction
 import androidx.room.OnConflictStrategy
 import androidx.room.PrimaryKey
 import androidx.room.Query
+import androidx.room.Relation
 import com.google.gson.GsonBuilder
 import com.google.gson.TypeAdapter
 import com.google.gson.annotations.SerializedName
@@ -153,6 +156,32 @@ enum class Type {
     PROPHECY
 }
 
+@Entity(tableName = "card_categories")
+data class CardCategory(
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    val name: String // e.g., "Cantrip", "Looter", etc.
+)
+
+@Entity(
+    tableName = "card_category_cross_ref",
+    primaryKeys = ["cardId", "categoryId"]
+)
+data class CardCategoryCrossRef(
+    val cardId: Int,
+    val categoryId: Int
+)
+
+data class CardWithCategories(
+    @Embedded val card: Card,
+    @Relation(
+        parentColumn = "id",
+        entityColumn = "id",
+        associateBy = Junction(CardCategoryCrossRef::class)
+    )
+    val categories: List<CardCategory>
+)
+
+// To data package
 fun loadCardsFromAssets(context: Context): List<Card> {
     val jsonString: String
     try {
@@ -214,33 +243,4 @@ class TypeTypeAdapter : TypeAdapter<Type>() {
         val value = reader.nextString()
         return Type.valueOf(value.uppercase()) // Convert from string to Set enum
     }
-}
-
-@Dao
-interface CardDao {
-
-    @Query("SELECT * FROM cards")
-    suspend fun getAll(): List<Card>
-
-    @Query("SELECT * FROM cards WHERE name LIKE :filter")
-    suspend fun getFilteredCards(filter: String): List<Card>
-
-    @Query("SELECT * FROM cards WHERE `set` = :expansion")
-    suspend fun getCardsByExpansion(expansion: Set): List<Card>
-
-    @Query("SELECT * FROM cards ORDER BY RANDOM() LIMIT :amount")
-    suspend fun getRandomCards(amount: Int): List<Card>
-
-    @Query("""
-        SELECT c.* FROM cards AS c
-        INNER JOIN expansions AS e ON c.`set` = e.`set`
-        WHERE e.isOwned = 1
-        AND c.landscape = 0
-        ORDER BY RANDOM()
-        LIMIT :amount
-    """)
-    suspend fun getRandomCardsFromOwnedExpansions(amount: Int): List<Card>
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(cards: List<Card>)
 }

@@ -1,4 +1,3 @@
-// Converters.kt
 package com.example.dominionhelper
 
 import androidx.room.TypeConverter
@@ -6,6 +5,8 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
 class Converters {
+
+    private val gson = Gson()
 
     @TypeConverter
     fun fromSet(value: Set): String {
@@ -19,13 +20,11 @@ class Converters {
 
     @TypeConverter
     fun fromTypeList(value: List<Type>): String {
-        val gson = Gson()
         return gson.toJson(value)
     }
 
     @TypeConverter
     fun toTypeList(value: String): List<Type> {
-        val gson = Gson()
         val type = object : TypeToken<List<Type>>() {}.type
         return gson.fromJson(value, type)
     }

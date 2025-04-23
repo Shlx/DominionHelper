@@ -2,7 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -64,8 +65,22 @@ dependencies {
     implementation(libs.gson)
 
     implementation(libs.androidx.room.runtime)
-    kapt(libs.androidx.room.compiler) // Use kapt for Kotlin!
+    ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
-    implementation("androidx.compose.foundation:foundation:1.7.8")
-    implementation("io.coil-kt:coil-compose:2.6.0")
+    implementation(libs.androidx.foundation)
+    implementation(libs.coil.compose)
+
+    // Hilt
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
+
+    //Hilt Navigation
+    implementation(libs.androidx.hilt.navigation.compose)
+
+
 }
+
+// Allow references to generated code
+/*kapt {
+    correctErrorTypes = true
+}*/

@@ -23,6 +23,7 @@ data class Expansion(
     val isOwned: Boolean = false
 )
 
+// To data package
 fun loadExpansionsFromAssets(context: Context): List<Expansion> {
     val jsonString: String
     try {
@@ -44,23 +45,4 @@ fun loadExpansionsFromAssets(context: Context): List<Expansion> {
     val expansionListType = object : TypeToken<List<Expansion>>() {}.type
     val expansionList: List<Expansion> = gson.fromJson(jsonString, expansionListType)
     return expansionList
-}
-
-// DAO for Expansions
-@Dao
-interface ExpansionDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(expansions: List<Expansion>)
-
-    @Query("SELECT * FROM expansions")
-    fun getAll(): List<Expansion>
-
-    @Query("SELECT * FROM expansions WHERE isOwned = 1")
-    fun getOwned(): Flow<List<Expansion>>
-
-    @Query("SELECT * FROM expansions WHERE id = :id")
-    suspend fun getExpansionById(id: Int): Expansion?
-
-    @Query("UPDATE expansions SET isOwned = :isOwned WHERE id = :id")
-    suspend fun updateIsOwned(id: Int, isOwned: Boolean)
 }

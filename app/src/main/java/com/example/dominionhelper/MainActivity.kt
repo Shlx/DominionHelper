@@ -51,32 +51,65 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.dominionhelper.data.CardDao
+import com.example.dominionhelper.data.ExpansionDao
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
+// Random info:
 // Prop drilling: passing lots of data down through mutliple levels (bad)
 // by lazy: loading data only when needed (good)
-// Composables vs. ViewModels
-// Better than using myApplication: use dependency injection to call DAOs TODO later on
-// TODO: Use 2 databases: one for cards and expansions, one for user data like favorites
-// TODO: Use coil or glide to load images to avoid "image decoding logging dropped" warnings
+// Flows: automatically updates UI elements when data changes
+// mutableStateOf automatically updates UI elements reliant on the values when they change
 
+// Composables vs. ViewModels
+// TODO: Use coil or glide to load images to avoid "image decoding logging dropped" warnings
+// Applicationscope vs LifecycleScope vs CoroutineScope vs whatever
+// Flows instead of lists?
+
+// TODO
+// Split piles
+// Show behind top + nav bar?
+// Add cost to cards
+// Remove base cards from randomization
+// Research landscape rules (I think 2 are recommended)
+// FIX DRAWER
+// Add rules for randomization
+// VP counter
+// Clear search on deactivating search
+// Find solution for 1st / 2nd edition
+// Add loading times instead of switching instantly (you can see UI changing)
+// Remove search from detail view?
+// First launch: No data shown
+// ViewModels
+
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    // !! mutableStateOf automatically updates UI elements reliant on the values when they change
+    @Inject
+    lateinit var cardDao: CardDao
+
+    @Inject
+    lateinit var expansionDao: ExpansionDao
+
+    @Inject
+    lateinit var applicationScope: CoroutineScope
+
     var expansions: List<Expansion> by mutableStateOf(emptyList())
-    var gameCards: List<Card> by mutableStateOf(emptyList())
+    var cards: List<Card> by mutableStateOf(emptyList())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val dominionHelper = application as DominionHelper
-        val cardDao = dominionHelper.cardDao
-        val expansionDao = dominionHelper.expansionDao
-        val scope = dominionHelper.applicationScope
-
-        scope.launch { // vs lifecyclescope?
-            expansions = expansionDao.getAll() // Always having all expansions loaded is fine. I don't think we need a Flow here either
+        applicationScope.launch {
+            expansions = expansionDao.getAll()
+            Log.d("MainActivity", "Loaded ${expansions.size} expansions")
+            cards = cardDao.getAll()
+            Log.d("MainActivity", "Loaded ${cards.size} cards")
         }
 
         setContent {
@@ -99,7 +132,7 @@ class MainActivity : ComponentActivity() {
                     // BackHandler:
                     BackHandler(enabled = selectedExpansion != null || drawerState.isOpen || isSearchActive) {
                         if (drawerState.isOpen) {
-                            scope.launch {
+                            applicationScope.launch {
                                 Log.i("Back Handler", "Close drawer")
                                 drawerState.close()
                             }
@@ -119,12 +152,13 @@ class MainActivity : ComponentActivity() {
                     }
 
                     var selectedOption by remember { mutableStateOf("") } // Initially select the first option
+                    val options = listOf("Option 1", "Option 2", "Option 3")
 
                     // Currently broken - java.lang.IllegalStateException: A MonotonicFrameClock is not available in this CoroutineContext. Callers should supply an appropriate MonotonicFrameClock using withContext.
                     ModalNavigationDrawer(
                         drawerState = drawerState,
                         drawerContent = {
-                            DrawerContent(selectedOption, { selectedOption = it }, drawerState)
+                            DrawerContent(applicationScope, selectedOption, { selectedOption = it }, drawerState)
                         },
                         gesturesEnabled = drawerState.isOpen
                     ) {
@@ -132,7 +166,7 @@ class MainActivity : ComponentActivity() {
                         Scaffold(
                             topBar = {
                                 TopBar(
-                                    scope,
+                                    applicationScope,
                                     drawerState,
                                     isSearchActive,
                                     { isSearchActive = !isSearchActive },
@@ -140,11 +174,12 @@ class MainActivity : ComponentActivity() {
                                     { searchText = it },
                                     onRandomCardsClicked = {
                                         // Get ApplicationContext scope here?
-                                        scope.launch {
+                                        applicationScope.launch {
 
                                             //isLoading = true // Probably not needed?
-                                            gameCards = cardDao.getRandomCardsFromOwnedExpansions(10)
-                                            Log.i("Random cards", "Generated ${gameCards.size} cards")
+                                            // Error if no expansions selected
+                                            cards = cardDao.getRandomCardsFromOwnedExpansions(10)
+                                            Log.i("Random cards", "Generated ${cards.size} cards")
                                             //isLoading = false
                                             showRandomCards = true
                                         }
@@ -158,7 +193,7 @@ class MainActivity : ComponentActivity() {
                             LaunchedEffect(key1 = searchText, key2 = isSearchActive) {
                                 if (isSearchActive && searchText.length >= 2) {
                                     Log.i("LaunchedEffect", "Getting cards by search text ${searchText}")
-                                    gameCards = cardDao.getFilteredCards("%$searchText%")
+                                    cards = cardDao.getFilteredCards("%$searchText%")
                                 }/* else if (selectedExpansion != null) {
                                     Log.i("LaunchedEffect", "Getting cards from expansion ${selectedExpansion!!.name}")
                                     gameCards = cardDao.getCardsByExpansion(selectedExpansion!!.set)
@@ -175,9 +210,9 @@ class MainActivity : ComponentActivity() {
                                     expansionDao = expansionDao,
                                     onExpansionClick = { expansion ->
                                         selectedExpansion = expansion
-                                        scope.launch {
+                                        applicationScope.launch {
                                             Log.i("MainActivity", "Getting cards from expansion ${selectedExpansion!!.name}")
-                                            gameCards = cardDao.getCardsByExpansion(expansion.set)
+                                            cards = cardDao.getCardsByExpansion(expansion.set)
                                         }
                                     },
                                     modifier = Modifier.padding(innerPadding)
@@ -185,9 +220,9 @@ class MainActivity : ComponentActivity() {
 
                                 // View a list of cards
                             } else if (selectedCard == null) {
-                                Log.i("MainActivity", "View card list (${gameCards.size} cards)")
+                                Log.i("MainActivity", "View card list (${cards.size} cards)")
                                 CardList(
-                                    cardList = gameCards,
+                                    cardList = cards,
                                     onCardClick = { card ->
                                         selectedCard = card
                                     },
@@ -199,7 +234,7 @@ class MainActivity : ComponentActivity() {
                             } else if (!isLoading){
                                 Log.i("MainActivity", "View card detail (${selectedCard?.name})")
                                 CardDetailPager(
-                                    cardList = gameCards,
+                                    cardList = cards,
                                     initialCard = selectedCard!!,
                                     onBackClick = { selectedCard = null },
                                     modifier = Modifier.padding(innerPadding)
@@ -217,11 +252,11 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun DrawerContent(
+    scope: CoroutineScope,
     selectedOption: String,
     onOptionSelected: (String) -> Unit,
     drawerState: DrawerState
 ) {
-    val scope = rememberCoroutineScope()
     val options = listOf("Option 1", "Option 2", "Option 3")
 
     ModalDrawerSheet {
@@ -231,7 +266,9 @@ fun DrawerContent(
                 label = { Text(option) },
                 selected = option == selectedOption,
                 onClick = {
-                    scope.launch { drawerState.close() } // Close drawer on click
+                    scope.launch {
+                        drawerState.close()
+                    }
                     onOptionSelected(option)
                 },
                 modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
