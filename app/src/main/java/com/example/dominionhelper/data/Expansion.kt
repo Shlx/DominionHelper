@@ -1,15 +1,10 @@
-package com.example.dominionhelper
+package com.example.dominionhelper.data
 
 import android.content.Context
 import android.util.Log
-import androidx.room.Dao
 import androidx.room.Entity
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import androidx.room.PrimaryKey
-import androidx.room.Query
 import com.google.gson.GsonBuilder
-import kotlinx.coroutines.flow.Flow
 import com.google.gson.annotations.SerializedName
 import com.google.gson.reflect.TypeToken
 import java.io.IOException

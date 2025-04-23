@@ -5,13 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Transaction
 import androidx.room.Update
-import com.example.dominionhelper.Card
-import com.example.dominionhelper.CardCategory
-import com.example.dominionhelper.CardCategoryCrossRef
-import com.example.dominionhelper.CardWithCategories
-import com.example.dominionhelper.Set
 
 @Dao
 interface CardDao {
@@ -19,11 +13,11 @@ interface CardDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(cards: List<Card>)
 
-    @Insert
+    /*@Insert
     suspend fun insertAllCategories(categories: List<CardCategory>)
 
     @Insert
-    suspend fun insertCardCategoryCrossRef(crossRef: CardCategoryCrossRef)
+    suspend fun insertCardCategoryCrossRef(crossRef: CardCategoryCrossRef)*/
 
     @Delete
     suspend fun delete(card: Card)
@@ -31,7 +25,7 @@ interface CardDao {
     @Update
     suspend fun update(card: Card)
 
-    @Transaction
+    /*@Transaction
     @Query("SELECT * FROM cards")
     suspend fun getAllCardsWithCategories(): List<CardWithCategories>
 
@@ -40,7 +34,7 @@ interface CardDao {
 
     @Transaction
     @Query("SELECT * FROM cards WHERE id IN (SELECT cardId FROM card_category_cross_ref WHERE categoryId = :categoryId)")
-    suspend fun getCardsByCategory(categoryId: Int): List<CardWithCategories>
+    suspend fun getCardsByCategory(categoryId: Int): List<CardWithCategories>*/
 
     @Query("SELECT * FROM cards")
     suspend fun getAll(): List<Card>

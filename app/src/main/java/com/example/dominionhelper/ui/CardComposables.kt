@@ -1,4 +1,4 @@
-package com.example.dominionhelper
+package com.example.dominionhelper.ui
 
 import android.util.Log
 import androidx.compose.animation.animateColorAsState
@@ -51,7 +51,10 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.example.dominionhelper.data.Card
+import com.example.dominionhelper.R
 import com.example.dominionhelper.data.ExpansionDao
+import com.example.dominionhelper.getDrawableId
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch

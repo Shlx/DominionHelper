@@ -1,17 +1,10 @@
-package com.example.dominionhelper
+package com.example.dominionhelper.data
 
 import android.content.Context
 import android.util.Log
 import androidx.compose.ui.graphics.Color
-import androidx.room.Dao
-import androidx.room.Embedded
 import androidx.room.Entity
-import androidx.room.Insert
-import androidx.room.Junction
-import androidx.room.OnConflictStrategy
 import androidx.room.PrimaryKey
-import androidx.room.Query
-import androidx.room.Relation
 import com.google.gson.GsonBuilder
 import com.google.gson.TypeAdapter
 import com.google.gson.annotations.SerializedName
@@ -156,7 +149,7 @@ enum class Type {
     PROPHECY
 }
 
-@Entity(tableName = "card_categories")
+/*@Entity(tableName = "card_categories")
 data class CardCategory(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val name: String // e.g., "Cantrip", "Looter", etc.
@@ -179,7 +172,7 @@ data class CardWithCategories(
         associateBy = Junction(CardCategoryCrossRef::class)
     )
     val categories: List<CardCategory>
-)
+)*/
 
 // To data package
 fun loadCardsFromAssets(context: Context): List<Card> {

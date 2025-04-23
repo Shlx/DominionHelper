@@ -1,6 +1,8 @@
 package com.example.dominionhelper
 
 import androidx.room.TypeConverter
+import com.example.dominionhelper.data.Set
+import com.example.dominionhelper.data.Type
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

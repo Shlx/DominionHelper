@@ -1,4 +1,4 @@
-package com.example.dominionhelper
+package com.example.dominionhelper.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -30,7 +30,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.dominionhelper.data.Expansion
 import com.example.dominionhelper.data.ExpansionDao
+import com.example.dominionhelper.getDrawableId
 import kotlinx.coroutines.launch
 
 // ExpansionGrid displays the list of expansions
