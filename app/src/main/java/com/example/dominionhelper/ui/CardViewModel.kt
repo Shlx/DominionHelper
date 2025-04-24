@@ -33,12 +33,16 @@ class CardViewModel @Inject constructor(
     private val _searchText = MutableStateFlow<String>("")
     val searchText: StateFlow<String> = _searchText.asStateFlow()
 
+    private val _sortType = MutableStateFlow<SortType>(SortType.NONE)
+    val sortType: StateFlow<SortType> = _sortType.asStateFlow()
+
     private val _showRandomCards = MutableStateFlow<Boolean>(false)
     val showRandomCards: StateFlow<Boolean> = _showRandomCards.asStateFlow()
 
     fun loadCardsByExpansion(set: Set) {
         viewModelScope.launch {
             _cards.value = cardDao.getCardsByExpansion(set)
+            sortCards()
             Log.d("CardViewModel", "Loaded ${_cards.value.size} cards for expansion ${set.name}")
         }
     }
@@ -46,6 +50,7 @@ class CardViewModel @Inject constructor(
     fun loadAllCards() {
         viewModelScope.launch {
             _cards.value = cardDao.getAll()
+            sortCards()
         }
     }
 
@@ -68,6 +73,7 @@ class CardViewModel @Inject constructor(
     fun searchCards(newText: String){
         viewModelScope.launch {
             _cards.value = cardDao.getFilteredCards("%$newText%")
+            sortCards()
             Log.d("CardViewModel", "Search results: ${_cards.value.size}")
         }
     }
@@ -76,7 +82,22 @@ class CardViewModel @Inject constructor(
         viewModelScope.launch {
             _cards.value = cardDao.getRandomCardsFromOwnedExpansions(10)
             _showRandomCards.value = true
+            sortCards()
         }
+    }
+
+    private fun sortCards() {
+        val sortedCards = when (_sortType.value) {
+            SortType.NONE -> _cards.value // No sorting, keep the current order
+            SortType.ALPHABETICAL -> _cards.value.sortedBy { it.name }
+            SortType.COST -> _cards.value.sortedBy { it.cost }
+        }
+        _cards.value = sortedCards
+    }
+
+    fun updateSortType(newSortType: SortType) {
+        _sortType.value = newSortType
+        sortCards()
     }
 
     fun clearRandomCards(){
@@ -89,4 +110,10 @@ class CardViewModel @Inject constructor(
         }
     }*/
 
+}
+
+enum class SortType {
+    NONE,
+    ALPHABETICAL,
+    COST
 }

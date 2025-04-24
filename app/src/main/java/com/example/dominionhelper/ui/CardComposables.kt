@@ -50,12 +50,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.example.dominionhelper.R
 import com.example.dominionhelper.data.Card
-import com.example.dominionhelper.data.Expansion
-import com.example.dominionhelper.data.ExpansionDao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
@@ -89,18 +86,6 @@ fun CardView(
 
     // Get the keyboard controller
     val keyboardController = LocalSoftwareKeyboardController.current
-
-    var expansionImageId by remember { mutableStateOf(0) }
-
-    LaunchedEffect(key1 = card.set) {
-
-        val applicationScope = CoroutineScope(SupervisorJob())
-        applicationScope.launch {
-            //val expansion = expansionDao.getAll().firstOrNull { it.set == card.set }
-            expansionImageId = /*expansion?.let { getDrawableId(context, it.imageName) }
-                ?: */R.drawable.ic_launcher_foreground
-        }
-    }
 
     Card(
         modifier = Modifier
@@ -180,22 +165,12 @@ fun CardView(
                             .align(Alignment.CenterEnd)
                             .padding(8.dp)
                     ) {
-                        if (expansionImageId != 0) {
-                            AsyncImage(
-                                model = expansionImageId,
-                                contentDescription = "${card.set} Expansion Image",
-                                modifier = Modifier
-                                    .size(48.dp),
-                                contentScale = ContentScale.Fit
-                            )
-                        } else {
-                            Image(
-                                painter = painterResource(R.drawable.ic_launcher_foreground),
-                                contentDescription = "Unknown Image",
-                                modifier = Modifier
-                                    .size(48.dp)
-                            )
-                        }
+                        Image(
+                            painter = painterResource(card.expansionImageId),
+                            contentDescription = "Unknown Image",
+                            modifier = Modifier
+                                .size(48.dp)
+                        )
                     }
                 }
             }

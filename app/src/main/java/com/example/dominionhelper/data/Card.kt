@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import androidx.compose.ui.graphics.Color
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.example.dominionhelper.R
 import com.google.gson.GsonBuilder
@@ -26,9 +27,12 @@ data class Card(
     val supply: Boolean,
     val landscape: Boolean,
     val types: List<Type>,
-    @SerializedName("image_name") val imageName: String,
-    var expansionImageId: Int = R.drawable.ic_launcher_foreground
+    @SerializedName("image_name") val imageName: String
 ) {
+
+    @Ignore
+    var expansionImageId: Int = set.imageId
+
     fun getColorByTypes(): List<Color> {
         val list = mutableListOf<Color>()
         if (types.contains(Type.TREASURE)) {
@@ -70,38 +74,38 @@ data class Card(
     }
 }
 
-enum class Set {
-    BASE,
-    BASE_1E,
-    BASE_2E,
-    INTRIGUE,
-    INTRIGUE_1E,
-    INTRIGUE_2E,
-    SEASIDE,
-    SEASIDE_1E,
-    SEASIDE_2E,
-    ALCHEMY,
-    PROSPERITY,
-    PROSPERITY_1E,
-    PROSPERITY_2E,
-    CORNUCOPIA,
-    HINTERLANDS,
-    HINTERLANDS_1E,
-    HINTERLANDS_2E,
-    DARK_AGES,
-    GUILDS,
-    ADVENTURES,
-    EMPIRES,
-    NOCTURNE,
-    RENAISSANCE,
-    MENAGERIE,
-    ALLIES,
-    PLUNDER,
-    RISING_SUN,
-    PROMO,
-    CORNUCOPIA_GUILDS,
-    CORNUCOPIA_GUILDS_1E,
-    CORNUCOPIA_GUILDS_2E
+enum class Set (val imageId: Int = R.drawable.ic_launcher_foreground) {
+    BASE(R.drawable.set_unknown),
+    BASE_1E(R.drawable.set_dominion_1e),
+    BASE_2E(R.drawable.set_dominion_2e),
+    INTRIGUE(R.drawable.set_unknown),
+    INTRIGUE_1E(R.drawable.set_intrigue_1e),
+    INTRIGUE_2E(R.drawable.set_intrigue_2e),
+    SEASIDE(R.drawable.set_unknown),
+    SEASIDE_1E(R.drawable.set_seaside_1e),
+    SEASIDE_2E(R.drawable.set_seaside_1e),
+    ALCHEMY(R.drawable.set_alchemy),
+    PROSPERITY(R.drawable.set_prosperity),
+    PROSPERITY_1E(R.drawable.set_prosperity),
+    PROSPERITY_2E(R.drawable.set_prosperity),
+    CORNUCOPIA(R.drawable.set_cornucopia),
+    HINTERLANDS(R.drawable.set_hinterlands),
+    HINTERLANDS_1E(R.drawable.set_hinterlands),
+    HINTERLANDS_2E(R.drawable.set_hinterlands),
+    DARK_AGES(R.drawable.set_dark_ages),
+    GUILDS(R.drawable.set_guilds),
+    ADVENTURES(R.drawable.set_adventures),
+    EMPIRES(R.drawable.set_empires),
+    NOCTURNE(R.drawable.set_nocturne),
+    RENAISSANCE(R.drawable.set_renaissance),
+    MENAGERIE(R.drawable.set_menagerie),
+    ALLIES(R.drawable.set_allies),
+    PLUNDER(R.drawable.set_plunder),
+    RISING_SUN(R.drawable.set_rising_sun),
+    PROMO(R.drawable.set_promo),
+    CORNUCOPIA_GUILDS(R.drawable.set_unknown),
+    CORNUCOPIA_GUILDS_1E(R.drawable.set_unknown),
+    CORNUCOPIA_GUILDS_2E(R.drawable.set_unknown)
 }
 
 enum class Type {
