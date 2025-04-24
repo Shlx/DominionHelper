@@ -8,7 +8,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "adventurer"
+        "image_name": "adventurer",
+        "basic": false
     },
     {
         "name": "Artisan",
@@ -19,7 +20,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "artisan"
+        "image_name": "artisan",
+        "basic": false
     },
     {
         "name": "Bandit",
@@ -31,7 +33,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "bandit"
+        "image_name": "bandit",
+        "basic": false
     },
     {
         "name": "Bureaucrat",
@@ -43,7 +46,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "bureaucrat"
+        "image_name": "bureaucrat",
+        "basic": false
     },
     {
         "name": "Cellar",
@@ -54,7 +58,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "cellar"
+        "image_name": "cellar",
+        "basic": false
     },
     {
         "name": "Chancellor",
@@ -65,7 +70,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "chancellor"
+        "image_name": "chancellor",
+        "basic": false
     },
     {
         "name": "Chapel",
@@ -76,7 +82,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "chapel"
+        "image_name": "chapel",
+        "basic": false
     },
     {
         "name": "Council Room",
@@ -87,7 +94,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "councilroom"
+        "image_name": "councilroom",
+        "basic": false
     },
     {
         "name": "Feast",
@@ -98,7 +106,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "feast"
+        "image_name": "feast",
+        "basic": false
     },
     {
         "name": "Festival",
@@ -109,7 +118,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "festival"
+        "image_name": "festival",
+        "basic": false
     },
     {
         "name": "Gardens",
@@ -120,7 +130,8 @@
         "types": [
             "Victory"
         ],
-        "image_name": "gardens"
+        "image_name": "gardens",
+        "basic": false
     },
     {
         "name": "Harbinger",
@@ -131,7 +142,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "harbinger"
+        "image_name": "harbinger",
+        "basic": false
     },
     {
         "name": "Laboratory",
@@ -142,7 +154,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "laboratory"
+        "image_name": "laboratory",
+        "basic": false
     },
     {
         "name": "Library",
@@ -153,7 +166,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "library"
+        "image_name": "library",
+        "basic": false
     },
     {
         "name": "Market",
@@ -164,7 +178,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "market"
+        "image_name": "market",
+        "basic": false
     },
     {
         "name": "Merchant",
@@ -175,7 +190,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "merchant"
+        "image_name": "merchant",
+        "basic": false
     },
     {
         "name": "Militia",
@@ -187,7 +203,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "militia"
+        "image_name": "militia",
+        "basic": false
     },
     {
         "name": "Mine",
@@ -198,7 +215,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "mine"
+        "image_name": "mine",
+        "basic": false
     },
     {
         "name": "Moat",
@@ -210,7 +228,8 @@
             "Action",
             "Reaction"
         ],
-        "image_name": "moat"
+        "image_name": "moat",
+        "basic": false
     },
     {
         "name": "Moneylender",
@@ -221,7 +240,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "moneylender"
+        "image_name": "moneylender",
+        "basic": false
     },
     {
         "name": "Poacher",
@@ -232,7 +252,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "poacher"
+        "image_name": "poacher",
+        "basic": false
     },
     {
         "name": "Remodel",
@@ -243,7 +264,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "remodel"
+        "image_name": "remodel",
+        "basic": false
     },
     {
         "name": "Sentry",
@@ -254,7 +276,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "sentry"
+        "image_name": "sentry",
+        "basic": false
     },
     {
         "name": "Smithy",
@@ -265,7 +288,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "smithy"
+        "image_name": "smithy",
+        "basic": false
     },
     {
         "name": "Spy",
@@ -277,7 +301,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "spy"
+        "image_name": "spy",
+        "basic": false
     },
     {
         "name": "Thief",
@@ -289,7 +314,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "thief"
+        "image_name": "thief",
+        "basic": false
     },
     {
         "name": "Throne Room",
@@ -300,7 +326,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "throneroom"
+        "image_name": "throneroom",
+        "basic": false
     },
     {
         "name": "Vassal",
@@ -311,7 +338,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "vassal"
+        "image_name": "vassal",
+        "basic": false
     },
     {
         "name": "Village",
@@ -322,7 +350,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "village"
+        "image_name": "village",
+        "basic": false
     },
     {
         "name": "Witch",
@@ -334,7 +363,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "witch"
+        "image_name": "witch",
+        "basic": false
     },
     {
         "name": "Woodcutter",
@@ -345,7 +375,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "woodcutter"
+        "image_name": "woodcutter",
+        "basic": false
     },
     {
         "name": "Workshop",
@@ -356,7 +387,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "workshop"
+        "image_name": "workshop",
+        "basic": false
     },
     {
         "name": "Copper",
@@ -367,7 +399,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "copper"
+        "image_name": "copper",
+        "basic": true
     },
     {
         "name": "Silver",
@@ -378,7 +411,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "silver"
+        "image_name": "silver",
+        "basic": true
     },
     {
         "name": "Gold",
@@ -389,7 +423,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "gold"
+        "image_name": "gold",
+        "basic": true
     },
     {
         "name": "Estate",
@@ -400,7 +435,8 @@
         "types": [
             "Victory"
         ],
-        "image_name": "estate"
+        "image_name": "estate",
+        "basic": true
     },
     {
         "name": "Duchy",
@@ -411,7 +447,8 @@
         "types": [
             "Victory"
         ],
-        "image_name": "duchy"
+        "image_name": "duchy",
+        "basic": true
     },
     {
         "name": "Province",
@@ -422,7 +459,8 @@
         "types": [
             "Victory"
         ],
-        "image_name": "province"
+        "image_name": "province",
+        "basic": true
     },
     {
         "name": "Curse",
@@ -433,7 +471,8 @@
         "types": [
             "Curse"
         ],
-        "image_name": "curse"
+        "image_name": "curse",
+        "basic": true
     },
     {
         "name": "Baron",
@@ -444,7 +483,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "baron"
+        "image_name": "baron",
+        "basic": false
     },
     {
         "name": "Bridge",
@@ -455,7 +495,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "bridge"
+        "image_name": "bridge",
+        "basic": false
     },
     {
         "name": "Conspirator",
@@ -466,7 +507,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "conspirator"
+        "image_name": "conspirator",
+        "basic": false
     },
     {
         "name": "Coppersmith",
@@ -477,7 +519,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "coppersmith"
+        "image_name": "coppersmith",
+        "basic": false
     },
     {
         "name": "Courtier",
@@ -488,7 +531,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "courtier"
+        "image_name": "courtier",
+        "basic": false
     },
     {
         "name": "Courtyard",
@@ -499,7 +543,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "courtyard"
+        "image_name": "courtyard",
+        "basic": false
     },
     {
         "name": "Diplomat",
@@ -511,7 +556,8 @@
             "Action",
             "Reaction"
         ],
-        "image_name": "diplomat"
+        "image_name": "diplomat",
+        "basic": false
     },
     {
         "name": "Duke",
@@ -522,7 +568,8 @@
         "types": [
             "Victory"
         ],
-        "image_name": "duke"
+        "image_name": "duke",
+        "basic": false
     },
     {
         "name": "Great Hall",
@@ -534,7 +581,8 @@
             "Action",
             "Victory"
         ],
-        "image_name": "greathall"
+        "image_name": "greathall",
+        "basic": false
     },
     {
         "name": "Ironworks",
@@ -545,7 +593,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "ironworks"
+        "image_name": "ironworks",
+        "basic": false
     },
     {
         "name": "Lurker",
@@ -556,7 +605,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "lurker"
+        "image_name": "lurker",
+        "basic": false
     },
     {
         "name": "Masquerade",
@@ -567,7 +617,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "masquerade"
+        "image_name": "masquerade",
+        "basic": false
     },
     {
         "name": "Mill",
@@ -579,7 +630,8 @@
             "Action",
             "Victory"
         ],
-        "image_name": "mill"
+        "image_name": "mill",
+        "basic": false
     },
     {
         "name": "Mining Village",
@@ -590,7 +642,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "miningvillage"
+        "image_name": "miningvillage",
+        "basic": false
     },
     {
         "name": "Minion",
@@ -602,7 +655,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "minion"
+        "image_name": "minion",
+        "basic": false
     },
     {
         "name": "Nobles",
@@ -614,7 +668,8 @@
             "Action",
             "Victory"
         ],
-        "image_name": "nobles"
+        "image_name": "nobles",
+        "basic": false
     },
     {
         "name": "Patrol",
@@ -625,7 +680,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "patrol"
+        "image_name": "patrol",
+        "basic": false
     },
     {
         "name": "Pawn",
@@ -636,7 +692,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "pawn"
+        "image_name": "pawn",
+        "basic": false
     },
     {
         "name": "Replace",
@@ -648,7 +705,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "replace"
+        "image_name": "replace",
+        "basic": false
     },
     {
         "name": "Saboteur",
@@ -660,7 +718,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "saboteur"
+        "image_name": "saboteur",
+        "basic": false
     },
     {
         "name": "Scout",
@@ -671,7 +730,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "scout"
+        "image_name": "scout",
+        "basic": false
     },
     {
         "name": "Secret Chamber",
@@ -683,7 +743,8 @@
             "Action",
             "Reaction"
         ],
-        "image_name": "secretchamber"
+        "image_name": "secretchamber",
+        "basic": false
     },
     {
         "name": "Secret Passage",
@@ -694,7 +755,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "secretpassage"
+        "image_name": "secretpassage",
+        "basic": false
     },
     {
         "name": "Shanty Town",
@@ -705,7 +767,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "shantytown"
+        "image_name": "shantytown",
+        "basic": false
     },
     {
         "name": "Steward",
@@ -716,7 +779,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "steward"
+        "image_name": "steward",
+        "basic": false
     },
     {
         "name": "Swindler",
@@ -728,7 +792,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "swindler"
+        "image_name": "swindler",
+        "basic": false
     },
     {
         "name": "Torturer",
@@ -740,7 +805,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "torturer"
+        "image_name": "torturer",
+        "basic": false
     },
     {
         "name": "Trading Post",
@@ -751,7 +817,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "tradingpost"
+        "image_name": "tradingpost",
+        "basic": false
     },
     {
         "name": "Tribute",
@@ -762,7 +829,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "tribute"
+        "image_name": "tribute",
+        "basic": false
     },
     {
         "name": "Upgrade",
@@ -773,7 +841,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "upgrade"
+        "image_name": "upgrade",
+        "basic": false
     },
     {
         "name": "Wishing Well",
@@ -784,7 +853,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "wishingwell"
+        "image_name": "wishingwell",
+        "basic": false
     },
     {
         "name": "Ambassador",
@@ -796,7 +866,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "ambassador"
+        "image_name": "ambassador",
+        "basic": false
     },
     {
         "name": "Astrolabe",
@@ -808,7 +879,8 @@
             "Treasure",
             "Duration"
         ],
-        "image_name": "astrolabe"
+        "image_name": "astrolabe",
+        "basic": false
     },
     {
         "name": "Bazaar",
@@ -819,7 +891,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "bazaar"
+        "image_name": "bazaar",
+        "basic": false
     },
     {
         "name": "Blockade",
@@ -832,7 +905,8 @@
             "Duration",
             "Attack"
         ],
-        "image_name": "blockade"
+        "image_name": "blockade",
+        "basic": false
     },
     {
         "name": "Caravan",
@@ -844,7 +918,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "caravan"
+        "image_name": "caravan",
+        "basic": false
     },
     {
         "name": "Corsair",
@@ -857,7 +932,8 @@
             "Duration",
             "Attack"
         ],
-        "image_name": "corsair"
+        "image_name": "corsair",
+        "basic": false
     },
     {
         "name": "Cutpurse",
@@ -869,7 +945,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "cutpurse"
+        "image_name": "cutpurse",
+        "basic": false
     },
     {
         "name": "Embargo",
@@ -880,7 +957,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "embargo"
+        "image_name": "embargo",
+        "basic": false
     },
     {
         "name": "Explorer",
@@ -891,7 +969,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "explorer"
+        "image_name": "explorer",
+        "basic": false
     },
     {
         "name": "Fishing Village",
@@ -903,7 +982,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "fishingvillage"
+        "image_name": "fishingvillage",
+        "basic": false
     },
     {
         "name": "Ghost Ship",
@@ -915,7 +995,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "ghostship"
+        "image_name": "ghostship",
+        "basic": false
     },
     {
         "name": "Haven",
@@ -927,7 +1008,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "haven"
+        "image_name": "haven",
+        "basic": false
     },
     {
         "name": "Island",
@@ -939,7 +1021,8 @@
             "Action",
             "Victory"
         ],
-        "image_name": "island"
+        "image_name": "island",
+        "basic": false
     },
     {
         "name": "Lighthouse",
@@ -951,7 +1034,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "lighthouse"
+        "image_name": "lighthouse",
+        "basic": false
     },
     {
         "name": "Lookout",
@@ -962,7 +1046,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "lookout"
+        "image_name": "lookout",
+        "basic": false
     },
     {
         "name": "Merchant Ship",
@@ -974,7 +1059,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "merchantship"
+        "image_name": "merchantship",
+        "basic": false
     },
     {
         "name": "Monkey",
@@ -986,7 +1072,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "monkey"
+        "image_name": "monkey",
+        "basic": false
     },
     {
         "name": "Native Village",
@@ -997,7 +1084,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "nativevillage"
+        "image_name": "nativevillage",
+        "basic": false
     },
     {
         "name": "Navigator",
@@ -1008,7 +1096,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "navigator"
+        "image_name": "navigator",
+        "basic": false
     },
     {
         "name": "Outpost",
@@ -1020,7 +1109,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "outpost"
+        "image_name": "outpost",
+        "basic": false
     },
     {
         "name": "Pearl Diver",
@@ -1031,7 +1121,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "pearldiver"
+        "image_name": "pearldiver",
+        "basic": false
     },
     {
         "name": "Pirate",
@@ -1044,7 +1135,8 @@
             "Duration",
             "Reaction"
         ],
-        "image_name": "pirate"
+        "image_name": "pirate",
+        "basic": false
     },
     {
         "name": "Pirate Ship",
@@ -1056,7 +1148,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "pirateship"
+        "image_name": "pirateship",
+        "basic": false
     },
     {
         "name": "Sailor",
@@ -1068,7 +1161,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "sailor"
+        "image_name": "sailor",
+        "basic": false
     },
     {
         "name": "Salvager",
@@ -1079,7 +1173,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "salvager"
+        "image_name": "salvager",
+        "basic": false
     },
     {
         "name": "Sea Chart",
@@ -1090,7 +1185,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "seachart"
+        "image_name": "seachart",
+        "basic": false
     },
     {
         "name": "Sea Hag",
@@ -1102,7 +1198,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "seahag"
+        "image_name": "seahag",
+        "basic": false
     },
     {
         "name": "Sea Witch",
@@ -1115,7 +1212,8 @@
             "Duration",
             "Attack"
         ],
-        "image_name": "seawitch"
+        "image_name": "seawitch",
+        "basic": false
     },
     {
         "name": "Smugglers",
@@ -1126,7 +1224,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "smugglers"
+        "image_name": "smugglers",
+        "basic": false
     },
     {
         "name": "Tactician",
@@ -1138,7 +1237,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "tactician"
+        "image_name": "tactician",
+        "basic": false
     },
     {
         "name": "Tide Pools",
@@ -1150,7 +1250,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "tidepools"
+        "image_name": "tidepools",
+        "basic": false
     },
     {
         "name": "Treasure Map",
@@ -1161,7 +1262,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "treasuremap"
+        "image_name": "treasuremap",
+        "basic": false
     },
     {
         "name": "Treasury",
@@ -1172,7 +1274,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "treasury"
+        "image_name": "treasury",
+        "basic": false
     },
     {
         "name": "Warehouse",
@@ -1183,7 +1286,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "warehouse"
+        "image_name": "warehouse",
+        "basic": false
     },
     {
         "name": "Wharf",
@@ -1195,7 +1299,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "wharf"
+        "image_name": "wharf",
+        "basic": false
     },
     {
         "name": "Alchemist",
@@ -1206,7 +1311,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "alchemist"
+        "image_name": "alchemist",
+        "basic": false
     },
     {
         "name": "Apothecary",
@@ -1217,7 +1323,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "apothecary"
+        "image_name": "apothecary",
+        "basic": false
     },
     {
         "name": "Apprentice",
@@ -1228,7 +1335,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "apprentice"
+        "image_name": "apprentice",
+        "basic": false
     },
     {
         "name": "Familiar",
@@ -1240,7 +1348,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "familiar"
+        "image_name": "familiar",
+        "basic": false
     },
     {
         "name": "Golem",
@@ -1251,7 +1360,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "golem"
+        "image_name": "golem",
+        "basic": false
     },
     {
         "name": "Herbalist",
@@ -1262,7 +1372,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "herbalist"
+        "image_name": "herbalist",
+        "basic": false
     },
     {
         "name": "Philosopher's Stone",
@@ -1273,7 +1384,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "philosophersstone"
+        "image_name": "philosophersstone",
+        "basic": false
     },
     {
         "name": "Possession",
@@ -1284,7 +1396,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "possession"
+        "image_name": "possession",
+        "basic": false
     },
     {
         "name": "Scrying Pool",
@@ -1296,7 +1409,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "scryingpool"
+        "image_name": "scryingpool",
+        "basic": false
     },
     {
         "name": "Transmute",
@@ -1307,7 +1421,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "transmute"
+        "image_name": "transmute",
+        "basic": false
     },
     {
         "name": "University",
@@ -1318,7 +1433,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "university"
+        "image_name": "university",
+        "basic": false
     },
     {
         "name": "Vineyard",
@@ -1329,7 +1445,8 @@
         "types": [
             "Victory"
         ],
-        "image_name": "vineyard"
+        "image_name": "vineyard",
+        "basic": false
     },
     {
         "name": "Potion",
@@ -1340,7 +1457,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "potion"
+        "image_name": "potion",
+        "basic": true
     },
     {
         "name": "Anvil",
@@ -1351,7 +1469,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "anvil"
+        "image_name": "anvil",
+        "basic": false
     },
     {
         "name": "Bank",
@@ -1362,7 +1481,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "bank"
+        "image_name": "bank",
+        "basic": false
     },
     {
         "name": "Bishop",
@@ -1373,7 +1493,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "bishop"
+        "image_name": "bishop",
+        "basic": false
     },
     {
         "name": "Charlatan",
@@ -1385,7 +1506,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "charlatan"
+        "image_name": "charlatan",
+        "basic": false
     },
     {
         "name": "City",
@@ -1396,7 +1518,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "city"
+        "image_name": "city",
+        "basic": false
     },
     {
         "name": "Clerk",
@@ -1409,7 +1532,8 @@
             "Reaction",
             "Attack"
         ],
-        "image_name": "clerk"
+        "image_name": "clerk",
+        "basic": false
     },
     {
         "name": "Collection",
@@ -1420,7 +1544,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "collection"
+        "image_name": "collection",
+        "basic": false
     },
     {
         "name": "Contraband",
@@ -1431,7 +1556,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "contraband"
+        "image_name": "contraband",
+        "basic": false
     },
     {
         "name": "Counting House",
@@ -1442,7 +1568,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "countinghouse"
+        "image_name": "countinghouse",
+        "basic": false
     },
     {
         "name": "Crystal Ball",
@@ -1453,7 +1580,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "crystalball"
+        "image_name": "crystalball",
+        "basic": false
     },
     {
         "name": "Expand",
@@ -1464,7 +1592,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "expand"
+        "image_name": "expand",
+        "basic": false
     },
     {
         "name": "Forge",
@@ -1475,7 +1604,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "forge"
+        "image_name": "forge",
+        "basic": false
     },
     {
         "name": "Goons",
@@ -1487,7 +1617,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "goons"
+        "image_name": "goons",
+        "basic": false
     },
     {
         "name": "Grand Market",
@@ -1498,7 +1629,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "grandmarket"
+        "image_name": "grandmarket",
+        "basic": false
     },
     {
         "name": "Hoard",
@@ -1509,7 +1641,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "hoard"
+        "image_name": "hoard",
+        "basic": false
     },
     {
         "name": "Investment",
@@ -1520,7 +1653,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "investment"
+        "image_name": "investment",
+        "basic": false
     },
     {
         "name": "King's Court",
@@ -1531,7 +1665,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "kingscourt"
+        "image_name": "kingscourt",
+        "basic": false
     },
     {
         "name": "Loan",
@@ -1542,7 +1677,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "loan"
+        "image_name": "loan",
+        "basic": false
     },
     {
         "name": "Magnate",
@@ -1553,7 +1689,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "magnate"
+        "image_name": "magnate",
+        "basic": false
     },
     {
         "name": "Mint",
@@ -1564,7 +1701,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "mint"
+        "image_name": "mint",
+        "basic": false
     },
     {
         "name": "Monument",
@@ -1575,7 +1713,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "monument"
+        "image_name": "monument",
+        "basic": false
     },
     {
         "name": "Mountebank",
@@ -1587,7 +1726,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "mountebank"
+        "image_name": "mountebank",
+        "basic": false
     },
     {
         "name": "Peddler",
@@ -1598,7 +1738,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "peddler"
+        "image_name": "peddler",
+        "basic": false
     },
     {
         "name": "Quarry",
@@ -1609,7 +1750,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "quarry"
+        "image_name": "quarry",
+        "basic": false
     },
     {
         "name": "Rabble",
@@ -1621,7 +1763,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "rabble"
+        "image_name": "rabble",
+        "basic": false
     },
     {
         "name": "Royal Seal",
@@ -1632,7 +1775,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "royalseal"
+        "image_name": "royalseal",
+        "basic": false
     },
     {
         "name": "Talisman",
@@ -1643,7 +1787,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "talisman"
+        "image_name": "talisman",
+        "basic": false
     },
     {
         "name": "Tiara",
@@ -1654,7 +1799,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "tiara"
+        "image_name": "tiara",
+        "basic": false
     },
     {
         "name": "Trade Route",
@@ -1665,7 +1811,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "traderoute"
+        "image_name": "traderoute",
+        "basic": false
     },
     {
         "name": "Vault",
@@ -1676,7 +1823,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "vault"
+        "image_name": "vault",
+        "basic": false
     },
     {
         "name": "Venture",
@@ -1687,7 +1835,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "venture"
+        "image_name": "venture",
+        "basic": false
     },
     {
         "name": "War Chest",
@@ -1698,7 +1847,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "warchest"
+        "image_name": "warchest",
+        "basic": false
     },
     {
         "name": "Watchtower",
@@ -1710,7 +1860,8 @@
             "Action",
             "Reaction"
         ],
-        "image_name": "watchtower"
+        "image_name": "watchtower",
+        "basic": false
     },
     {
         "name": "Worker's Village",
@@ -1721,7 +1872,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "workersvillage"
+        "image_name": "workersvillage",
+        "basic": false
     },
     {
         "name": "Platinum",
@@ -1732,7 +1884,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "platinum"
+        "image_name": "platinum",
+        "basic": true
     },
     {
         "name": "Colony",
@@ -1743,7 +1896,8 @@
         "types": [
             "Victory"
         ],
-        "image_name": "colony"
+        "image_name": "colony",
+        "basic": true
     },
     {
         "name": "Advisor",
@@ -1754,7 +1908,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "advisor"
+        "image_name": "advisor",
+        "basic": false
     },
     {
         "name": "Baker",
@@ -1765,7 +1920,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "baker"
+        "image_name": "baker",
+        "basic": false
     },
     {
         "name": "Butcher",
@@ -1776,7 +1932,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "butcher"
+        "image_name": "butcher",
+        "basic": false
     },
     {
         "name": "Candlestick Maker",
@@ -1787,7 +1944,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "candlestickmaker"
+        "image_name": "candlestickmaker",
+        "basic": false
     },
     {
         "name": "Carnival",
@@ -1798,7 +1956,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "carnival"
+        "image_name": "carnival",
+        "basic": false
     },
     {
         "name": "Doctor",
@@ -1809,7 +1968,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "doctor"
+        "image_name": "doctor",
+        "basic": false
     },
     {
         "name": "Fairgrounds",
@@ -1820,7 +1980,8 @@
         "types": [
             "Victory"
         ],
-        "image_name": "fairgrounds"
+        "image_name": "fairgrounds",
+        "basic": false
     },
     {
         "name": "Farmhands",
@@ -1831,7 +1992,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "farmhands"
+        "image_name": "farmhands",
+        "basic": false
     },
     {
         "name": "Farming Village",
@@ -1842,7 +2004,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "farmingvillage"
+        "image_name": "farmingvillage",
+        "basic": false
     },
     {
         "name": "Farrier",
@@ -1853,7 +2016,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "farrier"
+        "image_name": "farrier",
+        "basic": false
     },
     {
         "name": "Ferryman",
@@ -1864,7 +2028,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "ferryman"
+        "image_name": "ferryman",
+        "basic": false
     },
     {
         "name": "Footpad",
@@ -1876,7 +2041,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "footpad"
+        "image_name": "footpad",
+        "basic": false
     },
     {
         "name": "Fortune Teller",
@@ -1888,7 +2054,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "fortuneteller"
+        "image_name": "fortuneteller",
+        "basic": false
     },
     {
         "name": "Hamlet",
@@ -1899,7 +2066,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "hamlet"
+        "image_name": "hamlet",
+        "basic": false
     },
     {
         "name": "Harvest",
@@ -1910,7 +2078,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "harvest"
+        "image_name": "harvest",
+        "basic": false
     },
     {
         "name": "Herald",
@@ -1921,7 +2090,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "herald"
+        "image_name": "herald",
+        "basic": false
     },
     {
         "name": "Horn of Plenty",
@@ -1932,7 +2102,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "hornofplenty"
+        "image_name": "hornofplenty",
+        "basic": false
     },
     {
         "name": "Horse Traders",
@@ -1944,7 +2115,8 @@
             "Action",
             "Reaction"
         ],
-        "image_name": "horsetraders"
+        "image_name": "horsetraders",
+        "basic": false
     },
     {
         "name": "Hunting Party",
@@ -1955,7 +2127,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "huntingparty"
+        "image_name": "huntingparty",
+        "basic": false
     },
     {
         "name": "Infirmary",
@@ -1966,7 +2139,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "infirmary"
+        "image_name": "infirmary",
+        "basic": false
     },
     {
         "name": "Jester",
@@ -1978,7 +2152,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "jester"
+        "image_name": "jester",
+        "basic": false
     },
     {
         "name": "Journeyman",
@@ -1989,7 +2164,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "journeyman"
+        "image_name": "journeyman",
+        "basic": false
     },
     {
         "name": "Joust",
@@ -2000,7 +2176,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "joust"
+        "image_name": "joust",
+        "basic": false
     },
     {
         "name": "Masterpiece",
@@ -2011,7 +2188,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "masterpiece"
+        "image_name": "masterpiece",
+        "basic": false
     },
     {
         "name": "Menagerie",
@@ -2022,7 +2200,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "menagerie"
+        "image_name": "menagerie",
+        "basic": false
     },
     {
         "name": "Merchant Guild",
@@ -2033,7 +2212,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "merchantguild"
+        "image_name": "merchantguild",
+        "basic": false
     },
     {
         "name": "Plaza",
@@ -2044,7 +2224,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "plaza"
+        "image_name": "plaza",
+        "basic": false
     },
     {
         "name": "Remake",
@@ -2055,7 +2236,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "remake"
+        "image_name": "remake",
+        "basic": false
     },
     {
         "name": "Shop",
@@ -2066,7 +2248,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "shop"
+        "image_name": "shop",
+        "basic": false
     },
     {
         "name": "Soothsayer",
@@ -2078,7 +2261,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "soothsayer"
+        "image_name": "soothsayer",
+        "basic": false
     },
     {
         "name": "Stonemason",
@@ -2089,7 +2273,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "stonemason"
+        "image_name": "stonemason",
+        "basic": false
     },
     {
         "name": "Taxman",
@@ -2101,7 +2286,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "taxman"
+        "image_name": "taxman",
+        "basic": false
     },
     {
         "name": "Tournament",
@@ -2112,7 +2298,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "tournament"
+        "image_name": "tournament",
+        "basic": false
     },
     {
         "name": "Young Witch",
@@ -2124,7 +2311,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "youngwitch"
+        "image_name": "youngwitch",
+        "basic": false
     },
     {
         "name": "Bag of Gold",
@@ -2136,7 +2324,8 @@
             "Action",
             "Prize"
         ],
-        "image_name": "bagofgold"
+        "image_name": "bagofgold",
+        "basic": false
     },
     {
         "name": "Coronet",
@@ -2149,7 +2338,8 @@
             "Treasure",
             "Reward"
         ],
-        "image_name": "coronet"
+        "image_name": "coronet",
+        "basic": false
     },
     {
         "name": "Courser",
@@ -2161,7 +2351,8 @@
             "Action",
             "Reward"
         ],
-        "image_name": "courser"
+        "image_name": "courser",
+        "basic": false
     },
     {
         "name": "Demesne",
@@ -2174,7 +2365,8 @@
             "Victory",
             "Reward"
         ],
-        "image_name": "demesne"
+        "image_name": "demesne",
+        "basic": false
     },
     {
         "name": "Diadem",
@@ -2186,7 +2378,8 @@
             "Treasure",
             "Prize"
         ],
-        "image_name": "diadem"
+        "image_name": "diadem",
+        "basic": false
     },
     {
         "name": "Followers",
@@ -2199,7 +2392,8 @@
             "Attack",
             "Prize"
         ],
-        "image_name": "followers"
+        "image_name": "followers",
+        "basic": false
     },
     {
         "name": "Housecarl",
@@ -2211,7 +2405,8 @@
             "Action",
             "Reward"
         ],
-        "image_name": "housecarl"
+        "image_name": "housecarl",
+        "basic": false
     },
     {
         "name": "Huge Turnip",
@@ -2223,7 +2418,8 @@
             "Treasure",
             "Reward"
         ],
-        "image_name": "hugeturnip"
+        "image_name": "hugeturnip",
+        "basic": false
     },
     {
         "name": "Princess",
@@ -2235,7 +2431,8 @@
             "Action",
             "Prize"
         ],
-        "image_name": "princess"
+        "image_name": "princess",
+        "basic": false
     },
     {
         "name": "Renown",
@@ -2247,7 +2444,8 @@
             "Action",
             "Reward"
         ],
-        "image_name": "renown"
+        "image_name": "renown",
+        "basic": false
     },
     {
         "name": "Trusty Steed",
@@ -2259,7 +2457,8 @@
             "Action",
             "Prize"
         ],
-        "image_name": "trustysteed"
+        "image_name": "trustysteed",
+        "basic": false
     },
     {
         "name": "Berserker",
@@ -2271,7 +2470,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "berserker"
+        "image_name": "berserker",
+        "basic": false
     },
     {
         "name": "Border Village",
@@ -2282,7 +2482,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "bordervillage"
+        "image_name": "bordervillage",
+        "basic": false
     },
     {
         "name": "Cache",
@@ -2293,7 +2494,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "cache"
+        "image_name": "cache",
+        "basic": false
     },
     {
         "name": "Cartographer",
@@ -2304,7 +2506,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "cartographer"
+        "image_name": "cartographer",
+        "basic": false
     },
     {
         "name": "Cauldron",
@@ -2316,7 +2519,8 @@
             "Treasure",
             "Attack"
         ],
-        "image_name": "cauldron"
+        "image_name": "cauldron",
+        "basic": false
     },
     {
         "name": "Crossroads",
@@ -2327,7 +2531,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "crossroads"
+        "image_name": "crossroads",
+        "basic": false
     },
     {
         "name": "Develop",
@@ -2338,7 +2543,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "develop"
+        "image_name": "develop",
+        "basic": false
     },
     {
         "name": "Duchess",
@@ -2349,7 +2555,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "duchess"
+        "image_name": "duchess",
+        "basic": false
     },
     {
         "name": "Embassy",
@@ -2360,7 +2567,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "embassy"
+        "image_name": "embassy",
+        "basic": false
     },
     {
         "name": "Farmland",
@@ -2371,7 +2579,8 @@
         "types": [
             "Victory"
         ],
-        "image_name": "farmland"
+        "image_name": "farmland",
+        "basic": false
     },
     {
         "name": "Fool's Gold",
@@ -2383,7 +2592,8 @@
             "Treasure",
             "Reaction"
         ],
-        "image_name": "foolsgold"
+        "image_name": "foolsgold",
+        "basic": false
     },
     {
         "name": "Guard Dog",
@@ -2395,7 +2605,8 @@
             "Action",
             "Reaction"
         ],
-        "image_name": "guarddog"
+        "image_name": "guarddog",
+        "basic": false
     },
     {
         "name": "Haggler",
@@ -2406,7 +2617,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "haggler"
+        "image_name": "haggler",
+        "basic": false
     },
     {
         "name": "Highway",
@@ -2417,7 +2629,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "highway"
+        "image_name": "highway",
+        "basic": false
     },
     {
         "name": "Ill-Gotten Gains",
@@ -2428,7 +2641,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "illgottengains"
+        "image_name": "illgottengains",
+        "basic": false
     },
     {
         "name": "Inn",
@@ -2439,7 +2653,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "inn"
+        "image_name": "inn",
+        "basic": false
     },
     {
         "name": "Jack of All Trades",
@@ -2450,7 +2665,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "jackofalltrades"
+        "image_name": "jackofalltrades",
+        "basic": false
     },
     {
         "name": "Mandarin",
@@ -2461,7 +2677,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "mandarin"
+        "image_name": "mandarin",
+        "basic": false
     },
     {
         "name": "Margrave",
@@ -2473,7 +2690,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "margrave"
+        "image_name": "margrave",
+        "basic": false
     },
     {
         "name": "Noble Brigand",
@@ -2485,7 +2703,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "noblebrigand"
+        "image_name": "noblebrigand",
+        "basic": false
     },
     {
         "name": "Nomad Camp",
@@ -2496,7 +2715,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "nomadcamp"
+        "image_name": "nomadcamp",
+        "basic": false
     },
     {
         "name": "Nomads",
@@ -2507,7 +2727,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "nomads"
+        "image_name": "nomads",
+        "basic": false
     },
     {
         "name": "Oasis",
@@ -2518,7 +2739,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "oasis"
+        "image_name": "oasis",
+        "basic": false
     },
     {
         "name": "Oracle",
@@ -2530,7 +2752,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "oracle"
+        "image_name": "oracle",
+        "basic": false
     },
     {
         "name": "Scheme",
@@ -2541,7 +2764,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "scheme"
+        "image_name": "scheme",
+        "basic": false
     },
     {
         "name": "Silk Road",
@@ -2552,7 +2776,8 @@
         "types": [
             "Victory"
         ],
-        "image_name": "silkroad"
+        "image_name": "silkroad",
+        "basic": false
     },
     {
         "name": "Souk",
@@ -2563,7 +2788,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "souk"
+        "image_name": "souk",
+        "basic": false
     },
     {
         "name": "Spice Merchant",
@@ -2574,7 +2800,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "spicemerchant"
+        "image_name": "spicemerchant",
+        "basic": false
     },
     {
         "name": "Stables",
@@ -2585,7 +2812,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "stables"
+        "image_name": "stables",
+        "basic": false
     },
     {
         "name": "Trader",
@@ -2597,7 +2825,8 @@
             "Action",
             "Reaction"
         ],
-        "image_name": "trader"
+        "image_name": "trader",
+        "basic": false
     },
     {
         "name": "Trail",
@@ -2609,7 +2838,8 @@
             "Action",
             "Reaction"
         ],
-        "image_name": "trail"
+        "image_name": "trail",
+        "basic": false
     },
     {
         "name": "Tunnel",
@@ -2621,7 +2851,8 @@
             "Victory",
             "Reaction"
         ],
-        "image_name": "tunnel"
+        "image_name": "tunnel",
+        "basic": false
     },
     {
         "name": "Weaver",
@@ -2633,7 +2864,8 @@
             "Action",
             "Reaction"
         ],
-        "image_name": "weaver"
+        "image_name": "weaver",
+        "basic": false
     },
     {
         "name": "Wheelwright",
@@ -2644,7 +2876,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "wheelwright"
+        "image_name": "wheelwright",
+        "basic": false
     },
     {
         "name": "Witch's Hut",
@@ -2656,7 +2889,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "witchshut"
+        "image_name": "witchshut",
+        "basic": false
     },
     {
         "name": "Altar",
@@ -2667,7 +2901,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "altar"
+        "image_name": "altar",
+        "basic": false
     },
     {
         "name": "Armory",
@@ -2678,7 +2913,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "armory"
+        "image_name": "armory",
+        "basic": false
     },
     {
         "name": "Band of Misfits",
@@ -2690,7 +2926,8 @@
             "Action",
             "Command"
         ],
-        "image_name": "bandofmisfits"
+        "image_name": "bandofmisfits",
+        "basic": false
     },
     {
         "name": "Bandit Camp",
@@ -2701,7 +2938,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "banditcamp"
+        "image_name": "banditcamp",
+        "basic": false
     },
     {
         "name": "Beggar",
@@ -2713,7 +2951,8 @@
             "Action",
             "Reaction"
         ],
-        "image_name": "beggar"
+        "image_name": "beggar",
+        "basic": false
     },
     {
         "name": "Catacombs",
@@ -2724,7 +2963,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "catacombs"
+        "image_name": "catacombs",
+        "basic": false
     },
     {
         "name": "Count",
@@ -2735,7 +2975,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "count"
+        "image_name": "count",
+        "basic": false
     },
     {
         "name": "Counterfeit",
@@ -2746,7 +2987,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "counterfeit"
+        "image_name": "counterfeit",
+        "basic": false
     },
     {
         "name": "Cultist",
@@ -2759,7 +3001,8 @@
             "Attack",
             "Looter"
         ],
-        "image_name": "cultist"
+        "image_name": "cultist",
+        "basic": false
     },
     {
         "name": "Dame Anna",
@@ -2772,7 +3015,8 @@
             "Attack",
             "Knight"
         ],
-        "image_name": "dameanna"
+        "image_name": "dameanna",
+        "basic": false
     },
     {
         "name": "Dame Josephine",
@@ -2786,7 +3030,8 @@
             "Knight",
             "Victory"
         ],
-        "image_name": "damejosephine"
+        "image_name": "damejosephine",
+        "basic": false
     },
     {
         "name": "Dame Molly",
@@ -2799,7 +3044,8 @@
             "Attack",
             "Knight"
         ],
-        "image_name": "damemolly"
+        "image_name": "damemolly",
+        "basic": false
     },
     {
         "name": "Dame Natalie",
@@ -2812,7 +3058,8 @@
             "Attack",
             "Knight"
         ],
-        "image_name": "damenatalie"
+        "image_name": "damenatalie",
+        "basic": false
     },
     {
         "name": "Dame Sylvia",
@@ -2825,7 +3072,8 @@
             "Attack",
             "Knight"
         ],
-        "image_name": "damesylvia"
+        "image_name": "damesylvia",
+        "basic": false
     },
     {
         "name": "Death Cart",
@@ -2837,7 +3085,8 @@
             "Action",
             "Looter"
         ],
-        "image_name": "deathcart"
+        "image_name": "deathcart",
+        "basic": false
     },
     {
         "name": "Feodum",
@@ -2848,7 +3097,8 @@
         "types": [
             "Victory"
         ],
-        "image_name": "feodum"
+        "image_name": "feodum",
+        "basic": false
     },
     {
         "name": "Forager",
@@ -2859,7 +3109,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "forager"
+        "image_name": "forager",
+        "basic": false
     },
     {
         "name": "Fortress",
@@ -2870,7 +3121,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "fortress"
+        "image_name": "fortress",
+        "basic": false
     },
     {
         "name": "Graverobber",
@@ -2881,7 +3133,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "graverobber"
+        "image_name": "graverobber",
+        "basic": false
     },
     {
         "name": "Hermit",
@@ -2892,7 +3145,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "hermit"
+        "image_name": "hermit",
+        "basic": false
     },
     {
         "name": "Hunting Grounds",
@@ -2903,7 +3157,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "huntinggrounds"
+        "image_name": "huntinggrounds",
+        "basic": false
     },
     {
         "name": "Ironmonger",
@@ -2914,7 +3169,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "ironmonger"
+        "image_name": "ironmonger",
+        "basic": false
     },
     {
         "name": "Junk Dealer",
@@ -2925,7 +3181,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "junkdealer"
+        "image_name": "junkdealer",
+        "basic": false
     },
     {
         "name": "Marauder",
@@ -2938,7 +3195,8 @@
             "Attack",
             "Looter"
         ],
-        "image_name": "marauder"
+        "image_name": "marauder",
+        "basic": false
     },
     {
         "name": "Market Square",
@@ -2950,7 +3208,8 @@
             "Action",
             "Reaction"
         ],
-        "image_name": "marketsquare"
+        "image_name": "marketsquare",
+        "basic": false
     },
     {
         "name": "Mystic",
@@ -2961,7 +3220,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "mystic"
+        "image_name": "mystic",
+        "basic": false
     },
     {
         "name": "Pillage",
@@ -2973,7 +3233,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "pillage"
+        "image_name": "pillage",
+        "basic": false
     },
     {
         "name": "Poor House",
@@ -2984,7 +3245,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "poorhouse"
+        "image_name": "poorhouse",
+        "basic": false
     },
     {
         "name": "Procession",
@@ -2995,7 +3257,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "procession"
+        "image_name": "procession",
+        "basic": false
     },
     {
         "name": "Rats",
@@ -3006,7 +3269,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "rats"
+        "image_name": "rats",
+        "basic": false
     },
     {
         "name": "Rebuild",
@@ -3017,7 +3281,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "rebuild"
+        "image_name": "rebuild",
+        "basic": false
     },
     {
         "name": "Rogue",
@@ -3029,7 +3294,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "rogue"
+        "image_name": "rogue",
+        "basic": false
     },
     {
         "name": "Sage",
@@ -3040,7 +3306,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "sage"
+        "image_name": "sage",
+        "basic": false
     },
     {
         "name": "Scavenger",
@@ -3051,7 +3318,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "scavenger"
+        "image_name": "scavenger",
+        "basic": false
     },
     {
         "name": "Sir Bailey",
@@ -3064,7 +3332,8 @@
             "Attack",
             "Knight"
         ],
-        "image_name": "sirbailey"
+        "image_name": "sirbailey",
+        "basic": false
     },
     {
         "name": "Sir Destry",
@@ -3077,7 +3346,8 @@
             "Attack",
             "Knight"
         ],
-        "image_name": "sirdestry"
+        "image_name": "sirdestry",
+        "basic": false
     },
     {
         "name": "Sir Martin",
@@ -3090,7 +3360,8 @@
             "Attack",
             "Knight"
         ],
-        "image_name": "sirmartin"
+        "image_name": "sirmartin",
+        "basic": false
     },
     {
         "name": "Sir Michael",
@@ -3103,7 +3374,8 @@
             "Attack",
             "Knight"
         ],
-        "image_name": "sirmichael"
+        "image_name": "sirmichael",
+        "basic": false
     },
     {
         "name": "Sir Vander",
@@ -3116,7 +3388,8 @@
             "Attack",
             "Knight"
         ],
-        "image_name": "sirvander"
+        "image_name": "sirvander",
+        "basic": false
     },
     {
         "name": "Squire",
@@ -3127,7 +3400,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "squire"
+        "image_name": "squire",
+        "basic": false
     },
     {
         "name": "Storeroom",
@@ -3138,7 +3412,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "storeroom"
+        "image_name": "storeroom",
+        "basic": false
     },
     {
         "name": "Urchin",
@@ -3150,7 +3425,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "urchin"
+        "image_name": "urchin",
+        "basic": false
     },
     {
         "name": "Vagrant",
@@ -3161,7 +3437,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "vagrant"
+        "image_name": "vagrant",
+        "basic": false
     },
     {
         "name": "Wandering Minstrel",
@@ -3172,7 +3449,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "wanderingminstrel"
+        "image_name": "wanderingminstrel",
+        "basic": false
     },
     {
         "name": "Abandoned Mine",
@@ -3184,7 +3462,8 @@
             "Action",
             "Ruins"
         ],
-        "image_name": "abandonedmine"
+        "image_name": "abandonedmine",
+        "basic": true
     },
     {
         "name": "Ruined Library",
@@ -3196,7 +3475,8 @@
             "Action",
             "Ruins"
         ],
-        "image_name": "ruinedlibrary"
+        "image_name": "ruinedlibrary",
+        "basic": true
     },
     {
         "name": "Ruined Market",
@@ -3208,7 +3488,8 @@
             "Action",
             "Ruins"
         ],
-        "image_name": "ruinedmarket"
+        "image_name": "ruinedmarket",
+        "basic": true
     },
     {
         "name": "Ruined Village",
@@ -3220,7 +3501,8 @@
             "Action",
             "Ruins"
         ],
-        "image_name": "ruinedvillage"
+        "image_name": "ruinedvillage",
+        "basic": true
     },
     {
         "name": "Survivors",
@@ -3232,7 +3514,8 @@
             "Action",
             "Ruins"
         ],
-        "image_name": "survivors"
+        "image_name": "survivors",
+        "basic": true
     },
     {
         "name": "Hovel",
@@ -3244,7 +3527,8 @@
             "Reaction",
             "Shelter"
         ],
-        "image_name": "hovel"
+        "image_name": "hovel",
+        "basic": true
     },
     {
         "name": "Madman",
@@ -3255,7 +3539,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "madman"
+        "image_name": "madman",
+        "basic": false
     },
     {
         "name": "Mercenary",
@@ -3267,7 +3552,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "mercenary"
+        "image_name": "mercenary",
+        "basic": false
     },
     {
         "name": "Necropolis",
@@ -3279,7 +3565,8 @@
             "Action",
             "Shelter"
         ],
-        "image_name": "necropolis"
+        "image_name": "necropolis",
+        "basic": true
     },
     {
         "name": "Overgrown Estate",
@@ -3291,7 +3578,8 @@
             "Victory",
             "Shelter"
         ],
-        "image_name": "overgrownestate"
+        "image_name": "overgrownestate",
+        "basic": true
     },
     {
         "name": "Spoils",
@@ -3302,7 +3590,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "spoils"
+        "image_name": "spoils",
+        "basic": false
     },
     {
         "name": "Amulet",
@@ -3314,7 +3603,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "amulet"
+        "image_name": "amulet",
+        "basic": false
     },
     {
         "name": "Artificer",
@@ -3325,7 +3615,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "artificer"
+        "image_name": "artificer",
+        "basic": false
     },
     {
         "name": "Bridge Troll",
@@ -3338,7 +3629,8 @@
             "Duration",
             "Attack"
         ],
-        "image_name": "bridgetroll"
+        "image_name": "bridgetroll",
+        "basic": false
     },
     {
         "name": "Caravan Guard",
@@ -3351,7 +3643,8 @@
             "Duration",
             "Reaction"
         ],
-        "image_name": "caravanguard"
+        "image_name": "caravanguard",
+        "basic": false
     },
     {
         "name": "Coin of the Realm",
@@ -3363,7 +3656,8 @@
             "Treasure",
             "Reserve"
         ],
-        "image_name": "coinoftherealm"
+        "image_name": "coinoftherealm",
+        "basic": false
     },
     {
         "name": "Distant Lands",
@@ -3376,7 +3670,8 @@
             "Reserve",
             "Victory"
         ],
-        "image_name": "distantlands"
+        "image_name": "distantlands",
+        "basic": false
     },
     {
         "name": "Dungeon",
@@ -3388,7 +3683,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "dungeon"
+        "image_name": "dungeon",
+        "basic": false
     },
     {
         "name": "Duplicate",
@@ -3400,7 +3696,8 @@
             "Action",
             "Reserve"
         ],
-        "image_name": "duplicate"
+        "image_name": "duplicate",
+        "basic": false
     },
     {
         "name": "Gear",
@@ -3412,7 +3709,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "gear"
+        "image_name": "gear",
+        "basic": false
     },
     {
         "name": "Giant",
@@ -3424,7 +3722,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "giant"
+        "image_name": "giant",
+        "basic": false
     },
     {
         "name": "Guide",
@@ -3436,7 +3735,8 @@
             "Action",
             "Reserve"
         ],
-        "image_name": "guide"
+        "image_name": "guide",
+        "basic": false
     },
     {
         "name": "Haunted Woods",
@@ -3449,7 +3749,8 @@
             "Duration",
             "Attack"
         ],
-        "image_name": "hauntedwoods"
+        "image_name": "hauntedwoods",
+        "basic": false
     },
     {
         "name": "Hireling",
@@ -3461,7 +3762,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "hireling"
+        "image_name": "hireling",
+        "basic": false
     },
     {
         "name": "Lost City",
@@ -3472,7 +3774,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "lostcity"
+        "image_name": "lostcity",
+        "basic": false
     },
     {
         "name": "Magpie",
@@ -3483,7 +3786,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "magpie"
+        "image_name": "magpie",
+        "basic": false
     },
     {
         "name": "Messenger",
@@ -3494,7 +3798,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "messenger"
+        "image_name": "messenger",
+        "basic": false
     },
     {
         "name": "Miser",
@@ -3505,7 +3810,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "miser"
+        "image_name": "miser",
+        "basic": false
     },
     {
         "name": "Page",
@@ -3517,7 +3823,8 @@
             "Action",
             "Traveller"
         ],
-        "image_name": "page"
+        "image_name": "page",
+        "basic": false
     },
     {
         "name": "Peasant",
@@ -3529,7 +3836,8 @@
             "Action",
             "Traveller"
         ],
-        "image_name": "peasant"
+        "image_name": "peasant",
+        "basic": false
     },
     {
         "name": "Port",
@@ -3540,7 +3848,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "port"
+        "image_name": "port",
+        "basic": false
     },
     {
         "name": "Ranger",
@@ -3551,7 +3860,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "ranger"
+        "image_name": "ranger",
+        "basic": false
     },
     {
         "name": "Ratcatcher",
@@ -3563,7 +3873,8 @@
             "Action",
             "Reserve"
         ],
-        "image_name": "ratcatcher"
+        "image_name": "ratcatcher",
+        "basic": false
     },
     {
         "name": "Raze",
@@ -3574,7 +3885,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "raze"
+        "image_name": "raze",
+        "basic": false
     },
     {
         "name": "Relic",
@@ -3586,7 +3898,8 @@
             "Treasure",
             "Attack"
         ],
-        "image_name": "relic"
+        "image_name": "relic",
+        "basic": false
     },
     {
         "name": "Royal Carriage",
@@ -3598,7 +3911,8 @@
             "Action",
             "Reserve"
         ],
-        "image_name": "royalcarriage"
+        "image_name": "royalcarriage",
+        "basic": false
     },
     {
         "name": "Storyteller",
@@ -3609,7 +3923,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "storyteller"
+        "image_name": "storyteller",
+        "basic": false
     },
     {
         "name": "Swamp Hag",
@@ -3622,7 +3937,8 @@
             "Duration",
             "Attack"
         ],
-        "image_name": "swamphag"
+        "image_name": "swamphag",
+        "basic": false
     },
     {
         "name": "Transmogrify",
@@ -3634,7 +3950,8 @@
             "Action",
             "Reserve"
         ],
-        "image_name": "transmogrify"
+        "image_name": "transmogrify",
+        "basic": false
     },
     {
         "name": "Treasure Trove",
@@ -3645,7 +3962,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "treasuretrove"
+        "image_name": "treasuretrove",
+        "basic": false
     },
     {
         "name": "Wine Merchant",
@@ -3657,7 +3975,8 @@
             "Action",
             "Reserve"
         ],
-        "image_name": "winemerchant"
+        "image_name": "winemerchant",
+        "basic": false
     },
     {
         "name": "Champion",
@@ -3669,7 +3988,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "champion"
+        "image_name": "champion",
+        "basic": false
     },
     {
         "name": "Disciple",
@@ -3681,7 +4001,8 @@
             "Action",
             "Traveller"
         ],
-        "image_name": "disciple"
+        "image_name": "disciple",
+        "basic": false
     },
     {
         "name": "Fugitive",
@@ -3693,7 +4014,8 @@
             "Action",
             "Traveller"
         ],
-        "image_name": "fugitive"
+        "image_name": "fugitive",
+        "basic": false
     },
     {
         "name": "Hero",
@@ -3705,7 +4027,8 @@
             "Action",
             "Traveller"
         ],
-        "image_name": "hero"
+        "image_name": "hero",
+        "basic": false
     },
     {
         "name": "Soldier",
@@ -3718,7 +4041,8 @@
             "Attack",
             "Traveller"
         ],
-        "image_name": "soldier"
+        "image_name": "soldier",
+        "basic": false
     },
     {
         "name": "Teacher",
@@ -3730,7 +4054,8 @@
             "Action",
             "Reserve"
         ],
-        "image_name": "teacher"
+        "image_name": "teacher",
+        "basic": false
     },
     {
         "name": "Treasure Hunter",
@@ -3742,7 +4067,8 @@
             "Action",
             "Traveller"
         ],
-        "image_name": "treasurehunter"
+        "image_name": "treasurehunter",
+        "basic": false
     },
     {
         "name": "Warrior",
@@ -3755,7 +4081,8 @@
             "Attack",
             "Traveller"
         ],
-        "image_name": "warrior"
+        "image_name": "warrior",
+        "basic": false
     },
     {
         "name": "Alms",
@@ -3766,7 +4093,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "alms"
+        "image_name": "alms",
+        "basic": false
     },
     {
         "name": "Ball",
@@ -3777,7 +4105,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "ball"
+        "image_name": "ball",
+        "basic": false
     },
     {
         "name": "Bonfire",
@@ -3788,7 +4117,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "bonfire"
+        "image_name": "bonfire",
+        "basic": false
     },
     {
         "name": "Borrow",
@@ -3799,7 +4129,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "borrow"
+        "image_name": "borrow",
+        "basic": false
     },
     {
         "name": "Expedition",
@@ -3810,7 +4141,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "expedition"
+        "image_name": "expedition",
+        "basic": false
     },
     {
         "name": "Ferry",
@@ -3821,7 +4153,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "ferry"
+        "image_name": "ferry",
+        "basic": false
     },
     {
         "name": "Inheritance",
@@ -3832,7 +4165,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "inheritance"
+        "image_name": "inheritance",
+        "basic": false
     },
     {
         "name": "Lost Arts",
@@ -3843,7 +4177,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "lostarts"
+        "image_name": "lostarts",
+        "basic": false
     },
     {
         "name": "Mission",
@@ -3854,7 +4189,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "mission"
+        "image_name": "mission",
+        "basic": false
     },
     {
         "name": "Pathfinding",
@@ -3865,7 +4201,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "pathfinding"
+        "image_name": "pathfinding",
+        "basic": false
     },
     {
         "name": "Pilgrimage",
@@ -3876,7 +4213,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "pilgrimage"
+        "image_name": "pilgrimage",
+        "basic": false
     },
     {
         "name": "Plan",
@@ -3887,7 +4225,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "plan"
+        "image_name": "plan",
+        "basic": false
     },
     {
         "name": "Quest",
@@ -3898,7 +4237,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "quest"
+        "image_name": "quest",
+        "basic": false
     },
     {
         "name": "Raid",
@@ -3909,7 +4249,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "raid"
+        "image_name": "raid",
+        "basic": false
     },
     {
         "name": "Save",
@@ -3920,7 +4261,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "save"
+        "image_name": "save",
+        "basic": false
     },
     {
         "name": "Scouting Party",
@@ -3931,7 +4273,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "scoutingparty"
+        "image_name": "scoutingparty",
+        "basic": false
     },
     {
         "name": "Seaway",
@@ -3942,7 +4285,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "seaway"
+        "image_name": "seaway",
+        "basic": false
     },
     {
         "name": "Trade",
@@ -3953,7 +4297,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "trade"
+        "image_name": "trade",
+        "basic": false
     },
     {
         "name": "Training",
@@ -3964,7 +4309,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "training"
+        "image_name": "training",
+        "basic": false
     },
     {
         "name": "Travelling Fair",
@@ -3975,7 +4321,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "travellingfair"
+        "image_name": "travellingfair",
+        "basic": false
     },
     {
         "name": "Archive",
@@ -3987,7 +4334,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "archive"
+        "image_name": "archive",
+        "basic": false
     },
     {
         "name": "Bustling Village",
@@ -3998,7 +4346,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "bustlingvillage"
+        "image_name": "bustlingvillage",
+        "basic": false
     },
     {
         "name": "Capital",
@@ -4009,7 +4358,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "capital"
+        "image_name": "capital",
+        "basic": false
     },
     {
         "name": "Catapult",
@@ -4021,7 +4371,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "catapult"
+        "image_name": "catapult",
+        "basic": false
     },
     {
         "name": "Chariot Race",
@@ -4032,7 +4383,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "chariotrace"
+        "image_name": "chariotrace",
+        "basic": false
     },
     {
         "name": "Charm",
@@ -4043,7 +4395,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "charm"
+        "image_name": "charm",
+        "basic": false
     },
     {
         "name": "City Quarter",
@@ -4054,7 +4407,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "cityquarter"
+        "image_name": "cityquarter",
+        "basic": false
     },
     {
         "name": "Crown",
@@ -4066,7 +4420,8 @@
             "Action",
             "Treasure"
         ],
-        "image_name": "crown"
+        "image_name": "crown",
+        "basic": false
     },
     {
         "name": "Crumbling Castle",
@@ -4078,7 +4433,8 @@
             "Victory",
             "Castle"
         ],
-        "image_name": "crumblingcastle"
+        "image_name": "crumblingcastle",
+        "basic": false
     },
     {
         "name": "Emporium",
@@ -4089,7 +4445,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "emporium"
+        "image_name": "emporium",
+        "basic": false
     },
     {
         "name": "Encampment",
@@ -4100,7 +4457,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "encampment"
+        "image_name": "encampment",
+        "basic": false
     },
     {
         "name": "Enchantress",
@@ -4113,7 +4471,8 @@
             "Attack",
             "Duration"
         ],
-        "image_name": "enchantress"
+        "image_name": "enchantress",
+        "basic": false
     },
     {
         "name": "Engineer",
@@ -4124,7 +4483,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "engineer"
+        "image_name": "engineer",
+        "basic": false
     },
     {
         "name": "Farmers' Market",
@@ -4136,7 +4496,8 @@
             "Action",
             "Gathering"
         ],
-        "image_name": "farmersmarket"
+        "image_name": "farmersmarket",
+        "basic": false
     },
     {
         "name": "Fortune",
@@ -4147,7 +4508,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "fortune"
+        "image_name": "fortune",
+        "basic": false
     },
     {
         "name": "Forum",
@@ -4158,7 +4520,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "forum"
+        "image_name": "forum",
+        "basic": false
     },
     {
         "name": "Gladiator",
@@ -4169,7 +4532,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "gladiator"
+        "image_name": "gladiator",
+        "basic": false
     },
     {
         "name": "Grand Castle",
@@ -4181,7 +4545,8 @@
             "Victory",
             "Castle"
         ],
-        "image_name": "grandcastle"
+        "image_name": "grandcastle",
+        "basic": false
     },
     {
         "name": "Groundskeeper",
@@ -4192,7 +4557,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "groundskeeper"
+        "image_name": "groundskeeper",
+        "basic": false
     },
     {
         "name": "Haunted Castle",
@@ -4204,7 +4570,8 @@
             "Victory",
             "Castle"
         ],
-        "image_name": "hauntedcastle"
+        "image_name": "hauntedcastle",
+        "basic": false
     },
     {
         "name": "Humble Castle",
@@ -4217,7 +4584,8 @@
             "Victory",
             "Castle"
         ],
-        "image_name": "humblecastle"
+        "image_name": "humblecastle",
+        "basic": false
     },
     {
         "name": "King's Castle",
@@ -4229,7 +4597,8 @@
             "Victory",
             "Castle"
         ],
-        "image_name": "kingscastle"
+        "image_name": "kingscastle",
+        "basic": false
     },
     {
         "name": "Legionary",
@@ -4241,7 +4610,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "legionary"
+        "image_name": "legionary",
+        "basic": false
     },
     {
         "name": "Opulent Castle",
@@ -4254,7 +4624,8 @@
             "Victory",
             "Castle"
         ],
-        "image_name": "opulentcastle"
+        "image_name": "opulentcastle",
+        "basic": false
     },
     {
         "name": "Overlord",
@@ -4266,7 +4637,8 @@
             "Action",
             "Command"
         ],
-        "image_name": "overlord"
+        "image_name": "overlord",
+        "basic": false
     },
     {
         "name": "Patrician",
@@ -4277,7 +4649,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "patrician"
+        "image_name": "patrician",
+        "basic": false
     },
     {
         "name": "Plunder",
@@ -4288,7 +4661,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "plunder"
+        "image_name": "plunder",
+        "basic": false
     },
     {
         "name": "Rocks",
@@ -4299,7 +4673,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "rocks"
+        "image_name": "rocks",
+        "basic": false
     },
     {
         "name": "Royal Blacksmith",
@@ -4310,7 +4685,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "royalblacksmith"
+        "image_name": "royalblacksmith",
+        "basic": false
     },
     {
         "name": "Sacrifice",
@@ -4321,7 +4697,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "sacrifice"
+        "image_name": "sacrifice",
+        "basic": false
     },
     {
         "name": "Settlers",
@@ -4332,7 +4709,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "settlers"
+        "image_name": "settlers",
+        "basic": false
     },
     {
         "name": "Small Castle",
@@ -4345,7 +4723,8 @@
             "Victory",
             "Castle"
         ],
-        "image_name": "smallcastle"
+        "image_name": "smallcastle",
+        "basic": false
     },
     {
         "name": "Sprawling Castle",
@@ -4357,7 +4736,8 @@
             "Victory",
             "Castle"
         ],
-        "image_name": "sprawlingcastle"
+        "image_name": "sprawlingcastle",
+        "basic": false
     },
     {
         "name": "Temple",
@@ -4369,7 +4749,8 @@
             "Action",
             "Gathering"
         ],
-        "image_name": "temple"
+        "image_name": "temple",
+        "basic": false
     },
     {
         "name": "Villa",
@@ -4380,7 +4761,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "villa"
+        "image_name": "villa",
+        "basic": false
     },
     {
         "name": "Wild Hunt",
@@ -4392,7 +4774,8 @@
             "Action",
             "Gathering"
         ],
-        "image_name": "wildhunt"
+        "image_name": "wildhunt",
+        "basic": false
     },
     {
         "name": "Advance",
@@ -4403,7 +4786,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "advance"
+        "image_name": "advance",
+        "basic": false
     },
     {
         "name": "Annex",
@@ -4414,7 +4798,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "annex"
+        "image_name": "annex",
+        "basic": false
     },
     {
         "name": "Banquet",
@@ -4425,7 +4810,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "banquet"
+        "image_name": "banquet",
+        "basic": false
     },
     {
         "name": "Conquest",
@@ -4436,7 +4822,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "conquest"
+        "image_name": "conquest",
+        "basic": false
     },
     {
         "name": "Delve",
@@ -4447,7 +4834,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "delve"
+        "image_name": "delve",
+        "basic": false
     },
     {
         "name": "Dominate",
@@ -4458,7 +4846,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "dominate"
+        "image_name": "dominate",
+        "basic": false
     },
     {
         "name": "Donate",
@@ -4469,7 +4858,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "donate"
+        "image_name": "donate",
+        "basic": false
     },
     {
         "name": "Ritual",
@@ -4480,7 +4870,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "ritual"
+        "image_name": "ritual",
+        "basic": false
     },
     {
         "name": "Salt the Earth",
@@ -4491,7 +4882,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "salttheearth"
+        "image_name": "salttheearth",
+        "basic": false
     },
     {
         "name": "Tax",
@@ -4502,7 +4894,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "tax"
+        "image_name": "tax",
+        "basic": false
     },
     {
         "name": "Triumph",
@@ -4513,7 +4906,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "triumph"
+        "image_name": "triumph",
+        "basic": false
     },
     {
         "name": "Wedding",
@@ -4524,7 +4918,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "wedding"
+        "image_name": "wedding",
+        "basic": false
     },
     {
         "name": "Windfall",
@@ -4535,7 +4930,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "windfall"
+        "image_name": "windfall",
+        "basic": false
     },
     {
         "name": "Aqueduct",
@@ -4546,7 +4942,8 @@
         "types": [
             "Landmark"
         ],
-        "image_name": "aqueduct"
+        "image_name": "aqueduct",
+        "basic": false
     },
     {
         "name": "Arena",
@@ -4557,7 +4954,8 @@
         "types": [
             "Landmark"
         ],
-        "image_name": "arena"
+        "image_name": "arena",
+        "basic": false
     },
     {
         "name": "Bandit Fort",
@@ -4568,7 +4966,8 @@
         "types": [
             "Landmark"
         ],
-        "image_name": "banditfort"
+        "image_name": "banditfort",
+        "basic": false
     },
     {
         "name": "Basilica",
@@ -4579,7 +4978,8 @@
         "types": [
             "Landmark"
         ],
-        "image_name": "basilica"
+        "image_name": "basilica",
+        "basic": false
     },
     {
         "name": "Baths",
@@ -4590,7 +4990,8 @@
         "types": [
             "Landmark"
         ],
-        "image_name": "baths"
+        "image_name": "baths",
+        "basic": false
     },
     {
         "name": "Battlefield",
@@ -4601,7 +5002,8 @@
         "types": [
             "Landmark"
         ],
-        "image_name": "battlefield"
+        "image_name": "battlefield",
+        "basic": false
     },
     {
         "name": "Colonnade",
@@ -4612,7 +5014,8 @@
         "types": [
             "Landmark"
         ],
-        "image_name": "colonnade"
+        "image_name": "colonnade",
+        "basic": false
     },
     {
         "name": "Defiled Shrine",
@@ -4623,7 +5026,8 @@
         "types": [
             "Landmark"
         ],
-        "image_name": "defiledshrine"
+        "image_name": "defiledshrine",
+        "basic": false
     },
     {
         "name": "Fountain",
@@ -4634,7 +5038,8 @@
         "types": [
             "Landmark"
         ],
-        "image_name": "fountain"
+        "image_name": "fountain",
+        "basic": false
     },
     {
         "name": "Keep",
@@ -4645,7 +5050,8 @@
         "types": [
             "Landmark"
         ],
-        "image_name": "keep"
+        "image_name": "keep",
+        "basic": false
     },
     {
         "name": "Labyrinth",
@@ -4656,7 +5062,8 @@
         "types": [
             "Landmark"
         ],
-        "image_name": "labyrinth"
+        "image_name": "labyrinth",
+        "basic": false
     },
     {
         "name": "Mountain Pass",
@@ -4667,7 +5074,8 @@
         "types": [
             "Landmark"
         ],
-        "image_name": "mountainpass"
+        "image_name": "mountainpass",
+        "basic": false
     },
     {
         "name": "Museum",
@@ -4678,7 +5086,8 @@
         "types": [
             "Landmark"
         ],
-        "image_name": "museum"
+        "image_name": "museum",
+        "basic": false
     },
     {
         "name": "Obelisk",
@@ -4689,7 +5098,8 @@
         "types": [
             "Landmark"
         ],
-        "image_name": "obelisk"
+        "image_name": "obelisk",
+        "basic": false
     },
     {
         "name": "Orchard",
@@ -4700,7 +5110,8 @@
         "types": [
             "Landmark"
         ],
-        "image_name": "orchard"
+        "image_name": "orchard",
+        "basic": false
     },
     {
         "name": "Palace",
@@ -4711,7 +5122,8 @@
         "types": [
             "Landmark"
         ],
-        "image_name": "palace"
+        "image_name": "palace",
+        "basic": false
     },
     {
         "name": "Tomb",
@@ -4722,7 +5134,8 @@
         "types": [
             "Landmark"
         ],
-        "image_name": "tomb"
+        "image_name": "tomb",
+        "basic": false
     },
     {
         "name": "Tower",
@@ -4733,7 +5146,8 @@
         "types": [
             "Landmark"
         ],
-        "image_name": "tower"
+        "image_name": "tower",
+        "basic": false
     },
     {
         "name": "Triumphal Arch",
@@ -4744,7 +5158,8 @@
         "types": [
             "Landmark"
         ],
-        "image_name": "triumphalarch"
+        "image_name": "triumphalarch",
+        "basic": false
     },
     {
         "name": "Wall",
@@ -4755,7 +5170,8 @@
         "types": [
             "Landmark"
         ],
-        "image_name": "wall"
+        "image_name": "wall",
+        "basic": false
     },
     {
         "name": "Wolf Den",
@@ -4766,7 +5182,8 @@
         "types": [
             "Landmark"
         ],
-        "image_name": "wolfden"
+        "image_name": "wolfden",
+        "basic": false
     },
     {
         "name": "Bard",
@@ -4778,7 +5195,8 @@
             "Action",
             "Fate"
         ],
-        "image_name": "bard"
+        "image_name": "bard",
+        "basic": false
     },
     {
         "name": "Blessed Village",
@@ -4790,7 +5208,8 @@
             "Action",
             "Fate"
         ],
-        "image_name": "blessedvillage"
+        "image_name": "blessedvillage",
+        "basic": false
     },
     {
         "name": "Cemetery",
@@ -4801,7 +5220,8 @@
         "types": [
             "Victory"
         ],
-        "image_name": "cemetery"
+        "image_name": "cemetery",
+        "basic": false
     },
     {
         "name": "Changeling",
@@ -4812,7 +5232,8 @@
         "types": [
             "Night"
         ],
-        "image_name": "changeling"
+        "image_name": "changeling",
+        "basic": false
     },
     {
         "name": "Cobbler",
@@ -4824,7 +5245,8 @@
             "Night",
             "Duration"
         ],
-        "image_name": "cobbler"
+        "image_name": "cobbler",
+        "basic": false
     },
     {
         "name": "Conclave",
@@ -4835,7 +5257,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "conclave"
+        "image_name": "conclave",
+        "basic": false
     },
     {
         "name": "Crypt",
@@ -4847,7 +5270,8 @@
             "Night",
             "Duration"
         ],
-        "image_name": "crypt"
+        "image_name": "crypt",
+        "basic": false
     },
     {
         "name": "Cursed Village",
@@ -4859,7 +5283,8 @@
             "Action",
             "Doom"
         ],
-        "image_name": "cursedvillage"
+        "image_name": "cursedvillage",
+        "basic": false
     },
     {
         "name": "Den of Sin",
@@ -4871,7 +5296,8 @@
             "Night",
             "Duration"
         ],
-        "image_name": "denofsin"
+        "image_name": "denofsin",
+        "basic": false
     },
     {
         "name": "Devil's Workshop",
@@ -4882,7 +5308,8 @@
         "types": [
             "Night"
         ],
-        "image_name": "devilsworkshop"
+        "image_name": "devilsworkshop",
+        "basic": false
     },
     {
         "name": "Druid",
@@ -4894,7 +5321,8 @@
             "Action",
             "Fate"
         ],
-        "image_name": "druid"
+        "image_name": "druid",
+        "basic": false
     },
     {
         "name": "Exorcist",
@@ -4905,7 +5333,8 @@
         "types": [
             "Night"
         ],
-        "image_name": "exorcist"
+        "image_name": "exorcist",
+        "basic": false
     },
     {
         "name": "Faithful Hound",
@@ -4917,7 +5346,8 @@
             "Action",
             "Reaction"
         ],
-        "image_name": "faithfulhound"
+        "image_name": "faithfulhound",
+        "basic": false
     },
     {
         "name": "Fool",
@@ -4929,7 +5359,8 @@
             "Action",
             "Fate"
         ],
-        "image_name": "fool"
+        "image_name": "fool",
+        "basic": false
     },
     {
         "name": "Ghost Town",
@@ -4941,7 +5372,8 @@
             "Night",
             "Duration"
         ],
-        "image_name": "ghosttown"
+        "image_name": "ghosttown",
+        "basic": false
     },
     {
         "name": "Guardian",
@@ -4953,7 +5385,8 @@
             "Night",
             "Duration"
         ],
-        "image_name": "guardian"
+        "image_name": "guardian",
+        "basic": false
     },
     {
         "name": "Idol",
@@ -4966,7 +5399,8 @@
             "Attack",
             "Fate"
         ],
-        "image_name": "idol"
+        "image_name": "idol",
+        "basic": false
     },
     {
         "name": "Leprechaun",
@@ -4978,7 +5412,8 @@
             "Action",
             "Doom"
         ],
-        "image_name": "leprechaun"
+        "image_name": "leprechaun",
+        "basic": false
     },
     {
         "name": "Monastery",
@@ -4989,7 +5424,8 @@
         "types": [
             "Night"
         ],
-        "image_name": "monastery"
+        "image_name": "monastery",
+        "basic": false
     },
     {
         "name": "Necromancer",
@@ -5000,7 +5436,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "necromancer"
+        "image_name": "necromancer",
+        "basic": false
     },
     {
         "name": "Night Watchman",
@@ -5011,7 +5448,8 @@
         "types": [
             "Night"
         ],
-        "image_name": "nightwatchman"
+        "image_name": "nightwatchman",
+        "basic": false
     },
     {
         "name": "Pixie",
@@ -5023,7 +5461,8 @@
             "Action",
             "Fate"
         ],
-        "image_name": "pixie"
+        "image_name": "pixie",
+        "basic": false
     },
     {
         "name": "Pooka",
@@ -5034,7 +5473,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "pooka"
+        "image_name": "pooka",
+        "basic": false
     },
     {
         "name": "Raider",
@@ -5047,7 +5487,8 @@
             "Duration",
             "Attack"
         ],
-        "image_name": "raider"
+        "image_name": "raider",
+        "basic": false
     },
     {
         "name": "Sacred Grove",
@@ -5059,7 +5500,8 @@
             "Action",
             "Fate"
         ],
-        "image_name": "sacredgrove"
+        "image_name": "sacredgrove",
+        "basic": false
     },
     {
         "name": "Secret Cave",
@@ -5071,7 +5513,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "secretcave"
+        "image_name": "secretcave",
+        "basic": false
     },
     {
         "name": "Shepherd",
@@ -5082,7 +5525,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "shepherd"
+        "image_name": "shepherd",
+        "basic": false
     },
     {
         "name": "Skulk",
@@ -5095,7 +5539,8 @@
             "Attack",
             "Doom"
         ],
-        "image_name": "skulk"
+        "image_name": "skulk",
+        "basic": false
     },
     {
         "name": "Tormentor",
@@ -5108,7 +5553,8 @@
             "Attack",
             "Doom"
         ],
-        "image_name": "tormentor"
+        "image_name": "tormentor",
+        "basic": false
     },
     {
         "name": "Tracker",
@@ -5120,7 +5566,8 @@
             "Action",
             "Fate"
         ],
-        "image_name": "tracker"
+        "image_name": "tracker",
+        "basic": false
     },
     {
         "name": "Tragic Hero",
@@ -5131,7 +5578,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "tragichero"
+        "image_name": "tragichero",
+        "basic": false
     },
     {
         "name": "Vampire",
@@ -5144,7 +5592,8 @@
             "Attack",
             "Doom"
         ],
-        "image_name": "vampire"
+        "image_name": "vampire",
+        "basic": false
     },
     {
         "name": "Werewolf",
@@ -5158,7 +5607,8 @@
             "Attack",
             "Doom"
         ],
-        "image_name": "werewolf"
+        "image_name": "werewolf",
+        "basic": false
     },
     {
         "name": "Bat",
@@ -5169,7 +5619,8 @@
         "types": [
             "Night"
         ],
-        "image_name": "bat"
+        "image_name": "bat",
+        "basic": false
     },
     {
         "name": "Cursed Gold",
@@ -5181,7 +5632,8 @@
             "Treasure",
             "Heirloom"
         ],
-        "image_name": "cursedgold"
+        "image_name": "cursedgold",
+        "basic": true
     },
     {
         "name": "Ghost",
@@ -5194,7 +5646,8 @@
             "Duration",
             "Spirit"
         ],
-        "image_name": "ghost"
+        "image_name": "ghost",
+        "basic": false
     },
     {
         "name": "Goat",
@@ -5206,7 +5659,8 @@
             "Treasure",
             "Heirloom"
         ],
-        "image_name": "goat"
+        "image_name": "goat",
+        "basic": true
     },
     {
         "name": "Haunted Mirror",
@@ -5218,7 +5672,8 @@
             "Treasure",
             "Heirloom"
         ],
-        "image_name": "hauntedmirror"
+        "image_name": "hauntedmirror",
+        "basic": true
     },
     {
         "name": "Imp",
@@ -5230,7 +5685,8 @@
             "Action",
             "Spirit"
         ],
-        "image_name": "imp"
+        "image_name": "imp",
+        "basic": false
     },
     {
         "name": "Lucky Coin",
@@ -5242,7 +5698,8 @@
             "Treasure",
             "Heirloom"
         ],
-        "image_name": "luckycoin"
+        "image_name": "luckycoin",
+        "basic": true
     },
     {
         "name": "Magic Lamp",
@@ -5254,7 +5711,8 @@
             "Treasure",
             "Heirloom"
         ],
-        "image_name": "magiclamp"
+        "image_name": "magiclamp",
+        "basic": true
     },
     {
         "name": "Pasture",
@@ -5267,7 +5725,8 @@
             "Victory",
             "Heirloom"
         ],
-        "image_name": "pasture"
+        "image_name": "pasture",
+        "basic": true
     },
     {
         "name": "Pouch",
@@ -5279,7 +5738,8 @@
             "Treasure",
             "Heirloom"
         ],
-        "image_name": "pouch"
+        "image_name": "pouch",
+        "basic": true
     },
     {
         "name": "Will-o'-Wisp",
@@ -5291,7 +5751,8 @@
             "Action",
             "Spirit"
         ],
-        "image_name": "willowisp"
+        "image_name": "willowisp",
+        "basic": false
     },
     {
         "name": "Wish",
@@ -5302,7 +5763,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "wish"
+        "image_name": "wish",
+        "basic": false
     },
     {
         "name": "Zombie Apprentice",
@@ -5314,7 +5776,8 @@
             "Action",
             "Zombie"
         ],
-        "image_name": "zombieapprentice"
+        "image_name": "zombieapprentice",
+        "basic": false
     },
     {
         "name": "Zombie Mason",
@@ -5326,7 +5789,8 @@
             "Action",
             "Zombie"
         ],
-        "image_name": "zombiemason"
+        "image_name": "zombiemason",
+        "basic": false
     },
     {
         "name": "Zombie Spy",
@@ -5338,7 +5802,8 @@
             "Action",
             "Zombie"
         ],
-        "image_name": "zombiespy"
+        "image_name": "zombiespy",
+        "basic": false
     },
     {
         "name": "The Earth's Gift",
@@ -5349,7 +5814,8 @@
         "types": [
             "Boon"
         ],
-        "image_name": "theearthsgift"
+        "image_name": "theearthsgift",
+        "basic": false
     },
     {
         "name": "The Field's Gift",
@@ -5360,7 +5826,8 @@
         "types": [
             "Boon"
         ],
-        "image_name": "thefieldsgift"
+        "image_name": "thefieldsgift",
+        "basic": false
     },
     {
         "name": "The Flame's Gift",
@@ -5371,7 +5838,8 @@
         "types": [
             "Boon"
         ],
-        "image_name": "theflamesgift"
+        "image_name": "theflamesgift",
+        "basic": false
     },
     {
         "name": "The Forest's Gift",
@@ -5382,7 +5850,8 @@
         "types": [
             "Boon"
         ],
-        "image_name": "theforestsgift"
+        "image_name": "theforestsgift",
+        "basic": false
     },
     {
         "name": "The Moon's Gift",
@@ -5393,7 +5862,8 @@
         "types": [
             "Boon"
         ],
-        "image_name": "themoonsgift"
+        "image_name": "themoonsgift",
+        "basic": false
     },
     {
         "name": "The Mountain's Gift",
@@ -5404,7 +5874,8 @@
         "types": [
             "Boon"
         ],
-        "image_name": "themountainsgift"
+        "image_name": "themountainsgift",
+        "basic": false
     },
     {
         "name": "The River's Gift",
@@ -5415,7 +5886,8 @@
         "types": [
             "Boon"
         ],
-        "image_name": "theriversgift"
+        "image_name": "theriversgift",
+        "basic": false
     },
     {
         "name": "The Sea's Gift",
@@ -5426,7 +5898,8 @@
         "types": [
             "Boon"
         ],
-        "image_name": "theseasgift"
+        "image_name": "theseasgift",
+        "basic": false
     },
     {
         "name": "The Sky's Gift",
@@ -5437,7 +5910,8 @@
         "types": [
             "Boon"
         ],
-        "image_name": "theskysgift"
+        "image_name": "theskysgift",
+        "basic": false
     },
     {
         "name": "The Sun's Gift",
@@ -5448,7 +5922,8 @@
         "types": [
             "Boon"
         ],
-        "image_name": "thesunsgift"
+        "image_name": "thesunsgift",
+        "basic": false
     },
     {
         "name": "The Swamp's Gift",
@@ -5459,7 +5934,8 @@
         "types": [
             "Boon"
         ],
-        "image_name": "theswampsgift"
+        "image_name": "theswampsgift",
+        "basic": false
     },
     {
         "name": "The Wind's Gift",
@@ -5470,7 +5946,8 @@
         "types": [
             "Boon"
         ],
-        "image_name": "thewindsgift"
+        "image_name": "thewindsgift",
+        "basic": false
     },
     {
         "name": "Bad Omens",
@@ -5481,7 +5958,8 @@
         "types": [
             "Hex"
         ],
-        "image_name": "badomens"
+        "image_name": "badomens",
+        "basic": false
     },
     {
         "name": "Delusion",
@@ -5492,7 +5970,8 @@
         "types": [
             "Hex"
         ],
-        "image_name": "delusion"
+        "image_name": "delusion",
+        "basic": false
     },
     {
         "name": "Envy",
@@ -5503,7 +5982,8 @@
         "types": [
             "Hex"
         ],
-        "image_name": "envy"
+        "image_name": "envy",
+        "basic": false
     },
     {
         "name": "Famine",
@@ -5514,7 +5994,8 @@
         "types": [
             "Hex"
         ],
-        "image_name": "famine"
+        "image_name": "famine",
+        "basic": false
     },
     {
         "name": "Fear",
@@ -5525,7 +6006,8 @@
         "types": [
             "Hex"
         ],
-        "image_name": "fear"
+        "image_name": "fear",
+        "basic": false
     },
     {
         "name": "Greed",
@@ -5536,7 +6018,8 @@
         "types": [
             "Hex"
         ],
-        "image_name": "greed"
+        "image_name": "greed",
+        "basic": false
     },
     {
         "name": "Haunting",
@@ -5547,7 +6030,8 @@
         "types": [
             "Hex"
         ],
-        "image_name": "haunting"
+        "image_name": "haunting",
+        "basic": false
     },
     {
         "name": "Locusts",
@@ -5558,7 +6042,8 @@
         "types": [
             "Hex"
         ],
-        "image_name": "locusts"
+        "image_name": "locusts",
+        "basic": false
     },
     {
         "name": "Misery",
@@ -5569,7 +6054,8 @@
         "types": [
             "Hex"
         ],
-        "image_name": "misery"
+        "image_name": "misery",
+        "basic": false
     },
     {
         "name": "Plague",
@@ -5580,7 +6066,8 @@
         "types": [
             "Hex"
         ],
-        "image_name": "plague"
+        "image_name": "plague",
+        "basic": false
     },
     {
         "name": "Poverty",
@@ -5591,7 +6078,8 @@
         "types": [
             "Hex"
         ],
-        "image_name": "poverty"
+        "image_name": "poverty",
+        "basic": false
     },
     {
         "name": "War",
@@ -5602,7 +6090,8 @@
         "types": [
             "Hex"
         ],
-        "image_name": "war"
+        "image_name": "war",
+        "basic": false
     },
     {
         "name": "Deluded",
@@ -5613,7 +6102,8 @@
         "types": [
             "State"
         ],
-        "image_name": "deluded"
+        "image_name": "deluded",
+        "basic": false
     },
     {
         "name": "Envious",
@@ -5624,7 +6114,8 @@
         "types": [
             "State"
         ],
-        "image_name": "envious"
+        "image_name": "envious",
+        "basic": false
     },
     {
         "name": "Lost in the Woods",
@@ -5635,7 +6126,8 @@
         "types": [
             "State"
         ],
-        "image_name": "lostinthewoods"
+        "image_name": "lostinthewoods",
+        "basic": false
     },
     {
         "name": "Miserable",
@@ -5646,7 +6138,8 @@
         "types": [
             "State"
         ],
-        "image_name": "miserable"
+        "image_name": "miserable",
+        "basic": false
     },
     {
         "name": "Twice Miserable",
@@ -5657,7 +6150,8 @@
         "types": [
             "State"
         ],
-        "image_name": "twicemiserable"
+        "image_name": "twicemiserable",
+        "basic": false
     },
     {
         "name": "Acting Troupe",
@@ -5668,7 +6162,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "actingtroupe"
+        "image_name": "actingtroupe",
+        "basic": false
     },
     {
         "name": "Border Guard",
@@ -5679,7 +6174,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "borderguard"
+        "image_name": "borderguard",
+        "basic": false
     },
     {
         "name": "Cargo Ship",
@@ -5691,7 +6187,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "cargoship"
+        "image_name": "cargoship",
+        "basic": false
     },
     {
         "name": "Ducat",
@@ -5702,7 +6199,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "ducat"
+        "image_name": "ducat",
+        "basic": false
     },
     {
         "name": "Experiment",
@@ -5713,7 +6211,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "experiment"
+        "image_name": "experiment",
+        "basic": false
     },
     {
         "name": "Flag Bearer",
@@ -5724,7 +6223,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "flagbearer"
+        "image_name": "flagbearer",
+        "basic": false
     },
     {
         "name": "Hideout",
@@ -5735,7 +6235,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "hideout"
+        "image_name": "hideout",
+        "basic": false
     },
     {
         "name": "Improve",
@@ -5746,7 +6247,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "improve"
+        "image_name": "improve",
+        "basic": false
     },
     {
         "name": "Inventor",
@@ -5757,7 +6259,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "inventor"
+        "image_name": "inventor",
+        "basic": false
     },
     {
         "name": "Lackeys",
@@ -5768,7 +6271,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "lackeys"
+        "image_name": "lackeys",
+        "basic": false
     },
     {
         "name": "Mountain Village",
@@ -5779,7 +6283,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "mountainvillage"
+        "image_name": "mountainvillage",
+        "basic": false
     },
     {
         "name": "Old Witch",
@@ -5791,7 +6296,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "oldwitch"
+        "image_name": "oldwitch",
+        "basic": false
     },
     {
         "name": "Patron",
@@ -5803,7 +6309,8 @@
             "Action",
             "Reaction"
         ],
-        "image_name": "patron"
+        "image_name": "patron",
+        "basic": false
     },
     {
         "name": "Priest",
@@ -5814,7 +6321,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "priest"
+        "image_name": "priest",
+        "basic": false
     },
     {
         "name": "Recruiter",
@@ -5825,7 +6333,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "recruiter"
+        "image_name": "recruiter",
+        "basic": false
     },
     {
         "name": "Research",
@@ -5837,7 +6346,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "research"
+        "image_name": "research",
+        "basic": false
     },
     {
         "name": "Scepter",
@@ -5849,7 +6359,8 @@
             "Treasure",
             "Command"
         ],
-        "image_name": "scepter"
+        "image_name": "scepter",
+        "basic": false
     },
     {
         "name": "Scholar",
@@ -5860,7 +6371,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "scholar"
+        "image_name": "scholar",
+        "basic": false
     },
     {
         "name": "Sculptor",
@@ -5871,7 +6383,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "sculptor"
+        "image_name": "sculptor",
+        "basic": false
     },
     {
         "name": "Seer",
@@ -5882,7 +6395,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "seer"
+        "image_name": "seer",
+        "basic": false
     },
     {
         "name": "Silk Merchant",
@@ -5893,7 +6407,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "silkmerchant"
+        "image_name": "silkmerchant",
+        "basic": false
     },
     {
         "name": "Spices",
@@ -5904,7 +6419,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "spices"
+        "image_name": "spices",
+        "basic": false
     },
     {
         "name": "Swashbuckler",
@@ -5915,7 +6431,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "swashbuckler"
+        "image_name": "swashbuckler",
+        "basic": false
     },
     {
         "name": "Treasurer",
@@ -5926,7 +6443,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "treasurer"
+        "image_name": "treasurer",
+        "basic": false
     },
     {
         "name": "Villain",
@@ -5938,7 +6456,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "villain"
+        "image_name": "villain",
+        "basic": false
     },
     {
         "name": "Academy",
@@ -5949,7 +6468,8 @@
         "types": [
             "Project"
         ],
-        "image_name": "academy"
+        "image_name": "academy",
+        "basic": false
     },
     {
         "name": "Barracks",
@@ -5960,7 +6480,8 @@
         "types": [
             "Project"
         ],
-        "image_name": "barracks"
+        "image_name": "barracks",
+        "basic": false
     },
     {
         "name": "Canal",
@@ -5971,7 +6492,8 @@
         "types": [
             "Project"
         ],
-        "image_name": "canal"
+        "image_name": "canal",
+        "basic": false
     },
     {
         "name": "Capitalism",
@@ -5982,7 +6504,8 @@
         "types": [
             "Project"
         ],
-        "image_name": "capitalism"
+        "image_name": "capitalism",
+        "basic": false
     },
     {
         "name": "Cathedral",
@@ -5993,7 +6516,8 @@
         "types": [
             "Project"
         ],
-        "image_name": "cathedral"
+        "image_name": "cathedral",
+        "basic": false
     },
     {
         "name": "Citadel",
@@ -6004,7 +6528,8 @@
         "types": [
             "Project"
         ],
-        "image_name": "citadel"
+        "image_name": "citadel",
+        "basic": false
     },
     {
         "name": "City Gate",
@@ -6015,7 +6540,8 @@
         "types": [
             "Project"
         ],
-        "image_name": "citygate"
+        "image_name": "citygate",
+        "basic": false
     },
     {
         "name": "Crop Rotation",
@@ -6026,7 +6552,8 @@
         "types": [
             "Project"
         ],
-        "image_name": "croprotation"
+        "image_name": "croprotation",
+        "basic": false
     },
     {
         "name": "Exploration",
@@ -6037,7 +6564,8 @@
         "types": [
             "Project"
         ],
-        "image_name": "exploration"
+        "image_name": "exploration",
+        "basic": false
     },
     {
         "name": "Fair",
@@ -6048,7 +6576,8 @@
         "types": [
             "Project"
         ],
-        "image_name": "fair"
+        "image_name": "fair",
+        "basic": false
     },
     {
         "name": "Fleet",
@@ -6059,7 +6588,8 @@
         "types": [
             "Project"
         ],
-        "image_name": "fleet"
+        "image_name": "fleet",
+        "basic": false
     },
     {
         "name": "Guildhall",
@@ -6070,7 +6600,8 @@
         "types": [
             "Project"
         ],
-        "image_name": "guildhall"
+        "image_name": "guildhall",
+        "basic": false
     },
     {
         "name": "Innovation",
@@ -6081,7 +6612,8 @@
         "types": [
             "Project"
         ],
-        "image_name": "innovation"
+        "image_name": "innovation",
+        "basic": false
     },
     {
         "name": "Pageant",
@@ -6092,7 +6624,8 @@
         "types": [
             "Project"
         ],
-        "image_name": "pageant"
+        "image_name": "pageant",
+        "basic": false
     },
     {
         "name": "Piazza",
@@ -6103,7 +6636,8 @@
         "types": [
             "Project"
         ],
-        "image_name": "piazza"
+        "image_name": "piazza",
+        "basic": false
     },
     {
         "name": "Road Network",
@@ -6114,7 +6648,8 @@
         "types": [
             "Project"
         ],
-        "image_name": "roadnetwork"
+        "image_name": "roadnetwork",
+        "basic": false
     },
     {
         "name": "Sewers",
@@ -6125,7 +6660,8 @@
         "types": [
             "Project"
         ],
-        "image_name": "sewers"
+        "image_name": "sewers",
+        "basic": false
     },
     {
         "name": "Silos",
@@ -6136,7 +6672,8 @@
         "types": [
             "Project"
         ],
-        "image_name": "silos"
+        "image_name": "silos",
+        "basic": false
     },
     {
         "name": "Sinister Plot",
@@ -6147,7 +6684,8 @@
         "types": [
             "Project"
         ],
-        "image_name": "sinisterplot"
+        "image_name": "sinisterplot",
+        "basic": false
     },
     {
         "name": "Star Chart",
@@ -6158,7 +6696,8 @@
         "types": [
             "Project"
         ],
-        "image_name": "starchart"
+        "image_name": "starchart",
+        "basic": false
     },
     {
         "name": "Flag",
@@ -6169,7 +6708,8 @@
         "types": [
             "Artifact"
         ],
-        "image_name": "flag"
+        "image_name": "flag",
+        "basic": false
     },
     {
         "name": "Horn",
@@ -6180,7 +6720,8 @@
         "types": [
             "Artifact"
         ],
-        "image_name": "horn"
+        "image_name": "horn",
+        "basic": false
     },
     {
         "name": "Key",
@@ -6191,7 +6732,8 @@
         "types": [
             "Artifact"
         ],
-        "image_name": "key"
+        "image_name": "key",
+        "basic": false
     },
     {
         "name": "Lantern",
@@ -6202,7 +6744,8 @@
         "types": [
             "Artifact"
         ],
-        "image_name": "lantern"
+        "image_name": "lantern",
+        "basic": false
     },
     {
         "name": "Treasure Chest",
@@ -6213,7 +6756,8 @@
         "types": [
             "Artifact"
         ],
-        "image_name": "treasurechest"
+        "image_name": "treasurechest",
+        "basic": false
     },
     {
         "name": "Animal Fair",
@@ -6224,7 +6768,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "animalfair"
+        "image_name": "animalfair",
+        "basic": false
     },
     {
         "name": "Barge",
@@ -6236,7 +6781,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "barge"
+        "image_name": "barge",
+        "basic": false
     },
     {
         "name": "Black Cat",
@@ -6249,7 +6795,8 @@
             "Attack",
             "Reaction"
         ],
-        "image_name": "blackcat"
+        "image_name": "blackcat",
+        "basic": false
     },
     {
         "name": "Bounty Hunter",
@@ -6260,7 +6807,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "bountyhunter"
+        "image_name": "bountyhunter",
+        "basic": false
     },
     {
         "name": "Camel Train",
@@ -6271,7 +6819,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "cameltrain"
+        "image_name": "cameltrain",
+        "basic": false
     },
     {
         "name": "Cardinal",
@@ -6283,7 +6832,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "cardinal"
+        "image_name": "cardinal",
+        "basic": false
     },
     {
         "name": "Cavalry",
@@ -6294,7 +6844,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "cavalry"
+        "image_name": "cavalry",
+        "basic": false
     },
     {
         "name": "Coven",
@@ -6306,7 +6857,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "coven"
+        "image_name": "coven",
+        "basic": false
     },
     {
         "name": "Destrier",
@@ -6317,7 +6869,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "destrier"
+        "image_name": "destrier",
+        "basic": false
     },
     {
         "name": "Displace",
@@ -6328,7 +6881,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "displace"
+        "image_name": "displace",
+        "basic": false
     },
     {
         "name": "Falconer",
@@ -6340,7 +6894,8 @@
             "Action",
             "Reaction"
         ],
-        "image_name": "falconer"
+        "image_name": "falconer",
+        "basic": false
     },
     {
         "name": "Fisherman",
@@ -6351,7 +6906,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "fisherman"
+        "image_name": "fisherman",
+        "basic": false
     },
     {
         "name": "Gatekeeper",
@@ -6364,7 +6920,8 @@
             "Duration",
             "Attack"
         ],
-        "image_name": "gatekeeper"
+        "image_name": "gatekeeper",
+        "basic": false
     },
     {
         "name": "Goatherd",
@@ -6375,7 +6932,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "goatherd"
+        "image_name": "goatherd",
+        "basic": false
     },
     {
         "name": "Groom",
@@ -6386,7 +6944,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "groom"
+        "image_name": "groom",
+        "basic": false
     },
     {
         "name": "Hostelry",
@@ -6397,7 +6956,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "hostelry"
+        "image_name": "hostelry",
+        "basic": false
     },
     {
         "name": "Hunting Lodge",
@@ -6408,7 +6968,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "huntinglodge"
+        "image_name": "huntinglodge",
+        "basic": false
     },
     {
         "name": "Kiln",
@@ -6419,7 +6980,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "kiln"
+        "image_name": "kiln",
+        "basic": false
     },
     {
         "name": "Livery",
@@ -6430,7 +6992,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "livery"
+        "image_name": "livery",
+        "basic": false
     },
     {
         "name": "Mastermind",
@@ -6442,7 +7005,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "mastermind"
+        "image_name": "mastermind",
+        "basic": false
     },
     {
         "name": "Paddock",
@@ -6453,7 +7017,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "paddock"
+        "image_name": "paddock",
+        "basic": false
     },
     {
         "name": "Sanctuary",
@@ -6464,7 +7029,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "sanctuary"
+        "image_name": "sanctuary",
+        "basic": false
     },
     {
         "name": "Scrap",
@@ -6475,7 +7041,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "scrap"
+        "image_name": "scrap",
+        "basic": false
     },
     {
         "name": "Sheepdog",
@@ -6487,7 +7054,8 @@
             "Action",
             "Reaction"
         ],
-        "image_name": "sheepdog"
+        "image_name": "sheepdog",
+        "basic": false
     },
     {
         "name": "Sleigh",
@@ -6499,7 +7067,8 @@
             "Action",
             "Reaction"
         ],
-        "image_name": "sleigh"
+        "image_name": "sleigh",
+        "basic": false
     },
     {
         "name": "Snowy Village",
@@ -6510,7 +7079,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "snowyvillage"
+        "image_name": "snowyvillage",
+        "basic": false
     },
     {
         "name": "Stockpile",
@@ -6521,7 +7091,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "stockpile"
+        "image_name": "stockpile",
+        "basic": false
     },
     {
         "name": "Supplies",
@@ -6532,7 +7103,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "supplies"
+        "image_name": "supplies",
+        "basic": false
     },
     {
         "name": "Village Green",
@@ -6545,7 +7117,8 @@
             "Duration",
             "Reaction"
         ],
-        "image_name": "villagegreen"
+        "image_name": "villagegreen",
+        "basic": false
     },
     {
         "name": "Wayfarer",
@@ -6556,7 +7129,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "wayfarer"
+        "image_name": "wayfarer",
+        "basic": false
     },
     {
         "name": "Horse",
@@ -6567,7 +7141,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "horse"
+        "image_name": "horse",
+        "basic": false
     },
     {
         "name": "Alliance",
@@ -6578,7 +7153,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "alliance"
+        "image_name": "alliance",
+        "basic": false
     },
     {
         "name": "Banish",
@@ -6589,7 +7165,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "banish"
+        "image_name": "banish",
+        "basic": false
     },
     {
         "name": "Bargain",
@@ -6600,7 +7177,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "bargain"
+        "image_name": "bargain",
+        "basic": false
     },
     {
         "name": "Commerce",
@@ -6611,7 +7189,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "commerce"
+        "image_name": "commerce",
+        "basic": false
     },
     {
         "name": "Delay",
@@ -6622,7 +7201,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "delay"
+        "image_name": "delay",
+        "basic": false
     },
     {
         "name": "Demand",
@@ -6633,7 +7213,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "demand"
+        "image_name": "demand",
+        "basic": false
     },
     {
         "name": "Desperation",
@@ -6644,7 +7225,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "desperation"
+        "image_name": "desperation",
+        "basic": false
     },
     {
         "name": "Enclave",
@@ -6655,7 +7237,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "enclave"
+        "image_name": "enclave",
+        "basic": false
     },
     {
         "name": "Enhance",
@@ -6666,7 +7249,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "enhance"
+        "image_name": "enhance",
+        "basic": false
     },
     {
         "name": "Gamble",
@@ -6677,7 +7261,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "gamble"
+        "image_name": "gamble",
+        "basic": false
     },
     {
         "name": "Invest",
@@ -6688,7 +7273,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "invest"
+        "image_name": "invest",
+        "basic": false
     },
     {
         "name": "March",
@@ -6699,7 +7285,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "march"
+        "image_name": "march",
+        "basic": false
     },
     {
         "name": "Populate",
@@ -6710,7 +7297,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "populate"
+        "image_name": "populate",
+        "basic": false
     },
     {
         "name": "Pursue",
@@ -6721,7 +7309,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "pursue"
+        "image_name": "pursue",
+        "basic": false
     },
     {
         "name": "Reap",
@@ -6732,7 +7321,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "reap"
+        "image_name": "reap",
+        "basic": false
     },
     {
         "name": "Ride",
@@ -6743,7 +7333,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "ride"
+        "image_name": "ride",
+        "basic": false
     },
     {
         "name": "Seize the Day",
@@ -6754,7 +7345,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "seizetheday"
+        "image_name": "seizetheday",
+        "basic": false
     },
     {
         "name": "Stampede",
@@ -6765,7 +7357,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "stampede"
+        "image_name": "stampede",
+        "basic": false
     },
     {
         "name": "Toil",
@@ -6776,7 +7369,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "toil"
+        "image_name": "toil",
+        "basic": false
     },
     {
         "name": "Transport",
@@ -6787,7 +7381,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "transport"
+        "image_name": "transport",
+        "basic": false
     },
     {
         "name": "Way of the Butterfly",
@@ -6798,7 +7393,8 @@
         "types": [
             "Way"
         ],
-        "image_name": "wayofthebutterfly"
+        "image_name": "wayofthebutterfly",
+        "basic": false
     },
     {
         "name": "Way of the Camel",
@@ -6809,7 +7405,8 @@
         "types": [
             "Way"
         ],
-        "image_name": "wayofthecamel"
+        "image_name": "wayofthecamel",
+        "basic": false
     },
     {
         "name": "Way of the Chameleon",
@@ -6820,7 +7417,8 @@
         "types": [
             "Way"
         ],
-        "image_name": "wayofthechameleon"
+        "image_name": "wayofthechameleon",
+        "basic": false
     },
     {
         "name": "Way of the Frog",
@@ -6831,7 +7429,8 @@
         "types": [
             "Way"
         ],
-        "image_name": "wayofthefrog"
+        "image_name": "wayofthefrog",
+        "basic": false
     },
     {
         "name": "Way of the Goat",
@@ -6842,7 +7441,8 @@
         "types": [
             "Way"
         ],
-        "image_name": "wayofthegoat"
+        "image_name": "wayofthegoat",
+        "basic": false
     },
     {
         "name": "Way of the Horse",
@@ -6853,7 +7453,8 @@
         "types": [
             "Way"
         ],
-        "image_name": "wayofthehorse"
+        "image_name": "wayofthehorse",
+        "basic": false
     },
     {
         "name": "Way of the Mole",
@@ -6864,7 +7465,8 @@
         "types": [
             "Way"
         ],
-        "image_name": "wayofthemole"
+        "image_name": "wayofthemole",
+        "basic": false
     },
     {
         "name": "Way of the Monkey",
@@ -6875,7 +7477,8 @@
         "types": [
             "Way"
         ],
-        "image_name": "wayofthemonkey"
+        "image_name": "wayofthemonkey",
+        "basic": false
     },
     {
         "name": "Way of the Mouse",
@@ -6886,7 +7489,8 @@
         "types": [
             "Way"
         ],
-        "image_name": "wayofthemouse"
+        "image_name": "wayofthemouse",
+        "basic": false
     },
     {
         "name": "Way of the Mule",
@@ -6897,7 +7501,8 @@
         "types": [
             "Way"
         ],
-        "image_name": "wayofthemule"
+        "image_name": "wayofthemule",
+        "basic": false
     },
     {
         "name": "Way of the Otter",
@@ -6908,7 +7513,8 @@
         "types": [
             "Way"
         ],
-        "image_name": "wayoftheotter"
+        "image_name": "wayoftheotter",
+        "basic": false
     },
     {
         "name": "Way of the Ox",
@@ -6919,7 +7525,8 @@
         "types": [
             "Way"
         ],
-        "image_name": "wayoftheox"
+        "image_name": "wayoftheox",
+        "basic": false
     },
     {
         "name": "Way of the Owl",
@@ -6930,7 +7537,8 @@
         "types": [
             "Way"
         ],
-        "image_name": "wayoftheowl"
+        "image_name": "wayoftheowl",
+        "basic": false
     },
     {
         "name": "Way of the Pig",
@@ -6941,7 +7549,8 @@
         "types": [
             "Way"
         ],
-        "image_name": "wayofthepig"
+        "image_name": "wayofthepig",
+        "basic": false
     },
     {
         "name": "Way of the Rat",
@@ -6952,7 +7561,8 @@
         "types": [
             "Way"
         ],
-        "image_name": "wayoftherat"
+        "image_name": "wayoftherat",
+        "basic": false
     },
     {
         "name": "Way of the Seal",
@@ -6963,7 +7573,8 @@
         "types": [
             "Way"
         ],
-        "image_name": "wayoftheseal"
+        "image_name": "wayoftheseal",
+        "basic": false
     },
     {
         "name": "Way of the Sheep",
@@ -6974,7 +7585,8 @@
         "types": [
             "Way"
         ],
-        "image_name": "wayofthesheep"
+        "image_name": "wayofthesheep",
+        "basic": false
     },
     {
         "name": "Way of the Squirrel",
@@ -6985,7 +7597,8 @@
         "types": [
             "Way"
         ],
-        "image_name": "wayofthesquirrel"
+        "image_name": "wayofthesquirrel",
+        "basic": false
     },
     {
         "name": "Way of the Turtle",
@@ -6996,7 +7609,8 @@
         "types": [
             "Way"
         ],
-        "image_name": "wayoftheturtle"
+        "image_name": "wayoftheturtle",
+        "basic": false
     },
     {
         "name": "Way of the Worm",
@@ -7007,7 +7621,8 @@
         "types": [
             "Way"
         ],
-        "image_name": "wayoftheworm"
+        "image_name": "wayoftheworm",
+        "basic": false
     },
     {
         "name": "Acolyte",
@@ -7019,7 +7634,8 @@
             "Action",
             "Augur"
         ],
-        "image_name": "acolyte"
+        "image_name": "acolyte",
+        "basic": false
     },
     {
         "name": "Archer",
@@ -7032,7 +7648,8 @@
             "Attack",
             "Clash"
         ],
-        "image_name": "archer"
+        "image_name": "archer",
+        "basic": false
     },
     {
         "name": "Barbarian",
@@ -7044,7 +7661,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "barbarian"
+        "image_name": "barbarian",
+        "basic": false
     },
     {
         "name": "Battle Plan",
@@ -7056,7 +7674,8 @@
             "Action",
             "Clash"
         ],
-        "image_name": "battleplan"
+        "image_name": "battleplan",
+        "basic": false
     },
     {
         "name": "Bauble",
@@ -7068,7 +7687,8 @@
             "Treasure",
             "Liaison"
         ],
-        "image_name": "bauble"
+        "image_name": "bauble",
+        "basic": false
     },
     {
         "name": "Blacksmith",
@@ -7080,7 +7700,8 @@
             "Action",
             "Townsfolk"
         ],
-        "image_name": "blacksmith"
+        "image_name": "blacksmith",
+        "basic": false
     },
     {
         "name": "Broker",
@@ -7092,7 +7713,8 @@
             "Action",
             "Liaison"
         ],
-        "image_name": "broker"
+        "image_name": "broker",
+        "basic": false
     },
     {
         "name": "Capital City",
@@ -7103,7 +7725,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "capitalcity"
+        "image_name": "capitalcity",
+        "basic": false
     },
     {
         "name": "Carpenter",
@@ -7114,7 +7737,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "carpenter"
+        "image_name": "carpenter",
+        "basic": false
     },
     {
         "name": "Conjurer",
@@ -7127,7 +7751,8 @@
             "Duration",
             "Wizard"
         ],
-        "image_name": "conjurer"
+        "image_name": "conjurer",
+        "basic": false
     },
     {
         "name": "Contract",
@@ -7140,7 +7765,8 @@
             "Duration",
             "Liaison"
         ],
-        "image_name": "contract"
+        "image_name": "contract",
+        "basic": false
     },
     {
         "name": "Courier",
@@ -7151,7 +7777,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "courier"
+        "image_name": "courier",
+        "basic": false
     },
     {
         "name": "Distant Shore",
@@ -7164,7 +7791,8 @@
             "Victory",
             "Odyssey"
         ],
-        "image_name": "distantshore"
+        "image_name": "distantshore",
+        "basic": false
     },
     {
         "name": "Elder",
@@ -7176,7 +7804,8 @@
             "Action",
             "Townsfolk"
         ],
-        "image_name": "elder"
+        "image_name": "elder",
+        "basic": false
     },
     {
         "name": "Emissary",
@@ -7188,7 +7817,8 @@
             "Action",
             "Liaison"
         ],
-        "image_name": "emissary"
+        "image_name": "emissary",
+        "basic": false
     },
     {
         "name": "Galleria",
@@ -7199,7 +7829,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "galleria"
+        "image_name": "galleria",
+        "basic": false
     },
     {
         "name": "Garrison",
@@ -7212,7 +7843,8 @@
             "Duration",
             "Fort"
         ],
-        "image_name": "garrison"
+        "image_name": "garrison",
+        "basic": false
     },
     {
         "name": "Guildmaster",
@@ -7224,7 +7856,8 @@
             "Action",
             "Liaison"
         ],
-        "image_name": "guildmaster"
+        "image_name": "guildmaster",
+        "basic": false
     },
     {
         "name": "Herb Gatherer",
@@ -7236,7 +7869,8 @@
             "Action",
             "Augur"
         ],
-        "image_name": "herbgatherer"
+        "image_name": "herbgatherer",
+        "basic": false
     },
     {
         "name": "Highwayman",
@@ -7249,7 +7883,8 @@
             "Duration",
             "Attack"
         ],
-        "image_name": "highwayman"
+        "image_name": "highwayman",
+        "basic": false
     },
     {
         "name": "Hill Fort",
@@ -7261,7 +7896,8 @@
             "Action",
             "Fort"
         ],
-        "image_name": "hillfort"
+        "image_name": "hillfort",
+        "basic": false
     },
     {
         "name": "Hunter",
@@ -7272,7 +7908,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "hunter"
+        "image_name": "hunter",
+        "basic": false
     },
     {
         "name": "Importer",
@@ -7285,7 +7922,8 @@
             "Duration",
             "Liaison"
         ],
-        "image_name": "importer"
+        "image_name": "importer",
+        "basic": false
     },
     {
         "name": "Innkeeper",
@@ -7296,7 +7934,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "innkeeper"
+        "image_name": "innkeeper",
+        "basic": false
     },
     {
         "name": "Lich",
@@ -7308,7 +7947,8 @@
             "Action",
             "Wizard"
         ],
-        "image_name": "lich"
+        "image_name": "lich",
+        "basic": false
     },
     {
         "name": "Marquis",
@@ -7319,7 +7959,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "marquis"
+        "image_name": "marquis",
+        "basic": false
     },
     {
         "name": "Merchant Camp",
@@ -7330,7 +7971,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "merchantcamp"
+        "image_name": "merchantcamp",
+        "basic": false
     },
     {
         "name": "Miller",
@@ -7342,7 +7984,8 @@
             "Action",
             "Townsfolk"
         ],
-        "image_name": "miller"
+        "image_name": "miller",
+        "basic": false
     },
     {
         "name": "Modify",
@@ -7353,7 +7996,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "modify"
+        "image_name": "modify",
+        "basic": false
     },
     {
         "name": "Old Map",
@@ -7365,7 +8009,8 @@
             "Action",
             "Odyssey"
         ],
-        "image_name": "oldmap"
+        "image_name": "oldmap",
+        "basic": false
     },
     {
         "name": "Royal Galley",
@@ -7377,7 +8022,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "royalgalley"
+        "image_name": "royalgalley",
+        "basic": false
     },
     {
         "name": "Sentinel",
@@ -7388,7 +8034,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "sentinel"
+        "image_name": "sentinel",
+        "basic": false
     },
     {
         "name": "Sibyl",
@@ -7400,7 +8047,8 @@
             "Action",
             "Augur"
         ],
-        "image_name": "sibyl"
+        "image_name": "sibyl",
+        "basic": false
     },
     {
         "name": "Skirmisher",
@@ -7412,7 +8060,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "skirmisher"
+        "image_name": "skirmisher",
+        "basic": false
     },
     {
         "name": "Sorcerer",
@@ -7425,7 +8074,8 @@
             "Attack",
             "Wizard"
         ],
-        "image_name": "sorcerer"
+        "image_name": "sorcerer",
+        "basic": false
     },
     {
         "name": "Sorceress",
@@ -7438,7 +8088,8 @@
             "Attack",
             "Augur"
         ],
-        "image_name": "sorceress"
+        "image_name": "sorceress",
+        "basic": false
     },
     {
         "name": "Specialist",
@@ -7449,7 +8100,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "specialist"
+        "image_name": "specialist",
+        "basic": false
     },
     {
         "name": "Stronghold",
@@ -7463,7 +8115,8 @@
             "Duration",
             "Fort"
         ],
-        "image_name": "stronghold"
+        "image_name": "stronghold",
+        "basic": false
     },
     {
         "name": "Student",
@@ -7476,7 +8129,8 @@
             "Wizard",
             "Liaison"
         ],
-        "image_name": "student"
+        "image_name": "student",
+        "basic": false
     },
     {
         "name": "Sunken Treasure",
@@ -7488,7 +8142,8 @@
             "Treasure",
             "Odyssey"
         ],
-        "image_name": "sunkentreasure"
+        "image_name": "sunkentreasure",
+        "basic": false
     },
     {
         "name": "Swap",
@@ -7499,7 +8154,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "swap"
+        "image_name": "swap",
+        "basic": false
     },
     {
         "name": "Sycophant",
@@ -7511,7 +8167,8 @@
             "Action",
             "Liaison"
         ],
-        "image_name": "sycophant"
+        "image_name": "sycophant",
+        "basic": false
     },
     {
         "name": "Tent",
@@ -7523,7 +8180,8 @@
             "Action",
             "Fort"
         ],
-        "image_name": "tent"
+        "image_name": "tent",
+        "basic": false
     },
     {
         "name": "Territory",
@@ -7535,7 +8193,8 @@
             "Victory",
             "Clash"
         ],
-        "image_name": "territory"
+        "image_name": "territory",
+        "basic": false
     },
     {
         "name": "Town",
@@ -7546,7 +8205,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "town"
+        "image_name": "town",
+        "basic": false
     },
     {
         "name": "Town Crier",
@@ -7558,7 +8218,8 @@
             "Action",
             "Townsfolk"
         ],
-        "image_name": "towncrier"
+        "image_name": "towncrier",
+        "basic": false
     },
     {
         "name": "Underling",
@@ -7570,7 +8231,8 @@
             "Action",
             "Liaison"
         ],
-        "image_name": "underling"
+        "image_name": "underling",
+        "basic": false
     },
     {
         "name": "Voyage",
@@ -7583,7 +8245,8 @@
             "Duration",
             "Odyssey"
         ],
-        "image_name": "voyage"
+        "image_name": "voyage",
+        "basic": false
     },
     {
         "name": "Warlord",
@@ -7597,7 +8260,8 @@
             "Attack",
             "Clash"
         ],
-        "image_name": "warlord"
+        "image_name": "warlord",
+        "basic": false
     },
     {
         "name": "Architects' Guild",
@@ -7608,7 +8272,8 @@
         "types": [
             "Ally"
         ],
-        "image_name": "architectsguild"
+        "image_name": "architectsguild",
+        "basic": false
     },
     {
         "name": "Band of Nomads",
@@ -7619,7 +8284,8 @@
         "types": [
             "Ally"
         ],
-        "image_name": "bandofnomads"
+        "image_name": "bandofnomads",
+        "basic": false
     },
     {
         "name": "Cave Dwellers",
@@ -7630,7 +8296,8 @@
         "types": [
             "Ally"
         ],
-        "image_name": "cavedwellers"
+        "image_name": "cavedwellers",
+        "basic": false
     },
     {
         "name": "Circle of Witches",
@@ -7641,7 +8308,8 @@
         "types": [
             "Ally"
         ],
-        "image_name": "circleofwitches"
+        "image_name": "circleofwitches",
+        "basic": false
     },
     {
         "name": "City-state",
@@ -7652,7 +8320,8 @@
         "types": [
             "Ally"
         ],
-        "image_name": "citystate"
+        "image_name": "citystate",
+        "basic": false
     },
     {
         "name": "Coastal Haven",
@@ -7663,7 +8332,8 @@
         "types": [
             "Ally"
         ],
-        "image_name": "coastalhaven"
+        "image_name": "coastalhaven",
+        "basic": false
     },
     {
         "name": "Crafters' Guild",
@@ -7674,7 +8344,8 @@
         "types": [
             "Ally"
         ],
-        "image_name": "craftersguild"
+        "image_name": "craftersguild",
+        "basic": false
     },
     {
         "name": "Desert Guides",
@@ -7685,7 +8356,8 @@
         "types": [
             "Ally"
         ],
-        "image_name": "desertguides"
+        "image_name": "desertguides",
+        "basic": false
     },
     {
         "name": "Family of Inventors",
@@ -7696,7 +8368,8 @@
         "types": [
             "Ally"
         ],
-        "image_name": "familyofinventors"
+        "image_name": "familyofinventors",
+        "basic": false
     },
     {
         "name": "Fellowship of Scribes",
@@ -7707,7 +8380,8 @@
         "types": [
             "Ally"
         ],
-        "image_name": "fellowshipofscribes"
+        "image_name": "fellowshipofscribes",
+        "basic": false
     },
     {
         "name": "Forest Dwellers",
@@ -7718,7 +8392,8 @@
         "types": [
             "Ally"
         ],
-        "image_name": "forestdwellers"
+        "image_name": "forestdwellers",
+        "basic": false
     },
     {
         "name": "Gang of Pickpockets",
@@ -7729,7 +8404,8 @@
         "types": [
             "Ally"
         ],
-        "image_name": "gangofpickpockets"
+        "image_name": "gangofpickpockets",
+        "basic": false
     },
     {
         "name": "Island Folk",
@@ -7740,7 +8416,8 @@
         "types": [
             "Ally"
         ],
-        "image_name": "islandfolk"
+        "image_name": "islandfolk",
+        "basic": false
     },
     {
         "name": "League of Bankers",
@@ -7751,7 +8428,8 @@
         "types": [
             "Ally"
         ],
-        "image_name": "leagueofbankers"
+        "image_name": "leagueofbankers",
+        "basic": false
     },
     {
         "name": "League of Shopkeepers",
@@ -7762,7 +8440,8 @@
         "types": [
             "Ally"
         ],
-        "image_name": "leagueofshopkeepers"
+        "image_name": "leagueofshopkeepers",
+        "basic": false
     },
     {
         "name": "Market Towns",
@@ -7773,7 +8452,8 @@
         "types": [
             "Ally"
         ],
-        "image_name": "markettowns"
+        "image_name": "markettowns",
+        "basic": false
     },
     {
         "name": "Mountain Folk",
@@ -7784,7 +8464,8 @@
         "types": [
             "Ally"
         ],
-        "image_name": "mountainfolk"
+        "image_name": "mountainfolk",
+        "basic": false
     },
     {
         "name": "Order of Astrologers",
@@ -7795,7 +8476,8 @@
         "types": [
             "Ally"
         ],
-        "image_name": "orderofastrologers"
+        "image_name": "orderofastrologers",
+        "basic": false
     },
     {
         "name": "Order of Masons",
@@ -7806,7 +8488,8 @@
         "types": [
             "Ally"
         ],
-        "image_name": "orderofmasons"
+        "image_name": "orderofmasons",
+        "basic": false
     },
     {
         "name": "Peaceful Cult",
@@ -7817,7 +8500,8 @@
         "types": [
             "Ally"
         ],
-        "image_name": "peacefulcult"
+        "image_name": "peacefulcult",
+        "basic": false
     },
     {
         "name": "Plateau Shepherds",
@@ -7828,7 +8512,8 @@
         "types": [
             "Ally"
         ],
-        "image_name": "plateaushepherds"
+        "image_name": "plateaushepherds",
+        "basic": false
     },
     {
         "name": "Trappers' Lodge",
@@ -7839,7 +8524,8 @@
         "types": [
             "Ally"
         ],
-        "image_name": "trapperslodge"
+        "image_name": "trapperslodge",
+        "basic": false
     },
     {
         "name": "Woodworkers' Guild",
@@ -7850,7 +8536,8 @@
         "types": [
             "Ally"
         ],
-        "image_name": "woodworkersguild"
+        "image_name": "woodworkersguild",
+        "basic": false
     },
     {
         "name": "Abundance",
@@ -7862,7 +8549,8 @@
             "Treasure",
             "Duration"
         ],
-        "image_name": "abundance"
+        "image_name": "abundance",
+        "basic": false
     },
     {
         "name": "Buried Treasure",
@@ -7874,7 +8562,8 @@
             "Treasure",
             "Duration"
         ],
-        "image_name": "buriedtreasure"
+        "image_name": "buriedtreasure",
+        "basic": false
     },
     {
         "name": "Cabin Boy",
@@ -7886,7 +8575,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "cabinboy"
+        "image_name": "cabinboy",
+        "basic": false
     },
     {
         "name": "Cage",
@@ -7898,7 +8588,8 @@
             "Treasure",
             "Duration"
         ],
-        "image_name": "cage"
+        "image_name": "cage",
+        "basic": false
     },
     {
         "name": "Crew",
@@ -7910,7 +8601,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "crew"
+        "image_name": "crew",
+        "basic": false
     },
     {
         "name": "Crucible",
@@ -7921,7 +8613,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "crucible"
+        "image_name": "crucible",
+        "basic": false
     },
     {
         "name": "Cutthroat",
@@ -7934,7 +8627,8 @@
             "Duration",
             "Attack"
         ],
-        "image_name": "cutthroat"
+        "image_name": "cutthroat",
+        "basic": false
     },
     {
         "name": "Enlarge",
@@ -7946,7 +8640,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "enlarge"
+        "image_name": "enlarge",
+        "basic": false
     },
     {
         "name": "Figurine",
@@ -7957,7 +8652,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "figurine"
+        "image_name": "figurine",
+        "basic": false
     },
     {
         "name": "First Mate",
@@ -7968,7 +8664,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "firstmate"
+        "image_name": "firstmate",
+        "basic": false
     },
     {
         "name": "Flagship",
@@ -7981,7 +8678,8 @@
             "Duration",
             "Command"
         ],
-        "image_name": "flagship"
+        "image_name": "flagship",
+        "basic": false
     },
     {
         "name": "Fortune Hunter",
@@ -7992,7 +8690,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "fortunehunter"
+        "image_name": "fortunehunter",
+        "basic": false
     },
     {
         "name": "Frigate",
@@ -8005,7 +8704,8 @@
             "Duration",
             "Attack"
         ],
-        "image_name": "frigate"
+        "image_name": "frigate",
+        "basic": false
     },
     {
         "name": "Gondola",
@@ -8017,7 +8717,8 @@
             "Treasure",
             "Duration"
         ],
-        "image_name": "gondola"
+        "image_name": "gondola",
+        "basic": false
     },
     {
         "name": "Grotto",
@@ -8029,7 +8730,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "grotto"
+        "image_name": "grotto",
+        "basic": false
     },
     {
         "name": "Harbor Village",
@@ -8040,7 +8742,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "harborvillage"
+        "image_name": "harborvillage",
+        "basic": false
     },
     {
         "name": "Jewelled Egg",
@@ -8051,7 +8754,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "jewelledegg"
+        "image_name": "jewelledegg",
+        "basic": false
     },
     {
         "name": "King's Cache",
@@ -8062,7 +8766,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "kingscache"
+        "image_name": "kingscache",
+        "basic": false
     },
     {
         "name": "Landing Party",
@@ -8074,7 +8779,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "landingparty"
+        "image_name": "landingparty",
+        "basic": false
     },
     {
         "name": "Longship",
@@ -8086,7 +8792,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "longship"
+        "image_name": "longship",
+        "basic": false
     },
     {
         "name": "Mapmaker",
@@ -8098,7 +8805,8 @@
             "Action",
             "Reaction"
         ],
-        "image_name": "mapmaker"
+        "image_name": "mapmaker",
+        "basic": false
     },
     {
         "name": "Maroon",
@@ -8109,7 +8817,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "maroon"
+        "image_name": "maroon",
+        "basic": false
     },
     {
         "name": "Mining Road",
@@ -8120,7 +8829,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "miningroad"
+        "image_name": "miningroad",
+        "basic": false
     },
     {
         "name": "Pendant",
@@ -8131,7 +8841,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "pendant"
+        "image_name": "pendant",
+        "basic": false
     },
     {
         "name": "Pickaxe",
@@ -8142,7 +8853,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "pickaxe"
+        "image_name": "pickaxe",
+        "basic": false
     },
     {
         "name": "Pilgrim",
@@ -8153,7 +8865,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "pilgrim"
+        "image_name": "pilgrim",
+        "basic": false
     },
     {
         "name": "Quartermaster",
@@ -8165,7 +8878,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "quartermaster"
+        "image_name": "quartermaster",
+        "basic": false
     },
     {
         "name": "Rope",
@@ -8177,7 +8891,8 @@
             "Treasure",
             "Duration"
         ],
-        "image_name": "rope"
+        "image_name": "rope",
+        "basic": false
     },
     {
         "name": "Sack of Loot",
@@ -8188,7 +8903,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "sackofloot"
+        "image_name": "sackofloot",
+        "basic": false
     },
     {
         "name": "Search",
@@ -8200,7 +8916,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "search"
+        "image_name": "search",
+        "basic": false
     },
     {
         "name": "Secluded Shrine",
@@ -8212,7 +8929,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "secludedshrine"
+        "image_name": "secludedshrine",
+        "basic": false
     },
     {
         "name": "Shaman",
@@ -8223,7 +8941,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "shaman"
+        "image_name": "shaman",
+        "basic": false
     },
     {
         "name": "Silver Mine",
@@ -8234,7 +8953,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "silvermine"
+        "image_name": "silvermine",
+        "basic": false
     },
     {
         "name": "Siren",
@@ -8247,7 +8967,8 @@
             "Duration",
             "Attack"
         ],
-        "image_name": "siren"
+        "image_name": "siren",
+        "basic": false
     },
     {
         "name": "Stowaway",
@@ -8260,7 +8981,8 @@
             "Duration",
             "Reaction"
         ],
-        "image_name": "stowaway"
+        "image_name": "stowaway",
+        "basic": false
     },
     {
         "name": "Swamp Shacks",
@@ -8271,7 +8993,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "swampshacks"
+        "image_name": "swampshacks",
+        "basic": false
     },
     {
         "name": "Taskmaster",
@@ -8283,7 +9006,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "taskmaster"
+        "image_name": "taskmaster",
+        "basic": false
     },
     {
         "name": "Tools",
@@ -8294,7 +9018,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "tools"
+        "image_name": "tools",
+        "basic": false
     },
     {
         "name": "Trickster",
@@ -8306,7 +9031,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "trickster"
+        "image_name": "trickster",
+        "basic": false
     },
     {
         "name": "Wealthy Village",
@@ -8317,7 +9043,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "wealthyvillage"
+        "image_name": "wealthyvillage",
+        "basic": false
     },
     {
         "name": "Amphora",
@@ -8330,7 +9057,8 @@
             "Duration",
             "Loot"
         ],
-        "image_name": "amphora"
+        "image_name": "amphora",
+        "basic": false
     },
     {
         "name": "Doubloons",
@@ -8342,7 +9070,8 @@
             "Treasure",
             "Loot"
         ],
-        "image_name": "doubloons"
+        "image_name": "doubloons",
+        "basic": false
     },
     {
         "name": "Endless Chalice",
@@ -8355,7 +9084,8 @@
             "Duration",
             "Loot"
         ],
-        "image_name": "endlesschalice"
+        "image_name": "endlesschalice",
+        "basic": false
     },
     {
         "name": "Figurehead",
@@ -8368,7 +9098,8 @@
             "Duration",
             "Loot"
         ],
-        "image_name": "figurehead"
+        "image_name": "figurehead",
+        "basic": false
     },
     {
         "name": "Hammer",
@@ -8380,7 +9111,8 @@
             "Treasure",
             "Loot"
         ],
-        "image_name": "hammer"
+        "image_name": "hammer",
+        "basic": false
     },
     {
         "name": "Insignia",
@@ -8392,7 +9124,8 @@
             "Treasure",
             "Loot"
         ],
-        "image_name": "insignia"
+        "image_name": "insignia",
+        "basic": false
     },
     {
         "name": "Jewels",
@@ -8405,7 +9138,8 @@
             "Duration",
             "Loot"
         ],
-        "image_name": "jewels"
+        "image_name": "jewels",
+        "basic": false
     },
     {
         "name": "Orb",
@@ -8417,7 +9151,8 @@
             "Treasure",
             "Loot"
         ],
-        "image_name": "orb"
+        "image_name": "orb",
+        "basic": false
     },
     {
         "name": "Prize Goat",
@@ -8429,7 +9164,8 @@
             "Treasure",
             "Loot"
         ],
-        "image_name": "prizegoat"
+        "image_name": "prizegoat",
+        "basic": false
     },
     {
         "name": "Puzzle Box",
@@ -8441,7 +9177,8 @@
             "Treasure",
             "Loot"
         ],
-        "image_name": "puzzlebox"
+        "image_name": "puzzlebox",
+        "basic": false
     },
     {
         "name": "Sextant",
@@ -8453,7 +9190,8 @@
             "Treasure",
             "Loot"
         ],
-        "image_name": "sextant"
+        "image_name": "sextant",
+        "basic": false
     },
     {
         "name": "Shield",
@@ -8466,7 +9204,8 @@
             "Reaction",
             "Loot"
         ],
-        "image_name": "shield"
+        "image_name": "shield",
+        "basic": false
     },
     {
         "name": "Spell Scroll",
@@ -8479,7 +9218,8 @@
             "Treasure",
             "Loot"
         ],
-        "image_name": "spellscroll"
+        "image_name": "spellscroll",
+        "basic": false
     },
     {
         "name": "Staff",
@@ -8491,7 +9231,8 @@
             "Treasure",
             "Loot"
         ],
-        "image_name": "staff"
+        "image_name": "staff",
+        "basic": false
     },
     {
         "name": "Sword",
@@ -8504,7 +9245,8 @@
             "Attack",
             "Loot"
         ],
-        "image_name": "sword"
+        "image_name": "sword",
+        "basic": false
     },
     {
         "name": "Avoid",
@@ -8515,7 +9257,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "avoid"
+        "image_name": "avoid",
+        "basic": false
     },
     {
         "name": "Bury",
@@ -8526,7 +9269,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "bury"
+        "image_name": "bury",
+        "basic": false
     },
     {
         "name": "Deliver",
@@ -8537,7 +9281,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "deliver"
+        "image_name": "deliver",
+        "basic": false
     },
     {
         "name": "Foray",
@@ -8548,7 +9293,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "foray"
+        "image_name": "foray",
+        "basic": false
     },
     {
         "name": "Invasion",
@@ -8559,7 +9305,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "invasion"
+        "image_name": "invasion",
+        "basic": false
     },
     {
         "name": "Journey",
@@ -8570,7 +9317,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "journey"
+        "image_name": "journey",
+        "basic": false
     },
     {
         "name": "Launch",
@@ -8581,7 +9329,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "launch"
+        "image_name": "launch",
+        "basic": false
     },
     {
         "name": "Looting",
@@ -8592,7 +9341,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "looting"
+        "image_name": "looting",
+        "basic": false
     },
     {
         "name": "Maelstrom",
@@ -8603,7 +9353,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "maelstrom"
+        "image_name": "maelstrom",
+        "basic": false
     },
     {
         "name": "Mirror",
@@ -8614,7 +9365,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "mirror"
+        "image_name": "mirror",
+        "basic": false
     },
     {
         "name": "Peril",
@@ -8625,7 +9377,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "peril"
+        "image_name": "peril",
+        "basic": false
     },
     {
         "name": "Prepare",
@@ -8636,7 +9389,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "prepare"
+        "image_name": "prepare",
+        "basic": false
     },
     {
         "name": "Prosper",
@@ -8647,7 +9401,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "prosper"
+        "image_name": "prosper",
+        "basic": false
     },
     {
         "name": "Rush",
@@ -8658,7 +9413,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "rush"
+        "image_name": "rush",
+        "basic": false
     },
     {
         "name": "Scrounge",
@@ -8669,7 +9425,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "scrounge"
+        "image_name": "scrounge",
+        "basic": false
     },
     {
         "name": "Cheap",
@@ -8680,7 +9437,8 @@
         "types": [
             "Trait"
         ],
-        "image_name": "cheap"
+        "image_name": "cheap",
+        "basic": false
     },
     {
         "name": "Cursed",
@@ -8691,7 +9449,8 @@
         "types": [
             "Trait"
         ],
-        "image_name": "cursed"
+        "image_name": "cursed",
+        "basic": false
     },
     {
         "name": "Fated",
@@ -8702,7 +9461,8 @@
         "types": [
             "Trait"
         ],
-        "image_name": "fated"
+        "image_name": "fated",
+        "basic": false
     },
     {
         "name": "Fawning",
@@ -8713,7 +9473,8 @@
         "types": [
             "Trait"
         ],
-        "image_name": "fawning"
+        "image_name": "fawning",
+        "basic": false
     },
     {
         "name": "Friendly",
@@ -8724,7 +9485,8 @@
         "types": [
             "Trait"
         ],
-        "image_name": "friendly"
+        "image_name": "friendly",
+        "basic": false
     },
     {
         "name": "Hasty",
@@ -8735,7 +9497,8 @@
         "types": [
             "Trait"
         ],
-        "image_name": "hasty"
+        "image_name": "hasty",
+        "basic": false
     },
     {
         "name": "Inherited",
@@ -8746,7 +9509,8 @@
         "types": [
             "Trait"
         ],
-        "image_name": "inherited"
+        "image_name": "inherited",
+        "basic": false
     },
     {
         "name": "Inspiring",
@@ -8757,7 +9521,8 @@
         "types": [
             "Trait"
         ],
-        "image_name": "inspiring"
+        "image_name": "inspiring",
+        "basic": false
     },
     {
         "name": "Nearby",
@@ -8768,7 +9533,8 @@
         "types": [
             "Trait"
         ],
-        "image_name": "nearby"
+        "image_name": "nearby",
+        "basic": false
     },
     {
         "name": "Patient",
@@ -8779,7 +9545,8 @@
         "types": [
             "Trait"
         ],
-        "image_name": "patient"
+        "image_name": "patient",
+        "basic": false
     },
     {
         "name": "Pious",
@@ -8790,7 +9557,8 @@
         "types": [
             "Trait"
         ],
-        "image_name": "pious"
+        "image_name": "pious",
+        "basic": false
     },
     {
         "name": "Reckless",
@@ -8801,7 +9569,8 @@
         "types": [
             "Trait"
         ],
-        "image_name": "reckless"
+        "image_name": "reckless",
+        "basic": false
     },
     {
         "name": "Rich",
@@ -8812,7 +9581,8 @@
         "types": [
             "Trait"
         ],
-        "image_name": "rich"
+        "image_name": "rich",
+        "basic": false
     },
     {
         "name": "Shy",
@@ -8823,7 +9593,8 @@
         "types": [
             "Trait"
         ],
-        "image_name": "shy"
+        "image_name": "shy",
+        "basic": false
     },
     {
         "name": "Tireless",
@@ -8834,7 +9605,8 @@
         "types": [
             "Trait"
         ],
-        "image_name": "tireless"
+        "image_name": "tireless",
+        "basic": false
     },
     {
         "name": "Alley",
@@ -8846,7 +9618,8 @@
             "Action",
             "Shadow"
         ],
-        "image_name": "alley"
+        "image_name": "alley",
+        "basic": false
     },
     {
         "name": "Aristocrat",
@@ -8857,7 +9630,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "aristocrat"
+        "image_name": "aristocrat",
+        "basic": false
     },
     {
         "name": "Artist",
@@ -8868,7 +9642,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "artist"
+        "image_name": "artist",
+        "basic": false
     },
     {
         "name": "Change",
@@ -8879,7 +9654,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "change"
+        "image_name": "change",
+        "basic": false
     },
     {
         "name": "Craftsman",
@@ -8890,7 +9666,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "craftsman"
+        "image_name": "craftsman",
+        "basic": false
     },
     {
         "name": "Daimyo",
@@ -8902,7 +9679,8 @@
             "Action",
             "Command"
         ],
-        "image_name": "daimyo"
+        "image_name": "daimyo",
+        "basic": false
     },
     {
         "name": "Fishmonger",
@@ -8914,7 +9692,8 @@
             "Action",
             "Shadow"
         ],
-        "image_name": "fishmonger"
+        "image_name": "fishmonger",
+        "basic": false
     },
     {
         "name": "Gold Mine",
@@ -8925,7 +9704,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "goldmine"
+        "image_name": "goldmine",
+        "basic": false
     },
     {
         "name": "Imperial Envoy",
@@ -8936,7 +9716,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "imperialenvoy"
+        "image_name": "imperialenvoy",
+        "basic": false
     },
     {
         "name": "Kitsune",
@@ -8949,7 +9730,8 @@
             "Attack",
             "Omen"
         ],
-        "image_name": "kitsune"
+        "image_name": "kitsune",
+        "basic": false
     },
     {
         "name": "Litter",
@@ -8960,7 +9742,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "litter"
+        "image_name": "litter",
+        "basic": false
     },
     {
         "name": "Mountain Shrine",
@@ -8972,7 +9755,8 @@
             "Action",
             "Omen"
         ],
-        "image_name": "mountainshrine"
+        "image_name": "mountainshrine",
+        "basic": false
     },
     {
         "name": "Ninja",
@@ -8985,7 +9769,8 @@
             "Attack",
             "Shadow"
         ],
-        "image_name": "ninja"
+        "image_name": "ninja",
+        "basic": false
     },
     {
         "name": "Poet",
@@ -8997,7 +9782,8 @@
             "Action",
             "Omen"
         ],
-        "image_name": "poet"
+        "image_name": "poet",
+        "basic": false
     },
     {
         "name": "Rice",
@@ -9008,7 +9794,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "rice"
+        "image_name": "rice",
+        "basic": false
     },
     {
         "name": "Rice Broker",
@@ -9019,7 +9806,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "ricebroker"
+        "image_name": "ricebroker",
+        "basic": false
     },
     {
         "name": "River Shrine",
@@ -9031,7 +9819,8 @@
             "Action",
             "Omen"
         ],
-        "image_name": "rivershrine"
+        "image_name": "rivershrine",
+        "basic": false
     },
     {
         "name": "Riverboat",
@@ -9043,7 +9832,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "riverboat"
+        "image_name": "riverboat",
+        "basic": false
     },
     {
         "name": "Ronin",
@@ -9055,7 +9845,8 @@
             "Action",
             "Shadow"
         ],
-        "image_name": "ronin"
+        "image_name": "ronin",
+        "basic": false
     },
     {
         "name": "Root Cellar",
@@ -9066,7 +9857,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "rootcellar"
+        "image_name": "rootcellar",
+        "basic": false
     },
     {
         "name": "Rustic Village",
@@ -9078,7 +9870,8 @@
             "Action",
             "Omen"
         ],
-        "image_name": "rusticvillage"
+        "image_name": "rusticvillage",
+        "basic": false
     },
     {
         "name": "Samurai",
@@ -9091,7 +9884,8 @@
             "Duration",
             "Attack"
         ],
-        "image_name": "samurai"
+        "image_name": "samurai",
+        "basic": false
     },
     {
         "name": "Snake Witch",
@@ -9103,7 +9897,8 @@
             "Action",
             "Attack"
         ],
-        "image_name": "snakewitch"
+        "image_name": "snakewitch",
+        "basic": false
     },
     {
         "name": "Tanuki",
@@ -9115,7 +9910,8 @@
             "Action",
             "Shadow"
         ],
-        "image_name": "tanuki"
+        "image_name": "tanuki",
+        "basic": false
     },
     {
         "name": "Tea House",
@@ -9127,7 +9923,8 @@
             "Action",
             "Omen"
         ],
-        "image_name": "teahouse"
+        "image_name": "teahouse",
+        "basic": false
     },
     {
         "name": "Amass",
@@ -9138,7 +9935,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "amass"
+        "image_name": "amass",
+        "basic": false
     },
     {
         "name": "Asceticism",
@@ -9149,7 +9947,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "asceticism"
+        "image_name": "asceticism",
+        "basic": false
     },
     {
         "name": "Continue",
@@ -9160,7 +9959,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "continue_"
+        "image_name": "continue_",
+        "basic": false
     },
     {
         "name": "Credit",
@@ -9171,7 +9971,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "credit"
+        "image_name": "credit",
+        "basic": false
     },
     {
         "name": "Foresight",
@@ -9182,7 +9983,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "foresight"
+        "image_name": "foresight",
+        "basic": false
     },
     {
         "name": "Gather",
@@ -9193,7 +9995,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "gather"
+        "image_name": "gather",
+        "basic": false
     },
     {
         "name": "Kintsugi",
@@ -9204,7 +10007,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "kintsugi"
+        "image_name": "kintsugi",
+        "basic": false
     },
     {
         "name": "Practice",
@@ -9215,7 +10019,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "practice"
+        "image_name": "practice",
+        "basic": false
     },
     {
         "name": "Receive Tribute",
@@ -9226,7 +10031,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "receivetribute"
+        "image_name": "receivetribute",
+        "basic": false
     },
     {
         "name": "Sea Trade",
@@ -9237,7 +10043,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "seatrade"
+        "image_name": "seatrade",
+        "basic": false
     },
     {
         "name": "Approaching Army",
@@ -9248,7 +10055,8 @@
         "types": [
             "Prophecy"
         ],
-        "image_name": "approachingarmy"
+        "image_name": "approachingarmy",
+        "basic": false
     },
     {
         "name": "Biding Time",
@@ -9259,7 +10067,8 @@
         "types": [
             "Prophecy"
         ],
-        "image_name": "bidingtime"
+        "image_name": "bidingtime",
+        "basic": false
     },
     {
         "name": "Bureaucracy",
@@ -9270,7 +10079,8 @@
         "types": [
             "Prophecy"
         ],
-        "image_name": "bureaucracy"
+        "image_name": "bureaucracy",
+        "basic": false
     },
     {
         "name": "Divine Wind",
@@ -9281,7 +10091,8 @@
         "types": [
             "Prophecy"
         ],
-        "image_name": "divinewind"
+        "image_name": "divinewind",
+        "basic": false
     },
     {
         "name": "Enlightenment",
@@ -9292,7 +10103,8 @@
         "types": [
             "Prophecy"
         ],
-        "image_name": "enlightenment"
+        "image_name": "enlightenment",
+        "basic": false
     },
     {
         "name": "Flourishing Trade",
@@ -9303,7 +10115,8 @@
         "types": [
             "Prophecy"
         ],
-        "image_name": "flourishingtrade"
+        "image_name": "flourishingtrade",
+        "basic": false
     },
     {
         "name": "Good Harvest",
@@ -9314,7 +10127,8 @@
         "types": [
             "Prophecy"
         ],
-        "image_name": "goodharvest"
+        "image_name": "goodharvest",
+        "basic": false
     },
     {
         "name": "Great Leader",
@@ -9325,7 +10139,8 @@
         "types": [
             "Prophecy"
         ],
-        "image_name": "greatleader"
+        "image_name": "greatleader",
+        "basic": false
     },
     {
         "name": "Growth",
@@ -9336,7 +10151,8 @@
         "types": [
             "Prophecy"
         ],
-        "image_name": "growth"
+        "image_name": "growth",
+        "basic": false
     },
     {
         "name": "Harsh Winter",
@@ -9347,7 +10163,8 @@
         "types": [
             "Prophecy"
         ],
-        "image_name": "harshwinter"
+        "image_name": "harshwinter",
+        "basic": false
     },
     {
         "name": "Kind Emperor",
@@ -9358,7 +10175,8 @@
         "types": [
             "Prophecy"
         ],
-        "image_name": "kindemperor"
+        "image_name": "kindemperor",
+        "basic": false
     },
     {
         "name": "Panic",
@@ -9369,7 +10187,8 @@
         "types": [
             "Prophecy"
         ],
-        "image_name": "panic"
+        "image_name": "panic",
+        "basic": false
     },
     {
         "name": "Progress",
@@ -9380,7 +10199,8 @@
         "types": [
             "Prophecy"
         ],
-        "image_name": "progress"
+        "image_name": "progress",
+        "basic": false
     },
     {
         "name": "Rapid Expansion",
@@ -9391,7 +10211,8 @@
         "types": [
             "Prophecy"
         ],
-        "image_name": "rapidexpansion"
+        "image_name": "rapidexpansion",
+        "basic": false
     },
     {
         "name": "Sickness",
@@ -9402,7 +10223,8 @@
         "types": [
             "Prophecy"
         ],
-        "image_name": "sickness"
+        "image_name": "sickness",
+        "basic": false
     },
     {
         "name": "Avanto",
@@ -9413,7 +10235,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "avanto"
+        "image_name": "avanto",
+        "basic": false
     },
     {
         "name": "Black Market",
@@ -9424,7 +10247,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "blackmarket"
+        "image_name": "blackmarket",
+        "basic": false
     },
     {
         "name": "Captain",
@@ -9437,7 +10261,8 @@
             "Duration",
             "Command"
         ],
-        "image_name": "captain"
+        "image_name": "captain",
+        "basic": false
     },
     {
         "name": "Church",
@@ -9449,7 +10274,8 @@
             "Action",
             "Duration"
         ],
-        "image_name": "church"
+        "image_name": "church",
+        "basic": false
     },
     {
         "name": "Dismantle",
@@ -9460,7 +10286,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "dismantle"
+        "image_name": "dismantle",
+        "basic": false
     },
     {
         "name": "Envoy",
@@ -9471,7 +10298,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "envoy"
+        "image_name": "envoy",
+        "basic": false
     },
     {
         "name": "Governor",
@@ -9482,7 +10310,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "governor"
+        "image_name": "governor",
+        "basic": false
     },
     {
         "name": "Marchland",
@@ -9493,7 +10322,8 @@
         "types": [
             "Victory"
         ],
-        "image_name": "marchland"
+        "image_name": "marchland",
+        "basic": false
     },
     {
         "name": "Prince",
@@ -9506,7 +10336,8 @@
             "Duration",
             "Command"
         ],
-        "image_name": "prince"
+        "image_name": "prince",
+        "basic": false
     },
     {
         "name": "Sauna",
@@ -9517,7 +10348,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "sauna"
+        "image_name": "sauna",
+        "basic": false
     },
     {
         "name": "Stash",
@@ -9528,7 +10360,8 @@
         "types": [
             "Treasure"
         ],
-        "image_name": "stash"
+        "image_name": "stash",
+        "basic": false
     },
     {
         "name": "Summon",
@@ -9539,7 +10372,8 @@
         "types": [
             "Event"
         ],
-        "image_name": "summon"
+        "image_name": "summon",
+        "basic": false
     },
     {
         "name": "Walled Village",
@@ -9550,7 +10384,8 @@
         "types": [
             "Action"
         ],
-        "image_name": "walledvillage"
+        "image_name": "walledvillage",
+        "basic": false
     },
     {
         "name": "Knights",
@@ -9563,7 +10398,8 @@
             "Attack",
             "Knight"
         ],
-        "image_name": "knights"
+        "image_name": "knights",
+        "basic": false
     },
     {
         "name": "Castles",
@@ -9575,7 +10411,8 @@
             "Castle",
             "Victory"
         ],
-        "image_name": "castles"
+        "image_name": "castles",
+        "basic": false
     },
     {
         "name": "Harem",
@@ -9587,7 +10424,8 @@
             "Treasure",
             "Victory"
         ],
-        "image_name": "harem"
+        "image_name": "harem",
+        "basic": false
     },
     {
         "name": "Farm",
@@ -9599,6 +10437,7 @@
             "Treasure",
             "Victory"
         ],
-        "image_name": "farm"
+        "image_name": "farm",
+        "basic": false
     }
 ]

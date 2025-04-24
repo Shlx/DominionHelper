@@ -27,7 +27,8 @@ data class Card(
     val supply: Boolean,
     val landscape: Boolean,
     val types: List<Type>,
-    @SerializedName("image_name") val imageName: String
+    @SerializedName("image_name") val imageName: String,
+    val basic: Boolean
 ) {
 
     @Ignore

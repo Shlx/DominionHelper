@@ -33,7 +33,7 @@ class CardViewModel @Inject constructor(
     private val _searchText = MutableStateFlow<String>("")
     val searchText: StateFlow<String> = _searchText.asStateFlow()
 
-    private val _sortType = MutableStateFlow<SortType>(SortType.NONE)
+    private val _sortType = MutableStateFlow<SortType>(SortType.EXPANSION)
     val sortType: StateFlow<SortType> = _sortType.asStateFlow()
 
     private val _showRandomCards = MutableStateFlow<Boolean>(false)
@@ -47,12 +47,12 @@ class CardViewModel @Inject constructor(
         }
     }
 
-    fun loadAllCards() {
+    /*fun loadAllCards() {
         viewModelScope.launch {
             _cards.value = cardDao.getAll()
             sortCards()
         }
-    }
+    }*/
 
     fun selectCard(card: Card) {
         _selectedCard.value = card
@@ -88,7 +88,7 @@ class CardViewModel @Inject constructor(
 
     private fun sortCards() {
         val sortedCards = when (_sortType.value) {
-            SortType.NONE -> _cards.value // No sorting, keep the current order
+            SortType.EXPANSION -> _cards.value.sortedBy { it.set } // No sorting, keep the current order
             SortType.ALPHABETICAL -> _cards.value.sortedBy { it.name }
             SortType.COST -> _cards.value.sortedBy { it.cost }
         }
@@ -104,6 +104,10 @@ class CardViewModel @Inject constructor(
         _showRandomCards.value = false
     }
 
+    fun clearCards() {
+        _cards.value = emptyList()
+    }
+
     /*fun getAllCardsWithCategories(){
         viewModelScope.launch {
             _cardsWithCategories.value = cardDao.getAllCardsWithCategories()
@@ -113,7 +117,7 @@ class CardViewModel @Inject constructor(
 }
 
 enum class SortType {
-    NONE,
     ALPHABETICAL,
-    COST
+    COST,
+    EXPANSION
 }

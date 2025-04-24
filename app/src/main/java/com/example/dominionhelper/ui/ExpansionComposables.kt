@@ -17,7 +17,6 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -75,16 +74,16 @@ fun ExpansionView(
                 painter = painterResource(id = drawableId),
                 contentDescription = "${expansion.name} Expansion Image",
                 modifier = Modifier
-                    .size(48.dp)
+                    .size(64.dp)
                     .align(Alignment.Center) // Center the image
             )
             // Expansion name, now at bottom left
             Text(
                 text = expansion.name,
-                fontSize = 24.sp,
+                fontSize = 20.sp,
                 textAlign = TextAlign.Start,
                 modifier = Modifier
-                    .align(Alignment.BottomStart)
+                    .align(Alignment.TopStart)
                     .padding(8.dp)
             )
             // Switch at bottom right

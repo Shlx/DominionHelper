@@ -53,6 +53,7 @@ interface CardDao {
         INNER JOIN expansions AS e ON c.`set` = e.`set`
         WHERE e.isOwned = 1
         AND c.landscape = 0
+        AND c.basic = 0
         ORDER BY RANDOM()
         LIMIT :amount
     """)

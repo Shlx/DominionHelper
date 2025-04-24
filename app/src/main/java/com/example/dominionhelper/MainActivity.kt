@@ -49,7 +49,6 @@ import javax.inject.Inject
 // Flows: automatically updates UI elements when data changes
 // mutableStateOf automatically updates UI elements reliant on the values when they change
 
-// Composables vs. ViewModels
 // TODO: Use coil or glide to load images to avoid "image decoding logging dropped" warnings
 // Applicationscope vs LifecycleScope vs CoroutineScope vs whatever
 // Flows instead of lists?
@@ -57,18 +56,17 @@ import javax.inject.Inject
 // TODO
 // Split piles
 // Show behind top + nav bar?
-// Add cost to cards
-// Remove base cards from randomization
 // Research landscape rules (I think 2 are recommended)
-// FIX DRAWER
 // Add rules for randomization
 // VP counter
-// Clear search on deactivating search
 // Find solution for 1st / 2nd edition
 // Add loading times instead of switching instantly (you can see UI changing)
 // Remove search from detail view?
 // First launch: No data shown
-// ViewModels
+// Close keyboard when scrolling on search results
+// Landscape detail view
+// Rethink the basic Card flag. I think it's only there for the UI fix?
+// -> Nope I think it makes sense for the card randomization. These cards are never pulled without meeting conditions
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -115,22 +113,27 @@ fun MainView(expansionViewModel: ExpansionViewModel,
     val applicationScope = rememberCoroutineScope()
 
     // BackHandler:
-    BackHandler(enabled = selectedExpansion != null || drawerState.isOpen || isSearchActive) {
+    BackHandler(enabled = selectedExpansion != null || drawerState.isOpen || isSearchActive || showRandomCards) {
         when {
             drawerState.isOpen -> applicationScope.launch {
                 Log.i("Back Handler", "Close drawer")
                 drawerState.close()
             }
 
-            isSearchActive -> {
-                Log.i("Back Handler", "Deactivate search")
-                cardViewModel.toggleSearch()
-                cardViewModel.changeSearchText("")
+            showRandomCards -> {
+                cardViewModel.clearRandomCards()
             }
 
             selectedCard != null -> {
                 Log.i("Back Handler", "Deselect card -> Return to card list")
                 cardViewModel.clearSelectedCard()
+            }
+
+            isSearchActive -> {
+                Log.i("Back Handler", "Deactivate search")
+                cardViewModel.toggleSearch()
+                cardViewModel.changeSearchText("")
+                cardViewModel.clearCards()
             }
 
             selectedExpansion != null -> {
@@ -141,7 +144,7 @@ fun MainView(expansionViewModel: ExpansionViewModel,
     }
 
     var selectedOption by remember { mutableStateOf("") }
-    val options = listOf("Option 1", "Option 2", "Option 3")
+    //val options = listOf("Option 1", "Option 2", "Option 3")
 
     ModalNavigationDrawer(
         drawerState = drawerState,
@@ -166,7 +169,8 @@ fun MainView(expansionViewModel: ExpansionViewModel,
                     selectedExpansion = selectedExpansion,
                     onSortTypeSelected = { sortType ->
                         cardViewModel.updateSortType(sortType)
-                    }
+                    },
+                    selectedSortType = sortType
                 )
             }
         ) { innerPadding ->

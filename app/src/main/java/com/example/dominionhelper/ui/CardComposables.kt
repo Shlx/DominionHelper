@@ -3,6 +3,7 @@ package com.example.dominionhelper.ui
 import android.util.Log
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -10,6 +11,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,34 +30,33 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusManager
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.nativeCanvas
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
 import com.example.dominionhelper.R
 import com.example.dominionhelper.data.Card
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
+import com.example.dominionhelper.data.Type
 import com.example.dominionhelper.getDrawableId
 
 // Displays a list of cards
@@ -84,14 +85,14 @@ fun CardView(
     val context = LocalContext.current
     val drawableId = getDrawableId(context, card.imageName)
 
-    // Get the keyboard controller
-    val keyboardController = LocalSoftwareKeyboardController.current
+    val focusManager: FocusManager = LocalFocusManager.current
 
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .clickable {
-                keyboardController?.hide()
+                // Lose focus (hide keyboard) on click
+                focusManager.clearFocus()
                 onCardClick(card)
             }
             .padding(8.dp, 4.dp)
@@ -139,7 +140,14 @@ fun CardView(
                             .offset {
                                 IntOffset(
                                     x = 0,
-                                    y = if (card.landscape) 13 else 31
+                                    y = when {
+                                        card.basic
+                                                && !card.types.contains(Type.RUINS)
+                                                && !card.types.contains(Type.SHELTER)
+                                                && !card.types.contains(Type.HEIRLOOM) -> 26
+                                        card.landscape -> 13
+                                        else -> 31
+                                    }
                                 )
                             }
                     )
@@ -151,13 +159,17 @@ fun CardView(
                     modifier = Modifier
                         .weight(0.85f)
                         .fillMaxHeight()
-                        .padding(8.dp)
+                        .padding(8.dp, 12.dp)
                 ) {
-                    Text(
-                        text = card.name,
-                        textAlign = TextAlign.Start,
-                        fontSize = 20.sp
-                    )
+                    Column {
+                        Text(
+                            text = card.name,
+                            textAlign = TextAlign.Start,
+                            fontSize = 20.sp
+                        )
+                        Spacer(modifier = Modifier.weight(1f))
+                        NumberCircle(number = card.cost)
+                    }
 
                     // Expansion Icon
                     Box(
@@ -260,5 +272,46 @@ fun CardDetail(card: Card) {
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds
         )
+    }
+}
+
+@Composable
+fun NumberCircle(number: Int, modifier: Modifier = Modifier) {
+    val circleColor = MaterialTheme.colorScheme.primaryContainer
+    val textColor = MaterialTheme.colorScheme.onSurface.toArgb()
+
+    Box(
+        modifier = modifier,
+        contentAlignment = Alignment.Center
+    ) {
+        Canvas(
+            modifier = Modifier
+                .size(24.dp)
+        ) {
+            drawCircle(
+                color = circleColor,
+                radius = size.minDimension / 2,
+                center = Offset(size.width / 2, size.height / 2)
+            )
+
+            drawIntoCanvas { canvas ->
+                val paint = android.graphics.Paint().apply {
+                    color = textColor
+                    textAlign = android.graphics.Paint.Align.CENTER
+                    textSize = 12.sp.toPx()
+                    isFakeBoldText = true
+                }
+
+                val textBounds = android.graphics.Rect()
+                paint.getTextBounds(number.toString(), 0, number.toString().length, textBounds)
+
+                canvas.nativeCanvas.drawText(
+                    number.toString(),
+                    size.width / 2,
+                    (size.height / 2) - (textBounds.top + textBounds.bottom) / 2,
+                    paint
+                )
+            }
+        }
     }
 }
