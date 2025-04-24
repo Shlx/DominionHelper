@@ -39,7 +39,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.dominionhelper.R
-import com.example.dominionhelper.data.Expansion
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -53,9 +52,9 @@ fun TopBar(
     searchText: String,
     onSearchTextChange: (String) -> Unit,
     onRandomCardsClicked: () -> Unit,
-    selectedExpansion: Expansion? = null,
     onSortTypeSelected: (SortType) -> Unit,
-    selectedSortType: SortType
+    selectedSortType: SortType,
+    topBarTitle: String
 ) {
     val focusRequester = remember { FocusRequester() }
 
@@ -88,10 +87,8 @@ fun TopBar(
                         disabledContainerColor = Color.Black.copy(alpha = 0.0f) // Completely transparent
                     )
                 )
-            } else if (selectedExpansion != null) {
-                Text(selectedExpansion.name) // Display expansion name
             } else {
-                Text("Dominion Helper")
+                Text(topBarTitle)
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(

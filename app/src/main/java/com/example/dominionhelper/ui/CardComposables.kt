@@ -21,13 +21,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Card
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -64,16 +67,83 @@ import com.example.dominionhelper.getDrawableId
 fun CardList(
     modifier: Modifier,
     cardList: List<Card>,
-    onCardClick: (Card) -> Unit
+    onCardClick: (Card) -> Unit,
+    listState: LazyListState = rememberLazyListState()
 ) {
     LazyColumn(
-        modifier = modifier
+        modifier = modifier,
+        state = listState
     ) {
         println("CardList Parameter - ${cardList.size}")
         items(cardList) { card ->
             CardView(card, onCardClick)
         }
     }
+}
+
+@Composable
+fun RandomCardList(
+    modifier: Modifier,
+    randomCards: List<Card> = emptyList(),
+    basicCards: List<Card> = emptyList(),
+    dependentCards: List<Card> = emptyList(),
+    onCardClick: (Card) -> Unit,
+    listState: LazyListState = rememberLazyListState()
+) {
+    LazyColumn(
+        modifier = modifier,
+        state = listState
+    ) {
+
+        // RANDOM CARDS
+        items(randomCards) { card ->
+            CardView(card, onCardClick)
+        }
+
+        // DEPENDENT CARDS
+        if (dependentCards.isNotEmpty()) {
+            item {
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Divider(modifier = Modifier.fillMaxWidth(0.5f))
+                    Spacer(modifier = Modifier.height(12.dp))
+                    Text(text = "Additional Cards", textAlign = TextAlign.Center)
+                    Spacer(modifier = Modifier.height(12.dp))
+                    Divider(modifier = Modifier.fillMaxWidth(0.5f))
+                    Spacer(modifier = Modifier.height(8.dp))
+                }
+
+            }
+            items(dependentCards) { card ->
+                CardView(card, onCardClick)
+            }
+        }
+
+        // BASIC CARDS
+        item {
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Spacer(modifier = Modifier.height(8.dp))
+                Divider(modifier = Modifier.fillMaxWidth(0.5f))
+                Spacer(modifier = Modifier.height(12.dp))
+                Text(text = "Basic Cards", textAlign = TextAlign.Center)
+                Spacer(modifier = Modifier.height(12.dp))
+                Divider(modifier = Modifier.fillMaxWidth(0.5f))
+                Spacer(modifier = Modifier.height(8.dp))
+            }
+
+        }
+        items(basicCards) { card ->
+            CardView(card, onCardClick)
+        }
+
+    }
+
 }
 
 // Displays a single card, with an image and a name
@@ -145,6 +215,7 @@ fun CardView(
                                                 && !card.types.contains(Type.RUINS)
                                                 && !card.types.contains(Type.SHELTER)
                                                 && !card.types.contains(Type.HEIRLOOM) -> 26
+
                                         card.landscape -> 13
                                         else -> 31
                                     }
@@ -194,7 +265,7 @@ fun CardView(
 fun ColoredBar(barColors: List<Color>, modifier: Modifier = Modifier) {
     if (barColors.size > 2) {
         Log.e("ColoredBar", "barColors list must contain at most two colors.")
-        barColors.dropLast(1)
+        barColors.dropLast(barColors.size - 2)
     }
 
     val color1 = barColors.firstOrNull() ?: Color.Transparent
@@ -234,7 +305,8 @@ fun CardDetailPager(
 ) {
     // Find the initial index of the card
     val initialIndex = cardList.indexOf(initialCard)
-    val pagerState = rememberPagerState(initialPage = initialIndex, pageCount = { cardList.size })
+    val pagerState =
+        rememberPagerState(initialPage = initialIndex, pageCount = { cardList.size })
     Column {
         Box {
             IconButton(

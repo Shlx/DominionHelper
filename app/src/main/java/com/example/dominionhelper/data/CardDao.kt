@@ -10,6 +10,17 @@ import androidx.room.Update
 @Dao
 interface CardDao {
 
+    companion object {
+        val BASIC_CARD_NAMES = listOf(
+            "Copper",
+            "Silver",
+            "Gold",
+            "Estate",
+            "Duchy",
+            "Province"
+        )
+    }
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(cards: List<Card>)
 
@@ -58,5 +69,11 @@ interface CardDao {
         LIMIT :amount
     """)
     suspend fun getRandomCardsFromOwnedExpansions(amount: Int): List<Card>
+
+    @Query("SELECT * FROM cards WHERE name IN (:names)")
+    suspend fun getBasicCards(names: List<String> = BASIC_CARD_NAMES): List<Card>
+
+    @Query("SELECT * FROM cards ORDER BY RANDOM() LIMIT 1")
+    suspend fun getDependentCards(): List<Card>
 
 }

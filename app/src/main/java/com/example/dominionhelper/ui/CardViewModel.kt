@@ -39,7 +39,17 @@ class CardViewModel @Inject constructor(
     private val _showRandomCards = MutableStateFlow<Boolean>(false)
     val showRandomCards: StateFlow<Boolean> = _showRandomCards.asStateFlow()
 
+    private val _randomCards = MutableStateFlow<List<Card>>(emptyList())
+    val randomCards: StateFlow<List<Card>> = _randomCards.asStateFlow()
+
+    private val _basicCards = MutableStateFlow<List<Card>>(emptyList())
+    val basicCards: StateFlow<List<Card>> = _basicCards.asStateFlow()
+
+    private val _dependentCards = MutableStateFlow<List<Card>>(emptyList())
+    val dependentCards: StateFlow<List<Card>> = _dependentCards.asStateFlow()
+
     fun loadCardsByExpansion(set: Set) {
+        Log.d("CardViewModel", "Loading cards for expansion ${set.name}")
         viewModelScope.launch {
             _cards.value = cardDao.getCardsByExpansion(set)
             sortCards()
@@ -48,13 +58,16 @@ class CardViewModel @Inject constructor(
     }
 
     /*fun loadAllCards() {
+        Log.d("CardViewModel", "Loading all cards")
         viewModelScope.launch {
             _cards.value = cardDao.getAll()
             sortCards()
+            Log.d("CardViewModel", "Loaded all ${_cards.value.size} cards")
         }
     }*/
 
     fun selectCard(card: Card) {
+        Log.d("CardViewModel", "Selected card: ${card.name}")
         _selectedCard.value = card
     }
 
@@ -79,11 +92,23 @@ class CardViewModel @Inject constructor(
     }
 
     fun setRandomCards(){
+        Log.d("CardViewModel", "Setting random cards")
         viewModelScope.launch {
-            _cards.value = cardDao.getRandomCardsFromOwnedExpansions(10)
+            _cards.value = emptyList()
+            _randomCards.value = cardDao.getRandomCardsFromOwnedExpansions(10)
+            _basicCards.value = cardDao.getBasicCards()
+            _dependentCards.value = cardDao.getDependentCards()
             _showRandomCards.value = true
-            sortCards()
+            //sortCards() // Only sort random cards or sort each list separately
+            Log.d("CardViewModel", "Random cards set")
         }
+    }
+
+    fun clearRandomCards(){
+        _showRandomCards.value = false
+        _randomCards.value = emptyList()
+        _basicCards.value = emptyList()
+        _dependentCards.value = emptyList()
     }
 
     private fun sortCards() {
@@ -93,15 +118,32 @@ class CardViewModel @Inject constructor(
             SortType.COST -> _cards.value.sortedBy { it.cost }
         }
         _cards.value = sortedCards
+
+        val sortedRandomCards = when (_sortType.value) {
+            SortType.EXPANSION -> _randomCards.value.sortedBy { it.set } // No sorting, keep the current order
+            SortType.ALPHABETICAL -> _randomCards.value.sortedBy { it.name }
+            SortType.COST -> _randomCards.value.sortedBy { it.cost }
+        }
+        _randomCards.value = sortedRandomCards
+
+        val sortedDependentCards = when (_sortType.value) {
+            SortType.EXPANSION -> _dependentCards.value.sortedBy { it.set } // No sorting, keep the current order
+            SortType.ALPHABETICAL -> _dependentCards.value.sortedBy { it.name }
+            SortType.COST -> _dependentCards.value.sortedBy { it.cost }
+        }
+        _dependentCards.value = sortedDependentCards
+
+        val sortedBasicCards = when (_sortType.value) {
+            SortType.EXPANSION -> _basicCards.value.sortedBy { it.set } // No sorting, keep the current order
+            SortType.ALPHABETICAL -> _basicCards.value.sortedBy { it.name }
+            SortType.COST -> _basicCards.value.sortedBy { it.cost }
+        }
+        _basicCards.value = sortedBasicCards
     }
 
     fun updateSortType(newSortType: SortType) {
         _sortType.value = newSortType
         sortCards()
-    }
-
-    fun clearRandomCards(){
-        _showRandomCards.value = false
     }
 
     fun clearCards() {
