@@ -39,7 +39,6 @@ import com.example.dominionhelper.ui.CardDetailPager
 import com.example.dominionhelper.ui.CardList
 import com.example.dominionhelper.ui.CardViewModel
 import com.example.dominionhelper.ui.ExpansionGrid
-import com.example.dominionhelper.ui.ExpansionViewModel
 import com.example.dominionhelper.ui.RandomCardList
 import com.example.dominionhelper.ui.TopBar
 import dagger.hilt.android.AndroidEntryPoint
@@ -52,7 +51,7 @@ import kotlinx.coroutines.launch
 // Flows: automatically updates UI elements when data changes
 // mutableStateOf automatically updates UI elements reliant on the values when they change
 
-// TODO: Use coil or glide to load images to avoid "image decoding logging dropped" warnings
+// TODO: Use coil or glide or fresco to load images to avoid "image decoding logging dropped" warnings
 // Applicationscope vs LifecycleScope vs CoroutineScope vs whatever
 // Flows instead of lists?
 
@@ -75,11 +74,20 @@ import kotlinx.coroutines.launch
 // Search default text is cut off
 // Cards that are not in the supply vs cards that cost 0 vs cards that cost nothing??
 // Explanation for card categories
+// Search while viewing expansions -> only results from expansion?
+// When pressing random in card view, the ui updates too fast
+// Add sorting for expansions?
+// Save sort type between sessions
+// Remove sort by expansion in expansion view?
+// Add 6* / 4+ costs
+
+// I think list state is shared between search / expansion and random cards (doesn't reset)
+// -> Seems fine between expansion and random cards, expansion to search needs to reset
+// Going back from expansion list resets even though it shouldn't
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    private val expansionViewModel: ExpansionViewModel by viewModels()
     private val cardViewModel: CardViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -87,12 +95,11 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             DominionHelperTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainView(expansionViewModel, cardViewModel)
+                    MainView(cardViewModel)
                 }
             }
         }
@@ -101,29 +108,26 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainView(
-    expansionViewModel: ExpansionViewModel,
     cardViewModel: CardViewModel
 ) {
+    val expansions by cardViewModel.expansions.collectAsStateWithLifecycle()
+    val selectedExpansion by cardViewModel.selectedExpansion.collectAsStateWithLifecycle()
 
-    val selectedCard by cardViewModel.selectedCard.collectAsStateWithLifecycle()
-    val isSearchActive by cardViewModel.searchActive.collectAsStateWithLifecycle()
-    val searchText by cardViewModel.searchText.collectAsStateWithLifecycle()
-    val cards by cardViewModel.cards.collectAsStateWithLifecycle()
-    val sortType by cardViewModel.sortType.collectAsStateWithLifecycle()
-
+    val cardsToShow by cardViewModel.cardsToShow.collectAsStateWithLifecycle()
+    val expansionCards by cardViewModel.expansionCards.collectAsStateWithLifecycle()
     val randomCards by cardViewModel.randomCards.collectAsStateWithLifecycle()
     val basicCards by cardViewModel.basicCards.collectAsStateWithLifecycle()
     val dependentCards by cardViewModel.dependentCards.collectAsStateWithLifecycle()
+    val selectedCard by cardViewModel.selectedCard.collectAsStateWithLifecycle()
 
-    val cardsToShow by cardViewModel.cardsToShow.collectAsStateWithLifecycle()
-
-    val selectedExpansion by expansionViewModel.selectedExpansion.collectAsStateWithLifecycle()
-    val expansions by expansionViewModel.expansions.collectAsStateWithLifecycle()
+    val isSearchActive by cardViewModel.searchActive.collectAsStateWithLifecycle()
+    val searchText by cardViewModel.searchText.collectAsStateWithLifecycle()
+    val sortType by cardViewModel.sortType.collectAsStateWithLifecycle()
 
     val drawerState = rememberDrawerState(initialValue = Closed)
     val applicationScope = rememberCoroutineScope()
-
     var topBarTitle by remember { mutableStateOf("Dominion Helper") }
+
     val listState = rememberSaveable(saver = LazyListState.Saver) {
         LazyListState()
     }
@@ -132,7 +136,8 @@ fun MainView(
         LazyGridState()
     }
 
-    LaunchedEffect(key1 = cardsToShow) {
+    // Set the top bar title according to state
+    LaunchedEffect(key1 = cardsToShow, key2 = selectedExpansion) {
         topBarTitle = if (selectedExpansion != null) {
             selectedExpansion!!.name
         } else if (cardsToShow) {
@@ -142,8 +147,9 @@ fun MainView(
         }
     }
 
-    // BackHandler:
+    // Handle back gesture according to state
     BackHandler(enabled = cardsToShow || drawerState.isOpen || isSearchActive) {
+
         when {
             drawerState.isOpen -> applicationScope.launch {
                 Log.i("BackHandler", "Close drawer")
@@ -159,63 +165,57 @@ fun MainView(
                 Log.i("BackHandler", "Deactivate search")
                 cardViewModel.toggleSearch()
                 cardViewModel.changeSearchText("")
-                cardViewModel.clearCards()
+                cardViewModel.clearAllCards()
             }
 
             cardsToShow -> {
                 Log.i("BackHandler", "Leave card list -> Return to expansion list")
-                cardViewModel.clearRandomCards()
-                cardViewModel.clearCards()
-                expansionViewModel.clearSelectedExpansion()
+                cardViewModel.clearAllCards()
+                cardViewModel.clearSelectedExpansion()
+
+                // Return to top
                 applicationScope.launch {
                     listState.scrollToItem(0)
                 }
             }
-
-            // Not needed I think?
-            /*selectedExpansion != null -> {
-                Log.i("BackHandler", "Deselect expansion -> Return to expansion list")
-                expansionViewModel.clearSelectedExpansion()
-                cardViewModel.clearCards()
-            }*/
         }
     }
 
     var selectedOption by remember { mutableStateOf("") }
     //val options = listOf("Option 1", "Option 2", "Option 3")
 
+    // TODO: This will lead to other parts of the app (I hope)
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
             DrawerContent(applicationScope, selectedOption, { selectedOption = it }, drawerState)
-        },
-        gesturesEnabled = drawerState.isOpen
+        }/*,
+        gesturesEnabled = drawerState.isOpen*/ // Leaving this lets the user drag the drawer open
     ) {
-
         Scaffold(
             topBar = {
                 TopBar(
-                    applicationScope,
-                    drawerState,
-                    isSearchActive,
-                    { cardViewModel.toggleSearch() },
-                    searchText,
-                    { cardViewModel.changeSearchText(it) },
+                    scope = applicationScope,
+                    drawerState = drawerState,
+                    isSearchActive = isSearchActive,
+                    onSearchClicked = { cardViewModel.toggleSearch() },
+                    searchText = searchText,
+                    onSearchTextChange = { cardViewModel.changeSearchText(it) },
                     onRandomCardsClicked = {
-                        cardViewModel.setRandomCards()
+                        cardViewModel.getRandomCards()
+                        cardViewModel.clearSelectedExpansion()
                     },
-                    onSortTypeSelected = { sortType ->
-                        cardViewModel.updateSortType(sortType)
-                    },
+                    onSortTypeSelected = { cardViewModel.updateSortType(it) },
                     selectedSortType = sortType,
-                    topBarTitle = topBarTitle
+                    topBarTitle = topBarTitle,
+                    hideSearch = randomCards.isNotEmpty()
                 )
             }
         ) { innerPadding ->
 
             LaunchedEffect(key1 = searchText, key2 = isSearchActive) {
                 if (isSearchActive && searchText.length >= 2) {
-                    Log.i("LaunchedEffect", "Getting cards by search text ${searchText}")
+                    Log.i("LaunchedEffect", "Getting cards by search text $searchText")
                     cardViewModel.searchCards(searchText)
                 }
             }
@@ -224,31 +224,34 @@ fun MainView(
 
                 // Detail view
                 selectedCard != null -> {
-                    Log.i("MainActivity", "View card detail (${selectedCard?.name})")
+                    Log.i("MainView", "View card detail (${selectedCard?.name})")
                     CardDetailPager(
-                        cardList = cards + randomCards + dependentCards + basicCards,
+                        // This feels weird but maybe it's ok?
+                        cardList = expansionCards + randomCards + dependentCards + basicCards,
                         initialCard = selectedCard!!,
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
 
-                // List of cards in selected expansion
-                // Includes random cards and search cards?
+                // Show a list of cards
                 cardsToShow -> {
                     Log.i(
-                        "MainActivity",
-                        "View card list (${cards.size + randomCards.size + dependentCards.size + basicCards.size} cards)"
+                        "MainView",
+                        "View card list (Expansion: ${expansionCards.size}, Random: ${randomCards.size}, Dependent: ${dependentCards.size}, Basic: ${basicCards.size} cards)"
                     )
 
-                    if (cards.isNotEmpty()) {
+                    // Show expansion or search result
+                    // Having no separation here is kind of weird I think
+                    if (expansionCards.isNotEmpty()) {
                         CardList(
-                            cardList = cards,
+                            cardList = expansionCards,
                             onCardClick = { cardViewModel.selectCard(it) },
                             modifier = Modifier.padding(innerPadding),
                             listState = listState
                         )
+
+                        // Show generated random cards
                     } else {
-                        Log.i("MainActivity", "View random cards")
                         RandomCardList(
                             randomCards = randomCards,
                             basicCards = basicCards,
@@ -260,21 +263,17 @@ fun MainView(
                     }
                 }
 
-                // All expansions in grid
+                // Show all expansions in a grid
                 else -> {
-                    Log.i("MainActivity", "View expansion list")
+                    Log.i("MainView", "View expansion list")
                     ExpansionGrid(
                         expansions = expansions,
                         onExpansionClick = { expansion ->
-                            Log.i(
-                                "MainActivity",
-                                "Getting cards from expansion ${expansion.name}"
-                            )
-                            cardViewModel.loadCardsByExpansion(expansion.set)
-                            expansionViewModel.selectExpansion(expansion)
+                            cardViewModel.loadCardsByExpansion(expansion)
+                            cardViewModel.selectExpansion(expansion)
                         },
                         modifier = Modifier.padding(innerPadding),
-                        gridState
+                        gridState = gridState
                     )
                 }
             }

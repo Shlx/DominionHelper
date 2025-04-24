@@ -54,7 +54,8 @@ fun TopBar(
     onRandomCardsClicked: () -> Unit,
     onSortTypeSelected: (SortType) -> Unit,
     selectedSortType: SortType,
-    topBarTitle: String
+    topBarTitle: String,
+    hideSearch: Boolean = false
 ) {
     val focusRequester = remember { FocusRequester() }
 
@@ -115,10 +116,12 @@ fun TopBar(
             }
         },
         actions = {
-            IconButton(onClick = {
-                onSearchClicked()
-            }) {
-                Icon(Icons.Filled.Search, contentDescription = "Localized description")
+            if (!hideSearch) {
+                IconButton(onClick = {
+                    onSearchClicked()
+                }) {
+                    Icon(Icons.Filled.Search, contentDescription = "Localized description")
+                }
             }
             IconButton(onClick = {
                 onRandomCardsClicked()

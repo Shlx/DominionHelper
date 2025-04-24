@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -60,7 +59,7 @@ fun ExpansionGrid(
 fun ExpansionView(
     expansion: Expansion,
     onClick: () -> Unit,
-    expansionViewModel: ExpansionViewModel = hiltViewModel()
+    cardViewModel: CardViewModel = hiltViewModel()
 ) {
 
     val context = LocalContext.current
@@ -75,14 +74,17 @@ fun ExpansionView(
         Box(
             modifier = Modifier.fillMaxSize()
         ) {
+
+            // Expansion image
             Image(
                 painter = painterResource(id = drawableId),
                 contentDescription = "${expansion.name} Expansion Image",
                 modifier = Modifier
                     .size(64.dp)
-                    .align(Alignment.Center) // Center the image
+                    .align(Alignment.Center)
             )
-            // Expansion name, now at bottom left
+
+            // Expansion name
             Text(
                 text = expansion.name,
                 fontSize = 20.sp,
@@ -91,12 +93,11 @@ fun ExpansionView(
                     .align(Alignment.TopStart)
                     .padding(8.dp)
             )
+
             // Switch at bottom right
             Switch(
                 checked = expansion.isOwned,
-                onCheckedChange = { newIsChecked ->
-                    expansionViewModel.updateIsOwned(expansion.id, newIsChecked)
-                },
+                onCheckedChange = { cardViewModel.updateIsOwned(expansion, it) },
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
                     .padding(0.dp, 0.dp, 16.dp, 8.dp)
