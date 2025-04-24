@@ -10,6 +10,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,6 +21,12 @@ class CardViewModel @Inject constructor(
 
     private val _cards = MutableStateFlow<List<Card>>(emptyList())
     val cards: StateFlow<List<Card>> = _cards.asStateFlow()
+
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
+
+    private val _cardsToShow = MutableStateFlow(false)
+    val cardsToShow: StateFlow<Boolean> = _cardsToShow.asStateFlow()
 
     /*private val _cardsWithCategories = MutableStateFlow<List<CardWithCategories>>(emptyList())
     val cardsWithCategories: StateFlow<List<CardWithCategories>> = _cardsWithCategories.asStateFlow()*/
@@ -49,12 +56,26 @@ class CardViewModel @Inject constructor(
     val dependentCards: StateFlow<List<Card>> = _dependentCards.asStateFlow()
 
     fun loadCardsByExpansion(set: Set) {
+        _isLoading.value = true
         Log.d("CardViewModel", "Loading cards for expansion ${set.name}")
         viewModelScope.launch {
-            _cards.value = cardDao.getCardsByExpansion(set)
+
+            cardDao.getCardsByExpansion(set).collectLatest { cards -> // Collect the Flow
+                _cards.value = cards // Update with the list
+                sortCards()
+                Log.d("CardViewModel", "Loaded ${cards.size} cards for expansion ${set.name}")
+                _isLoading.value = false
+                _cardsToShow.value = true
+            }
+
+            /*_cards.value = cardDao.getCardsByExpansion(set)
             sortCards()
-            Log.d("CardViewModel", "Loaded ${_cards.value.size} cards for expansion ${set.name}")
+            Log.d("CardViewModel", "Loaded ${_cards.value.size} cards for expansion ${set.name}")*/
         }
+    }
+
+    fun cardsToShow(): Boolean {
+        return _cards.value.isNotEmpty() || _randomCards.value.isNotEmpty()
     }
 
     /*fun loadAllCards() {
@@ -99,6 +120,7 @@ class CardViewModel @Inject constructor(
             _basicCards.value = cardDao.getBasicCards()
             _dependentCards.value = cardDao.getDependentCards()
             _showRandomCards.value = true
+            _cardsToShow.value = true
             //sortCards() // Only sort random cards or sort each list separately
             Log.d("CardViewModel", "Random cards set")
         }
@@ -109,6 +131,7 @@ class CardViewModel @Inject constructor(
         _randomCards.value = emptyList()
         _basicCards.value = emptyList()
         _dependentCards.value = emptyList()
+        _cardsToShow.value = false
     }
 
     private fun sortCards() {
@@ -148,6 +171,7 @@ class CardViewModel @Inject constructor(
 
     fun clearCards() {
         _cards.value = emptyList()
+        _cardsToShow.value = false
     }
 
     /*fun getAllCardsWithCategories(){

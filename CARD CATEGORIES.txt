@@ -1,0 +1,239 @@
+CARD CATEGORIES
+
+https://wiki.dominionstrategy.com/index.php/Cantrip
+
+Simple cantrips
+Dominion: Harbinger, Sentry, Spy
+Intrigue: Great Hall, Mill, Pawn
+Seaside: Pearl Diver
+Alchemy: Familiar
+Cornucopia & Guilds: Farrier, Shop
+Hinterlands: Highway, Scheme, Trail, Wheelwright
+Dark Ages: Cartographer, Market Square, Sir Bailey, Urchin
+Adventures: Guide, Page, Ratcatcher
+Empires: Groundskeeper, Settlers
+Nocturne: Pixie, Zombie Spy
+Menagerie: Sanctuary
+Allies: Blacksmith, Hill Fort, Innkeeper, Old Map, Sorcerer, Sorceress, Swap, Town Crier, Underling
+Rising Sun: Alley. Daimyo, Gold Mine, Snake Witch
+Cantrips this turn
+These cards are non-terminal draw, village, or Peddler variants but play over multiple turns and only act as cantrips on the turn they are played.
+
+Cabin Boy
+Caravan
+Caravan Guard
+Secret Cave
+Conditionally non-terminal draw, village, or peddler variant
+These cards can act as non-terminal draw, as a village, or as a Peddler variant under specific circumstances, but act as a simple cantrip otherwise.
+
+Dominion: Merchant
+Intrigue: Wishing Well
+Seaside: Sea Chart
+Alchemy: Apothecary
+Cornucopia & Guilds: Hamlet, Herald, Menagerie
+Dark Ages: Ironmonger, Vagrant
+Adventures: Magpie, Storyteller
+Empires: Patrician
+Nocturne: Will-o'-Wisp
+Renaissance: Seer
+Allies: Battle Plan
+Rising Sun: Poet
+Promos: Sauna
+Handsize-decreasing cantrips
+These cards provide +1 Card, +1 Action, but mandatorily decrease handsize by trashing, discarding, or setting aside a card from the hand.
+
+Alley — when played from hand.
+Haven
+Modify — can be a cantrip depending on player choice.
+Rats — handsize is not decreased if the player has only Rats in hand.
+Upgrade
+Sifting cantrips
+These cards give +1 Action and put a card into your hand, but offer some sifting rather than just drawing the top card of your deck.
+
+Scrying Pool
+Sage
+Archive
+Border Guard
+Miller
+
+-------
+-------
+
+https://wiki.dominionstrategy.com/index.php/Non-terminal_draw
+
+Dominion: Laboratory
+Seaside: Tide Pools
+Alchemy: Alchemist
+Dark Ages: Madman
+Guilds: Advisor
+Adventures: Lost City
+Empires: Encampment
+Renaissance: Experiment
+Menagerie: Destrier, Horse, Way of the Horse
+Allies: Distant Shore, Lich, Sibyl
+Plunder: Landing Party
+Rising Sun: Litter, Root Cellar
+Promos: Governor
+Conditional effects
+These cards are restricted by only being able to increase handsize in certain circumstances; if the condition is not met, most will be simple cantrips, or even reduce handsize.
+
+Intrigue: Wishing Well -- you need to guess the top card of your deck after drawing one card to draw another one.
+Alchemy: Apprentice provides net non-terminal draw if you trash a card costing $3 or more.
+Prosperity: City -- Only if a supply pile is empty.
+Cornucopia: Menagerie -- Only if you have no duplicate cards in hand.
+Hinterlands: Stables -- If you can discard a Treasure from your hand.
+Adventures: Storyteller -- You need to have $ to spend to increase your handsize.
+Adventures: Teacher, Lost Arts, Pathfinding can all upgrade Action cards to draw extra cards or generate extra Actions, generating non-terminal draw from suitable targets.
+Empires: City Quarter -- Variable amount of draw. You need at least two other Action cards in hand to increase your handsize.
+Nocturne: Cursed Village -- Variable amount of draw. Only increases handsize from a sufficiently small starting handsize.
+Allies: Capital City -- You need to have generated $2 before.
+Allies: Battle Plan -- If you can reveal an Attack card from your hand.
+Plunder: Swamp Shacks -- If you have six or more cards in play.
+Plunder: Shy -- only works at the beginning of your turn, and only once per turn.
+Rising Sun: Artist -- if you have two or more unique cards in play..
+Rising Sun: Rice Broker gives net non-terminal draw if you trash an Action card.
+Specific-card drawers
+A subset of conditional non-terminal draw. These non-terminal cards only draw cards of a specific type or other category, and increase handsize if they find such cards.
+
+Scout draws Victory cards.
+Sea Chart draws a card you already have in play.
+Apothecary draws Coppers and Potions.
+Scrying Pool draws Actions.
+Hunting Party digs for a card not already in your hand.
+Vagrant draws certain junk cards.
+Magpie draws Treasures.
+Settlers draws Coppers from your discard pile.
+Bustling Village draws Settlers from your discard pile.
+Patrician draws cards costing $5 or more.
+Will-o'-Wisp draws cards costing $2 or less.
+Seer draws cards costing from $2 to $4.
+Hunter draws cards of different types.
+Poet draws cards costing $3 or less.
+Non-terminal duration draw
+These non-terminal cards increase handsize on future turns, not immediately.
+
+Seaside: Caravan
+Empires: Archive
+Nocturne: Den of Sin, Crypt
+
+-------
+-------
+
+https://wiki.dominionstrategy.com/index.php/Terminal_draw
+
+Cards providing +4 Cards or more
+Council Room
+Envoy — Reveals five cards and discards one, chosen by the next player, before drawing the rest.
+Hunting Grounds
+Imperial Envoy
+Pooka — Only if trashing a Treasure.
+Wharf — Draws two cards twice.
+Cards providing +3 Cards
+Conditional
+These cards only draw cards sometimes, usually as a choice.
+
+Aristocrat — Only when playing the second or sixth Aristocrat.
+Nobles — One of two choices.
+Stronghold — One of two choices. Duration that draws at the start of next turn.
+Werewolf — If not played during your Night phase.
+Wild Hunt — One of two choices.
+Non-conditional
+Avanto — Non-terminal if you have a Sauna in hand.
+Barge — Duration that gives a choice between drawing when playing or at the start of next turn.
+Catacombs — Optionally discards the top three cards of the deck before drawing three.
+Crew
+Emissary — Non-terminal if you didn't need to shuffle.
+Haunted Woods — Duration that draws at the start of next turn.
+Highwayman — Duration that draws at the start of next turn.
+Journeyman — Allows a named card to be skipped when drawing.
+Margrave
+Old Witch
+Pilgrim — Draws four cards then puts one back on top of the deck.
+Rabble
+Smithy
+Swashbuckler
+Torturer
+Tragic Hero
+Wayfarer
+Cards providing +2 Cards
+Conditional
+These cards only draw cards sometimes, usually as a choice.
+
+Blacksmith — One of several choices.
+Courser — One of several choices.
+Mercenary — Only draws if you have at least two cards in hand that can be trashed.
+Mountain Shrine — Only draws if there are any Action cards in the Trash.
+Steward — One of several choices.
+Trusty Steed — One of several choices.
+Only +2 Cards
+These cards only draw two cards and do nothing else when played normally.
+
+Black Cat (on your own turn) — Can as a reaction be played on another player's turn to also do an Attack.
+Faithful Hound — Can be set aside when discarded to return to the hand at start of next turn.
+Lackeys — Provides Villagers when gained.
+Moat — Can as a reaction be revealed to ignore other player's Attacks.
+Sheepdog — Can as a reaction be played from hand when gaining a card.
+Way of the Otter allows any Action card to be played to only draw two cards.
+
+Small draw with filtering
+These cards only provide a total of two cards, but allow some filtering or sifting to help you draw the cards you want.
+
+Adventurer — Reveals cards until finding two Treasures to draw.
+Courtyard — Draws three cards then puts one back on top of the deck.
+Embassy — Draws five cards then discards three.
+Mapmaker — Looks at the top four cards, puts two of them into hand, and discards the rest.
+Oracle — Optionally discards the top two cards of the deck before drawing two.
+Witch's Hut — Draws four cards then discards two.
+Conditionally terminal
+These cards are only terminal sometimes.
+
+Cultist — Non-terminal if you have additional Cultists in hand.
+Diplomat — Non-terminal if you have fewer than five cards in hand (after drawing).
+Imp — Non-terminal if you have any Action card in hand not already in play.
+Recruiter — Provides Villagers when played which can be used to make it non-terminal.
+Attacks
+These cards draws two cards in addition to performing an Attack.
+
+Black Cat (on another player's turn)
+Cultist
+Followers — Also gains an Estate.
+Ghost Ship
+Mercenary — Also +$2. Trashes two cards, resulting in a smaller hand.
+Ninja — Only draws one card, but since you can play it from outside your hand it has a similar effect to an ordinary +2 cards.
+Sea Witch — Also a Duration that draws and discards two cards at the start of your next turn.
+Sir Destry
+Warrior
+Witch
+Other additional effects
+These cards have additional non-Attack effects.
+
+Figurine — is a Treasure, so formally not a terminal action; but when it is played normally in your Buy phase it does not allow you to play the Actions you draw.
+Gear — Sets aside two cards until the start of next turn, resulting in a smaller hand this turn, but the total effect over both turns is to increase the hand.
+Masquerade — Allows a card to be trashed, which can result in no increased hand.
+Silk Merchant
+Vault — Allows cards to be discarded, which can result in a smaller hand.
+Variable
+Draw-to-x
+Certain terminal Actions draw up to a specified handsize. These are especially useful against handsize attacks or other cards that can reduce handsize between turns, and in engines with handsize-reducing components such as Festival and Hamlet.
+
+Library — Up to 7
+Watchtower — Up to 6
+Jack of All Trades — Up to 5
+Way of the Owl — Up to 6
+Blacksmith — Up to 6 (one of several choices)
+Ronin — Up to 7
+Other
+Broker — Optionally draws cards depending on the cost of the card it trashes.
+Carnival — Draws up to four cards, but can't draw multiple copies of the same card.
+Crossroads — Draws cards depending on the number of Victory cards in hand (but is non-terminal the first time it is played each turn).
+Guard Dog — Draws four cards if played from a small starting hand, but only two cards if played from a larger hand.
+Housecarl — Draws cards equal to the number of differently-named Actions you have in play.
+Magnate — Draws a number of cards equal to the number of Treasures in your hand.
+Maroon — Draws a number of cards depending on the number of types a trashed card has.
+Marquis — Effective handsize increase depends on your starting handsize.
+Patrol — Draws three cards plus up to four Victory cards.
+Ranger — Draws five cards every other play for an average of 2.5 cards per play.
+Royal Blacksmith — Effective handsize increase depends on the amount of Copper in your deck.
+
+-------
+-------

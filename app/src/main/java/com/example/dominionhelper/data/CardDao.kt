@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CardDao {
@@ -54,7 +55,7 @@ interface CardDao {
     suspend fun getFilteredCards(filter: String): List<Card>
 
     @Query("SELECT * FROM cards WHERE `set` = :expansion")
-    suspend fun getCardsByExpansion(expansion: Set): List<Card>
+    fun getCardsByExpansion(expansion: Set): Flow<List<Card>>
 
     @Query("SELECT * FROM cards ORDER BY RANDOM() LIMIT :amount")
     suspend fun getRandomCards(amount: Int): List<Card>

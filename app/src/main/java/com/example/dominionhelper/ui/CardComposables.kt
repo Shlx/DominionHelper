@@ -8,6 +8,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,12 +28,8 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Card
-import androidx.compose.material3.Divider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -42,6 +39,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
@@ -53,14 +51,18 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontStyle.Companion.Italic
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.dominionhelper.R
 import com.example.dominionhelper.data.Card
+import com.example.dominionhelper.data.Category
 import com.example.dominionhelper.data.Type
 import com.example.dominionhelper.getDrawableId
+import kotlin.math.cos
+import kotlin.math.sin
 
 // Displays a list of cards
 @Composable
@@ -108,11 +110,11 @@ fun RandomCardList(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Spacer(modifier = Modifier.height(8.dp))
-                    Divider(modifier = Modifier.fillMaxWidth(0.5f))
+                    HorizontalDivider(modifier = Modifier.fillMaxWidth(0.5f))
                     Spacer(modifier = Modifier.height(12.dp))
                     Text(text = "Additional Cards", textAlign = TextAlign.Center)
                     Spacer(modifier = Modifier.height(12.dp))
-                    Divider(modifier = Modifier.fillMaxWidth(0.5f))
+                    HorizontalDivider(modifier = Modifier.fillMaxWidth(0.5f))
                     Spacer(modifier = Modifier.height(8.dp))
                 }
 
@@ -129,11 +131,11 @@ fun RandomCardList(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Spacer(modifier = Modifier.height(8.dp))
-                Divider(modifier = Modifier.fillMaxWidth(0.5f))
+                HorizontalDivider(modifier = Modifier.fillMaxWidth(0.5f))
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(text = "Basic Cards", textAlign = TextAlign.Center)
                 Spacer(modifier = Modifier.height(12.dp))
-                Divider(modifier = Modifier.fillMaxWidth(0.5f))
+                HorizontalDivider(modifier = Modifier.fillMaxWidth(0.5f))
                 Spacer(modifier = Modifier.height(8.dp))
             }
 
@@ -239,7 +241,39 @@ fun CardView(
                             fontSize = 20.sp
                         )
                         Spacer(modifier = Modifier.weight(1f))
-                        NumberCircle(number = card.cost)
+                        if (card.types.contains(Type.PROPHECY)) {
+                            CardTypeText("Prophecy")
+                        } else if (card.types.contains(Type.LANDMARK)) {
+                            CardTypeText("Landmark")
+                        } else if (card.types.contains(Type.TRAIT)) {
+                            CardTypeText("Trait")
+                        } else if (card.types.contains(Type.ALLY)) {
+                            CardTypeText("Ally")
+                        } else if (card.types.contains(Type.WAY)) {
+                            CardTypeText("Way")
+                        } else if (card.types.contains(Type.ARTIFACT)) {
+                            CardTypeText("Artifact")
+                        } else if (card.types.contains(Type.STATE)) {
+                            CardTypeText("State")
+                        } else if (card.types.contains(Type.HEX)) {
+                            CardTypeText("Hex")
+                        } else if (card.types.contains(Type.BOON)) {
+                            CardTypeText("Boon")
+                        } else if (card.types.contains(Type.LOOT)) {
+                            CardTypeText("Loot")
+                        } else {
+                            Row {
+                                if (card.cost > 0) {
+                                    NumberCircle(number = card.cost)
+                                }
+                                if (card.debt > 0) {
+                                    if (card.cost > 0) {
+                                        Spacer(modifier = Modifier.padding(4.dp))
+                                    }
+                                    NumberHexagon(number = card.debt)
+                                }
+                            }
+                        }
                     }
 
                     // Expansion Icon
@@ -308,14 +342,6 @@ fun CardDetailPager(
     val pagerState =
         rememberPagerState(initialPage = initialIndex, pageCount = { cardList.size })
     Column {
-        Box {
-            IconButton(
-                onClick = { onBackClick() },
-                modifier = Modifier.padding(16.dp)
-            ) {
-                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
-            }
-        }
         HorizontalPager(
             state = pagerState,
             modifier = modifier
@@ -331,20 +357,44 @@ fun CardDetailPager(
 
 @Composable
 fun CardDetail(card: Card) {
-
     val context = LocalContext.current
     val drawableId = getDrawableId(context, card.imageName)
 
-    Box(
-        modifier = Modifier.fillMaxSize()
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Top // Align content to the top
     ) {
-        Image(
-            painter = painterResource(id = drawableId),
-            contentDescription = "Card Image",
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.FillBounds
-        )
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
+            Image(
+                painter = painterResource(id = drawableId),
+                contentDescription = "Card Image",
+                modifier = Modifier.fillMaxWidth(),
+                contentScale = ContentScale.FillWidth // Changed to FillWidth to maintain aspect ratio
+            )
+        }
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            items(card.categories) { category ->
+                CategoryText(category = category)
+            }
+        }
     }
+}
+
+@Composable
+fun CategoryText(category: Category) {
+    Text(
+        text = category.name,
+        modifier = Modifier.padding(4.dp)
+    )
 }
 
 @Composable
@@ -386,4 +436,85 @@ fun NumberCircle(number: Int, modifier: Modifier = Modifier) {
             }
         }
     }
+}
+
+@Composable
+fun NumberHexagon(number: Int, modifier: Modifier = Modifier) {
+    val hexagonColor = MaterialTheme.colorScheme.secondaryContainer
+    val textColor = MaterialTheme.colorScheme.onSecondaryContainer.toArgb()
+
+    Box(
+        modifier = modifier,
+        contentAlignment = Alignment.Center
+    ) {
+        Canvas(
+            modifier = Modifier
+                .size(25.dp)
+        ) {
+            val centerX = size.width / 2
+            val centerY = size.height / 2
+            val radius = size.minDimension / 2
+
+            // Draw the hexagon
+            drawIntoCanvas { canvas ->
+                val hexagonPath = android.graphics.Path()
+                val angle = 2.0 * Math.PI / 6 // 6 sides
+
+                // Start at the first vertex
+                hexagonPath.moveTo(
+                    centerX + radius * cos(0.0).toFloat(),
+                    centerY + radius * sin(0.0).toFloat()
+                )
+
+                // Draw lines to each subsequent vertex
+                for (i in 1..6) {
+                    hexagonPath.lineTo(
+                        centerX + radius * cos(angle * i).toFloat(),
+                        centerY + radius * sin(angle * i).toFloat()
+                    )
+                }
+
+                // Close the path
+                hexagonPath.close()
+                val paint = android.graphics.Paint()
+                paint.color = hexagonColor.toArgb()
+                paint.style = android.graphics.Paint.Style.FILL
+                canvas.nativeCanvas.drawPath(hexagonPath, paint)
+
+                // Draw the text
+                val textPaint = android.graphics.Paint().apply {
+                    color = textColor
+                    textAlign = android.graphics.Paint.Align.CENTER
+                    textSize = 12.sp.toPx()
+                    isFakeBoldText = true
+                }
+
+                val textBounds = android.graphics.Rect()
+                textPaint.getTextBounds(
+                    number.toString(),
+                    0,
+                    number.toString().length,
+                    textBounds
+                )
+
+                canvas.nativeCanvas.drawText(
+                    number.toString(),
+                    centerX,
+                    centerY - (textBounds.top + textBounds.bottom) / 2,
+                    textPaint
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun CardTypeText(text: String) {
+    Text(
+        text = text,
+        textAlign = TextAlign.Start,
+        fontSize = 16.sp,
+        color = MaterialTheme.colorScheme.secondary,
+        fontStyle = Italic
+    )
 }

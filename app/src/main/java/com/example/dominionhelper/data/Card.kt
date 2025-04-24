@@ -28,7 +28,9 @@ data class Card(
     val landscape: Boolean,
     val types: List<Type>,
     @SerializedName("image_name") val imageName: String,
-    val basic: Boolean
+    val basic: Boolean,
+    val debt: Int,
+    val categories: List<Category>
 ) {
 
     @Ignore
@@ -158,30 +160,11 @@ enum class Type {
     PROPHECY
 }
 
-/*@Entity(tableName = "card_categories")
-data class CardCategory(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    val name: String // e.g., "Cantrip", "Looter", etc.
-)
-
-@Entity(
-    tableName = "card_category_cross_ref",
-    primaryKeys = ["cardId", "categoryId"]
-)
-data class CardCategoryCrossRef(
-    val cardId: Int,
-    val categoryId: Int
-)
-
-data class CardWithCategories(
-    @Embedded val card: Card,
-    @Relation(
-        parentColumn = "id",
-        entityColumn = "id",
-        associateBy = Junction(CardCategoryCrossRef::class)
-    )
-    val categories: List<CardCategory>
-)*/
+enum class Category {
+    CANTRIP,
+    NONTERMINAL_DRAW,
+    TERMINAL_DRAW
+}
 
 // To data package
 fun loadCardsFromAssets(context: Context): List<Card> {
@@ -201,6 +184,7 @@ fun loadCardsFromAssets(context: Context): List<Card> {
     val gson = GsonBuilder()
         .registerTypeAdapter(Set::class.java, SetTypeAdapter())
         .registerTypeAdapter(Type::class.java, TypeTypeAdapter())
+        .registerTypeAdapter(Category::class.java, CategoryTypeAdapter())
         .create()
 
     val cardListType = object : TypeToken<List<Card>>() {}.type
@@ -243,6 +227,25 @@ class TypeTypeAdapter : TypeAdapter<Type>() {
             return null
         }
         val value = reader.nextString()
-        return Type.valueOf(value.uppercase()) // Convert from string to Set enum
+        return Type.valueOf(value.uppercase()) // Convert from string to Type enum
+    }
+}
+
+class CategoryTypeAdapter : TypeAdapter<Category>() {
+    override fun write(out: JsonWriter, value: Category?) {
+        if (value == null) {
+            out.nullValue()
+        } else {
+            out.value(value.name)
+        }
+    }
+
+    override fun read(reader: JsonReader): Category? {
+        if (reader.peek() == JsonToken.NULL) {
+            reader.nextNull()
+            return null
+        }
+        val value = reader.nextString()
+        return Category.valueOf(value.uppercase()) // Convert from string to Category enum
     }
 }

@@ -11,9 +11,7 @@
     "image_name": "adventurer",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Artisan",
@@ -113,9 +111,7 @@
     "image_name": "councilroom",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Feast",
@@ -171,9 +167,7 @@
     "image_name": "harbinger",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Laboratory",
@@ -187,9 +181,7 @@
     "image_name": "laboratory",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Library",
@@ -203,9 +195,7 @@
     "image_name": "library",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Market",
@@ -233,9 +223,7 @@
     "image_name": "merchant",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Militia",
@@ -279,9 +267,7 @@
     "image_name": "moat",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Moneylender",
@@ -337,9 +323,7 @@
     "image_name": "sentry",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Smithy",
@@ -353,9 +337,7 @@
     "image_name": "smithy",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Spy",
@@ -370,9 +352,7 @@
     "image_name": "spy",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Thief",
@@ -444,9 +424,7 @@
     "image_name": "witch",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Woodcutter",
@@ -656,9 +634,7 @@
     "image_name": "courtyard",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Diplomat",
@@ -673,9 +649,7 @@
     "image_name": "diplomat",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Duke",
@@ -704,9 +678,7 @@
     "image_name": "greathall",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Ironworks",
@@ -748,9 +720,7 @@
     "image_name": "masquerade",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Mill",
@@ -765,9 +735,7 @@
     "image_name": "mill",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Mining Village",
@@ -811,9 +779,7 @@
     "image_name": "nobles",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Patrol",
@@ -827,9 +793,7 @@
     "image_name": "patrol",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Pawn",
@@ -843,9 +807,7 @@
     "image_name": "pawn",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Replace",
@@ -889,9 +851,7 @@
     "image_name": "scout",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Secret Chamber",
@@ -948,9 +908,7 @@
     "image_name": "steward",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Swindler",
@@ -980,9 +938,7 @@
     "image_name": "torturer",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Trading Post",
@@ -1024,9 +980,7 @@
     "image_name": "upgrade",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Wishing Well",
@@ -1040,10 +994,7 @@
     "image_name": "wishingwell",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip",
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Ambassador",
@@ -1118,10 +1069,7 @@
     "image_name": "caravan",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip",
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Corsair",
@@ -1210,9 +1158,7 @@
     "image_name": "ghostship",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Haven",
@@ -1227,9 +1173,7 @@
     "image_name": "haven",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Island",
@@ -1360,9 +1304,7 @@
     "image_name": "pearldiver",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Pirate",
@@ -1436,10 +1378,7 @@
     "image_name": "seachart",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip",
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Sea Hag",
@@ -1470,9 +1409,7 @@
     "image_name": "seawitch",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Smugglers",
@@ -1516,9 +1453,7 @@
     "image_name": "tidepools",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Treasure Map",
@@ -1575,9 +1510,7 @@
     "image_name": "wharf",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Alchemist",
@@ -1591,9 +1524,7 @@
     "image_name": "alchemist",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Apothecary",
@@ -1607,10 +1538,7 @@
     "image_name": "apothecary",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip",
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Apprentice",
@@ -1624,9 +1552,7 @@
     "image_name": "apprentice",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Familiar",
@@ -1641,9 +1567,7 @@
     "image_name": "familiar",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Golem",
@@ -1714,10 +1638,7 @@
     "image_name": "scryingpool",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip",
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Transmute",
@@ -1844,9 +1765,7 @@
     "image_name": "city",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Clerk",
@@ -2045,9 +1964,7 @@
     "image_name": "magnate",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Mint",
@@ -2133,9 +2050,7 @@
     "image_name": "rabble",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Royal Seal",
@@ -2205,9 +2120,7 @@
     "image_name": "vault",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Venture",
@@ -2250,9 +2163,7 @@
     "image_name": "watchtower",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Worker's Village",
@@ -2308,9 +2219,7 @@
     "image_name": "advisor",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Baker",
@@ -2366,9 +2275,7 @@
     "image_name": "carnival",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Doctor",
@@ -2438,9 +2345,7 @@
     "image_name": "farrier",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Ferryman",
@@ -2498,9 +2403,7 @@
     "image_name": "hamlet",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Harvest",
@@ -2528,9 +2431,7 @@
     "image_name": "herald",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Horn of Plenty",
@@ -2573,9 +2474,7 @@
     "image_name": "huntingparty",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Infirmary",
@@ -2618,9 +2517,7 @@
     "image_name": "journeyman",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Joust",
@@ -2662,10 +2559,7 @@
     "image_name": "menagerie",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip",
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Merchant Guild",
@@ -2721,9 +2615,7 @@
     "image_name": "shop",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Soothsayer",
@@ -2842,9 +2734,7 @@
     "image_name": "courser",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Demesne",
@@ -2891,9 +2781,7 @@
     "image_name": "followers",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Housecarl",
@@ -2908,9 +2796,7 @@
     "image_name": "housecarl",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Huge Turnip",
@@ -2970,9 +2856,7 @@
     "image_name": "trustysteed",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Berserker",
@@ -3029,9 +2913,7 @@
     "image_name": "cartographer",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Cauldron",
@@ -3060,9 +2942,7 @@
     "image_name": "crossroads",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Develop",
@@ -3104,9 +2984,7 @@
     "image_name": "embassy",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Farmland",
@@ -3150,9 +3028,7 @@
     "image_name": "guarddog",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Haggler",
@@ -3180,9 +3056,7 @@
     "image_name": "highway",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Ill-Gotten Gains",
@@ -3224,9 +3098,7 @@
     "image_name": "jackofalltrades",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Mandarin",
@@ -3255,9 +3127,7 @@
     "image_name": "margrave",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Noble Brigand",
@@ -3329,9 +3199,7 @@
     "image_name": "oracle",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Scheme",
@@ -3345,9 +3213,7 @@
     "image_name": "scheme",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Silk Road",
@@ -3403,9 +3269,7 @@
     "image_name": "stables",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Trader",
@@ -3435,9 +3299,7 @@
     "image_name": "trail",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Tunnel",
@@ -3481,9 +3343,7 @@
     "image_name": "wheelwright",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Witch's Hut",
@@ -3498,9 +3358,7 @@
     "image_name": "witchshut",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Altar",
@@ -3586,9 +3444,7 @@
     "image_name": "catacombs",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Count",
@@ -3632,9 +3488,7 @@
     "image_name": "cultist",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Dame Anna",
@@ -3814,9 +3668,7 @@
     "image_name": "huntinggrounds",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Ironmonger",
@@ -3830,9 +3682,7 @@
     "image_name": "ironmonger",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Junk Dealer",
@@ -3877,9 +3727,7 @@
     "image_name": "marketsquare",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Mystic",
@@ -3950,9 +3798,7 @@
     "image_name": "rats",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Rebuild",
@@ -3995,9 +3841,7 @@
     "image_name": "sage",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Scavenger",
@@ -4027,9 +3871,7 @@
     "image_name": "sirbailey",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Sir Destry",
@@ -4045,9 +3887,7 @@
     "image_name": "sirdestry",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Sir Martin",
@@ -4138,9 +3978,7 @@
     "image_name": "urchin",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Vagrant",
@@ -4154,10 +3992,7 @@
     "image_name": "vagrant",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip",
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Wandering Minstrel",
@@ -4275,9 +4110,7 @@
     "image_name": "madman",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Mercenary",
@@ -4292,9 +4125,7 @@
     "image_name": "mercenary",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Necropolis",
@@ -4399,9 +4230,7 @@
     "image_name": "caravanguard",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Coin of the Realm",
@@ -4477,9 +4306,7 @@
     "image_name": "gear",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Giant",
@@ -4509,9 +4336,7 @@
     "image_name": "guide",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Haunted Woods",
@@ -4527,9 +4352,7 @@
     "image_name": "hauntedwoods",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Hireling",
@@ -4558,9 +4381,7 @@
     "image_name": "lostcity",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Magpie",
@@ -4574,10 +4395,7 @@
     "image_name": "magpie",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip",
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Messenger",
@@ -4620,9 +4438,7 @@
     "image_name": "page",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Peasant",
@@ -4665,9 +4481,7 @@
     "image_name": "ranger",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Ratcatcher",
@@ -4682,9 +4496,7 @@
     "image_name": "ratcatcher",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Raze",
@@ -4742,10 +4554,7 @@
     "image_name": "storyteller",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip",
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Swamp Hag",
@@ -4896,9 +4705,7 @@
     "image_name": "teacher",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Treasure Hunter",
@@ -4929,9 +4736,7 @@
     "image_name": "warrior",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Alms",
@@ -5043,9 +4848,7 @@
     "image_name": "lostarts",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Mission",
@@ -5073,9 +4876,7 @@
     "image_name": "pathfinding",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Pilgrimage",
@@ -5230,10 +5031,7 @@
     "image_name": "archive",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip",
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Bustling Village",
@@ -5247,9 +5045,7 @@
     "image_name": "bustlingvillage",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Capital",
@@ -5320,9 +5116,7 @@
     "image_name": "cityquarter",
     "basic": false,
     "debt": 8,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Crown",
@@ -5380,9 +5174,7 @@
     "image_name": "encampment",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Enchantress",
@@ -5498,9 +5290,7 @@
     "image_name": "groundskeeper",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Haunted Castle",
@@ -5606,10 +5396,7 @@
     "image_name": "patrician",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip",
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Plunder",
@@ -5651,9 +5438,7 @@
     "image_name": "royalblacksmith",
     "basic": false,
     "debt": 8,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Sacrifice",
@@ -5681,10 +5466,7 @@
     "image_name": "settlers",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip",
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Small Castle",
@@ -5759,9 +5541,7 @@
     "image_name": "wildhunt",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Advance",
@@ -6339,9 +6119,7 @@
     "image_name": "crypt",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Cursed Village",
@@ -6356,9 +6134,7 @@
     "image_name": "cursedvillage",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Den of Sin",
@@ -6373,9 +6149,7 @@
     "image_name": "denofsin",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Devil's Workshop",
@@ -6433,9 +6207,7 @@
     "image_name": "faithfulhound",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Fool",
@@ -6568,9 +6340,7 @@
     "image_name": "pixie",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Pooka",
@@ -6584,9 +6354,7 @@
     "image_name": "pooka",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Raider",
@@ -6632,9 +6400,7 @@
     "image_name": "secretcave",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Shepherd",
@@ -6709,9 +6475,7 @@
     "image_name": "tragichero",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Vampire",
@@ -6744,9 +6508,7 @@
     "image_name": "werewolf",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Bat",
@@ -6836,9 +6598,7 @@
     "image_name": "imp",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Lucky Coin",
@@ -6914,10 +6674,7 @@
     "image_name": "willowisp",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip",
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Wish",
@@ -6976,9 +6733,7 @@
     "image_name": "zombiespy",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "The Earth's Gift",
@@ -7412,9 +7167,7 @@
     "image_name": "borderguard",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Cargo Ship",
@@ -7457,9 +7210,7 @@
     "image_name": "experiment",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Flag Bearer",
@@ -7529,9 +7280,7 @@
     "image_name": "lackeys",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Mountain Village",
@@ -7560,9 +7309,7 @@
     "image_name": "oldwitch",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Patron",
@@ -7605,9 +7352,7 @@
     "image_name": "recruiter",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Research",
@@ -7679,10 +7424,7 @@
     "image_name": "seer",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip",
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Silk Merchant",
@@ -7696,9 +7438,7 @@
     "image_name": "silkmerchant",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Spices",
@@ -7726,9 +7466,7 @@
     "image_name": "swashbuckler",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Treasurer",
@@ -8136,9 +7874,7 @@
     "image_name": "barge",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Black Cat",
@@ -8154,9 +7890,7 @@
     "image_name": "blackcat",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Bounty Hunter",
@@ -8242,9 +7976,7 @@
     "image_name": "destrier",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Displace",
@@ -8430,9 +8162,7 @@
     "image_name": "sanctuary",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Scrap",
@@ -8461,9 +8191,7 @@
     "image_name": "sheepdog",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Sleigh",
@@ -8550,9 +8278,7 @@
     "image_name": "wayfarer",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Horse",
@@ -8566,9 +8292,7 @@
     "image_name": "horse",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Alliance",
@@ -8932,9 +8656,7 @@
     "image_name": "wayofthehorse",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Way of the Mole",
@@ -9032,9 +8754,7 @@
     "image_name": "wayoftheowl",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Way of the Pig",
@@ -9193,10 +8913,7 @@
     "image_name": "battleplan",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip",
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Bauble",
@@ -9226,10 +8943,7 @@
     "image_name": "blacksmith",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip",
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Broker",
@@ -9244,9 +8958,7 @@
     "image_name": "broker",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Capital City",
@@ -9260,9 +8972,7 @@
     "image_name": "capitalcity",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Carpenter",
@@ -9338,9 +9048,7 @@
     "image_name": "distantshore",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Elder",
@@ -9370,9 +9078,7 @@
     "image_name": "emissary",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Galleria",
@@ -9448,9 +9154,7 @@
     "image_name": "highwayman",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Hill Fort",
@@ -9465,9 +9169,7 @@
     "image_name": "hillfort",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Hunter",
@@ -9481,9 +9183,7 @@
     "image_name": "hunter",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Importer",
@@ -9513,9 +9213,7 @@
     "image_name": "innkeeper",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Lich",
@@ -9530,9 +9228,7 @@
     "image_name": "lich",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Marquis",
@@ -9546,9 +9242,7 @@
     "image_name": "marquis",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Merchant Camp",
@@ -9577,9 +9271,7 @@
     "image_name": "miller",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Modify",
@@ -9593,9 +9285,7 @@
     "image_name": "modify",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Old Map",
@@ -9610,9 +9300,7 @@
     "image_name": "oldmap",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Royal Galley",
@@ -9656,9 +9344,7 @@
     "image_name": "sibyl",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Skirmisher",
@@ -9689,9 +9375,7 @@
     "image_name": "sorcerer",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Sorceress",
@@ -9707,9 +9391,7 @@
     "image_name": "sorceress",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Specialist",
@@ -9740,9 +9422,7 @@
     "image_name": "stronghold",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Student",
@@ -9787,9 +9467,7 @@
     "image_name": "swap",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Sycophant",
@@ -9863,9 +9541,7 @@
     "image_name": "towncrier",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Underling",
@@ -9880,9 +9556,7 @@
     "image_name": "underling",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Voyage",
@@ -10282,9 +9956,7 @@
     "image_name": "cabinboy",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Cage",
@@ -10314,9 +9986,7 @@
     "image_name": "crew",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Crucible",
@@ -10375,9 +10045,7 @@
     "image_name": "figurine",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "First Mate",
@@ -10524,9 +10192,7 @@
     "image_name": "landingparty",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Longship",
@@ -10556,9 +10222,7 @@
     "image_name": "mapmaker",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Maroon",
@@ -10572,9 +10236,7 @@
     "image_name": "maroon",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Mining Road",
@@ -10630,9 +10292,7 @@
     "image_name": "pilgrim",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Quartermaster",
@@ -10780,9 +10440,7 @@
     "image_name": "swampshacks",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Taskmaster",
@@ -11478,9 +11136,7 @@
     "image_name": "shy",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Tireless",
@@ -11509,9 +11165,7 @@
     "image_name": "alley",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Aristocrat",
@@ -11525,9 +11179,7 @@
     "image_name": "aristocrat",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Artist",
@@ -11541,9 +11193,7 @@
     "image_name": "artist",
     "basic": false,
     "debt": 8,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Change",
@@ -11586,9 +11236,7 @@
     "image_name": "daimyo",
     "basic": false,
     "debt": 6,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Fishmonger",
@@ -11617,9 +11265,7 @@
     "image_name": "goldmine",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Imperial Envoy",
@@ -11633,9 +11279,7 @@
     "image_name": "imperialenvoy",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Kitsune",
@@ -11665,9 +11309,7 @@
     "image_name": "litter",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Mountain Shrine",
@@ -11682,9 +11324,7 @@
     "image_name": "mountainshrine",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Ninja",
@@ -11700,9 +11340,7 @@
     "image_name": "ninja",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Poet",
@@ -11717,10 +11355,7 @@
     "image_name": "poet",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip",
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Rice",
@@ -11748,9 +11383,7 @@
     "image_name": "ricebroker",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "River Shrine",
@@ -11795,9 +11428,7 @@
     "image_name": "ronin",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Root Cellar",
@@ -11811,9 +11442,7 @@
     "image_name": "rootcellar",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Rustic Village",
@@ -11859,9 +11488,7 @@
     "image_name": "snakewitch",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Tanuki",
@@ -12255,9 +11882,7 @@
     "image_name": "avanto",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Black Market",
@@ -12330,9 +11955,7 @@
     "image_name": "envoy",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Terminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Governor",
@@ -12346,9 +11969,7 @@
     "image_name": "governor",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Nonterminal_draw"
-    ]
+    "categories": []
   },
   {
     "name": "Marchland",
@@ -12392,9 +12013,7 @@
     "image_name": "sauna",
     "basic": false,
     "debt": 0,
-    "categories": [
-      "Cantrip"
-    ]
+    "categories": []
   },
   {
     "name": "Stash",

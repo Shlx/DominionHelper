@@ -1,5 +1,6 @@
 package com.example.dominionhelper.data
 
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class DominionRepositoryImpl @Inject constructor(
@@ -11,7 +12,7 @@ class DominionRepositoryImpl @Inject constructor(
         return expansionDao.getAll()
     }
 
-    override suspend fun getCardsByExpansion(expansionSet: Set): List<Card> {
+    override fun getCardsByExpansion(expansionSet: Set): Flow<List<Card>> {
         return cardDao.getCardsByExpansion(expansionSet)
     }
 

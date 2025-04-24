@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+// Combine with CardViewModel?
 @HiltViewModel
 class ExpansionViewModel @Inject constructor(
     private val expansionDao: ExpansionDao

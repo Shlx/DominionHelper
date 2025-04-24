@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -44,7 +45,6 @@ import com.example.dominionhelper.ui.TopBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 // Random info:
 // Prop drilling: passing lots of data down through mutliple levels (bad)
@@ -73,12 +73,11 @@ import javax.inject.Inject
 // Rethink color gradient on mixed cards
 // Use update { in ViewModels
 // Search default text is cut off
+// Cards that are not in the supply vs cards that cost 0 vs cards that cost nothing??
+// Explanation for card categories
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
-    @Inject
-    lateinit var applicationScope: CoroutineScope
 
     private val expansionViewModel: ExpansionViewModel by viewModels()
     private val cardViewModel: CardViewModel by viewModels()
@@ -116,6 +115,8 @@ fun MainView(expansionViewModel: ExpansionViewModel,
     val basicCards by cardViewModel.basicCards.collectAsStateWithLifecycle()
     val dependentCards by cardViewModel.dependentCards.collectAsStateWithLifecycle()
 
+    val cardsToShow by cardViewModel.cardsToShow.collectAsStateWithLifecycle()
+
     // State from ExpansionViewModel
     val expansions by expansionViewModel.expansions.collectAsStateWithLifecycle()
 
@@ -125,6 +126,10 @@ fun MainView(expansionViewModel: ExpansionViewModel,
     var topBarTitle by remember { mutableStateOf("Dominion Helper") }
     val listState = rememberSaveable(saver = LazyListState.Saver) {
         LazyListState()
+    }
+
+    val gridState = rememberSaveable(saver = LazyGridState.Saver) {
+        LazyGridState()
     }
 
     LaunchedEffect(key1 = showRandomCards, key2 = selectedExpansion) {
@@ -141,31 +146,35 @@ fun MainView(expansionViewModel: ExpansionViewModel,
     BackHandler(enabled = selectedExpansion != null || drawerState.isOpen || isSearchActive || showRandomCards) {
         when {
             drawerState.isOpen -> applicationScope.launch {
-                Log.i("Back Handler", "Close drawer")
+                Log.i("BackHandler", "Close drawer")
                 drawerState.close()
             }
 
             selectedCard != null -> {
-                Log.i("Back Handler", "Deselect card -> Return to card list")
+                Log.i("BackHandler", "Deselect card -> Return to card list")
                 cardViewModel.clearSelectedCard()
             }
 
-            showRandomCards -> {
+            cardsToShow -> {
                 // Go back to expansion view
-                Log.i("Back Handler", "Leave random cards -> Return to expansion list")
+                Log.i("BackHandler", "Leave random cards -> Return to expansion list")
                 cardViewModel.clearRandomCards()
                 cardViewModel.clearCards()
+                expansionViewModel.clearSelectedExpansion()
+                applicationScope.launch {
+                    listState.scrollToItem(0)
+                }
             }
 
             isSearchActive -> {
-                Log.i("Back Handler", "Deactivate search")
+                Log.i("BackHandler", "Deactivate search")
                 cardViewModel.toggleSearch()
                 cardViewModel.changeSearchText("")
                 cardViewModel.clearCards()
             }
 
             selectedExpansion != null -> {
-                Log.i("Back Handler", "Deselect expansion -> Return to expansion list")
+                Log.i("BackHandler", "Deselect expansion -> Return to expansion list")
                 expansionViewModel.clearSelectedExpansion()
                 cardViewModel.clearCards()
             }
@@ -214,21 +223,44 @@ fun MainView(expansionViewModel: ExpansionViewModel,
 
             when {
 
-                // Random card
-                showRandomCards && selectedCard == null -> {
-                    Log.i("MainActivity", "View random cards")
-                    RandomCardList(
-                        randomCards = randomCards,
-                        basicCards = basicCards,
-                        dependentCards = dependentCards,
-                        onCardClick = { cardViewModel.selectCard(it) },
-                        modifier = Modifier.padding(innerPadding),
-                        listState = listState
+                // Detail view
+                selectedCard != null -> {
+                    Log.i("MainActivity", "View card detail (${selectedCard?.name})")
+                    CardDetailPager(
+                        cardList = if (showRandomCards) randomCards + dependentCards + basicCards else cards,
+                        initialCard = selectedCard!!,
+                        onBackClick = { cardViewModel.clearSelectedCard() },
+                        modifier = Modifier.padding(innerPadding)
                     )
                 }
 
+                // List of cards in selected expansion
+                // Includes random cards and search cards?
+                cardsToShow -> {
+                    Log.i("MainActivity", "View card list (${cards.size} cards)")
+
+                    if (!showRandomCards) {
+                        CardList(
+                            cardList = cards,
+                            onCardClick = { card -> cardViewModel.selectCard(card) },
+                            modifier = Modifier.padding(innerPadding),
+                            listState = listState
+                        )
+                    } else {
+                        Log.i("MainActivity", "View random cards")
+                        RandomCardList(
+                            randomCards = randomCards,
+                            basicCards = basicCards,
+                            dependentCards = dependentCards,
+                            onCardClick = { cardViewModel.selectCard(it) },
+                            modifier = Modifier.padding(innerPadding),
+                            listState = listState
+                        )
+                        }
+                }
+
                 // All expansions in grid
-                selectedExpansion == null && searchText.length <= 1 && !showRandomCards -> {
+                else -> {
                     Log.i("MainActivity", "View expansion list")
                     ExpansionGrid(
                         expansions = expansions,
@@ -240,29 +272,8 @@ fun MainView(expansionViewModel: ExpansionViewModel,
                             cardViewModel.loadCardsByExpansion(expansion.set)
                             expansionViewModel.selectExpansion(expansion)
                         },
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-
-                // List of cards in selected expansion
-                selectedCard == null -> {
-                    Log.i("MainActivity", "View card list (${cards.size} cards)")
-                    CardList(
-                        cardList = cards,
-                        onCardClick = { card -> cardViewModel.selectCard(card) },
                         modifier = Modifier.padding(innerPadding),
-                        listState = listState
-                    )
-                }
-
-                // Card detail view
-                else -> {
-                    Log.i("MainActivity", "View card detail (${selectedCard?.name})")
-                    CardDetailPager(
-                        cardList = if (showRandomCards) randomCards + dependentCards + basicCards else cards,
-                        initialCard = selectedCard!!,
-                        onBackClick = { cardViewModel.clearSelectedCard() },
-                        modifier = Modifier.padding(innerPadding)
+                        gridState
                     )
                 }
             }
