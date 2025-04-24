@@ -1,10 +1,9 @@
 [versions]
-accompanistPager = "0.33.2-alpha"
-agp = "8.9.1"
+agp = "8.9.2"
 coilCompose = "2.6.0"
-foundation = "1.7.8"
+foundation = "1.8.0"
 gson = "2.10.1"
-hiltAndroidCompiler = "2.50"
+hiltAndroidCompiler = "2.56.2"
 hiltNavigationCompose = "1.2.0"
 kotlin = "2.0.21"
 coreKtx = "1.16.0"
@@ -13,19 +12,17 @@ junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.10.1"
-composeBom = "2024.09.00"
+composeBom = "2025.04.01"
 cardview = "1.0.0"
-roomCompiler = "2.7.0"
-roomCommonJvm = "2.7.0"
-roomKtx = "2.7.0"
-roomRuntime = "2.7.0"
-roomRuntimeAndroid = "2.7.0"
+roomCompiler = "2.7.1"
+roomCommonJvm = "2.7.1"
+roomKtx = "2.7.1"
+roomRuntime = "2.7.1"
+roomRuntimeAndroid = "2.7.1"
 sqliteAndroid = "2.5.0"
-#hilt-android = "2.50"
+google-devtools-ksp = "2.1.20-2.0.0"
 
 [libraries]
-accompanist-pager = { module = "com.google.accompanist:accompanist-pager", version.ref = "accompanistPager" }
-accompanist-pager-indicators = { module = "com.google.accompanist:accompanist-pager-indicators", version.ref = "accompanistPager" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "foundation" }
 androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
@@ -35,8 +32,6 @@ coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose"
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroidCompiler" }
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroidCompiler" }
-#hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt-android" }
-#hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt-android" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -60,4 +55,7 @@ androidx-sqlite-android = { group = "androidx.sqlite", name = "sqlite-android", 
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+google-devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "google-devtools-ksp" }
+google-dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hiltAndroidCompiler" }
+
 

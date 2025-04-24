@@ -2,8 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    id("com.google.dagger.hilt.android")
-    id("com.google.devtools.ksp")
+    alias(libs.plugins.google.dagger.hilt.android)
+    alias(libs.plugins.google.devtools.ksp)
 }
 
 android {
@@ -79,8 +79,3 @@ dependencies {
 
 
 }
-
-// Allow references to generated code
-/*kapt {
-    correctErrorTypes = true
-}*/
