@@ -92,6 +92,8 @@ fun RandomCardList(
     onCardClick: (Card) -> Unit,
     listState: LazyListState = rememberLazyListState()
 ) {
+    Log.i("RandomCardList", "randomCards: ${randomCards.size}, basicCards: ${basicCards.size}, dependentCards: ${dependentCards.size}")
+
     LazyColumn(
         modifier = modifier,
         state = listState
@@ -334,7 +336,6 @@ fun ColoredBar(barColors: List<Color>, modifier: Modifier = Modifier) {
 fun CardDetailPager(
     cardList: List<Card>,
     initialCard: Card,
-    onBackClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     // Find the initial index of the card

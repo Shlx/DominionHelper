@@ -10,7 +10,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,29 +21,20 @@ class CardViewModel @Inject constructor(
     private val _cards = MutableStateFlow<List<Card>>(emptyList())
     val cards: StateFlow<List<Card>> = _cards.asStateFlow()
 
-    private val _isLoading = MutableStateFlow(false)
-    val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
-
     private val _cardsToShow = MutableStateFlow(false)
     val cardsToShow: StateFlow<Boolean> = _cardsToShow.asStateFlow()
-
-    /*private val _cardsWithCategories = MutableStateFlow<List<CardWithCategories>>(emptyList())
-    val cardsWithCategories: StateFlow<List<CardWithCategories>> = _cardsWithCategories.asStateFlow()*/
 
     private val _selectedCard = MutableStateFlow<Card?>(null)
     val selectedCard: StateFlow<Card?> = _selectedCard.asStateFlow()
 
-    private val _searchActive = MutableStateFlow<Boolean>(false)
+    private val _searchActive = MutableStateFlow(false)
     val searchActive: StateFlow<Boolean> = _searchActive.asStateFlow()
 
-    private val _searchText = MutableStateFlow<String>("")
+    private val _searchText = MutableStateFlow("")
     val searchText: StateFlow<String> = _searchText.asStateFlow()
 
-    private val _sortType = MutableStateFlow<SortType>(SortType.EXPANSION)
+    private val _sortType = MutableStateFlow(SortType.EXPANSION)
     val sortType: StateFlow<SortType> = _sortType.asStateFlow()
-
-    private val _showRandomCards = MutableStateFlow<Boolean>(false)
-    val showRandomCards: StateFlow<Boolean> = _showRandomCards.asStateFlow()
 
     private val _randomCards = MutableStateFlow<List<Card>>(emptyList())
     val randomCards: StateFlow<List<Card>> = _randomCards.asStateFlow()
@@ -56,21 +46,13 @@ class CardViewModel @Inject constructor(
     val dependentCards: StateFlow<List<Card>> = _dependentCards.asStateFlow()
 
     fun loadCardsByExpansion(set: Set) {
-        _isLoading.value = true
         Log.d("CardViewModel", "Loading cards for expansion ${set.name}")
         viewModelScope.launch {
 
-            cardDao.getCardsByExpansion(set).collectLatest { cards -> // Collect the Flow
-                _cards.value = cards // Update with the list
-                sortCards()
-                Log.d("CardViewModel", "Loaded ${cards.size} cards for expansion ${set.name}")
-                _isLoading.value = false
-                _cardsToShow.value = true
-            }
-
-            /*_cards.value = cardDao.getCardsByExpansion(set)
+            _cards.value = cardDao.getCardsByExpansion(set)
             sortCards()
-            Log.d("CardViewModel", "Loaded ${_cards.value.size} cards for expansion ${set.name}")*/
+            Log.d("CardViewModel", "Loaded ${_cards.value.size} cards for expansion ${set.name}")
+            _cardsToShow.value = true
         }
     }
 
@@ -108,26 +90,26 @@ class CardViewModel @Inject constructor(
         viewModelScope.launch {
             _cards.value = cardDao.getFilteredCards("%$newText%")
             sortCards()
+            _cardsToShow.value = true
             Log.d("CardViewModel", "Search results: ${_cards.value.size}")
         }
     }
 
     fun setRandomCards(){
+        // TODO: Error when < 10 cards are owned
         Log.d("CardViewModel", "Setting random cards")
         viewModelScope.launch {
             _cards.value = emptyList()
             _randomCards.value = cardDao.getRandomCardsFromOwnedExpansions(10)
             _basicCards.value = cardDao.getBasicCards()
             _dependentCards.value = cardDao.getDependentCards()
-            _showRandomCards.value = true
             _cardsToShow.value = true
             //sortCards() // Only sort random cards or sort each list separately
-            Log.d("CardViewModel", "Random cards set")
+            Log.i("CardViewModel", "Random cards set: ${_randomCards.value.size}")
         }
     }
 
     fun clearRandomCards(){
-        _showRandomCards.value = false
         _randomCards.value = emptyList()
         _basicCards.value = emptyList()
         _dependentCards.value = emptyList()

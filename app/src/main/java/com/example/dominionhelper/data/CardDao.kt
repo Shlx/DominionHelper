@@ -6,7 +6,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CardDao {
@@ -25,12 +24,6 @@ interface CardDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(cards: List<Card>)
 
-    /*@Insert
-    suspend fun insertAllCategories(categories: List<CardCategory>)
-
-    @Insert
-    suspend fun insertCardCategoryCrossRef(crossRef: CardCategoryCrossRef)*/
-
     @Delete
     suspend fun delete(card: Card)
 
@@ -38,13 +31,6 @@ interface CardDao {
     suspend fun update(card: Card)
 
     /*@Transaction
-    @Query("SELECT * FROM cards")
-    suspend fun getAllCardsWithCategories(): List<CardWithCategories>
-
-    @Query("SELECT * FROM card_categories")
-    suspend fun getAllCategories(): List<CardCategory>
-
-    @Transaction
     @Query("SELECT * FROM cards WHERE id IN (SELECT cardId FROM card_category_cross_ref WHERE categoryId = :categoryId)")
     suspend fun getCardsByCategory(categoryId: Int): List<CardWithCategories>*/
 
@@ -55,7 +41,7 @@ interface CardDao {
     suspend fun getFilteredCards(filter: String): List<Card>
 
     @Query("SELECT * FROM cards WHERE `set` = :expansion")
-    fun getCardsByExpansion(expansion: Set): Flow<List<Card>>
+    suspend fun getCardsByExpansion(expansion: Set): List<Card>
 
     @Query("SELECT * FROM cards ORDER BY RANDOM() LIMIT :amount")
     suspend fun getRandomCards(amount: Int): List<Card>

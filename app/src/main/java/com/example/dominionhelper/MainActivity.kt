@@ -100,14 +100,14 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainView(expansionViewModel: ExpansionViewModel,
-             cardViewModel: CardViewModel) {
+fun MainView(
+    expansionViewModel: ExpansionViewModel,
+    cardViewModel: CardViewModel
+) {
 
-    val selectedExpansion by expansionViewModel.selectedExpansion.collectAsStateWithLifecycle()
     val selectedCard by cardViewModel.selectedCard.collectAsStateWithLifecycle()
     val isSearchActive by cardViewModel.searchActive.collectAsStateWithLifecycle()
     val searchText by cardViewModel.searchText.collectAsStateWithLifecycle()
-    val showRandomCards by cardViewModel.showRandomCards.collectAsStateWithLifecycle()
     val cards by cardViewModel.cards.collectAsStateWithLifecycle()
     val sortType by cardViewModel.sortType.collectAsStateWithLifecycle()
 
@@ -117,7 +117,7 @@ fun MainView(expansionViewModel: ExpansionViewModel,
 
     val cardsToShow by cardViewModel.cardsToShow.collectAsStateWithLifecycle()
 
-    // State from ExpansionViewModel
+    val selectedExpansion by expansionViewModel.selectedExpansion.collectAsStateWithLifecycle()
     val expansions by expansionViewModel.expansions.collectAsStateWithLifecycle()
 
     val drawerState = rememberDrawerState(initialValue = Closed)
@@ -132,18 +132,18 @@ fun MainView(expansionViewModel: ExpansionViewModel,
         LazyGridState()
     }
 
-    LaunchedEffect(key1 = showRandomCards, key2 = selectedExpansion) {
-        topBarTitle = if (showRandomCards) {
-            "Random Cards"
-        } else if (selectedExpansion != null) {
+    LaunchedEffect(key1 = cardsToShow) {
+        topBarTitle = if (selectedExpansion != null) {
             selectedExpansion!!.name
+        } else if (cardsToShow) {
+            "Random Cards"
         } else {
             "Dominion Helper"
         }
     }
 
     // BackHandler:
-    BackHandler(enabled = selectedExpansion != null || drawerState.isOpen || isSearchActive || showRandomCards) {
+    BackHandler(enabled = cardsToShow || drawerState.isOpen || isSearchActive) {
         when {
             drawerState.isOpen -> applicationScope.launch {
                 Log.i("BackHandler", "Close drawer")
@@ -155,9 +155,15 @@ fun MainView(expansionViewModel: ExpansionViewModel,
                 cardViewModel.clearSelectedCard()
             }
 
+            isSearchActive -> {
+                Log.i("BackHandler", "Deactivate search")
+                cardViewModel.toggleSearch()
+                cardViewModel.changeSearchText("")
+                cardViewModel.clearCards()
+            }
+
             cardsToShow -> {
-                // Go back to expansion view
-                Log.i("BackHandler", "Leave random cards -> Return to expansion list")
+                Log.i("BackHandler", "Leave card list -> Return to expansion list")
                 cardViewModel.clearRandomCards()
                 cardViewModel.clearCards()
                 expansionViewModel.clearSelectedExpansion()
@@ -166,18 +172,12 @@ fun MainView(expansionViewModel: ExpansionViewModel,
                 }
             }
 
-            isSearchActive -> {
-                Log.i("BackHandler", "Deactivate search")
-                cardViewModel.toggleSearch()
-                cardViewModel.changeSearchText("")
-                cardViewModel.clearCards()
-            }
-
-            selectedExpansion != null -> {
+            // Not needed I think?
+            /*selectedExpansion != null -> {
                 Log.i("BackHandler", "Deselect expansion -> Return to expansion list")
                 expansionViewModel.clearSelectedExpansion()
                 cardViewModel.clearCards()
-            }
+            }*/
         }
     }
 
@@ -213,7 +213,6 @@ fun MainView(expansionViewModel: ExpansionViewModel,
             }
         ) { innerPadding ->
 
-            // TODO: Option to order by cost / type / alphabetical
             LaunchedEffect(key1 = searchText, key2 = isSearchActive) {
                 if (isSearchActive && searchText.length >= 2) {
                     Log.i("LaunchedEffect", "Getting cards by search text ${searchText}")
@@ -227,9 +226,8 @@ fun MainView(expansionViewModel: ExpansionViewModel,
                 selectedCard != null -> {
                     Log.i("MainActivity", "View card detail (${selectedCard?.name})")
                     CardDetailPager(
-                        cardList = if (showRandomCards) randomCards + dependentCards + basicCards else cards,
+                        cardList = cards + randomCards + dependentCards + basicCards,
                         initialCard = selectedCard!!,
-                        onBackClick = { cardViewModel.clearSelectedCard() },
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -237,12 +235,15 @@ fun MainView(expansionViewModel: ExpansionViewModel,
                 // List of cards in selected expansion
                 // Includes random cards and search cards?
                 cardsToShow -> {
-                    Log.i("MainActivity", "View card list (${cards.size} cards)")
+                    Log.i(
+                        "MainActivity",
+                        "View card list (${cards.size + randomCards.size + dependentCards.size + basicCards.size} cards)"
+                    )
 
-                    if (!showRandomCards) {
+                    if (cards.isNotEmpty()) {
                         CardList(
                             cardList = cards,
-                            onCardClick = { card -> cardViewModel.selectCard(card) },
+                            onCardClick = { cardViewModel.selectCard(it) },
                             modifier = Modifier.padding(innerPadding),
                             listState = listState
                         )
@@ -256,7 +257,7 @@ fun MainView(expansionViewModel: ExpansionViewModel,
                             modifier = Modifier.padding(innerPadding),
                             listState = listState
                         )
-                        }
+                    }
                 }
 
                 // All expansions in grid
