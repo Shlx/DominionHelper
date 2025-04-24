@@ -50,30 +50,40 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
-import com.example.dominionhelper.data.Card
 import com.example.dominionhelper.R
+import com.example.dominionhelper.data.Card
+import com.example.dominionhelper.data.Expansion
 import com.example.dominionhelper.data.ExpansionDao
-import com.example.dominionhelper.getDrawableId
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import com.example.dominionhelper.getDrawableId
 
-// CardList is a composable function that creates a list of cards
+// Displays a list of cards
 @Composable
-fun CardList(cardList: List<Card>, modifier: Modifier, onCardClick: (Card) -> Unit, expansionDao: ExpansionDao) {
+fun CardList(
+    modifier: Modifier,
+    cardList: List<Card>,
+    onCardClick: (Card) -> Unit
+) {
     LazyColumn(
         modifier = modifier
     ) {
+        println("CardList Parameter - ${cardList.size}")
         items(cardList) { card ->
-            CardView(card, onClick = { onCardClick(card) }, expansionDao = expansionDao)
+            CardView(card, onCardClick)
         }
     }
 }
 
-// CardView displays a single card, with an image and a name
+// Displays a single card, with an image and a name
 @Composable
-fun CardView(card: Card, onClick: () -> Unit, expansionDao: ExpansionDao) {
+fun CardView(
+    card: Card,
+    onCardClick: (Card) -> Unit,
+) {
     val context = LocalContext.current
     val drawableId = getDrawableId(context, card.imageName)
 
@@ -86,20 +96,18 @@ fun CardView(card: Card, onClick: () -> Unit, expansionDao: ExpansionDao) {
 
         val applicationScope = CoroutineScope(SupervisorJob())
         applicationScope.launch {
-            val expansion = expansionDao.getAll().firstOrNull { it.set == card.set }
-            expansionImageId = expansion?.let { getDrawableId(context, it.imageName) } ?: R.drawable.ic_launcher_foreground
+            //val expansion = expansionDao.getAll().firstOrNull { it.set == card.set }
+            expansionImageId = /*expansion?.let { getDrawableId(context, it.imageName) }
+                ?: */R.drawable.ic_launcher_foreground
         }
-
     }
-
-
 
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .clickable {
                 keyboardController?.hide()
-                onClick()
+                onCardClick(card)
             }
             .padding(8.dp, 4.dp)
             .height(80.dp) // TODO: Switch to constants
@@ -110,9 +118,9 @@ fun CardView(card: Card, onClick: () -> Unit, expansionDao: ExpansionDao) {
         ) {
             // Vertical Bar
             ColoredBar(
-               barColors = card.getColorByTypes(),
-               modifier = Modifier
-                   .fillMaxHeight(),
+                barColors = card.getColorByTypes(),
+                modifier = Modifier
+                    .fillMaxHeight(),
             )
 
             // Image and Name
@@ -167,8 +175,11 @@ fun CardView(card: Card, onClick: () -> Unit, expansionDao: ExpansionDao) {
                     )
 
                     // Expansion Icon
-                    Box(modifier = Modifier.align(Alignment.CenterEnd)
-                        .padding(8.dp)) {
+                    Box(
+                        modifier = Modifier
+                            .align(Alignment.CenterEnd)
+                            .padding(8.dp)
+                    ) {
                         if (expansionImageId != 0) {
                             AsyncImage(
                                 model = expansionImageId,
@@ -236,7 +247,7 @@ fun CardDetailPager(
 ) {
     // Find the initial index of the card
     val initialIndex = cardList.indexOf(initialCard)
-    val pagerState = rememberPagerState(initialPage = initialIndex, pageCount = {cardList.size})
+    val pagerState = rememberPagerState(initialPage = initialIndex, pageCount = { cardList.size })
     Column {
         Box {
             IconButton(

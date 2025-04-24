@@ -13,8 +13,9 @@ interface ExpansionDao {
     suspend fun insertAll(expansions: List<Expansion>)
 
     @Query("SELECT * FROM expansions")
-    fun getAll(): List<Expansion>
+    suspend fun getAll(): List<Expansion>
 
+    // Turning this into a suspend fun crashes??
     @Query("SELECT * FROM expansions WHERE isOwned = 1")
     fun getOwned(): Flow<List<Expansion>>
 

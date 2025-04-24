@@ -1,5 +1,6 @@
 package com.example.dominionhelper.ui
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.dominionhelper.data.Card
@@ -38,6 +39,7 @@ class CardViewModel @Inject constructor(
     fun loadCardsByExpansion(set: Set) {
         viewModelScope.launch {
             _cards.value = cardDao.getCardsByExpansion(set)
+            Log.d("CardViewModel", "Loaded ${_cards.value.size} cards for expansion ${set.name}")
         }
     }
 
@@ -66,6 +68,7 @@ class CardViewModel @Inject constructor(
     fun searchCards(newText: String){
         viewModelScope.launch {
             _cards.value = cardDao.getFilteredCards("%$newText%")
+            Log.d("CardViewModel", "Search results: ${_cards.value.size}")
         }
     }
 

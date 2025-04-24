@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -45,18 +46,23 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.dominionhelper.data.Card
 import com.example.dominionhelper.data.CardDao
 import com.example.dominionhelper.data.Expansion
 import com.example.dominionhelper.data.ExpansionDao
 import com.example.dominionhelper.ui.CardDetailPager
 import com.example.dominionhelper.ui.CardList
+import com.example.dominionhelper.ui.CardViewModel
 import com.example.dominionhelper.ui.ExpansionGrid
+import com.example.dominionhelper.ui.ExpansionViewModel
+import com.example.dominionhelper.ui.TopBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -93,26 +99,13 @@ import javax.inject.Inject
 class MainActivity : ComponentActivity() {
 
     @Inject
-    lateinit var cardDao: CardDao
-
-    @Inject
-    lateinit var expansionDao: ExpansionDao
-
-    @Inject
     lateinit var applicationScope: CoroutineScope
 
-    var expansions: List<Expansion> by mutableStateOf(emptyList())
-    var cards: List<Card> by mutableStateOf(emptyList())
+    private val expansionViewModel: ExpansionViewModel by viewModels()
+    private val cardViewModel: CardViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        applicationScope.launch {
-            expansions = expansionDao.getAll()
-            Log.d("MainActivity", "Loaded ${expansions.size} expansions")
-            cards = cardDao.getAll()
-            Log.d("MainActivity", "Loaded ${cards.size} cards")
-        }
 
         setContent {
             DominionHelperTheme {
@@ -121,131 +114,126 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    MainView(expansionViewModel, cardViewModel)
+                }
+            }
+        }
+    }
+}
 
-                    var selectedExpansion by remember { mutableStateOf<Expansion?>(null) }
-                    var selectedCard by remember { mutableStateOf<Card?>(null) }
-                    var isSearchActive by remember { mutableStateOf(false) }
-                    var searchText by remember { mutableStateOf("") }
+@Composable
+fun MainView(expansionViewModel: ExpansionViewModel,
+             cardViewModel: CardViewModel) {
 
-                    val drawerState = rememberDrawerState(initialValue = Closed)
-                    var isLoading by remember {mutableStateOf(false)}
-                    var showRandomCards by remember {mutableStateOf(false)}
+    val selectedExpansion by expansionViewModel.selectedExpansion.collectAsStateWithLifecycle()
+    val selectedCard by cardViewModel.selectedCard.collectAsStateWithLifecycle()
+    val isSearchActive by cardViewModel.searchActive.collectAsStateWithLifecycle()
+    val searchText by cardViewModel.searchText.collectAsStateWithLifecycle()
+    val showRandomCards by cardViewModel.showRandomCards.collectAsStateWithLifecycle()
+    val cards by cardViewModel.cards.collectAsStateWithLifecycle()
 
-                    // BackHandler:
-                    BackHandler(enabled = selectedExpansion != null || drawerState.isOpen || isSearchActive) {
-                        if (drawerState.isOpen) {
-                            applicationScope.launch {
-                                Log.i("Back Handler", "Close drawer")
-                                drawerState.close()
-                            }
+    // State from ExpansionViewModel
+    val expansions by expansionViewModel.expansions.collectAsStateWithLifecycle()
 
-                        } else if (isSearchActive) {
-                            Log.i("Back Handler", "Deactivate search")
-                            isSearchActive = false
+    val drawerState = rememberDrawerState(initialValue = Closed)
+    val applicationScope = rememberCoroutineScope()
 
-                        } else if (selectedCard != null) {
-                            Log.i("Back Handler", "Deselect card -> Return to card list")
-                            selectedCard = null
+    // BackHandler:
+    BackHandler(enabled = selectedExpansion != null || drawerState.isOpen || isSearchActive) {
+        when {
+            drawerState.isOpen -> applicationScope.launch {
+                Log.i("Back Handler", "Close drawer")
+                drawerState.close()
+            }
 
-                        } else if (selectedExpansion != null) {
-                            Log.i("Back Handler", "Deselect expansion -> Return to expansion list")
-                            selectedExpansion = null
-                        }
-                    }
+            isSearchActive -> {
+                Log.i("Back Handler", "Deactivate search")
+                cardViewModel.toggleSearch()
+                cardViewModel.changeSearchText("")
+            }
 
-                    var selectedOption by remember { mutableStateOf("") } // Initially select the first option
-                    val options = listOf("Option 1", "Option 2", "Option 3")
+            selectedCard != null -> {
+                Log.i("Back Handler", "Deselect card -> Return to card list")
+                cardViewModel.clearSelectedCard()
+            }
 
-                    // Currently broken - java.lang.IllegalStateException: A MonotonicFrameClock is not available in this CoroutineContext. Callers should supply an appropriate MonotonicFrameClock using withContext.
-                    ModalNavigationDrawer(
-                        drawerState = drawerState,
-                        drawerContent = {
-                            DrawerContent(applicationScope, selectedOption, { selectedOption = it }, drawerState)
+            selectedExpansion != null -> {
+                Log.i("Back Handler", "Deselect expansion -> Return to expansion list")
+                expansionViewModel.clearSelectedExpansion()
+            }
+        }
+    }
+
+    var selectedOption by remember { mutableStateOf("") }
+    val options = listOf("Option 1", "Option 2", "Option 3")
+
+    ModalNavigationDrawer(
+        drawerState = drawerState,
+        drawerContent = {
+            DrawerContent(applicationScope, selectedOption, { selectedOption = it }, drawerState)
+        },
+        gesturesEnabled = drawerState.isOpen
+    ) {
+
+        Scaffold(
+            topBar = {
+                TopBar(
+                    applicationScope,
+                    drawerState,
+                    isSearchActive,
+                    { cardViewModel.toggleSearch() },
+                    searchText,
+                    { cardViewModel.changeSearchText(it) },
+                    onRandomCardsClicked = {
+                        cardViewModel.setRandomCards()
+                    },
+                    selectedExpansion = selectedExpansion
+                )
+            }
+        ) { innerPadding ->
+
+            // TODO: Option to order by cost / type / alphabetical
+            LaunchedEffect(key1 = searchText, key2 = isSearchActive) {
+                if (isSearchActive && searchText.length >= 2) {
+                    Log.i("LaunchedEffect", "Getting cards by search text ${searchText}")
+                    cardViewModel.searchCards(searchText)
+                }
+            }
+
+            when {
+                selectedExpansion == null && searchText.length <= 1 && !showRandomCards -> {
+                    Log.i("MainActivity", "View expansion list")
+                    ExpansionGrid(
+                        expansions = expansions,
+                        onExpansionClick = { expansion ->
+                            Log.i(
+                                "MainActivity",
+                                "Getting cards from expansion ${expansion.name}"
+                            )
+                            cardViewModel.loadCardsByExpansion(expansion.set)
+                            expansionViewModel.selectExpansion(expansion)
                         },
-                        gesturesEnabled = drawerState.isOpen
-                    ) {
+                        modifier = Modifier.padding(innerPadding)
+                    )
+                }
 
-                        Scaffold(
-                            topBar = {
-                                TopBar(
-                                    applicationScope,
-                                    drawerState,
-                                    isSearchActive,
-                                    { isSearchActive = !isSearchActive },
-                                    searchText,
-                                    { searchText = it },
-                                    onRandomCardsClicked = {
-                                        // Get ApplicationContext scope here?
-                                        applicationScope.launch {
+                selectedCard == null -> {
+                    Log.i("MainActivity", "View card list (${cards.size} cards)")
+                    CardList(
+                        cardList = cards,
+                        onCardClick = { card -> cardViewModel.selectCard(card) },
+                        modifier = Modifier.padding(innerPadding)
+                    )
+                }
 
-                                            //isLoading = true // Probably not needed?
-                                            // Error if no expansions selected
-                                            cards = cardDao.getRandomCardsFromOwnedExpansions(10)
-                                            Log.i("Random cards", "Generated ${cards.size} cards")
-                                            //isLoading = false
-                                            showRandomCards = true
-                                        }
-                                    },
-                                    selectedExpansion = selectedExpansion
-                                )
-                            }
-                        ) { innerPadding ->
-
-                            // TODO: Option to order by cost / type / alphabetical
-                            LaunchedEffect(key1 = searchText, key2 = isSearchActive) {
-                                if (isSearchActive && searchText.length >= 2) {
-                                    Log.i("LaunchedEffect", "Getting cards by search text ${searchText}")
-                                    cards = cardDao.getFilteredCards("%$searchText%")
-                                }/* else if (selectedExpansion != null) {
-                                    Log.i("LaunchedEffect", "Getting cards from expansion ${selectedExpansion!!.name}")
-                                    gameCards = cardDao.getCardsByExpansion(selectedExpansion!!.set)
-                                }*/
-                            }
-
-                            // View list of expansions
-                            // TODO: Geht hier rein on randomized cards
-                            // -> Neue activity für card list?
-                            if (selectedExpansion == null && searchText.length <= 1 && !showRandomCards) {
-                                Log.i("MainActivity", "View expansion list")
-                                ExpansionGrid(
-                                    expansions = expansions,
-                                    expansionDao = expansionDao,
-                                    onExpansionClick = { expansion ->
-                                        selectedExpansion = expansion
-                                        applicationScope.launch {
-                                            Log.i("MainActivity", "Getting cards from expansion ${selectedExpansion!!.name}")
-                                            cards = cardDao.getCardsByExpansion(expansion.set)
-                                        }
-                                    },
-                                    modifier = Modifier.padding(innerPadding)
-                                )
-
-                                // View a list of cards
-                            } else if (selectedCard == null) {
-                                Log.i("MainActivity", "View card list (${cards.size} cards)")
-                                CardList(
-                                    cardList = cards,
-                                    onCardClick = { card ->
-                                        selectedCard = card
-                                    },
-                                    expansionDao = expansionDao,
-                                    modifier = Modifier.padding(innerPadding)
-                                )
-
-                                // View a single card
-                            } else if (!isLoading){
-                                Log.i("MainActivity", "View card detail (${selectedCard?.name})")
-                                CardDetailPager(
-                                    cardList = cards,
-                                    initialCard = selectedCard!!,
-                                    onBackClick = { selectedCard = null },
-                                    modifier = Modifier.padding(innerPadding)
-                                )
-                            } else {
-                                CircularProgressIndicator()
-                            }
-                        }
-                    }
+                else -> {
+                    Log.i("MainActivity", "View card detail (${selectedCard?.name})")
+                    CardDetailPager(
+                        cardList = cards,
+                        initialCard = selectedCard!!,
+                        onBackClick = { cardViewModel.clearSelectedCard() },
+                        modifier = Modifier.padding(innerPadding)
+                    )
                 }
             }
         }
@@ -279,96 +267,3 @@ fun DrawerContent(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun TopBar(
-    scope: CoroutineScope,
-    drawerState: DrawerState,
-    isSearchActive: Boolean,
-    onSearchClicked: () -> Unit,
-    searchText: String,
-    onSearchTextChange: (String) -> Unit,
-    onRandomCardsClicked: () -> Unit,
-    selectedExpansion: Expansion? = null
-) {
-    TopAppBar(
-        title = {
-            // Conditionally show the search field
-            if (isSearchActive) {
-                // TODO placeholder text is cut off
-                TextField(
-                    value = searchText,
-                    onValueChange = { onSearchTextChange(it) },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 8.dp), // Add padding here
-                    placeholder = {
-                        CompositionLocalProvider(
-                            LocalTextStyle provides LocalTextStyle.current.copy(
-                                color = Color.Gray.copy(alpha = 0.5f),
-                                lineHeight = 26.sp
-                            )
-                        ) {
-                            Text("Search")
-                        }
-                    },
-                    textStyle = TextStyle(lineHeight = 26.sp),
-                    colors = TextFieldDefaults.colors(
-                        focusedContainerColor = Color.Black.copy(alpha = 0.0f), // Completely transparent
-                        unfocusedContainerColor = Color.Black.copy(alpha = 0.0f), // Completely transparent
-                        disabledContainerColor = Color.Black.copy(alpha = 0.0f) // Completely transparent
-                    )
-                )
-            } else if (selectedExpansion != null) {
-                Text(selectedExpansion.name) // Display expansion name
-            } else {
-                Text("Dominion Helper")
-            }
-        },
-        colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
-            titleContentColor = MaterialTheme.colorScheme.primary,
-        ),
-        navigationIcon = {
-            // Conditionally show the back button or hamburger menu
-            if (isSearchActive) {
-                IconButton(onClick = { onSearchClicked() }) {
-                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
-                }
-            } else {
-                IconButton(onClick = {
-                    scope.launch {
-                        drawerState.open()
-                    }
-                }) {
-                    Icon(
-                        Icons.Filled.Menu,
-                        contentDescription = "Localized description"
-                    )
-                }
-            }
-        },
-        actions = {
-            IconButton(onClick = {
-                onSearchClicked()
-            }) {
-                Icon(Icons.Filled.Search, contentDescription = "Localized description")
-            }
-            IconButton(onClick = {
-                onRandomCardsClicked()
-            }) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_launcher_foreground),
-                    contentDescription = "Localized description",
-                    modifier = Modifier.size(24.dp)
-                )
-            }
-            IconButton(onClick = { /* TODO Handle more options click */ }) {
-                Icon(
-                    Icons.Filled.MoreVert,
-                    contentDescription = "Localized description"
-                )
-            }
-        }
-    )
-}

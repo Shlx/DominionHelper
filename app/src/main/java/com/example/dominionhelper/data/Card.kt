@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.compose.ui.graphics.Color
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.dominionhelper.R
 import com.google.gson.GsonBuilder
 import com.google.gson.TypeAdapter
 import com.google.gson.annotations.SerializedName
@@ -25,10 +26,11 @@ data class Card(
     val supply: Boolean,
     val landscape: Boolean,
     val types: List<Type>,
-    @SerializedName("image_name") val imageName: String
+    @SerializedName("image_name") val imageName: String,
+    var expansionImageId: Int = R.drawable.ic_launcher_foreground
 ) {
     fun getColorByTypes(): List<Color> {
-        var list = mutableListOf<Color>()
+        val list = mutableListOf<Color>()
         if (types.contains(Type.TREASURE)) {
             list.add(Color(0xFFF7DC7E))
         }
@@ -59,6 +61,8 @@ data class Card(
             }
             list.add(Color(0xFFEF876F))
         }
+
+        // Default color
         if (list.isEmpty()) {
             list.add(Color(0xFFF3EEE2))
         }
