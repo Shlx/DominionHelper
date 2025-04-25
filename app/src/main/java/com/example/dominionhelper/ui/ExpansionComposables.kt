@@ -35,6 +35,7 @@ import com.example.dominionhelper.getDrawableId
 fun ExpansionGrid(
     expansions: List<Expansion>,
     onExpansionClick: (Expansion) -> Unit,
+    onCheckedChange: (Expansion, Boolean) -> Unit,
     modifier: Modifier = Modifier,
     gridState: LazyGridState = rememberLazyGridState()
 ) {
@@ -49,7 +50,9 @@ fun ExpansionGrid(
         items(expansions) { expansion ->
             ExpansionView(
                 expansion = expansion,
-                onClick = { onExpansionClick(expansion) })
+                onClick = { onExpansionClick(expansion) },
+                onCheckedChange = onCheckedChange
+            )
         }
     }
 }
@@ -59,7 +62,7 @@ fun ExpansionGrid(
 fun ExpansionView(
     expansion: Expansion,
     onClick: () -> Unit,
-    cardViewModel: CardViewModel = hiltViewModel()
+    onCheckedChange: (Expansion, Boolean) -> Unit,
 ) {
 
     val context = LocalContext.current
@@ -97,7 +100,7 @@ fun ExpansionView(
             // Switch at bottom right
             Switch(
                 checked = expansion.isOwned,
-                onCheckedChange = { cardViewModel.updateIsOwned(expansion, it) },
+                onCheckedChange = { onCheckedChange(expansion, it) },
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
                     .padding(0.dp, 0.dp, 16.dp, 8.dp)

@@ -75,10 +75,21 @@ class CardViewModel @Inject constructor(
         Log.d("CardViewModel", "Cleared selected expansion")
     }
 
+
+
     fun updateIsOwned(expansion: Expansion, newIsOwned: Boolean) {
         viewModelScope.launch {
             expansionDao.updateIsOwned(expansion.id, newIsOwned)
-            Log.d("CardViewModel", "Updated isOwned for expansion ${expansion.name} to $newIsOwned")
+
+            val currentExpansions = _expansions.value.toMutableList()
+            val index = currentExpansions.indexOfFirst { it.id == expansion.id }
+
+            if (index != -1) {
+                val updatedExpansion = expansion.copy(isOwned = newIsOwned)
+                currentExpansions[index] = updatedExpansion
+                _expansions.value = currentExpansions
+            }
+            Log.i("CardViewModel", "Updated isOwned for expansion ${expansion.name} to $newIsOwned")
         }
     }
 

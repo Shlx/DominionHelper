@@ -33,6 +33,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.dominionhelper.ui.CardDetailPager
@@ -66,7 +67,6 @@ import kotlinx.coroutines.launch
 // Remove search from detail view?
 // First launch: No data shown
 // Close keyboard when scrolling on search results
-// Landscape detail view
 // Rethink the basic Card flag. I think it's only there for the UI fix?
 // -> Nope I think it makes sense for the card randomization. These cards are never pulled without meeting conditions
 // Rethink color gradient on mixed cards
@@ -79,7 +79,12 @@ import kotlinx.coroutines.launch
 // Add sorting for expansions?
 // Save sort type between sessions
 // Remove sort by expansion in expansion view?
-// Add 6* / 4+ costs
+// Add 6* / 4+ costs (How? cost as a string in json?)
+// Add ability to choose player number in generated kingdom
+// Landscape cards are low res
+// Warning when navigating back from generated kingdom
+
+// You can make infinite instances of Home and Settings. Need to reload existing ones
 
 // I think list state is shared between search / expansion and random cards (doesn't reset)
 // -> Seems fine between expansion and random cards, expansion to search needs to reset
@@ -272,6 +277,9 @@ fun MainView(
                             cardViewModel.loadCardsByExpansion(expansion)
                             cardViewModel.selectExpansion(expansion)
                         },
+                        onCheckedChange = { expansion, checked ->
+                            cardViewModel.updateIsOwned(expansion, checked)
+                        },
                         modifier = Modifier.padding(innerPadding),
                         gridState = gridState
                     )
@@ -288,23 +296,33 @@ fun DrawerContent(
     onOptionSelected: (String) -> Unit,
     drawerState: DrawerState
 ) {
-    val options = listOf("Option 1", "Option 2", "Option 3")
+    val screens = listOf("Home", "Settings", "Option 3")
+    val context = LocalContext.current
+    //val screens = DrawerScreen.values()
 
     ModalDrawerSheet {
         Spacer(Modifier.height(12.dp))
-        options.forEach { option ->
+        screens.forEach { option ->
             NavigationDrawerItem(
                 label = { Text(option) },
-                selected = option == selectedOption,
+                selected = option == "Home",
                 onClick = {
                     scope.launch {
                         drawerState.close()
+                        onOptionSelected(option)
                     }
-                    onOptionSelected(option)
-                },
-                modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
+                when (option) {
+                    "Home" -> {}//Do nothing
+                    "Settings" -> {
+                        navigateToActivity(context, SettingsActivity::class.java)
+                    }
+                    "Option 3" -> {
+                        //navigateToActivity(context, AboutActivity::class.java)
+                    } else -> {}
+                }
+        },
+        modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
             )
         }
     }
 }
-

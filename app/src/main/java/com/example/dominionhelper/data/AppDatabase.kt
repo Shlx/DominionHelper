@@ -9,8 +9,6 @@ import com.example.dominionhelper.Converters
     entities = [
         Card::class,
         Expansion::class,
-        //CardCategory::class,
-        //CardCategoryCrossRef::class
     ],
     version = 1,
     exportSchema = false
