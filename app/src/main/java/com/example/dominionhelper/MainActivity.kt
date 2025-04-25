@@ -90,6 +90,15 @@ import kotlinx.coroutines.launch
 // -> Seems fine between expansion and random cards, expansion to search needs to reset
 // Going back from expansion list resets even though it shouldn't
 
+// Alchemy potion costs
+// Move potion thumbnail a bit
+
+// Check image sizes
+// Turn placeholders to webp
+
+// Heirlooms should remove a copper each
+// Chose 2 from Events, Landmarks, Projects, Ways, Traits
+
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 

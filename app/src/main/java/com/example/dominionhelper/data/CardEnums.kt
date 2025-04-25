@@ -33,7 +33,8 @@ enum class Set (val imageId: Int = R.drawable.ic_launcher_foreground) {
     PROMO(R.drawable.set_promo),
     CORNUCOPIA_GUILDS(R.drawable.set_unknown),
     CORNUCOPIA_GUILDS_1E(R.drawable.set_unknown),
-    CORNUCOPIA_GUILDS_2E(R.drawable.set_unknown)
+    CORNUCOPIA_GUILDS_2E(R.drawable.set_unknown),
+    PLACEHOLDER(R.drawable.set_nocturne)
 }
 
 enum class Type {
@@ -89,12 +90,12 @@ enum class Category {
     CANTRIP,
     NONTERMINAL_DRAW,
     TERMINAL_DRAW,
-    // ^ADDED
     CURSER,
-    NONTERMINAL,
-    TERMINAL,
-    THRONE_ROOM_VARIANT,
+    NONTERMINAL, // Skipped: Cantrips, Villages, Non-terminal draw, peddlers, disappearing money
+    TERMINAL, // Skipped: Way too many cards
+    THRONEROOM_VARIANT,
     VILLAGE,
+    // ^done
     DECK_INSPECTOR,
     DIGGING,
     DISCARD, // For benefit

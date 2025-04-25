@@ -58,6 +58,7 @@ import androidx.compose.ui.unit.sp
 import com.example.dominionhelper.R
 import com.example.dominionhelper.data.Card
 import com.example.dominionhelper.data.Category
+import com.example.dominionhelper.data.Set
 import com.example.dominionhelper.data.Type
 import com.example.dominionhelper.getDrawableId
 import kotlin.math.cos
@@ -207,8 +208,13 @@ fun CardView(
                             .fillMaxHeight()
                             .fillMaxWidth()
                             .graphicsLayer {
-                                scaleX = if (card.landscape) 2.1f else 2.5f
-                                scaleY = if (card.landscape) 2.1f else 2.5f
+                                if (card.set == Set.PLACEHOLDER) {
+                                    scaleX = 1.25f
+                                    scaleY = 1.25f
+                                } else {
+                                    scaleX = if (card.landscape) 2.1f else 2.5f
+                                    scaleY = if (card.landscape) 2.1f else 2.5f
+                                }
                             }
                             .offset {
                                 IntOffset(
@@ -219,6 +225,7 @@ fun CardView(
                                                 && !card.types.contains(Type.SHELTER)
                                                 && !card.types.contains(Type.HEIRLOOM) -> 26
 
+                                        card.set == Set.PLACEHOLDER -> 0
                                         card.landscape -> 13
                                         else -> 31
                                     }

@@ -143,7 +143,9 @@
     "image_name": "festival",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Gardens",
@@ -401,7 +403,9 @@
     "image_name": "throneroom",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Throneroom_variant"
+    ]
   },
   {
     "name": "Vassal",
@@ -429,7 +433,9 @@
     "image_name": "village",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Witch",
@@ -445,7 +451,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Curser"
     ]
   },
   {
@@ -749,7 +756,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Curser"
     ]
   },
   {
@@ -781,7 +789,9 @@
     "image_name": "miningvillage",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Minion",
@@ -812,7 +822,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Village"
     ]
   },
   {
@@ -860,7 +871,9 @@
     "image_name": "replace",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Curser"
+    ]
   },
   {
     "name": "Saboteur",
@@ -934,7 +947,9 @@
     "image_name": "shantytown",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Steward",
@@ -965,7 +980,9 @@
     "image_name": "swindler",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Curser"
+    ]
   },
   {
     "name": "Torturer",
@@ -981,7 +998,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Curser"
     ]
   },
   {
@@ -1058,7 +1076,9 @@
     "image_name": "ambassador",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Curser"
+    ]
   },
   {
     "name": "Astrolabe",
@@ -1087,7 +1107,9 @@
     "image_name": "bazaar",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Blockade",
@@ -1103,7 +1125,9 @@
     "image_name": "blockade",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Curser"
+    ]
   },
   {
     "name": "Caravan",
@@ -1166,7 +1190,9 @@
     "image_name": "embargo",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Curser"
+    ]
   },
   {
     "name": "Explorer",
@@ -1195,7 +1221,9 @@
     "image_name": "fishingvillage",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Ghost Ship",
@@ -1317,7 +1345,9 @@
     "image_name": "nativevillage",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Navigator",
@@ -1454,7 +1484,9 @@
     "image_name": "seahag",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Curser"
+    ]
   },
   {
     "name": "Sea Witch",
@@ -1471,7 +1503,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Curser"
     ]
   },
   {
@@ -1642,7 +1675,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Cantrip"
+      "Cantrip",
+      "Curser"
     ]
   },
   {
@@ -1745,7 +1779,9 @@
     "image_name": "university",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Vineyard",
@@ -1830,7 +1866,9 @@
     "image_name": "charlatan",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Curser"
+    ]
   },
   {
     "name": "City",
@@ -1845,7 +1883,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Nonterminal_draw"
+      "Nonterminal_draw",
+      "Village"
     ]
   },
   {
@@ -2017,7 +2056,9 @@
     "image_name": "kingscourt",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Throneroom_variant"
+    ]
   },
   {
     "name": "Loan",
@@ -2090,7 +2131,9 @@
     "image_name": "mountebank",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Curser"
+    ]
   },
   {
     "name": "Peddler",
@@ -2177,7 +2220,9 @@
     "image_name": "tiara",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Throneroom_variant"
+    ]
   },
   {
     "name": "Trade Route",
@@ -2266,7 +2311,9 @@
     "image_name": "workersvillage",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Platinum",
@@ -2410,7 +2457,9 @@
     "image_name": "farmhands",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Farming Village",
@@ -2424,7 +2473,9 @@
     "image_name": "farmingvillage",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Farrier",
@@ -2499,7 +2550,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Cantrip"
+      "Cantrip",
+      "Village"
     ]
   },
   {
@@ -2604,7 +2656,9 @@
     "image_name": "jester",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Curser"
+    ]
   },
   {
     "name": "Journeyman",
@@ -2693,7 +2747,9 @@
     "image_name": "plaza",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Remake",
@@ -2738,7 +2794,9 @@
     "image_name": "soothsayer",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Curser"
+    ]
   },
   {
     "name": "Stonemason",
@@ -2796,7 +2854,9 @@
     "image_name": "youngwitch",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Curser"
+    ]
   },
   {
     "name": "Bag of Gold",
@@ -2827,7 +2887,9 @@
     "image_name": "coronet",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Throneroom_variant"
+    ]
   },
   {
     "name": "Courser",
@@ -2892,7 +2954,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Curser"
     ]
   },
   {
@@ -3001,7 +3064,9 @@
     "image_name": "bordervillage",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Cache",
@@ -3046,7 +3111,9 @@
     "image_name": "cauldron",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Curser"
+    ]
   },
   {
     "name": "Crossroads",
@@ -3196,7 +3263,9 @@
     "image_name": "illgottengains",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Curser"
+    ]
   },
   {
     "name": "Inn",
@@ -3210,7 +3279,9 @@
     "image_name": "inn",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Jack of All Trades",
@@ -3499,7 +3570,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Curser"
     ]
   },
   {
@@ -3557,7 +3629,9 @@
     "image_name": "banditcamp",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Beggar",
@@ -3616,7 +3690,9 @@
     "image_name": "counterfeit",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Throneroom_variant"
+    ]
   },
   {
     "name": "Cultist",
@@ -3772,7 +3848,9 @@
     "image_name": "fortress",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Graverobber",
@@ -3936,7 +4014,9 @@
     "image_name": "procession",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Throneroom_variant"
+    ]
   },
   {
     "name": "Rats",
@@ -4109,7 +4189,9 @@
     "image_name": "squire",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Storeroom",
@@ -4171,7 +4253,9 @@
     "image_name": "wanderingminstrel",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Abandoned Mine",
@@ -4416,7 +4500,9 @@
     "image_name": "coinoftherealm",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Distant Lands",
@@ -4494,7 +4580,9 @@
     "image_name": "giant",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Curser"
+    ]
   },
   {
     "name": "Guide",
@@ -4559,7 +4647,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Nonterminal_draw"
+      "Nonterminal_draw",
+      "Village"
     ]
   },
   {
@@ -4591,7 +4680,9 @@
     "image_name": "messenger",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Curser"
+    ]
   },
   {
     "name": "Miser",
@@ -4651,7 +4742,9 @@
     "image_name": "port",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Ranger",
@@ -4728,7 +4821,9 @@
     "image_name": "royalcarriage",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Throneroom_variant"
+    ]
   },
   {
     "name": "Storyteller",
@@ -4761,7 +4856,9 @@
     "image_name": "swamphag",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Curser"
+    ]
   },
   {
     "name": "Transmogrify",
@@ -4835,7 +4932,9 @@
     "image_name": "disciple",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Throneroom_variant"
+    ]
   },
   {
     "name": "Fugitive",
@@ -5248,7 +5347,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Nonterminal_draw"
+      "Nonterminal_draw",
+      "Village"
     ]
   },
   {
@@ -5278,7 +5378,9 @@
     "image_name": "catapult",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Curser"
+    ]
   },
   {
     "name": "Chariot Race",
@@ -5321,7 +5423,8 @@
     "basic": false,
     "debt": 8,
     "categories": [
-      "Nonterminal_draw"
+      "Nonterminal_draw",
+      "Village"
     ]
   },
   {
@@ -5337,7 +5440,9 @@
     "image_name": "crown",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Throneroom_variant"
+    ]
   },
   {
     "name": "Crumbling Castle",
@@ -5381,7 +5486,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Nonterminal_draw"
+      "Nonterminal_draw",
+      "Village"
     ]
   },
   {
@@ -5744,7 +5850,9 @@
     "image_name": "villa",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Wild Hunt",
@@ -5873,7 +5981,9 @@
     "image_name": "ritual",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Curser"
+    ]
   },
   {
     "name": "Salt the Earth",
@@ -6267,7 +6377,9 @@
     "image_name": "blessedvillage",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Cemetery",
@@ -6357,7 +6469,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Nonterminal_draw"
+      "Nonterminal_draw",
+      "Village"
     ]
   },
   {
@@ -6465,7 +6578,9 @@
     "image_name": "ghosttown",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Guardian",
@@ -6496,7 +6611,9 @@
     "image_name": "idol",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Curser"
+    ]
   },
   {
     "name": "Leprechaun",
@@ -6752,7 +6869,7 @@
     "name": "Bat",
     "set": "Nocturne",
     "cost": null,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Night"
@@ -6775,7 +6892,9 @@
     "image_name": "cursedgold",
     "basic": true,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Curser"
+    ]
   },
   {
     "name": "Ghost",
@@ -6791,7 +6910,9 @@
     "image_name": "ghost",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Throneroom_variant"
+    ]
   },
   {
     "name": "Goat",
@@ -7487,7 +7608,10 @@
     "image_name": "hideout",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Curser",
+      "Village"
+    ]
   },
   {
     "name": "Improve",
@@ -7545,7 +7669,9 @@
     "image_name": "mountainvillage",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Old Witch",
@@ -7561,7 +7687,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Curser"
     ]
   },
   {
@@ -7637,7 +7764,9 @@
     "image_name": "scepter",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Throneroom_variant"
+    ]
   },
   {
     "name": "Scholar",
@@ -7841,7 +7970,9 @@
     "image_name": "citadel",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Throneroom_variant"
+    ]
   },
   {
     "name": "City Gate",
@@ -8155,7 +8286,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Curser"
     ]
   },
   {
@@ -8228,7 +8360,9 @@
     "image_name": "coven",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Curser"
+    ]
   },
   {
     "name": "Destrier",
@@ -8345,7 +8479,9 @@
     "image_name": "hostelry",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Hunting Lodge",
@@ -8359,7 +8495,9 @@
     "image_name": "huntinglodge",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Kiln",
@@ -8402,7 +8540,9 @@
     "image_name": "mastermind",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Throneroom_variant"
+    ]
   },
   {
     "name": "Paddock",
@@ -8536,7 +8676,9 @@
     "image_name": "villagegreen",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Wayfarer",
@@ -8666,7 +8808,9 @@
     "image_name": "desperation",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Curser"
+    ]
   },
   {
     "name": "Enclave",
@@ -9018,7 +9162,9 @@
     "image_name": "wayoftheox",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Way of the Owl",
@@ -9178,7 +9324,9 @@
     "image_name": "barbarian",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Curser"
+    ]
   },
   {
     "name": "Battle Plan",
@@ -9261,7 +9409,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Nonterminal_draw"
+      "Nonterminal_draw",
+      "Village"
     ]
   },
   {
@@ -9355,7 +9504,9 @@
     "image_name": "elder",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Throneroom_variant"
+    ]
   },
   {
     "name": "Emissary",
@@ -9562,7 +9713,9 @@
     "image_name": "merchantcamp",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Miller",
@@ -9627,7 +9780,9 @@
     "image_name": "royalgalley",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Throneroom_variant"
+    ]
   },
   {
     "name": "Sentinel",
@@ -9690,7 +9845,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Cantrip"
+      "Cantrip",
+      "Curser"
     ]
   },
   {
@@ -9708,7 +9864,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Cantrip"
+      "Cantrip",
+      "Curser"
     ]
   },
   {
@@ -9723,7 +9880,9 @@
     "image_name": "specialist",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Throneroom_variant"
+    ]
   },
   {
     "name": "Stronghold",
@@ -9848,7 +10007,9 @@
     "image_name": "town",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Town Crier",
@@ -10391,7 +10552,9 @@
     "image_name": "firstmate",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Throneroom_variant"
+    ]
   },
   {
     "name": "Flagship",
@@ -10407,7 +10570,9 @@
     "image_name": "flagship",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Throneroom_variant"
+    ]
   },
   {
     "name": "Fortune Hunter",
@@ -10481,7 +10646,9 @@
     "image_name": "harborvillage",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Jewelled Egg",
@@ -10509,7 +10676,9 @@
     "image_name": "kingscache",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Throneroom_variant"
+    ]
   },
   {
     "name": "Landing Party",
@@ -10541,7 +10710,9 @@
     "image_name": "longship",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Mapmaker",
@@ -10750,7 +10921,9 @@
     "image_name": "siren",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Curser"
+    ]
   },
   {
     "name": "Stowaway",
@@ -10781,7 +10954,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Nonterminal_draw"
+      "Nonterminal_draw",
+      "Village"
     ]
   },
   {
@@ -10826,7 +11000,9 @@
     "image_name": "trickster",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Curser"
+    ]
   },
   {
     "name": "Wealthy Village",
@@ -10840,7 +11016,9 @@
     "image_name": "wealthyvillage",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Amphora",
@@ -11310,7 +11488,9 @@
     "image_name": "cursed",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Curser"
+    ]
   },
   {
     "name": "Fated",
@@ -11450,7 +11630,9 @@
     "image_name": "reckless",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Throneroom_variant"
+    ]
   },
   {
     "name": "Rich",
@@ -11587,7 +11769,8 @@
     "basic": false,
     "debt": 6,
     "categories": [
-      "Cantrip"
+      "Cantrip",
+      "Throneroom_variant"
     ]
   },
   {
@@ -11651,7 +11834,10 @@
     "image_name": "kitsune",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Curser",
+      "Village"
+    ]
   },
   {
     "name": "Litter",
@@ -11666,7 +11852,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Nonterminal_draw"
+      "Nonterminal_draw",
+      "Village"
     ]
   },
   {
@@ -11828,7 +12015,9 @@
     "image_name": "rusticvillage",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Samurai",
@@ -11860,7 +12049,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Cantrip"
+      "Cantrip",
+      "Curser"
     ]
   },
   {
@@ -12003,7 +12193,9 @@
     "image_name": "practice",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Throneroom_variant"
+    ]
   },
   {
     "name": "Receive Tribute",
@@ -12241,7 +12433,9 @@
     "image_name": "sickness",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Curser"
+    ]
   },
   {
     "name": "Avanto",
@@ -12378,7 +12572,9 @@
     "image_name": "prince",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Throneroom_variant"
+    ]
   },
   {
     "name": "Sauna",
@@ -12436,7 +12632,9 @@
     "image_name": "walledvillage",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [
+      "Village"
+    ]
   },
   {
     "name": "Knights",
@@ -12495,6 +12693,34 @@
       "Victory"
     ],
     "image_name": "farm",
+    "basic": false,
+    "debt": 0,
+    "categories": []
+  },
+  {
+    "name": "All 12 boons",
+    "set": "PLACEHOLDER",
+    "cost": 0,
+    "supply": false,
+    "landscape": true,
+    "types": [
+      "Boon"
+    ],
+    "image_name": "boon_placeholder",
+    "basic": false,
+    "debt": 0,
+    "categories": []
+  },
+  {
+    "name": "All 12 hexes",
+    "set": "PLACEHOLDER",
+    "cost": 0,
+    "supply": false,
+    "landscape": true,
+    "types": [
+      "Hex"
+    ],
+    "image_name": "hex_placeholder",
     "basic": false,
     "debt": 0,
     "categories": []

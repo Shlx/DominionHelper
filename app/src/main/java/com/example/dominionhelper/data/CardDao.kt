@@ -52,15 +52,15 @@ interface CardDao {
         WHERE e.isOwned = 1
         AND c.landscape = 0
         AND c.basic = 0
+        AND c.supply = 1 /*This makes sense right*/
         ORDER BY RANDOM()
         LIMIT :amount
     """)
     suspend fun getRandomCardsFromOwnedExpansions(amount: Int): List<Card>
 
-    @Query("SELECT * FROM cards WHERE name IN (:names)")
-    suspend fun getBasicCards(names: List<String> = BASIC_CARD_NAMES): List<Card>
 
-    @Query("SELECT * FROM cards ORDER BY RANDOM() LIMIT 1")
-    suspend fun getDependentCards(): List<Card>
+    // Make this "getCardsByNameList"
+    @Query("SELECT * FROM cards WHERE name IN (:names)")
+    suspend fun getCardsByNameList(names: List<String>): List<Card>
 
 }

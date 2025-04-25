@@ -237,3 +237,115 @@ Royal Blacksmith — Effective handsize increase depends on the amount of Copper
 
 -------
 -------
+
+https://wiki.dominionstrategy.com/index.php/Curser
+
+Primary cursers
+These are Kingdom cards that consistently cause other players to acquire Curses in ways that they do not always have the option to avoid:
+
+Dominion: Witch
+Seaside: Sea Hag, Sea Witch
+Alchemy: Familiar
+Prosperity: Charlatan, Mountebank
+Hinterlands: Ill-Gotten Gains
+Cornucopia & Guilds: Soothsayer
+Renaissance: Old Witch
+Menagerie: Coven
+Plunder: Siren, Trickster
+Circle of Witches, from Allies, is not a Kingdom card itself, but it allows you to use Liaison Kingdom cards as cursers.
+
+Secondary cursers
+These cards can cause opponents to gain Curses, but in more restricted circumstances:
+
+Cards that depend on the top card of your opponent's deck:
+
+Intrigue: Swindler—may give a Curse when they reveal a card costing $0, often a Copper.
+Cornucopia & Guilds: Jester—gives a Curse when they reveal a Victory card.
+Adventures: Giant—gives a Curse when they reveal a card not costing between $3 and $6.
+Allies: Barbarian—gives a Curse when they reveal a card not costing $3 or more.
+Cards that require a specific condition from the user:
+
+Intrigue: Replace—it only distributes Curses if you gain a Victory card
+Hinterlands: Cauldron—only distributes a Curse when you gain your third Action card of the turn
+Hinterlands: Witch's Hut—only distributes a Curse if you discard two Action cards
+Cornucopia & Guilds: Followers—as this is a Prize, there is only a single copy which is rather difficult to gain.
+Empires: Catapult — distributes a Curse only if you trash a card costing $3 or more
+Nocturne: Idol — distributes a Curse only if you have an even number of Idols in play
+Allies: Sorceress—distributes a Curse only if you can guess what card is on top of your deck
+Rising Sun: Kitsune—distributes a Curse as one of several possible options that you can choose between
+Rising Sun: Snake Witch—can only distribute a Curse if you have no duplicate cards in hand
+Cards whose effect can be avoided by your opponent in some circumstances:
+
+Intrigue: Torturer—your opponent is always free to not take the Curse and discard instead; in games without villages it's relatively likely that few Curses will be distributed by Torturer
+Seaside: Blockade—it only distributes Curses to players who gain the same card you chose
+Cornucopia & Guilds: Young Witch—your opponent can reveal the Bane to avoid gaining a Curse
+Adventures: Swamp Hag — your opponent may avoid gaining a Curse if they choose to buy no cards on their turn
+Menagerie: Black Cat—distributes a Curse only when another player gains a Victory card
+Allies: Sorcerer—distributes a Curse only to opponents who can't guess what card is on top of their deck.
+Other cards that can distribute Curses but are not usually considered cursers
+Unlike the primary and secondary cursers which always affect other players, the cards in this category have other primary purposes than handing out Curses or they do not only affect the opponent of the user.
+
+Masquerade (from Intrigue) and Ambassador (from Seaside) can only redistribute Curses after they have been gained through other means.
+Seaside: Embargo— is an effect that can sometimes be played around and which also affects the user.
+Adventures: Messenger—causes all players to gain a card costing up to $4, which can be a Curse; but it affects the user as well as their opponents and is more likely to be used for something else.
+Some effects use gaining Curses as a drawback or penalty to the user:
+
+Nocturne: Cursed Gold
+Empires: Ritual
+Renaissance: Hideout—gives you a Curse if you trash a Victory card
+Menagerie: Desperation
+Plunder: Cursed
+Rising Sun: Sickness
+
+------
+------
+
+https://wiki.dominionstrategy.com/index.php/Throne_Room_variant
+
+Throne Room - double-plays an Action card
+King's Court - triple-plays an Action card
+Procession - double-plays an Action card, then upgrades it
+Disciple - double-plays an Action card, then gains a copy of it
+Royal Carriage - replays an Action card after-the-fact, can be saved until needed, and more than one can be used on the same card
+Crown - either double-plays an Action card or double-plays a Treasure
+Coronet - double-plays an Action and a Treasure
+Ghost - digs for an Action card and double-plays it on your next turn
+Citadel - replays the first Action card you play on your turn
+Scepter - replays an Action card after-the-fact during the Buy phase, more than one can be used on the same card
+Mastermind - triple-plays an Action card on your next turn
+Specialist - gives you a choice of replaying the Action card or gaining a copy of it; also works on Treasures
+Flagship - replays the next Action card you play after it
+Reckless - replays a specific Action or Treasure every time you play it, but returns it to the Supply after doing so
+Daimyo - draws a card before double-playing an Action
+Practice - double-plays an Action during the Buy phase.
+Related Effects
+Royal Galley - plays the same Action card once now and once on your next turn
+Elder - a fringe case: if the Action card you play asks you to "choose one" of several options, Elder allows you to choose two, but it doesn't double other features of the card
+First Mate - doesn't let you pay the same Action card multiple times, but lets you play multiple copies of the same Action card.
+Prince - plays the same Action card every turn for the rest of the game
+Counterfeit, King's Cache, and Tiara can only replay Treasure cards. This is superficially similar to Throne Room variants that double-play Actions, and is subject to the same rules; but the implications are different because Action plays are limited and Treasure plays aren't.
+
+------
+------
+
+https://wiki.dominionstrategy.com/index.php/Village_(card_category)
+
+Dominion: Festival, Village
+Intrigue: Mining Village, Nobles, Shanty Town
+Seaside: Bazaar, Fishing Village, Native Village
+Alchemy: University
+Prosperity: City, Worker's Village
+Cornucopia: Farming Village, Hamlet
+Hinterlands: Border Village, Inn
+Dark Ages: Bandit Camp, Fortress, Squire, Wandering Minstrel
+Guilds: Plaza
+Cornucopia & Guilds: Farmhands
+Adventures: Coin of the Realm, Lost City, Port
+Empires: Bustling Village, City Quarter, Encampment, Villa
+Nocturne: Blessed Village, Cursed Village, Ghost Town
+Renaissance: Hideout, Mountain Village
+Menagerie: Hostelry, Hunting Lodge, Village Green, Way of the Ox
+Allies: Capital City, Merchant Camp, Town
+Plunder: Harbor Village, Longship, Swamp Shacks, Wealthy Village
+Rising Sun: Kitsune, Litter, Rustic Village
+Promo: Walled Village
