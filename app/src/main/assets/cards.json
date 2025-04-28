@@ -13,7 +13,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Artisan",
@@ -27,7 +28,8 @@
     "image_name": "artisan",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Bandit",
@@ -42,7 +44,8 @@
     "image_name": "bandit",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Bureaucrat",
@@ -57,7 +60,8 @@
     "image_name": "bureaucrat",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Cellar",
@@ -71,7 +75,8 @@
     "image_name": "cellar",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Chancellor",
@@ -85,7 +90,8 @@
     "image_name": "chancellor",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Chapel",
@@ -99,7 +105,8 @@
     "image_name": "chapel",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Council Room",
@@ -115,7 +122,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Feast",
@@ -129,7 +137,8 @@
     "image_name": "feast",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Festival",
@@ -145,7 +154,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Gardens",
@@ -159,7 +169,8 @@
     "image_name": "gardens",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Harbinger",
@@ -175,7 +186,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Laboratory",
@@ -191,7 +203,8 @@
     "debt": 0,
     "categories": [
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Library",
@@ -207,7 +220,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Market",
@@ -221,7 +235,8 @@
     "image_name": "market",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Merchant",
@@ -237,7 +252,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Militia",
@@ -252,7 +268,8 @@
     "image_name": "militia",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Mine",
@@ -266,7 +283,8 @@
     "image_name": "mine",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Moat",
@@ -283,7 +301,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Moneylender",
@@ -297,7 +316,8 @@
     "image_name": "moneylender",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Poacher",
@@ -311,7 +331,8 @@
     "image_name": "poacher",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Remodel",
@@ -325,7 +346,8 @@
     "image_name": "remodel",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Sentry",
@@ -341,7 +363,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Smithy",
@@ -357,7 +380,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Spy",
@@ -374,7 +398,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Thief",
@@ -389,7 +414,8 @@
     "image_name": "thief",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Throne Room",
@@ -405,7 +431,8 @@
     "debt": 0,
     "categories": [
       "Throneroom_variant"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Vassal",
@@ -419,7 +446,8 @@
     "image_name": "vassal",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Village",
@@ -435,7 +463,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Witch",
@@ -453,7 +482,8 @@
     "categories": [
       "Terminal_draw",
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Woodcutter",
@@ -467,7 +497,8 @@
     "image_name": "woodcutter",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Workshop",
@@ -481,7 +512,8 @@
     "image_name": "workshop",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Copper",
@@ -495,7 +527,8 @@
     "image_name": "copper",
     "basic": true,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Silver",
@@ -509,7 +542,8 @@
     "image_name": "silver",
     "basic": true,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Gold",
@@ -523,7 +557,8 @@
     "image_name": "gold",
     "basic": true,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Estate",
@@ -537,7 +572,8 @@
     "image_name": "estate",
     "basic": true,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Duchy",
@@ -551,7 +587,8 @@
     "image_name": "duchy",
     "basic": true,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Province",
@@ -565,7 +602,8 @@
     "image_name": "province",
     "basic": true,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Curse",
@@ -579,7 +617,8 @@
     "image_name": "curse",
     "basic": true,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Baron",
@@ -593,7 +632,8 @@
     "image_name": "baron",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Bridge",
@@ -607,7 +647,8 @@
     "image_name": "bridge",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Conspirator",
@@ -621,7 +662,8 @@
     "image_name": "conspirator",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Coppersmith",
@@ -635,7 +677,8 @@
     "image_name": "coppersmith",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Courtier",
@@ -649,7 +692,8 @@
     "image_name": "courtier",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Courtyard",
@@ -665,7 +709,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Diplomat",
@@ -682,7 +727,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Duke",
@@ -696,7 +742,8 @@
     "image_name": "duke",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Great Hall",
@@ -713,7 +760,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Ironworks",
@@ -727,7 +775,8 @@
     "image_name": "ironworks",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Lurker",
@@ -741,7 +790,8 @@
     "image_name": "lurker",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Masquerade",
@@ -758,7 +808,8 @@
     "categories": [
       "Terminal_draw",
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Mill",
@@ -775,7 +826,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Mining Village",
@@ -791,7 +843,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Minion",
@@ -806,7 +859,8 @@
     "image_name": "minion",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Nobles",
@@ -824,7 +878,8 @@
     "categories": [
       "Terminal_draw",
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Patrol",
@@ -840,7 +895,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Pawn",
@@ -856,7 +912,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Replace",
@@ -873,7 +930,8 @@
     "debt": 0,
     "categories": [
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Saboteur",
@@ -888,7 +946,8 @@
     "image_name": "saboteur",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Scout",
@@ -904,7 +963,8 @@
     "debt": 0,
     "categories": [
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Secret Chamber",
@@ -919,7 +979,8 @@
     "image_name": "secretchamber",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Secret Passage",
@@ -933,7 +994,8 @@
     "image_name": "secretpassage",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Shanty Town",
@@ -949,7 +1011,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Steward",
@@ -965,7 +1028,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Swindler",
@@ -982,7 +1046,8 @@
     "debt": 0,
     "categories": [
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Torturer",
@@ -1000,7 +1065,8 @@
     "categories": [
       "Terminal_draw",
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Trading Post",
@@ -1014,7 +1080,8 @@
     "image_name": "tradingpost",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Tribute",
@@ -1028,7 +1095,8 @@
     "image_name": "tribute",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Upgrade",
@@ -1044,7 +1112,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Wishing Well",
@@ -1061,7 +1130,8 @@
     "categories": [
       "Cantrip",
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Ambassador",
@@ -1078,7 +1148,8 @@
     "debt": 0,
     "categories": [
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Astrolabe",
@@ -1093,7 +1164,8 @@
     "image_name": "astrolabe",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Bazaar",
@@ -1109,7 +1181,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Blockade",
@@ -1127,7 +1200,8 @@
     "debt": 0,
     "categories": [
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Caravan",
@@ -1145,7 +1219,8 @@
     "categories": [
       "Cantrip",
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Corsair",
@@ -1161,7 +1236,8 @@
     "image_name": "corsair",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Cutpurse",
@@ -1176,7 +1252,8 @@
     "image_name": "cutpurse",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Embargo",
@@ -1192,7 +1269,8 @@
     "debt": 0,
     "categories": [
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Explorer",
@@ -1206,7 +1284,8 @@
     "image_name": "explorer",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Fishing Village",
@@ -1223,7 +1302,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Ghost Ship",
@@ -1240,7 +1320,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Haven",
@@ -1257,7 +1338,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Island",
@@ -1272,7 +1354,8 @@
     "image_name": "island",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Lighthouse",
@@ -1287,7 +1370,8 @@
     "image_name": "lighthouse",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Lookout",
@@ -1301,7 +1385,8 @@
     "image_name": "lookout",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Merchant Ship",
@@ -1316,7 +1401,8 @@
     "image_name": "merchantship",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Monkey",
@@ -1331,7 +1417,8 @@
     "image_name": "monkey",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Native Village",
@@ -1347,7 +1434,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Navigator",
@@ -1361,7 +1449,8 @@
     "image_name": "navigator",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Outpost",
@@ -1376,7 +1465,8 @@
     "image_name": "outpost",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Pearl Diver",
@@ -1392,7 +1482,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Pirate",
@@ -1408,7 +1499,8 @@
     "image_name": "pirate",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Pirate Ship",
@@ -1423,7 +1515,8 @@
     "image_name": "pirateship",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Sailor",
@@ -1438,7 +1531,8 @@
     "image_name": "sailor",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Salvager",
@@ -1452,7 +1546,8 @@
     "image_name": "salvager",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Sea Chart",
@@ -1469,7 +1564,8 @@
     "categories": [
       "Cantrip",
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Sea Hag",
@@ -1486,7 +1582,8 @@
     "debt": 0,
     "categories": [
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Sea Witch",
@@ -1505,7 +1602,8 @@
     "categories": [
       "Terminal_draw",
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Smugglers",
@@ -1519,7 +1617,8 @@
     "image_name": "smugglers",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Tactician",
@@ -1534,7 +1633,8 @@
     "image_name": "tactician",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Tide Pools",
@@ -1551,7 +1651,8 @@
     "debt": 0,
     "categories": [
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Treasure Map",
@@ -1565,7 +1666,8 @@
     "image_name": "treasuremap",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Treasury",
@@ -1579,7 +1681,8 @@
     "image_name": "treasury",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Warehouse",
@@ -1593,7 +1696,8 @@
     "image_name": "warehouse",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Wharf",
@@ -1610,7 +1714,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Alchemist",
@@ -1626,7 +1731,8 @@
     "debt": 0,
     "categories": [
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": true
   },
   {
     "name": "Apothecary",
@@ -1643,7 +1749,8 @@
     "categories": [
       "Cantrip",
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": true
   },
   {
     "name": "Apprentice",
@@ -1659,7 +1766,8 @@
     "debt": 0,
     "categories": [
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Familiar",
@@ -1677,7 +1785,8 @@
     "categories": [
       "Cantrip",
       "Curser"
-    ]
+    ],
+    "potion": true
   },
   {
     "name": "Golem",
@@ -1691,7 +1800,8 @@
     "image_name": "golem",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": true
   },
   {
     "name": "Herbalist",
@@ -1705,7 +1815,8 @@
     "image_name": "herbalist",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Philosopher's Stone",
@@ -1719,7 +1830,8 @@
     "image_name": "philosophersstone",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": true
   },
   {
     "name": "Possession",
@@ -1733,7 +1845,8 @@
     "image_name": "possession",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": true
   },
   {
     "name": "Scrying Pool",
@@ -1751,7 +1864,8 @@
     "categories": [
       "Cantrip",
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": true
   },
   {
     "name": "Transmute",
@@ -1765,7 +1879,8 @@
     "image_name": "transmute",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": true
   },
   {
     "name": "University",
@@ -1781,7 +1896,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": true
   },
   {
     "name": "Vineyard",
@@ -1795,7 +1911,8 @@
     "image_name": "vineyard",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": true
   },
   {
     "name": "Potion",
@@ -1809,7 +1926,8 @@
     "image_name": "potion",
     "basic": true,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Anvil",
@@ -1823,7 +1941,8 @@
     "image_name": "anvil",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Bank",
@@ -1837,7 +1956,8 @@
     "image_name": "bank",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Bishop",
@@ -1851,7 +1971,8 @@
     "image_name": "bishop",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Charlatan",
@@ -1868,7 +1989,8 @@
     "debt": 0,
     "categories": [
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "City",
@@ -1885,7 +2007,8 @@
     "categories": [
       "Nonterminal_draw",
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Clerk",
@@ -1901,7 +2024,8 @@
     "image_name": "clerk",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Collection",
@@ -1915,7 +2039,8 @@
     "image_name": "collection",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Contraband",
@@ -1929,7 +2054,8 @@
     "image_name": "contraband",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Counting House",
@@ -1943,7 +2069,8 @@
     "image_name": "countinghouse",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Crystal Ball",
@@ -1957,7 +2084,8 @@
     "image_name": "crystalball",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Expand",
@@ -1971,7 +2099,8 @@
     "image_name": "expand",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Forge",
@@ -1985,7 +2114,8 @@
     "image_name": "forge",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Goons",
@@ -2000,7 +2130,8 @@
     "image_name": "goons",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Grand Market",
@@ -2014,7 +2145,8 @@
     "image_name": "grandmarket",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Hoard",
@@ -2028,7 +2160,8 @@
     "image_name": "hoard",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Investment",
@@ -2042,7 +2175,8 @@
     "image_name": "investment",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "King's Court",
@@ -2058,7 +2192,8 @@
     "debt": 0,
     "categories": [
       "Throneroom_variant"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Loan",
@@ -2072,7 +2207,8 @@
     "image_name": "loan",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Magnate",
@@ -2088,7 +2224,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Mint",
@@ -2102,7 +2239,8 @@
     "image_name": "mint",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Monument",
@@ -2116,7 +2254,8 @@
     "image_name": "monument",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Mountebank",
@@ -2133,7 +2272,8 @@
     "debt": 0,
     "categories": [
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Peddler",
@@ -2147,7 +2287,8 @@
     "image_name": "peddler",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Quarry",
@@ -2161,7 +2302,8 @@
     "image_name": "quarry",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Rabble",
@@ -2178,7 +2320,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Royal Seal",
@@ -2192,7 +2335,8 @@
     "image_name": "royalseal",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Talisman",
@@ -2206,7 +2350,8 @@
     "image_name": "talisman",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Tiara",
@@ -2222,7 +2367,8 @@
     "debt": 0,
     "categories": [
       "Throneroom_variant"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Trade Route",
@@ -2236,7 +2382,8 @@
     "image_name": "traderoute",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Vault",
@@ -2252,7 +2399,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Venture",
@@ -2266,7 +2414,8 @@
     "image_name": "venture",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "War Chest",
@@ -2280,7 +2429,8 @@
     "image_name": "warchest",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Watchtower",
@@ -2297,7 +2447,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Worker's Village",
@@ -2313,7 +2464,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Platinum",
@@ -2327,7 +2479,8 @@
     "image_name": "platinum",
     "basic": true,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Colony",
@@ -2341,7 +2494,8 @@
     "image_name": "colony",
     "basic": true,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Advisor",
@@ -2357,7 +2511,8 @@
     "debt": 0,
     "categories": [
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Baker",
@@ -2371,7 +2526,8 @@
     "image_name": "baker",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Butcher",
@@ -2385,7 +2541,8 @@
     "image_name": "butcher",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Candlestick Maker",
@@ -2399,7 +2556,8 @@
     "image_name": "candlestickmaker",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Carnival",
@@ -2415,7 +2573,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Doctor",
@@ -2429,7 +2588,8 @@
     "image_name": "doctor",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Fairgrounds",
@@ -2443,7 +2603,8 @@
     "image_name": "fairgrounds",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Farmhands",
@@ -2459,7 +2620,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Farming Village",
@@ -2475,7 +2637,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Farrier",
@@ -2491,7 +2654,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Ferryman",
@@ -2505,7 +2669,8 @@
     "image_name": "ferryman",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Footpad",
@@ -2520,7 +2685,8 @@
     "image_name": "footpad",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Fortune Teller",
@@ -2535,7 +2701,8 @@
     "image_name": "fortuneteller",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Hamlet",
@@ -2552,7 +2719,8 @@
     "categories": [
       "Cantrip",
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Harvest",
@@ -2566,7 +2734,8 @@
     "image_name": "harvest",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Herald",
@@ -2582,7 +2751,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Horn of Plenty",
@@ -2596,7 +2766,8 @@
     "image_name": "hornofplenty",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Horse Traders",
@@ -2611,7 +2782,8 @@
     "image_name": "horsetraders",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Hunting Party",
@@ -2627,7 +2799,8 @@
     "debt": 0,
     "categories": [
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Infirmary",
@@ -2641,7 +2814,8 @@
     "image_name": "infirmary",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Jester",
@@ -2658,7 +2832,8 @@
     "debt": 0,
     "categories": [
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Journeyman",
@@ -2674,7 +2849,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Joust",
@@ -2688,7 +2864,8 @@
     "image_name": "joust",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Masterpiece",
@@ -2702,7 +2879,8 @@
     "image_name": "masterpiece",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Menagerie",
@@ -2719,7 +2897,8 @@
     "categories": [
       "Cantrip",
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Merchant Guild",
@@ -2733,7 +2912,8 @@
     "image_name": "merchantguild",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Plaza",
@@ -2749,7 +2929,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Remake",
@@ -2763,7 +2944,8 @@
     "image_name": "remake",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Shop",
@@ -2779,7 +2961,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Soothsayer",
@@ -2796,7 +2979,8 @@
     "debt": 0,
     "categories": [
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Stonemason",
@@ -2810,7 +2994,8 @@
     "image_name": "stonemason",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Taxman",
@@ -2825,7 +3010,8 @@
     "image_name": "taxman",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Tournament",
@@ -2839,7 +3025,8 @@
     "image_name": "tournament",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Young Witch",
@@ -2856,7 +3043,8 @@
     "debt": 0,
     "categories": [
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Bag of Gold",
@@ -2871,7 +3059,8 @@
     "image_name": "bagofgold",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Coronet",
@@ -2889,7 +3078,8 @@
     "debt": 0,
     "categories": [
       "Throneroom_variant"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Courser",
@@ -2906,7 +3096,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Demesne",
@@ -2922,7 +3113,8 @@
     "image_name": "demesne",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Diadem",
@@ -2937,7 +3129,8 @@
     "image_name": "diadem",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Followers",
@@ -2956,7 +3149,8 @@
     "categories": [
       "Terminal_draw",
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Housecarl",
@@ -2973,7 +3167,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Huge Turnip",
@@ -2988,7 +3183,8 @@
     "image_name": "hugeturnip",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Princess",
@@ -3003,7 +3199,8 @@
     "image_name": "princess",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Renown",
@@ -3018,7 +3215,8 @@
     "image_name": "renown",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Trusty Steed",
@@ -3035,7 +3233,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Berserker",
@@ -3050,7 +3249,8 @@
     "image_name": "berserker",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Border Village",
@@ -3066,7 +3266,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Cache",
@@ -3080,7 +3281,8 @@
     "image_name": "cache",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Cartographer",
@@ -3096,7 +3298,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Cauldron",
@@ -3113,7 +3316,8 @@
     "debt": 0,
     "categories": [
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Crossroads",
@@ -3129,7 +3333,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Develop",
@@ -3143,7 +3348,8 @@
     "image_name": "develop",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Duchess",
@@ -3157,7 +3363,8 @@
     "image_name": "duchess",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Embassy",
@@ -3173,7 +3380,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Farmland",
@@ -3187,7 +3395,8 @@
     "image_name": "farmland",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Fool's Gold",
@@ -3202,7 +3411,8 @@
     "image_name": "foolsgold",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Guard Dog",
@@ -3219,7 +3429,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Haggler",
@@ -3233,7 +3444,8 @@
     "image_name": "haggler",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Highway",
@@ -3249,7 +3461,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Ill-Gotten Gains",
@@ -3265,7 +3478,8 @@
     "debt": 0,
     "categories": [
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Inn",
@@ -3281,7 +3495,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Jack of All Trades",
@@ -3297,7 +3512,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Mandarin",
@@ -3311,7 +3527,8 @@
     "image_name": "mandarin",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Margrave",
@@ -3328,7 +3545,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Noble Brigand",
@@ -3343,7 +3561,8 @@
     "image_name": "noblebrigand",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Nomad Camp",
@@ -3357,7 +3576,8 @@
     "image_name": "nomadcamp",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Nomads",
@@ -3371,7 +3591,8 @@
     "image_name": "nomads",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Oasis",
@@ -3385,7 +3606,8 @@
     "image_name": "oasis",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Oracle",
@@ -3402,7 +3624,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Scheme",
@@ -3418,7 +3641,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Silk Road",
@@ -3432,7 +3656,8 @@
     "image_name": "silkroad",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Souk",
@@ -3446,7 +3671,8 @@
     "image_name": "souk",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Spice Merchant",
@@ -3460,7 +3686,8 @@
     "image_name": "spicemerchant",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Stables",
@@ -3476,7 +3703,8 @@
     "debt": 0,
     "categories": [
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Trader",
@@ -3491,7 +3719,8 @@
     "image_name": "trader",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Trail",
@@ -3508,7 +3737,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Tunnel",
@@ -3523,7 +3753,8 @@
     "image_name": "tunnel",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Weaver",
@@ -3538,7 +3769,8 @@
     "image_name": "weaver",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Wheelwright",
@@ -3554,7 +3786,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Witch's Hut",
@@ -3572,7 +3805,8 @@
     "categories": [
       "Terminal_draw",
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Altar",
@@ -3586,7 +3820,8 @@
     "image_name": "altar",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Armory",
@@ -3600,7 +3835,8 @@
     "image_name": "armory",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Band of Misfits",
@@ -3615,7 +3851,8 @@
     "image_name": "bandofmisfits",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Bandit Camp",
@@ -3631,7 +3868,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Beggar",
@@ -3646,7 +3884,8 @@
     "image_name": "beggar",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Catacombs",
@@ -3662,7 +3901,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Count",
@@ -3676,7 +3916,8 @@
     "image_name": "count",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Counterfeit",
@@ -3692,7 +3933,8 @@
     "debt": 0,
     "categories": [
       "Throneroom_variant"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Cultist",
@@ -3710,7 +3952,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Dame Anna",
@@ -3726,7 +3969,8 @@
     "image_name": "dameanna",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Dame Josephine",
@@ -3743,7 +3987,8 @@
     "image_name": "damejosephine",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Dame Molly",
@@ -3759,7 +4004,8 @@
     "image_name": "damemolly",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Dame Natalie",
@@ -3775,7 +4021,8 @@
     "image_name": "damenatalie",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Dame Sylvia",
@@ -3791,7 +4038,8 @@
     "image_name": "damesylvia",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Death Cart",
@@ -3806,7 +4054,8 @@
     "image_name": "deathcart",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Feodum",
@@ -3820,7 +4069,8 @@
     "image_name": "feodum",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Forager",
@@ -3834,7 +4084,8 @@
     "image_name": "forager",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Fortress",
@@ -3850,7 +4101,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Graverobber",
@@ -3864,7 +4116,8 @@
     "image_name": "graverobber",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Hermit",
@@ -3878,7 +4131,8 @@
     "image_name": "hermit",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Hunting Grounds",
@@ -3894,7 +4148,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Ironmonger",
@@ -3910,7 +4165,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Junk Dealer",
@@ -3924,7 +4180,8 @@
     "image_name": "junkdealer",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Marauder",
@@ -3940,7 +4197,8 @@
     "image_name": "marauder",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Market Square",
@@ -3957,7 +4215,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Mystic",
@@ -3971,7 +4230,8 @@
     "image_name": "mystic",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Pillage",
@@ -3986,7 +4246,8 @@
     "image_name": "pillage",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Poor House",
@@ -4000,7 +4261,8 @@
     "image_name": "poorhouse",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Procession",
@@ -4016,7 +4278,8 @@
     "debt": 0,
     "categories": [
       "Throneroom_variant"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Rats",
@@ -4032,7 +4295,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Rebuild",
@@ -4046,7 +4310,8 @@
     "image_name": "rebuild",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Rogue",
@@ -4061,7 +4326,8 @@
     "image_name": "rogue",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Sage",
@@ -4077,7 +4343,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Scavenger",
@@ -4091,7 +4358,8 @@
     "image_name": "scavenger",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Sir Bailey",
@@ -4109,7 +4377,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Sir Destry",
@@ -4127,7 +4396,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Sir Martin",
@@ -4143,7 +4413,8 @@
     "image_name": "sirmartin",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Sir Michael",
@@ -4159,7 +4430,8 @@
     "image_name": "sirmichael",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Sir Vander",
@@ -4175,7 +4447,8 @@
     "image_name": "sirvander",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Squire",
@@ -4191,7 +4464,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Storeroom",
@@ -4205,7 +4479,8 @@
     "image_name": "storeroom",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Urchin",
@@ -4222,7 +4497,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Vagrant",
@@ -4239,7 +4515,8 @@
     "categories": [
       "Cantrip",
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Wandering Minstrel",
@@ -4255,7 +4532,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Abandoned Mine",
@@ -4270,7 +4548,8 @@
     "image_name": "abandonedmine",
     "basic": true,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Ruined Library",
@@ -4285,7 +4564,8 @@
     "image_name": "ruinedlibrary",
     "basic": true,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Ruined Market",
@@ -4300,7 +4580,8 @@
     "image_name": "ruinedmarket",
     "basic": true,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Ruined Village",
@@ -4315,7 +4596,8 @@
     "image_name": "ruinedvillage",
     "basic": true,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Survivors",
@@ -4330,7 +4612,8 @@
     "image_name": "survivors",
     "basic": true,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Hovel",
@@ -4345,7 +4628,8 @@
     "image_name": "hovel",
     "basic": true,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Madman",
@@ -4361,7 +4645,8 @@
     "debt": 0,
     "categories": [
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Mercenary",
@@ -4378,7 +4663,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Necropolis",
@@ -4393,7 +4679,8 @@
     "image_name": "necropolis",
     "basic": true,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Overgrown Estate",
@@ -4408,13 +4695,14 @@
     "image_name": "overgrownestate",
     "basic": true,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Spoils",
     "set": "Dark_Ages",
     "cost": null,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Treasure"
@@ -4422,7 +4710,8 @@
     "image_name": "spoils",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Amulet",
@@ -4437,7 +4726,8 @@
     "image_name": "amulet",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Artificer",
@@ -4451,7 +4741,8 @@
     "image_name": "artificer",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Bridge Troll",
@@ -4467,7 +4758,8 @@
     "image_name": "bridgetroll",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Caravan Guard",
@@ -4485,7 +4777,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Coin of the Realm",
@@ -4502,7 +4795,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Distant Lands",
@@ -4518,7 +4812,8 @@
     "image_name": "distantlands",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Dungeon",
@@ -4533,7 +4828,8 @@
     "image_name": "dungeon",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Duplicate",
@@ -4548,7 +4844,8 @@
     "image_name": "duplicate",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Gear",
@@ -4565,7 +4862,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Giant",
@@ -4582,7 +4880,8 @@
     "debt": 0,
     "categories": [
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Guide",
@@ -4599,7 +4898,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Haunted Woods",
@@ -4617,7 +4917,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Hireling",
@@ -4632,7 +4933,8 @@
     "image_name": "hireling",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Lost City",
@@ -4649,7 +4951,8 @@
     "categories": [
       "Nonterminal_draw",
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Magpie",
@@ -4666,7 +4969,8 @@
     "categories": [
       "Cantrip",
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Messenger",
@@ -4682,7 +4986,8 @@
     "debt": 0,
     "categories": [
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Miser",
@@ -4696,7 +5001,8 @@
     "image_name": "miser",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Page",
@@ -4713,7 +5019,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Peasant",
@@ -4728,7 +5035,8 @@
     "image_name": "peasant",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Port",
@@ -4744,7 +5052,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Ranger",
@@ -4760,7 +5069,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Ratcatcher",
@@ -4777,7 +5087,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Raze",
@@ -4791,7 +5102,8 @@
     "image_name": "raze",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Relic",
@@ -4806,7 +5118,8 @@
     "image_name": "relic",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Royal Carriage",
@@ -4823,7 +5136,8 @@
     "debt": 0,
     "categories": [
       "Throneroom_variant"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Storyteller",
@@ -4840,7 +5154,8 @@
     "categories": [
       "Cantrip",
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Swamp Hag",
@@ -4858,7 +5173,8 @@
     "debt": 0,
     "categories": [
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Transmogrify",
@@ -4873,7 +5189,8 @@
     "image_name": "transmogrify",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Treasure Trove",
@@ -4887,7 +5204,8 @@
     "image_name": "treasuretrove",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Wine Merchant",
@@ -4902,7 +5220,8 @@
     "image_name": "winemerchant",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Champion",
@@ -4917,7 +5236,8 @@
     "image_name": "champion",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Disciple",
@@ -4934,7 +5254,8 @@
     "debt": 0,
     "categories": [
       "Throneroom_variant"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Fugitive",
@@ -4949,7 +5270,8 @@
     "image_name": "fugitive",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Hero",
@@ -4964,7 +5286,8 @@
     "image_name": "hero",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Soldier",
@@ -4980,7 +5303,8 @@
     "image_name": "soldier",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Teacher",
@@ -4997,7 +5321,8 @@
     "debt": 0,
     "categories": [
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Treasure Hunter",
@@ -5012,7 +5337,8 @@
     "image_name": "treasurehunter",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Warrior",
@@ -5030,7 +5356,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Alms",
@@ -5044,7 +5371,8 @@
     "image_name": "alms",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Ball",
@@ -5058,7 +5386,8 @@
     "image_name": "ball",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Bonfire",
@@ -5072,7 +5401,8 @@
     "image_name": "bonfire",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Borrow",
@@ -5086,7 +5416,8 @@
     "image_name": "borrow",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Expedition",
@@ -5100,7 +5431,8 @@
     "image_name": "expedition",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Ferry",
@@ -5114,7 +5446,8 @@
     "image_name": "ferry",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Inheritance",
@@ -5128,7 +5461,8 @@
     "image_name": "inheritance",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Lost Arts",
@@ -5144,7 +5478,8 @@
     "debt": 0,
     "categories": [
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Mission",
@@ -5158,7 +5493,8 @@
     "image_name": "mission",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Pathfinding",
@@ -5174,7 +5510,8 @@
     "debt": 0,
     "categories": [
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Pilgrimage",
@@ -5188,7 +5525,8 @@
     "image_name": "pilgrimage",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Plan",
@@ -5202,7 +5540,8 @@
     "image_name": "plan",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Quest",
@@ -5216,7 +5555,8 @@
     "image_name": "quest",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Raid",
@@ -5230,7 +5570,8 @@
     "image_name": "raid",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Save",
@@ -5244,7 +5585,8 @@
     "image_name": "save",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Scouting Party",
@@ -5258,7 +5600,8 @@
     "image_name": "scoutingparty",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Seaway",
@@ -5272,7 +5615,8 @@
     "image_name": "seaway",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Trade",
@@ -5286,7 +5630,8 @@
     "image_name": "trade",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Training",
@@ -5300,7 +5645,8 @@
     "image_name": "training",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Travelling Fair",
@@ -5314,7 +5660,8 @@
     "image_name": "travellingfair",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Archive",
@@ -5332,7 +5679,8 @@
     "categories": [
       "Cantrip",
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Bustling Village",
@@ -5349,7 +5697,8 @@
     "categories": [
       "Nonterminal_draw",
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Capital",
@@ -5363,7 +5712,8 @@
     "image_name": "capital",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Catapult",
@@ -5380,7 +5730,8 @@
     "debt": 0,
     "categories": [
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Chariot Race",
@@ -5394,7 +5745,8 @@
     "image_name": "chariotrace",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Charm",
@@ -5408,7 +5760,8 @@
     "image_name": "charm",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "City Quarter",
@@ -5425,7 +5778,8 @@
     "categories": [
       "Nonterminal_draw",
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Crown",
@@ -5442,7 +5796,8 @@
     "debt": 0,
     "categories": [
       "Throneroom_variant"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Crumbling Castle",
@@ -5457,7 +5812,8 @@
     "image_name": "crumblingcastle",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Emporium",
@@ -5471,7 +5827,8 @@
     "image_name": "emporium",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Encampment",
@@ -5488,7 +5845,8 @@
     "categories": [
       "Nonterminal_draw",
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Enchantress",
@@ -5504,7 +5862,8 @@
     "image_name": "enchantress",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Engineer",
@@ -5518,7 +5877,8 @@
     "image_name": "engineer",
     "basic": false,
     "debt": 4,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Farmers' Market",
@@ -5533,7 +5893,8 @@
     "image_name": "farmersmarket",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Fortune",
@@ -5547,7 +5908,8 @@
     "image_name": "fortune",
     "basic": false,
     "debt": 8,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Forum",
@@ -5561,7 +5923,8 @@
     "image_name": "forum",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Gladiator",
@@ -5575,7 +5938,8 @@
     "image_name": "gladiator",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Grand Castle",
@@ -5590,7 +5954,8 @@
     "image_name": "grandcastle",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Groundskeeper",
@@ -5606,7 +5971,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Haunted Castle",
@@ -5621,7 +5987,8 @@
     "image_name": "hauntedcastle",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Humble Castle",
@@ -5637,7 +6004,8 @@
     "image_name": "humblecastle",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "King's Castle",
@@ -5652,7 +6020,8 @@
     "image_name": "kingscastle",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Legionary",
@@ -5667,7 +6036,8 @@
     "image_name": "legionary",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Opulent Castle",
@@ -5683,7 +6053,8 @@
     "image_name": "opulentcastle",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Overlord",
@@ -5698,7 +6069,8 @@
     "image_name": "overlord",
     "basic": false,
     "debt": 8,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Patrician",
@@ -5715,7 +6087,8 @@
     "categories": [
       "Cantrip",
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Plunder",
@@ -5729,7 +6102,8 @@
     "image_name": "plunder",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Rocks",
@@ -5743,7 +6117,8 @@
     "image_name": "rocks",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Royal Blacksmith",
@@ -5759,7 +6134,8 @@
     "debt": 8,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Sacrifice",
@@ -5773,7 +6149,8 @@
     "image_name": "sacrifice",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Settlers",
@@ -5790,7 +6167,8 @@
     "categories": [
       "Cantrip",
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Small Castle",
@@ -5806,7 +6184,8 @@
     "image_name": "smallcastle",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Sprawling Castle",
@@ -5821,7 +6200,8 @@
     "image_name": "sprawlingcastle",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Temple",
@@ -5836,7 +6216,8 @@
     "image_name": "temple",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Villa",
@@ -5852,7 +6233,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Wild Hunt",
@@ -5869,7 +6251,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Advance",
@@ -5883,7 +6266,8 @@
     "image_name": "advance",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Annex",
@@ -5897,7 +6281,8 @@
     "image_name": "annex",
     "basic": false,
     "debt": 8,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Banquet",
@@ -5911,7 +6296,8 @@
     "image_name": "banquet",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Conquest",
@@ -5925,7 +6311,8 @@
     "image_name": "conquest",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Delve",
@@ -5939,7 +6326,8 @@
     "image_name": "delve",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Dominate",
@@ -5953,7 +6341,8 @@
     "image_name": "dominate",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Donate",
@@ -5967,7 +6356,8 @@
     "image_name": "donate",
     "basic": false,
     "debt": 8,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Ritual",
@@ -5983,7 +6373,8 @@
     "debt": 0,
     "categories": [
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Salt the Earth",
@@ -5997,7 +6388,8 @@
     "image_name": "salttheearth",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Tax",
@@ -6011,7 +6403,8 @@
     "image_name": "tax",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Triumph",
@@ -6025,7 +6418,8 @@
     "image_name": "triumph",
     "basic": false,
     "debt": 5,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Wedding",
@@ -6039,7 +6433,8 @@
     "image_name": "wedding",
     "basic": false,
     "debt": 3,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Windfall",
@@ -6053,7 +6448,8 @@
     "image_name": "windfall",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Aqueduct",
@@ -6067,7 +6463,8 @@
     "image_name": "aqueduct",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Arena",
@@ -6081,7 +6478,8 @@
     "image_name": "arena",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Bandit Fort",
@@ -6095,7 +6493,8 @@
     "image_name": "banditfort",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Basilica",
@@ -6109,7 +6508,8 @@
     "image_name": "basilica",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Baths",
@@ -6123,7 +6523,8 @@
     "image_name": "baths",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Battlefield",
@@ -6137,7 +6538,8 @@
     "image_name": "battlefield",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Colonnade",
@@ -6151,7 +6553,8 @@
     "image_name": "colonnade",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Defiled Shrine",
@@ -6165,7 +6568,8 @@
     "image_name": "defiledshrine",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Fountain",
@@ -6179,7 +6583,8 @@
     "image_name": "fountain",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Keep",
@@ -6193,7 +6598,8 @@
     "image_name": "keep",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Labyrinth",
@@ -6207,7 +6613,8 @@
     "image_name": "labyrinth",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Mountain Pass",
@@ -6221,7 +6628,8 @@
     "image_name": "mountainpass",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Museum",
@@ -6235,7 +6643,8 @@
     "image_name": "museum",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Obelisk",
@@ -6249,7 +6658,8 @@
     "image_name": "obelisk",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Orchard",
@@ -6263,7 +6673,8 @@
     "image_name": "orchard",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Palace",
@@ -6277,7 +6688,8 @@
     "image_name": "palace",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Tomb",
@@ -6291,7 +6703,8 @@
     "image_name": "tomb",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Tower",
@@ -6305,7 +6718,8 @@
     "image_name": "tower",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Triumphal Arch",
@@ -6319,7 +6733,8 @@
     "image_name": "triumphalarch",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Wall",
@@ -6333,7 +6748,8 @@
     "image_name": "wall",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Wolf Den",
@@ -6347,7 +6763,8 @@
     "image_name": "wolfden",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Bard",
@@ -6362,7 +6779,8 @@
     "image_name": "bard",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Blessed Village",
@@ -6379,7 +6797,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Cemetery",
@@ -6393,7 +6812,8 @@
     "image_name": "cemetery",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Changeling",
@@ -6407,7 +6827,8 @@
     "image_name": "changeling",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Cobbler",
@@ -6422,7 +6843,8 @@
     "image_name": "cobbler",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Conclave",
@@ -6436,7 +6858,8 @@
     "image_name": "conclave",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Crypt",
@@ -6453,7 +6876,8 @@
     "debt": 0,
     "categories": [
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Cursed Village",
@@ -6471,7 +6895,8 @@
     "categories": [
       "Nonterminal_draw",
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Den of Sin",
@@ -6488,7 +6913,8 @@
     "debt": 0,
     "categories": [
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Devil's Workshop",
@@ -6502,7 +6928,8 @@
     "image_name": "devilsworkshop",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Druid",
@@ -6517,7 +6944,8 @@
     "image_name": "druid",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Exorcist",
@@ -6531,7 +6959,8 @@
     "image_name": "exorcist",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Faithful Hound",
@@ -6548,7 +6977,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Fool",
@@ -6563,7 +6993,8 @@
     "image_name": "fool",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Ghost Town",
@@ -6580,7 +7011,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Guardian",
@@ -6595,7 +7027,8 @@
     "image_name": "guardian",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Idol",
@@ -6613,7 +7046,8 @@
     "debt": 0,
     "categories": [
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Leprechaun",
@@ -6628,7 +7062,8 @@
     "image_name": "leprechaun",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Monastery",
@@ -6642,7 +7077,8 @@
     "image_name": "monastery",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Necromancer",
@@ -6656,7 +7092,8 @@
     "image_name": "necromancer",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Night Watchman",
@@ -6670,7 +7107,8 @@
     "image_name": "nightwatchman",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Pixie",
@@ -6687,7 +7125,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Pooka",
@@ -6703,7 +7142,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Raider",
@@ -6719,7 +7159,8 @@
     "image_name": "raider",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Sacred Grove",
@@ -6734,7 +7175,8 @@
     "image_name": "sacredgrove",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Secret Cave",
@@ -6751,7 +7193,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Shepherd",
@@ -6765,7 +7208,8 @@
     "image_name": "shepherd",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Skulk",
@@ -6781,7 +7225,8 @@
     "image_name": "skulk",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Tormentor",
@@ -6797,7 +7242,8 @@
     "image_name": "tormentor",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Tracker",
@@ -6812,7 +7258,8 @@
     "image_name": "tracker",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Tragic Hero",
@@ -6828,7 +7275,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Vampire",
@@ -6844,7 +7292,8 @@
     "image_name": "vampire",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Werewolf",
@@ -6863,7 +7312,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Bat",
@@ -6877,7 +7327,8 @@
     "image_name": "bat",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Cursed Gold",
@@ -6894,7 +7345,8 @@
     "debt": 0,
     "categories": [
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Ghost",
@@ -6912,7 +7364,8 @@
     "debt": 0,
     "categories": [
       "Throneroom_variant"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Goat",
@@ -6927,7 +7380,8 @@
     "image_name": "goat",
     "basic": true,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Haunted Mirror",
@@ -6942,7 +7396,8 @@
     "image_name": "hauntedmirror",
     "basic": true,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Imp",
@@ -6959,7 +7414,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Lucky Coin",
@@ -6974,7 +7430,8 @@
     "image_name": "luckycoin",
     "basic": true,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Magic Lamp",
@@ -6989,7 +7446,8 @@
     "image_name": "magiclamp",
     "basic": true,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Pasture",
@@ -7005,7 +7463,8 @@
     "image_name": "pasture",
     "basic": true,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Pouch",
@@ -7020,7 +7479,8 @@
     "image_name": "pouch",
     "basic": true,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Will-o'-Wisp",
@@ -7038,7 +7498,8 @@
     "categories": [
       "Cantrip",
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Wish",
@@ -7052,7 +7513,8 @@
     "image_name": "wish",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Zombie Apprentice",
@@ -7067,7 +7529,8 @@
     "image_name": "zombieapprentice",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Zombie Mason",
@@ -7082,7 +7545,8 @@
     "image_name": "zombiemason",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Zombie Spy",
@@ -7099,7 +7563,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "The Earth's Gift",
@@ -7113,7 +7578,8 @@
     "image_name": "theearthsgift",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "The Field's Gift",
@@ -7127,7 +7593,8 @@
     "image_name": "thefieldsgift",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "The Flame's Gift",
@@ -7141,7 +7608,8 @@
     "image_name": "theflamesgift",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "The Forest's Gift",
@@ -7155,7 +7623,8 @@
     "image_name": "theforestsgift",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "The Moon's Gift",
@@ -7169,7 +7638,8 @@
     "image_name": "themoonsgift",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "The Mountain's Gift",
@@ -7183,7 +7653,8 @@
     "image_name": "themountainsgift",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "The River's Gift",
@@ -7197,7 +7668,8 @@
     "image_name": "theriversgift",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "The Sea's Gift",
@@ -7211,7 +7683,8 @@
     "image_name": "theseasgift",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "The Sky's Gift",
@@ -7225,7 +7698,8 @@
     "image_name": "theskysgift",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "The Sun's Gift",
@@ -7239,7 +7713,8 @@
     "image_name": "thesunsgift",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "The Swamp's Gift",
@@ -7253,7 +7728,8 @@
     "image_name": "theswampsgift",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "The Wind's Gift",
@@ -7267,7 +7743,8 @@
     "image_name": "thewindsgift",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Bad Omens",
@@ -7281,7 +7758,8 @@
     "image_name": "badomens",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Delusion",
@@ -7295,7 +7773,8 @@
     "image_name": "delusion",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Envy",
@@ -7309,7 +7788,8 @@
     "image_name": "envy",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Famine",
@@ -7323,7 +7803,8 @@
     "image_name": "famine",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Fear",
@@ -7337,7 +7818,8 @@
     "image_name": "fear",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Greed",
@@ -7351,7 +7833,8 @@
     "image_name": "greed",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Haunting",
@@ -7365,7 +7848,8 @@
     "image_name": "haunting",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Locusts",
@@ -7379,7 +7863,8 @@
     "image_name": "locusts",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Misery",
@@ -7393,7 +7878,8 @@
     "image_name": "misery",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Plague",
@@ -7407,7 +7893,8 @@
     "image_name": "plague",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Poverty",
@@ -7421,7 +7908,8 @@
     "image_name": "poverty",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "War",
@@ -7435,7 +7923,8 @@
     "image_name": "war",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Deluded",
@@ -7449,7 +7938,8 @@
     "image_name": "deluded",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Envious",
@@ -7463,7 +7953,8 @@
     "image_name": "envious",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Lost in the Woods",
@@ -7477,7 +7968,8 @@
     "image_name": "lostinthewoods",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Miserable",
@@ -7491,7 +7983,8 @@
     "image_name": "miserable",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Twice Miserable",
@@ -7505,7 +7998,8 @@
     "image_name": "twicemiserable",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Acting Troupe",
@@ -7519,7 +8013,8 @@
     "image_name": "actingtroupe",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Border Guard",
@@ -7535,7 +8030,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Cargo Ship",
@@ -7550,7 +8046,8 @@
     "image_name": "cargoship",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Ducat",
@@ -7564,7 +8061,8 @@
     "image_name": "ducat",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Experiment",
@@ -7580,7 +8078,8 @@
     "debt": 0,
     "categories": [
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Flag Bearer",
@@ -7594,7 +8093,8 @@
     "image_name": "flagbearer",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Hideout",
@@ -7611,7 +8111,8 @@
     "categories": [
       "Curser",
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Improve",
@@ -7625,7 +8126,8 @@
     "image_name": "improve",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Inventor",
@@ -7639,7 +8141,8 @@
     "image_name": "inventor",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Lackeys",
@@ -7655,7 +8158,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Mountain Village",
@@ -7671,7 +8175,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Old Witch",
@@ -7689,7 +8194,8 @@
     "categories": [
       "Terminal_draw",
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Patron",
@@ -7704,7 +8210,8 @@
     "image_name": "patron",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Priest",
@@ -7718,7 +8225,8 @@
     "image_name": "priest",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Recruiter",
@@ -7734,7 +8242,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Research",
@@ -7749,7 +8258,8 @@
     "image_name": "research",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Scepter",
@@ -7766,7 +8276,8 @@
     "debt": 0,
     "categories": [
       "Throneroom_variant"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Scholar",
@@ -7780,7 +8291,8 @@
     "image_name": "scholar",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Sculptor",
@@ -7794,7 +8306,8 @@
     "image_name": "sculptor",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Seer",
@@ -7811,7 +8324,8 @@
     "categories": [
       "Cantrip",
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Silk Merchant",
@@ -7827,7 +8341,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Spices",
@@ -7841,7 +8356,8 @@
     "image_name": "spices",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Swashbuckler",
@@ -7857,7 +8373,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Treasurer",
@@ -7871,7 +8388,8 @@
     "image_name": "treasurer",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Villain",
@@ -7886,7 +8404,8 @@
     "image_name": "villain",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Academy",
@@ -7900,7 +8419,8 @@
     "image_name": "academy",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Barracks",
@@ -7914,7 +8434,8 @@
     "image_name": "barracks",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Canal",
@@ -7928,7 +8449,8 @@
     "image_name": "canal",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Capitalism",
@@ -7942,7 +8464,8 @@
     "image_name": "capitalism",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Cathedral",
@@ -7956,7 +8479,8 @@
     "image_name": "cathedral",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Citadel",
@@ -7972,7 +8496,8 @@
     "debt": 0,
     "categories": [
       "Throneroom_variant"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "City Gate",
@@ -7986,7 +8511,8 @@
     "image_name": "citygate",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Crop Rotation",
@@ -8000,7 +8526,8 @@
     "image_name": "croprotation",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Exploration",
@@ -8014,7 +8541,8 @@
     "image_name": "exploration",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Fair",
@@ -8028,7 +8556,8 @@
     "image_name": "fair",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Fleet",
@@ -8042,7 +8571,8 @@
     "image_name": "fleet",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Guildhall",
@@ -8056,7 +8586,8 @@
     "image_name": "guildhall",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Innovation",
@@ -8070,7 +8601,8 @@
     "image_name": "innovation",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Pageant",
@@ -8084,7 +8616,8 @@
     "image_name": "pageant",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Piazza",
@@ -8098,7 +8631,8 @@
     "image_name": "piazza",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Road Network",
@@ -8112,7 +8646,8 @@
     "image_name": "roadnetwork",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Sewers",
@@ -8126,7 +8661,8 @@
     "image_name": "sewers",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Silos",
@@ -8140,7 +8676,8 @@
     "image_name": "silos",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Sinister Plot",
@@ -8154,7 +8691,8 @@
     "image_name": "sinisterplot",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Star Chart",
@@ -8168,7 +8706,8 @@
     "image_name": "starchart",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Flag",
@@ -8182,7 +8721,8 @@
     "image_name": "flag",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Horn",
@@ -8196,7 +8736,8 @@
     "image_name": "horn",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Key",
@@ -8210,7 +8751,8 @@
     "image_name": "key",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Lantern",
@@ -8224,7 +8766,8 @@
     "image_name": "lantern",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Treasure Chest",
@@ -8238,7 +8781,8 @@
     "image_name": "treasurechest",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Animal Fair",
@@ -8252,7 +8796,8 @@
     "image_name": "animalfair",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Barge",
@@ -8269,7 +8814,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Black Cat",
@@ -8288,7 +8834,8 @@
     "categories": [
       "Terminal_draw",
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Bounty Hunter",
@@ -8302,7 +8849,8 @@
     "image_name": "bountyhunter",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Camel Train",
@@ -8316,7 +8864,8 @@
     "image_name": "cameltrain",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Cardinal",
@@ -8331,7 +8880,8 @@
     "image_name": "cardinal",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Cavalry",
@@ -8345,7 +8895,8 @@
     "image_name": "cavalry",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Coven",
@@ -8362,7 +8913,8 @@
     "debt": 0,
     "categories": [
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Destrier",
@@ -8378,7 +8930,8 @@
     "debt": 0,
     "categories": [
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Displace",
@@ -8392,7 +8945,8 @@
     "image_name": "displace",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Falconer",
@@ -8407,7 +8961,8 @@
     "image_name": "falconer",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Fisherman",
@@ -8421,7 +8976,8 @@
     "image_name": "fisherman",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Gatekeeper",
@@ -8437,7 +8993,8 @@
     "image_name": "gatekeeper",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Goatherd",
@@ -8451,7 +9008,8 @@
     "image_name": "goatherd",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Groom",
@@ -8465,7 +9023,8 @@
     "image_name": "groom",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Hostelry",
@@ -8481,7 +9040,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Hunting Lodge",
@@ -8497,7 +9057,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Kiln",
@@ -8511,7 +9072,8 @@
     "image_name": "kiln",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Livery",
@@ -8525,7 +9087,8 @@
     "image_name": "livery",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Mastermind",
@@ -8542,7 +9105,8 @@
     "debt": 0,
     "categories": [
       "Throneroom_variant"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Paddock",
@@ -8556,7 +9120,8 @@
     "image_name": "paddock",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Sanctuary",
@@ -8572,7 +9137,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Scrap",
@@ -8586,7 +9152,8 @@
     "image_name": "scrap",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Sheepdog",
@@ -8603,7 +9170,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Sleigh",
@@ -8618,7 +9186,8 @@
     "image_name": "sleigh",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Snowy Village",
@@ -8632,7 +9201,8 @@
     "image_name": "snowyvillage",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Stockpile",
@@ -8646,7 +9216,8 @@
     "image_name": "stockpile",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Supplies",
@@ -8660,7 +9231,8 @@
     "image_name": "supplies",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Village Green",
@@ -8678,7 +9250,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Wayfarer",
@@ -8694,7 +9267,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Horse",
@@ -8710,7 +9284,8 @@
     "debt": 0,
     "categories": [
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Alliance",
@@ -8724,7 +9299,8 @@
     "image_name": "alliance",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Banish",
@@ -8738,7 +9314,8 @@
     "image_name": "banish",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Bargain",
@@ -8752,7 +9329,8 @@
     "image_name": "bargain",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Commerce",
@@ -8766,7 +9344,8 @@
     "image_name": "commerce",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Delay",
@@ -8780,7 +9359,8 @@
     "image_name": "delay",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Demand",
@@ -8794,7 +9374,8 @@
     "image_name": "demand",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Desperation",
@@ -8810,7 +9391,8 @@
     "debt": 0,
     "categories": [
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Enclave",
@@ -8824,7 +9406,8 @@
     "image_name": "enclave",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Enhance",
@@ -8838,7 +9421,8 @@
     "image_name": "enhance",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Gamble",
@@ -8852,7 +9436,8 @@
     "image_name": "gamble",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Invest",
@@ -8866,7 +9451,8 @@
     "image_name": "invest",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "March",
@@ -8880,7 +9466,8 @@
     "image_name": "march",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Populate",
@@ -8894,7 +9481,8 @@
     "image_name": "populate",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Pursue",
@@ -8908,7 +9496,8 @@
     "image_name": "pursue",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Reap",
@@ -8922,7 +9511,8 @@
     "image_name": "reap",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Ride",
@@ -8936,7 +9526,8 @@
     "image_name": "ride",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Seize the Day",
@@ -8950,7 +9541,8 @@
     "image_name": "seizetheday",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Stampede",
@@ -8964,7 +9556,8 @@
     "image_name": "stampede",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Toil",
@@ -8978,7 +9571,8 @@
     "image_name": "toil",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Transport",
@@ -8992,7 +9586,8 @@
     "image_name": "transport",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Way of the Butterfly",
@@ -9006,7 +9601,8 @@
     "image_name": "wayofthebutterfly",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Way of the Camel",
@@ -9020,7 +9616,8 @@
     "image_name": "wayofthecamel",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Way of the Chameleon",
@@ -9034,7 +9631,8 @@
     "image_name": "wayofthechameleon",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Way of the Frog",
@@ -9048,7 +9646,8 @@
     "image_name": "wayofthefrog",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Way of the Goat",
@@ -9062,7 +9661,8 @@
     "image_name": "wayofthegoat",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Way of the Horse",
@@ -9078,7 +9678,8 @@
     "debt": 0,
     "categories": [
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Way of the Mole",
@@ -9092,7 +9693,8 @@
     "image_name": "wayofthemole",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Way of the Monkey",
@@ -9106,7 +9708,8 @@
     "image_name": "wayofthemonkey",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Way of the Mouse",
@@ -9120,7 +9723,8 @@
     "image_name": "wayofthemouse",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Way of the Mule",
@@ -9134,7 +9738,8 @@
     "image_name": "wayofthemule",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Way of the Otter",
@@ -9148,7 +9753,8 @@
     "image_name": "wayoftheotter",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Way of the Ox",
@@ -9164,7 +9770,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Way of the Owl",
@@ -9180,7 +9787,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Way of the Pig",
@@ -9194,7 +9802,8 @@
     "image_name": "wayofthepig",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Way of the Rat",
@@ -9208,7 +9817,8 @@
     "image_name": "wayoftherat",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Way of the Seal",
@@ -9222,7 +9832,8 @@
     "image_name": "wayoftheseal",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Way of the Sheep",
@@ -9236,7 +9847,8 @@
     "image_name": "wayofthesheep",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Way of the Squirrel",
@@ -9250,7 +9862,8 @@
     "image_name": "wayofthesquirrel",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Way of the Turtle",
@@ -9264,7 +9877,8 @@
     "image_name": "wayoftheturtle",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Way of the Worm",
@@ -9278,7 +9892,8 @@
     "image_name": "wayoftheworm",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Acolyte",
@@ -9293,7 +9908,8 @@
     "image_name": "acolyte",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Archer",
@@ -9309,7 +9925,8 @@
     "image_name": "archer",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Barbarian",
@@ -9326,7 +9943,8 @@
     "debt": 0,
     "categories": [
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Battle Plan",
@@ -9344,7 +9962,8 @@
     "categories": [
       "Cantrip",
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Bauble",
@@ -9359,7 +9978,8 @@
     "image_name": "bauble",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Blacksmith",
@@ -9377,7 +9997,8 @@
     "categories": [
       "Cantrip",
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Broker",
@@ -9394,7 +10015,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Capital City",
@@ -9411,7 +10033,8 @@
     "categories": [
       "Nonterminal_draw",
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Carpenter",
@@ -9425,7 +10048,8 @@
     "image_name": "carpenter",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Conjurer",
@@ -9441,7 +10065,8 @@
     "image_name": "conjurer",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Contract",
@@ -9457,7 +10082,8 @@
     "image_name": "contract",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Courier",
@@ -9471,7 +10097,8 @@
     "image_name": "courier",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Distant Shore",
@@ -9489,7 +10116,8 @@
     "debt": 0,
     "categories": [
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Elder",
@@ -9506,7 +10134,8 @@
     "debt": 0,
     "categories": [
       "Throneroom_variant"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Emissary",
@@ -9523,7 +10152,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Galleria",
@@ -9537,7 +10167,8 @@
     "image_name": "galleria",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Garrison",
@@ -9553,7 +10184,8 @@
     "image_name": "garrison",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Guildmaster",
@@ -9568,7 +10200,8 @@
     "image_name": "guildmaster",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Herb Gatherer",
@@ -9583,7 +10216,8 @@
     "image_name": "herbgatherer",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Highwayman",
@@ -9601,7 +10235,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Hill Fort",
@@ -9618,7 +10253,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Hunter",
@@ -9634,7 +10270,8 @@
     "debt": 0,
     "categories": [
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Importer",
@@ -9650,7 +10287,8 @@
     "image_name": "importer",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Innkeeper",
@@ -9666,7 +10304,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Lich",
@@ -9683,7 +10322,8 @@
     "debt": 0,
     "categories": [
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Marquis",
@@ -9699,7 +10339,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Merchant Camp",
@@ -9715,7 +10356,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Miller",
@@ -9732,7 +10374,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Modify",
@@ -9748,7 +10391,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Old Map",
@@ -9765,7 +10409,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Royal Galley",
@@ -9782,7 +10427,8 @@
     "debt": 0,
     "categories": [
       "Throneroom_variant"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Sentinel",
@@ -9796,7 +10442,8 @@
     "image_name": "sentinel",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Sibyl",
@@ -9813,7 +10460,8 @@
     "debt": 0,
     "categories": [
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Skirmisher",
@@ -9828,7 +10476,8 @@
     "image_name": "skirmisher",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Sorcerer",
@@ -9847,7 +10496,8 @@
     "categories": [
       "Cantrip",
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Sorceress",
@@ -9866,7 +10516,8 @@
     "categories": [
       "Cantrip",
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Specialist",
@@ -9882,7 +10533,8 @@
     "debt": 0,
     "categories": [
       "Throneroom_variant"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Stronghold",
@@ -9901,7 +10553,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Student",
@@ -9917,7 +10570,8 @@
     "image_name": "student",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Sunken Treasure",
@@ -9932,7 +10586,8 @@
     "image_name": "sunkentreasure",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Swap",
@@ -9948,7 +10603,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Sycophant",
@@ -9963,7 +10619,8 @@
     "image_name": "sycophant",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Tent",
@@ -9978,7 +10635,8 @@
     "image_name": "tent",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Territory",
@@ -9993,7 +10651,8 @@
     "image_name": "territory",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Town",
@@ -10009,7 +10668,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Town Crier",
@@ -10026,7 +10686,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Underling",
@@ -10043,7 +10704,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Voyage",
@@ -10059,7 +10721,8 @@
     "image_name": "voyage",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Warlord",
@@ -10076,7 +10739,8 @@
     "image_name": "warlord",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Architects' Guild",
@@ -10090,7 +10754,8 @@
     "image_name": "architectsguild",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Band of Nomads",
@@ -10104,7 +10769,8 @@
     "image_name": "bandofnomads",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Cave Dwellers",
@@ -10118,7 +10784,8 @@
     "image_name": "cavedwellers",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Circle of Witches",
@@ -10132,7 +10799,8 @@
     "image_name": "circleofwitches",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "City-state",
@@ -10146,7 +10814,8 @@
     "image_name": "citystate",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Coastal Haven",
@@ -10160,7 +10829,8 @@
     "image_name": "coastalhaven",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Crafters' Guild",
@@ -10174,7 +10844,8 @@
     "image_name": "craftersguild",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Desert Guides",
@@ -10188,7 +10859,8 @@
     "image_name": "desertguides",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Family of Inventors",
@@ -10202,7 +10874,8 @@
     "image_name": "familyofinventors",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Fellowship of Scribes",
@@ -10216,7 +10889,8 @@
     "image_name": "fellowshipofscribes",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Forest Dwellers",
@@ -10230,7 +10904,8 @@
     "image_name": "forestdwellers",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Gang of Pickpockets",
@@ -10244,7 +10919,8 @@
     "image_name": "gangofpickpockets",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Island Folk",
@@ -10258,7 +10934,8 @@
     "image_name": "islandfolk",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "League of Bankers",
@@ -10272,7 +10949,8 @@
     "image_name": "leagueofbankers",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "League of Shopkeepers",
@@ -10286,7 +10964,8 @@
     "image_name": "leagueofshopkeepers",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Market Towns",
@@ -10300,7 +10979,8 @@
     "image_name": "markettowns",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Mountain Folk",
@@ -10314,7 +10994,8 @@
     "image_name": "mountainfolk",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Order of Astrologers",
@@ -10328,7 +11009,8 @@
     "image_name": "orderofastrologers",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Order of Masons",
@@ -10342,7 +11024,8 @@
     "image_name": "orderofmasons",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Peaceful Cult",
@@ -10356,7 +11039,8 @@
     "image_name": "peacefulcult",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Plateau Shepherds",
@@ -10370,7 +11054,8 @@
     "image_name": "plateaushepherds",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Trappers' Lodge",
@@ -10384,7 +11069,8 @@
     "image_name": "trapperslodge",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Woodworkers' Guild",
@@ -10398,7 +11084,8 @@
     "image_name": "woodworkersguild",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Abundance",
@@ -10413,7 +11100,8 @@
     "image_name": "abundance",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Buried Treasure",
@@ -10428,7 +11116,8 @@
     "image_name": "buriedtreasure",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Cabin Boy",
@@ -10445,7 +11134,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Cage",
@@ -10460,7 +11150,8 @@
     "image_name": "cage",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Crew",
@@ -10477,7 +11168,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Crucible",
@@ -10491,7 +11183,8 @@
     "image_name": "crucible",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Cutthroat",
@@ -10507,7 +11200,8 @@
     "image_name": "cutthroat",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Enlarge",
@@ -10522,7 +11216,8 @@
     "image_name": "enlarge",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Figurine",
@@ -10538,7 +11233,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "First Mate",
@@ -10554,7 +11250,8 @@
     "debt": 0,
     "categories": [
       "Throneroom_variant"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Flagship",
@@ -10572,7 +11269,8 @@
     "debt": 0,
     "categories": [
       "Throneroom_variant"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Fortune Hunter",
@@ -10586,7 +11284,8 @@
     "image_name": "fortunehunter",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Frigate",
@@ -10602,7 +11301,8 @@
     "image_name": "frigate",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Gondola",
@@ -10617,7 +11317,8 @@
     "image_name": "gondola",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Grotto",
@@ -10632,7 +11333,8 @@
     "image_name": "grotto",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Harbor Village",
@@ -10648,7 +11350,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Jewelled Egg",
@@ -10662,7 +11365,8 @@
     "image_name": "jewelledegg",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "King's Cache",
@@ -10678,7 +11382,8 @@
     "debt": 0,
     "categories": [
       "Throneroom_variant"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Landing Party",
@@ -10695,7 +11400,8 @@
     "debt": 0,
     "categories": [
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Longship",
@@ -10712,7 +11418,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Mapmaker",
@@ -10729,7 +11436,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Maroon",
@@ -10745,7 +11453,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Mining Road",
@@ -10759,7 +11468,8 @@
     "image_name": "miningroad",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Pendant",
@@ -10773,7 +11483,8 @@
     "image_name": "pendant",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Pickaxe",
@@ -10787,7 +11498,8 @@
     "image_name": "pickaxe",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Pilgrim",
@@ -10803,7 +11515,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Quartermaster",
@@ -10818,7 +11531,8 @@
     "image_name": "quartermaster",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Rope",
@@ -10833,7 +11547,8 @@
     "image_name": "rope",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Sack of Loot",
@@ -10847,7 +11562,8 @@
     "image_name": "sackofloot",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Search",
@@ -10862,7 +11578,8 @@
     "image_name": "search",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Secluded Shrine",
@@ -10877,7 +11594,8 @@
     "image_name": "secludedshrine",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Shaman",
@@ -10891,7 +11609,8 @@
     "image_name": "shaman",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Silver Mine",
@@ -10905,7 +11624,8 @@
     "image_name": "silvermine",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Siren",
@@ -10923,7 +11643,8 @@
     "debt": 0,
     "categories": [
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Stowaway",
@@ -10939,7 +11660,8 @@
     "image_name": "stowaway",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Swamp Shacks",
@@ -10956,7 +11678,8 @@
     "categories": [
       "Nonterminal_draw",
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Taskmaster",
@@ -10971,7 +11694,8 @@
     "image_name": "taskmaster",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Tools",
@@ -10985,7 +11709,8 @@
     "image_name": "tools",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Trickster",
@@ -11002,7 +11727,8 @@
     "debt": 0,
     "categories": [
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Wealthy Village",
@@ -11018,13 +11744,14 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Amphora",
     "set": "Plunder",
     "cost": null,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Treasure",
@@ -11034,13 +11761,14 @@
     "image_name": "amphora",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Doubloons",
     "set": "Plunder",
     "cost": null,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Treasure",
@@ -11049,13 +11777,14 @@
     "image_name": "doubloons",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Endless Chalice",
     "set": "Plunder",
     "cost": null,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Treasure",
@@ -11065,13 +11794,14 @@
     "image_name": "endlesschalice",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Figurehead",
     "set": "Plunder",
     "cost": null,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Treasure",
@@ -11081,13 +11811,14 @@
     "image_name": "figurehead",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Hammer",
     "set": "Plunder",
     "cost": null,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Treasure",
@@ -11096,13 +11827,14 @@
     "image_name": "hammer",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Insignia",
     "set": "Plunder",
     "cost": null,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Treasure",
@@ -11111,13 +11843,14 @@
     "image_name": "insignia",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Jewels",
     "set": "Plunder",
     "cost": null,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Treasure",
@@ -11127,13 +11860,14 @@
     "image_name": "jewels",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Orb",
     "set": "Plunder",
     "cost": null,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Treasure",
@@ -11142,13 +11876,14 @@
     "image_name": "orb",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Prize Goat",
     "set": "Plunder",
     "cost": null,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Treasure",
@@ -11157,13 +11892,14 @@
     "image_name": "prizegoat",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Puzzle Box",
     "set": "Plunder",
     "cost": null,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Treasure",
@@ -11172,13 +11908,14 @@
     "image_name": "puzzlebox",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Sextant",
     "set": "Plunder",
     "cost": null,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Treasure",
@@ -11187,13 +11924,14 @@
     "image_name": "sextant",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Shield",
     "set": "Plunder",
     "cost": null,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Treasure",
@@ -11203,13 +11941,14 @@
     "image_name": "shield",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Spell Scroll",
     "set": "Plunder",
     "cost": null,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -11219,13 +11958,14 @@
     "image_name": "spellscroll",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Staff",
     "set": "Plunder",
     "cost": null,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Treasure",
@@ -11234,13 +11974,14 @@
     "image_name": "staff",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Sword",
     "set": "Plunder",
     "cost": null,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Treasure",
@@ -11250,7 +11991,8 @@
     "image_name": "sword",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Avoid",
@@ -11264,7 +12006,8 @@
     "image_name": "avoid",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Bury",
@@ -11278,7 +12021,8 @@
     "image_name": "bury",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Deliver",
@@ -11292,7 +12036,8 @@
     "image_name": "deliver",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Foray",
@@ -11306,7 +12051,8 @@
     "image_name": "foray",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Invasion",
@@ -11320,7 +12066,8 @@
     "image_name": "invasion",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Journey",
@@ -11334,7 +12081,8 @@
     "image_name": "journey",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Launch",
@@ -11348,7 +12096,8 @@
     "image_name": "launch",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Looting",
@@ -11362,7 +12111,8 @@
     "image_name": "looting",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Maelstrom",
@@ -11376,7 +12126,8 @@
     "image_name": "maelstrom",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Mirror",
@@ -11390,7 +12141,8 @@
     "image_name": "mirror",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Peril",
@@ -11404,7 +12156,8 @@
     "image_name": "peril",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Prepare",
@@ -11418,7 +12171,8 @@
     "image_name": "prepare",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Prosper",
@@ -11432,7 +12186,8 @@
     "image_name": "prosper",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Rush",
@@ -11446,7 +12201,8 @@
     "image_name": "rush",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Scrounge",
@@ -11460,7 +12216,8 @@
     "image_name": "scrounge",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Cheap",
@@ -11474,7 +12231,8 @@
     "image_name": "cheap",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Cursed",
@@ -11490,7 +12248,8 @@
     "debt": 0,
     "categories": [
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Fated",
@@ -11504,7 +12263,8 @@
     "image_name": "fated",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Fawning",
@@ -11518,7 +12278,8 @@
     "image_name": "fawning",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Friendly",
@@ -11532,7 +12293,8 @@
     "image_name": "friendly",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Hasty",
@@ -11546,7 +12308,8 @@
     "image_name": "hasty",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Inherited",
@@ -11560,7 +12323,8 @@
     "image_name": "inherited",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Inspiring",
@@ -11574,7 +12338,8 @@
     "image_name": "inspiring",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Nearby",
@@ -11588,7 +12353,8 @@
     "image_name": "nearby",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Patient",
@@ -11602,7 +12368,8 @@
     "image_name": "patient",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Pious",
@@ -11616,7 +12383,8 @@
     "image_name": "pious",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Reckless",
@@ -11632,7 +12400,8 @@
     "debt": 0,
     "categories": [
       "Throneroom_variant"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Rich",
@@ -11646,7 +12415,8 @@
     "image_name": "rich",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Shy",
@@ -11662,7 +12432,8 @@
     "debt": 0,
     "categories": [
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Tireless",
@@ -11676,7 +12447,8 @@
     "image_name": "tireless",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Alley",
@@ -11693,7 +12465,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Aristocrat",
@@ -11709,7 +12482,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Artist",
@@ -11725,7 +12499,8 @@
     "debt": 8,
     "categories": [
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Change",
@@ -11739,7 +12514,8 @@
     "image_name": "change",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Craftsman",
@@ -11753,7 +12529,8 @@
     "image_name": "craftsman",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Daimyo",
@@ -11771,7 +12548,8 @@
     "categories": [
       "Cantrip",
       "Throneroom_variant"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Fishmonger",
@@ -11786,7 +12564,8 @@
     "image_name": "fishmonger",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Gold Mine",
@@ -11802,7 +12581,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Imperial Envoy",
@@ -11818,7 +12598,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Kitsune",
@@ -11837,7 +12618,8 @@
     "categories": [
       "Curser",
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Litter",
@@ -11854,7 +12636,8 @@
     "categories": [
       "Nonterminal_draw",
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Mountain Shrine",
@@ -11871,7 +12654,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Ninja",
@@ -11889,7 +12673,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Poet",
@@ -11907,7 +12692,8 @@
     "categories": [
       "Cantrip",
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Rice",
@@ -11921,7 +12707,8 @@
     "image_name": "rice",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Rice Broker",
@@ -11937,7 +12724,8 @@
     "debt": 0,
     "categories": [
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "River Shrine",
@@ -11952,7 +12740,8 @@
     "image_name": "rivershrine",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Riverboat",
@@ -11967,7 +12756,8 @@
     "image_name": "riverboat",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Ronin",
@@ -11984,7 +12774,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Root Cellar",
@@ -12000,7 +12791,8 @@
     "debt": 0,
     "categories": [
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Rustic Village",
@@ -12017,7 +12809,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Samurai",
@@ -12033,7 +12826,8 @@
     "image_name": "samurai",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Snake Witch",
@@ -12051,7 +12845,8 @@
     "categories": [
       "Cantrip",
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Tanuki",
@@ -12066,7 +12861,8 @@
     "image_name": "tanuki",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Tea House",
@@ -12081,7 +12877,8 @@
     "image_name": "teahouse",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Amass",
@@ -12095,7 +12892,8 @@
     "image_name": "amass",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Asceticism",
@@ -12109,7 +12907,8 @@
     "image_name": "asceticism",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Continue",
@@ -12123,7 +12922,8 @@
     "image_name": "continue_",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Credit",
@@ -12137,7 +12937,8 @@
     "image_name": "credit",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Foresight",
@@ -12151,7 +12952,8 @@
     "image_name": "foresight",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Gather",
@@ -12165,7 +12967,8 @@
     "image_name": "gather",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Kintsugi",
@@ -12179,7 +12982,8 @@
     "image_name": "kintsugi",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Practice",
@@ -12195,7 +12999,8 @@
     "debt": 0,
     "categories": [
       "Throneroom_variant"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Receive Tribute",
@@ -12209,7 +13014,8 @@
     "image_name": "receivetribute",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Sea Trade",
@@ -12223,7 +13029,8 @@
     "image_name": "seatrade",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Approaching Army",
@@ -12237,7 +13044,8 @@
     "image_name": "approachingarmy",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Biding Time",
@@ -12251,7 +13059,8 @@
     "image_name": "bidingtime",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Bureaucracy",
@@ -12265,7 +13074,8 @@
     "image_name": "bureaucracy",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Divine Wind",
@@ -12279,7 +13089,8 @@
     "image_name": "divinewind",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Enlightenment",
@@ -12293,7 +13104,8 @@
     "image_name": "enlightenment",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Flourishing Trade",
@@ -12307,7 +13119,8 @@
     "image_name": "flourishingtrade",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Good Harvest",
@@ -12321,7 +13134,8 @@
     "image_name": "goodharvest",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Great Leader",
@@ -12335,7 +13149,8 @@
     "image_name": "greatleader",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Growth",
@@ -12349,7 +13164,8 @@
     "image_name": "growth",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Harsh Winter",
@@ -12363,7 +13179,8 @@
     "image_name": "harshwinter",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Kind Emperor",
@@ -12377,7 +13194,8 @@
     "image_name": "kindemperor",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Panic",
@@ -12391,7 +13209,8 @@
     "image_name": "panic",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Progress",
@@ -12405,7 +13224,8 @@
     "image_name": "progress",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Rapid Expansion",
@@ -12419,7 +13239,8 @@
     "image_name": "rapidexpansion",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Sickness",
@@ -12435,7 +13256,8 @@
     "debt": 0,
     "categories": [
       "Curser"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Avanto",
@@ -12451,7 +13273,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Black Market",
@@ -12465,7 +13288,8 @@
     "image_name": "blackmarket",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Captain",
@@ -12481,7 +13305,8 @@
     "image_name": "captain",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Church",
@@ -12496,7 +13321,8 @@
     "image_name": "church",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Dismantle",
@@ -12510,7 +13336,8 @@
     "image_name": "dismantle",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Envoy",
@@ -12526,7 +13353,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Governor",
@@ -12542,7 +13370,8 @@
     "debt": 0,
     "categories": [
       "Nonterminal_draw"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Marchland",
@@ -12556,7 +13385,8 @@
     "image_name": "marchland",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Prince",
@@ -12574,7 +13404,8 @@
     "debt": 0,
     "categories": [
       "Throneroom_variant"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Sauna",
@@ -12590,7 +13421,8 @@
     "debt": 0,
     "categories": [
       "Cantrip"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Stash",
@@ -12604,7 +13436,8 @@
     "image_name": "stash",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Summon",
@@ -12618,7 +13451,8 @@
     "image_name": "summon",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Walled Village",
@@ -12634,7 +13468,8 @@
     "debt": 0,
     "categories": [
       "Village"
-    ]
+    ],
+    "potion": false
   },
   {
     "name": "Knights",
@@ -12650,7 +13485,8 @@
     "image_name": "knights",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Castles",
@@ -12665,7 +13501,8 @@
     "image_name": "castles",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Harem",
@@ -12680,7 +13517,8 @@
     "image_name": "harem",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
     "name": "Farm",
@@ -12695,10 +13533,11 @@
     "image_name": "farm",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
-    "name": "All 12 boons",
+    "name": "All 12 Boons",
     "set": "PLACEHOLDER",
     "cost": 0,
     "supply": false,
@@ -12706,13 +13545,14 @@
     "types": [
       "Boon"
     ],
-    "image_name": "boon_placeholder",
+    "image_name": "placeholder_boon",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
   },
   {
-    "name": "All 12 hexes",
+    "name": "All 12 Hexes",
     "set": "PLACEHOLDER",
     "cost": 0,
     "supply": false,
@@ -12720,9 +13560,25 @@
     "types": [
       "Hex"
     ],
-    "image_name": "hex_placeholder",
+    "image_name": "placeholder_hex",
     "basic": false,
     "debt": 0,
-    "categories": []
+    "categories": [],
+    "potion": false
+  },
+  {
+    "name": "All 12 Loots",
+    "set": "PLACEHOLDER",
+    "cost": 0,
+    "supply": false,
+    "landscape": true,
+    "types": [
+      "Loot"
+    ],
+    "image_name": "placeholder_loot",
+    "basic": false,
+    "debt": 0,
+    "categories": [],
+    "potion": false
   }
 ]

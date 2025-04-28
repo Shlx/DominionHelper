@@ -41,6 +41,7 @@ import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.nativeCanvas
@@ -89,6 +90,7 @@ fun RandomCardList(
     randomCards: List<Card> = emptyList(),
     basicCards: List<Card> = emptyList(),
     dependentCards: List<Card> = emptyList(),
+    startingCards: Map<Card, Int> = emptyMap(),
     onCardClick: (Card) -> Unit,
     listState: LazyListState = rememberLazyListState()
 ) {
@@ -107,18 +109,7 @@ fun RandomCardList(
         // DEPENDENT CARDS
         if (dependentCards.isNotEmpty()) {
             item {
-                Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Spacer(modifier = Modifier.height(8.dp))
-                    HorizontalDivider(modifier = Modifier.fillMaxWidth(0.5f))
-                    Spacer(modifier = Modifier.height(12.dp))
-                    Text(text = "Additional Cards", textAlign = TextAlign.Center)
-                    Spacer(modifier = Modifier.height(12.dp))
-                    HorizontalDivider(modifier = Modifier.fillMaxWidth(0.5f))
-                    Spacer(modifier = Modifier.height(8.dp))
-                }
+                CardSpacer("Additional Cards")
 
             }
             items(dependentCards) { card ->
@@ -128,26 +119,39 @@ fun RandomCardList(
 
         // BASIC CARDS
         item {
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Spacer(modifier = Modifier.height(8.dp))
-                HorizontalDivider(modifier = Modifier.fillMaxWidth(0.5f))
-                Spacer(modifier = Modifier.height(12.dp))
-                Text(text = "Basic Cards", textAlign = TextAlign.Center)
-                Spacer(modifier = Modifier.height(12.dp))
-                HorizontalDivider(modifier = Modifier.fillMaxWidth(0.5f))
-                Spacer(modifier = Modifier.height(8.dp))
-            }
+            CardSpacer("Basic Cards")
 
         }
         items(basicCards) { card ->
             CardView(card, onCardClick)
         }
 
+        // STARTING CARDS
+        item {
+            CardSpacer("Starting Cards")
+        }
+        items(startingCards.keys.toList()) { card ->
+            CardView(card, onCardClick, startingCards[card]!!)
+        }
+
     }
 
+}
+
+@Composable
+fun CardSpacer(text: String) {
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Spacer(modifier = Modifier.height(8.dp))
+        HorizontalDivider(modifier = Modifier.fillMaxWidth(0.5f))
+        Spacer(modifier = Modifier.height(12.dp))
+        Text(text = text, textAlign = TextAlign.Center)
+        Spacer(modifier = Modifier.height(12.dp))
+        HorizontalDivider(modifier = Modifier.fillMaxWidth(0.5f))
+        Spacer(modifier = Modifier.height(8.dp))
+    }
 }
 
 // Displays a single card, with an image and a name
@@ -155,6 +159,7 @@ fun RandomCardList(
 fun CardView(
     card: Card,
     onCardClick: (Card) -> Unit,
+    amount: Int = 1,
 ) {
     val context = LocalContext.current
     val drawableId = getDrawableId(context, card.imageName)
@@ -220,6 +225,7 @@ fun CardView(
                                 IntOffset(
                                     x = 0,
                                     y = when {
+                                        card.name == "Potion" -> 0
                                         card.basic
                                                 && !card.types.contains(Type.RUINS)
                                                 && !card.types.contains(Type.SHELTER)
@@ -244,7 +250,7 @@ fun CardView(
                 ) {
                     Column {
                         Text(
-                            text = card.name,
+                            text = card.name + if (amount > 1) " x$amount" else "",
                             textAlign = TextAlign.Start,
                             fontSize = 20.sp
                         )
@@ -275,10 +281,21 @@ fun CardView(
                                     NumberCircle(number = card.cost)
                                 }
                                 if (card.debt > 0) {
-                                    if (card.cost > 0) {
+                                    if (card.cost > 0 || card.potion) {
                                         Spacer(modifier = Modifier.padding(4.dp))
                                     }
                                     NumberHexagon(number = card.debt)
+                                }
+                                if (card.potion) {
+                                    if (card.cost > 0) {
+                                        Spacer(modifier = Modifier.padding(4.dp))
+                                    }
+                                    Image(
+                                        painter = painterResource(id = R.drawable.set_alchemy),
+                                        contentDescription = "Tinted Image",
+                                        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.secondaryContainer),
+                                        modifier = Modifier.size(22.dp)
+                                    )
                                 }
                             }
                         }

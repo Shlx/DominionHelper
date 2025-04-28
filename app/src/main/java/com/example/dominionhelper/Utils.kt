@@ -3,6 +3,7 @@ package com.example.dominionhelper
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import kotlin.random.Random
 
 fun getDrawableId(context: Context, imageName: String): Int {
     val resourceId = context.resources.getIdentifier(
@@ -13,7 +14,7 @@ fun getDrawableId(context: Context, imageName: String): Int {
 
     if (resourceId == 0) {
         Log.e("getDrawableId", "Could not find drawable resource with name: $imageName")
-        // TODO: Return a default drawable
+        return R.drawable.ic_launcher_foreground
     }
 
     return resourceId
@@ -26,3 +27,10 @@ fun navigateToActivity(context: Context, activityClass: Class<*>) {
     }
     context.startActivity(intent)
 }
+
+fun isPercentChance(percentChance: Double): Boolean {
+    require(percentChance in 0.0..100.0) { "percentChance must be between 0.0 and 100.0" }
+    return Random.nextDouble(0.0, 100.0) < percentChance
+}
+
+

@@ -90,14 +90,15 @@ import kotlinx.coroutines.launch
 // -> Seems fine between expansion and random cards, expansion to search needs to reset
 // Going back from expansion list resets even though it shouldn't
 
-// Alchemy potion costs
-// Move potion thumbnail a bit
-
 // Check image sizes
 // Turn placeholders to webp
 
 // Heirlooms should remove a copper each
 // Chose 2 from Events, Landmarks, Projects, Ways, Traits
+
+// Ability to switch expansion between first and second edition
+
+// Problem if there is a card of the same name twice within the card lists
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -132,6 +133,7 @@ fun MainView(
     val randomCards by cardViewModel.randomCards.collectAsStateWithLifecycle()
     val basicCards by cardViewModel.basicCards.collectAsStateWithLifecycle()
     val dependentCards by cardViewModel.dependentCards.collectAsStateWithLifecycle()
+    val startingCards by cardViewModel.startingCards.collectAsStateWithLifecycle()
     val selectedCard by cardViewModel.selectedCard.collectAsStateWithLifecycle()
 
     val isSearchActive by cardViewModel.searchActive.collectAsStateWithLifecycle()
@@ -241,7 +243,7 @@ fun MainView(
                     Log.i("MainView", "View card detail (${selectedCard?.name})")
                     CardDetailPager(
                         // This feels weird but maybe it's ok?
-                        cardList = expansionCards + randomCards + dependentCards + basicCards,
+                        cardList = expansionCards + randomCards + dependentCards + basicCards + startingCards.keys.toList(),
                         initialCard = selectedCard!!,
                         modifier = Modifier.padding(innerPadding)
                     )
@@ -270,6 +272,7 @@ fun MainView(
                             randomCards = randomCards,
                             basicCards = basicCards,
                             dependentCards = dependentCards,
+                            startingCards = startingCards,
                             onCardClick = { cardViewModel.selectCard(it) },
                             modifier = Modifier.padding(innerPadding),
                             listState = listState

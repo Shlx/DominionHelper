@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.dominionhelper.KingdomGenerator
 import com.example.dominionhelper.data.Card
 import com.example.dominionhelper.data.Expansion
 import com.example.dominionhelper.R
@@ -69,6 +70,12 @@ object AppModule {
     @Provides
     fun provideExpansionDao(appDatabase: AppDatabase): ExpansionDao {
         return appDatabase.expansionDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideKingdomGenerator(cardDao: CardDao): KingdomGenerator {
+        return KingdomGenerator(cardDao)
     }
 
     @Provides

@@ -58,8 +58,9 @@ interface CardDao {
     """)
     suspend fun getRandomCardsFromOwnedExpansions(amount: Int): List<Card>
 
+    @Query("SELECT * FROM cards WHERE name = :name")
+    suspend fun getCardByName(name: String): Card
 
-    // Make this "getCardsByNameList"
     @Query("SELECT * FROM cards WHERE name IN (:names)")
     suspend fun getCardsByNameList(names: List<String>): List<Card>
 

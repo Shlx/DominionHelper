@@ -29,7 +29,8 @@ data class Card(
     @SerializedName("image_name") val imageName: String,
     val basic: Boolean,
     val debt: Int,
-    val categories: List<Category>
+    val categories: List<Category>,
+    val potion: Boolean,
 ) {
 
     @Ignore
