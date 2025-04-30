@@ -9,16 +9,29 @@ import com.example.dominionhelper.data.Set
 import com.example.dominionhelper.data.Type
 import javax.inject.Inject
 
-data class Kingdom(val randomCards: List<Card>,
-                   val basicCards: List<Card>,
-                   val dependentCards: List<Card>,
-                   val startingCards: Map<Card, Int>)
+data class Kingdom(
+    val randomCards: List<Card> = emptyList(),
+    val basicCards: List<Card> = emptyList(),
+    val dependentCards: List<Card> = emptyList(),
+    val startingCards: Map<Card, Int> = emptyMap()
+) {
+
+    fun hasDependentCards(): Boolean {
+        return dependentCards.isNotEmpty()
+    }
+
+    fun isNotEmpty(): Boolean {
+        return randomCards.isNotEmpty() || basicCards.isNotEmpty() || dependentCards.isNotEmpty() || startingCards.isNotEmpty()
+    }
+}
 
 class KingdomGenerator @Inject constructor(
     private val cardDao: CardDao
-){
+) {
 
     suspend fun generateKingdom(): Kingdom {
+
+        // TODO Handle DAO null return in separate class?
         val randomCards = cardDao.getRandomCardsFromOwnedExpansions(10)
         val basicCards = cardDao.getCardsByNameList(BASIC_CARD_NAMES)
 
@@ -39,6 +52,10 @@ class KingdomGenerator @Inject constructor(
             }
         }
 
+        /* val correctStartingCards = startingCards.mapNotNull { (cardName, count) ->
+            cardDao.getCardByName(cardName)?.let { it to count }
+        }.toMap() */
+
         Log.i(
             "Kingdom Generator",
             "Generated ${randomCards.size} random cards, ${basicCards.size} basic cards, ${dependentCards.size} dependent cards"
@@ -48,6 +65,11 @@ class KingdomGenerator @Inject constructor(
     }
 
     private fun getDependentCards(cards: List<Card>): List<String> {
+
+
+        // Schwierig: Ferryman, Young Witch, Black Market Riverboat, Approaching Army, Diving Wind, Inherited
+
+        // TODO Efficiency: When a dependencyRule is met, the other ones are still checked. We should not check further rules when one is found, as this is just a waste of resources. We can change this by using any().
 
         val dependencyRules = listOf(
 
@@ -88,12 +110,14 @@ class KingdomGenerator @Inject constructor(
                 dependentCardNames = listOf("All 12 Loots")
             ),
 
-            // TODO: Ruins placeholder?
             // If there is a Looter card present, add Ruins cards
             DependencyRule(
                 condition = { it.types.contains(Type.LOOTER) },
-                dependentCardNames = listOf("Abandoned Mine", "Ruined Library", "Ruined Market", "Ruined Village", "Survivors")
+                dependentCardNames = listOf("Ruins pile")
             ),
+
+            // TODO: If Tournament -> add Prize
+            // TODO: If Jouse -> Add Reward
 
             // If there is a Bandit Camp, Marauder oder Pillage card present, add Spoils cards
             DependencyRule(
@@ -162,6 +186,13 @@ class KingdomGenerator @Inject constructor(
                 dependentCardNames = listOf("Bat")
             ),
 
+            // If there is Leprechaun or Secret Cave present, add Wish
+            DependencyRule(
+                condition = { it.name == "Leprechaun" || it.name == "Secret Cave" },
+                dependentCardNames = listOf("Wish")
+            ),
+
+            // TODO % chance?
             // Count Prosperity cards and add Platinum and Colony
             DependencyRuleCount(
                 condition = { it.set == Set.PROSPERITY || it.set == Set.PROSPERITY_1E || it.set == Set.PROSPERITY_2E },
@@ -199,7 +230,7 @@ class KingdomGenerator @Inject constructor(
         return dependentCardNames.toList()
     }
 
-    private fun getStartingCards(randomCards: List<Card>): Map<String, Int>{
+    private fun getStartingCards(randomCards: List<Card>): Map<String, Int> {
 
         val cards = mutableMapOf<String, Int>()
 

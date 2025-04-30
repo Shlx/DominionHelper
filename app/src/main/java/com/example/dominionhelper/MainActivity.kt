@@ -40,7 +40,7 @@ import com.example.dominionhelper.ui.CardDetailPager
 import com.example.dominionhelper.ui.CardList
 import com.example.dominionhelper.ui.CardViewModel
 import com.example.dominionhelper.ui.ExpansionGrid
-import com.example.dominionhelper.ui.RandomCardList
+import com.example.dominionhelper.ui.KingdomList
 import com.example.dominionhelper.ui.TopBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -99,6 +99,9 @@ import kotlinx.coroutines.launch
 // Ability to switch expansion between first and second edition
 
 // Problem if there is a card of the same name twice within the card lists
+// Overpay Cards, Coffers, weißer Text auf Schulden
+
+// TODO check: Allies, Menagerie, Renaissance, Nocturne, Empires, Adventures, Guilds, Dark Ages, Hinterlands, Cornucopia, Prosperity, Alchemy, Seaside, Intrigue, Dominion
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -130,10 +133,7 @@ fun MainView(
 
     val cardsToShow by cardViewModel.cardsToShow.collectAsStateWithLifecycle()
     val expansionCards by cardViewModel.expansionCards.collectAsStateWithLifecycle()
-    val randomCards by cardViewModel.randomCards.collectAsStateWithLifecycle()
-    val basicCards by cardViewModel.basicCards.collectAsStateWithLifecycle()
-    val dependentCards by cardViewModel.dependentCards.collectAsStateWithLifecycle()
-    val startingCards by cardViewModel.startingCards.collectAsStateWithLifecycle()
+    val kingdom by cardViewModel.kingdom.collectAsStateWithLifecycle()
     val selectedCard by cardViewModel.selectedCard.collectAsStateWithLifecycle()
 
     val isSearchActive by cardViewModel.searchActive.collectAsStateWithLifecycle()
@@ -198,15 +198,13 @@ fun MainView(
     }
 
     var selectedOption by remember { mutableStateOf("") }
-    //val options = listOf("Option 1", "Option 2", "Option 3")
 
-    // TODO: This will lead to other parts of the app (I hope)
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
             DrawerContent(applicationScope, selectedOption, { selectedOption = it }, drawerState)
-        }/*,
-        gesturesEnabled = drawerState.isOpen*/ // Leaving this lets the user drag the drawer open
+        }
+        //,gesturesEnabled = drawerState.isOpen // Leaving this lets the user drag the drawer open
     ) {
         Scaffold(
             topBar = {
@@ -218,13 +216,13 @@ fun MainView(
                     searchText = searchText,
                     onSearchTextChange = { cardViewModel.changeSearchText(it) },
                     onRandomCardsClicked = {
-                        cardViewModel.getRandomCards()
+                        cardViewModel.getRandomKingdom()
                         cardViewModel.clearSelectedExpansion()
                     },
                     onSortTypeSelected = { cardViewModel.updateSortType(it) },
                     selectedSortType = sortType,
                     topBarTitle = topBarTitle,
-                    hideSearch = randomCards.isNotEmpty()
+                    hideSearch = kingdom.isNotEmpty()
                 )
             }
         ) { innerPadding ->
@@ -242,10 +240,10 @@ fun MainView(
                 selectedCard != null -> {
                     Log.i("MainView", "View card detail (${selectedCard?.name})")
                     CardDetailPager(
+                        modifier = Modifier.padding(innerPadding),
                         // This feels weird but maybe it's ok?
-                        cardList = expansionCards + randomCards + dependentCards + basicCards + startingCards.keys.toList(),
-                        initialCard = selectedCard!!,
-                        modifier = Modifier.padding(innerPadding)
+                        cardList = expansionCards + kingdom.randomCards + kingdom.dependentCards + kingdom.basicCards + kingdom.startingCards.keys.toList(),
+                        initialCard = selectedCard!!
                     )
                 }
 
@@ -253,7 +251,7 @@ fun MainView(
                 cardsToShow -> {
                     Log.i(
                         "MainView",
-                        "View card list (Expansion: ${expansionCards.size}, Random: ${randomCards.size}, Dependent: ${dependentCards.size}, Basic: ${basicCards.size} cards)"
+                        "View card list (Expansion: ${expansionCards.size}, Random: ${kingdom.randomCards.size}, Dependent: ${kingdom.dependentCards.size}, Basic: ${kingdom.basicCards.size} cards)"
                     )
 
                     // Show expansion or search result
@@ -268,11 +266,8 @@ fun MainView(
 
                         // Show generated random cards
                     } else {
-                        RandomCardList(
-                            randomCards = randomCards,
-                            basicCards = basicCards,
-                            dependentCards = dependentCards,
-                            startingCards = startingCards,
+                        KingdomList(
+                            kingdom = kingdom,
                             onCardClick = { cardViewModel.selectCard(it) },
                             modifier = Modifier.padding(innerPadding),
                             listState = listState

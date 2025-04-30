@@ -3,7 +3,6 @@ package com.example.dominionhelper.ui
 import android.util.Log
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -34,18 +33,15 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusManager
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.graphics.nativeCanvas
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
@@ -56,14 +52,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.dominionhelper.Kingdom
 import com.example.dominionhelper.R
 import com.example.dominionhelper.data.Card
 import com.example.dominionhelper.data.Category
 import com.example.dominionhelper.data.Set
 import com.example.dominionhelper.data.Type
+import com.example.dominionhelper.findIndexOfReference
 import com.example.dominionhelper.getDrawableId
-import kotlin.math.cos
-import kotlin.math.sin
 
 // Displays a list of cards
 @Composable
@@ -73,6 +69,7 @@ fun CardList(
     onCardClick: (Card) -> Unit,
     listState: LazyListState = rememberLazyListState()
 ) {
+
     LazyColumn(
         modifier = modifier,
         state = listState
@@ -85,16 +82,13 @@ fun CardList(
 }
 
 @Composable
-fun RandomCardList(
+fun KingdomList(
     modifier: Modifier,
-    randomCards: List<Card> = emptyList(),
-    basicCards: List<Card> = emptyList(),
-    dependentCards: List<Card> = emptyList(),
-    startingCards: Map<Card, Int> = emptyMap(),
+    kingdom: Kingdom,
     onCardClick: (Card) -> Unit,
     listState: LazyListState = rememberLazyListState()
 ) {
-    Log.i("RandomCardList", "randomCards: ${randomCards.size}, basicCards: ${basicCards.size}, dependentCards: ${dependentCards.size}")
+    Log.i("RandomCardList", "randomCards: ${kingdom.randomCards.size}, basicCards: ${kingdom.basicCards.size}, dependentCards: ${kingdom.dependentCards.size}, startingCards: ${kingdom.startingCards.size}")
 
     LazyColumn(
         modifier = modifier,
@@ -102,17 +96,17 @@ fun RandomCardList(
     ) {
 
         // RANDOM CARDS
-        items(randomCards) { card ->
+        items(kingdom.randomCards) { card ->
             CardView(card, onCardClick)
         }
 
         // DEPENDENT CARDS
-        if (dependentCards.isNotEmpty()) {
+        if (kingdom.hasDependentCards()) {
             item {
                 CardSpacer("Additional Cards")
 
             }
-            items(dependentCards) { card ->
+            items(kingdom.dependentCards) { card ->
                 CardView(card, onCardClick)
             }
         }
@@ -122,7 +116,7 @@ fun RandomCardList(
             CardSpacer("Basic Cards")
 
         }
-        items(basicCards) { card ->
+        items(kingdom.basicCards) { card ->
             CardView(card, onCardClick)
         }
 
@@ -130,13 +124,11 @@ fun RandomCardList(
         item {
             CardSpacer("Starting Cards")
         }
-        items(startingCards.keys.toList()) { card ->
-            CardView(card, onCardClick, startingCards[card]!!)
+        items(kingdom.startingCards.keys.toList()) { card ->
+            CardView(card, onCardClick, kingdom.startingCards[card]!!)
         }
-
     }
-
-}
+    }
 
 @Composable
 fun CardSpacer(text: String) {
@@ -357,12 +349,11 @@ fun ColoredBar(barColors: List<Color>, modifier: Modifier = Modifier) {
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun CardDetailPager(
+    modifier: Modifier = Modifier,
     cardList: List<Card>,
-    initialCard: Card,
-    modifier: Modifier = Modifier
+    initialCard: Card
 ) {
-    // Find the initial index of the card
-    val initialIndex = cardList.indexOf(initialCard)
+    val initialIndex = findIndexOfReference(cardList, initialCard)
     val pagerState =
         rememberPagerState(initialPage = initialIndex, pageCount = { cardList.size })
     Column {
@@ -371,9 +362,10 @@ fun CardDetailPager(
             modifier = modifier
                 .fillMaxSize(),
         ) { page ->
+
             // Display the card for the current page
-            // TODO: Always prints the next card as well
-            Log.i("CardDetailPager", "Displaying ${cardList[page].name}")
+            Log.i("CardDetailPager", "Displaying ${cardList[page].name}, Index $initialIndex")
+            println("CardDetailPager $cardList.size")
             CardDetail(card = cardList[page])
         }
     }
@@ -419,117 +411,6 @@ fun CategoryText(category: Category) {
         text = category.name,
         modifier = Modifier.padding(4.dp)
     )
-}
-
-@Composable
-fun NumberCircle(number: Int, modifier: Modifier = Modifier) {
-    val circleColor = MaterialTheme.colorScheme.primaryContainer
-    val textColor = MaterialTheme.colorScheme.onSurface.toArgb()
-
-    Box(
-        modifier = modifier,
-        contentAlignment = Alignment.Center
-    ) {
-        Canvas(
-            modifier = Modifier
-                .size(24.dp)
-        ) {
-            drawCircle(
-                color = circleColor,
-                radius = size.minDimension / 2,
-                center = Offset(size.width / 2, size.height / 2)
-            )
-
-            drawIntoCanvas { canvas ->
-                val paint = android.graphics.Paint().apply {
-                    color = textColor
-                    textAlign = android.graphics.Paint.Align.CENTER
-                    textSize = 12.sp.toPx()
-                    isFakeBoldText = true
-                }
-
-                val textBounds = android.graphics.Rect()
-                paint.getTextBounds(number.toString(), 0, number.toString().length, textBounds)
-
-                canvas.nativeCanvas.drawText(
-                    number.toString(),
-                    size.width / 2,
-                    (size.height / 2) - (textBounds.top + textBounds.bottom) / 2,
-                    paint
-                )
-            }
-        }
-    }
-}
-
-@Composable
-fun NumberHexagon(number: Int, modifier: Modifier = Modifier) {
-    val hexagonColor = MaterialTheme.colorScheme.secondaryContainer
-    val textColor = MaterialTheme.colorScheme.onSecondaryContainer.toArgb()
-
-    Box(
-        modifier = modifier,
-        contentAlignment = Alignment.Center
-    ) {
-        Canvas(
-            modifier = Modifier
-                .size(25.dp)
-        ) {
-            val centerX = size.width / 2
-            val centerY = size.height / 2
-            val radius = size.minDimension / 2
-
-            // Draw the hexagon
-            drawIntoCanvas { canvas ->
-                val hexagonPath = android.graphics.Path()
-                val angle = 2.0 * Math.PI / 6 // 6 sides
-
-                // Start at the first vertex
-                hexagonPath.moveTo(
-                    centerX + radius * cos(0.0).toFloat(),
-                    centerY + radius * sin(0.0).toFloat()
-                )
-
-                // Draw lines to each subsequent vertex
-                for (i in 1..6) {
-                    hexagonPath.lineTo(
-                        centerX + radius * cos(angle * i).toFloat(),
-                        centerY + radius * sin(angle * i).toFloat()
-                    )
-                }
-
-                // Close the path
-                hexagonPath.close()
-                val paint = android.graphics.Paint()
-                paint.color = hexagonColor.toArgb()
-                paint.style = android.graphics.Paint.Style.FILL
-                canvas.nativeCanvas.drawPath(hexagonPath, paint)
-
-                // Draw the text
-                val textPaint = android.graphics.Paint().apply {
-                    color = textColor
-                    textAlign = android.graphics.Paint.Align.CENTER
-                    textSize = 12.sp.toPx()
-                    isFakeBoldText = true
-                }
-
-                val textBounds = android.graphics.Rect()
-                textPaint.getTextBounds(
-                    number.toString(),
-                    0,
-                    number.toString().length,
-                    textBounds
-                )
-
-                canvas.nativeCanvas.drawText(
-                    number.toString(),
-                    centerX,
-                    centerY - (textBounds.top + textBounds.bottom) / 2,
-                    textPaint
-                )
-            }
-        }
-    }
 }
 
 @Composable

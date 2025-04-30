@@ -3,6 +3,7 @@ package com.example.dominionhelper.ui
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.dominionhelper.Kingdom
 import com.example.dominionhelper.KingdomGenerator
 import com.example.dominionhelper.data.Card
 import com.example.dominionhelper.data.CardDao
@@ -36,17 +37,8 @@ class CardViewModel @Inject constructor(
     private val _expansionCards = MutableStateFlow<List<Card>>(emptyList())
     val expansionCards: StateFlow<List<Card>> = _expansionCards.asStateFlow()
 
-    private val _randomCards = MutableStateFlow<List<Card>>(emptyList())
-    val randomCards: StateFlow<List<Card>> = _randomCards.asStateFlow()
-
-    private val _dependentCards = MutableStateFlow<List<Card>>(emptyList())
-    val dependentCards: StateFlow<List<Card>> = _dependentCards.asStateFlow()
-
-    private val _basicCards = MutableStateFlow<List<Card>>(emptyList())
-    val basicCards: StateFlow<List<Card>> = _basicCards.asStateFlow()
-
-    private val _startingCards = MutableStateFlow<Map<Card, Int>>(emptyMap())
-    val startingCards: StateFlow<Map<Card, Int>> = _startingCards.asStateFlow()
+    private val _kingdom = MutableStateFlow<Kingdom>(Kingdom())
+    val kingdom: StateFlow<Kingdom> = _kingdom.asStateFlow()
 
     private val _selectedCard = MutableStateFlow<Card?>(null)
     val selectedCard: StateFlow<Card?> = _selectedCard.asStateFlow()
@@ -128,24 +120,17 @@ class CardViewModel @Inject constructor(
     }
 
     // TODO: Error when < 10 cards are owned
-    fun getRandomCards() {
+    fun getRandomKingdom() {
         viewModelScope.launch {
             clearAllCards()
-            val kingdom = kingdomGenerator.generateKingdom()
-            _randomCards.value = sortCards(kingdom.randomCards)
-            _dependentCards.value = sortCards(kingdom.dependentCards)
-            _basicCards.value = sortCards(kingdom.basicCards)
-            _startingCards.value = sortCards(kingdom.startingCards)
+            _kingdom.value = kingdomGenerator.generateKingdom()
             _cardsToShow.value = true
         }
     }
 
     fun clearAllCards() {
         _expansionCards.value = emptyList()
-        _randomCards.value = emptyList()
-        _basicCards.value = emptyList()
-        _dependentCards.value = emptyList()
-        _startingCards.value = emptyMap()
+        _kingdom.value = Kingdom()
         _cardsToShow.value = false
         Log.d("CardViewModel", "Cleared all cards")
     }
@@ -179,10 +164,11 @@ class CardViewModel @Inject constructor(
     fun updateSortType(newSortType: SortType) {
         _sortType.value = newSortType
         _expansionCards.value = sortCards(_expansionCards.value)
-        _randomCards.value = sortCards(_randomCards.value)
+        // TODO: Sort kingdom
+        /*_randomCards.value = sortCards(_randomCards.value)
         _basicCards.value = sortCards(_basicCards.value)
         _dependentCards.value = sortCards(_dependentCards.value)
-        _startingCards.value = sortCards(_startingCards.value)
+        _startingCards.value = sortCards(_startingCards.value)*/
         Log.d("CardViewModel", "Updated sort type to ${_sortType.value}")
     }
 

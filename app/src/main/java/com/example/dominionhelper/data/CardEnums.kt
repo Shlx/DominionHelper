@@ -95,12 +95,15 @@ enum class Category {
     TERMINAL, // Skipped: Way too many cards
     THRONEROOM_VARIANT,
     VILLAGE,
-    // ^done
+    TRASHER,
+    ALT_VP,
+    PLUSBUY,
     DECK_INSPECTOR,
+    // ^done
+    TRASH_FOR_BENEFIT,
     DIGGING,
     DISCARD, // For benefit
     SIFTERS, // ?
-    PLUSBUY,
     COST_REDUCTION,
     DISAPPEARING_MONEY,
     PEDDLER,
@@ -114,7 +117,6 @@ enum class Category {
     JUNKING_ATTACK,
     TRASHING_ATTACK,
     TURN_WORSENING_ATTACK, // ?
-    ALT_VP,
     DURATION_DRAW,
     COMMAND_VARIANT,
     GAINER,
@@ -123,7 +125,6 @@ enum class Category {
     REMODELER,
     SPLIT_PILE,
     TOP_DECKER,
-    TRASHER,
-    VANILLA,
+    VANILLA, // ?
     EXTRA_TURN // ?
 }

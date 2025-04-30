@@ -105,7 +105,9 @@
     "image_name": "chapel",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -121,7 +123,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Plusbuy"
     ],
     "potion": false
   },
@@ -153,7 +156,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Village"
+      "Village",
+      "Plusbuy"
     ],
     "potion": false
   },
@@ -169,7 +173,9 @@
     "image_name": "gardens",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -235,7 +241,9 @@
     "image_name": "market",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -316,7 +324,9 @@
     "image_name": "moneylender",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -362,7 +372,9 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Cantrip"
+      "Cantrip",
+      "Trasher",
+      "Deck_Inspector"
     ],
     "potion": false
   },
@@ -397,7 +409,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Cantrip"
+      "Cantrip",
+      "Deck_Inspector"
     ],
     "potion": false
   },
@@ -497,7 +510,9 @@
     "image_name": "woodcutter",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -632,7 +647,9 @@
     "image_name": "baron",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -647,7 +664,9 @@
     "image_name": "bridge",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -692,7 +711,9 @@
     "image_name": "courtier",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -742,7 +763,9 @@
     "image_name": "duke",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -759,7 +782,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Cantrip"
+      "Cantrip",
+      "Alt_VP"
     ],
     "potion": false
   },
@@ -790,7 +814,9 @@
     "image_name": "lurker",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -807,7 +833,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw",
-      "Curser"
+      "Curser",
+      "Trasher"
     ],
     "potion": false
   },
@@ -825,7 +852,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Cantrip"
+      "Cantrip",
+      "Alt_VP"
     ],
     "potion": false
   },
@@ -877,7 +905,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw",
-      "Village"
+      "Village",
+      "Alt_VP"
     ],
     "potion": false
   },
@@ -894,7 +923,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Deck_Inspector"
     ],
     "potion": false
   },
@@ -911,7 +941,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Cantrip"
+      "Cantrip",
+      "Plusbuy"
     ],
     "potion": false
   },
@@ -962,7 +993,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Nonterminal_draw"
+      "Nonterminal_draw",
+      "Deck_Inspector"
     ],
     "potion": false
   },
@@ -1027,7 +1059,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Trasher"
     ],
     "potion": false
   },
@@ -1080,7 +1113,9 @@
     "image_name": "tradingpost",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -1129,7 +1164,8 @@
     "debt": 0,
     "categories": [
       "Cantrip",
-      "Nonterminal_draw"
+      "Nonterminal_draw",
+      "Deck_Inspector"
     ],
     "potion": false
   },
@@ -1164,7 +1200,9 @@
     "image_name": "astrolabe",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -1354,7 +1392,9 @@
     "image_name": "island",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -1385,7 +1425,10 @@
     "image_name": "lookout",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher",
+      "Deck_Inspector"
+    ],
     "potion": false
   },
   {
@@ -1449,7 +1492,9 @@
     "image_name": "navigator",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Deck_Inspector"
+    ],
     "potion": false
   },
   {
@@ -1531,7 +1576,9 @@
     "image_name": "sailor",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -1546,7 +1593,9 @@
     "image_name": "salvager",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -1633,7 +1682,9 @@
     "image_name": "tactician",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -1713,7 +1764,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Plusbuy"
     ],
     "potion": false
   },
@@ -1748,7 +1800,8 @@
     "debt": 0,
     "categories": [
       "Cantrip",
-      "Nonterminal_draw"
+      "Nonterminal_draw",
+      "Deck_Inspector"
     ],
     "potion": true
   },
@@ -1815,7 +1868,9 @@
     "image_name": "herbalist",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -1863,7 +1918,8 @@
     "debt": 0,
     "categories": [
       "Cantrip",
-      "Nonterminal_draw"
+      "Nonterminal_draw",
+      "Deck_Inspector"
     ],
     "potion": true
   },
@@ -1911,7 +1967,9 @@
     "image_name": "vineyard",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": true
   },
   {
@@ -1971,7 +2029,10 @@
     "image_name": "bishop",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher",
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -2006,7 +2067,8 @@
     "debt": 0,
     "categories": [
       "Nonterminal_draw",
-      "Village"
+      "Village",
+      "Plusbuy"
     ],
     "potion": false
   },
@@ -2039,7 +2101,10 @@
     "image_name": "collection",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP",
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -2054,7 +2119,9 @@
     "image_name": "contraband",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -2084,7 +2151,10 @@
     "image_name": "crystalball",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher",
+      "Deck_Inspector"
+    ],
     "potion": false
   },
   {
@@ -2114,7 +2184,9 @@
     "image_name": "forge",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -2130,7 +2202,10 @@
     "image_name": "goons",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP",
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -2145,7 +2220,9 @@
     "image_name": "grandmarket",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -2175,7 +2252,10 @@
     "image_name": "investment",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher",
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -2207,7 +2287,9 @@
     "image_name": "loan",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -2239,7 +2321,9 @@
     "image_name": "mint",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -2254,7 +2338,9 @@
     "image_name": "monument",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -2366,7 +2452,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Throneroom_variant"
+      "Throneroom_variant",
+      "Plusbuy"
     ],
     "potion": false
   },
@@ -2382,7 +2469,10 @@
     "image_name": "traderoute",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher",
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -2446,7 +2536,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Trasher"
     ],
     "potion": false
   },
@@ -2463,7 +2554,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Village"
+      "Village",
+      "Plusbuy"
     ],
     "potion": false
   },
@@ -2556,7 +2648,9 @@
     "image_name": "candlestickmaker",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -2588,7 +2682,10 @@
     "image_name": "doctor",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher",
+      "Deck_Inspector"
+    ],
     "potion": false
   },
   {
@@ -2603,7 +2700,9 @@
     "image_name": "fairgrounds",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -2653,7 +2752,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Cantrip"
+      "Cantrip",
+      "Plusbuy"
     ],
     "potion": false
   },
@@ -2718,7 +2818,8 @@
     "debt": 0,
     "categories": [
       "Cantrip",
-      "Village"
+      "Village",
+      "Plusbuy"
     ],
     "potion": false
   },
@@ -2750,7 +2851,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Cantrip"
+      "Cantrip",
+      "Deck_Inspector"
     ],
     "potion": false
   },
@@ -2782,7 +2884,9 @@
     "image_name": "horsetraders",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -2814,7 +2918,9 @@
     "image_name": "infirmary",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -2912,7 +3018,9 @@
     "image_name": "merchantguild",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -2944,7 +3052,9 @@
     "image_name": "remake",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -3113,7 +3223,10 @@
     "image_name": "demesne",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP",
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -3199,7 +3312,9 @@
     "image_name": "princess",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -3215,7 +3330,9 @@
     "image_name": "renown",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -3297,7 +3414,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Cantrip"
+      "Cantrip",
+      "Deck_Inspector"
     ],
     "potion": false
   },
@@ -3315,7 +3433,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Curser"
+      "Curser",
+      "Plusbuy"
     ],
     "potion": false
   },
@@ -3363,7 +3482,9 @@
     "image_name": "duchess",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Deck_Inspector"
+    ],
     "potion": false
   },
   {
@@ -3395,7 +3516,9 @@
     "image_name": "farmland",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -3511,7 +3634,9 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Trasher",
+      "Deck_Inspector"
     ],
     "potion": false
   },
@@ -3544,7 +3669,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Plusbuy"
     ],
     "potion": false
   },
@@ -3576,7 +3702,9 @@
     "image_name": "nomadcamp",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -3591,7 +3719,9 @@
     "image_name": "nomads",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -3623,7 +3753,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Deck_Inspector"
     ],
     "potion": false
   },
@@ -3656,7 +3787,9 @@
     "image_name": "silkroad",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -3671,7 +3804,10 @@
     "image_name": "souk",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher",
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -3686,7 +3822,10 @@
     "image_name": "spicemerchant",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher",
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -3753,7 +3892,9 @@
     "image_name": "tunnel",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -3820,7 +3961,9 @@
     "image_name": "altar",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -3916,7 +4059,9 @@
     "image_name": "count",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -3932,7 +4077,9 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Throneroom_variant"
+      "Throneroom_variant",
+      "Trasher",
+      "Plusbuy"
     ],
     "potion": false
   },
@@ -3969,7 +4116,9 @@
     "image_name": "dameanna",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -3987,7 +4136,9 @@
     "image_name": "damejosephine",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -4054,7 +4205,9 @@
     "image_name": "deathcart",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -4069,7 +4222,9 @@
     "image_name": "feodum",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -4084,7 +4239,10 @@
     "image_name": "forager",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher",
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -4131,7 +4289,9 @@
     "image_name": "hermit",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -4164,7 +4324,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Cantrip"
+      "Cantrip",
+      "Deck_Inspector"
     ],
     "potion": false
   },
@@ -4180,7 +4341,9 @@
     "image_name": "junkdealer",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -4214,7 +4377,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Cantrip"
+      "Cantrip",
+      "Plusbuy"
     ],
     "potion": false
   },
@@ -4230,7 +4394,9 @@
     "image_name": "mystic",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Deck_Inspector"
+    ],
     "potion": false
   },
   {
@@ -4294,7 +4460,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Cantrip"
+      "Cantrip",
+      "Trasher"
     ],
     "potion": false
   },
@@ -4413,7 +4580,9 @@
     "image_name": "sirmartin",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -4463,7 +4632,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Village"
+      "Village",
+      "Plusbuy"
     ],
     "potion": false
   },
@@ -4479,7 +4649,9 @@
     "image_name": "storeroom",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -4514,7 +4686,8 @@
     "debt": 0,
     "categories": [
       "Cantrip",
-      "Nonterminal_draw"
+      "Nonterminal_draw",
+      "Deck_Inspector"
     ],
     "potion": false
   },
@@ -4531,7 +4704,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Village"
+      "Village",
+      "Deck_Inspector"
     ],
     "potion": false
   },
@@ -4580,7 +4754,9 @@
     "image_name": "ruinedmarket",
     "basic": true,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -4612,7 +4788,9 @@
     "image_name": "survivors",
     "basic": true,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Deck_Inspector"
+    ],
     "potion": false
   },
   {
@@ -4662,7 +4840,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Trasher"
     ],
     "potion": false
   },
@@ -4726,7 +4905,9 @@
     "image_name": "amulet",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -4758,7 +4939,9 @@
     "image_name": "bridgetroll",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -4812,7 +4995,9 @@
     "image_name": "distantlands",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -4968,7 +5153,8 @@
     "debt": 0,
     "categories": [
       "Cantrip",
-      "Nonterminal_draw"
+      "Nonterminal_draw",
+      "Deck_Inspector"
     ],
     "potion": false
   },
@@ -4985,7 +5171,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Curser"
+      "Curser",
+      "Plusbuy"
     ],
     "potion": false
   },
@@ -5001,7 +5188,9 @@
     "image_name": "miser",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -5035,7 +5224,9 @@
     "image_name": "peasant",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -5068,7 +5259,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Plusbuy"
     ],
     "potion": false
   },
@@ -5086,7 +5278,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Cantrip"
+      "Cantrip",
+      "Trasher"
     ],
     "potion": false
   },
@@ -5220,7 +5413,9 @@
     "image_name": "winemerchant",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -5320,7 +5515,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Nonterminal_draw"
+      "Nonterminal_draw",
+      "Plusbuy"
     ],
     "potion": false
   },
@@ -5401,7 +5597,9 @@
     "image_name": "bonfire",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -5416,7 +5614,9 @@
     "image_name": "borrow",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -5540,7 +5740,9 @@
     "image_name": "plan",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -5585,7 +5787,9 @@
     "image_name": "save",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -5600,7 +5804,10 @@
     "image_name": "scoutingparty",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy",
+      "Deck_Inspector"
+    ],
     "potion": false
   },
   {
@@ -5615,7 +5822,9 @@
     "image_name": "seaway",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -5630,7 +5839,9 @@
     "image_name": "trade",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -5660,7 +5871,9 @@
     "image_name": "travellingfair",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -5712,7 +5925,9 @@
     "image_name": "capital",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -5729,7 +5944,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Curser"
+      "Curser",
+      "Trasher"
     ],
     "potion": false
   },
@@ -5745,7 +5961,9 @@
     "image_name": "chariotrace",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -5760,7 +5978,9 @@
     "image_name": "charm",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -5812,7 +6032,9 @@
     "image_name": "crumblingcastle",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -5827,7 +6049,9 @@
     "image_name": "emporium",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -5893,7 +6117,10 @@
     "image_name": "farmersmarket",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP",
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -5908,7 +6135,9 @@
     "image_name": "fortune",
     "basic": false,
     "debt": 8,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -5923,7 +6152,9 @@
     "image_name": "forum",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -5938,7 +6169,9 @@
     "image_name": "gladiator",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -5954,7 +6187,9 @@
     "image_name": "grandcastle",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -5970,7 +6205,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Cantrip"
+      "Cantrip",
+      "Alt_VP"
     ],
     "potion": false
   },
@@ -5987,7 +6223,9 @@
     "image_name": "hauntedcastle",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -6004,7 +6242,9 @@
     "image_name": "humblecastle",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -6020,7 +6260,9 @@
     "image_name": "kingscastle",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -6053,7 +6295,9 @@
     "image_name": "opulentcastle",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -6086,7 +6330,8 @@
     "debt": 0,
     "categories": [
       "Cantrip",
-      "Nonterminal_draw"
+      "Nonterminal_draw",
+      "Deck_Inspector"
     ],
     "potion": false
   },
@@ -6102,7 +6347,9 @@
     "image_name": "plunder",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -6149,7 +6396,9 @@
     "image_name": "sacrifice",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -6184,7 +6433,10 @@
     "image_name": "smallcastle",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher",
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -6200,7 +6452,9 @@
     "image_name": "sprawlingcastle",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -6216,7 +6470,10 @@
     "image_name": "temple",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher",
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -6232,7 +6489,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Village"
+      "Village",
+      "Plusbuy"
     ],
     "potion": false
   },
@@ -6250,7 +6508,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Alt_VP"
     ],
     "potion": false
   },
@@ -6266,7 +6525,9 @@
     "image_name": "advance",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -6311,7 +6572,9 @@
     "image_name": "conquest",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -6326,7 +6589,9 @@
     "image_name": "delve",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -6341,7 +6606,9 @@
     "image_name": "dominate",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -6356,7 +6623,9 @@
     "image_name": "donate",
     "basic": false,
     "debt": 8,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -6372,7 +6641,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Curser"
+      "Curser",
+      "Alt_VP"
     ],
     "potion": false
   },
@@ -6388,7 +6658,10 @@
     "image_name": "salttheearth",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher",
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -6418,7 +6691,9 @@
     "image_name": "triumph",
     "basic": false,
     "debt": 5,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -6433,7 +6708,9 @@
     "image_name": "wedding",
     "basic": false,
     "debt": 3,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -6812,7 +7089,10 @@
     "image_name": "cemetery",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher",
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -6944,7 +7224,9 @@
     "image_name": "druid",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -7077,7 +7359,9 @@
     "image_name": "monastery",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -7107,7 +7391,9 @@
     "image_name": "nightwatchman",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Deck_Inspector"
+    ],
     "potion": false
   },
   {
@@ -7141,7 +7427,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Trasher"
     ],
     "potion": false
   },
@@ -7175,7 +7462,9 @@
     "image_name": "sacredgrove",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -7225,7 +7514,9 @@
     "image_name": "skulk",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -7274,7 +7565,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Plusbuy"
     ],
     "potion": false
   },
@@ -7327,7 +7619,9 @@
     "image_name": "bat",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -7380,7 +7674,9 @@
     "image_name": "goat",
     "basic": true,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -7463,7 +7759,9 @@
     "image_name": "pasture",
     "basic": true,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -7479,7 +7777,9 @@
     "image_name": "pouch",
     "basic": true,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -7497,7 +7797,8 @@
     "debt": 0,
     "categories": [
       "Cantrip",
-      "Nonterminal_draw"
+      "Nonterminal_draw",
+      "Deck_Inspector"
     ],
     "potion": false
   },
@@ -7505,7 +7806,7 @@
     "name": "Wish",
     "set": "Nocturne",
     "cost": null,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action"
@@ -7529,7 +7830,9 @@
     "image_name": "zombieapprentice",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -7562,7 +7865,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Cantrip"
+      "Cantrip",
+      "Deck_Inspector"
     ],
     "potion": false
   },
@@ -7608,7 +7912,9 @@
     "image_name": "theflamesgift",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -7623,7 +7929,9 @@
     "image_name": "theforestsgift",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -7713,7 +8021,9 @@
     "image_name": "thesunsgift",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Deck_Inspector"
+    ],
     "potion": false
   },
   {
@@ -8061,7 +8371,10 @@
     "image_name": "ducat",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher",
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -8110,7 +8423,8 @@
     "debt": 0,
     "categories": [
       "Curser",
-      "Village"
+      "Village",
+      "Trasher"
     ],
     "potion": false
   },
@@ -8225,7 +8539,9 @@
     "image_name": "priest",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -8323,7 +8639,8 @@
     "debt": 0,
     "categories": [
       "Cantrip",
-      "Nonterminal_draw"
+      "Nonterminal_draw",
+      "Deck_Inspector"
     ],
     "potion": false
   },
@@ -8340,7 +8657,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Plusbuy"
     ],
     "potion": false
   },
@@ -8356,7 +8674,9 @@
     "image_name": "spices",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -8388,7 +8708,9 @@
     "image_name": "treasurer",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -8479,7 +8801,9 @@
     "image_name": "cathedral",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -8556,7 +8880,9 @@
     "image_name": "fair",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -8631,7 +8957,9 @@
     "image_name": "piazza",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Deck_Inspector"
+    ],
     "potion": false
   },
   {
@@ -8661,7 +8989,9 @@
     "image_name": "sewers",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -8796,7 +9126,9 @@
     "image_name": "animalfair",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -8813,7 +9145,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Plusbuy"
     ],
     "potion": false
   },
@@ -8895,7 +9228,9 @@
     "image_name": "cavalry",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -9008,7 +9343,9 @@
     "image_name": "goatherd",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -9136,7 +9473,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Cantrip"
+      "Cantrip",
+      "Plusbuy"
     ],
     "potion": false
   },
@@ -9152,7 +9490,9 @@
     "image_name": "scrap",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -9201,7 +9541,9 @@
     "image_name": "snowyvillage",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -9216,7 +9558,9 @@
     "image_name": "stockpile",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -9314,7 +9658,9 @@
     "image_name": "banish",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -9390,7 +9736,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Curser"
+      "Curser",
+      "Plusbuy"
     ],
     "potion": false
   },
@@ -9436,7 +9783,9 @@
     "image_name": "gamble",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -9496,7 +9845,10 @@
     "image_name": "pursue",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy",
+      "Deck_Inspector"
+    ],
     "potion": false
   },
   {
@@ -9571,7 +9923,9 @@
     "image_name": "toil",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -9661,7 +10015,9 @@
     "image_name": "wayofthegoat",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -9708,7 +10064,9 @@
     "image_name": "wayofthemonkey",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -9908,7 +10266,9 @@
     "image_name": "acolyte",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -9978,7 +10338,9 @@
     "image_name": "bauble",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -10115,7 +10477,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Nonterminal_draw"
+      "Nonterminal_draw",
+      "Alt_VP"
     ],
     "potion": false
   },
@@ -10167,7 +10530,9 @@
     "image_name": "galleria",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -10216,7 +10581,9 @@
     "image_name": "herbgatherer",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -10338,7 +10705,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Plusbuy"
     ],
     "potion": false
   },
@@ -10442,7 +10810,10 @@
     "image_name": "sentinel",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher",
+      "Deck_Inspector"
+    ],
     "potion": false
   },
   {
@@ -10552,7 +10923,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Alt_VP"
     ],
     "potion": false
   },
@@ -10651,7 +11023,9 @@
     "image_name": "territory",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -10667,7 +11041,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Village"
+      "Village",
+      "Plusbuy"
     ],
     "potion": false
   },
@@ -10769,7 +11144,9 @@
     "image_name": "bandofnomads",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -10904,7 +11281,9 @@
     "image_name": "forestdwellers",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Deck_Inspector"
+    ],
     "potion": false
   },
   {
@@ -10964,7 +11343,9 @@
     "image_name": "leagueofshopkeepers",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -11039,7 +11420,9 @@
     "image_name": "peacefulcult",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -11084,7 +11467,9 @@
     "image_name": "woodworkersguild",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -11100,7 +11485,9 @@
     "image_name": "abundance",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -11116,7 +11503,9 @@
     "image_name": "buriedtreasure",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -11232,7 +11621,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Plusbuy"
     ],
     "potion": false
   },
@@ -11284,7 +11674,9 @@
     "image_name": "fortunehunter",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Deck_Inspector"
+    ],
     "potion": false
   },
   {
@@ -11365,7 +11757,9 @@
     "image_name": "jewelledegg",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -11468,7 +11862,9 @@
     "image_name": "miningroad",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -11547,7 +11943,10 @@
     "image_name": "rope",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher",
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -11562,7 +11961,9 @@
     "image_name": "sackofloot",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -11594,7 +11995,9 @@
     "image_name": "secludedshrine",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -11609,7 +12012,9 @@
     "image_name": "shaman",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -11761,7 +12166,9 @@
     "image_name": "amphora",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -11794,7 +12201,9 @@
     "image_name": "endlesschalice",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -11860,7 +12269,9 @@
     "image_name": "jewels",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -11876,7 +12287,9 @@
     "image_name": "orb",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -11892,7 +12305,10 @@
     "image_name": "prizegoat",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher",
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -11908,7 +12324,9 @@
     "image_name": "puzzlebox",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -11924,7 +12342,10 @@
     "image_name": "sextant",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy",
+      "Deck_Inspector"
+    ],
     "potion": false
   },
   {
@@ -11941,7 +12362,9 @@
     "image_name": "shield",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -11974,7 +12397,9 @@
     "image_name": "staff",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -11991,7 +12416,9 @@
     "image_name": "sword",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -12006,7 +12433,9 @@
     "image_name": "avoid",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -12021,7 +12450,9 @@
     "image_name": "bury",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -12036,7 +12467,9 @@
     "image_name": "deliver",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -12096,7 +12529,9 @@
     "image_name": "launch",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -12126,7 +12561,9 @@
     "image_name": "maelstrom",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -12141,7 +12578,9 @@
     "image_name": "mirror",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -12201,7 +12640,9 @@
     "image_name": "rush",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -12216,7 +12657,9 @@
     "image_name": "scrounge",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -12353,7 +12796,9 @@
     "image_name": "nearby",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -12383,7 +12828,9 @@
     "image_name": "pious",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -12481,7 +12928,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Plusbuy"
     ],
     "potion": false
   },
@@ -12564,7 +13012,9 @@
     "image_name": "fishmonger",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -12580,7 +13030,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Cantrip"
+      "Cantrip",
+      "Plusbuy"
     ],
     "potion": false
   },
@@ -12597,7 +13048,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Plusbuy"
     ],
     "potion": false
   },
@@ -12653,7 +13105,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Trasher"
     ],
     "potion": false
   },
@@ -12691,7 +13144,8 @@
     "debt": 0,
     "categories": [
       "Cantrip",
-      "Nonterminal_draw"
+      "Nonterminal_draw",
+      "Deck_Inspector"
     ],
     "potion": false
   },
@@ -12707,7 +13161,9 @@
     "image_name": "rice",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -12740,7 +13196,9 @@
     "image_name": "rivershrine",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -12907,7 +13365,9 @@
     "image_name": "asceticism",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -12922,7 +13382,9 @@
     "image_name": "continue_",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -13029,7 +13491,9 @@
     "image_name": "seatrade",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -13119,7 +13583,9 @@
     "image_name": "flourishingtrade",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -13134,7 +13600,9 @@
     "image_name": "goodharvest",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -13209,7 +13677,9 @@
     "image_name": "panic",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -13321,7 +13791,9 @@
     "image_name": "church",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trasher"
+    ],
     "potion": false
   },
   {
@@ -13385,7 +13857,10 @@
     "image_name": "marchland",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP",
+      "Plusbuy"
+    ],
     "potion": false
   },
   {
@@ -13420,7 +13895,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Cantrip"
+      "Cantrip",
+      "Trasher"
     ],
     "potion": false
   },
@@ -13533,7 +14009,9 @@
     "image_name": "farm",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Alt_VP"
+    ],
     "potion": false
   },
   {
@@ -13576,6 +14054,21 @@
       "Loot"
     ],
     "image_name": "placeholder_loot",
+    "basic": false,
+    "debt": 0,
+    "categories": [],
+    "potion": false
+  },
+  {
+    "name": "Ruins pile",
+    "set": "PLACEHOLDER",
+    "cost": 0,
+    "supply": false,
+    "landscape": true,
+    "types": [
+      "Ruins"
+    ],
+    "image_name": "placeholder_ruins",
     "basic": false,
     "debt": 0,
     "categories": [],
