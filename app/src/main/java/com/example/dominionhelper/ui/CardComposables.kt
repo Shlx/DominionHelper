@@ -27,13 +27,14 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -86,14 +87,26 @@ fun KingdomList(
     modifier: Modifier,
     kingdom: Kingdom,
     onCardClick: (Card) -> Unit,
+    selectedPlayers: Int,
+    onPlayerCountChange: (Int) -> Unit,
     listState: LazyListState = rememberLazyListState()
 ) {
-    Log.i("RandomCardList", "randomCards: ${kingdom.randomCards.size}, basicCards: ${kingdom.basicCards.size}, dependentCards: ${kingdom.dependentCards.size}, startingCards: ${kingdom.startingCards.size}")
+    Log.i(
+        "RandomCardList",
+        "randomCards: ${kingdom.randomCards.size}, basicCards: ${kingdom.basicCards.size}, dependentCards: ${kingdom.dependentCards.size}, startingCards: ${kingdom.startingCards.size}"
+    )
 
     LazyColumn(
         modifier = modifier,
         state = listState
     ) {
+
+        item {
+            PlayerSelectionButtons(
+                selectedPlayers = selectedPlayers,
+                onPlayerSelected = { onPlayerCountChange(it) }
+            )
+        }
 
         // RANDOM CARDS
         items(kingdom.randomCards) { card ->
@@ -128,7 +141,66 @@ fun KingdomList(
             CardView(card, onCardClick, kingdom.startingCards[card]!!)
         }
     }
+}
+
+@Composable
+fun PlayerSelectionButtons(selectedPlayers: Int, onPlayerSelected: (Int) -> Unit) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 4.dp),
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
+        Button(
+            onClick = { onPlayerSelected(2) },
+            colors = if (selectedPlayers == 2) {
+                ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+                )
+            } else {
+                ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                    contentColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
+                )
+            }
+        ) {
+            Text("2 Players")
+        }
+        Button(
+            onClick = { onPlayerSelected(3) },
+            colors = if (selectedPlayers == 3) {
+                ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+                )
+            } else {
+                ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                    contentColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
+                )
+            }
+        ) {
+            Text("3 Players")
+        }
+        Button(
+            onClick = { onPlayerSelected(4) },
+            colors = if (selectedPlayers == 4) {
+                ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+                )
+            } else {
+                ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                    contentColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
+                )
+            }
+        ) {
+            Text("4 Players")
+        }
     }
+}
 
 @Composable
 fun CardSpacer(text: String) {
@@ -200,14 +272,18 @@ fun CardView(
                             id = R.string.card_image_content_description,
                             card.name
                         ),
-                        // TODO: Treasure and Victory cards need slightly different values
                         modifier = Modifier
                             .fillMaxHeight()
                             .fillMaxWidth()
                             .graphicsLayer {
                                 if (card.set == Set.PLACEHOLDER) {
-                                    scaleX = 1.25f
-                                    scaleY = 1.25f
+                                    if (card.name == "Trash Mat") {
+                                        scaleX = 1.75f
+                                        scaleY = 1.75f
+                                    } else {
+                                        scaleX = 1.25f
+                                        scaleY = 1.25f
+                                    }
                                 } else {
                                     scaleX = if (card.landscape) 2.1f else 2.5f
                                     scaleY = if (card.landscape) 2.1f else 2.5f
@@ -217,13 +293,12 @@ fun CardView(
                                 IntOffset(
                                     x = 0,
                                     y = when {
-                                        card.name == "Potion" -> 0
+                                        card.name == "Potion" || card.set == Set.PLACEHOLDER -> 0
                                         card.basic
                                                 && !card.types.contains(Type.RUINS)
                                                 && !card.types.contains(Type.SHELTER)
                                                 && !card.types.contains(Type.HEIRLOOM) -> 26
 
-                                        card.set == Set.PLACEHOLDER -> 0
                                         card.landscape -> 13
                                         else -> 31
                                     }
@@ -233,7 +308,7 @@ fun CardView(
 
                 }
 
-                // Name and Icon
+                // Name (+ amount) and Icon
                 Box(
                     modifier = Modifier
                         .weight(0.85f)

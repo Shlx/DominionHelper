@@ -4813,7 +4813,7 @@
     "name": "Madman",
     "set": "Dark_Ages",
     "cost": null,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action"
@@ -14069,6 +14069,19 @@
       "Ruins"
     ],
     "image_name": "placeholder_ruins",
+    "basic": false,
+    "debt": 0,
+    "categories": [],
+    "potion": false
+  },
+  {
+    "name": "Trash Mat",
+    "set": "PLACEHOLDER",
+    "cost": 0,
+    "supply": false,
+    "landscape": true,
+    "types": [],
+    "image_name": "trash_mat",
     "basic": false,
     "debt": 0,
     "categories": [],

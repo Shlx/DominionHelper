@@ -53,6 +53,10 @@ class CardViewModel @Inject constructor(
     private val _sortType = MutableStateFlow(SortType.EXPANSION)
     val sortType: StateFlow<SortType> = _sortType.asStateFlow()
 
+    // Player count
+    private val _playerCount = MutableStateFlow<Int>(2)
+    val playerCount: StateFlow<Int> = _playerCount.asStateFlow()
+
     init {
         viewModelScope.launch {
             _expansions.value = expansionDao.getAll()
@@ -68,6 +72,7 @@ class CardViewModel @Inject constructor(
 
     fun clearSelectedExpansion() {
         _selectedExpansion.value = null
+        _expansionCards.value = emptyList()
         Log.d("CardViewModel", "Cleared selected expansion")
     }
 
@@ -119,11 +124,11 @@ class CardViewModel @Inject constructor(
         Log.d("CardViewModel", "Cleared selected card")
     }
 
-    // TODO: Error when < 10 cards are owned
+    // TODO: Error when < 10 cards / < 1 expansions are owned
     fun getRandomKingdom() {
         viewModelScope.launch {
-            clearAllCards()
             _kingdom.value = kingdomGenerator.generateKingdom()
+            clearSelectedExpansion() // Clear this AFTER the kingdom is generated
             _cardsToShow.value = true
         }
     }
@@ -192,6 +197,42 @@ class CardViewModel @Inject constructor(
                 "Searched for $newText, search results: ${_expansionCards.value.size}"
             )
         }
+    }
+
+    fun updatePlayerCount(count: Int) {
+        _playerCount.value = count
+        Log.d("CardViewModel", "Selected player count $count")
+    }
+
+    fun getCardAmounts(cards: List<Card>, playerCount: Int): Map<Card, Int> {
+        assert(playerCount in 2..4)
+
+        val cardAmounts = mutableMapOf<Card, Int>()
+
+        cards.forEach { card ->
+            val amount = when (card.name) {
+                "Copper" -> when (playerCount) {
+                    2 -> 46
+                    3 -> 39
+                    4 -> 32
+                    else -> throw IllegalArgumentException("Invalid player count: $playerCount")
+                }
+                "Silver" -> 40
+                "Gold" -> 30
+                "Curse" -> when (playerCount) {
+                    2 -> 10
+                    3 -> 20
+                    4 -> 30
+                    else -> throw IllegalArgumentException("Invalid player count: $playerCount")
+                }
+                "Estate" -> if (playerCount == 2) 8 else 12
+                "Duchy" -> if (playerCount == 2) 8 else 12
+                "Province" -> if (playerCount == 2) 8 else 12
+                else -> throw IllegalArgumentException("Invalid player count: $playerCount")
+            }
+            cardAmounts[card] = amount
+        }
+        return cardAmounts
     }
 
 }

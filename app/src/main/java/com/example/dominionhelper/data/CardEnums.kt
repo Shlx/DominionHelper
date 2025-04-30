@@ -34,7 +34,7 @@ enum class Set (val imageId: Int = R.drawable.ic_launcher_foreground) {
     CORNUCOPIA_GUILDS(R.drawable.set_unknown),
     CORNUCOPIA_GUILDS_1E(R.drawable.set_unknown),
     CORNUCOPIA_GUILDS_2E(R.drawable.set_unknown),
-    PLACEHOLDER(R.drawable.set_nocturne)
+    PLACEHOLDER() // TODO
 }
 
 enum class Type {

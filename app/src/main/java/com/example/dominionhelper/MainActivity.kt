@@ -103,6 +103,7 @@ import kotlinx.coroutines.launch
 
 // TODO check: Allies, Menagerie, Renaissance, Nocturne, Empires, Adventures, Guilds, Dark Ages, Hinterlands, Cornucopia, Prosperity, Alchemy, Seaside, Intrigue, Dominion
 
+
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
@@ -139,6 +140,8 @@ fun MainView(
     val isSearchActive by cardViewModel.searchActive.collectAsStateWithLifecycle()
     val searchText by cardViewModel.searchText.collectAsStateWithLifecycle()
     val sortType by cardViewModel.sortType.collectAsStateWithLifecycle()
+
+    val playerCount by cardViewModel.playerCount.collectAsStateWithLifecycle()
 
     val drawerState = rememberDrawerState(initialValue = Closed)
     val applicationScope = rememberCoroutineScope()
@@ -217,7 +220,6 @@ fun MainView(
                     onSearchTextChange = { cardViewModel.changeSearchText(it) },
                     onRandomCardsClicked = {
                         cardViewModel.getRandomKingdom()
-                        cardViewModel.clearSelectedExpansion()
                     },
                     onSortTypeSelected = { cardViewModel.updateSortType(it) },
                     selectedSortType = sortType,
@@ -264,12 +266,14 @@ fun MainView(
                             listState = listState
                         )
 
-                        // Show generated random cards
+                    // Show generated kingdom
                     } else {
                         KingdomList(
                             kingdom = kingdom,
                             onCardClick = { cardViewModel.selectCard(it) },
                             modifier = Modifier.padding(innerPadding),
+                            selectedPlayers = playerCount,
+                            onPlayerCountChange = { cardViewModel.updatePlayerCount(it) },
                             listState = listState
                         )
                     }

@@ -43,6 +43,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
+// Settings:
+// When to add Colony and Platinum
+// When to play with Hovel, Necropolis, Overgrown Estate
+
 @AndroidEntryPoint
 class SettingsActivity : ComponentActivity() {
 

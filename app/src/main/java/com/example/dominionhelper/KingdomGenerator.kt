@@ -192,6 +192,18 @@ class KingdomGenerator @Inject constructor(
                 dependentCardNames = listOf("Wish")
             ),
 
+            // If there is Hermit present, add Madman
+            DependencyRule(
+                condition = { it.name == "Hermit" },
+                dependentCardNames = listOf("Madman")
+            ),
+
+            // If there is a trasher present, add Trash mat
+            DependencyRule(
+                condition = { it.categories.contains(Category.TRASHER) },
+                dependentCardNames = listOf("Trash Mat")
+            ),
+
             // TODO % chance?
             // Count Prosperity cards and add Platinum and Colony
             DependencyRuleCount(
