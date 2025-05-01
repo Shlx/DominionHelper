@@ -1,4 +1,4 @@
-package com.example.dominionhelper.data
+package com.example.dominionhelper.model
 
 import com.example.dominionhelper.R
 
@@ -99,8 +99,9 @@ enum class Category {
     ALT_VP,
     PLUSBUY,
     DECK_INSPECTOR,
-    // ^done
     TRASH_FOR_BENEFIT,
+    HANDSIZE_ATTACK,
+    // ^done
     DIGGING,
     DISCARD, // For benefit
     SIFTERS, // ?
@@ -113,7 +114,6 @@ enum class Category {
     ATTACK_IMMUNITY,
     DECK_INSPECTION,
     DECK_ORDER_ATTACK,
-    HANDSIZE_ATTACK,
     JUNKING_ATTACK,
     TRASHING_ATTACK,
     TURN_WORSENING_ATTACK, // ?

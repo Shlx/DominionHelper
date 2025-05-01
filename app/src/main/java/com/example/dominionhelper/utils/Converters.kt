@@ -1,9 +1,9 @@
-package com.example.dominionhelper
+package com.example.dominionhelper.utils
 
 import androidx.room.TypeConverter
-import com.example.dominionhelper.data.Category
-import com.example.dominionhelper.data.Set
-import com.example.dominionhelper.data.Type
+import com.example.dominionhelper.model.Category
+import com.example.dominionhelper.model.Set
+import com.example.dominionhelper.model.Type
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

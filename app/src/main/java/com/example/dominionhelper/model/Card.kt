@@ -1,4 +1,4 @@
-package com.example.dominionhelper.data
+package com.example.dominionhelper.model
 
 import android.content.Context
 import android.util.Log

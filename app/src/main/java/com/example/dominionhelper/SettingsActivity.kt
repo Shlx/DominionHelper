@@ -33,14 +33,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.dominionhelper.ui.SettingsList
+import com.example.dominionhelper.ui.components.SettingsList
 import com.example.dominionhelper.ui.SettingsViewModel
+import com.example.dominionhelper.ui.components.DrawerContent
 import com.example.dominionhelper.ui.theme.DominionHelperTheme
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 // Settings:
@@ -93,7 +91,7 @@ fun SettingsView(
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
-            DrawerContent(applicationScope, drawerState)
+            DrawerContent(applicationScope, drawerState, "Settings")
         }
     ) {
         Scaffold(
@@ -120,47 +118,6 @@ fun SettingsView(
             }
         ) { innerPadding ->
             SettingsList(uiState.settings, modifier = Modifier.padding(innerPadding))
-        }
-    }
-}
-
-@Composable
-fun DrawerContent(
-    scope: CoroutineScope,
-    drawerState: DrawerState
-) {
-    val screens = listOf("Home", "Settings", "Option 3")
-    val context = LocalContext.current
-
-    ModalDrawerSheet {
-        Spacer(Modifier.height(12.dp))
-        screens.forEach { option ->
-            NavigationDrawerItem(
-                label = { Text(option) },
-                selected = option == "Settings",
-                onClick = {
-                    scope.launch {
-                        drawerState.close()
-                        //onOptionSelected(option)
-                    }
-                    when (option) {
-                        "Home" -> {
-                            navigateToActivity(context, MainActivity::class.java)
-                        }
-
-                        "Settings" -> {
-                            navigateToActivity(context, SettingsActivity::class.java)
-                        }
-
-                        "Option 3" -> {
-                            //navigateToActivity(context, AboutActivity::class.java)
-                        }
-
-                        else -> {}
-                    }
-                },
-                modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
-            )
         }
     }
 }

@@ -105,7 +105,7 @@ class SettingsViewModel @Inject constructor(
 
     private fun getDarkMode(): Flow<Boolean> {
         return context.dataStore.data.map { settings ->
-            settings[SettingsKeys.IS_DARK_MODE] ?: false // Default value if not set
+            settings[SettingsKeys.IS_DARK_MODE] == true // Default value if not set
         }
     }
 

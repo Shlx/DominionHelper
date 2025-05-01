@@ -1,19 +1,20 @@
 package com.example.dominionhelper
 
 import android.util.Log
-import com.example.dominionhelper.data.Card
+import com.example.dominionhelper.model.Card
 import com.example.dominionhelper.data.CardDao
 import com.example.dominionhelper.data.CardDao.Companion.BASIC_CARD_NAMES
-import com.example.dominionhelper.data.Category
-import com.example.dominionhelper.data.Set
-import com.example.dominionhelper.data.Type
+import com.example.dominionhelper.model.Category
+import com.example.dominionhelper.model.Set
+import com.example.dominionhelper.model.Type
+import com.example.dominionhelper.utils.isPercentChance
 import javax.inject.Inject
 
 data class Kingdom(
-    val randomCards: List<Card> = emptyList(),
-    val basicCards: List<Card> = emptyList(),
-    val dependentCards: List<Card> = emptyList(),
-    val startingCards: Map<Card, Int> = emptyMap()
+    var randomCards: LinkedHashMap<Card, Int> = linkedMapOf(),
+    val basicCards: LinkedHashMap<Card, Int> = linkedMapOf(),
+    val dependentCards: LinkedHashMap<Card, Int> = linkedMapOf(),
+    val startingCards: LinkedHashMap<Card, Int> = linkedMapOf()
 ) {
 
     fun hasDependentCards(): Boolean {
@@ -41,10 +42,15 @@ class KingdomGenerator @Inject constructor(
         val dependentCardsToLoad = getDependentCards(randomCards)
         val dependentCards = cardDao.getCardsByNameList(dependentCardsToLoad)
 
+        // The amount of these cards is dependent on player count, so we set these as 1 for now
+        val randomCardMap = listToMap(randomCards)
+        val basicCardMap = listToMap(basicCards)
+        val dependentCardMap = listToMap(dependentCards)
+
         val startingCardsToLoad =
             getStartingCards(randomCards)
 
-        val startingCards = mutableMapOf<Card, Int>()
+        val startingCards = linkedMapOf<Card, Int>()
         startingCardsToLoad.keys.forEach { cardName ->
             val card = cardDao.getCardByName(cardName)
             card.let {
@@ -61,7 +67,15 @@ class KingdomGenerator @Inject constructor(
             "Generated ${randomCards.size} random cards, ${basicCards.size} basic cards, ${dependentCards.size} dependent cards"
         )
 
-        return Kingdom(randomCards, basicCards, dependentCards, startingCards)
+        return Kingdom(randomCardMap, basicCardMap, dependentCardMap, startingCards)
+    }
+
+    private fun listToMap(list: List<Card>): LinkedHashMap<Card, Int> {
+        val map = linkedMapOf<Card, Int>()
+        list.forEach { card ->
+            map[card] = 1 // Default value of 1
+        }
+        return map
     }
 
     private fun getDependentCards(cards: List<Card>): List<String> {
@@ -200,7 +214,7 @@ class KingdomGenerator @Inject constructor(
 
             // If there is a trasher present, add Trash mat
             DependencyRule(
-                condition = { it.categories.contains(Category.TRASHER) },
+                condition = { it.categories.contains(Category.TRASHER) || it.categories.contains(Category.TRASH_FOR_BENEFIT) },
                 dependentCardNames = listOf("Trash Mat")
             ),
 

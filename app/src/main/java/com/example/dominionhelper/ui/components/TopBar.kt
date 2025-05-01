@@ -1,12 +1,13 @@
-package com.example.dominionhelper.ui
+package com.example.dominionhelper.ui.components
 
 import android.util.Log
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Search
@@ -16,7 +17,6 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -24,7 +24,6 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -36,9 +35,12 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.dominionhelper.R
+import com.example.dominionhelper.ui.SortType
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -63,29 +65,32 @@ fun TopBar(
         title = {
             // Conditionally show the search field
             if (isSearchActive) {
-                // TODO placeholder text is cut off
                 TextField(
                     value = searchText,
                     onValueChange = { onSearchTextChange(it) },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 8.dp) // Add padding here
+                        //.padding(bottom = 16.dp)
                         .focusRequester(focusRequester),
                     placeholder = {
-                        CompositionLocalProvider(
-                            LocalTextStyle provides LocalTextStyle.current.copy(
-                                color = Color.Gray.copy(alpha = 0.5f),
-                                lineHeight = 26.sp
-                            )
-                        ) {
-                            Text("Search")
-                        }
+                        Text(
+                            "Search Cards",
+                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f), // Adjust alpha as needed
+                            fontSize = 20.sp
+                        )
                     },
-                    textStyle = TextStyle(lineHeight = 26.sp),
+                    textStyle = TextStyle(fontSize = 20.sp),
                     colors = TextFieldDefaults.colors(
-                        focusedContainerColor = Color.Black.copy(alpha = 0.0f), // Completely transparent
-                        unfocusedContainerColor = Color.Black.copy(alpha = 0.0f), // Completely transparent
-                        disabledContainerColor = Color.Black.copy(alpha = 0.0f) // Completely transparent
+                        focusedContainerColor = Color.Transparent, // Transparent background
+                        unfocusedContainerColor = Color.Transparent,
+                        disabledContainerColor = Color.Transparent,
+                        focusedIndicatorColor = Color.Transparent, // No underline
+                        unfocusedIndicatorColor = Color.Transparent,
+                        disabledIndicatorColor = Color.Transparent
+                    ),
+                    keyboardOptions = KeyboardOptions(
+                        capitalization = KeyboardCapitalization.Sentences, // Capitalize the first letter
+                        imeAction = ImeAction.Search
                     )
                 )
             } else {
@@ -120,7 +125,11 @@ fun TopBar(
                 IconButton(onClick = {
                     onSearchClicked()
                 }) {
-                    Icon(Icons.Filled.Search, contentDescription = "Localized description")
+                    Icon( if (!isSearchActive) {
+                        Icons.Filled.Search
+                    } else {
+                        Icons.Filled.Close
+                    }, contentDescription = "Localized description")
                 }
             }
             IconButton(onClick = {

@@ -60,7 +60,9 @@
     "image_name": "bureaucrat",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Handsize_attack"
+    ],
     "potion": false
   },
   {
@@ -276,7 +278,9 @@
     "image_name": "militia",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Handsize_attack"
+    ],
     "potion": false
   },
   {
@@ -887,7 +891,9 @@
     "image_name": "minion",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Handsize_attack"
+    ],
     "potion": false
   },
   {
@@ -1097,7 +1103,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw",
-      "Curser"
+      "Curser",
+      "Handsize_attack"
     ],
     "potion": false
   },
@@ -1290,7 +1297,9 @@
     "image_name": "cutpurse",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Handsize_attack"
+    ],
     "potion": false
   },
   {
@@ -1357,7 +1366,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Handsize_attack"
     ],
     "potion": false
   },
@@ -1594,7 +1604,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Plusbuy"
+      "Plusbuy",
+      "Trash_for_benefit"
     ],
     "potion": false
   },
@@ -1818,7 +1829,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Nonterminal_draw"
+      "Nonterminal_draw",
+      "Trash_for_benefit"
     ],
     "potion": false
   },
@@ -1935,7 +1947,9 @@
     "image_name": "transmute",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trash_for_benefit"
+    ],
     "potion": true
   },
   {
@@ -2031,7 +2045,8 @@
     "debt": 0,
     "categories": [
       "Trasher",
-      "Alt_VP"
+      "Alt_VP",
+      "Trash_for_benefit"
     ],
     "potion": false
   },
@@ -2086,7 +2101,9 @@
     "image_name": "clerk",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Handsize_attack"
+    ],
     "potion": false
   },
   {
@@ -2204,7 +2221,8 @@
     "debt": 0,
     "categories": [
       "Alt_VP",
-      "Plusbuy"
+      "Plusbuy",
+      "Handsize_attack"
     ],
     "potion": false
   },
@@ -2785,7 +2803,9 @@
     "image_name": "footpad",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Handsize_attack"
+    ],
     "potion": false
   },
   {
@@ -3120,7 +3140,9 @@
     "image_name": "taxman",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Handsize_attack"
+    ],
     "potion": false
   },
   {
@@ -3261,7 +3283,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw",
-      "Curser"
+      "Curser",
+      "Handsize_attack"
     ],
     "potion": false
   },
@@ -3366,7 +3389,9 @@
     "image_name": "berserker",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Handsize_attack"
+    ],
     "potion": false
   },
   {
@@ -3670,7 +3695,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw",
-      "Plusbuy"
+      "Plusbuy",
+      "Handsize_attack"
     ],
     "potion": false
   },
@@ -3858,7 +3884,9 @@
     "image_name": "trader",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trash_for_benefit"
+    ],
     "potion": false
   },
   {
@@ -4079,7 +4107,8 @@
     "categories": [
       "Throneroom_variant",
       "Trasher",
-      "Plusbuy"
+      "Plusbuy",
+      "Trash_for_benefit"
     ],
     "potion": false
   },
@@ -4412,7 +4441,9 @@
     "image_name": "pillage",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Handsize_attack"
+    ],
     "potion": false
   },
   {
@@ -4599,7 +4630,9 @@
     "image_name": "sirmichael",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Handsize_attack"
+    ],
     "potion": false
   },
   {
@@ -4668,7 +4701,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Cantrip"
+      "Cantrip",
+      "Handsize_attack"
     ],
     "potion": false
   },
@@ -4841,7 +4875,8 @@
     "debt": 0,
     "categories": [
       "Terminal_draw",
-      "Trasher"
+      "Trasher",
+      "Handsize_attack"
     ],
     "potion": false
   },
@@ -5295,7 +5330,9 @@
     "image_name": "raze",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trash_for_benefit"
+    ],
     "potion": false
   },
   {
@@ -5498,7 +5535,9 @@
     "image_name": "soldier",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Handsize_attack"
+    ],
     "potion": false
   },
   {
@@ -5945,7 +5984,9 @@
     "debt": 0,
     "categories": [
       "Curser",
-      "Trasher"
+      "Trasher",
+      "Trash_for_benefit",
+      "Handsize_attack"
     ],
     "potion": false
   },
@@ -6278,7 +6319,9 @@
     "image_name": "legionary",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Handsize_attack"
+    ],
     "potion": false
   },
   {
@@ -6397,7 +6440,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Alt_VP"
+      "Alt_VP",
+      "Trash_for_benefit"
     ],
     "potion": false
   },
@@ -6642,7 +6686,8 @@
     "debt": 0,
     "categories": [
       "Curser",
-      "Alt_VP"
+      "Alt_VP",
+      "Trash_for_benefit"
     ],
     "potion": false
   },
@@ -7446,7 +7491,9 @@
     "image_name": "raider",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Handsize_attack"
+    ],
     "potion": false
   },
   {
@@ -8128,7 +8175,9 @@
     "image_name": "fear",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Handsize_attack"
+    ],
     "potion": false
   },
   {
@@ -8158,7 +8207,9 @@
     "image_name": "haunting",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Handsize_attack"
+    ],
     "potion": false
   },
   {
@@ -8218,7 +8269,9 @@
     "image_name": "poverty",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Handsize_attack"
+    ],
     "potion": false
   },
   {
@@ -8557,7 +8610,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Trash_for_benefit"
     ],
     "potion": false
   },
@@ -8574,7 +8628,9 @@
     "image_name": "research",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trash_for_benefit"
+    ],
     "potion": false
   },
   {
@@ -8726,7 +8782,9 @@
     "image_name": "villain",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Handsize_attack"
+    ],
     "potion": false
   },
   {
@@ -9491,7 +9549,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Plusbuy"
+      "Plusbuy",
+      "Trash_for_benefit"
     ],
     "potion": false
   },
@@ -10285,7 +10344,9 @@
     "image_name": "archer",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Handsize_attack"
+    ],
     "potion": false
   },
   {
@@ -10376,7 +10437,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Trash_for_benefit"
     ],
     "potion": false
   },
@@ -10847,7 +10909,9 @@
     "image_name": "skirmisher",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Handsize_attack"
+    ],
     "potion": false
   },
   {
@@ -10942,7 +11006,9 @@
     "image_name": "student",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trash_for_benefit"
+    ],
     "potion": false
   },
   {
@@ -11572,7 +11638,9 @@
     "image_name": "crucible",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trash_for_benefit"
+    ],
     "potion": false
   },
   {
@@ -11589,7 +11657,9 @@
     "image_name": "cutthroat",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Handsize_attack"
+    ],
     "potion": false
   },
   {
@@ -11693,7 +11763,9 @@
     "image_name": "frigate",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Handsize_attack"
+    ],
     "potion": false
   },
   {
@@ -11846,7 +11918,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Trash_for_benefit"
     ],
     "potion": false
   },
@@ -11894,7 +11967,9 @@
     "image_name": "pickaxe",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Trash_for_benefit"
+    ],
     "potion": false
   },
   {
@@ -12417,7 +12492,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Plusbuy"
+      "Plusbuy",
+      "Handsize_attack"
     ],
     "potion": false
   },
@@ -12562,7 +12638,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Trasher"
+      "Trasher",
+      "Handsize_attack"
     ],
     "potion": false
   },
@@ -13125,7 +13202,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Terminal_draw"
+      "Terminal_draw",
+      "Handsize_attack"
     ],
     "potion": false
   },
@@ -13179,7 +13257,8 @@
     "basic": false,
     "debt": 0,
     "categories": [
-      "Nonterminal_draw"
+      "Nonterminal_draw",
+      "Trash_for_benefit"
     ],
     "potion": false
   },
@@ -13284,7 +13363,9 @@
     "image_name": "samurai",
     "basic": false,
     "debt": 0,
-    "categories": [],
+    "categories": [
+      "Handsize_attack"
+    ],
     "potion": false
   },
   {

@@ -33,17 +33,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.dominionhelper.ui.CardDetailPager
-import com.example.dominionhelper.ui.CardList
+import com.example.dominionhelper.ui.components.CardDetailPager
+import com.example.dominionhelper.ui.components.CardList
 import com.example.dominionhelper.ui.CardViewModel
-import com.example.dominionhelper.ui.ExpansionGrid
-import com.example.dominionhelper.ui.KingdomList
-import com.example.dominionhelper.ui.TopBar
+import com.example.dominionhelper.ui.components.DrawerContent
+import com.example.dominionhelper.ui.components.ExpansionGrid
+import com.example.dominionhelper.ui.components.KingdomList
+import com.example.dominionhelper.ui.components.TopBar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 // Random info:
@@ -52,54 +50,54 @@ import kotlinx.coroutines.launch
 // Flows: automatically updates UI elements when data changes
 // mutableStateOf automatically updates UI elements reliant on the values when they change
 
-// TODO: Use coil or glide or fresco to load images to avoid "image decoding logging dropped" warnings
+// TODO PROGRAMMING
+// Use coil or glide or fresco to load images to avoid "image decoding logging dropped" warnings
 // Applicationscope vs LifecycleScope vs CoroutineScope vs whatever
-// Flows instead of lists?
-
-// TODO
-// Split piles
-// Show behind top + nav bar?
-// Research landscape rules (I think 2 are recommended)
-// Add rules for randomization
-// VP counter
-// Find solution for 1st / 2nd edition
-// Add loading times instead of switching instantly (you can see UI changing)
-// Remove search from detail view?
-// First launch: No data shown
-// Close keyboard when scrolling on search results
-// Rethink the basic Card flag. I think it's only there for the UI fix?
-// -> Nope I think it makes sense for the card randomization. These cards are never pulled without meeting conditions
-// Rethink color gradient on mixed cards
+// Flows instead of lists from DAO?
 // Use update { in ViewModels
-// Search default text is cut off
-// Cards that are not in the supply vs cards that cost 0 vs cards that cost nothing??
+// Save sort type between sessions
+// Icons.Filled.
+
+// TODO FEATURES
+// Split piles
+// Research landscape rules (I think 2 are recommended)
+// VP counter
+// Add rules for randomization
+// Add 6* / 4+ costs (How? cost as a string in json?)
+// Warning when navigating back from generated kingdom
+// Chose 2 from Events, Landmarks, Projects, Ways, Traits
+// Overpay Cards, Coffers, weißer Text auf Schulden
+
+// TODO DESIGN
+// Show behind top + nav bar?
+// !!Find solution for 1st / 2nd edition - // Ability to switch expansion between first and second edition?
+// Improve Expansion view
+// Remove search from detail view?
+// Close keyboard when scrolling on search results
+// Rethink color gradient on mixed cards
 // Explanation for card categories
 // Search while viewing expansions -> only results from expansion?
-// When pressing random in card view, the ui updates too fast
 // Add sorting for expansions?
-// Save sort type between sessions
-// Remove sort by expansion in expansion view?
-// Add 6* / 4+ costs (How? cost as a string in json?)
-// Add ability to choose player number in generated kingdom
 // Landscape cards are low res
-// Warning when navigating back from generated kingdom
+// Check image sizes, turn placeholders to webp
+// Make "no search results" prettier
+// Smol discrepancy: the bottom of the player selector padding stacks with the top of the first list element padding, so before scrolling, it's a little too much
+// In expansion card list view, the top card has NOT enough space to the top bar. Add padding to top bar?
 
-// You can make infinite instances of Home and Settings. Need to reload existing ones
+// TODO BUGS
+// First launch: No data shown
+// Rethink the basic Card flag. I think it's only there for the UI fix?
+// -> Nope I think it makes sense for the card randomization. These cards are never pulled without meeting conditions
+// Cards that are not in the supply vs cards that cost 0 vs cards that cost nothing??
+
+
+
 
 // I think list state is shared between search / expansion and random cards (doesn't reset)
 // -> Seems fine between expansion and random cards, expansion to search needs to reset
 // Going back from expansion list resets even though it shouldn't
 
-// Check image sizes
-// Turn placeholders to webp
 
-// Heirlooms should remove a copper each
-// Chose 2 from Events, Landmarks, Projects, Ways, Traits
-
-// Ability to switch expansion between first and second edition
-
-// Problem if there is a card of the same name twice within the card lists
-// Overpay Cards, Coffers, weißer Text auf Schulden
 
 // TODO check: Allies, Menagerie, Renaissance, Nocturne, Empires, Adventures, Guilds, Dark Ages, Hinterlands, Cornucopia, Prosperity, Alchemy, Seaside, Intrigue, Dominion
 
@@ -160,7 +158,7 @@ fun MainView(
         topBarTitle = if (selectedExpansion != null) {
             selectedExpansion!!.name
         } else if (cardsToShow) {
-            "Random Cards"
+            "Generated Kingdom"
         } else {
             "Dominion Helper"
         }
@@ -200,14 +198,11 @@ fun MainView(
         }
     }
 
-    var selectedOption by remember { mutableStateOf("") }
-
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
-            DrawerContent(applicationScope, selectedOption, { selectedOption = it }, drawerState)
+            DrawerContent(applicationScope, drawerState, "Home")
         }
-        //,gesturesEnabled = drawerState.isOpen // Leaving this lets the user drag the drawer open
     ) {
         Scaffold(
             topBar = {
@@ -220,8 +215,14 @@ fun MainView(
                     onSearchTextChange = { cardViewModel.changeSearchText(it) },
                     onRandomCardsClicked = {
                         cardViewModel.getRandomKingdom()
+
+                        // Return to top
+                        applicationScope.launch {
+                            // Looks weird
+                            //listState.scrollToItem(0)
+                        }
                     },
-                    onSortTypeSelected = { cardViewModel.updateSortType(it) },
+                    onSortTypeSelected = { cardViewModel.updateSortType(it, kingdom) },
                     selectedSortType = sortType,
                     topBarTitle = topBarTitle,
                     hideSearch = kingdom.isNotEmpty()
@@ -244,7 +245,7 @@ fun MainView(
                     CardDetailPager(
                         modifier = Modifier.padding(innerPadding),
                         // This feels weird but maybe it's ok?
-                        cardList = expansionCards + kingdom.randomCards + kingdom.dependentCards + kingdom.basicCards + kingdom.startingCards.keys.toList(),
+                        cardList = expansionCards + kingdom.randomCards.keys.toList() + kingdom.dependentCards.keys.toList() + kingdom.basicCards.keys.toList() + kingdom.startingCards.keys.toList(),
                         initialCard = selectedCard!!
                     )
                 }
@@ -267,15 +268,17 @@ fun MainView(
                         )
 
                     // Show generated kingdom
-                    } else {
+                    } else if (kingdom != Kingdom()) {
                         KingdomList(
                             kingdom = kingdom,
                             onCardClick = { cardViewModel.selectCard(it) },
                             modifier = Modifier.padding(innerPadding),
                             selectedPlayers = playerCount,
-                            onPlayerCountChange = { cardViewModel.updatePlayerCount(it) },
+                            onPlayerCountChange = { cardViewModel.updatePlayerCount(kingdom, it) },
                             listState = listState
                         )
+                    } else {
+                        Text("Nah", modifier = Modifier.padding(innerPadding))
                     }
                 }
 
@@ -296,44 +299,6 @@ fun MainView(
                     )
                 }
             }
-        }
-    }
-}
-
-@Composable
-fun DrawerContent(
-    scope: CoroutineScope,
-    selectedOption: String,
-    onOptionSelected: (String) -> Unit,
-    drawerState: DrawerState
-) {
-    val screens = listOf("Home", "Settings", "Option 3")
-    val context = LocalContext.current
-    //val screens = DrawerScreen.values()
-
-    ModalDrawerSheet {
-        Spacer(Modifier.height(12.dp))
-        screens.forEach { option ->
-            NavigationDrawerItem(
-                label = { Text(option) },
-                selected = option == "Home",
-                onClick = {
-                    scope.launch {
-                        drawerState.close()
-                        onOptionSelected(option)
-                    }
-                when (option) {
-                    "Home" -> {}//Do nothing
-                    "Settings" -> {
-                        navigateToActivity(context, SettingsActivity::class.java)
-                    }
-                    "Option 3" -> {
-                        //navigateToActivity(context, AboutActivity::class.java)
-                    } else -> {}
-                }
-        },
-        modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
-            )
         }
     }
 }

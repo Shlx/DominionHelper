@@ -1,9 +1,10 @@
-package com.example.dominionhelper
+package com.example.dominionhelper.utils
 
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import com.example.dominionhelper.data.Card
+import com.example.dominionhelper.R
+import com.example.dominionhelper.model.Card
 import kotlin.random.Random
 
 fun getDrawableId(context: Context, imageName: String): Int {

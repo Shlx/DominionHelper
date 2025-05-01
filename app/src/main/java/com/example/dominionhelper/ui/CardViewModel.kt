@@ -5,9 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.dominionhelper.Kingdom
 import com.example.dominionhelper.KingdomGenerator
-import com.example.dominionhelper.data.Card
+import com.example.dominionhelper.model.Card
 import com.example.dominionhelper.data.CardDao
-import com.example.dominionhelper.data.Expansion
+import com.example.dominionhelper.model.Expansion
 import com.example.dominionhelper.data.ExpansionDao
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -128,7 +128,15 @@ class CardViewModel @Inject constructor(
     fun getRandomKingdom() {
         viewModelScope.launch {
             _kingdom.value = kingdomGenerator.generateKingdom()
+            updatePlayerCount(_kingdom.value, 2)
             clearSelectedExpansion() // Clear this AFTER the kingdom is generated
+            clearSelectedCard()
+
+            if (searchActive.value) {
+                toggleSearch()
+                changeSearchText("")
+            }
+
             _cardsToShow.value = true
         }
     }
@@ -152,8 +160,8 @@ class CardViewModel @Inject constructor(
         return sortedCards
     }
 
-    private fun sortCards(cards: Map<Card, Int>): Map<Card, Int> {
-        if (cards.isEmpty()) return emptyMap()
+    private fun sortCards(cards: LinkedHashMap<Card, Int>): LinkedHashMap<Card, Int> {
+        if (cards.isEmpty()) return linkedMapOf()
 
         val sortedEntries = when (_sortType.value) {
             SortType.EXPANSION -> cards.entries.sortedBy { it.key.set }
@@ -161,25 +169,55 @@ class CardViewModel @Inject constructor(
             SortType.COST -> cards.entries.sortedBy { it.key.cost }
         }
 
-        val sortedCards = sortedEntries.associate { it.key to it.value }
+        val sortedCards = LinkedHashMap<Card, Int>()
+        sortedEntries.forEach { sortedCards[it.key] = it.value }
         Log.d("CardViewModel", "Sorted ${sortedCards.size} cards by ${_sortType.value}")
         return sortedCards
     }
 
-    fun updateSortType(newSortType: SortType) {
+    fun updateSortType(newSortType: SortType, kingdom: Kingdom) {
         _sortType.value = newSortType
+
+        // TODO: Only sort what's appropriate
+
+        // Sort expansion list
         _expansionCards.value = sortCards(_expansionCards.value)
-        // TODO: Sort kingdom
-        /*_randomCards.value = sortCards(_randomCards.value)
-        _basicCards.value = sortCards(_basicCards.value)
-        _dependentCards.value = sortCards(_dependentCards.value)
-        _startingCards.value = sortCards(_startingCards.value)*/
+
+        // Sort kingdom lists
+        val sortedRandomCards = sortCards(kingdom.randomCards)
+        val sortedBasicCards = sortCards(kingdom.basicCards)
+        val sortedDependentCards = sortCards(kingdom.dependentCards)
+        val sortedStartingCards = sortCards(kingdom.startingCards)
+
+        viewModelScope.launch {
+
+            // TODO: Figure this out
+            // Why the hell is this necessary huh
+            _kingdom.value.randomCards[cardDao.getCardByName("Copper")] = 3
+            _kingdom.value = kingdom.copy(
+                randomCards = sortedRandomCards,
+                dependentCards = sortedDependentCards,
+                basicCards = sortedBasicCards,
+                startingCards = sortedStartingCards
+            )
+        }
+
         Log.d("CardViewModel", "Updated sort type to ${_sortType.value}")
     }
 
     fun toggleSearch() {
         _searchActive.value = !_searchActive.value
+        if (!_searchActive.value) {
+            _cardsToShow.value = false
+            clearSelectedExpansion()
+            clearSearchText()
+        }
         Log.d("CardViewModel", "Toggled search to ${_searchActive.value}")
+    }
+
+    fun clearSearchText() {
+        _searchText.value = ""
+        Log.d("CardViewModel", "Cleared search text")
     }
 
     fun changeSearchText(newText: String) {
@@ -199,17 +237,26 @@ class CardViewModel @Inject constructor(
         }
     }
 
-    fun updatePlayerCount(count: Int) {
+    fun updatePlayerCount(kingdom: Kingdom, count: Int) {
         _playerCount.value = count
+        val updatedRandomCards = getCardAmounts(kingdom.randomCards, count)
+        val updatedDependentCards = getCardAmounts(kingdom.dependentCards, count)
+        val updatedBasicCards = getCardAmounts(kingdom.basicCards, count)
+
+        _kingdom.value = kingdom.copy(
+            randomCards = updatedRandomCards,
+            dependentCards = updatedDependentCards,
+            basicCards = updatedBasicCards
+        )
         Log.d("CardViewModel", "Selected player count $count")
     }
 
-    fun getCardAmounts(cards: List<Card>, playerCount: Int): Map<Card, Int> {
+    fun getCardAmounts(cards: LinkedHashMap<Card, Int>, playerCount: Int): LinkedHashMap<Card, Int> {
         assert(playerCount in 2..4)
 
-        val cardAmounts = mutableMapOf<Card, Int>()
+        val cardAmounts = linkedMapOf<Card, Int>()
 
-        cards.forEach { card ->
+        cards.forEach { card, amount ->
             val amount = when (card.name) {
                 "Copper" -> when (playerCount) {
                     2 -> 46
@@ -217,6 +264,7 @@ class CardViewModel @Inject constructor(
                     4 -> 32
                     else -> throw IllegalArgumentException("Invalid player count: $playerCount")
                 }
+
                 "Silver" -> 40
                 "Gold" -> 30
                 "Curse" -> when (playerCount) {
@@ -225,10 +273,11 @@ class CardViewModel @Inject constructor(
                     4 -> 30
                     else -> throw IllegalArgumentException("Invalid player count: $playerCount")
                 }
+
                 "Estate" -> if (playerCount == 2) 8 else 12
                 "Duchy" -> if (playerCount == 2) 8 else 12
                 "Province" -> if (playerCount == 2) 8 else 12
-                else -> throw IllegalArgumentException("Invalid player count: $playerCount")
+                else -> 1
             }
             cardAmounts[card] = amount
         }
