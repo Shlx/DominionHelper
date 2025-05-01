@@ -280,7 +280,7 @@ fun CardView(
                             .fillMaxHeight()
                             .fillMaxWidth()
                             .graphicsLayer {
-                                if (card.set == Set.PLACEHOLDER) {
+                                if (card.sets.contains(Set.PLACEHOLDER)) {
                                     if (card.name == "Trash Mat") {
                                         scaleX = 1.75f
                                         scaleY = 1.75f
@@ -297,7 +297,7 @@ fun CardView(
                                 IntOffset(
                                     x = 0,
                                     y = when {
-                                        card.name == "Potion" || card.set == Set.PLACEHOLDER -> 0
+                                        card.name == "Potion" || card.sets.contains(Set.PLACEHOLDER) -> 0
                                         card.basic
                                                 && !card.types.contains(Type.RUINS)
                                                 && !card.types.contains(Type.SHELTER)

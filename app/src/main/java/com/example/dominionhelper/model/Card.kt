@@ -21,7 +21,7 @@ import com.google.gson.stream.JsonToken
 data class Card(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val name: String,
-    val set: Set,
+    val sets: List<Set>,
     val cost: Int,
     val supply: Boolean,
     val landscape: Boolean,
@@ -34,7 +34,7 @@ data class Card(
 ) {
 
     @Ignore
-    var expansionImageId: Int = set.imageId
+    var expansionImageId: Int = if (sets.size >= 2) sets[1].imageId else sets[0].imageId
 
     fun getColorByTypes(): List<Color> {
         val colors = mutableListOf<Color>()

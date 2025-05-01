@@ -42,7 +42,7 @@ interface CardDao {
     @Query("SELECT * FROM cards WHERE name LIKE :filter")
     suspend fun getFilteredCards(filter: String): List<Card>
 
-    @Query("SELECT * FROM cards WHERE `set` = :expansion")
+    @Query("SELECT * FROM cards WHERE sets LIKE '%' || :expansion || '%'")
     suspend fun getCardsByExpansion(expansion: Set): List<Card>
 
     @Query("SELECT * FROM cards ORDER BY RANDOM() LIMIT :amount")
@@ -50,7 +50,7 @@ interface CardDao {
 
     @Query("""
         SELECT c.* FROM cards AS c
-        INNER JOIN expansions AS e ON c.`set` = e.`set`
+        INNER JOIN expansions AS e ON c.sets LIKE '%' || e.`set` || '%'
         WHERE e.isOwned = 1
         AND c.landscape = 0
         AND c.basic = 0

@@ -33,6 +33,17 @@ class Converters {
     }
 
     @TypeConverter
+    fun fromSetList(value: List<Set>): String {
+        return gson.toJson(value)
+    }
+
+    @TypeConverter
+    fun toSetList(value: String): List<Set> {
+        val set = object : TypeToken<List<Set>>() {}.type
+        return gson.fromJson(value, set)
+    }
+
+    @TypeConverter
     fun fromCategoryList(value: List<Category>): String {
         return gson.toJson(value)
     }

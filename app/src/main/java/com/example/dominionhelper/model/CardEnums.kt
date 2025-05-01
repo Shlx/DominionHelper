@@ -3,23 +3,19 @@ package com.example.dominionhelper.model
 import com.example.dominionhelper.R
 
 enum class Set (val imageId: Int = R.drawable.ic_launcher_foreground) {
-    BASE(R.drawable.set_unknown),
     BASE_1E(R.drawable.set_dominion_1e),
     BASE_2E(R.drawable.set_dominion_2e),
-    INTRIGUE(R.drawable.set_unknown),
     INTRIGUE_1E(R.drawable.set_intrigue_1e),
     INTRIGUE_2E(R.drawable.set_intrigue_2e),
-    SEASIDE(R.drawable.set_unknown),
     SEASIDE_1E(R.drawable.set_seaside_1e),
-    SEASIDE_2E(R.drawable.set_seaside_1e),
+    SEASIDE_2E(R.drawable.set_seaside_2e),
     ALCHEMY(R.drawable.set_alchemy),
-    PROSPERITY(R.drawable.set_prosperity),
-    PROSPERITY_1E(R.drawable.set_prosperity),
-    PROSPERITY_2E(R.drawable.set_prosperity),
+    PROSPERITY_1E(R.drawable.set_prosperity_1e),
+    PROSPERITY_2E(R.drawable.set_prosperity_2e),
     CORNUCOPIA(R.drawable.set_cornucopia),
-    HINTERLANDS(R.drawable.set_hinterlands),
-    HINTERLANDS_1E(R.drawable.set_hinterlands),
-    HINTERLANDS_2E(R.drawable.set_hinterlands),
+    CORNUCOPIA_GUILDS_2E(R.drawable.set_cornucopia_guilds_2e),
+    HINTERLANDS_1E(R.drawable.set_hinterlands_1e),
+    HINTERLANDS_2E(R.drawable.set_hinterlands_2e),
     DARK_AGES(R.drawable.set_dark_ages),
     GUILDS(R.drawable.set_guilds),
     ADVENTURES(R.drawable.set_adventures),
@@ -31,9 +27,6 @@ enum class Set (val imageId: Int = R.drawable.ic_launcher_foreground) {
     PLUNDER(R.drawable.set_plunder),
     RISING_SUN(R.drawable.set_rising_sun),
     PROMO(R.drawable.set_promo),
-    CORNUCOPIA_GUILDS(R.drawable.set_unknown),
-    CORNUCOPIA_GUILDS_1E(R.drawable.set_unknown),
-    CORNUCOPIA_GUILDS_2E(R.drawable.set_unknown),
     PLACEHOLDER() // TODO
 }
 

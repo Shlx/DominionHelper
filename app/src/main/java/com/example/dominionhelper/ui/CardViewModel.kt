@@ -152,7 +152,7 @@ class CardViewModel @Inject constructor(
         if (cards.isEmpty()) return cards
 
         val sortedCards = when (_sortType.value) {
-            SortType.EXPANSION -> cards.sortedBy { it.set }
+            SortType.EXPANSION -> cards.sortedBy { it.sets.first() }
             SortType.ALPHABETICAL -> cards.sortedBy { it.name }
             SortType.COST -> cards.sortedBy { it.cost }
         }
@@ -164,7 +164,7 @@ class CardViewModel @Inject constructor(
         if (cards.isEmpty()) return linkedMapOf()
 
         val sortedEntries = when (_sortType.value) {
-            SortType.EXPANSION -> cards.entries.sortedBy { it.key.set }
+            SortType.EXPANSION -> cards.entries.sortedBy { it.key.sets.first() }
             SortType.ALPHABETICAL -> cards.entries.sortedBy { it.key.name }
             SortType.COST -> cards.entries.sortedBy { it.key.cost }
         }

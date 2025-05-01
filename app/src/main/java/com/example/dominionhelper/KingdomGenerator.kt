@@ -95,7 +95,7 @@ class KingdomGenerator @Inject constructor(
 
             // If there is an Alchemy card present, add Potion
             DependencyRule(
-                condition = { it.set == Set.ALCHEMY },
+                condition = { it.sets.contains(Set.ALCHEMY) },
                 dependentCardNames = listOf("Potion")
             ),
 
@@ -221,7 +221,7 @@ class KingdomGenerator @Inject constructor(
             // TODO % chance?
             // Count Prosperity cards and add Platinum and Colony
             DependencyRuleCount(
-                condition = { it.set == Set.PROSPERITY || it.set == Set.PROSPERITY_1E || it.set == Set.PROSPERITY_2E },
+                condition = { it.sets.contains(Set.PROSPERITY_1E) || it.sets.contains(Set.PROSPERITY_2E) },
                 dependentCardNames = listOf("Platinum", "Colony"),
                 minCount = 1
             )
@@ -261,7 +261,7 @@ class KingdomGenerator @Inject constructor(
         val cards = mutableMapOf<String, Int>()
 
         // 10% per Dark Ages card to use Shelters instead of Estates
-        val darkAgesCount = randomCards.count { it.set == Set.DARK_AGES }
+        val darkAgesCount = randomCards.count { it.sets.contains(Set.DARK_AGES) }
         Log.i("CardViewModel", "Dark Ages count: $darkAgesCount")
         if (isPercentChance(darkAgesCount * 10.0)) {
             Log.i("CardViewModel", "Adding Dark Ages cards")
