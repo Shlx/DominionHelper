@@ -60,6 +60,7 @@ import androidx.compose.ui.unit.sp
 import com.example.dominionhelper.Kingdom
 import com.example.dominionhelper.R
 import com.example.dominionhelper.model.Card
+import com.example.dominionhelper.model.OwnedEdition
 import com.example.dominionhelper.model.Set
 import com.example.dominionhelper.model.Type
 import com.example.dominionhelper.utils.getDrawableId
@@ -71,17 +72,26 @@ import kotlin.math.sin
 fun CardList(
     modifier: Modifier,
     cardList: List<Card>,
+    includeEditionSelection: Boolean = false,
+    onEditionSelected: (Int) -> Unit,
+    selectedEdition: OwnedEdition,
     onCardClick: (Card) -> Unit,
     listState: LazyListState = rememberLazyListState()
 ) {
 
-    LazyColumn(
-        modifier = modifier,
-        state = listState
-    ) {
-        println("CardList Parameter - ${cardList.size}")
-        items(cardList) { card ->
-            CardView(card, onCardClick)
+    Column(modifier = modifier) {
+
+        if (includeEditionSelection) {
+            EditionSelectionButtons(onEditionSelected, selectedEdition)
+        }
+
+        LazyColumn(
+            state = listState
+        ) {
+            println("CardList Parameter - ${cardList.size}")
+            items(cardList) { card ->
+                CardView(card, onCardClick)
+            }
         }
     }
 }
@@ -143,6 +153,49 @@ fun KingdomList(
             items(kingdom.startingCards.keys.toList()) { card ->
                 CardView(card, onCardClick, kingdom.startingCards[card]!!)
             }
+        }
+    }
+}
+
+@Composable
+fun EditionSelectionButtons(onEditionSelected: (Int) -> Unit = {}, selectedEdition: OwnedEdition = OwnedEdition.FIRST) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 4.dp),
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
+        Button(
+            onClick = { onEditionSelected(1) },
+            colors = if (selectedEdition != OwnedEdition.SECOND) {
+                ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+                )
+            } else {
+                ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                    contentColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
+                )
+            }
+        ) {
+            Text("1st Edition")
+        }
+        Button(
+            onClick = { onEditionSelected(2) },
+            colors = if (selectedEdition == OwnedEdition.SECOND) {
+                ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+                )
+            } else {
+                ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                    contentColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
+                )
+            }
+        ) {
+            Text("2nd Edition")
         }
     }
 }

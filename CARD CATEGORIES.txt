@@ -514,4 +514,243 @@ Way of the Worm is not formally an alt-VP effect since the  VP you get from it
 ------
 ------
 
+https://wiki.dominionstrategy.com/index.php/%2BBuy
+
+
+Terminal coin or the equivalent
+Dominion: Woodcutter
+Intrigue: Baron, Bridge
+Alchemy: Herbalist
+Prosperity: Goons
+Hinterlands: Nomad Camp, Nomads, Souk
+Dark Ages: Squire, Storeroom
+Cornucopia & Guilds: Horse Traders, Merchant Guild
+Adventures: Bridge Troll, Messenger, Peasant, Wine Merchant
+Empires: Farmers' Market
+Nocturne: Sacred Grove
+Menagerie: Way of the Monkey
+Allies: Herb Gatherer, Town
+Rising Sun: Fishmonger
+Terminal draw
+Dominion: Council Room
+Seaside: Wharf
+Hinterlands: Margrave
+Adventures: Ranger
+Nocturne: Tragic Hero
+Renaissance: Silk Merchant
+Menagerie: Barge
+Allies: Marquis
+Rising Sun: Imperial Envoy
+Cantrip
+Dominion: Market
+Prosperity: Grand Market, Worker's Village
+Dark Ages: Market Square
+Cornucopia & Guilds: Farrier, Hamlet
+Menagerie: Sanctuary, Snowy Village
+Rising Sun: Gold Mine
+Treasures and other non-terminal stop cards
+Dominion: Festival
+Seaside: Astrolabe
+Prosperity: Collection, Tiara
+Hinterlands: Cauldron
+Dark Ages: Counterfeit
+Cornucopia & Guilds: Candlestick Maker
+Empires: Capital, Charm, Fortune, Villa
+Renaissance: Ducat, Spices
+Menagerie: Stockpile
+Plunder: Buried Treasure, Jewelled Egg, Mining Road, Rope, Sack of Loot
+Loot cards: Amphora, Endless Chalice, Jewels, Orb, Prize Goat, Puzzle Box, Sextant, Shield, Staff, Sword
+Rising Sun: Good Harvest, Rice
++Buy with a choice of other options
+Intrigue: Courtier, Pawn
+Nocturne: Druid
+Allies: Bauble
+Other
+Skulk gives +Buy with a Hex attack
+Travelling Fair can transfer arbitrary amounts of $ into +Buy
+Seaway and Teacher can give +Buy to an Action card pile in the Supply.
+League of Shopkeepers can give you +Buy when you play a Liaison.
+Flourishing Trade can convert excess +Actions into +Buy
+Cards that give restricted +Buy
+Cards that need to trash a card
+Some cards need to trash or return a card, so they may not be sustainable in the long term as a source of +Buy.
+
+Seaside: Salvager
+Prosperity: Trade Route
+Hinterlands: Spice Merchant
+Dark Ages: Forager
+Menagerie: Scrap
+Rising Sun: Panic
+Limited amounts of +Buy
+Some cards are difficult to come by, only exist in very limited numbers, or only provide a limited quanitity of +Buy in normal circumstances.
+
+Seaside: Tactician
+Dark Ages: Ruined Market, Sir Martin
+Cornucopia & Guilds: Demesne, Princess, Renown
+Nocturne: The Forest's Gift, Pouch
+Renaissance: Fair
+Rising Sun: Aristocrat
+Other restrictions
+Some cards only give +Buy later during the game when one or more piles have emptied.
+
+Prosperity: City
+Menagerie: Animal Fair
+Contraband can prevent you from buying certain cards.
+
+Some effects need you to to gain specific kinds of cards to get +Buy:
+
+Allies: Band of Nomads, Galleria
+Plunder: Abundance
+Figurine only gives you +Buy if you have an Action card in hand to discard.
+
+Giving back Buys
+Forum, Cavalry, Marchland, and Nearby cards give +Buy when gained. Similarly, Villa can be played instantly after being gained and so gives back a Buy.
+
+A number of Events do not use up a Buy because they give one back whenever bought.
+
+Adventures: Borrow, Save, Scouting Party
+Empires: Delve
+Menagerie: Desperation, Gamble, Pursue, Toil
+Plunder: Avoid, Bury, Deliver, Launch, Mirror, Rush
+Rising Sun: Continue
+
+------
+------
+
 https://wiki.dominionstrategy.com/index.php/Deck_inspector
+
+Sifters
+These reveal cards, discard some of them, and put the rest back.
+
+Cartographer — Looks at four. Discards any number.
+Crystal Ball — Looks at one. May trash, discard, or play it.
+Duchess — Looks at one. May discard it. Also lets other players do the same.
+Forest Dwellers — Looks at three. Discards any number.
+Ironmonger — Looks at one. May discard it.
+Jack of All Trades — Looks at one. May discard it.
+Lookout — Looks at three. Trashes one, discards one, and puts one back.
+Navigator — Looks at five. Discards all or none.
+Night Watchman — Looks at five. Discards any number.
+Oracle — Reveals two. Discards all or none.
+Scouting Party — Looks at five. Discards three.
+Sentry — Looks at two. Trashes and/or discards any number.
+Sextant — Looks at five. Discards any number.
+Spy — Reveals one. May discard it.
+The Sun's Gift — Looks at four. Discards any number.
+Survivors — Looks at two. Discards all or none.
+Wandering Minstrel — Reveals three. Discards all non-Actions.
+Zombie Spy — Looks at one. May discard it.
+Conditional draw
+These reveal cards and put some of them into your hand. The rest are put back.
+
+Apothecary — Reveals four. Puts Coppers and Potions into hand.
+Magpie — Reveals one. Puts a Treasure into hand.
+Mystic — Reveals one. Puts it into hand if correctly named before revealing.
+Patrician — Reveals one. Puts into hand if costing $5 or more.
+Patrol — Reveals four. Puts Victories and Curses into hand.
+Poet — Reveals one. Puts into hand if costing $3 or less.
+Pursue — Reveals four. Puts all into hand correctly named before revealing.
+Scout — Reveals four. Puts all Victories into hand.
+Scrying Pool — Reveals one and may discard it. Then reveals cards until finding a non-Action and puts all into hand.
+Seer — Reveals three. Puts all into hand costing between $2 and $4.
+Vagrant — Reveals one. Puts into hand if Curse, Ruins, Shelter, or Victory.
+Will-o'-Wisp — Reveals one. Puts into hand if costing $2 or less.
+Wishing Well — Reveals one. Puts into hand if correcty named before revealing.
+Trashers
+These trash cards directly from the deck.
+
+Crystal Ball — Looks at one. May trash, discard, or play it.
+Doctor — Reveals three. Trashes all named before revealing.
+Lookout — Looks at three. Trashes one and discards one.
+Sentinel — Looks at five. Trashes up to two.
+Sentry — Looks at two. Trashes and/or discards any number.
+Playing cards
+These play cards directly from the deck, normally with some condition.
+
+Crystal Ball — Looks at one. May trash, discard, or play it.
+Fortune Hunter — Looks at three. Optionally plays a Treasure.
+Herald — Reveals one. Plays an Action.
+Piazza — Reveals one. Plays an Action.
+
+------
+------
+
+https://wiki.dominionstrategy.com/index.php/Trash_for_benefit
+
+List of cards
+See Remodelers for cards that gain cards based on a trashed card's cost.
+
+Scaling with the trashed card's cost
+Apprentice — +1 Card per $1 and +2 Card per P
+Bishop — +1 VP per $2
+Broker — +1 Attack, +1 Card, +$1, or +1 Favor per $1
+Crucible — +$1 per $1
+Raze — Looks at a card per $1 and choose one to put into hand
+Recruiter — +1 Villager per $1
+Research — Sets aside a card per $1 to put into hand at start of next turn
+Ritual — +1 VP per $1
+Salvager — +$1 per $1
+Scrap — A choice of different effects per $1
+Trader — Gain a Silver per $1
+Non-scaling effects based on cost
+Catapult — Performs a cursing attack if the trashed card costs $3 or more.
+Pickaxe — Gains a Loot if the trashed card costs $3 or more.
+Other effects
+These effects are based on the trashed card's type or other properties, rather than its cost.
+
+Catapult — Performs a handsize attack if the trashed card is a Treasure.
+Counterfeit — Plays the trashed Treasure twice, effectively doubling its value.
+Maroon — +2 Cards per number of types of the trashed card.
+Rice Broker — Draws a different number of cards depending on the trashed card's type.
+Sacrifice — Effect depends on the trashed card's type.
+Student — Gains a Favor and top-decks itself if the trashed card is a Treasure.
+Transmute — Gains different cards based on the trashed card's type.
+
+------
+------
+
+https://wiki.dominionstrategy.com/index.php/Handsize_attack
+
+Down to 3 cards:
+
+Berserker
+Catapult — Only if trashing a Treasure.
+Cutthroat
+Followers
+Footpad
+Ghost Ship — Cards are topdecked instead of discarded.
+Goons
+Legionary — Only attacks if a Gold is revealed. Discards down to two cards and then draws one.
+Margrave — Draws a card before discarding down to three.
+Mercenary — Only attacks if two cards are trashed.
+Militia
+Ninja
+Poverty
+Samurai
+Sir Michael
+Skirmisher — Only attacks when an attack card is gained.
+Down to 4 cards:
+
+Frigate — Every time another player plays an Action card until the start next turn.
+Minion — Only attacks as one of two choices. Discards entire hand and draws four cards.
+Sword
+Urchin
+Stackable handsize attacks
+These attacks can be repeated and continue to reduce players' handsize after the first play. These attacks either target specific cards, and will not continue reducing handsize if a player has none of the targeted cards in hand, or they still have a limit that prevents the handsize from dropping below a certain number.
+
+Bureaucrat — targets Victory cards
+Clerk — causes opponents to top-deck 1 card, but not if they have fewer than 5 cards in hand.
+Cutpurse — targets Coppers
+Fear — causes opponents to discard 1 Action or Treasure card, but not if they have fewer than 5 cards in hand.
+Haunting — causes opponents to top-deck 1 card, but not if they have fewer than 4 cards in hand.
+Maelstrom — causes opponents to trash 1 card from their hand, but not if they have fewer than 5 cards in hand.
+Soldier — causes opponents to discard 1 card, but not if they have fewer than 4 cards in hand.
+Torturer — has no limit whatsoever on the number of cards that can be discarded but the victim always has the choice of discarding or not; it allows a player to gain a Curse instead even if Curses have run out.
+Villain — causes opponents to discard 1 card costing $2 or more, but not if they have fewer than 5 cards in hand.
+Attacker's choice
+These cards target a specific card (or cards) of the attacker's choice to discard, but do not affect players with fewer than 5 cards in hand:
+
+Archer
+Pillage
+Raider
+Taxman

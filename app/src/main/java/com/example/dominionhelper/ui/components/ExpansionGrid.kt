@@ -16,7 +16,6 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material3.Card
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -26,15 +25,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.dominionhelper.model.Expansion
+import com.example.dominionhelper.model.ExpansionWithEditions
 import com.example.dominionhelper.utils.getDrawableId
 
 // Displays the list of expansions
 @Composable
 fun ExpansionGrid(
-    expansions: List<Expansion>,
-    onExpansionClick: (Expansion) -> Unit,
-    onCheckedChange: (Expansion, Boolean) -> Unit,
+    expansions: List<ExpansionWithEditions>,
+    onExpansionClick: (ExpansionWithEditions) -> Unit,
+    onToggleClick: (ExpansionWithEditions) -> Unit,
+    ownageText: (ExpansionWithEditions) -> String,
     modifier: Modifier = Modifier,
     gridState: LazyGridState = rememberLazyGridState()
 ) {
@@ -50,7 +50,8 @@ fun ExpansionGrid(
             ExpansionView(
                 expansion = expansion,
                 onClick = { onExpansionClick(expansion) },
-                onCheckedChange = onCheckedChange
+                onToggleClick = { onToggleClick(expansion) },
+                ownageText = ownageText(expansion)
             )
         }
     }
@@ -59,13 +60,14 @@ fun ExpansionGrid(
 // Displays a single expansion
 @Composable
 fun ExpansionView(
-    expansion: Expansion,
+    expansion: ExpansionWithEditions,
     onClick: () -> Unit,
-    onCheckedChange: (Expansion, Boolean) -> Unit,
+    onToggleClick: () -> Unit,
+    ownageText: String
 ) {
 
     val context = LocalContext.current
-    val drawableId = getDrawableId(context, expansion.imageName)
+    val drawableId = getDrawableId(context, expansion.firstEdition?.imageName ?: expansion.secondEdition?.imageName ?: "")
 
     Card(
         modifier = Modifier
@@ -97,13 +99,20 @@ fun ExpansionView(
             )
 
             // Switch at bottom right
-            Switch(
+            /*Switch(
                 checked = expansion.isOwned,
                 onCheckedChange = { onCheckedChange(expansion, it) },
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
                     .padding(0.dp, 0.dp, 16.dp, 8.dp)
-            )
+            )*/
+            Box(modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(8.dp)
+                .clickable(onClick = onToggleClick)
+            ) {
+                Text(ownageText)
+            }
         }
     }
 }

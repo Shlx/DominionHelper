@@ -70,7 +70,6 @@ fun TopBar(
                     onValueChange = { onSearchTextChange(it) },
                     modifier = Modifier
                         .fillMaxWidth()
-                        //.padding(bottom = 16.dp)
                         .focusRequester(focusRequester),
                     placeholder = {
                         Text(
@@ -150,56 +149,12 @@ fun TopBar(
                 )
             }
 
-            DropdownMenu(
+            SortDropdownMenu(
                 expanded = expanded,
-                onDismissRequest = { expanded = false }
-            ) {
-                DropdownMenuItem(
-                    text = { Text("Sort Alphabetically") },
-                    onClick = {
-                        onSortTypeSelected(SortType.ALPHABETICAL)
-                        expanded = false
-                    },
-                    trailingIcon = {
-                        if (selectedSortType == SortType.ALPHABETICAL) {
-                            Icon(
-                                Icons.Filled.Check,
-                                contentDescription = "Sort Alphabetically Selected"
-                            )
-                        }
-                    }
-                )
-                DropdownMenuItem(
-                    text = { Text("Sort by Cost") },
-                    onClick = {
-                        onSortTypeSelected(SortType.COST)
-                        expanded = false
-                    },
-                    trailingIcon = {
-                        if (selectedSortType == SortType.COST) {
-                            Icon(
-                                Icons.Filled.Check,
-                                contentDescription = "Sort by Cost Selected"
-                            )
-                        }
-                    }
-                )
-                DropdownMenuItem(
-                    text = { Text("Sort By Expansion") },
-                    onClick = {
-                        onSortTypeSelected(SortType.EXPANSION)
-                        expanded = false
-                    },
-                    trailingIcon = {
-                        if (selectedSortType == SortType.EXPANSION) {
-                            Icon(
-                                Icons.Filled.Check,
-                                contentDescription = "Sort by Expansion Selected"
-                            )
-                        }
-                    }
-                )
-            }
+                onDismissRequest = { expanded = false },
+                selectedSortType = selectedSortType,
+                onSortTypeSelected = onSortTypeSelected
+            )
         }
     )
     LaunchedEffect(key1 = isSearchActive) {
@@ -208,4 +163,51 @@ fun TopBar(
             focusRequester.requestFocus()
         }
     }
+}
+
+@Composable
+fun SortDropdownMenu(
+    expanded: Boolean,
+    onDismissRequest: () -> Unit,
+    selectedSortType: SortType,
+    onSortTypeSelected: (SortType) -> Unit
+) {
+
+    DropdownMenu(
+        expanded = expanded,
+        onDismissRequest = onDismissRequest
+    ) {
+        SortType.entries.forEach { sortOption ->
+            SortDropdownMenuItem(
+                sortType = sortOption,
+                selectedSortType = selectedSortType,
+                onSortTypeSelected = onSortTypeSelected,
+                onDismissRequest = onDismissRequest
+            )
+        }
+    }
+}
+
+@Composable
+fun SortDropdownMenuItem(
+    sortType: SortType,
+    selectedSortType: SortType,
+    onSortTypeSelected: (SortType) -> Unit,
+    onDismissRequest: () -> Unit
+) {
+    DropdownMenuItem(
+        text = { Text(sortType.text) },
+        onClick = {
+            onSortTypeSelected(sortType)
+            onDismissRequest()
+        },
+        trailingIcon = {
+            if (selectedSortType == sortType) {
+                Icon(
+                    Icons.Filled.Check,
+                    contentDescription = "$sortType selected"
+                )
+            }
+        }
+    )
 }

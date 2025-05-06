@@ -1,6 +1,7 @@
 package com.example.dominionhelper.di
 
 import android.app.Application
+import android.util.Log
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
@@ -54,6 +55,7 @@ object AppModule {
                             provideCardDao(provideAppDatabase(app, coroutineScope)),
                             provideExpansionDao(provideAppDatabase(app, coroutineScope))
                         )
+                        Log.i("AppDatabase", "Pre-populated database")
                     }
                 }
             })

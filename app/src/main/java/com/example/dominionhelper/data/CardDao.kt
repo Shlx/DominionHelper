@@ -7,7 +7,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.example.dominionhelper.model.Card
-import com.example.dominionhelper.model.Set
 
 @Dao
 interface CardDao {
@@ -42,16 +41,16 @@ interface CardDao {
     @Query("SELECT * FROM cards WHERE name LIKE :filter")
     suspend fun getFilteredCards(filter: String): List<Card>
 
-    @Query("SELECT * FROM cards WHERE sets LIKE '%' || :expansion || '%'")
-    suspend fun getCardsByExpansion(expansion: Set): List<Card>
+    @Query("SELECT * FROM cards WHERE sets LIKE '%' || :id || '%'")
+    suspend fun getCardsByExpansion(id: String): List<Card>
 
     @Query("SELECT * FROM cards ORDER BY RANDOM() LIMIT :amount")
     suspend fun getRandomCards(amount: Int): List<Card>
 
     @Query("""
         SELECT c.* FROM cards AS c
-        INNER JOIN expansions AS e ON c.sets LIKE '%' || e.`set` || '%'
-        WHERE e.isOwned = 1
+        INNER JOIN expansions AS e ON c.sets LIKE '%' || e.id || '%'
+        WHERE e.isOwned
         AND c.landscape = 0
         AND c.basic = 0
         AND c.supply = 1 /*This makes sense right*/
@@ -65,5 +64,4 @@ interface CardDao {
 
     @Query("SELECT * FROM cards WHERE name IN (:names)")
     suspend fun getCardsByNameList(names: List<String>): List<Card>
-
 }

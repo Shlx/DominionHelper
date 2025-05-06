@@ -9,13 +9,27 @@ import com.google.gson.annotations.SerializedName
 import com.google.gson.reflect.TypeToken
 import java.io.IOException
 
+data class ExpansionWithEditions(
+    val name: String, // The name of the Expansion (e.g., "Base", "Intrigue")
+    val firstEdition: Expansion? = null,
+    val secondEdition: Expansion? = null,
+    val image: String
+)
+
+enum class OwnedEdition() {
+    NONE,
+    FIRST,
+    SECOND,
+    BOTH
+}
+
 @Entity(tableName = "expansions")
 data class Expansion(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    val set: Set,
+    @PrimaryKey(autoGenerate = false) val id: String,
     val name: String,
+    val edition: Int,
     @SerializedName("image_name") val imageName: String,
-    val isOwned: Boolean = false
+    val isOwned: Boolean,
 )
 
 // To data package

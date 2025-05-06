@@ -6,23 +6,17 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.grid.LazyGridState
-import androidx.compose.material3.DrawerState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.dominionhelper.ui.theme.DominionHelperTheme
 import androidx.compose.material3.DrawerValue.*
-import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
-import androidx.compose.material3.NavigationDrawerItem
-import androidx.compose.material3.NavigationDrawerItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
@@ -56,7 +50,9 @@ import kotlinx.coroutines.launch
 // Flows instead of lists from DAO?
 // Use update { in ViewModels
 // Save sort type between sessions
-// Icons.Filled.
+// Icons.Filled.??
+// Try to thin out some parameters (TopBar)
+// After generating kingdom and changing sort type, it is reset after generating a new kingdom
 
 // TODO FEATURES
 // Split piles
@@ -67,10 +63,20 @@ import kotlinx.coroutines.launch
 // Warning when navigating back from generated kingdom
 // Chose 2 from Events, Landmarks, Projects, Ways, Traits
 // Overpay Cards, Coffers, weißer Text auf Schulden
+// Veto on generated cards (Swipe away)
+// Rating a kingdom afterwards (+ uploading)
+
+// TODO NEXT
+// Refactor this mess
+// Sort by expansion should ignore editions (does it?)
+// Think about how to handle Cornucopia & Guilds
+// Swap icon in expansion list depending on expansion owned (Also in kingdom list)
+// Sorter class
+// Maybe save "hasFirst/SecondEdition" in a variable (ExpansionWithEditions)
+// Bookmakrs / Mnemonic??
 
 // TODO DESIGN
 // Show behind top + nav bar?
-// !!Find solution for 1st / 2nd edition - // Ability to switch expansion between first and second edition?
 // Improve Expansion view
 // Remove search from detail view?
 // Close keyboard when scrolling on search results
@@ -89,8 +95,7 @@ import kotlinx.coroutines.launch
 // Rethink the basic Card flag. I think it's only there for the UI fix?
 // -> Nope I think it makes sense for the card randomization. These cards are never pulled without meeting conditions
 // Cards that are not in the supply vs cards that cost 0 vs cards that cost nothing??
-
-
+// Closing search while in detail view fucks shit up
 
 
 // I think list state is shared between search / expansion and random cards (doesn't reset)
@@ -98,9 +103,10 @@ import kotlinx.coroutines.launch
 // Going back from expansion list resets even though it shouldn't
 
 
-
 // TODO check: Allies, Menagerie, Renaissance, Nocturne, Empires, Adventures, Guilds, Dark Ages, Hinterlands, Cornucopia, Prosperity, Alchemy, Seaside, Intrigue, Dominion
 
+// TODO: Questions for users?
+// - Is there a need to view first and second edition cards in one list?
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -124,11 +130,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainView(
-    cardViewModel: CardViewModel
-) {
-    val expansions by cardViewModel.expansions.collectAsStateWithLifecycle()
+fun MainView(cardViewModel: CardViewModel) {
+
+    val expansionsWithEditions by cardViewModel.expansionsWithEditions.collectAsStateWithLifecycle()
     val selectedExpansion by cardViewModel.selectedExpansion.collectAsStateWithLifecycle()
+    val selectedEdition by cardViewModel.selectedEdition.collectAsStateWithLifecycle()
 
     val cardsToShow by cardViewModel.cardsToShow.collectAsStateWithLifecycle()
     val expansionCards by cardViewModel.expansionCards.collectAsStateWithLifecycle()
@@ -262,12 +268,17 @@ fun MainView(
                     if (expansionCards.isNotEmpty()) {
                         CardList(
                             cardList = expansionCards,
+                            includeEditionSelection = cardViewModel.expansionHasTwoEditions(selectedExpansion!!) && !isSearchActive,
+                            onEditionSelected = { editionNumber ->
+                                cardViewModel.selectEdition(selectedExpansion!!, editionNumber)
+                            },
+                            selectedEdition = selectedEdition,
                             onCardClick = { cardViewModel.selectCard(it) },
                             modifier = Modifier.padding(innerPadding),
                             listState = listState
                         )
 
-                    // Show generated kingdom
+                        // Show generated kingdom
                     } else if (kingdom != Kingdom()) {
                         KingdomList(
                             kingdom = kingdom,
@@ -286,14 +297,15 @@ fun MainView(
                 else -> {
                     Log.i("MainView", "View expansion list")
                     ExpansionGrid(
-                        expansions = expansions,
-                        onExpansionClick = { expansion ->
-                            cardViewModel.loadCardsByExpansion(expansion)
-                            cardViewModel.selectExpansion(expansion)
+                        expansions = expansionsWithEditions,
+                        onExpansionClick = { expansionsWithEditions ->
+                            cardViewModel.loadCardsByExpansion(expansionsWithEditions)
+                            cardViewModel.selectExpansion((expansionsWithEditions))
                         },
-                        onCheckedChange = { expansion, checked ->
-                            cardViewModel.updateIsOwned(expansion, checked)
+                        onToggleClick = {
+                            cardViewModel.toggleIsOwned(it)
                         },
+                        ownageText = { cardViewModel.getOwnageText(it) },
                         modifier = Modifier.padding(innerPadding),
                         gridState = gridState
                     )

@@ -9,6 +9,8 @@ import com.example.dominionhelper.model.Card
 import com.example.dominionhelper.data.CardDao
 import com.example.dominionhelper.model.Expansion
 import com.example.dominionhelper.data.ExpansionDao
+import com.example.dominionhelper.model.ExpansionWithEditions
+import com.example.dominionhelper.model.OwnedEdition
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -20,15 +22,19 @@ import javax.inject.Inject
 class CardViewModel @Inject constructor(
     private val cardDao: CardDao,
     private val expansionDao: ExpansionDao,
-    private val kingdomGenerator: KingdomGenerator
+    private val kingdomGenerator: KingdomGenerator,
 ) : ViewModel() {
 
     // Expansion variables
-    private val _expansions = MutableStateFlow<List<Expansion>>(emptyList())
-    val expansions: StateFlow<List<Expansion>> = _expansions.asStateFlow()
+    private val _expansionsWithEditions = MutableStateFlow<List<ExpansionWithEditions>>(emptyList())
+    val expansionsWithEditions: StateFlow<List<ExpansionWithEditions>> =
+        _expansionsWithEditions.asStateFlow()
 
-    private val _selectedExpansion = MutableStateFlow<Expansion?>(null)
-    val selectedExpansion: StateFlow<Expansion?> = _selectedExpansion.asStateFlow()
+    private val _selectedExpansion = MutableStateFlow<ExpansionWithEditions?>(null)
+    val selectedExpansion: StateFlow<ExpansionWithEditions?> = _selectedExpansion.asStateFlow()
+
+    private val _selectedEdition = MutableStateFlow<OwnedEdition>(OwnedEdition.NONE)
+    val selectedEdition: StateFlow<OwnedEdition> = _selectedEdition.asStateFlow()
 
     // Card variables
     private val _cardsToShow = MutableStateFlow(false)
@@ -50,7 +56,7 @@ class CardViewModel @Inject constructor(
     private val _searchText = MutableStateFlow("")
     val searchText: StateFlow<String> = _searchText.asStateFlow()
 
-    private val _sortType = MutableStateFlow(SortType.EXPANSION)
+    private val _sortType = MutableStateFlow(SortType.DEFAULT)
     val sortType: StateFlow<SortType> = _sortType.asStateFlow()
 
     // Player count
@@ -58,15 +64,190 @@ class CardViewModel @Inject constructor(
     val playerCount: StateFlow<Int> = _playerCount.asStateFlow()
 
     init {
+        loadExpansionsWithEditions()
+    }
+
+    // Load all expansions and their editions, grouped by name
+    private fun loadExpansionsWithEditions() {
         viewModelScope.launch {
-            _expansions.value = expansionDao.getAll()
-            Log.d("CardViewModel", "Showing all ${_expansions.value.size} expansions")
+            expansionDao.getAll().collect { allExpansions ->
+
+                // Make a map of name -> list of editions
+                val expansionsGrouped = allExpansions.groupBy { it.name }
+
+                // Assemble ExpansionWithEditions object for each entry
+                val expansionsWithEditions = expansionsGrouped.map { (expansionName, editions) ->
+                    val firstEdition = editions.find { it.edition == 1 }
+                    val secondEdition = editions.find { it.edition == 2 }
+
+                    // Choose the correct image
+                    val image = when {
+                        firstEdition != null -> firstEdition.imageName
+                        secondEdition != null -> secondEdition.imageName // Only for Cornucopia + Guilds 2nd edition
+                        else -> throw java.lang.IllegalArgumentException("No edition found.")
+                    }
+
+                    ExpansionWithEditions(
+                        name = expansionName,
+                        firstEdition = firstEdition,
+                        secondEdition = secondEdition,
+                        image = image
+                    )
+                }
+
+                _expansionsWithEditions.value = expansionsWithEditions
+                Log.i(
+                    "CardViewModel",
+                    "Loaded expansions [${expansionsWithEditions.size}] with editions [${allExpansions.size}]"
+                )
+            }
+        }
+    }
+
+    // Toggle through expansion ownership options (Unowned, first / second / both owned)
+    fun toggleIsOwned(expansion: ExpansionWithEditions) {
+        viewModelScope.launch {
+
+            val isFirstOwned = expansion.firstEdition?.isOwned == true
+            val isSecondOwned = expansion.secondEdition?.isOwned == true
+            Log.i(
+                "CardViewModel",
+                "Toggling ownage for ${expansion.name} (First: $isFirstOwned, Second: $isSecondOwned)"
+            )
+
+            when {
+                isFirstOwned && isSecondOwned -> {
+                    // Both editions owned -> Unowned
+                    Log.i("CardViewModel", "Both editions owned -> Unowned")
+                    updateExpansionOwnership(expansion.firstEdition, false)
+                    updateExpansionOwnership(expansion.secondEdition, false)
+                }
+
+                !isFirstOwned && !isSecondOwned -> {
+                    if (expansion.firstEdition != null) {
+                        // Unowned -> First edition owned
+                        Log.i("CardViewModel", "Unowned -> First Edition Owned")
+                        updateExpansionOwnership(expansion.firstEdition, true)
+                    } else {
+                        // Unowned -> Second edition owned
+                        Log.i(
+                            "CardViewModel",
+                            "Unowned -> Second Edition Owned (There is no first edition)"
+                        )
+                        expansion.secondEdition?.let { updateExpansionOwnership(it, true) }
+                    }
+                }
+
+                isFirstOwned -> {
+                    if (expansion.secondEdition != null) {
+                        // First edition owned -> Second edition owned
+                        Log.i("CardViewModel", "First Edition Owned -> Second Edition Owned")
+                        updateExpansionOwnership(expansion.secondEdition, true)
+                        updateExpansionOwnership(expansion.firstEdition, false)
+                    } else {
+                        // First edition owned -> Unowned
+                        Log.i(
+                            "CardViewModel",
+                            "First Edition Owned -> Unowned (There is no second edition)"
+                        )
+                        updateExpansionOwnership(expansion.firstEdition, false)
+                    }
+
+                }
+
+                isSecondOwned -> {
+                    if (expansion.firstEdition != null) {
+                        // Second edition owned -> Both editions owned
+                        Log.i("CardViewModel", "Second Edition Owned -> Both editions owned")
+                        updateExpansionOwnership(expansion.firstEdition, true)
+                    } else {
+                        // Second edition owned -> Unowned
+                        Log.i(
+                            "CardViewModel",
+                            "Second Edition Owned -> Unowned (There is no first edition)"
+                        )
+                        updateExpansionOwnership(expansion.secondEdition, false)
+                    }
+                }
+            }
+        }
+    }
+
+    // Update ownership of an expansion
+    fun updateExpansionOwnership(expansion: Expansion, newIsOwned: Boolean) {
+        viewModelScope.launch {
+            // Update the database
+            when (expansion.edition) {
+                1 -> expansionDao.updateFirstEditionOwned(
+                    expansion.name,
+                    newIsOwned
+                )
+
+                2 -> expansionDao.updateSecondEditionOwned(
+                    expansion.name,
+                    newIsOwned
+                )
+
+                else -> throw java.lang.IllegalArgumentException("Invalid edition.")
+            }
+
+            // Update the object
+            // TODO: Understand this
+            _expansionsWithEditions.value = _expansionsWithEditions.value.map {
+                if (it.name == expansion.name) {
+                    when (expansion.edition) {
+                        1 -> it.copy(firstEdition = it.firstEdition?.copy(isOwned = newIsOwned))
+                        2 -> it.copy(secondEdition = it.secondEdition?.copy(isOwned = newIsOwned))
+                        else -> throw java.lang.IllegalArgumentException("Invalid edition.")
+                    }
+                } else {
+                    it
+                }
+            }
+            Log.i(
+                "CardViewModel",
+                "UpdateExpansionOwndership(): Updated isOwned for ${expansion.name}[${expansion.edition}] to $newIsOwned"
+            )
+        }
+    }
+
+    fun getOwnageText(expansion: ExpansionWithEditions): String {
+
+        val isFirstOwned = expansion.firstEdition?.isOwned == true
+        val isSecondOwned = expansion.secondEdition?.isOwned == true
+
+        return when {
+            isFirstOwned && isSecondOwned -> "Both Editions Owned"
+            !isFirstOwned && !isSecondOwned -> "Unowned"
+            isFirstOwned ->
+                if (expansion.secondEdition == null) {
+                    "Owned"
+                } else {
+                    "First Edition Owned"
+                }
+            isSecondOwned -> "Second Edition Owned"
+            else -> throw java.lang.IllegalArgumentException("Invalid ownership state.")
+        }
+    }
+
+    fun whichEditionIsOwned(expansion: ExpansionWithEditions): OwnedEdition {
+
+        if (expansion.firstEdition?.isOwned == true) {
+            if (expansion.secondEdition?.isOwned == true) {
+                return OwnedEdition.BOTH
+            }
+            return OwnedEdition.FIRST
+        } else if (expansion.secondEdition?.isOwned == true) {
+            return OwnedEdition.SECOND
+        } else {
+            return OwnedEdition.NONE
         }
     }
 
     // Expansion functions
-    fun selectExpansion(expansion: Expansion) {
+    fun selectExpansion(expansion: ExpansionWithEditions) {
         _selectedExpansion.value = expansion
+        _selectedEdition.value = whichEditionIsOwned(expansion)
         Log.d("CardViewModel", "Selected ${expansion.name}")
     }
 
@@ -76,42 +257,57 @@ class CardViewModel @Inject constructor(
         Log.d("CardViewModel", "Cleared selected expansion")
     }
 
-
-    fun updateIsOwned(expansion: Expansion, newIsOwned: Boolean) {
+    // TODO: vgl. loadCardsByExpansion
+    // When edition selector in CardList is pressed
+    fun selectEdition(expansion: ExpansionWithEditions, editionNumber: Int) {
         viewModelScope.launch {
-            expansionDao.updateIsOwned(expansion.id, newIsOwned)
-
-            val currentExpansions = _expansions.value.toMutableList()
-            val index = currentExpansions.indexOfFirst { it.id == expansion.id }
-
-            if (index != -1) {
-                val updatedExpansion = expansion.copy(isOwned = newIsOwned)
-                currentExpansions[index] = updatedExpansion
-                _expansions.value = currentExpansions
+            if (editionNumber == 1) {
+                _expansionCards.value =
+                    sortCards(cardDao.getCardsByExpansion(expansion.firstEdition!!.id))
+                _selectedEdition.value = OwnedEdition.FIRST
+            } else {
+                _expansionCards.value =
+                    sortCards(cardDao.getCardsByExpansion(expansion.secondEdition!!.id))
+                _selectedEdition.value = OwnedEdition.SECOND
             }
-            Log.i("CardViewModel", "Updated isOwned for expansion ${expansion.name} to $newIsOwned")
+            Log.d("CardViewModel", "Selected edition $editionNumber for ${expansion.name}")
         }
     }
 
-    // Card functions
-    /*fun loadAllCards() {
-        Log.d("CardViewModel", "Loading all cards")
-        viewModelScope.launch {
-            _cards.value = cardDao.getAll()
-            sortCards()
-            Log.d("CardViewModel", "Loaded all ${_cards.value.size} cards")
-        }
-    }*/
+    // TODO: vgl. selectEdition
+    // When expansion is selected
+    fun loadCardsByExpansion(expansion: ExpansionWithEditions) {
 
-    fun loadCardsByExpansion(expansion: Expansion) {
         viewModelScope.launch {
-            _expansionCards.value = sortCards(cardDao.getCardsByExpansion(expansion.set))
+
+            if (expansion.firstEdition?.isOwned == true) {
+                _expansionCards.value =
+                    sortCards(cardDao.getCardsByExpansion(expansion.firstEdition.id))
+            } else if (expansion.secondEdition?.isOwned == true) {
+                _expansionCards.value =
+                    sortCards(cardDao.getCardsByExpansion(expansion.secondEdition.id))
+            } else {
+                // If neither or both editions are owned, show all cards
+                val set = mutableSetOf<Card>()
+                if (expansion.firstEdition != null) {
+                    set.addAll(cardDao.getCardsByExpansion(expansion.firstEdition.id))
+                }
+                if (expansion.secondEdition != null) {
+                    set.addAll(cardDao.getCardsByExpansion(expansion.secondEdition.id))
+                }
+                _expansionCards.value = sortCards(set.toList())
+            }
+
             _cardsToShow.value = true
             Log.d(
                 "CardViewModel",
                 "Loaded ${_expansionCards.value.size} cards for expansion ${expansion.name}"
             )
         }
+    }
+
+    fun expansionHasTwoEditions(expansion: ExpansionWithEditions): Boolean {
+        return expansion.firstEdition != null && expansion.secondEdition != null
     }
 
     fun selectCard(card: Card) {
@@ -128,6 +324,7 @@ class CardViewModel @Inject constructor(
     fun getRandomKingdom() {
         viewModelScope.launch {
             _kingdom.value = kingdomGenerator.generateKingdom()
+            updateSortType(SortType.EXPANSION, _kingdom.value)
             updatePlayerCount(_kingdom.value, 2)
             clearSelectedExpansion() // Clear this AFTER the kingdom is generated
             clearSelectedCard()
@@ -155,6 +352,7 @@ class CardViewModel @Inject constructor(
             SortType.EXPANSION -> cards.sortedBy { it.sets.first() }
             SortType.ALPHABETICAL -> cards.sortedBy { it.name }
             SortType.COST -> cards.sortedBy { it.cost }
+            SortType.DEFAULT -> cards.sortedBy { it.id }
         }
         Log.d("CardViewModel", "Sorted ${sortedCards.size} cards by ${_sortType.value}")
         return sortedCards
@@ -164,9 +362,11 @@ class CardViewModel @Inject constructor(
         if (cards.isEmpty()) return linkedMapOf()
 
         val sortedEntries = when (_sortType.value) {
-            SortType.EXPANSION -> cards.entries.sortedBy { it.key.sets.first() }
+            // This does not work correctly
+            SortType.EXPANSION -> cards.entries.sortedBy { it.key.sets.first().name.take(3) }
             SortType.ALPHABETICAL -> cards.entries.sortedBy { it.key.name }
             SortType.COST -> cards.entries.sortedBy { it.key.cost }
+            SortType.DEFAULT -> cards.entries.sortedBy { it.key.id }
         }
 
         val sortedCards = LinkedHashMap<Card, Int>()
@@ -251,7 +451,10 @@ class CardViewModel @Inject constructor(
         Log.d("CardViewModel", "Selected player count $count")
     }
 
-    fun getCardAmounts(cards: LinkedHashMap<Card, Int>, playerCount: Int): LinkedHashMap<Card, Int> {
+    fun getCardAmounts(
+        cards: LinkedHashMap<Card, Int>,
+        playerCount: Int
+    ): LinkedHashMap<Card, Int> {
         assert(playerCount in 2..4)
 
         val cardAmounts = linkedMapOf<Card, Int>()
@@ -284,10 +487,20 @@ class CardViewModel @Inject constructor(
         return cardAmounts
     }
 
+    // Card functions
+    /*fun loadAllCards() {
+        Log.d("CardViewModel", "Loading all cards")
+        viewModelScope.launch {
+            _cards.value = cardDao.getAll()
+            sortCards()
+            Log.d("CardViewModel", "Loaded all ${_cards.value.size} cards")
+        }
+    }*/
 }
 
-enum class SortType {
-    ALPHABETICAL,
-    COST,
-    EXPANSION
+enum class SortType(val text: String) {
+    ALPHABETICAL("Sort alphabetically"),
+    COST("Sort by cost"),
+    EXPANSION("Sort by expansion"),
+    DEFAULT("Sort by default")
 }

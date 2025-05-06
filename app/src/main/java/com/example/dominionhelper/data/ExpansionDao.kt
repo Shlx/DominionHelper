@@ -14,7 +14,7 @@ interface ExpansionDao {
     suspend fun insertAll(expansions: List<Expansion>)
 
     @Query("SELECT * FROM expansions")
-    suspend fun getAll(): List<Expansion>
+    fun getAll(): Flow<List<Expansion>>
 
     // Turning this into a suspend fun crashes??
     @Query("SELECT * FROM expansions WHERE isOwned = 1")
@@ -23,6 +23,15 @@ interface ExpansionDao {
     @Query("SELECT * FROM expansions WHERE id = :id")
     suspend fun getExpansionById(id: Int): Expansion?
 
-    @Query("UPDATE expansions SET isOwned = :isOwned WHERE id = :id")
-    suspend fun updateIsOwned(id: Int, isOwned: Boolean)
+    @Query("UPDATE expansions SET isOwned = :isOwned WHERE name = :expansionName AND edition = 1")
+    suspend fun updateFirstEditionOwned(expansionName: String, isOwned: Boolean)
+
+    @Query("UPDATE expansions SET isOwned = :isOwned WHERE name = :expansionName AND edition = 2")
+    suspend fun updateSecondEditionOwned(expansionName: String, isOwned: Boolean)
+
+    @Query("SELECT isOwned FROM expansions WHERE name = :expansionName AND edition = 1")
+    suspend fun isFirstEditionOwned(expansionName: String): Boolean
+
+    @Query("SELECT isOwned FROM expansions WHERE name = :expansionName AND edition = 2")
+    suspend fun isSecondEditionOwned(expansionName: String): Boolean
 }

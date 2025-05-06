@@ -1,122 +1,170 @@
 [
   {
-    "set": "BASE_1E",
-    "name": "Base (1st Edition)",
+    "id": "BASE_1E",
+    "set": "BASE",
+    "name": "Base",
+    "edition": 1,
     "image_name": "set_dominion_1e"
   },
   {
-    "set": "BASE_2E",
-    "name": "Base (2nd Edition)",
+    "id": "BASE_2E",
+    "set": "BASE",
+    "name": "Base",
+    "edition": 2,
     "image_name": "set_dominion_2e"
   },
   {
-    "set": "INTRIGUE_1E",
-    "name": "Intrigue (1st Edition)",
+    "id": "INTRIGUE_1E",
+    "set": "INTRIGUE",
+    "name": "Intrigue",
+    "edition": 1,
     "image_name": "set_intrigue_1e"
   },
   {
-    "set": "INTRIGUE_2E",
-    "name": "Intrigue (2nd Edition)",
+    "id": "INTRIGUE_2E",
+    "set": "INTRIGUE",
+    "name": "Intrigue",
+    "edition": 2,
     "image_name": "set_intrigue_2e"
   },
   {
-    "set": "SEASIDE_1E",
-    "name": "Seaside (1st Edition)",
+    "id": "SEASIDE_1E",
+    "set": "SEASIDE",
+    "name": "Seaside",
+    "edition": 1,
     "image_name": "set_seaside_1e"
   },
   {
-    "set": "SEASIDE_2E",
-    "name": "Seaside (2nd Edition)",
+    "id": "SEASIDE_2E",
+    "set": "SEASIDE",
+    "name": "Seaside",
+    "edition": 2,
     "image_name": "set_seaside_2e"
   },
   {
+    "id": "ALCHEMY",
     "set": "ALCHEMY",
     "name": "Alchemy",
+    "edition": 1,
     "image_name": "set_alchemy"
   },
   {
-    "set": "PROSPERITY_1E",
-    "name": "Prosperity (1st Edition)",
+    "id": "PROSPERITY_1E",
+    "set": "PROSPERITY",
+    "name": "Prosperity",
+    "edition": 1,
     "image_name": "set_prosperity_1e"
   },
   {
-    "set": "PROSPERITY_2E",
-    "name": "Prosperity (2nd Edition)",
+    "id": "PROSPERITY_2E",
+    "set": "PROSPERITY",
+    "name": "Prosperity",
+    "edition": 2,
     "image_name": "set_prosperity_2e"
   },
   {
+    "id": "CORNUCOPIA",
     "set": "CORNUCOPIA",
     "name": "Cornucopia",
+    "edition": 1,
     "image_name": "set_cornucopia"
   },
   {
-    "set": "HINTERLANDS_1E",
-    "name": "Hinterlands (1st Edition)",
+    "id": "HINTERLANDS_1E",
+    "set": "HINTERLANDS",
+    "name": "Hinterlands",
+    "edition": 1,
     "image_name": "set_hinterlands_1e"
   },
   {
-    "set": "HINTERLANDS_2E",
-    "name": "Hinterlands (2nd Edition)",
+    "id": "HINTERLANDS_2E",
+    "set": "HINTERLANDS",
+    "name": "Hinterlands",
+    "edition": 2,
     "image_name": "set_hinterlands_2e"
   },
   {
+    "id": "DARK_AGES",
     "set": "DARK_AGES",
     "name": "Dark Ages",
+    "edition": 1,
     "image_name": "set_dark_ages"
   },
   {
+    "id": "GUILDS",
     "set": "GUILDS",
     "name": "Guilds",
+    "edition": 1,
     "image_name": "set_guilds"
   },
   {
+    "id": "ADVENTURES",
     "set": "ADVENTURES",
     "name": "Adventures",
+    "edition": 1,
     "image_name": "set_adventures"
   },
   {
+    "id": "EMPIRES",
     "set": "EMPIRES",
     "name": "Empires",
+    "edition": 1,
     "image_name": "set_empires"
   },
   {
+    "id": "NOCTURNE",
     "set": "NOCTURNE",
     "name": "Nocturne",
+    "edition": 1,
     "image_name": "set_nocturne"
   },
   {
+    "id": "RENAISSANCE",
     "set": "RENAISSANCE",
     "name": "Renaissance",
+    "edition": 1,
     "image_name": "set_renaissance"
   },
   {
+    "id": "MENAGERIE",
     "set": "MENAGERIE",
     "name": "Menagerie",
+    "edition": 1,
     "image_name": "set_menagerie"
   },
   {
+    "id": "ALLIES",
     "set": "ALLIES",
     "name": "Allies",
+    "edition": 1,
     "image_name": "set_allies"
   },
   {
+    "id": "PLUNDER",
     "set": "PLUNDER",
     "name": "Plunder",
+    "edition": 1,
     "image_name": "set_plunder"
   },
-{
+  {
+    "id": "RISING_SUN",
     "set": "RISING_SUN",
     "name": "Rising Sun",
+    "edition": 1,
     "image_name": "set_rising_sun"
   },
   {
+    "id": "PROMO",
     "set": "PROMO",
     "name": "Promo",
+    "edition": 1,
     "image_name": "set_promo"
   },
   {
-    "set": "CORNUCOPIA_GUILDS_2E",
-    "name": "Cornucopia & Guilds (2nd Edition)",
+    "id": "CORNUCOPIA_GUILDS_2E",
+    "set": "CORNUCOPIA_GUILDS",
+    "name": "Cornucopia & Guilds",
+    "edition": 2,
     "image_name": "set_cornucopia_guilds_2e"
   }
 ]
