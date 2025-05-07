@@ -64,4 +64,7 @@ interface CardDao {
 
     @Query("SELECT * FROM cards WHERE name IN (:names)")
     suspend fun getCardsByNameList(names: List<String>): List<Card>
+
+    @Query("SELECT COUNT(*) FROM cards")
+    suspend fun count(): Int
 }

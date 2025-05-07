@@ -32,7 +32,7 @@ import com.example.dominionhelper.ui.components.CardDetailPager
 import com.example.dominionhelper.ui.components.CardList
 import com.example.dominionhelper.ui.CardViewModel
 import com.example.dominionhelper.ui.components.DrawerContent
-import com.example.dominionhelper.ui.components.ExpansionGrid
+import com.example.dominionhelper.ui.components.ExpansionList2
 import com.example.dominionhelper.ui.components.KingdomList
 import com.example.dominionhelper.ui.components.TopBar
 import dagger.hilt.android.AndroidEntryPoint
@@ -91,7 +91,6 @@ import kotlinx.coroutines.launch
 // In expansion card list view, the top card has NOT enough space to the top bar. Add padding to top bar?
 
 // TODO BUGS
-// First launch: No data shown
 // Rethink the basic Card flag. I think it's only there for the UI fix?
 // -> Nope I think it makes sense for the card randomization. These cards are never pulled without meeting conditions
 // Cards that are not in the supply vs cards that cost 0 vs cards that cost nothing??
@@ -296,7 +295,7 @@ fun MainView(cardViewModel: CardViewModel) {
                 // Show all expansions in a grid
                 else -> {
                     Log.i("MainView", "View expansion list")
-                    ExpansionGrid(
+                    /*ExpansionList(
                         expansions = expansionsWithEditions,
                         onExpansionClick = { expansionsWithEditions ->
                             cardViewModel.loadCardsByExpansion(expansionsWithEditions)
@@ -305,9 +304,21 @@ fun MainView(cardViewModel: CardViewModel) {
                         onToggleClick = {
                             cardViewModel.toggleIsOwned(it)
                         },
-                        ownageText = { cardViewModel.getOwnageText(it) },
+                        ownageText = { cardViewModel.getOwnershipText(it) },
                         modifier = Modifier.padding(innerPadding),
                         gridState = gridState
+                    )*/
+                    ExpansionList2(
+                        expansions = expansionsWithEditions,
+                        onExpansionClick = { expansionsWithEditions ->
+                            cardViewModel.loadCardsByExpansion(expansionsWithEditions)
+                            cardViewModel.selectExpansion((expansionsWithEditions))
+                        },
+                        onOwnershipToggle = {
+                            cardViewModel.toggleIsOwned(it)
+                        },
+                        onToggleExpansion = { cardViewModel.toggleExpansion(it) },
+                        modifier = Modifier.padding(innerPadding)
                     )
                 }
             }

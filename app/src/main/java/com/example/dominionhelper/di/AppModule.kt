@@ -1,26 +1,18 @@
 package com.example.dominionhelper.di
 
 import android.app.Application
-import android.util.Log
 import androidx.room.Room
-import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.dominionhelper.KingdomGenerator
-import com.example.dominionhelper.model.Card
-import com.example.dominionhelper.model.Expansion
 import com.example.dominionhelper.R
 import com.example.dominionhelper.data.AppDatabase
 import com.example.dominionhelper.data.CardDao
 import com.example.dominionhelper.data.ExpansionDao
-import com.example.dominionhelper.model.loadCardsFromAssets
-import com.example.dominionhelper.model.loadExpansionsFromAssets
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
 import javax.inject.Singleton
 
 @Module
@@ -36,8 +28,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideAppDatabase(
-        app: Application,
-        coroutineScope: CoroutineScope
+        app: Application
     ): AppDatabase {
         val databaseName = app.getString(R.string.database_name)
 
@@ -45,21 +36,7 @@ object AppModule {
             app.applicationContext,
             AppDatabase::class.java,
             databaseName
-        )
-            .addCallback(object : RoomDatabase.Callback() {
-                override fun onCreate(db: SupportSQLiteDatabase) {
-                    super.onCreate(db)
-                    coroutineScope.launch {
-                        prePopulateDatabase(
-                            app,
-                            provideCardDao(provideAppDatabase(app, coroutineScope)),
-                            provideExpansionDao(provideAppDatabase(app, coroutineScope))
-                        )
-                        Log.i("AppDatabase", "Pre-populated database")
-                    }
-                }
-            })
-            .build()
+        ).build()
     }
 
     @Provides
@@ -76,20 +53,5 @@ object AppModule {
     @Singleton
     fun provideKingdomGenerator(cardDao: CardDao): KingdomGenerator {
         return KingdomGenerator(cardDao)
-    }
-
-    private suspend fun prePopulateDatabase(
-        app: Application,
-        cardDao: CardDao,
-        expansionDao: ExpansionDao
-    ) {
-
-        // Load and insert cards
-        val cards: List<Card> = loadCardsFromAssets(app.applicationContext)
-        cardDao.insertAll(cards)
-
-        // Load and insert expansions
-        val expansions: List<Expansion> = loadExpansionsFromAssets(app.applicationContext)
-        expansionDao.insertAll(expansions)
     }
 }

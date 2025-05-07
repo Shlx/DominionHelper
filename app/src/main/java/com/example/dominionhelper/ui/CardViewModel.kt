@@ -22,7 +22,7 @@ import javax.inject.Inject
 class CardViewModel @Inject constructor(
     private val cardDao: CardDao,
     private val expansionDao: ExpansionDao,
-    private val kingdomGenerator: KingdomGenerator,
+    private val kingdomGenerator: KingdomGenerator
 ) : ViewModel() {
 
     // Expansion variables
@@ -65,6 +65,22 @@ class CardViewModel @Inject constructor(
 
     init {
         loadExpansionsWithEditions()
+    }
+
+    fun toggleExpansion(expansionToToggle: ExpansionWithEditions) {
+        Log.i("CardViewModel", "Toggling expansion ${expansionToToggle.name}: ${expansionToToggle.isExpanded}")
+        viewModelScope.launch {
+            _expansionsWithEditions.value = _expansionsWithEditions.value.map { expansion ->
+                if (expansion.name == expansionToToggle.name) {
+                    // Create a new ExpansionWithEditions object with the toggled isExpanded flag
+                    expansion.copy(isExpanded = !expansion.isExpanded)
+                } else {
+                    // Keep other expansions as they are
+                    expansion
+                }
+            }
+            Log.i("CardViewModel", "Toggled expansion ${expansionToToggle.name}: ${expansionToToggle.isExpanded}")
+        }
     }
 
     // Load all expansions and their editions, grouped by name
@@ -211,7 +227,7 @@ class CardViewModel @Inject constructor(
         }
     }
 
-    fun getOwnageText(expansion: ExpansionWithEditions): String {
+    fun getOwnershipText(expansion: ExpansionWithEditions): String {
 
         val isFirstOwned = expansion.firstEdition?.isOwned == true
         val isSecondOwned = expansion.secondEdition?.isOwned == true

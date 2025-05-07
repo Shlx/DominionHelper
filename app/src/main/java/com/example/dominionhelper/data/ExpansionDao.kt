@@ -34,4 +34,7 @@ interface ExpansionDao {
 
     @Query("SELECT isOwned FROM expansions WHERE name = :expansionName AND edition = 2")
     suspend fun isSecondEditionOwned(expansionName: String): Boolean
+
+    @Query("SELECT COUNT(*) FROM expansions")
+    suspend fun count(): Int
 }
