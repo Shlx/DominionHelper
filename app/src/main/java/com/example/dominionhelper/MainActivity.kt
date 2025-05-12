@@ -9,7 +9,6 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyListState
-import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -22,17 +21,14 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.dominionhelper.ui.components.CardDetailPager
 import com.example.dominionhelper.ui.components.CardList
 import com.example.dominionhelper.ui.CardViewModel
 import com.example.dominionhelper.ui.components.DrawerContent
-import com.example.dominionhelper.ui.components.ExpansionList2
+import com.example.dominionhelper.ui.components.ExpansionList
 import com.example.dominionhelper.ui.components.KingdomList
 import com.example.dominionhelper.ui.components.TopBar
 import dagger.hilt.android.AndroidEntryPoint
@@ -69,15 +65,13 @@ import kotlinx.coroutines.launch
 // TODO NEXT
 // Refactor this mess
 // Sort by expansion should ignore editions (does it?)
-// Think about how to handle Cornucopia & Guilds
 // Swap icon in expansion list depending on expansion owned (Also in kingdom list)
 // Sorter class
-// Maybe save "hasFirst/SecondEdition" in a variable (ExpansionWithEditions)
 // Bookmakrs / Mnemonic??
+// Promo: Show cards + ability to own each separately.. rough
 
 // TODO DESIGN
 // Show behind top + nav bar?
-// Improve Expansion view
 // Remove search from detail view?
 // Close keyboard when scrolling on search results
 // Rethink color gradient on mixed cards
@@ -148,29 +142,18 @@ fun MainView(cardViewModel: CardViewModel) {
 
     val drawerState = rememberDrawerState(initialValue = Closed)
     val applicationScope = rememberCoroutineScope()
-    var topBarTitle by remember { mutableStateOf("Dominion Helper") }
+    val topBarTitle by cardViewModel.topBarTitle.collectAsStateWithLifecycle()
 
-    val listState = rememberSaveable(saver = LazyListState.Saver) {
+    val cardListState = rememberSaveable(saver = LazyListState.Saver) {
         LazyListState()
     }
 
-    val gridState = rememberSaveable(saver = LazyGridState.Saver) {
-        LazyGridState()
-    }
-
-    // Set the top bar title according to state
-    LaunchedEffect(key1 = cardsToShow, key2 = selectedExpansion) {
-        topBarTitle = if (selectedExpansion != null) {
-            selectedExpansion!!.name
-        } else if (cardsToShow) {
-            "Generated Kingdom"
-        } else {
-            "Dominion Helper"
-        }
+    val expansionListState = rememberSaveable(saver = LazyListState.Saver) {
+        LazyListState()
     }
 
     // Handle back gesture according to state
-    BackHandler(enabled = cardsToShow || drawerState.isOpen || isSearchActive) {
+    BackHandler(enabled = drawerState.isOpen || isSearchActive || cardsToShow) {
 
         when {
             drawerState.isOpen -> applicationScope.launch {
@@ -185,7 +168,7 @@ fun MainView(cardViewModel: CardViewModel) {
 
             isSearchActive -> {
                 Log.i("BackHandler", "Deactivate search")
-                cardViewModel.toggleSearch()
+                cardViewModel.toggleSearch() // -> Deactivate search?
                 cardViewModel.changeSearchText("")
                 cardViewModel.clearAllCards()
             }
@@ -197,7 +180,7 @@ fun MainView(cardViewModel: CardViewModel) {
 
                 // Return to top
                 applicationScope.launch {
-                    listState.scrollToItem(0)
+                    cardListState.scrollToItem(0)
                 }
             }
         }
@@ -274,7 +257,7 @@ fun MainView(cardViewModel: CardViewModel) {
                             selectedEdition = selectedEdition,
                             onCardClick = { cardViewModel.selectCard(it) },
                             modifier = Modifier.padding(innerPadding),
-                            listState = listState
+                            listState = cardListState
                         )
 
                         // Show generated kingdom
@@ -285,7 +268,7 @@ fun MainView(cardViewModel: CardViewModel) {
                             modifier = Modifier.padding(innerPadding),
                             selectedPlayers = playerCount,
                             onPlayerCountChange = { cardViewModel.updatePlayerCount(kingdom, it) },
-                            listState = listState
+                            listState = cardListState
                         )
                     } else {
                         Text("Nah", modifier = Modifier.padding(innerPadding))
@@ -295,30 +278,21 @@ fun MainView(cardViewModel: CardViewModel) {
                 // Show all expansions in a grid
                 else -> {
                     Log.i("MainView", "View expansion list")
-                    /*ExpansionList(
+                    ExpansionList(
                         expansions = expansionsWithEditions,
                         onExpansionClick = { expansionsWithEditions ->
                             cardViewModel.loadCardsByExpansion(expansionsWithEditions)
                             cardViewModel.selectExpansion((expansionsWithEditions))
                         },
-                        onToggleClick = {
-                            cardViewModel.toggleIsOwned(it)
-                        },
-                        ownageText = { cardViewModel.getOwnershipText(it) },
-                        modifier = Modifier.padding(innerPadding),
-                        gridState = gridState
-                    )*/
-                    ExpansionList2(
-                        expansions = expansionsWithEditions,
-                        onExpansionClick = { expansionsWithEditions ->
-                            cardViewModel.loadCardsByExpansion(expansionsWithEditions)
-                            cardViewModel.selectExpansion((expansionsWithEditions))
-                        },
+                        onEditionClick = { cardViewModel.selectEdition(it) },
+                        ownershipText = { cardViewModel.getOwnershipText(it) },
                         onOwnershipToggle = {
-                            cardViewModel.toggleIsOwned(it)
+                            expansion, newOwned ->
+                            cardViewModel.updateExpansionOwnership(expansion, newOwned)
                         },
                         onToggleExpansion = { cardViewModel.toggleExpansion(it) },
-                        modifier = Modifier.padding(innerPadding)
+                        modifier = Modifier.padding(innerPadding),
+                        listState = expansionListState
                     )
                 }
             }

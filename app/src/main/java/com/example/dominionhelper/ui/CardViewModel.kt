@@ -13,8 +13,11 @@ import com.example.dominionhelper.model.ExpansionWithEditions
 import com.example.dominionhelper.model.OwnedEdition
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -63,24 +66,25 @@ class CardViewModel @Inject constructor(
     private val _playerCount = MutableStateFlow<Int>(2)
     val playerCount: StateFlow<Int> = _playerCount.asStateFlow()
 
+    val topBarTitle: StateFlow<String> = combine(
+        selectedExpansion,
+        cardsToShow
+    ) { selectedExpansion, cardsToShow ->
+        if (selectedExpansion != null) {
+            selectedExpansion.name
+        } else if (cardsToShow) {
+            "Generated Kingdom"
+        } else {
+            "Dominion Helper"
+        }
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = "Dominion Helper"
+    )
+
     init {
         loadExpansionsWithEditions()
-    }
-
-    fun toggleExpansion(expansionToToggle: ExpansionWithEditions) {
-        Log.i("CardViewModel", "Toggling expansion ${expansionToToggle.name}: ${expansionToToggle.isExpanded}")
-        viewModelScope.launch {
-            _expansionsWithEditions.value = _expansionsWithEditions.value.map { expansion ->
-                if (expansion.name == expansionToToggle.name) {
-                    // Create a new ExpansionWithEditions object with the toggled isExpanded flag
-                    expansion.copy(isExpanded = !expansion.isExpanded)
-                } else {
-                    // Keep other expansions as they are
-                    expansion
-                }
-            }
-            Log.i("CardViewModel", "Toggled expansion ${expansionToToggle.name}: ${expansionToToggle.isExpanded}")
-        }
     }
 
     // Load all expansions and their editions, grouped by name
@@ -88,28 +92,43 @@ class CardViewModel @Inject constructor(
         viewModelScope.launch {
             expansionDao.getAll().collect { allExpansions ->
 
+                val currentExpandedState =
+                    _expansionsWithEditions.value.associate { it.name to it.isExpanded }
+
                 // Make a map of name -> list of editions
                 val expansionsGrouped = allExpansions.groupBy { it.name }
+                val cornGuild = allExpansions.find { it.name == "Cornucopia & Guilds" }
 
                 // Assemble ExpansionWithEditions object for each entry
-                val expansionsWithEditions = expansionsGrouped.map { (expansionName, editions) ->
-                    val firstEdition = editions.find { it.edition == 1 }
-                    val secondEdition = editions.find { it.edition == 2 }
+                val expansionsWithEditions = expansionsGrouped
+                    .filter { (expansionName, _) -> expansionName != "Cornucopia & Guilds" }
+                    .map { (expansionName, editions) ->
 
-                    // Choose the correct image
-                    val image = when {
-                        firstEdition != null -> firstEdition.imageName
-                        secondEdition != null -> secondEdition.imageName // Only for Cornucopia + Guilds 2nd edition
-                        else -> throw java.lang.IllegalArgumentException("No edition found.")
+                        val firstEdition = editions.find { it.edition == 1 }
+                        val secondEdition =
+                            if (firstEdition?.name == "Cornucopia" || firstEdition?.name == "Guilds") {
+                                cornGuild
+                            } else {
+                                editions.find { it.edition == 2 }
+                            }
+
+                        // Choose the correct image
+                        val image = when {
+                            firstEdition != null -> firstEdition.imageName
+                            secondEdition != null -> secondEdition.imageName // Only for Cornucopia + Guilds 2nd edition
+                            else -> throw java.lang.IllegalArgumentException("No edition found.")
+                        }
+
+                        val shouldBeExpanded = currentExpandedState[expansionName] == true
+
+                        ExpansionWithEditions(
+                            name = expansionName,
+                            firstEdition = firstEdition,
+                            secondEdition = secondEdition,
+                            image = image,
+                            isExpanded = shouldBeExpanded
+                        )
                     }
-
-                    ExpansionWithEditions(
-                        name = expansionName,
-                        firstEdition = firstEdition,
-                        secondEdition = secondEdition,
-                        image = image
-                    )
-                }
 
                 _expansionsWithEditions.value = expansionsWithEditions
                 Log.i(
@@ -120,72 +139,25 @@ class CardViewModel @Inject constructor(
         }
     }
 
-    // Toggle through expansion ownership options (Unowned, first / second / both owned)
-    fun toggleIsOwned(expansion: ExpansionWithEditions) {
+    fun toggleExpansion(expansionToToggle: ExpansionWithEditions) {
+        Log.i(
+            "CardViewModel",
+            "Toggling expansion ${expansionToToggle.name}: ${expansionToToggle.isExpanded}"
+        )
         viewModelScope.launch {
-
-            val isFirstOwned = expansion.firstEdition?.isOwned == true
-            val isSecondOwned = expansion.secondEdition?.isOwned == true
-            Log.i(
-                "CardViewModel",
-                "Toggling ownage for ${expansion.name} (First: $isFirstOwned, Second: $isSecondOwned)"
-            )
-
-            when {
-                isFirstOwned && isSecondOwned -> {
-                    // Both editions owned -> Unowned
-                    Log.i("CardViewModel", "Both editions owned -> Unowned")
-                    updateExpansionOwnership(expansion.firstEdition, false)
-                    updateExpansionOwnership(expansion.secondEdition, false)
-                }
-
-                !isFirstOwned && !isSecondOwned -> {
-                    if (expansion.firstEdition != null) {
-                        // Unowned -> First edition owned
-                        Log.i("CardViewModel", "Unowned -> First Edition Owned")
-                        updateExpansionOwnership(expansion.firstEdition, true)
-                    } else {
-                        // Unowned -> Second edition owned
-                        Log.i(
-                            "CardViewModel",
-                            "Unowned -> Second Edition Owned (There is no first edition)"
-                        )
-                        expansion.secondEdition?.let { updateExpansionOwnership(it, true) }
-                    }
-                }
-
-                isFirstOwned -> {
-                    if (expansion.secondEdition != null) {
-                        // First edition owned -> Second edition owned
-                        Log.i("CardViewModel", "First Edition Owned -> Second Edition Owned")
-                        updateExpansionOwnership(expansion.secondEdition, true)
-                        updateExpansionOwnership(expansion.firstEdition, false)
-                    } else {
-                        // First edition owned -> Unowned
-                        Log.i(
-                            "CardViewModel",
-                            "First Edition Owned -> Unowned (There is no second edition)"
-                        )
-                        updateExpansionOwnership(expansion.firstEdition, false)
-                    }
-
-                }
-
-                isSecondOwned -> {
-                    if (expansion.firstEdition != null) {
-                        // Second edition owned -> Both editions owned
-                        Log.i("CardViewModel", "Second Edition Owned -> Both editions owned")
-                        updateExpansionOwnership(expansion.firstEdition, true)
-                    } else {
-                        // Second edition owned -> Unowned
-                        Log.i(
-                            "CardViewModel",
-                            "Second Edition Owned -> Unowned (There is no first edition)"
-                        )
-                        updateExpansionOwnership(expansion.secondEdition, false)
-                    }
+            _expansionsWithEditions.value = _expansionsWithEditions.value.map { expansion ->
+                if (expansion.name == expansionToToggle.name) {
+                    // Create a new ExpansionWithEditions object with the toggled isExpanded flag
+                    expansion.copy(isExpanded = !expansion.isExpanded)
+                } else {
+                    // Keep other expansions as they are
+                    expansion
                 }
             }
+            Log.i(
+                "CardViewModel",
+                "Toggled expansion ${expansionToToggle.name}: ${expansionToToggle.isExpanded}"
+            )
         }
     }
 
@@ -241,6 +213,7 @@ class CardViewModel @Inject constructor(
                 } else {
                     "First Edition Owned"
                 }
+
             isSecondOwned -> "Second Edition Owned"
             else -> throw java.lang.IllegalArgumentException("Invalid ownership state.")
         }
@@ -287,6 +260,18 @@ class CardViewModel @Inject constructor(
                 _selectedEdition.value = OwnedEdition.SECOND
             }
             Log.d("CardViewModel", "Selected edition $editionNumber for ${expansion.name}")
+        }
+    }
+
+    fun selectEdition(expansion: Expansion) {
+        viewModelScope.launch {
+            _expansionCards.value =
+                sortCards(cardDao.getCardsByExpansion(expansion.id))
+            // We need to set these, so we need ExpansionWithEditions here. But also an int for the clicked edition
+            //_selectedExpansion.value = expansion
+            //_selectedEdition.value = whichEditionIsOwned(expansion)
+            _cardsToShow.value = true
+            Log.d("CardViewModel", "Selected edition ${expansion.name}")
         }
     }
 
