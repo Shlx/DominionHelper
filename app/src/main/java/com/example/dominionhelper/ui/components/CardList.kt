@@ -5,8 +5,10 @@ import android.graphics.Path
 import android.graphics.Rect
 import android.util.Log
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -28,17 +30,26 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Done
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SwipeToDismissBox
+import androidx.compose.material3.SwipeToDismissBoxValue
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberSwipeToDismissBoxState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
@@ -64,6 +75,7 @@ import com.example.dominionhelper.model.OwnedEdition
 import com.example.dominionhelper.model.Set
 import com.example.dominionhelper.model.Type
 import com.example.dominionhelper.utils.getDrawableId
+import kotlin.collections.get
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -76,7 +88,7 @@ fun CardList(
     onEditionSelected: (Int) -> Unit,
     selectedEdition: OwnedEdition,
     onCardClick: (Card) -> Unit,
-    listState: LazyListState = rememberLazyListState()
+    listState: LazyListState = rememberLazyListState(),
 ) {
 
     Column(modifier = modifier) {
@@ -96,6 +108,7 @@ fun CardList(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 fun KingdomList(
     modifier: Modifier,
@@ -103,7 +116,8 @@ fun KingdomList(
     onCardClick: (Card) -> Unit,
     selectedPlayers: Int,
     onPlayerCountChange: (Int) -> Unit,
-    listState: LazyListState = rememberLazyListState()
+    listState: LazyListState = rememberLazyListState(),
+    onCardDismissed: (Card) -> Unit
 ) {
     Log.i(
         "RandomCardList",
@@ -122,8 +136,55 @@ fun KingdomList(
         ) {
 
             // RANDOM CARDS
-            items(kingdom.randomCards.keys.toList()) { card ->
-                CardView(card, onCardClick, kingdom.randomCards[card]!!)
+            items(
+                items = kingdom.randomCards.keys.toList(),
+                key = { card -> card.id }
+            ) { card ->
+
+                val currentCount = kingdom.randomCards[card]
+                if (currentCount != null) { // Ensure card is still in the map
+                    val dismissState = rememberSwipeToDismissBoxState(
+                        confirmValueChange = { dismissValue ->
+                            if (dismissValue == SwipeToDismissBoxValue.StartToEnd || dismissValue == SwipeToDismissBoxValue.EndToStart) {
+                                    onCardDismissed(card) // Trigger the dismiss action
+                                    true // Confirm the dismiss
+                                } else {
+                                    false // Don't dismiss for other states (e.g., Default)
+                                }
+                            },
+                        positionalThreshold = { it * 0.25f } // Optional: customize swipe distance
+                    )
+
+                    SwipeToDismissBox(
+                        state = dismissState,
+                        modifier = Modifier.animateItem(), // Recommended for smooth animations
+                        backgroundContent = {
+
+                            // Change scale of icon depending on position
+                            val scale by animateDpAsState(
+                                targetValue = if (dismissState.targetValue == SwipeToDismissBoxValue.Settled) 0.75.dp else 1.dp,
+                                label = "icon scale"
+                            )
+
+                            Box(
+                                Modifier
+                                    .fillMaxSize()
+                                    .padding(horizontal = 20.dp),
+                                contentAlignment = if (dismissState.dismissDirection == SwipeToDismissBoxValue.EndToStart) Alignment.CenterEnd else Alignment.CenterStart
+                            ) {
+                                // Icon  behind the swipe
+                                Icon(
+                                    if (dismissState.dismissDirection == SwipeToDismissBoxValue.EndToStart) Icons.Default.Delete else Icons.Default.Done, // Example icons
+                                    contentDescription = "Dismiss Icon",
+                                    modifier = Modifier.scale(scale.value.toFloat()),
+                                    tint = Color.White
+                                )
+                            }
+                        }
+                    ) {
+                        CardView(card, onCardClick, kingdom.randomCards[card]!!)
+                    }
+                }
             }
 
             // DEPENDENT CARDS

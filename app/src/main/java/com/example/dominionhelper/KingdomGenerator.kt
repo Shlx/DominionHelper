@@ -24,6 +24,10 @@ data class Kingdom(
     fun isNotEmpty(): Boolean {
         return randomCards.isNotEmpty() || basicCards.isNotEmpty() || dependentCards.isNotEmpty() || startingCards.isNotEmpty()
     }
+
+    fun allCardsInKingdom(): kotlin.collections.Set<Card> {
+        return randomCards.keys + basicCards.keys + dependentCards.keys + startingCards.keys
+    }
 }
 
 class KingdomGenerator @Inject constructor(
@@ -68,6 +72,11 @@ class KingdomGenerator @Inject constructor(
         )
 
         return Kingdom(randomCardMap, basicCardMap, dependentCardMap, startingCards)
+    }
+
+    suspend fun generateSingleRandomCard(excludeCards: MutableSet<Card>): Card? {
+        val excludedCardIds = excludeCards.map { it.id }.toSet()
+        return cardDao.getSingleCardFromOwnedExpansionsWithExceptions(excludedCardIds)
     }
 
     private fun listToMap(list: List<Card>): LinkedHashMap<Card, Int> {

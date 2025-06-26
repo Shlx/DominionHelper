@@ -20,6 +20,9 @@ interface ExpansionDao {
     @Query("SELECT * FROM expansions WHERE isOwned = 1")
     fun getOwned(): Flow<List<Expansion>>
 
+    @Query("SELECT * FROM expansions WHERE isOwned = 1")
+    suspend fun getOwnedOnce(): List<Expansion>
+
     @Query("SELECT * FROM expansions WHERE id = :id")
     suspend fun getExpansionById(id: Int): Expansion?
 

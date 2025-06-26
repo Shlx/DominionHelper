@@ -53,11 +53,24 @@ interface CardDao {
         WHERE e.isOwned
         AND c.landscape = 0
         AND c.basic = 0
-        AND c.supply = 1 /*This makes sense right*/
+        AND c.supply = 1
         ORDER BY RANDOM()
         LIMIT :amount
     """)
     suspend fun getRandomCardsFromOwnedExpansions(amount: Int): List<Card>
+
+    @Query("""
+        SELECT c.* FROM cards AS c
+        INNER JOIN expansions AS e ON c.sets LIKE '%' || e.id || '%'
+        WHERE e.isOwned
+        AND c.landscape = 0
+        AND c.basic = 0
+        AND c.supply = 1
+        AND c.id NOT IN (:excludedCards)
+        ORDER BY RANDOM()
+        LIMIT 1
+    """)
+    suspend fun getSingleCardFromOwnedExpansionsWithExceptions(excludedCards: Set<Int>): Card?
 
     @Query("SELECT * FROM cards WHERE name = :name")
     suspend fun getCardByName(name: String): Card

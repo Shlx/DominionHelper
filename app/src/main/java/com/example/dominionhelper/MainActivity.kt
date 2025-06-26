@@ -8,6 +8,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -15,14 +16,24 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.dominionhelper.ui.theme.DominionHelperTheme
 import androidx.compose.material3.DrawerValue.*
+import androidx.compose.material3.FabPosition
+import androidx.compose.material3.FloatingActionButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.LargeFloatingActionButton
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.dominionhelper.ui.components.CardDetailPager
 import com.example.dominionhelper.ui.components.CardList
@@ -39,6 +50,9 @@ import kotlinx.coroutines.launch
 // by lazy: loading data only when needed (good)
 // Flows: automatically updates UI elements when data changes
 // mutableStateOf automatically updates UI elements reliant on the values when they change
+
+// adb pair <ip>:<port>
+// adb tcpcip 5555
 
 // TODO PROGRAMMING
 // Use coil or glide or fresco to load images to avoid "image decoding logging dropped" warnings
@@ -83,6 +97,8 @@ import kotlinx.coroutines.launch
 // Make "no search results" prettier
 // Smol discrepancy: the bottom of the player selector padding stacks with the top of the first list element padding, so before scrolling, it's a little too much
 // In expansion card list view, the top card has NOT enough space to the top bar. Add padding to top bar?
+// Make list items "invisible"
+// Icon padding + icons white?
 
 // TODO BUGS
 // Rethink the basic Card flag. I think it's only there for the UI fix?
@@ -140,6 +156,8 @@ fun MainView(cardViewModel: CardViewModel) {
 
     val playerCount by cardViewModel.playerCount.collectAsStateWithLifecycle()
 
+    val errorMessage by cardViewModel.errorMessage.collectAsStateWithLifecycle()
+
     val drawerState = rememberDrawerState(initialValue = Closed)
     val applicationScope = rememberCoroutineScope()
     val topBarTitle by cardViewModel.topBarTitle.collectAsStateWithLifecycle()
@@ -150,6 +168,20 @@ fun MainView(cardViewModel: CardViewModel) {
 
     val expansionListState = rememberSaveable(saver = LazyListState.Saver) {
         LazyListState()
+    }
+
+    val snackbarHostState = remember { SnackbarHostState() }
+
+    LaunchedEffect(errorMessage) {
+        errorMessage?.let { message ->
+            applicationScope.launch {
+                snackbarHostState.showSnackbar(
+                    message = message,
+                    duration = SnackbarDuration.Short
+                )
+                cardViewModel.clearError()
+            }
+        }
     }
 
     // Handle back gesture according to state
@@ -193,6 +225,7 @@ fun MainView(cardViewModel: CardViewModel) {
         }
     ) {
         Scaffold(
+            snackbarHost = { SnackbarHost(snackbarHostState) },
             topBar = {
                 TopBar(
                     scope = applicationScope,
@@ -204,20 +237,36 @@ fun MainView(cardViewModel: CardViewModel) {
                     onRandomCardsClicked = {
                         cardViewModel.getRandomKingdom()
 
-                        // Return to top
-                        applicationScope.launch {
-                            // Looks weird
-                            //listState.scrollToItem(0)
-                        }
+                        // Return to top, looks weird
+                        /*applicationScope.launch {
+                            listState.scrollToItem(0)
+                        }*/
                     },
                     onSortTypeSelected = { cardViewModel.updateSortType(it, kingdom) },
                     selectedSortType = sortType,
                     topBarTitle = topBarTitle,
                     hideSearch = kingdom.isNotEmpty()
                 )
-            }
+            },
+            floatingActionButton = {
+                LargeFloatingActionButton(
+                    onClick = {
+                        Log.i("MainActivity", "Large FAB Clicked")
+                        cardViewModel.getRandomKingdom()
+                    },
+                    modifier = Modifier.padding(16.dp)
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.dice3),
+                        contentDescription = "Generate a random kingdom",
+                        modifier = Modifier.size(FloatingActionButtonDefaults.LargeIconSize)
+                    )
+                }
+            },
+            floatingActionButtonPosition = FabPosition.Center
         ) { innerPadding ->
 
+            // Hoch zum anderen LaunchedEffect?
             LaunchedEffect(key1 = searchText, key2 = isSearchActive) {
                 if (isSearchActive && searchText.length >= 2) {
                     Log.i("LaunchedEffect", "Getting cards by search text $searchText")
@@ -268,7 +317,8 @@ fun MainView(cardViewModel: CardViewModel) {
                             modifier = Modifier.padding(innerPadding),
                             selectedPlayers = playerCount,
                             onPlayerCountChange = { cardViewModel.updatePlayerCount(kingdom, it) },
-                            listState = cardListState
+                            listState = cardListState,
+                            onCardDismissed = { cardViewModel.onCardDismissed(it) }
                         )
                     } else {
                         Text("Nah", modifier = Modifier.padding(innerPadding))

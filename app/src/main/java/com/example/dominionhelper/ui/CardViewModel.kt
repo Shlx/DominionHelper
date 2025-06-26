@@ -66,6 +66,10 @@ class CardViewModel @Inject constructor(
     private val _playerCount = MutableStateFlow<Int>(2)
     val playerCount: StateFlow<Int> = _playerCount.asStateFlow()
 
+    // Error message
+    private val _errorMessage = MutableStateFlow<String?>(null)
+    val errorMessage: StateFlow<String?> = _errorMessage.asStateFlow()
+
     val topBarTitle: StateFlow<String> = combine(
         selectedExpansion,
         cardsToShow
@@ -321,9 +325,18 @@ class CardViewModel @Inject constructor(
         Log.d("CardViewModel", "Cleared selected card")
     }
 
-    // TODO: Error when < 10 cards / < 1 expansions are owned
     fun getRandomKingdom() {
         viewModelScope.launch {
+
+            if (expansionDao.getOwnedOnce().count() < 1) {
+                Log.d(
+                    "CardViewModel",
+                    "No kingdom generated, as the user does not own any expansion"
+                )
+                _errorMessage.value = "You need at least one expansion to generate a kingdom."
+                return@launch
+            }
+
             _kingdom.value = kingdomGenerator.generateKingdom()
             updateSortType(SortType.EXPANSION, _kingdom.value)
             updatePlayerCount(_kingdom.value, 2)
@@ -497,6 +510,93 @@ class CardViewModel @Inject constructor(
             Log.d("CardViewModel", "Loaded all ${_cards.value.size} cards")
         }
     }*/
+
+    fun triggerError(message: String) {
+        _errorMessage.value = message
+    }
+
+    fun clearError() {
+        _errorMessage.value = null
+    }
+
+    fun onCardDismissed(dismissedCard: Card) {
+        viewModelScope.launch {
+            val currentKingdom = _kingdom.value
+            if (!currentKingdom.randomCards.containsKey(dismissedCard)) {
+                Log.w("CardViewModel", "Attempted to dismiss card '${dismissedCard.name}' not found in the current kingdom's random cards.")
+                return@launch
+            }
+
+            // 1. Create a mutable copy of the current random cards
+            val mutableRandomCards = currentKingdom.randomCards.toMutableMap()
+
+            // 2. Remove the dismissed card
+            mutableRandomCards.remove(dismissedCard)
+            Log.i("CardViewModel", "Dismissed card '${dismissedCard.name}' from the kingdom.")
+
+            // 3. Generate a new random card to replace it
+            //    We pass the current set of cards (after removal) to avoid picking the same one again immediately,
+            //    or other existing cards, depending on your generator's logic.
+            var newCard: Card? = null
+            var attempts = 0
+            val maxAttempts = 10 // To prevent infinite loops if card pool is small or generator struggles
+
+            // Get all cards currently in any list of the kingdom to avoid duplicates
+            val allCurrentKingdomCards = currentKingdom.allCardsInKingdom().toMutableSet()
+            allCurrentKingdomCards.remove(dismissedCard) // Remove the one we just dismissed
+
+            while (newCard == null && attempts < maxAttempts) {
+                // Assuming your generator can take a set of existing cards to avoid.
+                // If not, you might need to adjust this logic or the generator.
+                val candidateCard = kingdomGenerator.generateSingleRandomCard(excludeCards = allCurrentKingdomCards)
+
+                if (candidateCard != null && !allCurrentKingdomCards.contains(candidateCard)) {
+                    newCard = candidateCard
+                } else if (candidateCard == null) {
+                    // Generator couldn't find any card (e.g., pool exhausted based on criteria)
+                    Log.w("CardViewModel", "KingdomGenerator couldn't generate a new card after dismissing ${dismissedCard.name}.")
+                    break // Exit loop, no replacement will be made
+                }
+                attempts++
+            }
+
+            if (newCard != null) {
+                // 4. Add the new card to the map.
+                //    Assuming new cards get a default count of 1, or your generator provides it.
+                //    Let's use the getCardAmounts logic to determine its initial pile size.
+                val tempMapWithNewCard = linkedMapOf(newCard to 1) // Temporary map to get its amount
+                val newCardWithAmount = getCardAmounts(tempMapWithNewCard, _playerCount.value).entries.firstOrNull()
+
+                if (newCardWithAmount != null) {
+                    mutableRandomCards[newCardWithAmount.key] = newCardWithAmount.value
+                    Log.i("CardViewModel", "Added new random card '${newCardWithAmount.key.name}' to replace dismissed card.")
+
+                    // Add the new card to the set of all cards for future checks if needed
+                    allCurrentKingdomCards.add(newCardWithAmount.key)
+                } else {
+                    Log.e("CardViewModel", "Could not determine card amount for new card: ${newCard.name}")
+                    // Decide fallback: either don't add, or add with a default amount like 10 (standard for kingdom cards)
+                    // For now, let's assume if getCardAmounts fails for a new card, something is wrong, so we don't add.
+                }
+            } else {
+                Log.w("CardViewModel", "Failed to generate a replacement card after $attempts attempts for dismissed card '${dismissedCard.name}'.")
+                // Optionally, trigger a user-facing message if no replacement could be found
+                // _errorMessage.value = "Could not find a replacement card."
+            }
+
+            // 5. Update the kingdom state
+            //    Ensure the order is preserved if it matters, by converting to LinkedHashMap.
+            //    Also, re-sort if necessary according to the current sort type.
+            val updatedAndSortedRandomCards = sortCards(LinkedHashMap(mutableRandomCards)) // Assuming sortCards exists for LinkedHashMap
+
+            _kingdom.value = currentKingdom.copy(randomCards = updatedAndSortedRandomCards)
+
+            // Optional: If you also show this card in _expansionCards and it should be removed/added from there too
+            // This logic would need to be more complex if _expansionCards is not directly tied to kingdom.
+            // For instance, you might just trigger a refresh of _expansionCards if it's a general list.
+        }
+    }
+
 }
 
 enum class SortType(val text: String) {
