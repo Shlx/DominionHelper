@@ -5,11 +5,14 @@ import com.example.dominionhelper.model.Card
 import com.example.dominionhelper.data.CardDao
 import com.example.dominionhelper.data.CardDao.Companion.BASIC_CARD_NAMES
 import com.example.dominionhelper.data.ExpansionDao
+import com.example.dominionhelper.data.UserPrefsRepository
 import com.example.dominionhelper.model.Category
 import com.example.dominionhelper.model.Set
 import com.example.dominionhelper.model.Type
 import com.example.dominionhelper.utils.isPercentChance
+import kotlinx.coroutines.flow.first
 import javax.inject.Inject
+import javax.inject.Singleton
 
 data class Kingdom(
     val randomCards: LinkedHashMap<Card, Int> = linkedMapOf(),
@@ -27,14 +30,17 @@ data class Kingdom(
     }
 }
 
+@Singleton
 class KingdomGenerator @Inject constructor(
     private val cardDao: CardDao,
-    private val expansionDao: ExpansionDao
+    private val expansionDao: ExpansionDao,
+    private val userPrefsRepository: UserPrefsRepository
 ) {
 
     suspend fun generateKingdom(): Kingdom {
 
-        val randomExpansions = expansionDao.getFixedAmountOfOwnedExpansions(2)
+        val numberOfExpansions = userPrefsRepository.randomExpansionAmount.first()
+        val randomExpansions = expansionDao.getFixedAmountOfOwnedExpansions(numberOfExpansions)
         val randomCards = mutableListOf<Card>()
 
         for (expansion in randomExpansions) {

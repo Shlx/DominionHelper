@@ -2,7 +2,6 @@ package com.example.dominionhelper.di
 
 import android.app.Application
 import androidx.room.Room
-import com.example.dominionhelper.KingdomGenerator
 import com.example.dominionhelper.R
 import com.example.dominionhelper.data.AppDatabase
 import com.example.dominionhelper.data.CardDao
@@ -47,11 +46,5 @@ object AppModule {
     @Provides
     fun provideExpansionDao(appDatabase: AppDatabase): ExpansionDao {
         return appDatabase.expansionDao()
-    }
-
-    @Provides
-    @Singleton
-    fun provideKingdomGenerator(cardDao: CardDao, expansionDao: ExpansionDao): KingdomGenerator {
-        return KingdomGenerator(cardDao, expansionDao)
     }
 }
