@@ -6,6 +6,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModel
@@ -35,6 +36,13 @@ sealed class SettingItem {
         val title: String,
         val text: String,
         val onTextChange: (String) -> Unit
+    ) : SettingItem()
+
+    data class NumberSetting(
+        val key: String,
+        val title: String,
+        val number: Int,
+        val onNumberChange: (Int) -> Unit
     ) : SettingItem()
 }
 
@@ -66,19 +74,19 @@ class SettingsViewModel @Inject constructor(
     }
 
     private fun getSettings(): Flow<List<SettingItem>> {
-        return combine(getDarkMode(), getUserName()) { isDarkMode, userName ->
+        return combine(getDarkMode(), getRandomExpansionAmount()) { isDarkMode, amount ->
             listOf(
                 SettingItem.SwitchSetting(
-                    key = "isDarkMode",
+                    key = "isDarkMode", //??
                     title = "Dark Mode",
                     isChecked = isDarkMode,
                     onCheckedChange = { newIsDarkMode -> setDarkMode(newIsDarkMode) }
                 ),
-                SettingItem.TextSetting(
-                    key = "userName",
-                    title = "User Name",
-                    text = userName,
-                    onTextChange = { newUserName -> setUserName(newUserName) }
+                SettingItem.NumberSetting(
+                    key = "userName", //??
+                    title = "Number of random expansions selected",
+                    number = amount,
+                    onNumberChange = { newAmount -> setRandomExpansionAmount(newAmount) }
                 )
             )
         }
@@ -94,11 +102,11 @@ class SettingsViewModel @Inject constructor(
         }
     }
 
-    fun setUserName(userName: String) {
-        Log.i("SettingsViewModel", "setUserName called")
+    fun setRandomExpansionAmount(amount: Int) {
+        Log.i("SettingsViewModel", "setRandomExpansionAmount called")
         viewModelScope.launch {
             context.dataStore.edit { settings ->
-                settings[SettingsKeys.USER_NAME] = userName
+                settings[SettingsKeys.RANDOM_EXPANSION_AMOUNT] = amount
             }
         }
     }
@@ -109,9 +117,9 @@ class SettingsViewModel @Inject constructor(
         }
     }
 
-    private fun getUserName(): Flow<String> {
+    private fun getRandomExpansionAmount(): Flow<Int> {
         return context.dataStore.data.map { settings ->
-            settings[SettingsKeys.USER_NAME] ?: "" // Default value if not set
+            settings[SettingsKeys.RANDOM_EXPANSION_AMOUNT] ?: 2 // Default value if not set
         }
     }
 }
@@ -119,4 +127,5 @@ class SettingsViewModel @Inject constructor(
 object SettingsKeys {
     val IS_DARK_MODE = booleanPreferencesKey("is_dark_mode")
     val USER_NAME = stringPreferencesKey("user_name")
+    val RANDOM_EXPANSION_AMOUNT = intPreferencesKey("random_expansion_amount")
 }

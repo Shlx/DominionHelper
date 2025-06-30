@@ -172,6 +172,7 @@ fun MainView(cardViewModel: CardViewModel) {
 
     val snackbarHostState = remember { SnackbarHostState() }
 
+    // TODO: Center this message?
     LaunchedEffect(errorMessage) {
         errorMessage?.let { message ->
             applicationScope.launch {

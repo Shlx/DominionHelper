@@ -4,6 +4,7 @@ import android.util.Log
 import com.example.dominionhelper.model.Card
 import com.example.dominionhelper.data.CardDao
 import com.example.dominionhelper.data.CardDao.Companion.BASIC_CARD_NAMES
+import com.example.dominionhelper.data.ExpansionDao
 import com.example.dominionhelper.model.Category
 import com.example.dominionhelper.model.Set
 import com.example.dominionhelper.model.Type
@@ -11,7 +12,7 @@ import com.example.dominionhelper.utils.isPercentChance
 import javax.inject.Inject
 
 data class Kingdom(
-    var randomCards: LinkedHashMap<Card, Int> = linkedMapOf(),
+    val randomCards: LinkedHashMap<Card, Int> = linkedMapOf(),
     val basicCards: LinkedHashMap<Card, Int> = linkedMapOf(),
     val dependentCards: LinkedHashMap<Card, Int> = linkedMapOf(),
     val startingCards: LinkedHashMap<Card, Int> = linkedMapOf()
@@ -24,20 +25,23 @@ data class Kingdom(
     fun isNotEmpty(): Boolean {
         return randomCards.isNotEmpty() || basicCards.isNotEmpty() || dependentCards.isNotEmpty() || startingCards.isNotEmpty()
     }
-
-    fun allCardsInKingdom(): kotlin.collections.Set<Card> {
-        return randomCards.keys + basicCards.keys + dependentCards.keys + startingCards.keys
-    }
 }
 
 class KingdomGenerator @Inject constructor(
-    private val cardDao: CardDao
+    private val cardDao: CardDao,
+    private val expansionDao: ExpansionDao
 ) {
 
     suspend fun generateKingdom(): Kingdom {
 
+        val randomExpansions = expansionDao.getFixedAmountOfOwnedExpansions(2)
+        val randomCards = mutableListOf<Card>()
+
+        for (expansion in randomExpansions) {
+            randomCards.addAll(cardDao.getRandomCardsFromExpansion(expansion.id, 5))
+        }
+
         // TODO Handle DAO null return in separate class?
-        val randomCards = cardDao.getRandomCardsFromOwnedExpansions(10)
         val basicCards = cardDao.getCardsByNameList(BASIC_CARD_NAMES)
 
         // TODO add 2 landscape cards first. They might affect the rest of the cards (for example Trait: Cursed)
@@ -74,9 +78,25 @@ class KingdomGenerator @Inject constructor(
         return Kingdom(randomCardMap, basicCardMap, dependentCardMap, startingCards)
     }
 
-    suspend fun generateSingleRandomCard(excludeCards: MutableSet<Card>): Card? {
+    suspend fun generateSingleRandomCard(excludeCards: kotlin.collections.Set<Card> = emptySet()): Card? {
         val excludedCardIds = excludeCards.map { it.id }.toSet()
         return cardDao.getSingleCardFromOwnedExpansionsWithExceptions(excludedCardIds)
+    }
+
+    suspend fun generateSingleRandomCardFromExpansion(sets: List<Set>, excludeCards: kotlin.collections.Set<Card> = emptySet()): Card? {
+        val excludedCardIds = excludeCards.map { it.id }.toSet()
+
+        if (sets.size == 2) {
+            Log.i("Kingdom Generator", "Generating random card from ${sets[0].name} and ${sets[1].name}")
+            return cardDao.getSingleCardFromExpansionWithExceptions(
+                sets[0].name,
+                sets[1].name,
+                excludedCardIds
+            )
+        } else if (sets.size == 1) {
+            Log.i("Kingdom Generator", "Generating random card from ${sets[0].name}")
+                return cardDao.getSingleCardFromExpansionWithExceptions(sets[0].name, null,excludedCardIds)
+        } else return null
     }
 
     private fun listToMap(list: List<Card>): LinkedHashMap<Card, Int> {
@@ -88,7 +108,6 @@ class KingdomGenerator @Inject constructor(
     }
 
     private fun getDependentCards(cards: List<Card>): List<String> {
-
 
         // Schwierig: Ferryman, Young Witch, Black Market Riverboat, Approaching Army, Diving Wind, Inherited
 

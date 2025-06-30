@@ -61,6 +61,17 @@ interface CardDao {
 
     @Query("""
         SELECT c.* FROM cards AS c
+        WHERE c.sets LIKE '%' || :expansionId || '%'
+        AND c.landscape = 0
+        AND c.basic = 0
+        AND c.supply = 1
+        ORDER BY RANDOM()
+        LIMIT :amount
+    """)
+    suspend fun getRandomCardsFromExpansion(expansionId: String, amount: Int): List<Card>
+
+    @Query("""
+        SELECT c.* FROM cards AS c
         INNER JOIN expansions AS e ON c.sets LIKE '%' || e.id || '%'
         WHERE e.isOwned
         AND c.landscape = 0
@@ -71,6 +82,25 @@ interface CardDao {
         LIMIT 1
     """)
     suspend fun getSingleCardFromOwnedExpansionsWithExceptions(excludedCards: Set<Int>): Card?
+
+    @Query("""
+        SELECT c.* FROM cards AS c
+        INNER JOIN expansions AS e ON c.sets LIKE '%' || e.id || '%'
+        WHERE
+            ( 
+              (:set1 IS NOT NULL AND sets LIKE '%' || :set1 || '%') OR
+              (:set2 IS NOT NULL AND sets LIKE '%' || :set2 || '%')
+            )
+        AND e.isOwned
+        AND c.landscape = 0
+        AND c.basic = 0
+        AND c.supply = 1
+        AND c.id NOT IN (:excludedCards)
+        ORDER BY RANDOM()
+        LIMIT 1
+    """)
+    suspend fun getSingleCardFromExpansionWithExceptions(set1: String, set2: String?, excludedCards: Set<Int>): Card?
+
 
     @Query("SELECT * FROM cards WHERE name = :name")
     suspend fun getCardByName(name: String): Card

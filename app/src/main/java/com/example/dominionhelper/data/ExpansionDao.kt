@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.dominionhelper.model.Expansion
+import com.example.dominionhelper.model.Set
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -15,6 +16,21 @@ interface ExpansionDao {
 
     @Query("SELECT * FROM expansions")
     fun getAll(): Flow<List<Expansion>>
+
+    @Query("""
+        SELECT * FROM expansions
+        WHERE isOwned = 1
+        ORDER BY RANDOM()
+        LIMIT :count
+    """)
+    suspend fun getFixedAmountOfOwnedExpansions(count: Int): List<Expansion>
+
+    @Query("""
+        SELECT * FROM expansions 
+        WHERE isOwned = 1
+        AND :cardSets LIKE '%' || id || '%'
+    """)
+    suspend fun getSetsOfCard(cardSets: List<Set>): List<Expansion>
 
     // Turning this into a suspend fun crashes??
     @Query("SELECT * FROM expansions WHERE isOwned = 1")

@@ -51,7 +51,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideKingdomGenerator(cardDao: CardDao): KingdomGenerator {
-        return KingdomGenerator(cardDao)
+    fun provideKingdomGenerator(cardDao: CardDao, expansionDao: ExpansionDao): KingdomGenerator {
+        return KingdomGenerator(cardDao, expansionDao)
     }
 }
