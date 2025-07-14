@@ -29,7 +29,6 @@ import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.outlined.Circle
-import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
@@ -187,8 +186,8 @@ fun ExpansionListItem(
                     .fillMaxHeight()
                     .aspectRatio(1f) // Keep the right area square
                     .clickable(
-                        interactionSource = null,
-                        indication = null,
+                        /*interactionSource = null,
+                        indication = null,*/
                         onClick = {
                             if (hasMultipleEditions) {
                                 Log.i("ExpansionListItem", "Clicking arrow")
@@ -198,8 +197,8 @@ fun ExpansionListItem(
                                 onOwnershipToggle() // Click icon to toggle ownership (single edition)
                             }
                         }
-                    )
-                    .padding(8.dp),
+                    ),
+                    //.padding(8.dp),
                 contentAlignment = Alignment.Center
             ) {
                 if (hasMultipleEditions) {
@@ -291,8 +290,8 @@ fun EditionListItem(
                     .fillMaxHeight()
                     .aspectRatio(1f) // Keep the right area square
                     .clickable(
-                        interactionSource = null,
-                        indication = null,
+                        //interactionSource = null,
+                        //indication = null,
                         onClick = onToggleClick
                     ) // Click to toggle ownership of THIS edition
                     .padding(8.dp),

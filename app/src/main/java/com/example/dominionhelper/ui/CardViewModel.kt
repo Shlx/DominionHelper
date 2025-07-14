@@ -515,6 +515,25 @@ class CardViewModel @Inject constructor(
         _errorMessage.value = null
     }
 
+    fun toggleCardEnabled (card: Card) {
+        viewModelScope.launch {
+
+            val newIsEnabledState = !card.isEnabled
+
+            // Update database
+            cardDao.toggleCardEnabled(card.id, newIsEnabledState)
+
+            // Update object
+            _expansionCards.value = _expansionCards.value.map { c ->
+                if (c.id == card.id) {
+                    c.copy(isEnabled = newIsEnabledState)
+                } else {
+                    c
+                }
+            }
+        }
+    }
+
     fun onCardDismissed(dismissedCard: Card) {
 
         // Check if the card to be dismissed is actually present
@@ -535,6 +554,7 @@ class CardViewModel @Inject constructor(
             // Try to generate a new random card and add it to the map
             val cardsToExclude = originalRandomCards.keys.toMutableSet()
 
+            // TODO: Raus oder?
             // Generate card of any owned expansion
             val newCardOld: Card? = kingdomGenerator.generateSingleRandomCard(cardsToExclude)
 

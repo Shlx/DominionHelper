@@ -50,9 +50,11 @@ import kotlinx.coroutines.launch
 // by lazy: loading data only when needed (good)
 // Flows: automatically updates UI elements when data changes
 // mutableStateOf automatically updates UI elements reliant on the values when they change
+// When passing a lambda function like (Card) -> Unit down to another function, should you put in the parameter as early as possible?
+// -> As early as possible is good for clarity and separation of concerns. Capture card as early as possible
 
 // adb pair <ip>:<port>
-// adb tcpcip 5555
+// adb tcpip 5555
 
 // TODO PROGRAMMING
 // Use coil or glide or fresco to load images to avoid "image decoding logging dropped" warnings
@@ -81,8 +83,9 @@ import kotlinx.coroutines.launch
 // Sort by expansion should ignore editions (does it?)
 // Swap icon in expansion list depending on expansion owned (Also in kingdom list)
 // Sorter class
-// Bookmakrs / Mnemonic??
+// Bookmarks / Mnemonic??
 // Promo: Show cards + ability to own each separately.. rough
+// Fix differences between ExpansionList and CardList items (padding etc.)
 
 // TODO DESIGN
 // Show behind top + nav bar?
@@ -99,12 +102,18 @@ import kotlinx.coroutines.launch
 // In expansion card list view, the top card has NOT enough space to the top bar. Add padding to top bar?
 // Make list items "invisible"
 // Icon padding + icons white?
+// Font: Princeps
 
 // TODO BUGS
 // Rethink the basic Card flag. I think it's only there for the UI fix?
 // -> Nope I think it makes sense for the card randomization. These cards are never pulled without meeting conditions
 // Cards that are not in the supply vs cards that cost 0 vs cards that cost nothing??
 // Closing search while in detail view fucks shit up
+// Mountain Shrine Schulden
+// Cornucopia guilds erste edition falsche karten (?)
+// Curse money card bei wunderheilerin
+// Crash when clicking an edition
+// I think 'set' property can be removed from sets.json
 
 
 // I think list state is shared between search / expansion and random cards (doesn't reset)
@@ -290,14 +299,11 @@ fun MainView(cardViewModel: CardViewModel) {
 
                 // Show a list of cards
                 cardsToShow -> {
-                    Log.i(
-                        "MainView",
-                        "View card list (Expansion: ${expansionCards.size}, Random: ${kingdom.randomCards.size}, Dependent: ${kingdom.dependentCards.size}, Basic: ${kingdom.basicCards.size} cards)"
-                    )
-
                     // Show expansion or search result
                     // Having no separation here is kind of weird I think
                     if (expansionCards.isNotEmpty()) {
+                        // TODO: Search crashes, split log for expansion view / search
+                        Log.i("MainView", "View card list (Expansion / Search: ${expansionCards.size})")
                         CardList(
                             cardList = expansionCards,
                             includeEditionSelection = cardViewModel.expansionHasTwoEditions(selectedExpansion!!) && !isSearchActive,
@@ -306,12 +312,17 @@ fun MainView(cardViewModel: CardViewModel) {
                             },
                             selectedEdition = selectedEdition,
                             onCardClick = { cardViewModel.selectCard(it) },
+                            onToggleEnable = { cardViewModel.toggleCardEnabled(it) },
                             modifier = Modifier.padding(innerPadding),
                             listState = cardListState
                         )
 
                         // Show generated kingdom
                     } else if (kingdom != Kingdom()) {
+                        Log.i(
+                            "MainView",
+                            "View card list (Random: ${kingdom.randomCards.size}, Dependent: ${kingdom.dependentCards.size}, Basic: ${kingdom.basicCards.size} cards)"
+                        )
                         KingdomList(
                             kingdom = kingdom,
                             onCardClick = { cardViewModel.selectCard(it) },

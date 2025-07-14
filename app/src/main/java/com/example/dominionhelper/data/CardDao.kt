@@ -101,6 +101,8 @@ interface CardDao {
     """)
     suspend fun getSingleCardFromExpansionWithExceptions(set1: String, set2: String?, excludedCards: Set<Int>): Card?
 
+    @Query("UPDATE cards SET isEnabled = :isEnabled WHERE id = :cardId")
+    suspend fun toggleCardEnabled(cardId: Int, isEnabled: Boolean)
 
     @Query("SELECT * FROM cards WHERE name = :name")
     suspend fun getCardByName(name: String): Card

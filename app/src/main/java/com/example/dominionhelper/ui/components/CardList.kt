@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -31,8 +32,10 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Done
+import androidx.compose.material.icons.filled.RemoveCircle
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -75,7 +78,6 @@ import com.example.dominionhelper.model.OwnedEdition
 import com.example.dominionhelper.model.Set
 import com.example.dominionhelper.model.Type
 import com.example.dominionhelper.utils.getDrawableId
-import kotlin.collections.get
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -88,6 +90,7 @@ fun CardList(
     onEditionSelected: (Int) -> Unit,
     selectedEdition: OwnedEdition,
     onCardClick: (Card) -> Unit,
+    onToggleEnable: (Card) -> Unit,
     listState: LazyListState = rememberLazyListState(),
 ) {
 
@@ -102,7 +105,7 @@ fun CardList(
         ) {
             println("CardList Parameter - ${cardList.size}")
             items(cardList) { card ->
-                CardView(card, onCardClick)
+                CardView(card, onCardClick, showIcon = false, onToggleEnable = { onToggleEnable(card) })
             }
         }
     }
@@ -182,7 +185,7 @@ fun KingdomList(
                             }
                         }
                     ) {
-                        CardView(card, onCardClick, kingdom.randomCards[card]!!)
+                        CardView(card, onCardClick, showIcon = true, kingdom.randomCards[card]!!)
                     }
                 }
             }
@@ -194,7 +197,7 @@ fun KingdomList(
 
                 }
                 items(kingdom.dependentCards.keys.toList()) { card ->
-                    CardView(card, onCardClick, kingdom.dependentCards[card]!!)
+                    CardView(card, onCardClick,  showIcon = true, kingdom.dependentCards[card]!!)
                 }
             }
 
@@ -204,7 +207,7 @@ fun KingdomList(
 
             }
             items(kingdom.basicCards.keys.toList()) { card ->
-                CardView(card, onCardClick, kingdom.basicCards[card]!!)
+                CardView(card, onCardClick, showIcon = true, kingdom.basicCards[card]!!)
             }
 
             // STARTING CARDS
@@ -212,7 +215,7 @@ fun KingdomList(
                 CardSpacer("Starting Cards")
             }
             items(kingdom.startingCards.keys.toList()) { card ->
-                CardView(card, onCardClick, kingdom.startingCards[card]!!)
+                CardView(card, onCardClick, showIcon = true, kingdom.startingCards[card]!!)
             }
         }
     }
@@ -341,7 +344,9 @@ fun CardSpacer(text: String) {
 fun CardView(
     card: Card,
     onCardClick: (Card) -> Unit,
+    showIcon: Boolean = true,
     amount: Int = 1,
+    onToggleEnable: () -> Unit = {}
 ) {
     val context = LocalContext.current
     val drawableId = getDrawableId(context, card.imageName)
@@ -431,7 +436,7 @@ fun CardView(
                     modifier = Modifier
                         .weight(0.85f)
                         .fillMaxHeight()
-                        .padding(8.dp, 12.dp)
+                        .padding(12.dp, 12.dp)
                 ) {
                     Column {
                         Text(
@@ -440,6 +445,8 @@ fun CardView(
                             fontSize = 20.sp
                         )
                         Spacer(modifier = Modifier.weight(1f))
+
+                        // TODO: Dirty
                         if (card.types.contains(Type.PROPHECY)) {
                             CardTypeText("Prophecy")
                         } else if (card.types.contains(Type.LANDMARK)) {
@@ -486,18 +493,35 @@ fun CardView(
                         }
                     }
 
-                    // Expansion Icon
+                    // Expansion icon or en- / disable button
                     Box(
                         modifier = Modifier
+                            .fillMaxHeight()
+                            .aspectRatio(1f) // Keep the right area square
+                            .clickable(onClick = { onToggleEnable() })
                             .align(Alignment.CenterEnd)
-                            .padding(8.dp)
                     ) {
-                        Image(
-                            painter = painterResource(card.expansionImageId),
-                            contentDescription = "Unknown Image",
-                            modifier = Modifier
-                                .size(48.dp)
-                        )
+                        if (showIcon) {
+
+                            // Expansion Icon
+                            Image(
+                                painter = painterResource(card.expansionImageId),
+                                contentDescription = "Unknown Image",
+                                modifier = Modifier.fillMaxSize().padding(8.dp)
+                            )
+                        } else {
+
+                            // En- / Disable button
+                            Icon(
+                                imageVector = if (card.isEnabled) {
+                                    Icons.Filled.CheckCircle // Empty circle if unowned / banned
+                                } else {
+                                    Icons.Filled.RemoveCircle // Checkmark if owned / allowed
+                                },
+                                contentDescription = if (card.isEnabled) "Allowed" else "Banned",
+                                modifier = Modifier.fillMaxSize().padding(8.dp)
+                            )
+                        }
                     }
                 }
             }

@@ -3,6 +3,7 @@ package com.example.dominionhelper.model
 import android.content.Context
 import android.util.Log
 import androidx.compose.ui.graphics.Color
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
@@ -19,7 +20,7 @@ import com.google.gson.stream.JsonToken
 
 @Entity(tableName = "cards")
 data class Card(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @PrimaryKey(autoGenerate = true) val id: Int,
     val name: String,
     val sets: List<Set>,
     val cost: Int,
@@ -31,6 +32,7 @@ data class Card(
     val debt: Int,
     val categories: List<Category>,
     val potion: Boolean,
+    @ColumnInfo(defaultValue = "1") val isEnabled: Boolean
 ) {
 
     @Ignore
@@ -100,7 +102,13 @@ fun loadCardsFromAssets(context: Context): List<Card> {
 
     val cardListType = object : TypeToken<List<Card>>() {}.type
     val cardList: List<Card> = gson.fromJson(jsonString, cardListType)
-    return cardList
+
+    // Explicitly set isEnabled to true for all cards parsed from the initial JSON
+    val cardsWithDefaultEnabled = cardList.map { cardFromJson ->
+        cardFromJson.copy(isEnabled = true)
+    }
+
+    return cardsWithDefaultEnabled
 }
 
 class SetTypeAdapter : TypeAdapter<Set>() {

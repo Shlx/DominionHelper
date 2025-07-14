@@ -42,6 +42,12 @@ sealed class SettingItem {
     ) : SettingItem()
 }
 
+enum class RandomMode(val displayName: String) {
+    FULL_RANDOM("Full Random"),
+    EVEN_AMOUNTS("Even Amounts"), // Example, adjust as needed
+    X_OF_EACH_SET("X from Each Set")    // Example, adjust as needed
+}
+
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
     private val userPrefsRepository: UserPrefsRepository
@@ -69,8 +75,9 @@ class SettingsViewModel @Inject constructor(
 
     private fun getSettings(): Flow<List<SettingItem>> {
         return combine(userPrefsRepository.isDarkMode,
-            userPrefsRepository.randomExpansionAmount
-        ) { isDarkMode, amount ->
+            userPrefsRepository.randomExpansionAmount,
+            userPrefsRepository.randomMode
+        ) { isDarkMode, amount, newMode ->
             listOf(
                 SettingItem.SwitchSetting(
                     title = "Dark Mode",
@@ -81,8 +88,21 @@ class SettingsViewModel @Inject constructor(
                     title = "Number of random expansions selected",
                     number = amount,
                     onNumberChange = { newAmount -> setRandomExpansionAmount(newAmount) }
+                ),
+                SettingItem.ChoiceSetting(
+                    title = "Random mode",
+                    selectedOption = RandomMode.FULL_RANDOM,
+                    allOptions = RandomMode.entries,
+                    optionDisplayFormatter = { it.displayName },
+                    onOptionSelected = { newMode -> setRandomMode(newMode) }
                 )
             )
+        }
+    }
+
+    fun setRandomMode(mode: RandomMode) {
+        viewModelScope.launch {
+            userPrefsRepository.setRandomMode(mode)
         }
     }
 

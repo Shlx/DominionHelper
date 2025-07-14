@@ -30,7 +30,7 @@ data class Expansion(
     val name: String,
     val edition: Int,
     @SerializedName("image_name") val imageName: String,
-    val isOwned: Boolean,
+    val isOwned: Boolean
 )
 
 // To data package
