@@ -9,6 +9,7 @@ import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -44,7 +45,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.dominionhelper.model.Expansion
 import com.example.dominionhelper.model.ExpansionWithEditions
+import com.example.dominionhelper.utils.Constants
 import com.example.dominionhelper.utils.getDrawableId
+
+// TODO: Check Box contentAlignment vs contents Modifier.align (first is better)
 
 // Displays the list of expansions
 @OptIn(ExperimentalFoundationApi::class, ExperimentalAnimationApi::class)
@@ -63,55 +67,69 @@ fun ExpansionList(
     LazyColumn(
         modifier = modifier,
         state = listState,
-        contentPadding = PaddingValues(bottom = 16.dp)
+        contentPadding = PaddingValues(
+            start = Constants.PADDING_SMALL,
+            top = Constants.PADDING_SMALL,
+            end = Constants.PADDING_SMALL
+        ),
+        verticalArrangement = Arrangement.spacedBy(Constants.PADDING_SMALL)
     ) {
         items(
             items = expansions,
             key = { it.name }
         ) { expansion ->
 
-            Column {
-                // Parent Expansion Item
-                ExpansionListItem(
-                    expansion = expansion,
-                    onClick = { onExpansionClick(expansion) },
-                    ownershipText = ownershipText(expansion),
-                    // Handle the click on the ownership toggle for single editions
-                    onOwnershipToggle = {
-                        // Only trigger toggle for single edition items
-                        if (expansion.firstEdition != null && expansion.secondEdition == null) {
-                            onOwnershipToggle(expansion.firstEdition, !expansion.firstEdition.isOwned)
-                        } else if (expansion.secondEdition != null && expansion.firstEdition == null) {
-                            onOwnershipToggle(expansion.secondEdition, !expansion.secondEdition.isOwned)
-                        }
-                    },
-                    // Check if there are multiple editions
-                    hasMultipleEditions = expansion.firstEdition != null && expansion.secondEdition != null,
-                    isExpanded = expansion.isExpanded, // Use the flag from the data class
-                    onToggleExpansion = { onToggleExpansion(expansion) } // Call the toggle expansion callback
-                )
+            // Parent Expansion Item
+            ExpansionListItem(
+                expansion = expansion,
+                onClick = { onExpansionClick(expansion) },
+                ownershipText = ownershipText(expansion),
+                // Handle the click on the ownership toggle for single editions
+                onOwnershipToggle = {
+                    // Only trigger toggle for single edition items
+                    if (expansion.firstEdition != null && expansion.secondEdition == null) {
+                        onOwnershipToggle(expansion.firstEdition, !expansion.firstEdition.isOwned)
+                    } else if (expansion.secondEdition != null && expansion.firstEdition == null) {
+                        onOwnershipToggle(expansion.secondEdition, !expansion.secondEdition.isOwned)
+                    }
+                },
+                // Check if there are multiple editions
+                hasMultipleEditions = expansion.firstEdition != null && expansion.secondEdition != null,
+                isExpanded = expansion.isExpanded, // Use the flag from the data class
+                onToggleExpansion = { onToggleExpansion(expansion) } // Call the toggle expansion callback
+            )
 
-                // Nested Edition Items (Visible when isExpanded is true and has multiple editions)
-                AnimatedVisibility(
-                    visible = expansion.isExpanded && (expansion.firstEdition != null && expansion.secondEdition != null),
-                    enter = expandVertically(animationSpec = tween(durationMillis = 300)),
-                    exit = shrinkVertically(animationSpec = tween(durationMillis = 300))
-                ) {
-                    Column(modifier = Modifier.padding(start = 32.dp)) { // Indent nested items
-                        expansion.firstEdition?.let { firstEdition ->
-                            EditionListItem(
-                                expansion = firstEdition,
-                                onClick = { onEditionClick(expansion.firstEdition) },
-                                onToggleClick = { onOwnershipToggle(expansion.firstEdition, !expansion.firstEdition.isOwned) }, // Toggle ownership of this edition
-                            )
-                        }
-                        expansion.secondEdition?.let { secondEdition ->
-                            EditionListItem(
-                                expansion = secondEdition,
-                                onClick = { onEditionClick(expansion.secondEdition) },
-                                onToggleClick = { onOwnershipToggle(expansion.secondEdition, !expansion.secondEdition.isOwned) }, // Toggle ownership of this edition
-                            )
-                        }
+            // Nested Edition Items (Visible when isExpanded is true and has multiple editions)
+            AnimatedVisibility(
+                visible = expansion.isExpanded && (expansion.firstEdition != null && expansion.secondEdition != null),
+                enter = expandVertically(animationSpec = tween(durationMillis = 300)),
+                exit = shrinkVertically(animationSpec = tween(durationMillis = 300))
+            ) {
+                Column(modifier = Modifier.padding(start = 32.dp)) { // Indent nested items
+                    expansion.firstEdition?.let { firstEdition ->
+                        EditionListItem(
+                            expansion = firstEdition,
+                            onClick = { onEditionClick(expansion.firstEdition) },
+                            onToggleClick = {
+                                onOwnershipToggle(
+                                    expansion.firstEdition,
+                                    !expansion.firstEdition.isOwned
+                                )
+                            }, // Toggle ownership of this edition
+                            modifier.padding(top = 8.dp, bottom = 8.dp) // TODO BROKEN
+                        )
+                    }
+                    expansion.secondEdition?.let { secondEdition ->
+                        EditionListItem(
+                            expansion = secondEdition,
+                            onClick = { onEditionClick(expansion.secondEdition) },
+                            onToggleClick = {
+                                onOwnershipToggle(
+                                    expansion.secondEdition,
+                                    !expansion.secondEdition.isOwned
+                                )
+                            }, // Toggle ownership of this edition
+                        )
                     }
                 }
             }
@@ -130,97 +148,116 @@ fun ExpansionListItem(
     isExpanded: Boolean, // Use the flag from the data class
     onToggleExpansion: () -> Unit // Callback for clicking the arrow
 ) {
+    Card(
+        modifier = Modifier
+            .height(Constants.CARD_HEIGHT)
+            .clickable { onClick() }
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
+            // Expansion image
+            ExpansionImage(expansion)
+
+            // Expansion name and additional text
+            ExpansionLabels(expansion, ownershipText, Modifier.weight(1f).align(Alignment.CenterVertically))
+
+            // Ownership toggle or Expand/Collapse arrow
+            ExpansionIcon(expansion, hasMultipleEditions, onToggleExpansion, onOwnershipToggle, isExpanded)
+        }
+    }
+}
+
+@Composable
+fun ExpansionImage(expansion: ExpansionWithEditions) {
+
     val context = LocalContext.current
     val drawableId = getDrawableId(
         context,
         expansion.firstEdition?.imageName ?: expansion.secondEdition?.imageName ?: ""
     )
 
-    Card(
+    Image(
+        painter = painterResource(id = drawableId),
+        contentDescription = "${expansion.name} Expansion Image",
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp, 4.dp)
-            .height(80.dp) // Consistent height for parent items
+            .aspectRatio(1f)
+            .padding(Constants.PADDING_MEDIUM)
+    )
+}
+
+@Composable
+fun ExpansionLabels(
+    expansion: ExpansionWithEditions,
+    ownershipText: String,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier.padding(Constants.PADDING_SMALL)
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxSize()
-                .clickable { onClick() }, // Make the entire row clickable for card list view
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            // Expansion image
-            Image(
-                painter = painterResource(id = drawableId),
-                contentDescription = "${expansion.name} Expansion Image",
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .aspectRatio(1f)
-                    .padding(16.dp)
-            )
+        Text(
+            text = expansion.name,
+            fontSize = Constants.CARD_NAME_FONT_SIZE,
+            fontWeight = FontWeight.Bold
+        )
+        // TODO
+        Text(
+            text = ownershipText, // Display the actual ownership text
+            // if hasMultipleEditions
+            //text = "Release date unknown", // Use actual data if available
+            fontSize = Constants.TEXT_SMALL, //12.sp?
+            color = LocalContentColor.current.copy(alpha = 0.6f)
+        )
+    }
+}
 
-            // Expansion name and additional text
-            Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(start = 8.dp, end = 8.dp)
-            ) {
-                Text(
-                    text = expansion.name,
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold,
-                    textAlign = TextAlign.Start,
-                )
-                // Add placeholder for additional text below name
-                Text(
-                    text = ownershipText, // Display the actual ownership text
-                    // if hasMultipleEditions
-                    //text = "Release date unknown", // Use actual data if available
-                    fontSize = 12.sp,
-                    color = LocalContentColor.current.copy(alpha = 0.6f)
-                )
-            }
-
-            // Right-hand side: Ownership toggle or Expand/Collapse arrow
-            Box(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .aspectRatio(1f) // Keep the right area square
-                    .clickable(
-                        /*interactionSource = null,
-                        indication = null,*/
-                        onClick = {
-                            if (hasMultipleEditions) {
-                                Log.i("ExpansionListItem", "Clicking arrow")
-                                onToggleExpansion() // Click arrow to expand/collapse
-                            } else {
-                                Log.i("ExpansionListItem", "Clicking ownership icon")
-                                onOwnershipToggle() // Click icon to toggle ownership (single edition)
-                            }
-                        }
-                    ),
-                    //.padding(8.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                if (hasMultipleEditions) {
-                    // Show arrow if multiple editions exist
-                    Icon(
-                        imageVector = if (isExpanded) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown,
-                        contentDescription = if (isExpanded) "Collapse" else "Expand",
-                        modifier = Modifier.size(24.dp) // Adjust icon size
-                    )
-                } else {
-                    // Show ownership icon for single editions
-                    Icon(
-                        imageVector = if (expansion.firstEdition?.isOwned == true || expansion.secondEdition?.isOwned == true) {
-                            Icons.Filled.CheckCircle // Checkmark if owned
-                        } else {
-                            Icons.Outlined.Circle// Empty circle if unowned
-                        },
-                        contentDescription = if (expansion.firstEdition?.isOwned == true || expansion.secondEdition?.isOwned == true) "Owned" else "Unowned",
-                        modifier = Modifier.size(30.dp) // Adjust icon size
-                    )
+@Composable
+fun ExpansionIcon(
+    expansion: ExpansionWithEditions,
+    hasMultipleEditions: Boolean,
+    onToggleExpansion: () -> Unit,
+    onOwnershipToggle: () -> Unit,
+    isExpanded: Boolean
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxHeight()
+            .aspectRatio(1f)
+            .clickable(
+                /*interactionSource = null,
+                indication = null,*/
+                // TODO I don't like this
+                onClick = {
+                    if (hasMultipleEditions) {
+                        Log.i("ExpansionListItem", "Clicking arrow")
+                        onToggleExpansion() // Click arrow to expand/collapse
+                    } else {
+                        Log.i("ExpansionListItem", "Clicking ownership icon")
+                        onOwnershipToggle() // Click icon to toggle ownership (single edition)
+                    }
                 }
-            }
+            ),
+        contentAlignment = Alignment.Center
+    ) {
+        if (hasMultipleEditions) {
+            // Show arrow if multiple editions exist
+            Icon(
+                imageVector = if (isExpanded) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown,
+                contentDescription = if (isExpanded) "Collapse" else "Expand",
+                modifier = Modifier.size(Constants.ICON_SIZE) // Adjust icon size
+            )
+        } else {
+            // Show ownership icon for single editions
+            Icon(
+                imageVector = if (expansion.firstEdition?.isOwned == true || expansion.secondEdition?.isOwned == true) {
+                    Icons.Filled.CheckCircle // Checkmark if owned
+                } else {
+                    Icons.Outlined.Circle // Empty circle if unowned
+                },
+                contentDescription = if (expansion.firstEdition?.isOwned == true || expansion.secondEdition?.isOwned == true) "Owned" else "Unowned",
+                modifier = Modifier.size(Constants.ICON_SIZE)
+            )
         }
     }
 }
@@ -239,12 +276,6 @@ fun EditionListItem(
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .padding(
-                start = 8.dp,
-                end = 8.dp,
-                top = 4.dp,
-                bottom = 4.dp
-            ) // Adjust padding for nested items
             .height(64.dp) // Slightly smaller height for nested items
     ) {
         Row(

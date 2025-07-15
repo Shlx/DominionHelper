@@ -53,6 +53,8 @@ import kotlinx.coroutines.launch
 // When passing a lambda function like (Card) -> Unit down to another function, should you put in the parameter as early as possible?
 // -> As early as possible is good for clarity and separation of concerns. Capture card as early as possible
 
+// It's a strong convention in Jetpack Compose that most non-trivial composables accept a modifier: Modifier = Modifier as their first optional parameter.
+
 // adb pair <ip>:<port>
 // adb tcpip 5555
 
@@ -65,6 +67,7 @@ import kotlinx.coroutines.launch
 // Icons.Filled.??
 // Try to thin out some parameters (TopBar)
 // After generating kingdom and changing sort type, it is reset after generating a new kingdom
+// Add modifier parameter to all Composables?
 
 // TODO FEATURES
 // Split piles
@@ -81,6 +84,7 @@ import kotlinx.coroutines.launch
 // Do not randomize disabled cards / check if there are 10 enabled cards to randomize
 // Bug: Crash when clicking an edition!!
 // Work on randomization rules
+// Bottom navigation bar instead of drawer?
 // Refactor this mess
 // Sort by expansion should ignore editions (does it?)
 // Swap icon in expansion list depending on expansion owned (Also in kingdom list)
@@ -308,15 +312,15 @@ fun MainView(cardViewModel: CardViewModel) {
                         // TODO: Search crashes, split log for expansion view / search
                         Log.i("MainView", "View card list (Expansion / Search: ${expansionCards.size})")
                         CardList(
+                            modifier = Modifier.padding(innerPadding),
                             cardList = expansionCards,
                             includeEditionSelection = cardViewModel.expansionHasTwoEditions(selectedExpansion!!) && !isSearchActive,
+                            selectedEdition = selectedEdition,
                             onEditionSelected = { editionNumber ->
                                 cardViewModel.selectEdition(selectedExpansion!!, editionNumber)
                             },
-                            selectedEdition = selectedEdition,
                             onCardClick = { cardViewModel.selectCard(it) },
                             onToggleEnable = { cardViewModel.toggleCardEnabled(it) },
-                            modifier = Modifier.padding(innerPadding),
                             listState = cardListState
                         )
 
@@ -340,7 +344,7 @@ fun MainView(cardViewModel: CardViewModel) {
                     }
                 }
 
-                // Show all expansions in a grid
+                // Show all expansions in a list
                 else -> {
                     Log.i("MainView", "View expansion list")
                     ExpansionList(

@@ -35,7 +35,7 @@ import com.example.dominionhelper.ui.theme.DominionHelperTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-// Settings:
+// Settings to add:
 // When to add Colony and Platinum
 // When to play with Hovel, Necropolis, Overgrown Estate
 
