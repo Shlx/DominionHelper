@@ -46,7 +46,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 // Random info:
-// Prop drilling: passing lots of data down through mutliple levels (bad)
+// Prop drilling: passing lots of data down through multiple levels (bad)
 // by lazy: loading data only when needed (good)
 // Flows: automatically updates UI elements when data changes
 // mutableStateOf automatically updates UI elements reliant on the values when they change
@@ -70,21 +70,22 @@ import kotlinx.coroutines.launch
 // Split piles
 // Research landscape rules (I think 2 are recommended)
 // VP counter
-// Add rules for randomization
 // Add 6* / 4+ costs (How? cost as a string in json?)
 // Warning when navigating back from generated kingdom
 // Chose 2 from Events, Landmarks, Projects, Ways, Traits
 // Overpay Cards, Coffers, weißer Text auf Schulden
-// Veto on generated cards (Swipe away)
 // Rating a kingdom afterwards (+ uploading)
 
 // TODO NEXT
+// Add banned card count to expansions / exp card view)
+// Do not randomize disabled cards / check if there are 10 enabled cards to randomize
+// Bug: Crash when clicking an edition!!
+// Work on randomization rules
 // Refactor this mess
 // Sort by expansion should ignore editions (does it?)
 // Swap icon in expansion list depending on expansion owned (Also in kingdom list)
 // Sorter class
 // Bookmarks / Mnemonic??
-// Promo: Show cards + ability to own each separately.. rough
 // Fix differences between ExpansionList and CardList items (padding etc.)
 
 // TODO DESIGN
@@ -94,7 +95,7 @@ import kotlinx.coroutines.launch
 // Rethink color gradient on mixed cards
 // Explanation for card categories
 // Search while viewing expansions -> only results from expansion?
-// Add sorting for expansions?
+// Add sorting for expansions
 // Landscape cards are low res
 // Check image sizes, turn placeholders to webp
 // Make "no search results" prettier
@@ -103,6 +104,8 @@ import kotlinx.coroutines.launch
 // Make list items "invisible"
 // Icon padding + icons white?
 // Font: Princeps
+// Split normal and landscape cards in expansion card view
+// Search bar: Not aligned with title, show hamburger instead of <-
 
 // TODO BUGS
 // Rethink the basic Card flag. I think it's only there for the UI fix?
@@ -112,8 +115,8 @@ import kotlinx.coroutines.launch
 // Mountain Shrine Schulden
 // Cornucopia guilds erste edition falsche karten (?)
 // Curse money card bei wunderheilerin
-// Crash when clicking an edition
 // I think 'set' property can be removed from sets.json
+// Don't switch  Cornucopia & Guilds ownedship at the same time. There are regions where the second edition is split
 
 
 // I think list state is shared between search / expansion and random cards (doesn't reset)

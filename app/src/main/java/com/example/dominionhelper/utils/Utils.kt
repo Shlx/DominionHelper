@@ -8,6 +8,15 @@ import com.example.dominionhelper.model.Card
 import kotlin.random.Random
 
 fun getDrawableId(context: Context, imageName: String): Int {
+    /* TODO: try this (should be faster)
+    try {
+        Class res = R.drawable.class;
+        Field field = res.getField("drawableName");
+        int drawableId = field.getInt(null);
+    }
+    catch (Exception e) {
+        Log.e("MyTag", "Failure to get drawable id.", e);
+    }*/
     val resourceId = context.resources.getIdentifier(
         imageName,
         "drawable",
@@ -54,6 +63,7 @@ fun findIndexOfReference(list: List<Any>, target: Card): Int {
  * @param newValue The new value to insert.
  * @return A new LinkedHashMap with the replacement made.
  */
+// TODO: HUH? Where did I use this again
 fun <K, V> replaceInLinkedHashMap(
     originalMap: LinkedHashMap<K, V>,
     keyToReplace: K,

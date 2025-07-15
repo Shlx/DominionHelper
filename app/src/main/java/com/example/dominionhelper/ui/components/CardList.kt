@@ -179,7 +179,7 @@ fun KingdomList(
                                 Icon(
                                     if (dismissState.dismissDirection == SwipeToDismissBoxValue.EndToStart) Icons.Default.Delete else Icons.Default.Done, // Example icons
                                     contentDescription = "Dismiss Icon",
-                                    modifier = Modifier.scale(scale.value.toFloat()),
+                                    modifier = Modifier.scale(scale.value),
                                     tint = Color.White
                                 )
                             }

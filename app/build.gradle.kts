@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -6,9 +8,15 @@ plugins {
     alias(libs.plugins.google.devtools.ksp)
 }
 
+kotlin {
+    compilerOptions {
+        jvmTarget = JvmTarget.fromTarget("11")
+    }
+}
+
 android {
     namespace = "com.example.dominionhelper"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.dominionhelper"
@@ -22,7 +30,8 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            // Add proguard rule to not minify card images (They are only referenced dynamically)
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -32,9 +41,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = "11"
     }
     buildFeatures {
         compose = true
@@ -58,9 +64,8 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    //implementation(libs.material3)
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.animation:animation:1.8.3")
+    implementation(libs.material3)
+    implementation(libs.androidx.animation)
 
     // Image loading // TODO
     implementation(libs.coil.compose)

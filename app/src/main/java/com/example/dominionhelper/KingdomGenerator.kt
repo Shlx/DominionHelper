@@ -89,20 +89,29 @@ class KingdomGenerator @Inject constructor(
         return cardDao.getSingleCardFromOwnedExpansionsWithExceptions(excludedCardIds)
     }
 
+    // TODO: Only works with 1 or 2 sets right?
     suspend fun generateSingleRandomCardFromExpansion(sets: List<Set>, excludeCards: kotlin.collections.Set<Card> = emptySet()): Card? {
         val excludedCardIds = excludeCards.map { it.id }.toSet()
 
-        if (sets.size == 2) {
-            Log.i("Kingdom Generator", "Generating random card from ${sets[0].name} and ${sets[1].name}")
-            return cardDao.getSingleCardFromExpansionWithExceptions(
-                sets[0].name,
-                sets[1].name,
-                excludedCardIds
-            )
-        } else if (sets.size == 1) {
-            Log.i("Kingdom Generator", "Generating random card from ${sets[0].name}")
-                return cardDao.getSingleCardFromExpansionWithExceptions(sets[0].name, null,excludedCardIds)
-        } else return null
+        when (sets.size) {
+            2 -> {
+                Log.i("Kingdom Generator","Generating random card from ${sets[0].name} and ${sets[1].name}")
+                return cardDao.getSingleCardFromExpansionWithExceptions(
+                    sets[0].name,
+                    sets[1].name,
+                    excludedCardIds
+                )
+            }
+            1 -> {
+                Log.i("Kingdom Generator", "Generating random card from ${sets[0].name}")
+                return cardDao.getSingleCardFromExpansionWithExceptions(
+                    sets[0].name,
+                    null,
+                    excludedCardIds
+                )
+            }
+            else -> return null
+        }
     }
 
     private fun listToMap(list: List<Card>): LinkedHashMap<Card, Int> {
@@ -165,7 +174,7 @@ class KingdomGenerator @Inject constructor(
             ),
 
             // TODO: If Tournament -> add Prize
-            // TODO: If Jouse -> Add Reward
+            // TODO: If Joust -> Add Reward
 
             // If there is a Bandit Camp, Marauder oder Pillage card present, add Spoils cards
             DependencyRule(

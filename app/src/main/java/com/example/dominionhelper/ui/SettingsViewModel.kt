@@ -19,19 +19,31 @@ sealed class SettingItem {
         val title: String,
         val isChecked: Boolean,
         val onCheckedChange: (Boolean) -> Unit
-    ) : SettingItem()
+    ) : SettingItem() {
+        override fun toString(): String {
+            return "SwitchSetting(title='$title', isChecked=$isChecked)"
+        }
+    }
 
     data class TextSetting(
         val title: String,
         val text: String,
         val onTextChange: (String) -> Unit
-    ) : SettingItem()
+    ) : SettingItem() {
+        override fun toString(): String {
+            return "TextSetting(title='$title', text=$text)"
+        }
+    }
 
     data class NumberSetting(
         val title: String,
         val number: Int,
         val onNumberChange: (Int) -> Unit
-    ) : SettingItem()
+    ) : SettingItem() {
+        override fun toString(): String {
+            return "NumberSetting(title='$title', number=$number)"
+        }
+    }
 
     data class ChoiceSetting<E : Enum<E>>(
         val title: String,
@@ -39,13 +51,17 @@ sealed class SettingItem {
         val allOptions: List<E>,
         val optionDisplayFormatter: (E) -> String = { it.name }, // Default display is enum constant name
         val onOptionSelected: (E) -> Unit
-    ) : SettingItem()
+    ) : SettingItem() {
+        override fun toString(): String {
+            return "ChoiceSetting(title='$title', selectedOption=$selectedOption)"
+        }
+    }
 }
 
 enum class RandomMode(val displayName: String) {
     FULL_RANDOM("Full Random"),
-    EVEN_AMOUNTS("Even Amounts"), // Example, adjust as needed
-    X_OF_EACH_SET("X from Each Set")    // Example, adjust as needed
+    EVEN_AMOUNTS("Even Amounts"),
+    X_OF_EACH_SET("X from Each Set")
 }
 
 @HiltViewModel

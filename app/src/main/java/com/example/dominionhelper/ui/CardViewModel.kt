@@ -37,7 +37,7 @@ class CardViewModel @Inject constructor(
     private val _selectedExpansion = MutableStateFlow<ExpansionWithEditions?>(null)
     val selectedExpansion: StateFlow<ExpansionWithEditions?> = _selectedExpansion.asStateFlow()
 
-    private val _selectedEdition = MutableStateFlow<OwnedEdition>(OwnedEdition.NONE)
+    private val _selectedEdition = MutableStateFlow(OwnedEdition.NONE)
     val selectedEdition: StateFlow<OwnedEdition> = _selectedEdition.asStateFlow()
 
     // Card variables
@@ -47,7 +47,7 @@ class CardViewModel @Inject constructor(
     private val _expansionCards = MutableStateFlow<List<Card>>(emptyList())
     val expansionCards: StateFlow<List<Card>> = _expansionCards.asStateFlow()
 
-    private val _kingdom = MutableStateFlow<Kingdom>(Kingdom())
+    private val _kingdom = MutableStateFlow(Kingdom())
     val kingdom: StateFlow<Kingdom> = _kingdom.asStateFlow()
 
     private val _selectedCard = MutableStateFlow<Card?>(null)
@@ -199,7 +199,7 @@ class CardViewModel @Inject constructor(
             }
             Log.i(
                 "CardViewModel",
-                "UpdateExpansionOwndership(): Updated isOwned for ${expansion.name}[${expansion.edition}] to $newIsOwned"
+                "UpdateExpansionOwnership(): Updated isOwned for ${expansion.name}[${expansion.edition}] to $newIsOwned"
             )
         }
     }
@@ -211,16 +211,14 @@ class CardViewModel @Inject constructor(
 
         return when {
             isFirstOwned && isSecondOwned -> "Both Editions Owned"
-            !isFirstOwned && !isSecondOwned -> "Unowned"
             isFirstOwned ->
                 if (expansion.secondEdition == null) {
                     "Owned"
                 } else {
                     "First Edition Owned"
                 }
-
             isSecondOwned -> "Second Edition Owned"
-            else -> throw java.lang.IllegalArgumentException("Invalid ownership state.")
+            else -> "Unowned"
         }
     }
 
@@ -531,6 +529,8 @@ class CardViewModel @Inject constructor(
                     c
                 }
             }
+
+            Log.d("CardViewModel", "Toggled card ${card.name} to $newIsEnabledState")
         }
     }
 

@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
-// Define DataStore instance at the top level, typically in a separate file or with the repository
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = USER_PREFERENCES_NAME) // Renamed for clarity if you have another "settings"
 
 object UserPreferencesKeys { // Renamed from SettingsKeys to avoid confusion with the ViewModel's SettingItem
