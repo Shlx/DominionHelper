@@ -68,6 +68,7 @@ import kotlinx.coroutines.launch
 // Try to thin out some parameters (TopBar)
 // After generating kingdom and changing sort type, it is reset after generating a new kingdom
 // Add modifier parameter to all Composables?
+// Use _somethingFromViewModel.update {} instead of setting _something.value
 
 // TODO FEATURES
 // Split piles
@@ -84,6 +85,7 @@ import kotlinx.coroutines.launch
 // Add banned card count to expansions / exp card view)
 // Check if there are 10 enabled cards to randomize
 // Bug: Crash when clicking an edition!!
+// Reenable all cards
 // Work on randomization rules
 // Bottom navigation bar instead of drawer?
 // Refactor this mess

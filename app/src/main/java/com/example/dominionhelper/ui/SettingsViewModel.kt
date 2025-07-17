@@ -61,13 +61,17 @@ sealed class SettingItem {
 enum class RandomMode(val displayName: String) {
     FULL_RANDOM("Full Random"),
     EVEN_AMOUNTS("Even Amounts"),
-    X_OF_EACH_SET("X from Each Set")
+
+    // TODO does this make sense?
+    //X_OF_EACH_SET("X from Each Set")
 }
 
 enum class VetoMode(val displayName: String) {
     REROLL_SAME("Reroll from the same expansion"),
+    // TODO: This rerolls from any OWNED expansion, but we need to reroll from any SELECTED expansion probably
     REROLL_ANY("Reroll from any owned expansion"),
-    NO_REROLL("Don't reroll")
+    // TODO
+    //NO_REROLL("Don't reroll")
 }
 
 enum class DarkAgesMode(val displayName: String) {

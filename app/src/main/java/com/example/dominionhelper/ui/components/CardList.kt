@@ -646,7 +646,7 @@ fun CardIcon(card: Card, showIcon: Boolean, onToggleEnable: () -> Unit) {
         modifier = Modifier
             .fillMaxHeight()
             .aspectRatio(1f)
-            .clickable(onClick = { onToggleEnable() }),
+            .clickable(onClick = { onToggleEnable() }), // TODO Make this clickable only when the disable button is there
         contentAlignment = Alignment.Center
     ) {
         if (showIcon) {
@@ -658,7 +658,7 @@ fun CardIcon(card: Card, showIcon: Boolean, onToggleEnable: () -> Unit) {
                 modifier = Modifier
                     .size(Constants.ICON_SIZE)
             )
-        } else {
+        } else if (!card.basic) {
 
             // En- / Disable button
             Icon(

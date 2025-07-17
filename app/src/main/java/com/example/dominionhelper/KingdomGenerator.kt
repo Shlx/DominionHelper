@@ -11,13 +11,15 @@ import com.example.dominionhelper.model.Set
 import com.example.dominionhelper.model.Type
 import com.example.dominionhelper.ui.DarkAgesMode
 import com.example.dominionhelper.ui.ProsperityMode
+import com.example.dominionhelper.ui.RandomMode
+import com.example.dominionhelper.ui.VetoMode
 import com.example.dominionhelper.utils.isPercentChance
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 import javax.inject.Singleton
 
 data class Kingdom(
-    val randomCards: LinkedHashMap<Card, Int> = linkedMapOf(),
+    val randomCards: LinkedHashMap<Card, Int> = linkedMapOf(), // Do I need an amount here?
     val basicCards: LinkedHashMap<Card, Int> = linkedMapOf(),
     val dependentCards: LinkedHashMap<Card, Int> = linkedMapOf(),
     val startingCards: LinkedHashMap<Card, Int> = linkedMapOf()
@@ -41,40 +43,10 @@ class KingdomGenerator @Inject constructor(
 
     suspend fun generateKingdom(): Kingdom {
 
-        val numberOfExpansions = userPrefsRepository.randomExpansionAmount.first()
-        val randomExpansions = expansionDao.getFixedAmountOfOwnedExpansions(numberOfExpansions)
-        val randomCards = mutableListOf<Card>()
-
+        val randomMode = userPrefsRepository.randomMode.first()
         val totalCardsToGenerate = 10
 
-        if (numberOfExpansions > 0 && randomExpansions.isNotEmpty()) {
-            val baseAmountPerExpansion = totalCardsToGenerate / numberOfExpansions
-            var remainingCards = totalCardsToGenerate % numberOfExpansions
-
-            // Ensure we don't try to pick from more expansions than we actually got
-            // (e.g., user wants 3 expansions, but only owns 2)
-            val expansionsToUse = randomExpansions.take(numberOfExpansions)
-
-            for (expansion in expansionsToUse) {
-                var cardsFromThisExpansion = baseAmountPerExpansion
-                if (remainingCards > 0) {
-                    cardsFromThisExpansion++
-                    remainingCards--
-                }
-                // TODO: Ensure getRandomCardsFromExpansion can handle being asked for 0 cards if that's possible,
-                // or ensure cardsFromThisExpansion is always > 0 if the DAO expects that.
-                // Also, consider what happens if an expansion has fewer than 'cardsFromThisExpansion' available cards.
-                // The DAO query should ideally handle this gracefully (e.g., return all available if fewer are requested).
-                if (cardsFromThisExpansion > 0) {
-                    randomCards.addAll(
-                        cardDao.getRandomCardsFromExpansion(
-                            expansion.id,
-                            cardsFromThisExpansion
-                        )
-                    )
-                }
-            }
-        }
+        val randomCards = getRandomCards(randomMode, totalCardsToGenerate)
 
         // TODO Handle DAO null return in separate class?
         val basicCards = cardDao.getCardsByNameList(BASIC_CARD_NAMES)
@@ -85,14 +57,7 @@ class KingdomGenerator @Inject constructor(
         val dependentCardsToLoad = getDependentCards(randomCards)
         val dependentCards = cardDao.getCardsByNameList(dependentCardsToLoad)
 
-        // The amount of these cards is dependent on player count, so we set these as 1 for now
-        val randomCardMap = listToMap(randomCards)
-        val basicCardMap = listToMap(basicCards)
-        val dependentCardMap = listToMap(dependentCards)
-
-        val startingCardsToLoad =
-            getStartingCards(randomCards)
-
+        val startingCardsToLoad = getStartingCards(randomCards)
         val startingCards = linkedMapOf<Card, Int>()
         startingCardsToLoad.keys.forEach { cardName ->
             val card = cardDao.getCardByName(cardName)
@@ -101,9 +66,10 @@ class KingdomGenerator @Inject constructor(
             }
         }
 
-        /* val correctStartingCards = startingCards.mapNotNull { (cardName, count) ->
-            cardDao.getCardByName(cardName)?.let { it to count }
-        }.toMap() */
+        // The amount of these cards is dependent on player count, so we set these as 1 for now
+        val randomCardMap = listToMap(randomCards)
+        val basicCardMap = listToMap(basicCards)
+        val dependentCardMap = listToMap(dependentCards)
 
         Log.i(
             "Kingdom Generator",
@@ -113,8 +79,86 @@ class KingdomGenerator @Inject constructor(
         return Kingdom(randomCardMap, basicCardMap, dependentCardMap, startingCards)
     }
 
+    suspend fun getRandomCards(randomMode: RandomMode, totalCardsToGenerate: Int): List<Card> {
+
+        when (randomMode) {
+
+            RandomMode.FULL_RANDOM -> {
+                Log.i("Kingdom Generator", "Full random selected")
+
+                return cardDao.getRandomCardsFromOwnedExpansions(totalCardsToGenerate)
+                    ?: emptyList()
+            }
+
+            RandomMode.EVEN_AMOUNTS -> {
+                Log.i("Kingdom Generator", "Even amounts selected")
+
+                val generatedCards = mutableListOf<Card>()
+                val numberOfExpansions = userPrefsRepository.randomExpansionAmount.first()
+
+                if (numberOfExpansions > 0) {
+                    val randomExpansionsFromPrefs =
+                        expansionDao.getFixedAmountOfOwnedExpansions(numberOfExpansions)
+
+                    // Ensure we don't try to pick from more expansions than we actually got
+                    // (e.g., user wants 3 expansions, but only owns 2)
+                    // TODO: Trigger error message
+                    val expansionsToUse = randomExpansionsFromPrefs.take(numberOfExpansions)
+                    val baseAmountPerExpansion = totalCardsToGenerate / expansionsToUse.size
+                    var remainingCardsToDistribute = totalCardsToGenerate % expansionsToUse.size
+
+                    for (expansion in expansionsToUse) {
+                        var cardsFromThisExpansion = baseAmountPerExpansion
+                        if (remainingCardsToDistribute > 0) {
+                            cardsFromThisExpansion++
+                            remainingCardsToDistribute--
+                        }
+                        if (cardsFromThisExpansion > 0) {
+                            generatedCards.addAll(
+                                cardDao.getRandomCardsFromExpansion(
+                                    expansion.id,
+                                    cardsFromThisExpansion
+                                )
+                            )
+                        }
+                    }
+                }
+                return generatedCards
+            }
+        }
+    }
+
+    suspend fun replaceCardInKingdom(cardToRemove: Card, cardsToExclude: kotlin.collections.Set<Card>): Card? {
+
+        // Generate card of any owned expansion
+        val newCard: Card? = when (userPrefsRepository.vetoMode.first()) {
+
+            // Reroll from the same expansion
+            VetoMode.REROLL_SAME -> {
+                Log.i("KingdomGenerator", "Rerolling from the same expansion.")
+                generateSingleRandomCardFromExpansion(cardToRemove.sets, cardsToExclude)
+            }
+
+            // Reroll from any owned expansions
+            VetoMode.REROLL_ANY -> {
+                Log.i("KingdomGenerator", "Rerolling from any expansions.")
+                generateSingleRandomCard(cardsToExclude)
+            }
+
+            // Don't reroll
+            /*VetoMode.NO_REROLL -> {
+                Log.i("CardViewModel", "Not rerolling.")
+                null
+            }*/
+        }
+
+        return newCard
+    }
+
     suspend fun generateSingleRandomCard(excludeCards: kotlin.collections.Set<Card> = emptySet()): Card? {
         val excludedCardIds = excludeCards.map { it.id }.toSet()
+
+        Log.i("Kingdom Generator", "Generating random card from owned Expansions")
         return cardDao.getSingleCardFromOwnedExpansionsWithExceptions(excludedCardIds)
     }
 

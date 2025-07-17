@@ -19,6 +19,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -550,32 +551,24 @@ class CardViewModel @Inject constructor(
         }
 
         viewModelScope.launch {
-
             Log.i("CardViewModel", "Dismissing card '${dismissedCard.name}' from the kingdom.")
 
-            // Create a new map where the dismissed card is replaced
             val originalRandomCards = currentKingdom.randomCards
-            var updatedRandomCards: LinkedHashMap<Card, Int>
-
-            // Try to generate a new random card and add it to the map
             val cardsToExclude = originalRandomCards.keys.toMutableSet()
 
-            // TODO: Raus oder?
-            // Generate card of any owned expansion
-            val newCardOld: Card? = kingdomGenerator.generateSingleRandomCard(cardsToExclude)
-
-            // Generate card of the same expansion as the removed card
-            val newCard: Card? = kingdomGenerator.generateSingleRandomCardFromExpansion(dismissedCard.sets, cardsToExclude)
+            // Replace the dismissed card
+            val newCard = kingdomGenerator.replaceCardInKingdom(dismissedCard, cardsToExclude)
 
             if (newCard != null) {
-                updatedRandomCards = insertOrReplaceAtKeyPosition(
-                    map = originalRandomCards,
-                    targetKey = dismissedCard,
-                    newKey = newCard,
-                    newValue = 1
-                )
                 Log.i("CardViewModel", "Added new random card '${newCard.name}' to replace dismissed card.")
-                _kingdom.value = currentKingdom.copy(randomCards = updatedRandomCards)
+                _kingdom.update { kingdom ->
+                    kingdom.copy(randomCards = insertOrReplaceAtKeyPosition(
+                        map = originalRandomCards,
+                        targetKey = dismissedCard,
+                        newKey = newCard,
+                        newValue = 1)
+                    )
+                }
             } else {
                 // If no replacement is found, do nothing and display an error
                 Log.e("CardViewModel", "Failed to generate a replacement card.")
