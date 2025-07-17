@@ -47,7 +47,8 @@ interface CardDao {
     @Query("SELECT * FROM cards ORDER BY RANDOM() LIMIT :amount")
     suspend fun getRandomCards(amount: Int): List<Card>
 
-    @Query("""
+    @Query(
+        """
         SELECT c.* FROM cards AS c
         INNER JOIN expansions AS e ON c.sets LIKE '%' || e.id || '%'
         WHERE e.isOwned
@@ -56,10 +57,12 @@ interface CardDao {
         AND c.supply = 1
         ORDER BY RANDOM()
         LIMIT :amount
-    """)
+    """
+    )
     suspend fun getRandomCardsFromOwnedExpansions(amount: Int): List<Card>
 
-    @Query("""
+    @Query(
+        """
         SELECT c.* FROM cards AS c
         WHERE c.sets LIKE '%' || :expansionId || '%'
         AND c.landscape = 0
@@ -67,10 +70,12 @@ interface CardDao {
         AND c.supply = 1
         ORDER BY RANDOM()
         LIMIT :amount
-    """)
+    """
+    )
     suspend fun getRandomCardsFromExpansion(expansionId: String, amount: Int): List<Card>
 
-    @Query("""
+    @Query(
+        """
         SELECT c.* FROM cards AS c
         INNER JOIN expansions AS e ON c.sets LIKE '%' || e.id || '%'
         WHERE e.isOwned
@@ -80,10 +85,12 @@ interface CardDao {
         AND c.id NOT IN (:excludedCards)
         ORDER BY RANDOM()
         LIMIT 1
-    """)
+    """
+    )
     suspend fun getSingleCardFromOwnedExpansionsWithExceptions(excludedCards: Set<Int>): Card?
 
-    @Query("""
+    @Query(
+        """
         SELECT c.* FROM cards AS c
         INNER JOIN expansions AS e ON c.sets LIKE '%' || e.id || '%'
         WHERE
@@ -98,11 +105,23 @@ interface CardDao {
         AND c.id NOT IN (:excludedCards)
         ORDER BY RANDOM()
         LIMIT 1
-    """)
-    suspend fun getSingleCardFromExpansionWithExceptions(set1: String, set2: String?, excludedCards: Set<Int>): Card?
+    """
+    )
+    suspend fun getSingleCardFromExpansionWithExceptions(
+        set1: String,
+        set2: String?,
+        excludedCards: Set<Int>
+    ): Card?
 
     @Query("UPDATE cards SET isEnabled = :isEnabled WHERE id = :cardId")
     suspend fun toggleCardEnabled(cardId: Int, isEnabled: Boolean)
+
+    @Query("SELECT COUNT(*) FROM cards WHERE sets LIKE '%' || :expansionId || '%' AND basic = 0")
+    suspend fun getTotalCardAmountForExpansion(expansionId: String): Int
+
+    // AND supply = 1?
+    @Query("SELECT COUNT(*) FROM cards WHERE sets LIKE '%' || :expansionId || '%' AND isEnabled = 1 AND basic = 0")
+    suspend fun getEnabledCardAmountForExpansion(expansionId: String): Int
 
     @Query("SELECT * FROM cards WHERE name = :name")
     suspend fun getCardByName(name: String): Card

@@ -11,7 +11,7 @@ import java.io.IOException
 
 data class ExpansionWithEditions(
     val name: String, // The name of the Expansion (e.g., "Base", "Intrigue")
-    val firstEdition: Expansion? = null,
+    val firstEdition: Expansion? = null, // -> LIST of editions?
     val secondEdition: Expansion? = null,
     val image: String,
     val isExpanded: Boolean = false

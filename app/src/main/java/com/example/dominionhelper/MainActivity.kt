@@ -307,9 +307,9 @@ fun MainView(cardViewModel: CardViewModel) {
                 // Show a list of cards
                 cardsToShow -> {
                     // Show expansion or search result
-                    // Having no separation here is kind of weird I think
+                    // Having no separation here is kind of weird I think TODO split
                     if (expansionCards.isNotEmpty()) {
-                        // TODO: Search crashes, split log for expansion view / search
+                        // TODO: Search crashes
                         Log.i("MainView", "View card list (Expansion / Search: ${expansionCards.size})")
                         CardList(
                             modifier = Modifier.padding(innerPadding),

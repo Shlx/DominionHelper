@@ -11,7 +11,6 @@ object Constants {
     val COLOR_BAR_WIDTH = 8.dp
     val IMAGE_ROUNDED = 16.dp
     val CARD_IMAGE_WIDTH = 85.dp
-
     val CARD_NAME_FONT_SIZE = 20.sp
     val TEXT_SMALL = 16.sp
     val CARD_PRICE_SIZE = 24.dp

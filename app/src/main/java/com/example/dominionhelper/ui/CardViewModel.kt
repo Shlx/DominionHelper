@@ -76,7 +76,7 @@ class CardViewModel @Inject constructor(
         cardsToShow
     ) { selectedExpansion, cardsToShow ->
         if (selectedExpansion != null) {
-            selectedExpansion.name
+            selectedExpansion.name + " " + getEnabledCardAmount(selectedExpansion)
         } else if (cardsToShow) {
             "Generated Kingdom"
         } else {
@@ -308,6 +308,12 @@ class CardViewModel @Inject constructor(
                 "Loaded ${_expansionCards.value.size} cards for expansion ${expansion.name}"
             )
         }
+    }
+
+    suspend fun getEnabledCardAmount(expansion: ExpansionWithEditions): String {
+        val totalCards = cardDao.getTotalCardAmountForExpansion(expansion.firstEdition!!.id)
+        val enabledCards = cardDao.getEnabledCardAmountForExpansion(expansion.firstEdition.id)
+        return "($enabledCards / $totalCards)"
     }
 
     fun expansionHasTwoEditions(expansion: ExpansionWithEditions): Boolean {

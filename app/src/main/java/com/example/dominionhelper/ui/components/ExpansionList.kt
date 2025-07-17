@@ -37,6 +37,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -116,7 +117,7 @@ fun ExpansionList(
                                     !expansion.firstEdition.isOwned
                                 )
                             }, // Toggle ownership of this edition
-                            modifier.padding(top = 8.dp, bottom = 8.dp) // TODO BROKEN
+                            Modifier.padding(top = 8.dp, bottom = 8.dp)
                         )
                     }
                     expansion.secondEdition?.let { secondEdition ->
@@ -161,10 +162,20 @@ fun ExpansionListItem(
             ExpansionImage(expansion)
 
             // Expansion name and additional text
-            ExpansionLabels(expansion, ownershipText, Modifier.weight(1f).align(Alignment.CenterVertically))
+            ExpansionLabels(
+                expansion, ownershipText, Modifier
+                    .weight(1f)
+                    .align(Alignment.CenterVertically)
+            )
 
             // Ownership toggle or Expand/Collapse arrow
-            ExpansionIcon(expansion, hasMultipleEditions, onToggleExpansion, onOwnershipToggle, isExpanded)
+            ExpansionIcon(
+                expansion,
+                hasMultipleEditions,
+                onToggleExpansion,
+                onOwnershipToggle,
+                isExpanded
+            )
         }
     }
 }
@@ -183,7 +194,8 @@ fun ExpansionImage(expansion: ExpansionWithEditions) {
         contentDescription = "${expansion.name} Expansion Image",
         modifier = Modifier
             .aspectRatio(1f)
-            .padding(Constants.PADDING_MEDIUM)
+            .padding(Constants.PADDING_MEDIUM),
+        colorFilter = ColorFilter.tint(LocalContentColor.current)
     )
 }
 
@@ -199,7 +211,6 @@ fun ExpansionLabels(
         Text(
             text = expansion.name,
             fontSize = Constants.CARD_NAME_FONT_SIZE,
-            fontWeight = FontWeight.Bold
         )
         // TODO
         Text(
