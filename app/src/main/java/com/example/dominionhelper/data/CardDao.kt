@@ -52,6 +52,7 @@ interface CardDao {
         SELECT c.* FROM cards AS c
         INNER JOIN expansions AS e ON c.sets LIKE '%' || e.id || '%'
         WHERE e.isOwned
+        AND c.isEnabled = 1
         AND c.landscape = 0
         AND c.basic = 0
         AND c.supply = 1
@@ -65,6 +66,7 @@ interface CardDao {
         """
         SELECT c.* FROM cards AS c
         WHERE c.sets LIKE '%' || :expansionId || '%'
+        AND c.isEnabled = 1
         AND c.landscape = 0
         AND c.basic = 0
         AND c.supply = 1
@@ -79,6 +81,7 @@ interface CardDao {
         SELECT c.* FROM cards AS c
         INNER JOIN expansions AS e ON c.sets LIKE '%' || e.id || '%'
         WHERE e.isOwned
+        AND c.isEnabled = 1
         AND c.landscape = 0
         AND c.basic = 0
         AND c.supply = 1
@@ -99,6 +102,7 @@ interface CardDao {
               (:set2 IS NOT NULL AND sets LIKE '%' || :set2 || '%')
             )
         AND e.isOwned
+        AND c.isEnabled = 1
         AND c.landscape = 0
         AND c.basic = 0
         AND c.supply = 1

@@ -80,8 +80,9 @@ import kotlinx.coroutines.launch
 // Rating a kingdom afterwards (+ uploading)
 
 // TODO NEXT
+// RETHINK DATABASE SCHEME
 // Add banned card count to expansions / exp card view)
-// Do not randomize disabled cards / check if there are 10 enabled cards to randomize
+// Check if there are 10 enabled cards to randomize
 // Bug: Crash when clicking an edition!!
 // Work on randomization rules
 // Bottom navigation bar instead of drawer?

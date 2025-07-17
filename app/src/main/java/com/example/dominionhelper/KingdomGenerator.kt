@@ -9,6 +9,8 @@ import com.example.dominionhelper.data.UserPrefsRepository
 import com.example.dominionhelper.model.Category
 import com.example.dominionhelper.model.Set
 import com.example.dominionhelper.model.Type
+import com.example.dominionhelper.ui.DarkAgesMode
+import com.example.dominionhelper.ui.ProsperityMode
 import com.example.dominionhelper.utils.isPercentChance
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
@@ -43,8 +45,35 @@ class KingdomGenerator @Inject constructor(
         val randomExpansions = expansionDao.getFixedAmountOfOwnedExpansions(numberOfExpansions)
         val randomCards = mutableListOf<Card>()
 
-        for (expansion in randomExpansions) {
-            randomCards.addAll(cardDao.getRandomCardsFromExpansion(expansion.id, 5))
+        val totalCardsToGenerate = 10
+
+        if (numberOfExpansions > 0 && randomExpansions.isNotEmpty()) {
+            val baseAmountPerExpansion = totalCardsToGenerate / numberOfExpansions
+            var remainingCards = totalCardsToGenerate % numberOfExpansions
+
+            // Ensure we don't try to pick from more expansions than we actually got
+            // (e.g., user wants 3 expansions, but only owns 2)
+            val expansionsToUse = randomExpansions.take(numberOfExpansions)
+
+            for (expansion in expansionsToUse) {
+                var cardsFromThisExpansion = baseAmountPerExpansion
+                if (remainingCards > 0) {
+                    cardsFromThisExpansion++
+                    remainingCards--
+                }
+                // TODO: Ensure getRandomCardsFromExpansion can handle being asked for 0 cards if that's possible,
+                // or ensure cardsFromThisExpansion is always > 0 if the DAO expects that.
+                // Also, consider what happens if an expansion has fewer than 'cardsFromThisExpansion' available cards.
+                // The DAO query should ideally handle this gracefully (e.g., return all available if fewer are requested).
+                if (cardsFromThisExpansion > 0) {
+                    randomCards.addAll(
+                        cardDao.getRandomCardsFromExpansion(
+                            expansion.id,
+                            cardsFromThisExpansion
+                        )
+                    )
+                }
+            }
         }
 
         // TODO Handle DAO null return in separate class?
@@ -89,19 +118,25 @@ class KingdomGenerator @Inject constructor(
         return cardDao.getSingleCardFromOwnedExpansionsWithExceptions(excludedCardIds)
     }
 
-    // TODO: Only works with 1 or 2 sets right?
-    suspend fun generateSingleRandomCardFromExpansion(sets: List<Set>, excludeCards: kotlin.collections.Set<Card> = emptySet()): Card? {
+    suspend fun generateSingleRandomCardFromExpansion(
+        sets: List<Set>,
+        excludeCards: kotlin.collections.Set<Card> = emptySet()
+    ): Card? {
         val excludedCardIds = excludeCards.map { it.id }.toSet()
 
         when (sets.size) {
             2 -> {
-                Log.i("Kingdom Generator","Generating random card from ${sets[0].name} and ${sets[1].name}")
+                Log.i(
+                    "Kingdom Generator",
+                    "Generating random card from ${sets[0].name} and ${sets[1].name}"
+                )
                 return cardDao.getSingleCardFromExpansionWithExceptions(
                     sets[0].name,
                     sets[1].name,
                     excludedCardIds
                 )
             }
+
             1 -> {
                 Log.i("Kingdom Generator", "Generating random card from ${sets[0].name}")
                 return cardDao.getSingleCardFromExpansionWithExceptions(
@@ -110,6 +145,7 @@ class KingdomGenerator @Inject constructor(
                     excludedCardIds
                 )
             }
+
             else -> return null
         }
     }
@@ -122,7 +158,7 @@ class KingdomGenerator @Inject constructor(
         return map
     }
 
-    private fun getDependentCards(cards: List<Card>): List<String> {
+    private suspend fun getDependentCards(cards: List<Card>): List<String> {
 
         // Schwierig: Ferryman, Young Witch, Black Market Riverboat, Approaching Army, Diving Wind, Inherited
 
@@ -257,62 +293,112 @@ class KingdomGenerator @Inject constructor(
 
             // If there is a trasher present, add Trash mat
             DependencyRule(
-                condition = { it.categories.contains(Category.TRASHER) || it.categories.contains(Category.TRASH_FOR_BENEFIT) },
+                condition = {
+                    it.categories.contains(Category.TRASHER) || it.categories.contains(
+                        Category.TRASH_FOR_BENEFIT
+                    )
+                },
                 dependentCardNames = listOf("Trash Mat")
-            ),
-
-            // TODO % chance?
-            // Count Prosperity cards and add Platinum and Colony
-            DependencyRuleCount(
-                condition = { it.sets.contains(Set.PROSPERITY_1E) || it.sets.contains(Set.PROSPERITY_2E) },
-                dependentCardNames = listOf("Platinum", "Colony"),
-                minCount = 1
             )
         )
 
         val dependentCardNames = mutableSetOf<String>()
+
         dependencyRules.forEach { rule ->
-
-            var count = 0
             cards.forEach { card ->
-
-                when (rule) {
-                    is DependencyRuleCount -> {
-                        if (rule.condition(card)) {
-                            count++
-                        }
-                    }
-
-                    is DependencyRule -> {
-                        if (rule.condition(card)) {
-                            dependentCardNames += rule.dependentCardNames
-                        }
-                    }
+                if (rule.condition(card)) {
+                    dependentCardNames += rule.dependentCardNames
                 }
             }
-
-            if (rule is DependencyRuleCount && count >= rule.minCount) {
-                dependentCardNames += rule.dependentCardNames
-            }
         }
+
+        dependentCardNames.addAll(checkProsperityBasicCards(cards))
 
         return dependentCardNames.toList()
     }
 
-    private fun getStartingCards(randomCards: List<Card>): Map<String, Int> {
+    private suspend fun checkProsperityBasicCards(randomCards: List<Card>): List<String> {
+
+        val prosperityCardsToAdd = mutableListOf<String>()
+        val prosperityMode = userPrefsRepository.prosperityBasicCardsMode.first()
+
+        val prosperityCount = randomCards.count {
+            it.sets.contains(Set.PROSPERITY_1E) || it.sets.contains(Set.PROSPERITY_2E)
+        }
+
+        when (prosperityMode) {
+
+            // Don't add in any case
+            ProsperityMode.NEVER -> {
+                return emptyList()
+            }
+
+            // 10% chance per prosperity card
+            ProsperityMode.TEN_PERCENT_PER_CARD -> {
+                if (prosperityCount > 0) {
+                    if (isPercentChance(prosperityCount * 10.0)) {
+                        Log.i(
+                            "KingdomGenerator",
+                            "Adding Platinum and Colony - 10% per card ($prosperityCount)"
+                        )
+                        prosperityCardsToAdd.add("Platinum")
+                        prosperityCardsToAdd.add("Colony")
+                    }
+                }
+            }
+
+            // Always add Platinum and Colony if at least one Prosperity card is in the 10 random kingdom cards
+            ProsperityMode.IF_PRESENT -> {
+                if (prosperityCount > 0) {
+                    Log.i(
+                        "KingdomGenerator",
+                        "Adding Platinum and Colony (Prosperity card present in Kingdom rule)"
+                    )
+                    prosperityCardsToAdd.add("Platinum")
+                    prosperityCardsToAdd.add("Colony")
+                }
+            }
+        }
+
+        return prosperityCardsToAdd
+    }
+
+    private suspend fun getStartingCards(randomCards: List<Card>): Map<String, Int> {
 
         val cards = mutableMapOf<String, Int>()
-
-        // 10% per Dark Ages card to use Shelters instead of Estates
+        val darkAgesMode = userPrefsRepository.darkAgesStarterCardsMode.first()
         val darkAgesCount = randomCards.count { it.sets.contains(Set.DARK_AGES) }
-        Log.i("CardViewModel", "Dark Ages count: $darkAgesCount")
-        if (isPercentChance(darkAgesCount * 10.0)) {
-            Log.i("CardViewModel", "Adding Dark Ages cards")
-            cards["Overgrown Estate"] = 1
-            cards["Hovel"] = 1
-            cards["Necropolis"] = 1
-        } else {
-            cards["Estate"] = 3
+
+        when (darkAgesMode) {
+
+            // Don't add in any case
+            DarkAgesMode.NEVER -> {
+                cards["Estate"] = 3
+            }
+
+            // 10% per Dark Ages card to use Shelters instead of Estates
+            DarkAgesMode.TEN_PERCENT_PER_CARD -> {
+                if (isPercentChance(darkAgesCount * 10.0)) {
+                    Log.i("KingdomGenerator", "Adding Shelters - 10% per card ($darkAgesCount)")
+                    cards["Overgrown Estate"] = 1
+                    cards["Hovel"] = 1
+                    cards["Necropolis"] = 1
+                } else {
+                    cards["Estate"] = 3
+                }
+            }
+
+            // Always add Shelters if at least one Dark Ages card is in the 10 random kingdom cards
+            DarkAgesMode.IF_PRESENT -> {
+                if (darkAgesCount > 0) {
+                    Log.i("KingdomGenerator", "Adding Shelters because Dark Ages cards are present")
+                    cards["Overgrown Estate"] = 1
+                    cards["Hovel"] = 1
+                    cards["Necropolis"] = 1
+                } else {
+                    cards["Estate"] = 3
+                }
+            }
         }
 
         // Add Heirlooms
@@ -336,13 +422,6 @@ class KingdomGenerator @Inject constructor(
         val dependentCardNames: List<String>
     )
 
-    // Data class to represent a dependency rule
-    data class DependencyRuleCount(
-        val condition: (Card) -> Boolean,
-        val minCount: Int = 1,
-        val dependentCardNames: List<String>
-    )
-
     private val cardPairs = listOf(
         "Fool" to "Lucky Coin",
         "Cemetery" to "Haunted Mirror",
@@ -352,5 +431,4 @@ class KingdomGenerator @Inject constructor(
         "Tracker" to "Pouch",
         "Pooka" to "Cursed Gold"
     )
-
 }

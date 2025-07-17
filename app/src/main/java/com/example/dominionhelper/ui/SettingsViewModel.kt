@@ -64,13 +64,29 @@ enum class RandomMode(val displayName: String) {
     X_OF_EACH_SET("X from Each Set")
 }
 
+enum class VetoMode(val displayName: String) {
+    REROLL_SAME("Reroll from the same expansion"),
+    REROLL_ANY("Reroll from any owned expansion"),
+    NO_REROLL("Don't reroll")
+}
+
+enum class DarkAgesMode(val displayName: String) {
+    TEN_PERCENT_PER_CARD("10% per card"),
+    IF_PRESENT("Always when present"),
+    NEVER("Never")
+}
+
+enum class ProsperityMode(val displayName: String) {
+    TEN_PERCENT_PER_CARD("10% per card"),
+    IF_PRESENT("Always when present"),
+    NEVER("Never")
+    // ALWAYS_IF_PROSPERITY_OWNED ??
+}
+
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
     private val userPrefsRepository: UserPrefsRepository
 ) : ViewModel() {
-
-    /*private val _settings = MutableStateFlow<List<SettingItem>>(emptyList())
-    val settings: StateFlow<List<SettingItem>> = _settings.asStateFlow()*/
 
     data class SettingsUiState(
         val settings: List<SettingItem> = emptyList()
@@ -90,35 +106,82 @@ class SettingsViewModel @Inject constructor(
     }
 
     private fun getSettings(): Flow<List<SettingItem>> {
-        return combine(userPrefsRepository.isDarkMode,
+        return combine(
+            userPrefsRepository.isDarkMode,
+            userPrefsRepository.randomMode,
             userPrefsRepository.randomExpansionAmount,
-            userPrefsRepository.randomMode
-        ) { isDarkMode, amount, newMode ->
-            listOf(
+            userPrefsRepository.vetoMode,
+            userPrefsRepository.numberOfCardsToGenerate,
+            userPrefsRepository.landscapeCategories,
+            userPrefsRepository.landscapeDifferentCategories,
+            userPrefsRepository.darkAgesStarterCardsMode,
+            userPrefsRepository.prosperityBasicCardsMode
+        ) { values ->
+            val isDarkMode = values[0] as Boolean
+            val currentRandomMode = values[1] as RandomMode
+            val currentRandomExpAmount = values[2] as Int
+            val currentVetoMode = values[3] as VetoMode
+            val currentNumCardsToGen = values[4] as Int
+            val currentLandscapeCategories = values[5] as Int
+            val currentLandscapeDiffCat = values[6] as Boolean
+            val currentDarkAgesMode = values[7] as DarkAgesMode
+            val currentProsperityMode = values[8] as ProsperityMode
+
+            listOfNotNull( // Use listOfNotNull if some settings might be conditionally absent
                 SettingItem.SwitchSetting(
                     title = "Dark Mode",
                     isChecked = isDarkMode,
-                    onCheckedChange = { newIsDarkMode -> setDarkMode(newIsDarkMode) }
-                ),
-                SettingItem.NumberSetting(
-                    title = "Number of random expansions selected",
-                    number = amount,
-                    onNumberChange = { newAmount -> setRandomExpansionAmount(newAmount) }
+                    onCheckedChange = { setDarkMode(it) }
                 ),
                 SettingItem.ChoiceSetting(
                     title = "Random mode",
-                    selectedOption = RandomMode.FULL_RANDOM,
-                    allOptions = RandomMode.entries,
+                    selectedOption = currentRandomMode,
+                    allOptions = RandomMode.entries.toList(),
                     optionDisplayFormatter = { it.displayName },
-                    onOptionSelected = { newMode -> setRandomMode(newMode) }
+                    onOptionSelected = { setRandomMode(it) }
+                ),
+                SettingItem.NumberSetting(
+                    title = "Expansions for random cards",
+                    number = currentRandomExpAmount,
+                    onNumberChange = { setRandomExpansionAmount(it) }
+                ),
+                SettingItem.ChoiceSetting(
+                    title = "Veto mode",
+                    selectedOption = currentVetoMode,
+                    allOptions = VetoMode.entries.toList(),
+                    optionDisplayFormatter = { it.displayName },
+                    onOptionSelected = { setVetoMode(it) }
+                ),
+                SettingItem.NumberSetting(
+                    title = "Number of cards to generate",
+                    number = currentNumCardsToGen,
+                    onNumberChange = { setNumberOfCardsToGenerate(it) }
+                ),
+                SettingItem.NumberSetting(
+                    title = "Landscape categories to include",
+                    number = currentLandscapeCategories,
+                    onNumberChange = { setLandscapeCategories(it) }
+                ),
+                SettingItem.SwitchSetting(
+                    title = "Use different landscape categories",
+                    isChecked = currentLandscapeDiffCat,
+                    onCheckedChange = { setLandscapeDifferentCategories(it) }
+                ),
+                SettingItem.ChoiceSetting(
+                    title = "Dark Ages starter cards",
+                    selectedOption = currentDarkAgesMode,
+                    allOptions = DarkAgesMode.entries.toList(),
+                    optionDisplayFormatter = { it.displayName },
+                    onOptionSelected = { setDarkAgesStarterCardsMode(it) }
+                ),
+                SettingItem.ChoiceSetting(
+                    title = "Prosperity basic cards",
+                    selectedOption = currentProsperityMode,
+                    allOptions = ProsperityMode.entries.toList(),
+                    optionDisplayFormatter = { it.displayName },
+                    onOptionSelected = { setProsperityBasicCardsMode(it) }
                 )
             )
-        }
-    }
-
-    fun setRandomMode(mode: RandomMode) {
-        viewModelScope.launch {
-            userPrefsRepository.setRandomMode(mode)
         }
     }
 
@@ -128,9 +191,51 @@ class SettingsViewModel @Inject constructor(
         }
     }
 
+    fun setRandomMode(mode: RandomMode) {
+        viewModelScope.launch {
+            userPrefsRepository.setRandomMode(mode)
+        }
+    }
+
     fun setRandomExpansionAmount(amount: Int) {
         viewModelScope.launch {
             userPrefsRepository.setRandomExpansionAmount(amount)
+        }
+    }
+
+    fun setVetoMode(mode: VetoMode) {
+        viewModelScope.launch {
+            userPrefsRepository.setVetoMode(mode)
+        }
+    }
+
+    fun setNumberOfCardsToGenerate(amount: Int) {
+        viewModelScope.launch {
+            userPrefsRepository.setNumberOfCardsToGenerate(amount)
+        }
+    }
+
+    fun setLandscapeCategories(amount: Int) {
+        viewModelScope.launch {
+            userPrefsRepository.setLandscapeCategories(amount)
+        }
+    }
+
+    fun setLandscapeDifferentCategories(isDifferent: Boolean) {
+        viewModelScope.launch {
+            userPrefsRepository.setLandscapeDifferentCategories(isDifferent)
+        }
+    }
+
+    fun setDarkAgesStarterCardsMode(mode: DarkAgesMode) {
+        viewModelScope.launch {
+            userPrefsRepository.setDarkAgesStarterCardsMode(mode)
+        }
+    }
+
+    fun setProsperityBasicCardsMode(mode: ProsperityMode) {
+        viewModelScope.launch {
+            userPrefsRepository.setProsperityBasicCardsMode(mode)
         }
     }
 }
