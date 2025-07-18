@@ -9,8 +9,10 @@ import com.example.dominionhelper.model.Card
 import com.example.dominionhelper.data.CardDao
 import com.example.dominionhelper.model.Expansion
 import com.example.dominionhelper.data.ExpansionDao
+import com.example.dominionhelper.data.UserPrefsRepository
 import com.example.dominionhelper.model.ExpansionWithEditions
 import com.example.dominionhelper.model.OwnedEdition
+import com.example.dominionhelper.utils.Constants
 import com.example.dominionhelper.utils.insertOrReplaceAtKeyPosition
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,6 +20,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -27,7 +30,8 @@ import javax.inject.Inject
 class CardViewModel @Inject constructor(
     private val cardDao: CardDao,
     private val expansionDao: ExpansionDao,
-    private val kingdomGenerator: KingdomGenerator
+    private val kingdomGenerator: KingdomGenerator,
+    private val userPrefsRepository: UserPrefsRepository
 ) : ViewModel() {
 
     // Expansion variables
@@ -71,6 +75,25 @@ class CardViewModel @Inject constructor(
     // Error message
     private val _errorMessage = MutableStateFlow<String?>(null)
     val errorMessage: StateFlow<String?> = _errorMessage.asStateFlow()
+
+    // TODO: Does this work? Does it load from prefs even if we don't change it?
+    val vetoMode: StateFlow<VetoMode> = userPrefsRepository.vetoMode
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = Constants.DEFAULT_VETO_MODE
+        )
+
+    val isCardDismissalEnabled: StateFlow<Boolean> = combine(
+        vetoMode,
+        _kingdom
+    ) { currentVetoMode, currentKingdom ->
+        currentVetoMode != VetoMode.NO_REROLL || currentKingdom.randomCards.size > 10
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = true
+    )
 
     val topBarTitle: StateFlow<String> = combine(
         selectedExpansion,
@@ -218,6 +241,7 @@ class CardViewModel @Inject constructor(
                 } else {
                     "First Edition Owned"
                 }
+
             isSecondOwned -> "Second Edition Owned"
             else -> "Unowned"
         }
@@ -335,7 +359,10 @@ class CardViewModel @Inject constructor(
         viewModelScope.launch {
 
             if (expansionDao.getOwnedOnce().count() < 1) {
-                Log.d("CardViewModel", "No kingdom generated, as the user does not own any expansion")
+                Log.d(
+                    "CardViewModel",
+                    "No kingdom generated, as the user does not own any expansion"
+                )
                 triggerError("You need at least one expansion to generate a kingdom.")
                 return@launch
             }
@@ -520,7 +547,7 @@ class CardViewModel @Inject constructor(
         _errorMessage.value = null
     }
 
-    fun toggleCardEnabled (card: Card) {
+    fun toggleCardEnabled(card: Card) {
         viewModelScope.launch {
 
             val newIsEnabledState = !card.isEnabled
@@ -546,33 +573,56 @@ class CardViewModel @Inject constructor(
         // Check if the card to be dismissed is actually present
         val currentKingdom = _kingdom.value
         if (!currentKingdom.randomCards.containsKey(dismissedCard)) {
-            Log.w("CardViewModel", "Attempted to dismiss card '${dismissedCard.name}' not found in the current kingdom's random cards.")
+            Log.w(
+                "CardViewModel",
+                "Attempted to dismiss card '${dismissedCard.name}' not found in the current kingdom's random cards."
+            )
             return
         }
 
+        Log.i("CardViewModel", "Dismissing card '${dismissedCard.name}' from the kingdom.")
         viewModelScope.launch {
-            Log.i("CardViewModel", "Dismissing card '${dismissedCard.name}' from the kingdom.")
 
-            val originalRandomCards = currentKingdom.randomCards
-            val cardsToExclude = originalRandomCards.keys.toMutableSet()
+            if (vetoMode.first() == VetoMode.NO_REROLL) {
 
-            // Replace the dismissed card
-            val newCard = kingdomGenerator.replaceCardInKingdom(dismissedCard, cardsToExclude)
-
-            if (newCard != null) {
-                Log.i("CardViewModel", "Added new random card '${newCard.name}' to replace dismissed card.")
-                _kingdom.update { kingdom ->
-                    kingdom.copy(randomCards = insertOrReplaceAtKeyPosition(
-                        map = originalRandomCards,
-                        targetKey = dismissedCard,
-                        newKey = newCard,
-                        newValue = 1)
-                    )
+                Log.i("CardViewModel", "Not replacing.")
+                _kingdom.update { currentKingdom ->
+                    val updatedRandomCards = currentKingdom.randomCards.toMutableMap().apply {
+                        remove(dismissedCard)
+                    }.toMap()
+                    currentKingdom.copy(randomCards = LinkedHashMap(updatedRandomCards))
                 }
+
             } else {
-                // If no replacement is found, do nothing and display an error
-                Log.e("CardViewModel", "Failed to generate a replacement card.")
-                triggerError("Could not find a replacement card.")
+
+                val originalRandomCards = currentKingdom.randomCards
+                val cardsToExclude = originalRandomCards.keys.toMutableSet()
+
+                // Replace the dismissed card
+                val newCard = kingdomGenerator.replaceCardInKingdom(dismissedCard, cardsToExclude)
+
+                if (newCard == null) {
+
+                    // If no replacement is found, do nothing and display an error
+                    Log.e("CardViewModel", "Failed to generate a replacement card.")
+                    triggerError("Could not find a replacement card.")
+                } else {
+
+                    Log.i(
+                        "CardViewModel",
+                        "Added new random card '${newCard.name}' to replace dismissed card."
+                    )
+                    _kingdom.update { kingdom ->
+                        kingdom.copy(
+                            randomCards = insertOrReplaceAtKeyPosition(
+                                map = originalRandomCards,
+                                targetKey = dismissedCard,
+                                newKey = newCard,
+                                newValue = 1
+                            )
+                        )
+                    }
+                }
             }
         }
     }

@@ -70,8 +70,7 @@ enum class VetoMode(val displayName: String) {
     REROLL_SAME("Reroll from the same expansion"),
     // TODO: This rerolls from any OWNED expansion, but we need to reroll from any SELECTED expansion probably
     REROLL_ANY("Reroll from any owned expansion"),
-    // TODO
-    //NO_REROLL("Don't reroll")
+    NO_REROLL("Don't reroll")
 }
 
 enum class DarkAgesMode(val displayName: String) {

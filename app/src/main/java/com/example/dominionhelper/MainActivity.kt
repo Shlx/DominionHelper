@@ -28,6 +28,7 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -124,6 +125,8 @@ import kotlinx.coroutines.launch
 // Curse money card bei wunderheilerin
 // I think 'set' property can be removed from sets.json
 // Don't switch  Cornucopia & Guilds ownedship at the same time. There are regions where the second edition is split
+// Wenn man auf Basic geht sind Copper etc mittendrin. Wenn man ein kingdom generated und dann noch mal reingeht, sind die basic cards unten
+// Vetoing the last card looks weird
 
 
 // I think list state is shared between search / expansion and random cards (doesn't reset)
@@ -180,6 +183,8 @@ fun MainView(cardViewModel: CardViewModel) {
     val drawerState = rememberDrawerState(initialValue = Closed)
     val applicationScope = rememberCoroutineScope()
     val topBarTitle by cardViewModel.topBarTitle.collectAsStateWithLifecycle()
+
+    val isDismissEnabled by cardViewModel.isCardDismissalEnabled.collectAsState()
 
     val cardListState = rememberSaveable(saver = LazyListState.Saver) {
         LazyListState()
@@ -265,7 +270,7 @@ fun MainView(cardViewModel: CardViewModel) {
                     onSortTypeSelected = { cardViewModel.updateSortType(it, kingdom) },
                     selectedSortType = sortType,
                     topBarTitle = topBarTitle,
-                    hideSearch = kingdom.isNotEmpty()
+                    showSearch = kingdom.isEmpty()
                 )
             },
             floatingActionButton = {
@@ -327,7 +332,7 @@ fun MainView(cardViewModel: CardViewModel) {
                             listState = cardListState
                         )
 
-                        // Show generated kingdom
+                    // Show generated kingdom
                     } else if (kingdom != Kingdom()) {
                         Log.i(
                             "MainView",
@@ -340,6 +345,7 @@ fun MainView(cardViewModel: CardViewModel) {
                             selectedPlayers = playerCount,
                             onPlayerCountChange = { cardViewModel.updatePlayerCount(kingdom, it) },
                             listState = cardListState,
+                            isDismissEnabled = isDismissEnabled,
                             onCardDismissed = { cardViewModel.onCardDismissed(it) }
                         )
                     } else {

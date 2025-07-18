@@ -78,8 +78,6 @@ class UserPrefsRepository @Inject constructor(
         }
     }
 
-    // v Generated v
-
     // Veto mode
     val vetoMode: Flow<VetoMode> = context.dataStore.data
         .map { preferences ->

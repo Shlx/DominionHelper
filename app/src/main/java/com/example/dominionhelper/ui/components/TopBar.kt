@@ -57,7 +57,7 @@ fun TopBar(
     onSortTypeSelected: (SortType) -> Unit,
     selectedSortType: SortType,
     topBarTitle: String,
-    hideSearch: Boolean = false
+    showSearch: Boolean = true
 ) {
     val focusRequester = remember { FocusRequester() }
 
@@ -120,7 +120,7 @@ fun TopBar(
             }
         },
         actions = {
-            if (!hideSearch) {
+            if (showSearch) {
                 IconButton(onClick = {
                     onSearchClicked()
                 }) {

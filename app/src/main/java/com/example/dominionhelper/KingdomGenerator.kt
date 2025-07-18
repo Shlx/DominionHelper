@@ -29,8 +29,8 @@ data class Kingdom(
         return dependentCards.isNotEmpty()
     }
 
-    fun isNotEmpty(): Boolean {
-        return randomCards.isNotEmpty() || basicCards.isNotEmpty() || dependentCards.isNotEmpty() || startingCards.isNotEmpty()
+    fun isEmpty(): Boolean {
+        return randomCards.isEmpty() && basicCards.isEmpty() && dependentCards.isEmpty() && startingCards.isEmpty()
     }
 }
 
@@ -44,7 +44,7 @@ class KingdomGenerator @Inject constructor(
     suspend fun generateKingdom(): Kingdom {
 
         val randomMode = userPrefsRepository.randomMode.first()
-        val totalCardsToGenerate = 10
+        val totalCardsToGenerate = userPrefsRepository.numberOfCardsToGenerate.first()
 
         val randomCards = getRandomCards(randomMode, totalCardsToGenerate)
 
@@ -130,7 +130,6 @@ class KingdomGenerator @Inject constructor(
 
     suspend fun replaceCardInKingdom(cardToRemove: Card, cardsToExclude: kotlin.collections.Set<Card>): Card? {
 
-        // Generate card of any owned expansion
         val newCard: Card? = when (userPrefsRepository.vetoMode.first()) {
 
             // Reroll from the same expansion
@@ -145,11 +144,12 @@ class KingdomGenerator @Inject constructor(
                 generateSingleRandomCard(cardsToExclude)
             }
 
-            // Don't reroll
-            /*VetoMode.NO_REROLL -> {
+            // TODO: Veto mode NO_REROLL is checked beforehand. This is kind of messy tho.
+            // In this case, returning null is an error case. Throw Exception here?
+            else -> {
                 Log.i("CardViewModel", "Not rerolling.")
                 null
-            }*/
+            }
         }
 
         return newCard

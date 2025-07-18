@@ -178,6 +178,7 @@ fun KingdomList(
     selectedPlayers: Int,
     onPlayerCountChange: (Int) -> Unit,
     listState: LazyListState = rememberLazyListState(),
+    isDismissEnabled: Boolean,
     onCardDismissed: (Card) -> Unit
 ) {
     Log.i(
@@ -202,7 +203,11 @@ fun KingdomList(
                 items = kingdom.randomCards.keys.toList(),
                 key = { card -> card.id }
             ) { card ->
-                DismissableCard(card, onCardDismissed, onCardClick, Modifier.animateItem())
+                if (isDismissEnabled)
+                    DismissableCard(card, onCardDismissed, onCardClick, Modifier.animateItem())
+                else {
+                    CardView(card, onCardClick, showIcon = true, kingdom.randomCards[card]!!)
+                }
             }
 
             // DEPENDENT CARDS
@@ -642,11 +647,13 @@ fun NumberHexagon(number: Int) {
 @Composable
 fun CardIcon(card: Card, showIcon: Boolean, onToggleEnable: () -> Unit) {
 
+    val isToggleIconVisible = !showIcon && !card.basic
+
     Box(
         modifier = Modifier
             .fillMaxHeight()
             .aspectRatio(1f)
-            .clickable(onClick = { onToggleEnable() }), // TODO Make this clickable only when the disable button is there
+            .then (if (isToggleIconVisible) Modifier.clickable { onToggleEnable() } else Modifier),
         contentAlignment = Alignment.Center
     ) {
         if (showIcon) {
