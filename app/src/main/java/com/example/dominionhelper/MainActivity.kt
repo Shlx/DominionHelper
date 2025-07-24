@@ -80,6 +80,8 @@ import kotlinx.coroutines.launch
 // Chose 2 from Events, Landmarks, Projects, Ways, Traits
 // Overpay Cards, Coffers, weißer Text auf Schulden
 // Rating a kingdom afterwards (+ uploading)
+// Kingdom landscape view to show all cards
+// Andere Sprachen
 
 // TODO NEXT
 // RETHINK DATABASE SCHEME
@@ -121,12 +123,12 @@ import kotlinx.coroutines.launch
 // Cards that are not in the supply vs cards that cost 0 vs cards that cost nothing??
 // Closing search while in detail view fucks shit up
 // Mountain Shrine Schulden
-// Cornucopia guilds erste edition falsche karten (?)
 // Curse money card bei wunderheilerin
 // I think 'set' property can be removed from sets.json
 // Don't switch  Cornucopia & Guilds ownedship at the same time. There are regions where the second edition is split
 // Wenn man auf Basic geht sind Copper etc mittendrin. Wenn man ein kingdom generated und dann noch mal reingeht, sind die basic cards unten
 // Vetoing the last card looks weird
+// 1st edition of Cornucopia has 2nd edition cards (at least Rewards)
 
 
 // I think list state is shared between search / expansion and random cards (doesn't reset)
@@ -333,10 +335,10 @@ fun MainView(cardViewModel: CardViewModel) {
                         )
 
                     // Show generated kingdom
-                    } else if (kingdom != Kingdom()) {
+                    } else if (!kingdom.isEmpty()) {
                         Log.i(
                             "MainView",
-                            "View card list (Random: ${kingdom.randomCards.size}, Dependent: ${kingdom.dependentCards.size}, Basic: ${kingdom.basicCards.size} cards)"
+                            "View card list (Random: ${kingdom.randomCards.size}, Dependent: ${kingdom.dependentCards.size}, Basic: ${kingdom.basicCards.size} cards, Landscape: ${kingdom.landscapeCards.size})"
                         )
                         KingdomList(
                             kingdom = kingdom,

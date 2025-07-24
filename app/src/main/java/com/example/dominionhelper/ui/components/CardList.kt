@@ -183,7 +183,7 @@ fun KingdomList(
 ) {
     Log.i(
         "KingdomList",
-        "randomCards: ${kingdom.randomCards.size}, basicCards: ${kingdom.basicCards.size}, dependentCards: ${kingdom.dependentCards.size}, startingCards: ${kingdom.startingCards.size}"
+        "randomCards: ${kingdom.randomCards.size}, basicCards: ${kingdom.basicCards.size}, dependentCards: ${kingdom.dependentCards.size}, startingCards: ${kingdom.startingCards.size}, landscapeCards: ${kingdom.landscapeCards.size}"
     )
 
     Column(modifier = modifier.padding(horizontal = Constants.PADDING_SMALL)) {
@@ -207,6 +207,18 @@ fun KingdomList(
                     DismissableCard(card, onCardDismissed, onCardClick, Modifier.animateItem())
                 else {
                     CardView(card, onCardClick, showIcon = true, kingdom.randomCards[card]!!)
+                }
+            }
+
+            // LANDSCAPE CARDS
+            items(
+                items = kingdom.landscapeCards.keys.toList(),
+                key = { card -> card.id }
+            ) { card ->
+                if (isDismissEnabled)
+                    DismissableCard(card, onCardDismissed, onCardClick, Modifier.animateItem())
+                else {
+                    CardView(card, onCardClick, showIcon = true, kingdom.landscapeCards[card]!!)
                 }
             }
 

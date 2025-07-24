@@ -11,17 +11,6 @@ import com.example.dominionhelper.model.Card
 @Dao
 interface CardDao {
 
-    companion object {
-        val BASIC_CARD_NAMES = listOf(
-            "Copper",
-            "Silver",
-            "Gold",
-            "Estate",
-            "Duchy",
-            "Province"
-        )
-    }
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(cards: List<Card>)
 
@@ -61,6 +50,21 @@ interface CardDao {
     """
     )
     suspend fun getRandomCardsFromOwnedExpansions(amount: Int): List<Card>
+
+    @Query(
+        """
+        SELECT c.* FROM cards AS c
+        INNER JOIN expansions AS e ON c.sets LIKE '%' || e.id || '%'
+        WHERE e.isOwned
+        AND c.isEnabled = 1
+        AND c.landscape = 1
+        AND c.basic = 0
+        AND c.supply = 1
+        ORDER BY RANDOM()
+        LIMIT :amount
+    """
+    )
+    suspend fun getRandomLandscapeCardsFromOwnedExpansions(amount: Int): List<Card>
 
     @Query(
         """
@@ -128,7 +132,7 @@ interface CardDao {
     suspend fun getEnabledCardAmountForExpansion(expansionId: String): Int
 
     @Query("SELECT * FROM cards WHERE name = :name")
-    suspend fun getCardByName(name: String): Card
+    suspend fun getCardByName(name: String): Card?
 
     @Query("SELECT * FROM cards WHERE name IN (:names)")
     suspend fun getCardsByNameList(names: List<String>): List<Card>

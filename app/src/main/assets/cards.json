@@ -5604,7 +5604,7 @@
     ]
   },
   {
-    "name": "Spoils",
+    "name": "Spoils pile",
     "cost": null,
     "supply": false,
     "landscape": false,
@@ -15889,7 +15889,7 @@
     ]
   },
   {
-    "name": "All 12 Boons",
+    "name": "Boon pile",
     "cost": 0,
     "supply": false,
     "landscape": true,
@@ -15906,7 +15906,7 @@
     ]
   },
   {
-    "name": "All 12 Hexes",
+    "name": "Hex pile",
     "cost": 0,
     "supply": false,
     "landscape": true,
@@ -15923,7 +15923,7 @@
     ]
   },
   {
-    "name": "All 12 Loots",
+    "name": "Loot pile",
     "cost": 0,
     "supply": false,
     "landscape": true,
@@ -15948,6 +15948,40 @@
       "Ruins"
     ],
     "image_name": "placeholder_ruins",
+    "basic": false,
+    "debt": 0,
+    "categories": [],
+    "potion": false,
+    "sets": [
+      "PLACEHOLDER"
+    ]
+  },
+  {
+    "name": "Prizes",
+    "cost": 0,
+    "supply": false,
+    "landscape": false,
+    "types": [
+      "Prize"
+    ],
+    "image_name": "placeholder_prizes",
+    "basic": false,
+    "debt": 0,
+    "categories": [],
+    "potion": false,
+    "sets": [
+      "PLACEHOLDER"
+    ]
+  },
+  {
+    "name": "Rewards",
+    "cost": 0,
+    "supply": false,
+    "landscape": false,
+    "types": [
+      "Reward"
+    ],
+    "image_name": "placeholder_rewards",
     "basic": false,
     "debt": 0,
     "categories": [],

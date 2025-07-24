@@ -430,17 +430,19 @@ class CardViewModel @Inject constructor(
         val sortedBasicCards = sortCards(kingdom.basicCards)
         val sortedDependentCards = sortCards(kingdom.dependentCards)
         val sortedStartingCards = sortCards(kingdom.startingCards)
+        val sortedLandscapeCards = sortCards(kingdom.landscapeCards)
 
         viewModelScope.launch {
 
             // TODO: Figure this out
             // Why the hell is this necessary huh
-            _kingdom.value.randomCards[cardDao.getCardByName("Copper")] = 3
+            _kingdom.value.randomCards[cardDao.getCardByName("Copper")!!] = 3
             _kingdom.value = kingdom.copy(
                 randomCards = sortedRandomCards,
                 dependentCards = sortedDependentCards,
                 basicCards = sortedBasicCards,
-                startingCards = sortedStartingCards
+                startingCards = sortedStartingCards,
+                landscapeCards = sortedLandscapeCards
             )
         }
 
@@ -568,6 +570,7 @@ class CardViewModel @Inject constructor(
         }
     }
 
+    // TODO Check for landscape cards
     fun onCardDismissed(dismissedCard: Card) {
 
         // Check if the card to be dismissed is actually present
