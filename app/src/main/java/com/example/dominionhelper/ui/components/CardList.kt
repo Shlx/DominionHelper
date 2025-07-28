@@ -169,6 +169,37 @@ fun EditionSelectionButtons(
     }
 }
 
+// Displays a list of cards
+@Composable
+fun SearchResultsCardList(
+    modifier: Modifier,
+    cardList: List<Card>,
+    onCardClick: (Card) -> Unit,
+    onToggleEnable: (Card) -> Unit,
+    listState: LazyListState = rememberLazyListState(),
+) {
+    Log.i("CardList", "${cardList.size} cards")
+
+    Column(modifier = modifier.padding(horizontal = Constants.PADDING_SMALL)) {
+
+        Text("Search results ${cardList.size}")
+
+        LazyColumn(
+            state = listState,
+            contentPadding = PaddingValues(top = Constants.PADDING_SMALL),
+            verticalArrangement = Arrangement.spacedBy(Constants.PADDING_SMALL)
+        ) {
+            items(cardList) { card ->
+                CardView(
+                    card,
+                    onCardClick,
+                    showIcon = false,
+                    onToggleEnable = { onToggleEnable(card) })
+            }
+        }
+    }
+}
+
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 fun KingdomList(
@@ -186,72 +217,78 @@ fun KingdomList(
         "randomCards: ${kingdom.randomCards.size}, basicCards: ${kingdom.basicCards.size}, dependentCards: ${kingdom.dependentCards.size}, startingCards: ${kingdom.startingCards.size}, landscapeCards: ${kingdom.landscapeCards.size}"
     )
 
-    Column(modifier = modifier.padding(horizontal = Constants.PADDING_SMALL)) {
+    LazyColumn(
+        state = listState,
+        modifier = modifier.padding(
+            start = Constants.PADDING_SMALL,
+            end = Constants.PADDING_SMALL,
+            top = Constants.PADDING_SMALL
+        ),
+        verticalArrangement = Arrangement.spacedBy(Constants.PADDING_SMALL)
+    ) {
 
-        PlayerSelectionButtons(
-            selectedPlayers = selectedPlayers,
-            onPlayerSelected = { onPlayerCountChange(it) }
-        )
+        // RANDOM CARDS
+        item {
+            CardSpacer("Supply Cards")
+        }
+        items(
+            items = kingdom.randomCards.keys.toList(),
+            key = { card -> card.id }
+        ) { card ->
+            if (isDismissEnabled)
+                DismissableCard(card, onCardDismissed, onCardClick, Modifier.animateItem())
+            else {
+                CardView(card, onCardClick, showIcon = true, kingdom.randomCards[card]!!)
+            }
+        }
 
-        LazyColumn(
-            state = listState,
-            verticalArrangement = Arrangement.spacedBy(Constants.PADDING_SMALL)
-        ) {
-
-            // RANDOM CARDS
+        // LANDSCAPE CARDS
+        if (kingdom.hasLandscapeCards()) {
+            item {
+                CardSpacer("Landscape Cards")
+            }
             items(
-                items = kingdom.randomCards.keys.toList(),
+                items = kingdom.landscapeCards.keys.toList(),
                 key = { card -> card.id }
             ) { card ->
                 if (isDismissEnabled)
                     DismissableCard(card, onCardDismissed, onCardClick, Modifier.animateItem())
                 else {
-                    CardView(card, onCardClick, showIcon = true, kingdom.randomCards[card]!!)
+                    CardView(card, onCardClick, showIcon = true, kingdom.landscapeCards[card]!!)
                 }
             }
+        }
 
-            // LANDSCAPE CARDS
-            if (kingdom.hasLandscapeCards()) {
-                item {
-                    CardSpacer("Landscape Cards")
-                }
-                items(
-                    items = kingdom.landscapeCards.keys.toList(),
-                    key = { card -> card.id }
-                ) { card ->
-                    if (isDismissEnabled)
-                        DismissableCard(card, onCardDismissed, onCardClick, Modifier.animateItem())
-                    else {
-                        CardView(card, onCardClick, showIcon = true, kingdom.landscapeCards[card]!!)
-                    }
-                }
-            }
-
-            // DEPENDENT CARDS
-            if (kingdom.hasDependentCards()) {
-                item {
-                    CardSpacer("Additional Cards")
-                }
-                items(kingdom.dependentCards.keys.toList()) { card ->
-                    CardView(card, onCardClick, showIcon = true, kingdom.dependentCards[card]!!)
-                }
-            }
-
-            // BASIC CARDS
+        // DEPENDENT CARDS
+        if (kingdom.hasDependentCards()) {
             item {
-                CardSpacer("Basic Cards")
+                CardSpacer("Additional Cards")
             }
-            items(kingdom.basicCards.keys.toList()) { card ->
-                CardView(card, onCardClick, showIcon = true, kingdom.basicCards[card]!!)
+            items(kingdom.dependentCards.keys.toList()) { card ->
+                CardView(card, onCardClick, showIcon = true, kingdom.dependentCards[card]!!)
             }
+        }
 
-            // STARTING CARDS
-            item {
-                CardSpacer("Starting Cards")
-            }
-            items(kingdom.startingCards.keys.toList()) { card ->
-                CardView(card, onCardClick, showIcon = true, kingdom.startingCards[card]!!)
-            }
+        // BASIC CARDS
+        item {
+            CardSpacer("Basic Cards")
+        }
+        item {
+            PlayerSelectionButtons(
+                selectedPlayers = selectedPlayers,
+                onPlayerSelected = { onPlayerCountChange(it) }
+            )
+        }
+        items(kingdom.basicCards.keys.toList()) { card ->
+            CardView(card, onCardClick, showIcon = true, kingdom.basicCards[card]!!)
+        }
+
+        // STARTING CARDS
+        item {
+            CardSpacer("Starting Cards")
+        }
+        items(kingdom.startingCards.keys.toList()) { card ->
+            CardView(card, onCardClick, showIcon = true, kingdom.startingCards[card]!!)
         }
     }
 }
@@ -468,6 +505,7 @@ fun CardImage(card: Card) {
                                     && !card.types.contains(Type.RUINS)
                                     && !card.types.contains(Type.SHELTER)
                                     && !card.types.contains(Type.HEIRLOOM) -> 26
+
                             else -> 31
                         }
                     )
@@ -516,7 +554,9 @@ fun CardLabels(card: Card, amount: Int, modifier: Modifier) {
                     painter = painterResource(id = R.drawable.set_alchemy),
                     contentDescription = "Tinted Image",
                     colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.secondaryContainer),
-                    modifier = Modifier.size(22.dp).offset(y = 1.dp)
+                    modifier = Modifier
+                        .size(22.dp)
+                        .offset(y = 1.dp)
                 )
                 previousElementExists = true
             }
@@ -552,7 +592,7 @@ fun LandscapeCardTypeText(card: Card) {
     }
 
     Text(
-        text = text?: "",
+        text = text ?: "",
         fontSize = Constants.TEXT_SMALL,
         color = MaterialTheme.colorScheme.secondary,
         fontStyle = Italic
@@ -681,7 +721,7 @@ fun CardIcon(card: Card, showIcon: Boolean, onToggleEnable: () -> Unit) {
         modifier = Modifier
             .fillMaxHeight()
             .aspectRatio(1f)
-            .then (if (isToggleIconVisible) Modifier.clickable { onToggleEnable() } else Modifier),
+            .then(if (isToggleIconVisible) Modifier.clickable { onToggleEnable() } else Modifier),
         contentAlignment = Alignment.Center
     ) {
         if (showIcon) {

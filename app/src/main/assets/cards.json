@@ -14851,7 +14851,7 @@
   },
   {
     "name": "Mountain Shrine",
-    "cost": 5,
+    "cost": 0,
     "supply": true,
     "landscape": false,
     "types": [
@@ -14860,7 +14860,7 @@
     ],
     "image_name": "mountainshrine",
     "basic": false,
-    "debt": 0,
+    "debt": 5,
     "categories": [
       "Terminal_draw",
       "Trasher"

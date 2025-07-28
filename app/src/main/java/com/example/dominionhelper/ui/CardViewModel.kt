@@ -313,8 +313,12 @@ class CardViewModel @Inject constructor(
             }
 
             else -> {
-                set.addAll(cardDao.getCardsByExpansion(expansion.firstEdition!!.id))
-                set.addAll(cardDao.getCardsByExpansion(expansion.secondEdition!!.id))
+                if (expansion.firstEdition != null) {
+                    set.addAll(cardDao.getCardsByExpansion(expansion.firstEdition!!.id))
+                }
+                if (expansion.secondEdition != null) {
+                    set.addAll(cardDao.getCardsByExpansion(expansion.secondEdition.id))
+                }
             }
         }
 
