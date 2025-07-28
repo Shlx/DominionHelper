@@ -10,6 +10,7 @@ import com.example.dominionhelper.ui.VetoMode
 object Constants {
 
     // UI TODO - SORT
+    val PADDING_MINI = 4.dp
     val PADDING_SMALL = 8.dp
     val PADDING_MEDIUM = 16.dp
     val ICON_SIZE = 35.dp

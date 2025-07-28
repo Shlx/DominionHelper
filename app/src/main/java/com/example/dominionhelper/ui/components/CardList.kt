@@ -35,7 +35,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.RemoveCircle
 import androidx.compose.material.icons.outlined.RemoveCircleOutline
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -69,6 +68,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle.Companion.Italic
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -92,7 +92,7 @@ fun CardList(
     cardList: List<Card>,
     includeEditionSelection: Boolean = false,
     selectedEdition: OwnedEdition,
-    onEditionSelected: (Int) -> Unit,
+    onEditionSelected: (Int, OwnedEdition) -> Unit,
     onCardClick: (Card) -> Unit,
     onToggleEnable: (Card) -> Unit,
     listState: LazyListState = rememberLazyListState(),
@@ -125,7 +125,7 @@ fun CardList(
 
 @Composable
 fun EditionSelectionButtons(
-    onEditionSelected: (Int) -> Unit,
+    onEditionSelected: (Int, OwnedEdition) -> Unit,
     selectedEdition: OwnedEdition = OwnedEdition.FIRST
 ) {
     Row(
@@ -135,8 +135,8 @@ fun EditionSelectionButtons(
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         Button(
-            onClick = { onEditionSelected(1) },
-            colors = if (selectedEdition == OwnedEdition.FIRST) {
+            onClick = { onEditionSelected(1, selectedEdition) },
+            colors = if (selectedEdition == OwnedEdition.FIRST || selectedEdition == OwnedEdition.BOTH) {
                 ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.primary,
                     contentColor = MaterialTheme.colorScheme.onPrimary
@@ -151,8 +151,8 @@ fun EditionSelectionButtons(
             Text("1st Edition")
         }
         Button(
-            onClick = { onEditionSelected(2) },
-            colors = if (selectedEdition == OwnedEdition.SECOND) {
+            onClick = { onEditionSelected(2, selectedEdition) },
+            colors = if (selectedEdition == OwnedEdition.SECOND || selectedEdition == OwnedEdition.BOTH) {
                 ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.primary,
                     contentColor = MaterialTheme.colorScheme.onPrimary
@@ -211,14 +211,19 @@ fun KingdomList(
             }
 
             // LANDSCAPE CARDS
-            items(
-                items = kingdom.landscapeCards.keys.toList(),
-                key = { card -> card.id }
-            ) { card ->
-                if (isDismissEnabled)
-                    DismissableCard(card, onCardDismissed, onCardClick, Modifier.animateItem())
-                else {
-                    CardView(card, onCardClick, showIcon = true, kingdom.landscapeCards[card]!!)
+            if (kingdom.hasLandscapeCards()) {
+                item {
+                    CardSpacer("Landscape Cards")
+                }
+                items(
+                    items = kingdom.landscapeCards.keys.toList(),
+                    key = { card -> card.id }
+                ) { card ->
+                    if (isDismissEnabled)
+                        DismissableCard(card, onCardDismissed, onCardClick, Modifier.animateItem())
+                    else {
+                        CardView(card, onCardClick, showIcon = true, kingdom.landscapeCards[card]!!)
+                    }
                 }
             }
 
@@ -473,70 +478,81 @@ fun CardImage(card: Card) {
 
 @Composable
 fun CardLabels(card: Card, amount: Int, modifier: Modifier) {
-        Column(
-            modifier = modifier
-                .fillMaxHeight()
-                .padding(horizontal = 4.dp, vertical = 12.dp)
-        ) {
-            Text(
-                text = card.name + if (amount > 1) " x$amount" else "",
-                fontSize = Constants.CARD_NAME_FONT_SIZE
-            )
-            Spacer(modifier = Modifier.weight(1f))
+    Column(
+        modifier = modifier
+            .fillMaxHeight()
+            .padding(horizontal = 4.dp, vertical = 12.dp)
+    ) {
+        Text(
+            text = card.name + if (amount > 1) " x$amount" else "",
+            fontSize = Constants.CARD_NAME_FONT_SIZE
+        )
+        Spacer(modifier = Modifier.weight(1f))
 
-            // TODO: Dirty
-            if (card.types.contains(Type.PROPHECY)) {
-                CardTypeText("Prophecy")
-            } else if (card.types.contains(Type.LANDMARK)) {
-                CardTypeText("Landmark")
-            } else if (card.types.contains(Type.TRAIT)) {
-                CardTypeText("Trait")
-            } else if (card.types.contains(Type.ALLY)) {
-                CardTypeText("Ally")
-            } else if (card.types.contains(Type.WAY)) {
-                CardTypeText("Way")
-            } else if (card.types.contains(Type.ARTIFACT)) {
-                CardTypeText("Artifact")
-            } else if (card.types.contains(Type.STATE)) {
-                CardTypeText("State")
-            } else if (card.types.contains(Type.HEX)) {
-                CardTypeText("Hex")
-            } else if (card.types.contains(Type.BOON)) {
-                CardTypeText("Boon")
-            } else if (card.types.contains(Type.LOOT)) {
-                CardTypeText("Loot")
-            } else {
-                Row {
-                    if (card.cost > 0) {
-                        NumberCircle(card.cost)
-                    }
-                    if (card.debt > 0) {
-                        if (card.cost > 0 || card.potion) {
-                            Spacer(modifier = Modifier.padding(4.dp))
-                        }
-                        NumberHexagon(card.debt)
-                    }
-                    if (card.potion) {
-                        if (card.cost > 0) {
-                            Spacer(modifier = Modifier.padding(4.dp))
-                        }
-                        Image(
-                            painter = painterResource(id = R.drawable.set_alchemy),
-                            contentDescription = "Tinted Image",
-                            colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.secondaryContainer),
-                            modifier = Modifier.size(22.dp).offset(y = 1.dp)
-                        )
-                    }
+        Row {
+            var previousElementExists = false
+
+            @Composable
+            fun ConditionalSpacer(width: Dp) {
+                if (previousElementExists) {
+                    Spacer(modifier = Modifier.width(width)) // Use width for horizontal spacing
                 }
             }
+
+            if (card.cost > 0) {
+                NumberCircle(number = card.cost)
+                previousElementExists = true
+            }
+
+            if (card.debt > 0) {
+                ConditionalSpacer(Constants.PADDING_MINI)
+                NumberHexagon(number = card.debt)
+                previousElementExists = true
+            }
+
+            if (card.potion) {
+                ConditionalSpacer(Constants.PADDING_MINI)
+                Image(
+                    painter = painterResource(id = R.drawable.set_alchemy),
+                    contentDescription = "Tinted Image",
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.secondaryContainer),
+                    modifier = Modifier.size(22.dp).offset(y = 1.dp)
+                )
+                previousElementExists = true
+            }
+
+            if (card.landscape) {
+                ConditionalSpacer(Constants.PADDING_SMALL)
+                LandscapeCardTypeText(card)
+            }
+        }
     }
 }
 
 // Display the type of landscape cards
 @Composable
-fun CardTypeText(text: String) {
+fun LandscapeCardTypeText(card: Card) {
+
+    val text = card.types.firstNotNullOfOrNull { type ->
+        when (type) {
+            Type.PROPHECY -> "Prophecy"
+            Type.LANDMARK -> "Landmark"
+            Type.TRAIT -> "Trait"
+            Type.ALLY -> "Ally"
+            Type.WAY -> "Way"
+            Type.ARTIFACT -> "Artifact"
+            Type.STATE -> "State"
+            Type.HEX -> "Hex"
+            Type.BOON -> "Boon"
+            Type.LOOT -> "Loot"
+            Type.EVENT -> "Event"
+            Type.PROJECT -> "Project"
+            else -> ""
+        }
+    }
+
     Text(
-        text = text,
+        text = text?: "",
         fontSize = Constants.TEXT_SMALL,
         color = MaterialTheme.colorScheme.secondary,
         fontStyle = Italic

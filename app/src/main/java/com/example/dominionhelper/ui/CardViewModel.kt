@@ -26,6 +26,14 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+enum class UiScreenState {
+    SHOWING_EXPANSIONS,
+    SHOWING_EXPANSION_CARDS,
+    SHOWING_KINGDOM,
+    SHOWING_SEARCH_RESULTS,
+    SHOWING_CARD_DETAIL
+ }
+
 @HiltViewModel
 class CardViewModel @Inject constructor(
     private val cardDao: CardDao,
@@ -33,6 +41,11 @@ class CardViewModel @Inject constructor(
     private val kingdomGenerator: KingdomGenerator,
     private val userPrefsRepository: UserPrefsRepository
 ) : ViewModel() {
+
+    // Variable for tracking the current state
+    private val _uiScreenState = MutableStateFlow(UiScreenState.SHOWING_EXPANSIONS)
+    val uiScreenState: StateFlow<UiScreenState> = _uiScreenState.asStateFlow()
+    private var lastState: UiScreenState = UiScreenState.SHOWING_EXPANSIONS
 
     // Expansion variables
     private val _expansionsWithEditions = MutableStateFlow<List<ExpansionWithEditions>>(emptyList())
@@ -45,12 +58,9 @@ class CardViewModel @Inject constructor(
     private val _selectedEdition = MutableStateFlow(OwnedEdition.NONE)
     val selectedEdition: StateFlow<OwnedEdition> = _selectedEdition.asStateFlow()
 
-    // Card variables
-    private val _cardsToShow = MutableStateFlow(false)
-    val cardsToShow: StateFlow<Boolean> = _cardsToShow.asStateFlow()
-
-    private val _expansionCards = MutableStateFlow<List<Card>>(emptyList())
-    val expansionCards: StateFlow<List<Card>> = _expansionCards.asStateFlow()
+    // Card / Kingdom variables
+    private val _cardsToShow = MutableStateFlow<List<Card>>(emptyList())
+    val cardsToShow: StateFlow<List<Card>> = _cardsToShow.asStateFlow()
 
     private val _kingdom = MutableStateFlow(Kingdom())
     val kingdom: StateFlow<Kingdom> = _kingdom.asStateFlow()
@@ -76,7 +86,6 @@ class CardViewModel @Inject constructor(
     private val _errorMessage = MutableStateFlow<String?>(null)
     val errorMessage: StateFlow<String?> = _errorMessage.asStateFlow()
 
-    // TODO: Does this work? Does it load from prefs even if we don't change it?
     val vetoMode: StateFlow<VetoMode> = userPrefsRepository.vetoMode
         .stateIn(
             scope = viewModelScope,
@@ -96,15 +105,21 @@ class CardViewModel @Inject constructor(
     )
 
     val topBarTitle: StateFlow<String> = combine(
+        uiScreenState,
         selectedExpansion,
+        selectedCard,
         cardsToShow
-    ) { selectedExpansion, cardsToShow ->
-        if (selectedExpansion != null) {
-            selectedExpansion.name + " " + getEnabledCardAmount(selectedExpansion)
-        } else if (cardsToShow) {
-            "Generated Kingdom"
-        } else {
-            "Dominion Helper"
+    ) { uiScreenState, selectedExpansion, selectedCard, cardsToShow ->
+        when (uiScreenState) {
+            UiScreenState.SHOWING_EXPANSIONS -> "Dominion Helper"
+            UiScreenState.SHOWING_EXPANSION_CARDS -> {
+                selectedExpansion?.let { expansion ->
+                    "${expansion.name} ${getEnabledCardAmount(cardsToShow)}"
+                } ?: "Cards"
+            }
+            UiScreenState.SHOWING_KINGDOM -> "Generated Kingdom"
+            UiScreenState.SHOWING_SEARCH_RESULTS -> "Search Results" // I think this isn't shown
+            UiScreenState.SHOWING_CARD_DETAIL -> selectedCard?.name ?: "Details"
         }
     }.stateIn(
         scope = viewModelScope,
@@ -117,6 +132,7 @@ class CardViewModel @Inject constructor(
     }
 
     // Load all expansions and their editions, grouped by name
+    // TODO the expansion and edition entity is ass
     private fun loadExpansionsWithEditions() {
         viewModelScope.launch {
             expansionDao.getAll().collect { allExpansions ->
@@ -209,7 +225,6 @@ class CardViewModel @Inject constructor(
             }
 
             // Update the object
-            // TODO: Understand this
             _expansionsWithEditions.value = _expansionsWithEditions.value.map {
                 if (it.name == expansion.name) {
                     when (expansion.edition) {
@@ -247,7 +262,30 @@ class CardViewModel @Inject constructor(
         }
     }
 
-    fun whichEditionIsOwned(expansion: ExpansionWithEditions): OwnedEdition {
+    /////////////////////////
+    // Expansion functions //
+    /////////////////////////
+
+    fun selectExpansion(expansion: ExpansionWithEditions) {
+        viewModelScope.launch {
+
+            val ownedEditions = whichEditionIsOwned(expansion)
+            val set = getCardsFromOwnedEditions(expansion, ownedEditions)
+            _cardsToShow.value = sortCards(set.toList())
+
+            Log.d(
+                "CardViewModel",
+                "Loaded ${_cardsToShow.value.size} cards for expansion ${expansion.name}"
+            )
+
+            _selectedExpansion.value = expansion
+            _selectedEdition.value = ownedEditions
+            _uiScreenState.value = UiScreenState.SHOWING_EXPANSION_CARDS
+            Log.d("CardViewModel", "Selected ${expansion.name}")
+        }
+    }
+
+    private fun whichEditionIsOwned(expansion: ExpansionWithEditions): OwnedEdition {
 
         if (expansion.firstEdition?.isOwned == true) {
             if (expansion.secondEdition?.isOwned == true) {
@@ -261,84 +299,76 @@ class CardViewModel @Inject constructor(
         }
     }
 
-    // Expansion functions
-    fun selectExpansion(expansion: ExpansionWithEditions) {
-        _selectedExpansion.value = expansion
-        _selectedEdition.value = whichEditionIsOwned(expansion)
-        Log.d("CardViewModel", "Selected ${expansion.name}")
+    private suspend fun getCardsFromOwnedEditions(expansion: ExpansionWithEditions, ownedEdition: OwnedEdition): Set<Card> {
+
+        val set = mutableSetOf<Card>()
+
+        when (ownedEdition) {
+            OwnedEdition.FIRST -> {
+                set.addAll(cardDao.getCardsByExpansion(expansion.firstEdition!!.id))
+            }
+
+            OwnedEdition.SECOND ->  {
+                set.addAll(cardDao.getCardsByExpansion(expansion.secondEdition!!.id))
+            }
+
+            else -> {
+                set.addAll(cardDao.getCardsByExpansion(expansion.firstEdition!!.id))
+                set.addAll(cardDao.getCardsByExpansion(expansion.secondEdition!!.id))
+            }
+        }
+
+        return set
     }
 
     fun clearSelectedExpansion() {
         _selectedExpansion.value = null
-        _expansionCards.value = emptyList()
+        _cardsToShow.value = emptyList()
+        _uiScreenState.value = UiScreenState.SHOWING_EXPANSIONS
         Log.d("CardViewModel", "Cleared selected expansion")
     }
 
-    // TODO: vgl. loadCardsByExpansion
     // When edition selector in CardList is pressed
-    fun selectEdition(expansion: ExpansionWithEditions, editionNumber: Int) {
+    fun selectEdition(expansion: ExpansionWithEditions, clickedEditionNumber: Int, currentOwnedEdition: OwnedEdition) {
         viewModelScope.launch {
-            if (editionNumber == 1) {
-                _expansionCards.value =
-                    sortCards(cardDao.getCardsByExpansion(expansion.firstEdition!!.id))
-                _selectedEdition.value = OwnedEdition.FIRST
+
+            val newSelectedEdition: OwnedEdition
+
+            if (clickedEditionNumber == 1) {
+                newSelectedEdition = when (currentOwnedEdition) {
+                    OwnedEdition.NONE -> OwnedEdition.FIRST
+                    OwnedEdition.FIRST -> OwnedEdition.FIRST
+                    OwnedEdition.SECOND -> OwnedEdition.BOTH
+                    OwnedEdition.BOTH -> OwnedEdition.SECOND
+                }
+
             } else {
-                _expansionCards.value =
-                    sortCards(cardDao.getCardsByExpansion(expansion.secondEdition!!.id))
-                _selectedEdition.value = OwnedEdition.SECOND
+                newSelectedEdition = when (currentOwnedEdition) {
+                    OwnedEdition.NONE -> OwnedEdition.SECOND
+                    OwnedEdition.FIRST -> OwnedEdition.BOTH
+                    OwnedEdition.SECOND -> OwnedEdition.SECOND
+                    OwnedEdition.BOTH -> OwnedEdition.FIRST
+                }
             }
-            Log.d("CardViewModel", "Selected edition $editionNumber for ${expansion.name}")
+
+            val set = getCardsFromOwnedEditions(expansion, newSelectedEdition)
+            _cardsToShow.value = sortCards(set.toList())
+            _selectedEdition.value = newSelectedEdition
+            Log.d("CardViewModel", "Selected edition $clickedEditionNumber for ${expansion.name} -> $currentOwnedEdition")
         }
     }
 
     fun selectEdition(expansion: Expansion) {
         viewModelScope.launch {
-            _expansionCards.value =
+            _cardsToShow.value =
                 sortCards(cardDao.getCardsByExpansion(expansion.id))
             // We need to set these, so we need ExpansionWithEditions here. But also an int for the clicked edition
             //_selectedExpansion.value = expansion
             //_selectedEdition.value = whichEditionIsOwned(expansion)
-            _cardsToShow.value = true
+            //_uiScreenState.value = UiScreenState.SHOWING_EXPANSION_CARDS
+
             Log.d("CardViewModel", "Selected edition ${expansion.name}")
         }
-    }
-
-    // TODO: vgl. selectEdition
-    // When expansion is selected
-    fun loadCardsByExpansion(expansion: ExpansionWithEditions) {
-
-        viewModelScope.launch {
-
-            if (expansion.firstEdition?.isOwned == true) {
-                _expansionCards.value =
-                    sortCards(cardDao.getCardsByExpansion(expansion.firstEdition.id))
-            } else if (expansion.secondEdition?.isOwned == true) {
-                _expansionCards.value =
-                    sortCards(cardDao.getCardsByExpansion(expansion.secondEdition.id))
-            } else {
-                // If neither or both editions are owned, show all cards
-                val set = mutableSetOf<Card>()
-                if (expansion.firstEdition != null) {
-                    set.addAll(cardDao.getCardsByExpansion(expansion.firstEdition.id))
-                }
-                if (expansion.secondEdition != null) {
-                    set.addAll(cardDao.getCardsByExpansion(expansion.secondEdition.id))
-                }
-                _expansionCards.value = sortCards(set.toList())
-            }
-
-            _cardsToShow.value = true
-            Log.d(
-                "CardViewModel",
-                "Loaded ${_expansionCards.value.size} cards for expansion ${expansion.name}"
-            )
-        }
-    }
-
-    suspend fun getEnabledCardAmount(expansion: ExpansionWithEditions): String {
-        val totalCards = cardDao.getTotalCardAmountForExpansion(expansion.firstEdition!!.id)
-        val enabledCards = cardDao.getEnabledCardAmountForExpansion(expansion.firstEdition.id)
-        return "($enabledCards / $totalCards)"
     }
 
     fun expansionHasTwoEditions(expansion: ExpansionWithEditions): Boolean {
@@ -347,11 +377,14 @@ class CardViewModel @Inject constructor(
 
     fun selectCard(card: Card) {
         _selectedCard.value = card
+        lastState = _uiScreenState.value
+        _uiScreenState.value = UiScreenState.SHOWING_CARD_DETAIL
         Log.d("CardViewModel", "Selected card ${card.name}")
     }
 
     fun clearSelectedCard() {
         _selectedCard.value = null
+        _uiScreenState.value = lastState
         Log.d("CardViewModel", "Cleared selected card")
     }
 
@@ -378,14 +411,14 @@ class CardViewModel @Inject constructor(
                 changeSearchText("")
             }
 
-            _cardsToShow.value = true
+            _uiScreenState.value = UiScreenState.SHOWING_KINGDOM
         }
     }
 
     fun clearAllCards() {
-        _expansionCards.value = emptyList()
+        _cardsToShow.value = emptyList()
         _kingdom.value = Kingdom()
-        _cardsToShow.value = false
+        _uiScreenState.value = UiScreenState.SHOWING_EXPANSIONS
         Log.d("CardViewModel", "Cleared all cards")
     }
 
@@ -423,7 +456,7 @@ class CardViewModel @Inject constructor(
         // TODO: Only sort what's appropriate
 
         // Sort expansion list
-        _expansionCards.value = sortCards(_expansionCards.value)
+        _cardsToShow.value = sortCards(_cardsToShow.value)
 
         // Sort kingdom lists
         val sortedRandomCards = sortCards(kingdom.randomCards)
@@ -452,7 +485,6 @@ class CardViewModel @Inject constructor(
     fun toggleSearch() {
         _searchActive.value = !_searchActive.value
         if (!_searchActive.value) {
-            _cardsToShow.value = false
             clearSelectedExpansion()
             clearSearchText()
         }
@@ -471,12 +503,13 @@ class CardViewModel @Inject constructor(
 
     fun searchCards(newText: String) {
         viewModelScope.launch {
-            // TODO: _expansionCards is also responsible for search results, which is weird
-            _expansionCards.value = sortCards(cardDao.getFilteredCards("%$newText%"))
-            _cardsToShow.value = true
+
+            _cardsToShow.value = sortCards(cardDao.getFilteredCards("%$newText%"))
+            _uiScreenState.value = UiScreenState.SHOWING_SEARCH_RESULTS
+
             Log.d(
                 "CardViewModel",
-                "Searched for $newText, search results: ${_expansionCards.value.size}"
+                "Searched for $newText, search results: ${_cardsToShow.value.size}"
             )
         }
     }
@@ -558,7 +591,7 @@ class CardViewModel @Inject constructor(
             cardDao.toggleCardEnabled(card.id, newIsEnabledState)
 
             // Update object
-            _expansionCards.value = _expansionCards.value.map { c ->
+            _cardsToShow.value = _cardsToShow.value.map { c ->
                 if (c.id == card.id) {
                     c.copy(isEnabled = newIsEnabledState)
                 } else {
@@ -570,65 +603,108 @@ class CardViewModel @Inject constructor(
         }
     }
 
-    // TODO Check for landscape cards
     fun onCardDismissed(dismissedCard: Card) {
 
-        // Check if the card to be dismissed is actually present
         val currentKingdom = _kingdom.value
-        if (!currentKingdom.randomCards.containsKey(dismissedCard)) {
+
+        // Check if the card to be dismissed is actually present
+        // (only random and landscape cards are dismissable)
+        if (!currentKingdom.randomCards.containsKey(dismissedCard)
+            && !currentKingdom.landscapeCards.containsKey(dismissedCard)
+        ) {
             Log.w(
                 "CardViewModel",
-                "Attempted to dismiss card '${dismissedCard.name}' not found in the current kingdom's random cards."
+                "Attempted to dismiss card '${dismissedCard.name}' not found in the current kingdom."
             )
             return
         }
 
         Log.i("CardViewModel", "Dismissing card '${dismissedCard.name}' from the kingdom.")
+
         viewModelScope.launch {
 
             if (vetoMode.first() == VetoMode.NO_REROLL) {
-
-                Log.i("CardViewModel", "Not replacing.")
-                _kingdom.update { currentKingdom ->
-                    val updatedRandomCards = currentKingdom.randomCards.toMutableMap().apply {
-                        remove(dismissedCard)
-                    }.toMap()
-                    currentKingdom.copy(randomCards = LinkedHashMap(updatedRandomCards))
-                }
-
+                handleNoRerollDismissal(dismissedCard, dismissedCard.landscape)
             } else {
-
-                val originalRandomCards = currentKingdom.randomCards
-                val cardsToExclude = originalRandomCards.keys.toMutableSet()
-
-                // Replace the dismissed card
-                val newCard = kingdomGenerator.replaceCardInKingdom(dismissedCard, cardsToExclude)
-
-                if (newCard == null) {
-
-                    // If no replacement is found, do nothing and display an error
-                    Log.e("CardViewModel", "Failed to generate a replacement card.")
-                    triggerError("Could not find a replacement card.")
-                } else {
-
-                    Log.i(
-                        "CardViewModel",
-                        "Added new random card '${newCard.name}' to replace dismissed card."
-                    )
-                    _kingdom.update { kingdom ->
-                        kingdom.copy(
-                            randomCards = insertOrReplaceAtKeyPosition(
-                                map = originalRandomCards,
-                                targetKey = dismissedCard,
-                                newKey = newCard,
-                                newValue = 1
-                            )
-                        )
-                    }
-                }
+                handleRerollDismissal(dismissedCard, currentKingdom, dismissedCard.landscape)
             }
         }
     }
+
+    private fun handleNoRerollDismissal(
+        dismissedCard: Card,
+        wasLandscape: Boolean
+    ) {
+        Log.i(
+            "CardViewModel",
+            "VetoMode is NO_REROLL. Removing '${dismissedCard.name}' without replacement."
+        )
+        _kingdom.update { currentKingdom ->
+            when {
+                wasLandscape -> currentKingdom.copy(
+                    landscapeCards = LinkedHashMap(
+                        currentKingdom.landscapeCards.toMutableMap()
+                            .apply { remove(dismissedCard) })
+                )
+
+                else -> currentKingdom.copy(
+                    randomCards = LinkedHashMap(
+                        currentKingdom.randomCards.toMutableMap()
+                            .apply { remove(dismissedCard) })
+                )
+            }
+        }
+    }
+
+    private suspend fun handleRerollDismissal(
+        dismissedCard: Card,
+        kingdomSnapshot: Kingdom,
+        wasLandscape: Boolean
+    ) {
+        // Determine which list to use for exclusion and replacement target
+        val originalCardsMap =
+            if (wasLandscape) kingdomSnapshot.landscapeCards else kingdomSnapshot.randomCards
+        val cardsToExclude = originalCardsMap.keys.toMutableSet()
+
+        val newCard = kingdomGenerator.replaceCardInKingdom(dismissedCard, cardsToExclude)
+
+        if (newCard == null) {
+            Log.e(
+                "CardViewModel",
+                "Failed to generate a replacement card for '${dismissedCard.name}'."
+            )
+            triggerError("Could not find a replacement card.")
+            return
+        }
+
+        Log.i("CardViewModel", "Replaced '${dismissedCard.name}' with '${newCard.name}'.")
+        _kingdom.update { currentKingdom ->
+            if (newCard.landscape) {
+                currentKingdom.copy(
+                    landscapeCards = insertOrReplaceAtKeyPosition(
+                        map = kingdomSnapshot.landscapeCards,
+                        targetKey = dismissedCard,
+                        newKey = newCard,
+                        newValue = 1
+                    )
+                )
+            } else {
+                currentKingdom.copy(
+                    randomCards = insertOrReplaceAtKeyPosition(
+                        map = kingdomSnapshot.randomCards,
+                        targetKey = dismissedCard,
+                        newKey = newCard,
+                        newValue = 1
+                    )
+                )
+            }
+        }
+    }
+}
+
+private fun getEnabledCardAmount(cards: List<Card>): String {
+    val enabledCount = cards.count { it.isEnabled }
+    return "(${enabledCount}/${cards.size})"
 }
 
 enum class SortType(val text: String) {

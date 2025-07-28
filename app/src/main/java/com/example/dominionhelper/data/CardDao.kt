@@ -86,7 +86,7 @@ interface CardDao {
         INNER JOIN expansions AS e ON c.sets LIKE '%' || e.id || '%'
         WHERE e.isOwned
         AND c.isEnabled = 1
-        AND c.landscape = 0
+        AND c.landscape = :isLandscape
         AND c.basic = 0
         AND c.supply = 1
         AND c.id NOT IN (:excludedCards)
@@ -94,7 +94,7 @@ interface CardDao {
         LIMIT 1
     """
     )
-    suspend fun getSingleCardFromOwnedExpansionsWithExceptions(excludedCards: Set<Int>): Card?
+    suspend fun getSingleCardFromOwnedExpansionsWithExceptions(excludedCards: Set<Int>, isLandscape: Boolean): Card?
 
     @Query(
         """
@@ -107,7 +107,7 @@ interface CardDao {
             )
         AND e.isOwned
         AND c.isEnabled = 1
-        AND c.landscape = 0
+        AND c.landscape = :isLandscape
         AND c.basic = 0
         AND c.supply = 1
         AND c.id NOT IN (:excludedCards)
@@ -118,7 +118,8 @@ interface CardDao {
     suspend fun getSingleCardFromExpansionWithExceptions(
         set1: String,
         set2: String?,
-        excludedCards: Set<Int>
+        excludedCards: Set<Int>,
+        isLandscape: Boolean
     ): Card?
 
     @Query("UPDATE cards SET isEnabled = :isEnabled WHERE id = :cardId")

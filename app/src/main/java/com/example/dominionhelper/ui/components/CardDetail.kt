@@ -3,6 +3,7 @@ package com.example.dominionhelper.ui.components
 import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -31,7 +32,8 @@ import com.example.dominionhelper.utils.getDrawableId
 fun CardDetailPager(
     modifier: Modifier = Modifier,
     cardList: List<Card>,
-    initialCard: Card
+    initialCard: Card,
+    onClick: () -> Unit
 ) {
     val initialIndex = findIndexOfReference(cardList, initialCard)
     val pagerState =
@@ -45,18 +47,23 @@ fun CardDetailPager(
 
             // Display the card for the current page
             Log.i("CardDetailPager", "Displaying ${cardList[page].name}, Index $initialIndex")
-            CardDetail(card = cardList[page])
+            CardDetail(card = cardList[page], onClick = onClick)
         }
     }
 }
 
 // Show a detail view of a single card
 @Composable
-fun CardDetail(card: Card) {
+fun CardDetail(card: Card, onClick: () -> Unit) {
     val drawableId = getDrawableId(LocalContext.current, card.imageName)
 
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .clickable {
+                Log.d("CardDetail", "CardDetail Column clicked!") // For debugging
+                onClick()
+            },
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {

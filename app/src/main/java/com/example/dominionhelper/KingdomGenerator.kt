@@ -30,6 +30,10 @@ data class Kingdom(
         return dependentCards.isNotEmpty()
     }
 
+    fun hasLandscapeCards(): Boolean {
+        return landscapeCards.isNotEmpty()
+    }
+
     fun isEmpty(): Boolean {
         return randomCards.isEmpty() && basicCards.isEmpty() && dependentCards.isEmpty() && startingCards.isEmpty() && landscapeCards.isEmpty()
     }
@@ -187,8 +191,8 @@ class KingdomGenerator @Inject constructor(
     }
 
     suspend fun getLandscapeCards(): LinkedHashMap<Card, Int> {
-        // Find way to generate DIFFERENT landscape types
-        val cards = cardDao.getRandomCardsFromOwnedExpansions(2)
+        // TODO Find way to generate DIFFERENT landscape types (from the same expansion), also when dismissing
+        val cards = cardDao.getRandomLandscapeCardsFromOwnedExpansions(2)
         return listToMap(cards)
     }
 
@@ -197,18 +201,19 @@ class KingdomGenerator @Inject constructor(
         cardsToExclude: kotlin.collections.Set<Card>
     ): Card? {
 
+        val isLandscape = cardToRemove.landscape
         val newCard: Card? = when (userPrefsRepository.vetoMode.first()) {
 
             // Reroll from the same expansion
             VetoMode.REROLL_SAME -> {
                 Log.i("KingdomGenerator", "Rerolling from the same expansion.")
-                generateSingleRandomCardFromExpansion(cardToRemove.sets, cardsToExclude)
+                generateSingleRandomCardFromExpansion(cardToRemove.sets, cardsToExclude, isLandscape)
             }
 
             // Reroll from any owned expansions
             VetoMode.REROLL_ANY -> {
                 Log.i("KingdomGenerator", "Rerolling from any expansions.")
-                generateSingleRandomCard(cardsToExclude)
+                generateSingleRandomCard(cardsToExclude, isLandscape)
             }
 
             // TODO: Veto mode NO_REROLL is checked beforehand. This is kind of messy tho.
@@ -222,42 +227,38 @@ class KingdomGenerator @Inject constructor(
         return newCard
     }
 
-    suspend fun generateSingleRandomCard(excludeCards: kotlin.collections.Set<Card> = emptySet()): Card? {
+    suspend fun generateSingleRandomCard(excludeCards: kotlin.collections.Set<Card> = emptySet(), isLandscape: Boolean): Card? {
         val excludedCardIds = excludeCards.map { it.id }.toSet()
 
         Log.i("Kingdom Generator", "Generating random card from owned Expansions")
-        return cardDao.getSingleCardFromOwnedExpansionsWithExceptions(excludedCardIds)
+        return cardDao.getSingleCardFromOwnedExpansionsWithExceptions(excludedCardIds, isLandscape)
     }
 
     suspend fun generateSingleRandomCardFromExpansion(
         sets: List<Set>,
-        excludeCards: kotlin.collections.Set<Card> = emptySet()
+        excludeCards: kotlin.collections.Set<Card> = emptySet(),
+        isLandscape: Boolean
     ): Card? {
         val excludedCardIds = excludeCards.map { it.id }.toSet()
 
-        when (sets.size) {
-            2 -> {
-                Log.i(
-                    "Kingdom Generator",
-                    "Generating random card from ${sets[0].name} and ${sets[1].name}"
-                )
-                return cardDao.getSingleCardFromExpansionWithExceptions(
-                    sets[0].name,
-                    sets[1].name,
-                    excludedCardIds
-                )
-            }
+        val setName1: String? = sets.getOrNull(0)?.name
+        val setName2: String? = sets.getOrNull(1)?.name
 
-            1 -> {
-                Log.i("Kingdom Generator", "Generating random card from ${sets[0].name}")
-                return cardDao.getSingleCardFromExpansionWithExceptions(
-                    sets[0].name,
-                    null,
-                    excludedCardIds
-                )
-            }
+        return if (setName1 != null) {
+            val logMessage = "Generating random card from $setName1" +
+                    (if (setName2 != null) " and $setName2" else "")
+            Log.i("Kingdom Generator", logMessage)
 
-            else -> return null
+            cardDao.getSingleCardFromExpansionWithExceptions(
+                setName1,
+                setName2,
+                excludedCardIds,
+                isLandscape
+            )
+        } else {
+            // No sets provided (sets list was empty), or set names were null
+            Log.w("Kingdom Generator", "Cannot generate card: No valid sets provided.")
+            null
         }
     }
 

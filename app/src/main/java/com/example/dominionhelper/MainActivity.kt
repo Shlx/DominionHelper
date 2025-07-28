@@ -36,9 +36,11 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.dominionhelper.model.OwnedEdition
 import com.example.dominionhelper.ui.components.CardDetailPager
 import com.example.dominionhelper.ui.components.CardList
 import com.example.dominionhelper.ui.CardViewModel
+import com.example.dominionhelper.ui.UiScreenState
 import com.example.dominionhelper.ui.components.DrawerContent
 import com.example.dominionhelper.ui.components.ExpansionList
 import com.example.dominionhelper.ui.components.KingdomList
@@ -130,6 +132,14 @@ import kotlinx.coroutines.launch
 // Vetoing the last card looks weird
 // 1st edition of Cornucopia has 2nd edition cards (at least Rewards)
 
+// Back arrow in top bar, generell überdenken. Macht nur Sinn wenn die view betitelt werden muss
+//Fab rund?
+//Player Count Auswahl weiterunten
+//Crashlytics (firebase)
+//League of Shopkeepers, way of the chameleon too long
+// Show 0 cost? It's different than {} cost
+// In expansion view: if both edition are shown, show icon or text on each card
+
 
 // I think list state is shared between search / expansion and random cards (doesn't reset)
 // -> Seems fine between expansion and random cards, expansion to search needs to reset
@@ -165,12 +175,13 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainView(cardViewModel: CardViewModel) {
 
+    val uiState by cardViewModel.uiScreenState.collectAsStateWithLifecycle()
+
     val expansionsWithEditions by cardViewModel.expansionsWithEditions.collectAsStateWithLifecycle()
     val selectedExpansion by cardViewModel.selectedExpansion.collectAsStateWithLifecycle()
     val selectedEdition by cardViewModel.selectedEdition.collectAsStateWithLifecycle()
 
     val cardsToShow by cardViewModel.cardsToShow.collectAsStateWithLifecycle()
-    val expansionCards by cardViewModel.expansionCards.collectAsStateWithLifecycle()
     val kingdom by cardViewModel.kingdom.collectAsStateWithLifecycle()
     val selectedCard by cardViewModel.selectedCard.collectAsStateWithLifecycle()
 
@@ -199,6 +210,7 @@ fun MainView(cardViewModel: CardViewModel) {
     val snackbarHostState = remember { SnackbarHostState() }
 
     // TODO: Center this message?
+    // To display error messages
     LaunchedEffect(errorMessage) {
         errorMessage?.let { message ->
             applicationScope.launch {
@@ -212,7 +224,7 @@ fun MainView(cardViewModel: CardViewModel) {
     }
 
     // Handle back gesture according to state
-    BackHandler(enabled = drawerState.isOpen || isSearchActive || cardsToShow) {
+    BackHandler(enabled = uiState != UiScreenState.SHOWING_EXPANSIONS) {
 
         when {
             drawerState.isOpen -> applicationScope.launch {
@@ -220,20 +232,8 @@ fun MainView(cardViewModel: CardViewModel) {
                 drawerState.close()
             }
 
-            selectedCard != null -> {
-                Log.i("BackHandler", "Deselect card -> Return to card list")
-                cardViewModel.clearSelectedCard()
-            }
-
-            isSearchActive -> {
-                Log.i("BackHandler", "Deactivate search")
-                cardViewModel.toggleSearch() // -> Deactivate search?
-                cardViewModel.changeSearchText("")
-                cardViewModel.clearAllCards()
-            }
-
-            cardsToShow -> {
-                Log.i("BackHandler", "Leave card list -> Return to expansion list")
+            uiState == UiScreenState.SHOWING_EXPANSION_CARDS -> {
+                Log.i("BackHandler", "Leave expansion list -> Return to expansion list")
                 cardViewModel.clearAllCards()
                 cardViewModel.clearSelectedExpansion()
 
@@ -241,6 +241,29 @@ fun MainView(cardViewModel: CardViewModel) {
                 applicationScope.launch {
                     cardListState.scrollToItem(0)
                 }
+            }
+
+            uiState == UiScreenState.SHOWING_KINGDOM -> {
+                Log.i("BackHandler", "Leave kingdom -> Return to expansion list")
+                cardViewModel.clearAllCards()
+                cardViewModel.clearSelectedExpansion()
+
+                // Return to top
+                applicationScope.launch {
+                    cardListState.scrollToItem(0)
+                }
+            }
+
+            uiState == UiScreenState.SHOWING_SEARCH_RESULTS -> {
+                Log.i("BackHandler", "Deactivate search")
+                cardViewModel.toggleSearch() // -> Deactivate search?
+                cardViewModel.changeSearchText("")
+                cardViewModel.clearAllCards()
+            }
+
+            uiState == UiScreenState.SHOWING_CARD_DETAIL -> {
+                Log.i("BackHandler", "Deselect card -> Return to card list")
+                cardViewModel.clearSelectedCard()
             }
         }
     }
@@ -301,78 +324,102 @@ fun MainView(cardViewModel: CardViewModel) {
                 }
             }
 
-            when {
-
-                // Detail view
-                selectedCard != null -> {
-                    Log.i("MainView", "View card detail (${selectedCard?.name})")
-                    CardDetailPager(
-                        modifier = Modifier.padding(innerPadding),
-                        // This feels weird but maybe it's ok?
-                        cardList = expansionCards + kingdom.randomCards.keys.toList() + kingdom.dependentCards.keys.toList() + kingdom.basicCards.keys.toList() + kingdom.startingCards.keys.toList(),
-                        initialCard = selectedCard!!
-                    )
-                }
-
-                // Show a list of cards
-                cardsToShow -> {
-                    // Show expansion or search result
-                    // Having no separation here is kind of weird I think TODO split
-                    if (expansionCards.isNotEmpty()) {
-                        // TODO: Search crashes
-                        Log.i("MainView", "View card list (Expansion / Search: ${expansionCards.size})")
-                        CardList(
-                            modifier = Modifier.padding(innerPadding),
-                            cardList = expansionCards,
-                            includeEditionSelection = cardViewModel.expansionHasTwoEditions(selectedExpansion!!) && !isSearchActive,
-                            selectedEdition = selectedEdition,
-                            onEditionSelected = { editionNumber ->
-                                cardViewModel.selectEdition(selectedExpansion!!, editionNumber)
-                            },
-                            onCardClick = { cardViewModel.selectCard(it) },
-                            onToggleEnable = { cardViewModel.toggleCardEnabled(it) },
-                            listState = cardListState
-                        )
-
-                    // Show generated kingdom
-                    } else if (!kingdom.isEmpty()) {
-                        Log.i(
-                            "MainView",
-                            "View card list (Random: ${kingdom.randomCards.size}, Dependent: ${kingdom.dependentCards.size}, Basic: ${kingdom.basicCards.size} cards, Landscape: ${kingdom.landscapeCards.size})"
-                        )
-                        KingdomList(
-                            kingdom = kingdom,
-                            onCardClick = { cardViewModel.selectCard(it) },
-                            modifier = Modifier.padding(innerPadding),
-                            selectedPlayers = playerCount,
-                            onPlayerCountChange = { cardViewModel.updatePlayerCount(kingdom, it) },
-                            listState = cardListState,
-                            isDismissEnabled = isDismissEnabled,
-                            onCardDismissed = { cardViewModel.onCardDismissed(it) }
-                        )
-                    } else {
-                        Text("Nah", modifier = Modifier.padding(innerPadding))
-                    }
-                }
+            when (uiState) {
 
                 // Show all expansions in a list
-                else -> {
-                    Log.i("MainView", "View expansion list")
+                UiScreenState.SHOWING_EXPANSIONS -> {
+                    Log.i("MainView", "View expansion list (${expansionsWithEditions.size})")
                     ExpansionList(
                         expansions = expansionsWithEditions,
-                        onExpansionClick = { expansionsWithEditions ->
-                            cardViewModel.loadCardsByExpansion(expansionsWithEditions)
-                            cardViewModel.selectExpansion((expansionsWithEditions))
+                        onExpansionClick = {
+                            cardViewModel.selectExpansion(it)
                         },
                         onEditionClick = { cardViewModel.selectEdition(it) },
                         ownershipText = { cardViewModel.getOwnershipText(it) },
-                        onOwnershipToggle = {
-                            expansion, newOwned ->
+                        onOwnershipToggle = { expansion, newOwned ->
                             cardViewModel.updateExpansionOwnership(expansion, newOwned)
                         },
                         onToggleExpansion = { cardViewModel.toggleExpansion(it) },
                         modifier = Modifier.padding(innerPadding),
                         listState = expansionListState
+                    )
+                }
+
+                // Show the cards within the selected expansion
+                UiScreenState.SHOWING_EXPANSION_CARDS -> {
+
+                    Log.i(
+                        "MainView",
+                        "View card list of expansion ${selectedExpansion!!.name} (${cardsToShow.size})"
+                    )
+                    CardList(
+                        modifier = Modifier.padding(innerPadding),
+                        cardList = cardsToShow,
+                        includeEditionSelection = cardViewModel.expansionHasTwoEditions(
+                            selectedExpansion!!) && !isSearchActive,
+                        selectedEdition = selectedEdition,
+                        onEditionSelected = { editionClicked, ownedEdition ->
+                            cardViewModel.selectEdition(
+                                selectedExpansion!!,
+                                editionClicked,
+                                ownedEdition
+                            )
+                        },
+                        onCardClick = { cardViewModel.selectCard(it) },
+                        onToggleEnable = { cardViewModel.toggleCardEnabled(it) },
+                        listState = cardListState
+                    )
+                }
+
+                // Show generated kingdom
+                UiScreenState.SHOWING_KINGDOM -> {
+                    Log.i(
+                        "MainView",
+                        "View card list (Random: ${kingdom.randomCards.size}, Dependent: ${kingdom.dependentCards.size}, Basic: ${kingdom.basicCards.size} cards, Landscape: ${kingdom.landscapeCards.size})"
+                    )
+                    KingdomList(
+                        kingdom = kingdom,
+                        onCardClick = { cardViewModel.selectCard(it) },
+                        modifier = Modifier.padding(innerPadding),
+                        selectedPlayers = playerCount,
+                        onPlayerCountChange = { cardViewModel.updatePlayerCount(kingdom, it) },
+                        listState = cardListState,
+                        isDismissEnabled = isDismissEnabled,
+                        onCardDismissed = { cardViewModel.onCardDismissed(it) }
+                    )
+                }
+
+                // Show search results
+                // Rework this. Too much stuff from expansion list is irrelevant here
+                UiScreenState.SHOWING_SEARCH_RESULTS -> {
+                    Log.i("MainView", "Showing search results (${cardsToShow.size})")
+                    CardList(
+                        modifier = Modifier.padding(innerPadding),
+                        cardList = cardsToShow,
+                        includeEditionSelection = false,
+                        selectedEdition = OwnedEdition.NONE,
+                        onEditionSelected = { editionClicked, ownedEdition ->
+                            cardViewModel.selectEdition(
+                                selectedExpansion!!,
+                                editionClicked,
+                                ownedEdition
+                            )
+                        },
+                        onCardClick = { cardViewModel.selectCard(it) },
+                        onToggleEnable = { cardViewModel.toggleCardEnabled(it) },
+                        listState = cardListState
+                    )
+                }
+
+                // Show detail view of a single card
+                UiScreenState.SHOWING_CARD_DETAIL -> {
+                    Log.i("MainView", "View card detail (${selectedCard?.name})")
+                    CardDetailPager(
+                        modifier = Modifier.padding(innerPadding),
+                        // This feels weird but maybe it's ok?
+                        cardList = cardsToShow + kingdom.randomCards.keys.toList() + kingdom.dependentCards.keys.toList() + kingdom.basicCards.keys.toList() + kingdom.startingCards.keys.toList(),
+                        initialCard = selectedCard!!,
+                        onClick = { cardViewModel.clearSelectedCard() }
                     )
                 }
             }
