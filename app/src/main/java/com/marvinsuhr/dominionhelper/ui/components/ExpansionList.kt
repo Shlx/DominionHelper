@@ -14,11 +14,14 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -42,12 +45,30 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.marvinsuhr.dominionhelper.model.Expansion
 import com.marvinsuhr.dominionhelper.model.ExpansionWithEditions
 import com.marvinsuhr.dominionhelper.utils.Constants
 import com.marvinsuhr.dominionhelper.utils.getDrawableId
+
+
+@Composable
+fun CalculateNavBarBottomPadding(): Dp {
+    // Get the WindowInsets for the system navigation bars
+    val navigationBarsInsets = WindowInsets.navigationBars
+
+    // Convert these insets to PaddingValues
+    val navigationBarsPaddingValues = navigationBarsInsets.asPaddingValues()
+
+    // Calculate (extract) the bottom padding from these PaddingValues
+    // This requires a Density scope, which is available inside @Composable functions.
+    // However, asPaddingValues() already provides this context implicitly.
+    val bottomPadding = navigationBarsPaddingValues.calculateBottomPadding()
+
+    return bottomPadding
+}
 
 // TODO: Check Box contentAlignment vs contents Modifier.align (first is better)
 
@@ -71,7 +92,8 @@ fun ExpansionList(
         contentPadding = PaddingValues(
             start = Constants.PADDING_SMALL,
             top = Constants.PADDING_SMALL,
-            end = Constants.PADDING_SMALL
+            end = Constants.PADDING_SMALL,
+            bottom = Constants.FAB_EXTRA_PADDING + CalculateNavBarBottomPadding()
         ),
         verticalArrangement = Arrangement.spacedBy(Constants.PADDING_SMALL)
     ) {

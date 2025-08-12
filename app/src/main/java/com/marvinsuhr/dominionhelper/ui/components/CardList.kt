@@ -4,6 +4,7 @@ import android.graphics.Paint
 import android.graphics.Path
 import android.graphics.Rect
 import android.util.Log
+import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
@@ -99,26 +100,24 @@ fun CardList(
 ) {
     Log.i("CardList", "${cardList.size} cards")
 
-    Column(modifier = modifier.padding(horizontal = Constants.PADDING_SMALL)) {
-
-        val topPadding = if (includeEditionSelection) 0.dp else Constants.PADDING_SMALL
-
-        if (includeEditionSelection) {
-            EditionSelectionButtons(onEditionSelected, selectedEdition)
+    LazyColumn(
+        state = listState,
+        contentPadding = PaddingValues(top = Constants.PADDING_SMALL, bottom = Constants.FAB_EXTRA_PADDING),
+        modifier = modifier.padding(horizontal = Constants.PADDING_SMALL),
+        verticalArrangement = Arrangement.spacedBy(Constants.PADDING_SMALL)
+    ) {
+        item {
+            if (includeEditionSelection) {
+                EditionSelectionButtons(onEditionSelected, selectedEdition)
+            }
         }
 
-        LazyColumn(
-            state = listState,
-            contentPadding = PaddingValues(top = topPadding),
-            verticalArrangement = Arrangement.spacedBy(Constants.PADDING_SMALL)
-        ) {
-            items(cardList) { card ->
-                CardView(
-                    card,
-                    onCardClick,
-                    showIcon = false,
-                    onToggleEnable = { onToggleEnable(card) })
-            }
+        items(cardList) { card ->
+            CardView(
+                card,
+                onCardClick,
+                showIcon = false,
+                onToggleEnable = { onToggleEnable(card) })
         }
     }
 }
@@ -130,8 +129,7 @@ fun EditionSelectionButtons(
 ) {
     Row(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = Constants.PADDING_SMALL),
+            .fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         Button(
@@ -186,7 +184,10 @@ fun SearchResultsCardList(
 
         LazyColumn(
             state = listState,
-            contentPadding = PaddingValues(top = Constants.PADDING_SMALL),
+            contentPadding = PaddingValues(
+                top = Constants.PADDING_SMALL,
+                bottom = Constants.FAB_EXTRA_PADDING
+            ),
             verticalArrangement = Arrangement.spacedBy(Constants.PADDING_SMALL)
         ) {
             items(cardList) { card ->
@@ -200,7 +201,11 @@ fun SearchResultsCardList(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
+@OptIn(
+    ExperimentalMaterial3Api::class,
+    ExperimentalFoundationApi::class,
+    ExperimentalSharedTransitionApi::class
+)
 @Composable
 fun KingdomList(
     modifier: Modifier,
@@ -222,7 +227,8 @@ fun KingdomList(
         modifier = modifier.padding(
             start = Constants.PADDING_SMALL,
             end = Constants.PADDING_SMALL,
-            top = Constants.PADDING_SMALL
+            top = Constants.PADDING_SMALL,
+            bottom = Constants.FAB_EXTRA_PADDING
         ),
         verticalArrangement = Arrangement.spacedBy(Constants.PADDING_SMALL)
     ) {

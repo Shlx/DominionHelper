@@ -14,6 +14,7 @@ object Constants {
     val PADDING_SMALL = 8.dp
     val PADDING_MEDIUM = 16.dp
     val ICON_SIZE = 35.dp
+    // 72 or 88 would be preferable. 80 is used so that the dimensions of card artworks fit well
     val CARD_HEIGHT = 80.dp
     val COLOR_BAR_WIDTH = 8.dp
     val IMAGE_ROUNDED = 16.dp
@@ -22,6 +23,9 @@ object Constants {
     val TEXT_SMALL = 16.sp
     val CARD_PRICE_SIZE = 24.dp
     val CARD_DEBT_SIZE = 26.dp
+    val MEDIUM_FAB_SIZE = 80.dp
+    val MEDIUM_FAB_ICON_SIZE = 28.dp
+    val FAB_EXTRA_PADDING = MEDIUM_FAB_SIZE + PADDING_MEDIUM
 
     // PREFERENCES
     const val USER_PREFERENCES_NAME = "settings_pref"

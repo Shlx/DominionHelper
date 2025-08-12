@@ -19,15 +19,15 @@ ProGuard/R8 (for Release Builds):
 •Make sure you don't explicitly add firebase-crashlytics-ndk unless you need NDK crash reporting, as it might interfere with Java/Kotlin symbol uploading if not configured correctly.
 */
 
+.padding().size() -> Padding INSIDE (Smaller element)
+.size().padding() -> Padding OUTSIDE
+
 // UI
 Floating tool bar vs floating app bar?
 -> Oben durchsichtige / moderne bar
 Unten app bar (mit Fab?), navigation bar mit right aligned fab
 Card list, settings, generate
 
-List item:
-16dp padding
-56 / 72 / 88dp height
 
 // TODO Master list
 // Dependent cards should NOT be disableable
@@ -61,7 +61,8 @@ List item:
 // - Swap icon in expansion list depending on expansion owned (Also in kingdom list)
 // - Split expansion cards in normal and landscape cards
 // - Landscape cards are low res
-// -Cornucopia & Guilds - don't switch ownership at the same time, not all regions merged them
+// - Cornucopia & Guilds - don't switch ownership at the same time, not all regions merged them
+// - Animate clicking on a card -> detail
 
 // Generation
 // - Only generate landscape cards of selected expansions? Or allow mixing?
