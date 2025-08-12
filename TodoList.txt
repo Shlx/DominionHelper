@@ -1,0 +1,109 @@
+// Random info:
+// Prop drilling: passing lots of data down through multiple levels (bad)
+// by lazy: loading data only when needed (good)
+// Flows: automatically updates UI elements when data changes
+// mutableStateOf automatically updates UI elements reliant on the values when they change
+// When passing a lambda function like (Card) -> Unit down to another function, should you put in the parameter as early as possible?
+// -> As early as possible is good for clarity and separation of concerns. Capture card as early as possible
+
+// It's a strong convention in Jetpack Compose that most non-trivial composables accept a modifier: Modifier = Modifier as their first optional parameter.
+
+// adb pair <ip>:<port>
+// adb tcpip 5555
+
+/*
+ProGuard/R8 (for Release Builds):
+•The Firebase Crashlytics plugin automatically adds the necessary ProGuard/R8 rules to keep Crashlytics symbols.
+•However, to get deobfuscated crash reports, you need to ensure that symbolication files (mapping files) are uploaded.
+•The com.google.firebase.crashlytics plugin handles uploading these mapping files automatically for release builds if you have minifyEnabled true and Crashlytics configured.
+•Make sure you don't explicitly add firebase-crashlytics-ndk unless you need NDK crash reporting, as it might interfere with Java/Kotlin symbol uploading if not configured correctly.
+*/
+
+// UI
+Floating tool bar vs floating app bar?
+-> Oben durchsichtige / moderne bar
+Unten app bar (mit Fab?), navigation bar mit right aligned fab
+Card list, settings, generate
+
+List item:
+16dp padding
+56 / 72 / 88dp height
+
+// TODO Master list
+// Dependent cards should NOT be disableable
+// Rethink database scheme, especially expansions and editions suck
+// Firebase logs etc?
+// Split piles!!
+// Coffers?
+// Check if loading card by name throws exception if card doesn't exist
+// Add player count to prefs(?)
+
+// UI
+// - Some cards' text is too long (League of Shopkeepers, Way of the Chameleon
+// - Invisible top bar / only when header is relevant? (See Auth app) Back arrow when back is possible?
+// - Remove search and FAB from irrelevant views (Or enable to search expansion / kingdom?)
+// - Kingdom landscape view to show all cards images (5x2)?
+// - Add (banned) card count to expansion list items
+// - Enable all cards button (settings?)
+// - Rework Settings UI
+// - Explanation (i) icon for some stuff
+// - Make no search results, search result count pretty
+// - Add sorting for expansions
+// - Costs: 6*, 4+, 0 (different from <no cost>) -> Show 0
+// - Try bottom navigation bar instead of drawer
+// - Try "invisible" list items
+// - Try round FAB
+
+// UX
+// - Warning when navigating back from generated kingom (or kingdom history)?
+// - Make stuff like debt searchable
+// - In expansion view: if both edition are shown, show icon or text on each card
+// - Swap icon in expansion list depending on expansion owned (Also in kingdom list)
+// - Split expansion cards in normal and landscape cards
+// - Landscape cards are low res
+// -Cornucopia & Guilds - don't switch ownership at the same time, not all regions merged them
+
+// Generation
+// - Only generate landscape cards of selected expansions? Or allow mixing?
+// - Always use 2 different landscape cards. When rerolling, be sure to take the same type AND same expansion
+// - When randomizing, check for 10 ENABLED cards
+
+// Code
+// - Use _somethingFromViewModel.update {} instead of setting _something.value
+// - Check logs for redundancy
+// - When scrolling through detail cards in search, every index is the same
+// - Changing search text reloads expansion list
+// - I think 'set' property can be removed from sets.json
+// - Wenn man auf Basic geht sind Copper etc mittendrin. Wenn man ein kingdom generated und dann noch mal reingeht, sind die basic cards unten
+// - 1st edition of Cornucopia has 2nd edition cards (at least Rewards) (?)
+
+// TODO LOW(er) PRIO
+// Code
+// - Use coil or glide or fresco to load images to avoid "image decoding logging dropped" warnings
+// - Applicationscope vs LifecycleScope vs CoroutineScope vs whatever
+// - Flows instead of lists from DAO?
+// - Save sort type between sessions
+// - Icons.Filled.??
+// - Try to thin out some parameters (TopBar)
+// - After generating kingdom and changing sort type, it is reset after generating a new kingdom
+// - Add modifier parameter to all Composables?
+
+// Features
+// - VP counter
+// - Rating a kingdom afterwards (+ uploading)
+// - Other languages
+
+// Design
+// - Show behind top + nav bar?
+// - Check image sizes, turn placeholders to webp
+// - Font: Princeps
+// - Search bar: Not aligned with title, show hamburger instead of <-
+// - Curse money card bei wunderheilerin
+// - Check all cards / expansions
+// - Charlatan Cursetreasure
+
+// Bugs
+// - Nothing happens when clicking an edition
+// - I think list state is shared between search / expansion and random cards (doesn't reset)
+// -> Seems fine between expansion and random cards, expansion to search needs to reset
+// Going back from expansion list resets even though it shouldn't

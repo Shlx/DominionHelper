@@ -6,6 +6,8 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.google.dagger.hilt.android)
     alias(libs.plugins.google.devtools.ksp)
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 kotlin {
@@ -15,11 +17,11 @@ kotlin {
 }
 
 android {
-    namespace = "com.example.dominionhelper"
+    namespace = "com.marvinsuhr.dominionhelper"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.dominionhelper"
+        applicationId = "com.marvinsuhr.dominionhelper"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
@@ -101,4 +103,9 @@ dependencies {
     // Debugging
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.crashlytics.ndk)
+    implementation(libs.firebase.analytics)
 }

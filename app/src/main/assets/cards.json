@@ -5604,8 +5604,8 @@
     ]
   },
   {
-    "name": "Spoils pile",
-    "cost": null,
+    "name": "Spoils",
+    "cost": 0,
     "supply": false,
     "landscape": false,
     "types": [
@@ -15890,7 +15890,7 @@
   },
   {
     "name": "Boon pile",
-    "cost": 0,
+    "cost": null,
     "supply": false,
     "landscape": true,
     "types": [
@@ -15907,7 +15907,7 @@
   },
   {
     "name": "Hex pile",
-    "cost": 0,
+    "cost": null,
     "supply": false,
     "landscape": true,
     "types": [
@@ -15924,7 +15924,7 @@
   },
   {
     "name": "Loot pile",
-    "cost": 0,
+    "cost": null,
     "supply": false,
     "landscape": true,
     "types": [
@@ -15941,7 +15941,7 @@
   },
   {
     "name": "Ruins pile",
-    "cost": 0,
+    "cost": null,
     "supply": false,
     "landscape": true,
     "types": [
@@ -15960,7 +15960,7 @@
     "name": "Prizes",
     "cost": 0,
     "supply": false,
-    "landscape": false,
+    "landscape": true,
     "types": [
       "Prize"
     ],
@@ -15975,9 +15975,9 @@
   },
   {
     "name": "Rewards",
-    "cost": 0,
+    "cost": null,
     "supply": false,
-    "landscape": false,
+    "landscape": true,
     "types": [
       "Reward"
     ],
@@ -15992,7 +15992,7 @@
   },
   {
     "name": "Trash Mat",
-    "cost": 0,
+    "cost": null,
     "supply": false,
     "landscape": true,
     "types": [],
