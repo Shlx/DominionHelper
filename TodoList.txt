@@ -28,6 +28,55 @@ Floating tool bar vs floating app bar?
 Unten app bar (mit Fab?), navigation bar mit right aligned fab
 Card list, settings, generate
 
+// New gen
+
+// Select x expansions randomly
+expansionDao.getRandomOwnedExpansion(x)
+
+// Initial load of all candidates
+cardPool = cardDao.getEnabledCards()
+
+// Constraint satisfaction
+If (ATTACK_REQUIRED) {
+  card = cardPool.filter(it.type.contains("Attack"))
+}
+
+// Oder ne Rule Klasse? foreach (rule)...
+
+// Exclusion rules?
+
+// Landscapes
+
+// Fill remaining slots
+cardList = cardPool.pickRandomElements(y)
+
+FIX SORT BY
+FIX >10 CARDS
+
+// Schleching new
+- Flexible navigation bar? (Top?)
+- Selected Schrift bold
+- Reset scroll state when selecting different expansion
+- Animate nav bar blob
+- Karten abhaken (statt Expansion Icon)
+- Alle 10 auf einen screen
+- Owned expansions, banned cards färben
+- Additional cards reloaded nach Veto
+- Knights Ruins etc mit Überschrift?
+- 2 players, 3-4 players, 5-6 players??
+- Ruins Pile count
+- Library cards icon
+- Liststatemanager hash map für jede expansion
+- Advanced generation (<4 cost, attack etc)
+- Karten bei reroll drin lassen (swipe left)
+- Reaction cards -> attack
+- Only pick landscape cards from selected expansions
+- Don't pick 2 of the same landscape (at least prophecies)
+- Bei rewards "reward" drunter
+- Blacklisted cards / unblacklist all
+- + statt - bei Karten ban
+- 3d card switch effect
+- Wegswipen besser machen (zu leicht getriggert)
 
 // TODO Master list
 // Dependent cards should NOT be disableable

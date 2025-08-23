@@ -5548,7 +5548,7 @@
   {
     "name": "Mercenary",
     "cost": null,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",

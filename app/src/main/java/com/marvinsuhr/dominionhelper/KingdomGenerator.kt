@@ -37,6 +37,10 @@ data class Kingdom(
     fun isEmpty(): Boolean {
         return randomCards.isEmpty() && basicCards.isEmpty() && dependentCards.isEmpty() && startingCards.isEmpty() && landscapeCards.isEmpty()
     }
+
+    fun getAllCards(): List<Card> {
+        return randomCards.keys.toList() + basicCards.keys.toList() + dependentCards.keys.toList() + startingCards.keys.toList() + landscapeCards.keys.toList()
+    }
 }
 
 @Singleton
@@ -207,7 +211,11 @@ class KingdomGenerator @Inject constructor(
             // Reroll from the same expansion
             VetoMode.REROLL_SAME -> {
                 Log.i("KingdomGenerator", "Rerolling from the same expansion.")
-                generateSingleRandomCardFromExpansion(cardToRemove.sets, cardsToExclude, isLandscape)
+                generateSingleRandomCardFromExpansion(
+                    cardToRemove.sets,
+                    cardsToExclude,
+                    isLandscape
+                )
             }
 
             // Reroll from any owned expansions
@@ -227,7 +235,10 @@ class KingdomGenerator @Inject constructor(
         return newCard
     }
 
-    suspend fun generateSingleRandomCard(excludeCards: kotlin.collections.Set<Card> = emptySet(), isLandscape: Boolean): Card? {
+    suspend fun generateSingleRandomCard(
+        excludeCards: kotlin.collections.Set<Card> = emptySet(),
+        isLandscape: Boolean
+    ): Card? {
         val excludedCardIds = excludeCards.map { it.id }.toSet()
 
         Log.i("Kingdom Generator", "Generating random card from owned Expansions")

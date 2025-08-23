@@ -37,23 +37,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.marvinsuhr.dominionhelper.R
 import com.marvinsuhr.dominionhelper.ui.SortType
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(
-    scope: CoroutineScope,
-    drawerState: DrawerState,
     isSearchActive: Boolean,
     onSearchClicked: () -> Unit,
     searchText: String,
     onSearchTextChange: (String) -> Unit,
-    onRandomCardsClicked: () -> Unit,
     onSortTypeSelected: (SortType) -> Unit,
     selectedSortType: SortType,
     topBarTitle: String,
@@ -106,17 +99,6 @@ fun TopBar(
                 IconButton(onClick = { onSearchClicked() }) {
                     Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
                 }
-            } else {
-                IconButton(onClick = {
-                    scope.launch {
-                        drawerState.open()
-                    }
-                }) {
-                    Icon(
-                        Icons.Filled.Menu,
-                        contentDescription = "Localized description"
-                    )
-                }
             }
         },
         actions = {
@@ -130,15 +112,6 @@ fun TopBar(
                         Icons.Filled.Close
                     }, contentDescription = "Localized description")
                 }
-            }
-            IconButton(onClick = {
-                onRandomCardsClicked()
-            }) {
-                Icon(
-                    painter = painterResource(id = R.drawable.dice3),
-                    contentDescription = "Localized description",
-                    modifier = Modifier.size(24.dp)
-                )
             }
 
             var expanded by remember { mutableStateOf(false) }

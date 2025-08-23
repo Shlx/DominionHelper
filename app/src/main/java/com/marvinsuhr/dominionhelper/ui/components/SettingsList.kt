@@ -12,13 +12,16 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -35,12 +38,18 @@ import com.marvinsuhr.dominionhelper.ui.SettingItem
 
 
 @Composable
-fun SettingsList(settings: List<SettingItem>, modifier: Modifier = Modifier) {
+fun SettingsList(
+    settings: List<SettingItem>,
+    modifier: Modifier = Modifier,
+    listState: LazyListState = rememberLazyListState()
+) {
 
     Log.i("SettingsList", "settings: $settings")
 
-    LazyColumn(modifier = modifier) {
-
+    LazyColumn(
+        modifier = modifier,
+        state = listState,
+    ) {
         items(settings) { setting ->
             when (setting) {
                 is SettingItem.SwitchSetting -> SwitchSettingItem(setting)
@@ -188,8 +197,20 @@ fun <E : Enum<E>> SegmentedButtonRow(
 
             // Determine the shape for rounded corners on the ends
             val shape: CornerBasedShape = when (index) {
-                0 -> RoundedCornerShape(topStartPercent = 50, bottomStartPercent = 50, topEndPercent = 0, bottomEndPercent = 0)
-                options.lastIndex -> RoundedCornerShape(topStartPercent = 0, bottomStartPercent = 0, topEndPercent = 50, bottomEndPercent = 50)
+                0 -> RoundedCornerShape(
+                    topStartPercent = 50,
+                    bottomStartPercent = 50,
+                    topEndPercent = 0,
+                    bottomEndPercent = 0
+                )
+
+                options.lastIndex -> RoundedCornerShape(
+                    topStartPercent = 0,
+                    bottomStartPercent = 0,
+                    topEndPercent = 50,
+                    bottomEndPercent = 50
+                )
+
                 else -> androidx.compose.foundation.shape.RoundedCornerShape(0.dp) // Square shape for middle buttons
             }
 
@@ -198,7 +219,8 @@ fun <E : Enum<E>> SegmentedButtonRow(
             // A simpler approach for border is to let OutlinedButton handle it and adjust padding.
             // Or draw custom borders. This example uses standard Button/OutlinedButton styling.
 
-            val currentButtonColors = if (isSelected) selectedButtonColors else unselectedButtonColors
+            val currentButtonColors =
+                if (isSelected) selectedButtonColors else unselectedButtonColors
 
             Button( // Or OutlinedButton, TextButton depending on the desired base style
                 onClick = { onOptionSelected(option) },
@@ -208,7 +230,10 @@ fun <E : Enum<E>> SegmentedButtonRow(
                 shape = shape,
                 colors = currentButtonColors,
                 border = if (!isSelected) buttonBorder else null, // Show border for unselected
-                contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp) // Adjust padding as needed
+                contentPadding = PaddingValues(
+                    horizontal = 8.dp,
+                    vertical = 8.dp
+                ) // Adjust padding as needed
             ) {
                 Text(
                     text = optionDisplayFormatter(option),

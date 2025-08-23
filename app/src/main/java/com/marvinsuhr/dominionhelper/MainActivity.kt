@@ -7,55 +7,98 @@ import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Castle
+import androidx.compose.material.icons.filled.LibraryBooks
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.outlined.Castle
+import androidx.compose.material.icons.outlined.LibraryBooks
+import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.marvinsuhr.dominionhelper.ui.theme.DominionHelperTheme
-import androidx.compose.material3.DrawerValue.*
-import androidx.compose.material3.FabPosition
-import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.ModalNavigationDrawer
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.rememberDrawerState
+import androidx.compose.material3.Text
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.res.painterResource
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.marvinsuhr.dominionhelper.ui.components.CardDetailPager
 import com.marvinsuhr.dominionhelper.ui.components.CardList
-import com.marvinsuhr.dominionhelper.ui.CardViewModel
-import com.marvinsuhr.dominionhelper.ui.UiScreenState
-import com.marvinsuhr.dominionhelper.ui.components.DrawerContent
+import com.marvinsuhr.dominionhelper.ui.LibraryViewModel
+import com.marvinsuhr.dominionhelper.ui.KingdomViewModel
+import com.marvinsuhr.dominionhelper.ui.LibraryUiState
+import com.marvinsuhr.dominionhelper.ui.SettingsViewModel
+import com.marvinsuhr.dominionhelper.ui.KingdomUiState
 import com.marvinsuhr.dominionhelper.ui.components.ExpansionList
 import com.marvinsuhr.dominionhelper.ui.components.KingdomList
 import com.marvinsuhr.dominionhelper.ui.components.SearchResultsCardList
+import com.marvinsuhr.dominionhelper.ui.components.SettingsList
 import com.marvinsuhr.dominionhelper.ui.components.TopBar
-import com.marvinsuhr.dominionhelper.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+
+data class BottomNavItem(
+    val label: String,
+    val selectedIcon: ImageVector,
+    val unselectedIcon: ImageVector,
+    val screenRoute: String
+)
+
+// Items in the bottom navigation bar
+val bottomNavItems = listOf(
+    BottomNavItem(
+        label = "Library",
+        selectedIcon = Icons.Filled.LibraryBooks,
+        unselectedIcon = Icons.Outlined.LibraryBooks,
+        screenRoute = "library"
+    ),
+    BottomNavItem(
+        label = "Kingdom",
+        selectedIcon = Icons.Filled.Castle,
+        unselectedIcon = Icons.Outlined.Castle,
+        screenRoute = "kingdom"
+    ),
+    BottomNavItem(
+        label = "Settings",
+        selectedIcon = Icons.Filled.Settings,
+        unselectedIcon = Icons.Outlined.Settings,
+        screenRoute = "settings"
+    )
+)
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    private val cardViewModel: CardViewModel by viewModels()
+    // TODO: Try to only use these in the corresponsing Screens
+    private val libraryViewModel: LibraryViewModel by viewModels()
+    private val kingdomViewModel: KingdomViewModel by viewModels()
+    private val settingsViewModel: SettingsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        super.onCreate(savedInstanceState)
+        //enableEdgeToEdge()
+        //WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
             DominionHelperTheme {
@@ -63,7 +106,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainView(cardViewModel)
+                    MainView(libraryViewModel, kingdomViewModel, settingsViewModel)
                 }
             }
         }
@@ -71,37 +114,37 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainView(cardViewModel: CardViewModel) {
+fun MainView(
+    libraryViewModel: LibraryViewModel,
+    kingdomViewModel: KingdomViewModel,
+    settingsViewModel: SettingsViewModel
+) {
+    val isSearchActive by libraryViewModel.searchActive.collectAsStateWithLifecycle()
+    val searchText by libraryViewModel.searchText.collectAsStateWithLifecycle()
+    val sortType by libraryViewModel.sortType.collectAsStateWithLifecycle()
 
-    val uiState by cardViewModel.uiScreenState.collectAsStateWithLifecycle()
+    val libraryUiState by libraryViewModel.libraryUiState.collectAsStateWithLifecycle()
+    val errorMessage by libraryViewModel.errorMessage.collectAsStateWithLifecycle()
+    val errorMessagex by kingdomViewModel.errorMessage.collectAsStateWithLifecycle()
+    val topBarTitle by libraryViewModel.topBarTitle.collectAsStateWithLifecycle()
 
-    val expansionsWithEditions by cardViewModel.expansionsWithEditions.collectAsStateWithLifecycle()
-    val selectedExpansion by cardViewModel.selectedExpansion.collectAsStateWithLifecycle()
-    val selectedEdition by cardViewModel.selectedEdition.collectAsStateWithLifecycle()
+    val kingdom by kingdomViewModel.kingdom.collectAsStateWithLifecycle()
 
-    val cardsToShow by cardViewModel.cardsToShow.collectAsStateWithLifecycle()
-    val kingdom by cardViewModel.kingdom.collectAsStateWithLifecycle()
-    val selectedCard by cardViewModel.selectedCard.collectAsStateWithLifecycle()
-
-    val isSearchActive by cardViewModel.searchActive.collectAsStateWithLifecycle()
-    val searchText by cardViewModel.searchText.collectAsStateWithLifecycle()
-    val sortType by cardViewModel.sortType.collectAsStateWithLifecycle()
-
-    val playerCount by cardViewModel.playerCount.collectAsStateWithLifecycle()
-
-    val errorMessage by cardViewModel.errorMessage.collectAsStateWithLifecycle()
-
-    val drawerState = rememberDrawerState(initialValue = Closed)
     val applicationScope = rememberCoroutineScope()
-    val topBarTitle by cardViewModel.topBarTitle.collectAsStateWithLifecycle()
 
-    val isDismissEnabled by cardViewModel.isCardDismissalEnabled.collectAsState()
+    val libraryListState = rememberSaveable(saver = LazyListState.Saver) {
+        LazyListState()
+    }
 
     val cardListState = rememberSaveable(saver = LazyListState.Saver) {
         LazyListState()
     }
 
-    val expansionListState = rememberSaveable(saver = LazyListState.Saver) {
+    val kingdomListState = rememberSaveable(saver = LazyListState.Saver) {
+        LazyListState()
+    }
+
+    val settingsListState = rememberSaveable(saver = LazyListState.Saver) {
         LazyListState()
     }
 
@@ -109,219 +152,344 @@ fun MainView(cardViewModel: CardViewModel) {
 
     // TODO: Center this message?
     // To display error messages
-    LaunchedEffect(errorMessage) {
+    LaunchedEffect(errorMessage, errorMessagex) {
         errorMessage?.let { message ->
             applicationScope.launch {
                 snackbarHostState.showSnackbar(
                     message = message,
                     duration = SnackbarDuration.Short
                 )
-                cardViewModel.clearError()
+                libraryViewModel.clearError()
             }
         }
-    }
 
-    // Handle back gesture according to state
-    BackHandler(enabled = uiState != UiScreenState.SHOWING_EXPANSIONS) {
-
-        when {
-            drawerState.isOpen -> applicationScope.launch {
-                Log.i("BackHandler", "Close drawer")
-                drawerState.close()
-            }
-
-            uiState == UiScreenState.SHOWING_EXPANSION_CARDS -> {
-                Log.i("BackHandler", "Leave expansion list -> Return to expansion list")
-                cardViewModel.clearAllCards()
-                cardViewModel.clearSelectedExpansion()
-
-                // Return to top
-                applicationScope.launch {
-                    cardListState.scrollToItem(0)
-                }
-            }
-
-            uiState == UiScreenState.SHOWING_KINGDOM -> {
-                Log.i("BackHandler", "Leave kingdom -> Return to expansion list")
-                cardViewModel.clearAllCards()
-                cardViewModel.clearSelectedExpansion()
-
-                // Return to top
-                applicationScope.launch {
-                    cardListState.scrollToItem(0)
-                }
-            }
-
-            uiState == UiScreenState.SHOWING_SEARCH_RESULTS -> {
-                Log.i("BackHandler", "Deactivate search")
-                cardViewModel.toggleSearch() // -> Deactivate search?
-                cardViewModel.changeSearchText("")
-                cardViewModel.clearAllCards()
-            }
-
-            uiState == UiScreenState.SHOWING_CARD_DETAIL -> {
-                Log.i("BackHandler", "Deselect card -> Return to card list")
-                cardViewModel.clearSelectedCard()
-            }
-        }
-    }
-
-    ModalNavigationDrawer(
-        drawerState = drawerState,
-        drawerContent = {
-            DrawerContent(applicationScope, drawerState, "Home")
-        }
-    ) {
-        Scaffold(
-            snackbarHost = { SnackbarHost(snackbarHostState) },
-            topBar = {
-                TopBar(
-                    scope = applicationScope,
-                    drawerState = drawerState,
-                    isSearchActive = isSearchActive,
-                    onSearchClicked = { cardViewModel.toggleSearch() },
-                    searchText = searchText,
-                    onSearchTextChange = { cardViewModel.changeSearchText(it) },
-                    onRandomCardsClicked = {
-                        cardViewModel.getRandomKingdom()
-
-                        // Return to top, looks weird
-                        /*applicationScope.launch {
-                            listState.scrollToItem(0)
-                        }*/
-                    },
-                    onSortTypeSelected = { cardViewModel.updateSortType(it, kingdom) },
-                    selectedSortType = sortType,
-                    topBarTitle = topBarTitle,
-                    showSearch = kingdom.isEmpty()
+        // TODO This is ugly. Instead, if no expansion is owned, switch to the kingdom screen but display an error there
+        errorMessagex?.let { message ->
+            applicationScope.launch {
+                snackbarHostState.showSnackbar(
+                    message = message,
+                    duration = SnackbarDuration.Short
                 )
-            },
-            floatingActionButton = {
-                FloatingActionButton(
-                    onClick = {
-                        Log.i("MainActivity", "Large FAB Clicked")
-                        cardViewModel.getRandomKingdom()
-                    },
-                    modifier = Modifier
-                        // https://m3.material.io/components/floating-action-button/specs
-                        .padding(Constants.PADDING_MEDIUM)
-                        .size(Constants.MEDIUM_FAB_SIZE)
+                kingdomViewModel.clearError()
+            }
+        }
+    }
 
-                ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.dice3),
-                        contentDescription = "Generate a random kingdom",
-                        modifier = Modifier.size(Constants.MEDIUM_FAB_ICON_SIZE)
+    var selectedScreenRoute by rememberSaveable { mutableStateOf(bottomNavItems[0].screenRoute) }
+    var selectedBottomNavItem = bottomNavItems.first { it.screenRoute == selectedScreenRoute }
+
+    Scaffold(
+        snackbarHost = { SnackbarHost(snackbarHostState) },
+        topBar = {
+            TopBar(
+                isSearchActive = isSearchActive,
+                onSearchClicked = { libraryViewModel.toggleSearch() },
+                searchText = searchText,
+                onSearchTextChange = { libraryViewModel.changeSearchText(it) },
+                onSortTypeSelected = { kingdomViewModel.updateSortType(it, kingdom) },
+                selectedSortType = sortType,
+                topBarTitle = topBarTitle,
+                showSearch = selectedScreenRoute == "library"
+            )
+        },
+        bottomBar = {
+            NavigationBar {
+                bottomNavItems.forEach { item ->
+                    NavigationBarItem(
+                        selected = item.screenRoute == selectedBottomNavItem.screenRoute,
+                        onClick = {
+
+                            Log.i(
+                                "NavigationBarItem",
+                                "Selected ${item.label} (Previous: $selectedScreenRoute)"
+                            )
+
+                            if (selectedScreenRoute == item.screenRoute) {
+
+                                when (item.screenRoute) {
+                                    "library" -> {
+                                        applicationScope.launch {
+                                            if (libraryUiState == LibraryUiState.SHOWING_EXPANSIONS) {
+                                                libraryListState.animateScrollToItem(0)
+                                            } else if (libraryUiState == LibraryUiState.SHOWING_EXPANSION_CARDS) {
+                                                cardListState.animateScrollToItem(0)
+                                            }
+                                        }
+                                    }
+
+                                    "kingdom" -> {
+                                        kingdomViewModel.getRandomKingdom()
+                                        applicationScope.launch {
+                                            kingdomListState.animateScrollToItem(
+                                                0
+                                            )
+                                        }
+                                    }
+
+                                    "settings" -> {
+                                        applicationScope.launch {
+                                            settingsListState.animateScrollToItem(
+                                                0
+                                            )
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (item.screenRoute == "kingdom" && kingdom.isEmpty()) {
+                                kingdomViewModel.getRandomKingdom()
+                            }
+
+                            selectedScreenRoute = item.screenRoute
+                            selectedBottomNavItem = item // Needed?
+                        },
+                        icon = {
+                            Icon(
+                                imageVector = if (item.screenRoute == selectedBottomNavItem.screenRoute) item.selectedIcon else item.unselectedIcon,
+                                contentDescription = item.label
+                            )
+                        },
+                        label = { Text(item.label) }
                     )
                 }
-            },
-            floatingActionButtonPosition = FabPosition.End
-        ) { innerPadding ->
+            }
+        }
+    ) { innerPadding ->
 
-            Box(
-                modifier = Modifier
-                    .padding(top = innerPadding.calculateTopPadding())
-            ) {
+        // Hoch zum anderen LaunchedEffect?
+        LaunchedEffect(key1 = searchText, key2 = isSearchActive) {
+            if (isSearchActive && searchText.length >= 2) {
+                Log.i("LaunchedEffect", "Getting cards by search text $searchText")
+                libraryViewModel.searchCards(searchText)
+            }
+        }
 
-                // Hoch zum anderen LaunchedEffect?
-                LaunchedEffect(key1 = searchText, key2 = isSearchActive) {
-                    if (isSearchActive && searchText.length >= 2) {
-                        Log.i("LaunchedEffect", "Getting cards by search text $searchText")
-                        cardViewModel.searchCards(searchText)
-                    }
-                }
+        // Main content, depending on UI state
+        // TODO This switches to kingdom view before content is loaded
+        when (selectedScreenRoute) {
 
-                // Main content, depending on UI state
-                when (uiState) {
+            "library" -> {
+                LibraryScreen(
+                    libraryViewModel,
+                    libraryUiState,
+                    libraryListState,
+                    cardListState,
+                    innerPadding
+                )
+            }
 
-                    // Show all expansions in a list
-                    UiScreenState.SHOWING_EXPANSIONS -> {
-                        Log.i("MainView", "View expansion list (${expansionsWithEditions.size})")
-                        ExpansionList(
-                            expansions = expansionsWithEditions,
-                            onExpansionClick = {
-                                cardViewModel.selectExpansion(it)
-                            },
-                            onEditionClick = { cardViewModel.selectEdition(it) },
-                            ownershipText = { cardViewModel.getOwnershipText(it) },
-                            onOwnershipToggle = { expansion, newOwned ->
-                                cardViewModel.updateExpansionOwnership(expansion, newOwned)
-                            },
-                            onToggleExpansion = { cardViewModel.toggleExpansion(it) },
-                            modifier = Modifier,
-                            listState = expansionListState
-                        )
-                    }
+            "kingdom" -> {
+                KingdomScreen(kingdomViewModel, kingdomListState, innerPadding)
+            }
 
-                    // Show the cards within the selected expansion
-                    UiScreenState.SHOWING_EXPANSION_CARDS -> {
-                        Log.i(
-                            "MainView",
-                            "View card list of expansion ${selectedExpansion!!.name} (${cardsToShow.size})"
-                        )
-                        CardList(
-                            modifier = Modifier,
-                            cardList = cardsToShow,
-                            includeEditionSelection = cardViewModel.expansionHasTwoEditions(
-                                selectedExpansion!!
-                            ) && !isSearchActive,
-                            selectedEdition = selectedEdition,
-                            onEditionSelected = { editionClicked, ownedEdition ->
-                                cardViewModel.selectEdition(
-                                    selectedExpansion!!,
-                                    editionClicked,
-                                    ownedEdition
-                                )
-                            },
-                            onCardClick = { cardViewModel.selectCard(it) },
-                            onToggleEnable = { cardViewModel.toggleCardEnabled(it) },
-                            listState = cardListState
-                        )
-                    }
-
-                    // Show generated kingdom
-                    UiScreenState.SHOWING_KINGDOM -> {
-                        Log.i(
-                            "MainView",
-                            "View card list (Random: ${kingdom.randomCards.size}, Dependent: ${kingdom.dependentCards.size}, Basic: ${kingdom.basicCards.size} cards, Landscape: ${kingdom.landscapeCards.size})"
-                        )
-                        KingdomList(
-                            kingdom = kingdom,
-                            onCardClick = { cardViewModel.selectCard(it) },
-                            modifier = Modifier,
-                            selectedPlayers = playerCount,
-                            onPlayerCountChange = { cardViewModel.updatePlayerCount(kingdom, it) },
-                            listState = cardListState,
-                            isDismissEnabled = isDismissEnabled,
-                            onCardDismissed = { cardViewModel.onCardDismissed(it) }
-                        )
-                    }
-
-                    // Show search results
-                    UiScreenState.SHOWING_SEARCH_RESULTS -> {
-                        Log.i("MainView", "Showing search results (${cardsToShow.size})")
-                        SearchResultsCardList(
-                            modifier = Modifier,
-                            cardList = cardsToShow,
-                            onCardClick = { cardViewModel.selectCard(it) },
-                            onToggleEnable = { cardViewModel.toggleCardEnabled(it) },
-                            listState = cardListState
-                        )
-                    }
-
-                    // Show detail view of a single card
-                    UiScreenState.SHOWING_CARD_DETAIL -> {
-                        Log.i("MainView", "View card detail (${selectedCard?.name})")
-                        CardDetailPager(
-                            modifier = Modifier,
-                            // This feels weird but maybe it's ok?
-                            cardList = cardsToShow + kingdom.randomCards.keys.toList() + kingdom.dependentCards.keys.toList() + kingdom.basicCards.keys.toList() + kingdom.startingCards.keys.toList(),
-                            initialCard = selectedCard!!,
-                            onClick = { cardViewModel.clearSelectedCard() }
-                        )
-                    }
-                }
+            "settings" -> {
+                SettingsScreen(settingsViewModel, settingsListState, innerPadding)
             }
         }
     }
 }
+
+// TODO Parameter order
+@Composable
+fun LibraryScreen(
+    libraryViewModel: LibraryViewModel,
+    uiState: LibraryUiState,
+    libraryListState: LazyListState,
+    cardListState: LazyListState,
+    innerPadding: PaddingValues
+) {
+    val expansionsWithEditions by libraryViewModel.expansionsWithEditions.collectAsStateWithLifecycle()
+    val selectedExpansion by libraryViewModel.selectedExpansion.collectAsStateWithLifecycle()
+    val selectedEdition by libraryViewModel.selectedEdition.collectAsStateWithLifecycle()
+
+    val cardsToShow by libraryViewModel.cardsToShow.collectAsStateWithLifecycle()
+    val selectedCard by libraryViewModel.selectedCard.collectAsStateWithLifecycle()
+
+    BackHandler(enabled = true) {
+        when (uiState) {
+
+            LibraryUiState.SHOWING_EXPANSIONS -> {
+                Log.i("BackHandler", "Leave expansion list -> Exit app")
+                // Exit app
+            }
+
+            LibraryUiState.SHOWING_EXPANSION_CARDS -> {
+                Log.i("BackHandler", "Leave expansion list -> Return to expansion list")
+                libraryViewModel.clearSelectedExpansion()
+            }
+
+            LibraryUiState.SHOWING_SEARCH_RESULTS -> {
+                Log.i("BackHandler", "Deactivate search")
+                libraryViewModel.toggleSearch() // -> Deactivate search?
+                libraryViewModel.changeSearchText("")
+                libraryViewModel.clearAllCards()
+            }
+
+            LibraryUiState.SHOWING_CARD_DETAIL -> {
+                Log.i("BackHandler", "Deselect card -> Return to card list")
+                libraryViewModel.clearSelectedCard()
+            }
+        }
+    }
+
+    when (uiState) {
+
+        // Show all expansions in a list
+        LibraryUiState.SHOWING_EXPANSIONS -> {
+            Log.i(
+                "MainView",
+                "View expansion list (${expansionsWithEditions.size})"
+            )
+            ExpansionList(
+                expansions = expansionsWithEditions,
+                onExpansionClick = {
+                    libraryViewModel.selectExpansion(it)
+                },
+                onEditionClick = { libraryViewModel.selectEdition(it) },
+                ownershipText = { libraryViewModel.getOwnershipText(it) },
+                onOwnershipToggle = { expansion, newOwned ->
+                    libraryViewModel.updateExpansionOwnership(expansion, newOwned)
+                },
+                onToggleExpansion = { libraryViewModel.toggleExpansion(it) },
+                modifier = Modifier.padding(innerPadding),
+                listState = libraryListState
+            )
+        }
+
+        // Show the cards within the selected expansion
+        LibraryUiState.SHOWING_EXPANSION_CARDS -> {
+            Log.i(
+                "MainView",
+                "View card list of expansion ${selectedExpansion!!.name} (${cardsToShow.size})"
+            )
+            CardList(
+                modifier = Modifier.padding(innerPadding),
+                cardList = cardsToShow,
+                includeEditionSelection = libraryViewModel.expansionHasTwoEditions(
+                    selectedExpansion!!
+                ),
+                selectedEdition = selectedEdition,
+                onEditionSelected = { editionClicked, ownedEdition ->
+                    libraryViewModel.selectEdition(
+                        selectedExpansion!!,
+                        editionClicked,
+                        ownedEdition
+                    )
+                },
+                onCardClick = { libraryViewModel.selectCard(it) },
+                onToggleEnable = { libraryViewModel.toggleCardEnabled(it) },
+                listState = cardListState
+            )
+        }
+
+        // Show search results
+        LibraryUiState.SHOWING_SEARCH_RESULTS -> {
+            Log.i("MainView", "Showing search results (${cardsToShow.size})")
+            SearchResultsCardList(
+                modifier = Modifier.padding(innerPadding),
+                cardList = cardsToShow,
+                onCardClick = { libraryViewModel.selectCard(it) },
+                onToggleEnable = { libraryViewModel.toggleCardEnabled(it) }
+            )
+        }
+
+        // Show detail view of a single card
+        LibraryUiState.SHOWING_CARD_DETAIL -> {
+            Log.i("MainView", "View card detail (${selectedCard?.name})")
+            CardDetailPager(
+                modifier = Modifier.padding(innerPadding),
+                cardList = cardsToShow,
+                initialCard = selectedCard!!,
+                onClick = { libraryViewModel.clearSelectedCard() }
+            )
+        }
+    }
+}
+
+// TODO Parameter order
+@Composable
+fun KingdomScreen(
+    kingdomViewModel: KingdomViewModel,
+    kingdomListState: LazyListState,
+    innerPadding: PaddingValues
+) {
+
+    val uiState by kingdomViewModel.kingdomUiState.collectAsStateWithLifecycle()
+    val kingdom by kingdomViewModel.kingdom.collectAsStateWithLifecycle()
+    val playerCount by kingdomViewModel.playerCount.collectAsStateWithLifecycle()
+    val isDismissEnabled by kingdomViewModel.isCardDismissalEnabled.collectAsState()
+    val selectedCard by kingdomViewModel.selectedCard.collectAsStateWithLifecycle()
+
+    BackHandler(enabled = true) {
+        when (uiState) {
+
+            KingdomUiState.LOADING -> {
+
+            }
+
+            KingdomUiState.SHOWING_KINGDOM -> {
+            }
+
+            KingdomUiState.SHOWING_CARD_DETAIL -> {
+                kingdomViewModel.clearSelectedCard()
+            }
+        }
+    }
+
+    when (uiState) {
+
+        KingdomUiState.LOADING -> {
+            //KingdomListSkeleton()
+        }
+
+        // Show generated kingdom
+        KingdomUiState.SHOWING_KINGDOM -> {
+            Log.i(
+                "MainView",
+                "View card list (Random: ${kingdom.randomCards.size}, Dependent: ${kingdom.dependentCards.size}, Basic: ${kingdom.basicCards.size} cards, Landscape: ${kingdom.landscapeCards.size})"
+            )
+            KingdomList(
+                kingdom = kingdom,
+                onCardClick = { kingdomViewModel.selectCard(it) },
+                modifier = Modifier.padding(innerPadding),
+                selectedPlayers = playerCount,
+                onPlayerCountChange = {
+                    kingdomViewModel.updatePlayerCount(
+                        kingdom,
+                        it
+                    )
+                },
+                listState = kingdomListState,
+                isDismissEnabled = isDismissEnabled,
+                onCardDismissed = { kingdomViewModel.onCardDismissed(it) }
+            )
+        }
+
+        KingdomUiState.SHOWING_CARD_DETAIL -> {
+            Log.i("MainView", "View card detail (${selectedCard?.name})")
+            CardDetailPager(
+                modifier = Modifier.padding(innerPadding),
+                cardList = kingdom.getAllCards(),
+                initialCard = selectedCard!!,
+                onClick = { kingdomViewModel.clearSelectedCard() }
+            )
+        }
+    }
+}
+
+// TODO Parameter order
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun SettingsScreen(
+    settingsViewModel: SettingsViewModel,
+    settingsListState: LazyListState,
+    innerPadding: PaddingValues
+) {
+
+    BackHandler(enabled = true) {
+    }
+
+    val uiState by settingsViewModel.uiState.collectAsStateWithLifecycle()
+    SettingsList(uiState.settings, modifier = Modifier.padding(innerPadding), settingsListState)
+}
+

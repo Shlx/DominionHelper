@@ -101,13 +101,14 @@ fun CardList(
     Log.i("CardList", "${cardList.size} cards")
 
     LazyColumn(
+        modifier = modifier,
         state = listState,
-        contentPadding = PaddingValues(top = Constants.PADDING_SMALL, bottom = Constants.FAB_EXTRA_PADDING),
-        modifier = modifier.padding(horizontal = Constants.PADDING_SMALL),
+        contentPadding = PaddingValues(Constants.PADDING_SMALL),
         verticalArrangement = Arrangement.spacedBy(Constants.PADDING_SMALL)
     ) {
-        item {
-            if (includeEditionSelection) {
+
+        if (includeEditionSelection) {
+            item {
                 EditionSelectionButtons(onEditionSelected, selectedEdition)
             }
         }
@@ -129,7 +130,8 @@ fun EditionSelectionButtons(
 ) {
     Row(
         modifier = Modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .padding(top = Constants.PADDING_SMALL),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         Button(
@@ -174,32 +176,29 @@ fun SearchResultsCardList(
     cardList: List<Card>,
     onCardClick: (Card) -> Unit,
     onToggleEnable: (Card) -> Unit,
-    listState: LazyListState = rememberLazyListState(),
 ) {
     Log.i("CardList", "${cardList.size} cards")
 
-    Column(modifier = modifier.padding(horizontal = Constants.PADDING_SMALL)) {
+    LazyColumn(
+        modifier = modifier,
+        contentPadding = PaddingValues(Constants.PADDING_SMALL),
+        verticalArrangement = Arrangement.spacedBy(Constants.PADDING_SMALL)
+    ) {
 
-        Text("Search results ${cardList.size}")
+        item {
+            Text("Search results ${cardList.size}")
+        }
 
-        LazyColumn(
-            state = listState,
-            contentPadding = PaddingValues(
-                top = Constants.PADDING_SMALL,
-                bottom = Constants.FAB_EXTRA_PADDING
-            ),
-            verticalArrangement = Arrangement.spacedBy(Constants.PADDING_SMALL)
-        ) {
-            items(cardList) { card ->
-                CardView(
-                    card,
-                    onCardClick,
-                    showIcon = false,
-                    onToggleEnable = { onToggleEnable(card) })
-            }
+        items(cardList) { card ->
+            CardView(
+                card,
+                onCardClick,
+                showIcon = false,
+                onToggleEnable = { onToggleEnable(card) })
         }
     }
 }
+
 
 @OptIn(
     ExperimentalMaterial3Api::class,
@@ -223,13 +222,9 @@ fun KingdomList(
     )
 
     LazyColumn(
+        modifier = modifier,
         state = listState,
-        modifier = modifier.padding(
-            start = Constants.PADDING_SMALL,
-            end = Constants.PADDING_SMALL,
-            top = Constants.PADDING_SMALL,
-            bottom = Constants.FAB_EXTRA_PADDING
-        ),
+        contentPadding = PaddingValues(Constants.PADDING_SMALL),
         verticalArrangement = Arrangement.spacedBy(Constants.PADDING_SMALL)
     ) {
 
