@@ -377,9 +377,8 @@ class LibraryViewModel @Inject constructor(
         return sortedCards
     }
 
-    fun updateSortType(newSortType: SortType, kingdom: Kingdom) {
+    fun updateSortType(newSortType: SortType) {
         _sortType.value = newSortType
-
 
         // Sort expansion list
         _cardsToShow.value = sortCards(_cardsToShow.value)
@@ -467,4 +466,5 @@ enum class SortType(val text: String) {
     ALPHABETICAL("Sort alphabetically"),
     COST("Sort by cost"),
     EXPANSION("Sort by expansion")
+    // TODO Sort by edition for library
 }

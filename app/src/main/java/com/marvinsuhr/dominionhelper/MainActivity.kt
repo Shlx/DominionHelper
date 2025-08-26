@@ -15,9 +15,15 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Castle
 import androidx.compose.material.icons.filled.LibraryBooks
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Style
+import androidx.compose.material.icons.filled.WebStories
+import androidx.compose.material.icons.outlined.Casino
 import androidx.compose.material.icons.outlined.Castle
+import androidx.compose.material.icons.outlined.Collections
 import androidx.compose.material.icons.outlined.LibraryBooks
 import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material.icons.outlined.Style
+import androidx.compose.material.icons.outlined.WebStories
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -41,6 +47,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.font.FontWeight
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.marvinsuhr.dominionhelper.ui.components.CardDetailPager
 import com.marvinsuhr.dominionhelper.ui.components.CardList
@@ -49,6 +56,7 @@ import com.marvinsuhr.dominionhelper.ui.KingdomViewModel
 import com.marvinsuhr.dominionhelper.ui.LibraryUiState
 import com.marvinsuhr.dominionhelper.ui.SettingsViewModel
 import com.marvinsuhr.dominionhelper.ui.KingdomUiState
+import com.marvinsuhr.dominionhelper.ui.SortType
 import com.marvinsuhr.dominionhelper.ui.components.ExpansionList
 import com.marvinsuhr.dominionhelper.ui.components.KingdomList
 import com.marvinsuhr.dominionhelper.ui.components.SearchResultsCardList
@@ -68,15 +76,16 @@ data class BottomNavItem(
 val bottomNavItems = listOf(
     BottomNavItem(
         label = "Library",
-        selectedIcon = Icons.Filled.LibraryBooks,
-        unselectedIcon = Icons.Outlined.LibraryBooks,
+        // TODO Decide on icon
+        selectedIcon = Icons.Filled.Style,//Icons.Filled.WebStories,//Icons.Filled.LibraryBooks,
+        unselectedIcon = Icons.Outlined.Collections,//Icons.Outlined.WebStories,//Icons.Outlined.LibraryBooks,
         screenRoute = "library"
     ),
     BottomNavItem(
-        label = "Kingdom",
+        label = "Kingdoms",
         selectedIcon = Icons.Filled.Castle,
         unselectedIcon = Icons.Outlined.Castle,
-        screenRoute = "kingdom"
+        screenRoute = "kingdoms"
     ),
     BottomNavItem(
         label = "Settings",
@@ -121,7 +130,7 @@ fun MainView(
 ) {
     val isSearchActive by libraryViewModel.searchActive.collectAsStateWithLifecycle()
     val searchText by libraryViewModel.searchText.collectAsStateWithLifecycle()
-    val sortType by libraryViewModel.sortType.collectAsStateWithLifecycle()
+    val librarySortType by libraryViewModel.sortType.collectAsStateWithLifecycle()
 
     val libraryUiState by libraryViewModel.libraryUiState.collectAsStateWithLifecycle()
     val errorMessage by libraryViewModel.errorMessage.collectAsStateWithLifecycle()
@@ -129,6 +138,7 @@ fun MainView(
     val topBarTitle by libraryViewModel.topBarTitle.collectAsStateWithLifecycle()
 
     val kingdom by kingdomViewModel.kingdom.collectAsStateWithLifecycle()
+    val kingdomSortType by kingdomViewModel.sortType.collectAsStateWithLifecycle()
 
     val applicationScope = rememberCoroutineScope()
 
@@ -186,8 +196,29 @@ fun MainView(
                 onSearchClicked = { libraryViewModel.toggleSearch() },
                 searchText = searchText,
                 onSearchTextChange = { libraryViewModel.changeSearchText(it) },
-                onSortTypeSelected = { kingdomViewModel.updateSortType(it, kingdom) },
-                selectedSortType = sortType,
+                onSortTypeSelected = {
+                    when (selectedScreenRoute) {
+                        "library" -> {
+                            libraryViewModel.updateSortType(it)
+                        }
+
+                        "kingdoms" -> {
+                            kingdomViewModel.updateSortType(it)
+                        }
+                    }
+                },
+                selectedSortType =
+                    when (selectedScreenRoute) {
+                        "library" -> {
+                            librarySortType
+                        }
+
+                        "kingdoms" -> {
+                            kingdomSortType
+                        }
+
+                        else -> SortType.ALPHABETICAL
+                    },
                 topBarTitle = topBarTitle,
                 showSearch = selectedScreenRoute == "library"
             )
@@ -195,8 +226,10 @@ fun MainView(
         bottomBar = {
             NavigationBar {
                 bottomNavItems.forEach { item ->
+                    val isSelected = item.screenRoute == selectedBottomNavItem.screenRoute
+
                     NavigationBarItem(
-                        selected = item.screenRoute == selectedBottomNavItem.screenRoute,
+                        selected = isSelected,
                         onClick = {
 
                             Log.i(
@@ -217,7 +250,7 @@ fun MainView(
                                         }
                                     }
 
-                                    "kingdom" -> {
+                                    "kingdoms" -> {
                                         kingdomViewModel.getRandomKingdom()
                                         applicationScope.launch {
                                             kingdomListState.animateScrollToItem(
@@ -236,7 +269,7 @@ fun MainView(
                                 }
                             }
 
-                            if (item.screenRoute == "kingdom" && kingdom.isEmpty()) {
+                            if (item.screenRoute == "kingdoms" && kingdom.isEmpty()) {
                                 kingdomViewModel.getRandomKingdom()
                             }
 
@@ -245,11 +278,16 @@ fun MainView(
                         },
                         icon = {
                             Icon(
-                                imageVector = if (item.screenRoute == selectedBottomNavItem.screenRoute) item.selectedIcon else item.unselectedIcon,
+                                imageVector = if (isSelected) item.selectedIcon else item.unselectedIcon,
                                 contentDescription = item.label
                             )
                         },
-                        label = { Text(item.label) }
+                        label = {
+                            Text(
+                                text = item.label,
+                                fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
+                            )
+                        }
                     )
                 }
             }
@@ -278,7 +316,7 @@ fun MainView(
                 )
             }
 
-            "kingdom" -> {
+            "kingdoms" -> {
                 KingdomScreen(kingdomViewModel, kingdomListState, innerPadding)
             }
 

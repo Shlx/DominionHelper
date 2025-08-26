@@ -106,15 +106,16 @@ class KingdomViewModel @Inject constructor(
 
             _kingdomUiState.value = KingdomUiState.LOADING
             _kingdom.value = kingdomGenerator.generateKingdom()
-            updateSortType(SortType.EXPANSION, _kingdom.value)
+            updateSortType(SortType.EXPANSION)
             updatePlayerCount(_kingdom.value, 2)
             clearSelectedCard()
             _kingdomUiState.value = KingdomUiState.SHOWING_KINGDOM
         }
     }
 
-    fun updateSortType(newSortType: SortType, kingdom: Kingdom) {
+    fun updateSortType(newSortType: SortType) {
         _sortType.value = newSortType
+        val kingdom = _kingdom.value
 
         // Sort kingdom lists
         val sortedRandomCards = sortCards(kingdom.randomCards)

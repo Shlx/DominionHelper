@@ -36,7 +36,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.outlined.RemoveCircleOutline
+import androidx.compose.material.icons.outlined.Casino
+import androidx.compose.material.icons.outlined.Circle
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -52,6 +53,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.focus.FocusManager
@@ -85,7 +87,6 @@ import kotlin.math.cos
 import kotlin.math.sin
 
 // TODO: Check Box contentAlignment vs contents Modifier.align (first is better)
-
 // Displays a list of cards
 @Composable
 fun CardList(
@@ -117,6 +118,7 @@ fun CardList(
             CardView(
                 card,
                 onCardClick,
+                card.isEnabled,
                 showIcon = false,
                 onToggleEnable = { onToggleEnable(card) })
         }
@@ -130,8 +132,7 @@ fun EditionSelectionButtons(
 ) {
     Row(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = Constants.PADDING_SMALL),
+            .fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         Button(
@@ -230,6 +231,10 @@ fun KingdomList(
 
         // RANDOM CARDS
         item {
+            Text("Reroll")
+            Icon(imageVector = Icons.Outlined.Casino, contentDescription = "asd")
+        }
+        item {
             CardSpacer("Supply Cards")
         }
         items(
@@ -239,7 +244,7 @@ fun KingdomList(
             if (isDismissEnabled)
                 DismissableCard(card, onCardDismissed, onCardClick, Modifier.animateItem())
             else {
-                CardView(card, onCardClick, showIcon = true, kingdom.randomCards[card]!!)
+                CardView(card, onCardClick, enabled = true, showIcon = true, kingdom.randomCards[card]!!)
             }
         }
 
@@ -255,7 +260,7 @@ fun KingdomList(
                 if (isDismissEnabled)
                     DismissableCard(card, onCardDismissed, onCardClick, Modifier.animateItem())
                 else {
-                    CardView(card, onCardClick, showIcon = true, kingdom.landscapeCards[card]!!)
+                    CardView(card, onCardClick, enabled = true, showIcon = true, kingdom.landscapeCards[card]!!)
                 }
             }
         }
@@ -266,7 +271,7 @@ fun KingdomList(
                 CardSpacer("Additional Cards")
             }
             items(kingdom.dependentCards.keys.toList()) { card ->
-                CardView(card, onCardClick, showIcon = true, kingdom.dependentCards[card]!!)
+                CardView(card, onCardClick, enabled = true, showIcon = true, kingdom.dependentCards[card]!!)
             }
         }
 
@@ -281,7 +286,7 @@ fun KingdomList(
             )
         }
         items(kingdom.basicCards.keys.toList()) { card ->
-            CardView(card, onCardClick, showIcon = true, kingdom.basicCards[card]!!)
+            CardView(card, onCardClick, enabled = true, showIcon = true, kingdom.basicCards[card]!!)
         }
 
         // STARTING CARDS
@@ -289,7 +294,7 @@ fun KingdomList(
             CardSpacer("Starting Cards")
         }
         items(kingdom.startingCards.keys.toList()) { card ->
-            CardView(card, onCardClick, showIcon = true, kingdom.startingCards[card]!!)
+            CardView(card, onCardClick, enabled = true, showIcon = true, kingdom.startingCards[card]!!)
         }
     }
 }
@@ -397,6 +402,7 @@ fun CardSpacer(text: String) {
 fun CardView(
     card: Card,
     onCardClick: (Card) -> Unit,
+    enabled: Boolean = true,
     showIcon: Boolean = true,
     amount: Int = 1,
     onToggleEnable: () -> Unit = {}
@@ -404,15 +410,17 @@ fun CardView(
     val focusManager: FocusManager = LocalFocusManager.current
 
     Card(
+        onClick = {
+            focusManager.clearFocus()
+            onCardClick(card)
+        },
         modifier = Modifier
             .height(Constants.CARD_HEIGHT)
-            .clickable {
-                focusManager.clearFocus() // Lose focus (hide keyboard) on click
-                onCardClick(card)
-            }
+            .alpha(if (enabled) 1f else 0.6f),
+        enabled = enabled, // TODO: Card is not clickable when disabled
     ) {
         Row {
-            // Vertical colored bar
+            // Vertical colored bar indicating card type
             ColoredBar(card.getColorByTypes())
 
             // Cropped card image
@@ -734,15 +742,16 @@ fun CardIcon(card: Card, showIcon: Boolean, onToggleEnable: () -> Unit) {
                 modifier = Modifier
                     .size(Constants.ICON_SIZE)
             )
-        } else if (!card.basic) {
+            // TODO: Check which landscape cards make sense to be disableable
+            // (Card that are not a whole stack, like hexes and boons)
+        } else if (card.landscape || (card.supply && !card.basic)) {
 
             // En- / Disable button
             Icon(
                 imageVector = if (card.isEnabled) {
                     Icons.Filled.CheckCircle // Checkmark if owned / allowed
                 } else {
-                    Icons.Outlined.RemoveCircleOutline
-                    //Icons.RemoveCircle // Circle with minus if unowned / banned
+                    Icons.Outlined.Circle // Circle if unowned / banned
                 },
                 contentDescription = if (card.isEnabled) "Allowed" else "Banned",
                 modifier = Modifier

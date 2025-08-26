@@ -94,7 +94,7 @@ fun TopBar(
             titleContentColor = MaterialTheme.colorScheme.primary,
         ),
         navigationIcon = {
-            // Conditionally show the back button or hamburger menu
+            // Conditionally show the back button
             if (isSearchActive) {
                 IconButton(onClick = { onSearchClicked() }) {
                     Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")

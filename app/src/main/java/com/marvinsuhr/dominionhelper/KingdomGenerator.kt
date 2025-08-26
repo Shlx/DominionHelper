@@ -50,6 +50,29 @@ class KingdomGenerator @Inject constructor(
     private val userPrefsRepository: UserPrefsRepository
 ) {
 
+    suspend fun generateKingdom2(): Kingdom {
+        // Select x expansions randomly
+        //expansionDao.getRandomOwnedExpansion(x)
+
+        // Initial load of all candidates
+        //cardPool = cardDao.getEnabledCards()
+
+        // Constraint satisfaction
+        /*If (ATTACK_REQUIRED) {
+            card = cardPool.filter(it.type.contains("Attack"))
+        }*/
+
+        // Oder ne Rule Klasse? foreach (rule)...
+
+        // Exclusion rules?
+
+        // Landscapes
+
+        // Fill remaining slots
+        //cardList = cardPool.pickRandomElements(y)
+        return Kingdom()
+    }
+
     // Main function to generate a Kingdom based on user preferences
     suspend fun generateKingdom(): Kingdom {
 

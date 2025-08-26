@@ -21,65 +21,21 @@ ProGuard/R8 (for Release Builds):
 
 .padding().size() -> Padding INSIDE (Smaller element)
 .size().padding() -> Padding OUTSIDE
+onClick > Modifier.clickable
 
-// UI
-Floating tool bar vs floating app bar?
--> Oben durchsichtige / moderne bar
-Unten app bar (mit Fab?), navigation bar mit right aligned fab
-Card list, settings, generate
+RELEASE
+- NEXT:
+    // UI
+    Floating tool bar vs floating app bar?
+    -> Oben durchsichtige / moderne bar (flexible navigation bar)
+    // - Invisible top bar / only when header is relevant? (See Auth app) Back arrow when back is possible?
 
-// New gen
-
-// Select x expansions randomly
-expansionDao.getRandomOwnedExpansion(x)
-
-// Initial load of all candidates
-cardPool = cardDao.getEnabledCards()
-
-// Constraint satisfaction
-If (ATTACK_REQUIRED) {
-  card = cardPool.filter(it.type.contains("Attack"))
-}
-
-// Oder ne Rule Klasse? foreach (rule)...
-
-// Exclusion rules?
-
-// Landscapes
-
-// Fill remaining slots
-cardList = cardPool.pickRandomElements(y)
-
-FIX SORT BY
-FIX >10 CARDS
-
-// Schleching new
-- Flexible navigation bar? (Top?)
-- Selected Schrift bold
-- Reset scroll state when selecting different expansion
-- Animate nav bar blob
-- Karten abhaken (statt Expansion Icon)
-- Alle 10 auf einen screen
-- Owned expansions, banned cards färben
-- Additional cards reloaded nach Veto
-- Knights Ruins etc mit Überschrift?
-- 2 players, 3-4 players, 5-6 players??
-- Ruins Pile count
-- Library cards icon
-- Liststatemanager hash map für jede expansion
-- Advanced generation (<4 cost, attack etc)
-- Karten bei reroll drin lassen (swipe left)
-- Reaction cards -> attack
-- Only pick landscape cards from selected expansions
-- Don't pick 2 of the same landscape (at least prophecies)
-- Bei rewards "reward" drunter
-- Blacklisted cards / unblacklist all
-- + statt - bei Karten ban
-- 3d card switch effect
-- Wegswipen besser machen (zu leicht getriggert)
+    - Split expansion cards in normal and landscape cards
+    - "Reward" unter rewards? Oder wie Landscapes getrennt von restlichen Karten? Knights, Ruins etc-
+- NAME: Kingdom(s), Domgen, Vassal, Province, 10 cards
+- RELOAD ADDITIONAL CARDS AFTER VETO
 
 // TODO Master list
-// Dependent cards should NOT be disableable
 // Rethink database scheme, especially expansions and editions suck
 // Firebase logs etc?
 // Split piles!!
@@ -88,35 +44,40 @@ FIX >10 CARDS
 // Add player count to prefs(?)
 
 // UI
-// - Some cards' text is too long (League of Shopkeepers, Way of the Chameleon
-// - Invisible top bar / only when header is relevant? (See Auth app) Back arrow when back is possible?
-// - Remove search and FAB from irrelevant views (Or enable to search expansion / kingdom?)
-// - Kingdom landscape view to show all cards images (5x2)?
+// - Some cards' text is too long (League of Shopkeepers, Way of the Chameleon)
+// - Remove search from expansions / search expansion only?
+// - Kingdom landscape view to show all cards images (5x2)? Slider, option
 // - Add (banned) card count to expansion list items
-// - Enable all cards button (settings?)
+// - Enable all cards button (settings?) / blacklisted cards "expansion"
 // - Rework Settings UI
 // - Explanation (i) icon for some stuff
 // - Make no search results, search result count pretty
 // - Add sorting for expansions
 // - Costs: 6*, 4+, 0 (different from <no cost>) -> Show 0
-// - Try bottom navigation bar instead of drawer
 // - Try "invisible" list items
-// - Try round FAB
+// - Owned expansions färben
 
 // UX
+// - Wegswipen besser machen (zu leicht getriggert) / edit mode?
+// - 2 players, 3-4 players, 5-6 players??
+// - Ruins pile count
 // - Warning when navigating back from generated kingom (or kingdom history)?
 // - Make stuff like debt searchable
 // - In expansion view: if both edition are shown, show icon or text on each card
 // - Swap icon in expansion list depending on expansion owned (Also in kingdom list)
-// - Split expansion cards in normal and landscape cards
 // - Landscape cards are low res
 // - Cornucopia & Guilds - don't switch ownership at the same time, not all regions merged them
+// - Pin cards so they don't get rerolled (swipe left)
+// - Karten in Kingdom abhaken? Zum gemeinsamen Karten suchen
 // - Animate clicking on a card -> detail
+// - Animate nav bar blob
+// - 3d card switch effect? In detail view
 
 // Generation
-// - Only generate landscape cards of selected expansions? Or allow mixing?
-// - Always use 2 different landscape cards. When rerolling, be sure to take the same type AND same expansion
+// - Only generate landscape cards of selected expansions? Or allow mixing? Option?
+// - Always use 2 different landscape cards (at least prophecies). When rerolling, be sure to take the same type AND same expansion
 // - When randomizing, check for 10 ENABLED cards
+// - Advanced generation (include 2 / 3 cost, attack, attack when reaction, etc
 
 // Code
 // - Use _somethingFromViewModel.update {} instead of setting _something.value
@@ -137,6 +98,7 @@ FIX >10 CARDS
 // - Try to thin out some parameters (TopBar)
 // - After generating kingdom and changing sort type, it is reset after generating a new kingdom
 // - Add modifier parameter to all Composables?
+// - Reset scroll state when selecting different expansion -> Liststatemanager hash map für jede expansion
 
 // Features
 // - VP counter
