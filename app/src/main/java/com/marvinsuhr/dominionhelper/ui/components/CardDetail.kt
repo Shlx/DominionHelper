@@ -16,15 +16,19 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.distinctUntilChanged
 import com.marvinsuhr.dominionhelper.model.Card
 import com.marvinsuhr.dominionhelper.utils.findIndexOfReference
 import com.marvinsuhr.dominionhelper.utils.getDrawableId
+import kotlinx.coroutines.flow.distinctUntilChanged
 
 // Show a pager scrolling through a list of cards
 @OptIn(ExperimentalFoundationApi::class)
@@ -33,11 +37,37 @@ fun CardDetailPager(
     modifier: Modifier = Modifier,
     cardList: List<Card>,
     initialCard: Card,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    onPageChanged: (Card) -> Unit
 ) {
+
+    if (cardList.isEmpty()) {
+        Log.w("CardDetailPager", "Card list is empty, cannot initialize Pager.")
+        return
+    }
+
+    /*
+    val initialIndex = remember(cardList, initialCard) {
+        findIndexOfReference(cardList, initialCard).coerceIn(0, cardList.size - 1)
+    }
+     */
+
     val initialIndex = findIndexOfReference(cardList, initialCard)
     val pagerState =
         rememberPagerState(initialPage = initialIndex, pageCount = { cardList.size })
+
+    LaunchedEffect(pagerState) {
+        snapshotFlow { pagerState.currentPage }
+            .distinctUntilChanged()
+            .collect { page ->
+                if (page >= 0 && page < cardList.size) {
+                    val currentCard = cardList[page]
+                    Log.i("CardDetailPager", "Page changed to: ${currentCard.name}")
+                    onPageChanged(currentCard)
+                }
+            }
+    }
+
     Column {
         HorizontalPager(
             state = pagerState,
@@ -45,9 +75,16 @@ fun CardDetailPager(
                 .fillMaxSize(),
         ) { page ->
 
-            // Display the card for the current page
-            Log.i("CardDetailPager", "Displaying ${cardList[page].name}, Index $initialIndex")
-            CardDetail(card = cardList[page], onClick = onClick)
+            // It's possible for 'page' to be temporarily out of bounds during fast scrolls
+            // or state restoration. Ensure it's valid.
+            if (page >= 0 && page < cardList.size) {
+                val cardForPage = cardList[page]
+                Log.i("CardDetailPager", "Displaying ${cardForPage.name}, Index $page")
+                CardDetail(card = cardForPage, onClick = onClick)
+            } else {
+                Log.w("CardDetailPager", "Page index $page is out of bounds for cardList size ${cardList.size}")
+                // Optionally, display a placeholder or empty content
+            }
         }
     }
 }

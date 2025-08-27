@@ -23,7 +23,7 @@ data class Card(
     @PrimaryKey(autoGenerate = true) val id: Int,
     val name: String,
     val sets: List<Set>,
-    val cost: Int,
+    val cost: Int?,
     val supply: Boolean,
     val landscape: Boolean,
     val types: List<Type>,
@@ -32,7 +32,9 @@ data class Card(
     val debt: Int,
     val categories: List<Category>,
     val potion: Boolean,
-    @ColumnInfo(defaultValue = "1") val isEnabled: Boolean
+    @ColumnInfo(defaultValue = "1") val isEnabled: Boolean,
+    val overpay: Boolean,
+    @SerializedName("special_cost") val specialCost: Boolean
 ) {
 
     @Ignore

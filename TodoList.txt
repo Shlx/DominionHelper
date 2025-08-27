@@ -28,7 +28,7 @@ RELEASE
     // UI
     Floating tool bar vs floating app bar?
     -> Oben durchsichtige / moderne bar (flexible navigation bar)
-    // - Invisible top bar / only when header is relevant? (See Auth app) Back arrow when back is possible?
+    // - Invisible top bar / only when header is relevant? (See Auth app)
 
     - Split expansion cards in normal and landscape cards
     - "Reward" unter rewards? Oder wie Landscapes getrennt von restlichen Karten? Knights, Ruins etc-
@@ -53,7 +53,6 @@ RELEASE
 // - Explanation (i) icon for some stuff
 // - Make no search results, search result count pretty
 // - Add sorting for expansions
-// - Costs: 6*, 4+, 0 (different from <no cost>) -> Show 0
 // - Try "invisible" list items
 // - Owned expansions färben
 
@@ -72,6 +71,7 @@ RELEASE
 // - Animate clicking on a card -> detail
 // - Animate nav bar blob
 // - 3d card switch effect? In detail view
+// - Titel ändern wenn man Karten swiped
 
 // Generation
 // - Only generate landscape cards of selected expansions? Or allow mixing? Option?

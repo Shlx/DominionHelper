@@ -16,7 +16,9 @@
     "potion": false,
     "sets": [
       "Base_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Artisan",
@@ -33,7 +35,9 @@
     "potion": false,
     "sets": [
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Bandit",
@@ -51,7 +55,9 @@
     "potion": false,
     "sets": [
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Bureaucrat",
@@ -72,7 +78,9 @@
     "sets": [
       "Base_1E",
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Cellar",
@@ -90,7 +98,9 @@
     "sets": [
       "Base_1E",
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Chancellor",
@@ -107,7 +117,9 @@
     "potion": false,
     "sets": [
       "Base_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Chapel",
@@ -127,7 +139,9 @@
     "sets": [
       "Base_1E",
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Council Room",
@@ -148,7 +162,9 @@
     "sets": [
       "Base_1E",
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Feast",
@@ -165,7 +181,9 @@
     "potion": false,
     "sets": [
       "Base_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Festival",
@@ -186,7 +204,9 @@
     "sets": [
       "Base_1E",
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Gardens",
@@ -206,7 +226,9 @@
     "sets": [
       "Base_1E",
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Harbinger",
@@ -225,7 +247,9 @@
     "potion": false,
     "sets": [
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Laboratory",
@@ -245,7 +269,9 @@
     "sets": [
       "Base_1E",
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Library",
@@ -265,7 +291,9 @@
     "sets": [
       "Base_1E",
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Market",
@@ -285,7 +313,9 @@
     "sets": [
       "Base_1E",
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Merchant",
@@ -304,7 +334,9 @@
     "potion": false,
     "sets": [
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Militia",
@@ -325,7 +357,9 @@
     "sets": [
       "Base_1E",
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Mine",
@@ -343,7 +377,9 @@
     "sets": [
       "Base_1E",
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Moat",
@@ -364,7 +400,9 @@
     "sets": [
       "Base_1E",
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Moneylender",
@@ -384,7 +422,9 @@
     "sets": [
       "Base_1E",
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Poacher",
@@ -401,7 +441,9 @@
     "potion": false,
     "sets": [
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Remodel",
@@ -419,7 +461,9 @@
     "sets": [
       "Base_1E",
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sentry",
@@ -440,7 +484,9 @@
     "potion": false,
     "sets": [
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Smithy",
@@ -460,7 +506,9 @@
     "sets": [
       "Base_1E",
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Spy",
@@ -481,7 +529,9 @@
     "potion": false,
     "sets": [
       "Base_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Thief",
@@ -499,7 +549,9 @@
     "potion": false,
     "sets": [
       "Base_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Throne Room",
@@ -519,7 +571,9 @@
     "sets": [
       "Base_1E",
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Vassal",
@@ -536,7 +590,9 @@
     "potion": false,
     "sets": [
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Village",
@@ -556,7 +612,9 @@
     "sets": [
       "Base_1E",
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Witch",
@@ -578,7 +636,9 @@
     "sets": [
       "Base_1E",
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Woodcutter",
@@ -597,7 +657,9 @@
     "potion": false,
     "sets": [
       "Base_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Workshop",
@@ -615,11 +677,13 @@
     "sets": [
       "Base_1E",
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Copper",
-    "cost": null,
+    "cost": 0,
     "supply": true,
     "landscape": false,
     "types": [
@@ -633,7 +697,9 @@
     "sets": [
       "Base_1E",
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Silver",
@@ -651,7 +717,9 @@
     "sets": [
       "Base_1E",
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Gold",
@@ -669,7 +737,9 @@
     "sets": [
       "Base_1E",
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Estate",
@@ -687,7 +757,9 @@
     "sets": [
       "Base_1E",
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Duchy",
@@ -705,7 +777,9 @@
     "sets": [
       "Base_1E",
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Province",
@@ -723,11 +797,13 @@
     "sets": [
       "Base_1E",
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Curse",
-    "cost": null,
+    "cost": 0,
     "supply": true,
     "landscape": false,
     "types": [
@@ -741,7 +817,9 @@
     "sets": [
       "Base_1E",
       "Base_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Baron",
@@ -761,7 +839,9 @@
     "sets": [
       "Intrigue_1E",
       "Intrigue_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Bridge",
@@ -781,7 +861,9 @@
     "sets": [
       "Intrigue_1E",
       "Intrigue_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Conspirator",
@@ -799,7 +881,9 @@
     "sets": [
       "Intrigue_1E",
       "Intrigue_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Coppersmith",
@@ -816,7 +900,9 @@
     "potion": false,
     "sets": [
       "Intrigue_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Courtier",
@@ -835,7 +921,9 @@
     "potion": false,
     "sets": [
       "Intrigue_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Courtyard",
@@ -855,7 +943,9 @@
     "sets": [
       "Intrigue_1E",
       "Intrigue_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Diplomat",
@@ -875,7 +965,9 @@
     "potion": false,
     "sets": [
       "Intrigue_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Duke",
@@ -895,7 +987,9 @@
     "sets": [
       "Intrigue_1E",
       "Intrigue_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Great Hall",
@@ -916,7 +1010,9 @@
     "potion": false,
     "sets": [
       "Intrigue_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Ironworks",
@@ -934,7 +1030,9 @@
     "sets": [
       "Intrigue_1E",
       "Intrigue_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Lurker",
@@ -953,7 +1051,9 @@
     "potion": false,
     "sets": [
       "Intrigue_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Masquerade",
@@ -975,7 +1075,9 @@
     "sets": [
       "Intrigue_1E",
       "Intrigue_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Mill",
@@ -996,7 +1098,9 @@
     "potion": false,
     "sets": [
       "Intrigue_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Mining Village",
@@ -1016,7 +1120,9 @@
     "sets": [
       "Intrigue_1E",
       "Intrigue_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Minion",
@@ -1037,7 +1143,9 @@
     "sets": [
       "Intrigue_1E",
       "Intrigue_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Nobles",
@@ -1060,7 +1168,9 @@
     "sets": [
       "Intrigue_1E",
       "Intrigue_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Patrol",
@@ -1080,7 +1190,9 @@
     "potion": false,
     "sets": [
       "Intrigue_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Pawn",
@@ -1101,7 +1213,9 @@
     "sets": [
       "Intrigue_1E",
       "Intrigue_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Replace",
@@ -1121,7 +1235,9 @@
     "potion": false,
     "sets": [
       "Intrigue_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Saboteur",
@@ -1139,7 +1255,9 @@
     "potion": false,
     "sets": [
       "Intrigue_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Scout",
@@ -1159,7 +1277,9 @@
     "potion": false,
     "sets": [
       "Intrigue_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Secret Chamber",
@@ -1177,7 +1297,9 @@
     "potion": false,
     "sets": [
       "Intrigue_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Secret Passage",
@@ -1194,7 +1316,9 @@
     "potion": false,
     "sets": [
       "Intrigue_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Shanty Town",
@@ -1214,7 +1338,9 @@
     "sets": [
       "Intrigue_1E",
       "Intrigue_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Steward",
@@ -1235,7 +1361,9 @@
     "sets": [
       "Intrigue_1E",
       "Intrigue_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Swindler",
@@ -1256,7 +1384,9 @@
     "sets": [
       "Intrigue_1E",
       "Intrigue_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Torturer",
@@ -1279,7 +1409,9 @@
     "sets": [
       "Intrigue_1E",
       "Intrigue_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Trading Post",
@@ -1299,7 +1431,9 @@
     "sets": [
       "Intrigue_1E",
       "Intrigue_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Tribute",
@@ -1316,7 +1450,9 @@
     "potion": false,
     "sets": [
       "Intrigue_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Upgrade",
@@ -1336,7 +1472,9 @@
     "sets": [
       "Intrigue_1E",
       "Intrigue_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Wishing Well",
@@ -1358,7 +1496,9 @@
     "sets": [
       "Intrigue_1E",
       "Intrigue_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Ambassador",
@@ -1378,7 +1518,9 @@
     "potion": false,
     "sets": [
       "Seaside_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Astrolabe",
@@ -1398,7 +1540,9 @@
     "potion": false,
     "sets": [
       "Seaside_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Bazaar",
@@ -1418,7 +1562,9 @@
     "sets": [
       "Seaside_1E",
       "Seaside_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Blockade",
@@ -1439,7 +1585,9 @@
     "potion": false,
     "sets": [
       "Seaside_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Caravan",
@@ -1461,7 +1609,9 @@
     "sets": [
       "Seaside_1E",
       "Seaside_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Corsair",
@@ -1480,7 +1630,9 @@
     "potion": false,
     "sets": [
       "Seaside_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Cutpurse",
@@ -1501,7 +1653,9 @@
     "sets": [
       "Seaside_1E",
       "Seaside_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Embargo",
@@ -1520,7 +1674,9 @@
     "potion": false,
     "sets": [
       "Seaside_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Explorer",
@@ -1537,7 +1693,9 @@
     "potion": false,
     "sets": [
       "Seaside_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Fishing Village",
@@ -1558,7 +1716,9 @@
     "sets": [
       "Seaside_1E",
       "Seaside_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Ghost Ship",
@@ -1579,7 +1739,9 @@
     "potion": false,
     "sets": [
       "Seaside_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Haven",
@@ -1600,7 +1762,9 @@
     "sets": [
       "Seaside_1E",
       "Seaside_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Island",
@@ -1621,7 +1785,9 @@
     "sets": [
       "Seaside_1E",
       "Seaside_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Lighthouse",
@@ -1640,7 +1806,9 @@
     "sets": [
       "Seaside_1E",
       "Seaside_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Lookout",
@@ -1661,7 +1829,9 @@
     "sets": [
       "Seaside_1E",
       "Seaside_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Merchant Ship",
@@ -1680,7 +1850,9 @@
     "sets": [
       "Seaside_1E",
       "Seaside_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Monkey",
@@ -1698,7 +1870,9 @@
     "potion": false,
     "sets": [
       "Seaside_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Native Village",
@@ -1718,7 +1892,9 @@
     "sets": [
       "Seaside_1E",
       "Seaside_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Navigator",
@@ -1737,7 +1913,9 @@
     "potion": false,
     "sets": [
       "Seaside_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Outpost",
@@ -1756,7 +1934,9 @@
     "sets": [
       "Seaside_1E",
       "Seaside_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Pearl Diver",
@@ -1775,7 +1955,9 @@
     "potion": false,
     "sets": [
       "Seaside_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Pirate",
@@ -1794,7 +1976,9 @@
     "potion": false,
     "sets": [
       "Seaside_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Pirate Ship",
@@ -1812,7 +1996,9 @@
     "potion": false,
     "sets": [
       "Seaside_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sailor",
@@ -1832,7 +2018,9 @@
     "potion": false,
     "sets": [
       "Seaside_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Salvager",
@@ -1853,7 +2041,9 @@
     "sets": [
       "Seaside_1E",
       "Seaside_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sea Chart",
@@ -1873,7 +2063,9 @@
     "potion": false,
     "sets": [
       "Seaside_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sea Hag",
@@ -1893,7 +2085,9 @@
     "potion": false,
     "sets": [
       "Seaside_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sea Witch",
@@ -1915,7 +2109,9 @@
     "potion": false,
     "sets": [
       "Seaside_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Smugglers",
@@ -1933,7 +2129,9 @@
     "sets": [
       "Seaside_1E",
       "Seaside_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Tactician",
@@ -1954,7 +2152,9 @@
     "sets": [
       "Seaside_1E",
       "Seaside_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Tide Pools",
@@ -1974,7 +2174,9 @@
     "potion": false,
     "sets": [
       "Seaside_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Treasure Map",
@@ -1992,7 +2194,9 @@
     "sets": [
       "Seaside_1E",
       "Seaside_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Treasury",
@@ -2010,7 +2214,9 @@
     "sets": [
       "Seaside_1E",
       "Seaside_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Warehouse",
@@ -2028,7 +2234,9 @@
     "sets": [
       "Seaside_1E",
       "Seaside_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Wharf",
@@ -2050,7 +2258,9 @@
     "sets": [
       "Seaside_1E",
       "Seaside_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Alchemist",
@@ -2069,7 +2279,9 @@
     "potion": true,
     "sets": [
       "Alchemy"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Apothecary",
@@ -2090,7 +2302,9 @@
     "potion": true,
     "sets": [
       "Alchemy"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Apprentice",
@@ -2110,7 +2324,9 @@
     "potion": false,
     "sets": [
       "Alchemy"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Familiar",
@@ -2131,7 +2347,9 @@
     "potion": true,
     "sets": [
       "Alchemy"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Golem",
@@ -2148,7 +2366,9 @@
     "potion": true,
     "sets": [
       "Alchemy"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Herbalist",
@@ -2167,7 +2387,9 @@
     "potion": false,
     "sets": [
       "Alchemy"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Philosopher's Stone",
@@ -2184,7 +2406,9 @@
     "potion": true,
     "sets": [
       "Alchemy"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Possession",
@@ -2201,7 +2425,9 @@
     "potion": true,
     "sets": [
       "Alchemy"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Scrying Pool",
@@ -2223,7 +2449,9 @@
     "potion": true,
     "sets": [
       "Alchemy"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Transmute",
@@ -2242,7 +2470,9 @@
     "potion": true,
     "sets": [
       "Alchemy"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "University",
@@ -2261,7 +2491,9 @@
     "potion": true,
     "sets": [
       "Alchemy"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Vineyard",
@@ -2280,7 +2512,9 @@
     "potion": true,
     "sets": [
       "Alchemy"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Potion",
@@ -2297,7 +2531,9 @@
     "potion": false,
     "sets": [
       "Alchemy"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Anvil",
@@ -2314,7 +2550,9 @@
     "potion": false,
     "sets": [
       "Prosperity_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Bank",
@@ -2332,7 +2570,9 @@
     "sets": [
       "Prosperity_1E",
       "Prosperity_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Bishop",
@@ -2354,7 +2594,9 @@
     "sets": [
       "Prosperity_1E",
       "Prosperity_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Charlatan",
@@ -2374,7 +2616,9 @@
     "potion": false,
     "sets": [
       "Prosperity_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "City",
@@ -2396,7 +2640,9 @@
     "sets": [
       "Prosperity_1E",
       "Prosperity_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Clerk",
@@ -2417,7 +2663,9 @@
     "potion": false,
     "sets": [
       "Prosperity_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Collection",
@@ -2437,7 +2685,9 @@
     "potion": false,
     "sets": [
       "Prosperity_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Contraband",
@@ -2456,7 +2706,9 @@
     "potion": false,
     "sets": [
       "Prosperity_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Counting House",
@@ -2473,7 +2725,9 @@
     "potion": false,
     "sets": [
       "Prosperity_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Crystal Ball",
@@ -2493,7 +2747,9 @@
     "potion": false,
     "sets": [
       "Prosperity_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Expand",
@@ -2511,7 +2767,9 @@
     "sets": [
       "Prosperity_1E",
       "Prosperity_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Forge",
@@ -2531,7 +2789,9 @@
     "sets": [
       "Prosperity_1E",
       "Prosperity_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Goons",
@@ -2553,11 +2813,13 @@
     "potion": false,
     "sets": [
       "Prosperity_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Grand Market",
-    "cost": null,
+    "cost": 6,
     "supply": true,
     "landscape": false,
     "types": [
@@ -2573,7 +2835,9 @@
     "sets": [
       "Prosperity_1E",
       "Prosperity_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Hoard",
@@ -2591,7 +2855,9 @@
     "sets": [
       "Prosperity_1E",
       "Prosperity_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Investment",
@@ -2611,7 +2877,9 @@
     "potion": false,
     "sets": [
       "Prosperity_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "King's Court",
@@ -2631,7 +2899,9 @@
     "sets": [
       "Prosperity_1E",
       "Prosperity_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Loan",
@@ -2650,7 +2920,9 @@
     "potion": false,
     "sets": [
       "Prosperity_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Magnate",
@@ -2669,7 +2941,9 @@
     "potion": false,
     "sets": [
       "Prosperity_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Mint",
@@ -2689,7 +2963,9 @@
     "sets": [
       "Prosperity_1E",
       "Prosperity_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Monument",
@@ -2709,7 +2985,9 @@
     "sets": [
       "Prosperity_1E",
       "Prosperity_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Mountebank",
@@ -2729,11 +3007,13 @@
     "potion": false,
     "sets": [
       "Prosperity_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Peddler",
-    "cost": null,
+    "cost": 8,
     "supply": true,
     "landscape": false,
     "types": [
@@ -2747,7 +3027,9 @@
     "sets": [
       "Prosperity_1E",
       "Prosperity_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Quarry",
@@ -2765,7 +3047,9 @@
     "sets": [
       "Prosperity_1E",
       "Prosperity_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Rabble",
@@ -2786,7 +3070,9 @@
     "sets": [
       "Prosperity_1E",
       "Prosperity_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Royal Seal",
@@ -2803,7 +3089,9 @@
     "potion": false,
     "sets": [
       "Prosperity_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Talisman",
@@ -2820,7 +3108,9 @@
     "potion": false,
     "sets": [
       "Prosperity_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Tiara",
@@ -2840,7 +3130,9 @@
     "potion": false,
     "sets": [
       "Prosperity_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Trade Route",
@@ -2860,7 +3152,9 @@
     "potion": false,
     "sets": [
       "Prosperity_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Vault",
@@ -2880,7 +3174,9 @@
     "sets": [
       "Prosperity_1E",
       "Prosperity_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Venture",
@@ -2897,7 +3193,9 @@
     "potion": false,
     "sets": [
       "Prosperity_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "War Chest",
@@ -2914,7 +3212,9 @@
     "potion": false,
     "sets": [
       "Prosperity_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Watchtower",
@@ -2936,7 +3236,9 @@
     "sets": [
       "Prosperity_1E",
       "Prosperity_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Worker's Village",
@@ -2957,7 +3259,9 @@
     "sets": [
       "Prosperity_1E",
       "Prosperity_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Platinum",
@@ -2975,7 +3279,9 @@
     "sets": [
       "Prosperity_1E",
       "Prosperity_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Colony",
@@ -2993,7 +3299,9 @@
     "sets": [
       "Prosperity_1E",
       "Prosperity_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Advisor",
@@ -3013,7 +3321,9 @@
     "sets": [
       "Guilds",
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Baker",
@@ -3031,7 +3341,9 @@
     "sets": [
       "Guilds",
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Butcher",
@@ -3049,7 +3361,9 @@
     "sets": [
       "Guilds",
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Candlestick Maker",
@@ -3069,7 +3383,9 @@
     "sets": [
       "Guilds",
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Carnival",
@@ -3088,11 +3404,13 @@
     "potion": false,
     "sets": [
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Doctor",
-    "cost": null,
+    "cost": 3,
     "supply": true,
     "landscape": false,
     "types": [
@@ -3108,7 +3426,9 @@
     "potion": false,
     "sets": [
       "Guilds"
-    ]
+    ],
+    "overpay": true,
+    "special_cost": false
   },
   {
     "name": "Fairgrounds",
@@ -3128,7 +3448,9 @@
     "sets": [
       "Cornucopia",
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Farmhands",
@@ -3147,7 +3469,9 @@
     "potion": false,
     "sets": [
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Farming Village",
@@ -3166,11 +3490,13 @@
     "potion": false,
     "sets": [
       "Cornucopia"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Farrier",
-    "cost": null,
+    "cost": 2,
     "supply": true,
     "landscape": false,
     "types": [
@@ -3186,7 +3512,9 @@
     "potion": false,
     "sets": [
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": true,
+    "special_cost": false
   },
   {
     "name": "Ferryman",
@@ -3203,7 +3531,9 @@
     "potion": false,
     "sets": [
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Footpad",
@@ -3223,7 +3553,9 @@
     "potion": false,
     "sets": [
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Fortune Teller",
@@ -3241,7 +3573,9 @@
     "potion": false,
     "sets": [
       "Cornucopia"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Hamlet",
@@ -3263,7 +3597,9 @@
     "sets": [
       "Cornucopia",
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Harvest",
@@ -3280,11 +3616,13 @@
     "potion": false,
     "sets": [
       "Cornucopia"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Herald",
-    "cost": null,
+    "cost": 4,
     "supply": true,
     "landscape": false,
     "types": [
@@ -3301,7 +3639,9 @@
     "sets": [
       "Guilds",
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": true,
+    "special_cost": false
   },
   {
     "name": "Horn of Plenty",
@@ -3319,7 +3659,9 @@
     "sets": [
       "Cornucopia",
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Horse Traders",
@@ -3339,7 +3681,9 @@
     "potion": false,
     "sets": [
       "Cornucopia"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Hunting Party",
@@ -3359,11 +3703,13 @@
     "sets": [
       "Cornucopia",
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Infirmary",
-    "cost": null,
+    "cost": 3,
     "supply": true,
     "landscape": false,
     "types": [
@@ -3378,7 +3724,9 @@
     "potion": false,
     "sets": [
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": true,
+    "special_cost": false
   },
   {
     "name": "Jester",
@@ -3399,7 +3747,9 @@
     "sets": [
       "Cornucopia",
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Journeyman",
@@ -3419,7 +3769,9 @@
     "sets": [
       "Guilds",
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Joust",
@@ -3436,11 +3788,13 @@
     "potion": false,
     "sets": [
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Masterpiece",
-    "cost": null,
+    "cost": 3,
     "supply": true,
     "landscape": false,
     "types": [
@@ -3453,7 +3807,9 @@
     "potion": false,
     "sets": [
       "Guilds"
-    ]
+    ],
+    "overpay": true,
+    "special_cost": false
   },
   {
     "name": "Menagerie",
@@ -3474,7 +3830,9 @@
     "sets": [
       "Cornucopia",
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Merchant Guild",
@@ -3494,7 +3852,9 @@
     "sets": [
       "Guilds",
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Plaza",
@@ -3514,7 +3874,9 @@
     "sets": [
       "Guilds",
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Remake",
@@ -3534,7 +3896,9 @@
     "sets": [
       "Cornucopia",
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Shop",
@@ -3553,7 +3917,9 @@
     "potion": false,
     "sets": [
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Soothsayer",
@@ -3574,11 +3940,13 @@
     "sets": [
       "Guilds",
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Stonemason",
-    "cost": null,
+    "cost": 2,
     "supply": true,
     "landscape": false,
     "types": [
@@ -3592,7 +3960,9 @@
     "sets": [
       "Guilds",
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": true,
+    "special_cost": false
   },
   {
     "name": "Taxman",
@@ -3612,7 +3982,9 @@
     "potion": false,
     "sets": [
       "Guilds"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Tournament",
@@ -3629,7 +4001,9 @@
     "potion": false,
     "sets": [
       "Cornucopia"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Young Witch",
@@ -3650,11 +4024,13 @@
     "sets": [
       "Cornucopia",
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Bag of Gold",
-    "cost": null,
+    "cost": 0,
     "supply": false,
     "landscape": false,
     "types": [
@@ -3668,12 +4044,14 @@
     "potion": false,
     "sets": [
       "Cornucopia"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Coronet",
-    "cost": null,
-    "supply": true,
+    "cost": 0,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -3689,12 +4067,14 @@
     "potion": false,
     "sets": [
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Courser",
-    "cost": null,
-    "supply": true,
+    "cost": 0,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -3709,12 +4089,14 @@
     "potion": false,
     "sets": [
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Demesne",
-    "cost": null,
-    "supply": true,
+    "cost": 0,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -3731,11 +4113,13 @@
     "potion": false,
     "sets": [
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Diadem",
-    "cost": null,
+    "cost": 0,
     "supply": false,
     "landscape": false,
     "types": [
@@ -3749,11 +4133,13 @@
     "potion": false,
     "sets": [
       "Cornucopia"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Followers",
-    "cost": null,
+    "cost": 0,
     "supply": false,
     "landscape": false,
     "types": [
@@ -3772,12 +4158,14 @@
     "potion": false,
     "sets": [
       "Cornucopia"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Housecarl",
-    "cost": null,
-    "supply": true,
+    "cost": 0,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -3792,12 +4180,14 @@
     "potion": false,
     "sets": [
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Huge Turnip",
-    "cost": null,
-    "supply": true,
+    "cost": 0,
+    "supply": false,
     "landscape": false,
     "types": [
       "Treasure",
@@ -3810,7 +4200,9 @@
     "potion": false,
     "sets": [
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Princess",
@@ -3830,12 +4222,14 @@
     "potion": false,
     "sets": [
       "Cornucopia"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Renown",
-    "cost": null,
-    "supply": true,
+    "cost": 0,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -3850,11 +4244,13 @@
     "potion": false,
     "sets": [
       "Cornucopia_Guilds_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Trusty Steed",
-    "cost": null,
+    "cost": 0,
     "supply": false,
     "landscape": false,
     "types": [
@@ -3870,7 +4266,9 @@
     "potion": false,
     "sets": [
       "Cornucopia"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Berserker",
@@ -3890,7 +4288,9 @@
     "potion": false,
     "sets": [
       "Hinterlands_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Border Village",
@@ -3910,7 +4310,9 @@
     "sets": [
       "Hinterlands_1E",
       "Hinterlands_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Cache",
@@ -3927,7 +4329,9 @@
     "potion": false,
     "sets": [
       "Hinterlands_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Cartographer",
@@ -3948,7 +4352,9 @@
     "sets": [
       "Hinterlands_1E",
       "Hinterlands_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Cauldron",
@@ -3969,7 +4375,9 @@
     "potion": false,
     "sets": [
       "Hinterlands_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Crossroads",
@@ -3989,7 +4397,9 @@
     "sets": [
       "Hinterlands_1E",
       "Hinterlands_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Develop",
@@ -4007,7 +4417,9 @@
     "sets": [
       "Hinterlands_1E",
       "Hinterlands_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Duchess",
@@ -4026,7 +4438,9 @@
     "potion": false,
     "sets": [
       "Hinterlands_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Embassy",
@@ -4045,7 +4459,9 @@
     "potion": false,
     "sets": [
       "Hinterlands_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Farmland",
@@ -4065,7 +4481,9 @@
     "sets": [
       "Hinterlands_1E",
       "Hinterlands_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Fool's Gold",
@@ -4084,7 +4502,9 @@
     "sets": [
       "Hinterlands_1E",
       "Hinterlands_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Guard Dog",
@@ -4104,7 +4524,9 @@
     "potion": false,
     "sets": [
       "Hinterlands_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Haggler",
@@ -4122,7 +4544,9 @@
     "sets": [
       "Hinterlands_1E",
       "Hinterlands_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Highway",
@@ -4142,7 +4566,9 @@
     "sets": [
       "Hinterlands_1E",
       "Hinterlands_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Ill-Gotten Gains",
@@ -4161,7 +4587,9 @@
     "potion": false,
     "sets": [
       "Hinterlands_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Inn",
@@ -4181,7 +4609,9 @@
     "sets": [
       "Hinterlands_1E",
       "Hinterlands_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Jack of All Trades",
@@ -4203,7 +4633,9 @@
     "sets": [
       "Hinterlands_1E",
       "Hinterlands_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Mandarin",
@@ -4220,7 +4652,9 @@
     "potion": false,
     "sets": [
       "Hinterlands_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Margrave",
@@ -4243,7 +4677,9 @@
     "sets": [
       "Hinterlands_1E",
       "Hinterlands_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Noble Brigand",
@@ -4261,7 +4697,9 @@
     "potion": false,
     "sets": [
       "Hinterlands_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Nomad Camp",
@@ -4280,7 +4718,9 @@
     "potion": false,
     "sets": [
       "Hinterlands_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Nomads",
@@ -4299,7 +4739,9 @@
     "potion": false,
     "sets": [
       "Hinterlands_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Oasis",
@@ -4317,7 +4759,9 @@
     "sets": [
       "Hinterlands_1E",
       "Hinterlands_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Oracle",
@@ -4338,7 +4782,9 @@
     "potion": false,
     "sets": [
       "Hinterlands_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Scheme",
@@ -4358,7 +4804,9 @@
     "sets": [
       "Hinterlands_1E",
       "Hinterlands_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Silk Road",
@@ -4377,7 +4825,9 @@
     "potion": false,
     "sets": [
       "Hinterlands_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Souk",
@@ -4397,7 +4847,9 @@
     "potion": false,
     "sets": [
       "Hinterlands_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Spice Merchant",
@@ -4418,7 +4870,9 @@
     "sets": [
       "Hinterlands_1E",
       "Hinterlands_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Stables",
@@ -4438,7 +4892,9 @@
     "sets": [
       "Hinterlands_1E",
       "Hinterlands_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Trader",
@@ -4459,7 +4915,9 @@
     "sets": [
       "Hinterlands_1E",
       "Hinterlands_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Trail",
@@ -4479,7 +4937,9 @@
     "potion": false,
     "sets": [
       "Hinterlands_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Tunnel",
@@ -4500,7 +4960,9 @@
     "sets": [
       "Hinterlands_1E",
       "Hinterlands_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Weaver",
@@ -4518,7 +4980,9 @@
     "potion": false,
     "sets": [
       "Hinterlands_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Wheelwright",
@@ -4537,7 +5001,9 @@
     "potion": false,
     "sets": [
       "Hinterlands_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Witch's Hut",
@@ -4558,7 +5024,9 @@
     "potion": false,
     "sets": [
       "Hinterlands_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Altar",
@@ -4577,7 +5045,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Armory",
@@ -4594,7 +5064,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Band of Misfits",
@@ -4612,7 +5084,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Bandit Camp",
@@ -4631,7 +5105,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Beggar",
@@ -4649,7 +5125,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Catacombs",
@@ -4668,7 +5146,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Count",
@@ -4687,7 +5167,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Counterfeit",
@@ -4709,7 +5191,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Cultist",
@@ -4730,7 +5214,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Dame Anna",
@@ -4751,7 +5237,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Dame Josephine",
@@ -4773,7 +5261,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Dame Molly",
@@ -4792,7 +5282,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Dame Natalie",
@@ -4811,7 +5303,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Dame Sylvia",
@@ -4830,7 +5324,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Death Cart",
@@ -4850,7 +5346,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Feodum",
@@ -4869,7 +5367,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Forager",
@@ -4889,7 +5389,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Fortress",
@@ -4908,7 +5410,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Graverobber",
@@ -4925,7 +5429,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Hermit",
@@ -4944,7 +5450,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Hunting Grounds",
@@ -4963,7 +5471,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Ironmonger",
@@ -4983,7 +5493,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Junk Dealer",
@@ -5002,7 +5514,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Marauder",
@@ -5021,7 +5535,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Market Square",
@@ -5042,7 +5558,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Mystic",
@@ -5061,7 +5579,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Pillage",
@@ -5081,7 +5601,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Poor House",
@@ -5098,7 +5620,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Procession",
@@ -5117,7 +5641,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Rats",
@@ -5137,7 +5663,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Rebuild",
@@ -5154,7 +5682,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Rogue",
@@ -5172,7 +5702,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sage",
@@ -5191,7 +5723,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Scavenger",
@@ -5208,7 +5742,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sir Bailey",
@@ -5229,7 +5765,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sir Destry",
@@ -5250,7 +5788,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sir Martin",
@@ -5271,7 +5811,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sir Michael",
@@ -5292,7 +5834,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sir Vander",
@@ -5311,7 +5855,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Squire",
@@ -5331,7 +5877,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Storeroom",
@@ -5350,7 +5898,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Urchin",
@@ -5371,7 +5921,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Vagrant",
@@ -5392,7 +5944,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Wandering Minstrel",
@@ -5412,11 +5966,13 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Abandoned Mine",
-    "cost": null,
+    "cost": 0,
     "supply": false,
     "landscape": false,
     "types": [
@@ -5430,11 +5986,13 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Ruined Library",
-    "cost": null,
+    "cost": 0,
     "supply": false,
     "landscape": false,
     "types": [
@@ -5448,11 +6006,13 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Ruined Market",
-    "cost": null,
+    "cost": 0,
     "supply": false,
     "landscape": false,
     "types": [
@@ -5468,11 +6028,13 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Ruined Village",
-    "cost": null,
+    "cost": 0,
     "supply": false,
     "landscape": false,
     "types": [
@@ -5486,11 +6048,13 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Survivors",
-    "cost": null,
+    "cost": 0,
     "supply": false,
     "landscape": false,
     "types": [
@@ -5506,7 +6070,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Hovel",
@@ -5524,11 +6090,13 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Madman",
-    "cost": null,
+    "cost": 0,
     "supply": false,
     "landscape": false,
     "types": [
@@ -5543,11 +6111,13 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Mercenary",
-    "cost": null,
+    "cost": 0,
     "supply": false,
     "landscape": false,
     "types": [
@@ -5565,7 +6135,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Necropolis",
@@ -5583,7 +6155,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Overgrown Estate",
@@ -5601,7 +6175,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Spoils",
@@ -5618,7 +6194,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Amulet",
@@ -5638,7 +6216,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Artificer",
@@ -5655,7 +6235,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Bridge Troll",
@@ -5676,7 +6258,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Caravan Guard",
@@ -5697,7 +6281,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Coin of the Realm",
@@ -5717,7 +6303,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Distant Lands",
@@ -5738,7 +6326,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Dungeon",
@@ -5756,7 +6346,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Duplicate",
@@ -5774,7 +6366,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Gear",
@@ -5794,7 +6388,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Giant",
@@ -5814,7 +6410,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Guide",
@@ -5834,7 +6432,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Haunted Woods",
@@ -5855,7 +6455,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Hireling",
@@ -5873,7 +6475,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Lost City",
@@ -5893,7 +6497,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Magpie",
@@ -5914,7 +6520,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Messenger",
@@ -5934,7 +6542,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Miser",
@@ -5953,7 +6563,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Page",
@@ -5973,7 +6585,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Peasant",
@@ -5993,7 +6607,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Port",
@@ -6012,7 +6628,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Ranger",
@@ -6032,7 +6650,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Ratcatcher",
@@ -6053,7 +6673,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Raze",
@@ -6072,7 +6694,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Relic",
@@ -6090,7 +6714,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Royal Carriage",
@@ -6110,7 +6736,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Storyteller",
@@ -6130,7 +6758,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Swamp Hag",
@@ -6151,7 +6781,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Transmogrify",
@@ -6169,7 +6801,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Treasure Trove",
@@ -6186,7 +6820,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Wine Merchant",
@@ -6206,12 +6842,14 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Champion",
-    "cost": null,
-    "supply": true,
+    "cost": 6,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -6224,12 +6862,14 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Disciple",
-    "cost": null,
-    "supply": true,
+    "cost": 5,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -6244,12 +6884,14 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Fugitive",
-    "cost": null,
-    "supply": true,
+    "cost": 4,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -6262,12 +6904,14 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Hero",
-    "cost": null,
-    "supply": true,
+    "cost": 5,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -6280,12 +6924,14 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Soldier",
-    "cost": null,
-    "supply": true,
+    "cost": 3,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -6301,12 +6947,14 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Teacher",
-    "cost": null,
-    "supply": true,
+    "cost": 6,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -6322,12 +6970,14 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Treasure Hunter",
-    "cost": null,
-    "supply": true,
+    "cost": 3,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -6340,12 +6990,14 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Warrior",
-    "cost": null,
-    "supply": true,
+    "cost": 4,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -6361,7 +7013,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Alms",
@@ -6378,7 +7032,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Ball",
@@ -6395,7 +7051,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Bonfire",
@@ -6414,7 +7072,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Borrow",
@@ -6433,7 +7093,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Expedition",
@@ -6450,7 +7112,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Ferry",
@@ -6467,7 +7131,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Inheritance",
@@ -6484,7 +7150,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Lost Arts",
@@ -6503,7 +7171,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Mission",
@@ -6520,7 +7190,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Pathfinding",
@@ -6539,7 +7211,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Pilgrimage",
@@ -6556,7 +7230,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Plan",
@@ -6575,7 +7251,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Quest",
@@ -6592,7 +7270,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Raid",
@@ -6609,7 +7289,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Save",
@@ -6628,7 +7310,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Scouting Party",
@@ -6648,7 +7332,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Seaway",
@@ -6667,7 +7353,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Trade",
@@ -6686,7 +7374,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Training",
@@ -6703,7 +7393,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Travelling Fair",
@@ -6722,7 +7414,9 @@
     "potion": false,
     "sets": [
       "Adventures"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Archive",
@@ -6743,7 +7437,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Bustling Village",
@@ -6763,7 +7459,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Capital",
@@ -6782,7 +7480,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Catapult",
@@ -6805,7 +7505,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Chariot Race",
@@ -6824,7 +7526,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Charm",
@@ -6843,7 +7547,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "City Quarter",
@@ -6863,7 +7569,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Crown",
@@ -6883,7 +7591,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Crumbling Castle",
@@ -6903,7 +7613,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Emporium",
@@ -6922,7 +7634,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Encampment",
@@ -6942,7 +7656,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Enchantress",
@@ -6961,7 +7677,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Engineer",
@@ -6978,7 +7696,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Farmers' Market",
@@ -6999,7 +7719,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Fortune",
@@ -7018,7 +7740,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Forum",
@@ -7037,7 +7761,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Gladiator",
@@ -7056,7 +7782,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Grand Castle",
@@ -7076,7 +7804,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Groundskeeper",
@@ -7096,7 +7826,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Haunted Castle",
@@ -7116,7 +7848,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Humble Castle",
@@ -7137,7 +7871,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "King's Castle",
@@ -7157,7 +7893,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Legionary",
@@ -7177,7 +7915,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Opulent Castle",
@@ -7198,7 +7938,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Overlord",
@@ -7216,7 +7958,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Patrician",
@@ -7237,7 +7981,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Plunder",
@@ -7256,7 +8002,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Rocks",
@@ -7273,7 +8021,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Royal Blacksmith",
@@ -7292,7 +8042,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sacrifice",
@@ -7312,7 +8064,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Settlers",
@@ -7332,7 +8086,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Small Castle",
@@ -7354,7 +8110,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sprawling Castle",
@@ -7374,7 +8132,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Temple",
@@ -7395,7 +8155,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Villa",
@@ -7415,7 +8177,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Wild Hunt",
@@ -7436,7 +8200,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Advance",
@@ -7455,7 +8221,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Annex",
@@ -7472,7 +8240,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Banquet",
@@ -7489,7 +8259,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Conquest",
@@ -7508,7 +8280,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Delve",
@@ -7527,7 +8301,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Dominate",
@@ -7546,7 +8322,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Donate",
@@ -7565,7 +8343,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Ritual",
@@ -7586,7 +8366,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Salt the Earth",
@@ -7606,7 +8388,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Tax",
@@ -7623,7 +8407,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Triumph",
@@ -7642,7 +8428,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Wedding",
@@ -7661,7 +8449,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Windfall",
@@ -7678,7 +8468,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Aqueduct",
@@ -7695,7 +8487,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Arena",
@@ -7712,7 +8506,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Bandit Fort",
@@ -7729,7 +8525,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Basilica",
@@ -7746,12 +8544,14 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Baths",
-    "cost": null,
-    "supply": true,
+    "cost": 2,
+    "supply": false,
     "landscape": true,
     "types": [
       "Landmark"
@@ -7763,7 +8563,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Battlefield",
@@ -7780,7 +8582,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Colonnade",
@@ -7797,7 +8601,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Defiled Shrine",
@@ -7814,7 +8620,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Fountain",
@@ -7831,7 +8639,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Keep",
@@ -7848,7 +8658,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Labyrinth",
@@ -7865,7 +8677,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Mountain Pass",
@@ -7882,7 +8696,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Museum",
@@ -7899,7 +8715,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Obelisk",
@@ -7916,7 +8734,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Orchard",
@@ -7933,7 +8753,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Palace",
@@ -7950,7 +8772,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Tomb",
@@ -7967,7 +8791,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Tower",
@@ -7984,7 +8810,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Triumphal Arch",
@@ -8001,7 +8829,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Wall",
@@ -8018,7 +8848,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Wolf Den",
@@ -8035,7 +8867,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Bard",
@@ -8053,7 +8887,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Blessed Village",
@@ -8073,7 +8909,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Cemetery",
@@ -8093,7 +8931,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Changeling",
@@ -8110,7 +8950,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Cobbler",
@@ -8128,7 +8970,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Conclave",
@@ -8145,7 +8989,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Crypt",
@@ -8165,7 +9011,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Cursed Village",
@@ -8186,7 +9034,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Den of Sin",
@@ -8206,7 +9056,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Devil's Workshop",
@@ -8223,7 +9075,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Druid",
@@ -8243,7 +9097,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Exorcist",
@@ -8260,7 +9116,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Faithful Hound",
@@ -8280,7 +9138,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Fool",
@@ -8298,7 +9158,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Ghost Town",
@@ -8318,7 +9180,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Guardian",
@@ -8336,7 +9200,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Idol",
@@ -8357,7 +9223,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Leprechaun",
@@ -8375,7 +9243,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Monastery",
@@ -8394,7 +9264,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Necromancer",
@@ -8411,7 +9283,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Night Watchman",
@@ -8430,7 +9304,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Pixie",
@@ -8450,7 +9326,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Pooka",
@@ -8470,7 +9348,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Raider",
@@ -8491,7 +9371,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sacred Grove",
@@ -8511,7 +9393,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Secret Cave",
@@ -8531,7 +9415,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Shepherd",
@@ -8548,7 +9434,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Skulk",
@@ -8569,7 +9457,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Tormentor",
@@ -8588,7 +9478,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Tracker",
@@ -8606,7 +9498,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Tragic Hero",
@@ -8626,7 +9520,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Vampire",
@@ -8645,7 +9541,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Werewolf",
@@ -8667,7 +9565,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Bat",
@@ -8686,7 +9586,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Cursed Gold",
@@ -8706,11 +9608,13 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Ghost",
-    "cost": null,
+    "cost": 4,
     "supply": false,
     "landscape": false,
     "types": [
@@ -8727,7 +9631,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Goat",
@@ -8747,7 +9653,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Haunted Mirror",
@@ -8765,11 +9673,13 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Imp",
-    "cost": null,
+    "cost": 2,
     "supply": false,
     "landscape": false,
     "types": [
@@ -8785,7 +9695,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Lucky Coin",
@@ -8803,7 +9715,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Magic Lamp",
@@ -8821,7 +9735,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Pasture",
@@ -8842,7 +9758,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Pouch",
@@ -8862,11 +9780,13 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Will-o'-Wisp",
-    "cost": null,
+    "cost": 0,
     "supply": false,
     "landscape": false,
     "types": [
@@ -8884,11 +9804,13 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Wish",
-    "cost": null,
+    "cost": 0,
     "supply": false,
     "landscape": false,
     "types": [
@@ -8901,7 +9823,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Zombie Apprentice",
@@ -8921,7 +9845,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Zombie Mason",
@@ -8939,7 +9865,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Zombie Spy",
@@ -8960,7 +9888,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "The Earth's Gift",
@@ -8977,7 +9907,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "The Field's Gift",
@@ -8994,7 +9926,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "The Flame's Gift",
@@ -9013,7 +9947,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "The Forest's Gift",
@@ -9032,7 +9968,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "The Moon's Gift",
@@ -9049,7 +9987,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "The Mountain's Gift",
@@ -9066,7 +10006,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "The River's Gift",
@@ -9083,7 +10025,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "The Sea's Gift",
@@ -9100,7 +10044,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "The Sky's Gift",
@@ -9117,7 +10063,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "The Sun's Gift",
@@ -9136,7 +10084,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "The Swamp's Gift",
@@ -9153,7 +10103,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "The Wind's Gift",
@@ -9170,7 +10122,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Bad Omens",
@@ -9187,7 +10141,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Delusion",
@@ -9204,7 +10160,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Envy",
@@ -9221,7 +10179,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Famine",
@@ -9238,7 +10198,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Fear",
@@ -9257,7 +10219,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Greed",
@@ -9274,7 +10238,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Haunting",
@@ -9293,7 +10259,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Locusts",
@@ -9310,7 +10278,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Misery",
@@ -9327,7 +10297,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Plague",
@@ -9344,7 +10316,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Poverty",
@@ -9363,7 +10337,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "War",
@@ -9380,7 +10356,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Deluded",
@@ -9397,7 +10375,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Envious",
@@ -9414,7 +10394,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Lost in the Woods",
@@ -9431,7 +10413,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Miserable",
@@ -9448,7 +10432,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Twice Miserable",
@@ -9465,7 +10451,9 @@
     "potion": false,
     "sets": [
       "Nocturne"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Acting Troupe",
@@ -9482,7 +10470,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Border Guard",
@@ -9501,7 +10491,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Cargo Ship",
@@ -9519,7 +10511,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Ducat",
@@ -9539,7 +10533,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Experiment",
@@ -9558,7 +10554,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Flag Bearer",
@@ -9575,7 +10573,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Hideout",
@@ -9596,7 +10596,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Improve",
@@ -9613,7 +10615,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Inventor",
@@ -9630,7 +10634,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Lackeys",
@@ -9649,7 +10655,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Mountain Village",
@@ -9668,7 +10676,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Old Witch",
@@ -9689,7 +10699,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Patron",
@@ -9707,7 +10719,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Priest",
@@ -9726,7 +10740,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Recruiter",
@@ -9746,7 +10762,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Research",
@@ -9766,7 +10784,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Scepter",
@@ -9786,7 +10806,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Scholar",
@@ -9803,7 +10825,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sculptor",
@@ -9820,7 +10844,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Seer",
@@ -9841,7 +10867,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Silk Merchant",
@@ -9861,7 +10889,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Spices",
@@ -9880,7 +10910,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Swashbuckler",
@@ -9899,7 +10931,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Treasurer",
@@ -9918,7 +10952,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Villain",
@@ -9938,7 +10974,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Academy",
@@ -9955,7 +10993,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Barracks",
@@ -9972,7 +11012,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Canal",
@@ -9989,7 +11031,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Capitalism",
@@ -10006,7 +11050,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Cathedral",
@@ -10025,7 +11071,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Citadel",
@@ -10044,7 +11092,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "City Gate",
@@ -10061,7 +11111,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Crop Rotation",
@@ -10078,7 +11130,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Exploration",
@@ -10095,7 +11149,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Fair",
@@ -10114,7 +11170,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Fleet",
@@ -10131,7 +11189,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Guildhall",
@@ -10148,7 +11208,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Innovation",
@@ -10165,7 +11227,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Pageant",
@@ -10182,7 +11246,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Piazza",
@@ -10201,7 +11267,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Road Network",
@@ -10218,7 +11286,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sewers",
@@ -10237,7 +11307,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Silos",
@@ -10254,7 +11326,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sinister Plot",
@@ -10271,7 +11345,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Star Chart",
@@ -10288,7 +11364,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Flag",
@@ -10305,7 +11383,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Horn",
@@ -10322,7 +11402,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Key",
@@ -10339,7 +11421,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Lantern",
@@ -10356,7 +11440,9 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Treasure Chest",
@@ -10373,11 +11459,13 @@
     "potion": false,
     "sets": [
       "Renaissance"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Animal Fair",
-    "cost": null,
+    "cost": 7,
     "supply": true,
     "landscape": false,
     "types": [
@@ -10392,7 +11480,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Barge",
@@ -10413,7 +11503,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Black Cat",
@@ -10435,7 +11527,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Bounty Hunter",
@@ -10452,7 +11546,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Camel Train",
@@ -10469,7 +11565,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Cardinal",
@@ -10487,7 +11585,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Cavalry",
@@ -10506,7 +11606,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Coven",
@@ -10526,11 +11628,13 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Destrier",
-    "cost": null,
+    "cost": 6,
     "supply": true,
     "landscape": false,
     "types": [
@@ -10545,7 +11649,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Displace",
@@ -10562,7 +11668,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Falconer",
@@ -10580,11 +11688,13 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Fisherman",
-    "cost": null,
+    "cost": 5,
     "supply": true,
     "landscape": false,
     "types": [
@@ -10597,7 +11707,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Gatekeeper",
@@ -10616,7 +11728,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Goatherd",
@@ -10635,7 +11749,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Groom",
@@ -10652,7 +11768,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Hostelry",
@@ -10671,7 +11789,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Hunting Lodge",
@@ -10690,7 +11810,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Kiln",
@@ -10707,7 +11829,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Livery",
@@ -10724,7 +11848,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Mastermind",
@@ -10744,7 +11870,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Paddock",
@@ -10761,7 +11889,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sanctuary",
@@ -10781,7 +11911,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Scrap",
@@ -10801,7 +11933,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sheepdog",
@@ -10821,7 +11955,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sleigh",
@@ -10839,7 +11975,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Snowy Village",
@@ -10858,7 +11996,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Stockpile",
@@ -10877,7 +12017,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Supplies",
@@ -10894,7 +12036,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Village Green",
@@ -10915,11 +12059,13 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Wayfarer",
-    "cost": null,
+    "cost": 6,
     "supply": true,
     "landscape": false,
     "types": [
@@ -10934,12 +12080,14 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Horse",
-    "cost": null,
-    "supply": true,
+    "cost": 3,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action"
@@ -10953,7 +12101,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Alliance",
@@ -10970,7 +12120,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Banish",
@@ -10989,7 +12141,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Bargain",
@@ -11006,7 +12160,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Commerce",
@@ -11023,11 +12179,13 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Delay",
-    "cost": null,
+    "cost": 0,
     "supply": true,
     "landscape": true,
     "types": [
@@ -11040,7 +12198,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Demand",
@@ -11057,11 +12217,13 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Desperation",
-    "cost": null,
+    "cost": 0,
     "supply": true,
     "landscape": true,
     "types": [
@@ -11077,7 +12239,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Enclave",
@@ -11094,7 +12258,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Enhance",
@@ -11111,7 +12277,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Gamble",
@@ -11130,7 +12298,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Invest",
@@ -11147,7 +12317,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "March",
@@ -11164,7 +12336,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Populate",
@@ -11181,7 +12355,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Pursue",
@@ -11201,7 +12377,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Reap",
@@ -11218,7 +12396,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Ride",
@@ -11235,7 +12415,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Seize the Day",
@@ -11252,7 +12434,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Stampede",
@@ -11269,7 +12453,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Toil",
@@ -11288,7 +12474,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Transport",
@@ -11305,7 +12493,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Way of the Butterfly",
@@ -11322,7 +12512,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Way of the Camel",
@@ -11339,7 +12531,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Way of the Chameleon",
@@ -11356,7 +12550,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Way of the Frog",
@@ -11373,7 +12569,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Way of the Goat",
@@ -11392,7 +12590,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Way of the Horse",
@@ -11411,7 +12611,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Way of the Mole",
@@ -11428,7 +12630,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Way of the Monkey",
@@ -11447,7 +12651,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Way of the Mouse",
@@ -11464,7 +12670,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Way of the Mule",
@@ -11481,7 +12689,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Way of the Otter",
@@ -11498,7 +12708,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Way of the Ox",
@@ -11517,7 +12729,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Way of the Owl",
@@ -11536,7 +12750,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Way of the Pig",
@@ -11553,7 +12769,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Way of the Rat",
@@ -11570,7 +12788,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Way of the Seal",
@@ -11587,7 +12807,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Way of the Sheep",
@@ -11604,7 +12826,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Way of the Squirrel",
@@ -11621,7 +12845,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Way of the Turtle",
@@ -11638,7 +12864,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Way of the Worm",
@@ -11655,7 +12883,9 @@
     "potion": false,
     "sets": [
       "Menagerie"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Acolyte",
@@ -11675,7 +12905,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Archer",
@@ -11696,7 +12928,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Barbarian",
@@ -11716,7 +12950,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Battle Plan",
@@ -11737,7 +12973,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Bauble",
@@ -11757,7 +12995,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Blacksmith",
@@ -11778,7 +13018,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Broker",
@@ -11799,7 +13041,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Capital City",
@@ -11819,7 +13063,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Carpenter",
@@ -11836,7 +13082,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Conjurer",
@@ -11855,7 +13103,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Contract",
@@ -11874,7 +13124,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Courier",
@@ -11891,7 +13143,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Distant Shore",
@@ -11913,7 +13167,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Elder",
@@ -11933,7 +13189,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Emissary",
@@ -11953,7 +13211,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Galleria",
@@ -11972,7 +13232,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Garrison",
@@ -11991,7 +13253,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Guildmaster",
@@ -12009,7 +13273,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Herb Gatherer",
@@ -12029,7 +13295,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Highwayman",
@@ -12050,7 +13318,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Hill Fort",
@@ -12070,7 +13340,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Hunter",
@@ -12089,7 +13361,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Importer",
@@ -12108,7 +13382,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Innkeeper",
@@ -12127,7 +13403,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Lich",
@@ -12147,7 +13425,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Marquis",
@@ -12167,7 +13447,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Merchant Camp",
@@ -12186,7 +13468,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Miller",
@@ -12206,7 +13490,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Modify",
@@ -12225,7 +13511,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Old Map",
@@ -12245,7 +13533,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Royal Galley",
@@ -12265,7 +13555,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sentinel",
@@ -12285,7 +13577,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sibyl",
@@ -12305,7 +13599,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Skirmisher",
@@ -12325,7 +13621,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sorcerer",
@@ -12347,7 +13645,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sorceress",
@@ -12369,7 +13669,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Specialist",
@@ -12388,7 +13690,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Stronghold",
@@ -12411,7 +13715,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Student",
@@ -12432,7 +13738,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sunken Treasure",
@@ -12450,7 +13758,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Swap",
@@ -12469,7 +13779,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sycophant",
@@ -12487,7 +13799,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Tent",
@@ -12505,7 +13819,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Territory",
@@ -12525,7 +13841,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Town",
@@ -12545,7 +13863,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Town Crier",
@@ -12565,7 +13885,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Underling",
@@ -12585,7 +13907,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Voyage",
@@ -12604,7 +13928,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Warlord",
@@ -12624,7 +13950,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Architects' Guild",
@@ -12641,7 +13969,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Band of Nomads",
@@ -12660,7 +13990,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Cave Dwellers",
@@ -12677,7 +14009,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Circle of Witches",
@@ -12694,7 +14028,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "City-state",
@@ -12711,7 +14047,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Coastal Haven",
@@ -12728,7 +14066,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Crafters' Guild",
@@ -12745,7 +14085,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Desert Guides",
@@ -12762,7 +14104,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Family of Inventors",
@@ -12779,7 +14123,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Fellowship of Scribes",
@@ -12796,7 +14142,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Forest Dwellers",
@@ -12815,7 +14163,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Gang of Pickpockets",
@@ -12832,7 +14182,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Island Folk",
@@ -12849,7 +14201,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "League of Bankers",
@@ -12866,7 +14220,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "League of Shopkeepers",
@@ -12885,7 +14241,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Market Towns",
@@ -12902,7 +14260,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Mountain Folk",
@@ -12919,7 +14279,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Order of Astrologers",
@@ -12936,7 +14298,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Order of Masons",
@@ -12953,7 +14317,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Peaceful Cult",
@@ -12972,7 +14338,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Plateau Shepherds",
@@ -12989,7 +14357,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Trappers' Lodge",
@@ -13006,7 +14376,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Woodworkers' Guild",
@@ -13025,7 +14397,9 @@
     "potion": false,
     "sets": [
       "Allies"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Abundance",
@@ -13045,7 +14419,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Buried Treasure",
@@ -13065,7 +14441,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Cabin Boy",
@@ -13085,7 +14463,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Cage",
@@ -13103,7 +14483,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Crew",
@@ -13123,7 +14505,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Crucible",
@@ -13142,7 +14526,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Cutthroat",
@@ -13163,7 +14549,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Enlarge",
@@ -13181,7 +14569,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Figurine",
@@ -13201,7 +14591,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "First Mate",
@@ -13220,7 +14612,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Flagship",
@@ -13241,7 +14635,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Fortune Hunter",
@@ -13260,7 +14656,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Frigate",
@@ -13281,7 +14679,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Gondola",
@@ -13299,7 +14699,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Grotto",
@@ -13317,7 +14719,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Harbor Village",
@@ -13336,7 +14740,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Jewelled Egg",
@@ -13355,7 +14761,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "King's Cache",
@@ -13374,7 +14782,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Landing Party",
@@ -13394,7 +14804,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Longship",
@@ -13414,7 +14826,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Mapmaker",
@@ -13434,7 +14848,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Maroon",
@@ -13454,7 +14870,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Mining Road",
@@ -13473,7 +14891,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Pendant",
@@ -13490,7 +14910,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Pickaxe",
@@ -13509,7 +14931,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Pilgrim",
@@ -13528,7 +14952,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Quartermaster",
@@ -13546,7 +14972,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Rope",
@@ -13567,7 +14995,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sack of Loot",
@@ -13586,7 +15016,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Search",
@@ -13604,7 +15036,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Secluded Shrine",
@@ -13624,7 +15058,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Shaman",
@@ -13643,7 +15079,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Silver Mine",
@@ -13660,7 +15098,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Siren",
@@ -13681,7 +15121,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Stowaway",
@@ -13700,7 +15142,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Swamp Shacks",
@@ -13720,7 +15164,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Taskmaster",
@@ -13738,7 +15184,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Tools",
@@ -13755,7 +15203,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Trickster",
@@ -13775,7 +15225,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Wealthy Village",
@@ -13794,11 +15246,13 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Amphora",
-    "cost": null,
+    "cost": 7,
     "supply": false,
     "landscape": false,
     "types": [
@@ -13815,11 +15269,13 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Doubloons",
-    "cost": null,
+    "cost": 7,
     "supply": false,
     "landscape": false,
     "types": [
@@ -13833,11 +15289,13 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Endless Chalice",
-    "cost": null,
+    "cost": 7,
     "supply": false,
     "landscape": false,
     "types": [
@@ -13854,11 +15312,13 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Figurehead",
-    "cost": null,
+    "cost": 7,
     "supply": false,
     "landscape": false,
     "types": [
@@ -13873,11 +15333,13 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Hammer",
-    "cost": null,
+    "cost": 7,
     "supply": false,
     "landscape": false,
     "types": [
@@ -13891,11 +15353,13 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Insignia",
-    "cost": null,
+    "cost": 7,
     "supply": false,
     "landscape": false,
     "types": [
@@ -13909,11 +15373,13 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Jewels",
-    "cost": null,
+    "cost": 7,
     "supply": false,
     "landscape": false,
     "types": [
@@ -13930,11 +15396,13 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Orb",
-    "cost": null,
+    "cost": 7,
     "supply": false,
     "landscape": false,
     "types": [
@@ -13950,11 +15418,13 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Prize Goat",
-    "cost": null,
+    "cost": 7,
     "supply": false,
     "landscape": false,
     "types": [
@@ -13971,11 +15441,13 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Puzzle Box",
-    "cost": null,
+    "cost": 7,
     "supply": false,
     "landscape": false,
     "types": [
@@ -13991,11 +15463,13 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Sextant",
-    "cost": null,
+    "cost": 7,
     "supply": false,
     "landscape": false,
     "types": [
@@ -14012,11 +15486,13 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Shield",
-    "cost": null,
+    "cost": 7,
     "supply": false,
     "landscape": false,
     "types": [
@@ -14033,11 +15509,13 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Spell Scroll",
-    "cost": null,
+    "cost": 7,
     "supply": false,
     "landscape": false,
     "types": [
@@ -14052,11 +15530,13 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Staff",
-    "cost": null,
+    "cost": 0,
     "supply": false,
     "landscape": false,
     "types": [
@@ -14072,11 +15552,13 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Sword",
-    "cost": null,
+    "cost": 7,
     "supply": false,
     "landscape": false,
     "types": [
@@ -14094,7 +15576,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": true
   },
   {
     "name": "Avoid",
@@ -14113,7 +15597,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Bury",
@@ -14132,7 +15618,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Deliver",
@@ -14151,7 +15639,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Foray",
@@ -14168,7 +15658,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Invasion",
@@ -14185,7 +15677,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Journey",
@@ -14202,7 +15696,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Launch",
@@ -14221,7 +15717,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Looting",
@@ -14238,7 +15736,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Maelstrom",
@@ -14258,7 +15758,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Mirror",
@@ -14277,7 +15779,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Peril",
@@ -14294,7 +15798,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Prepare",
@@ -14311,7 +15817,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Prosper",
@@ -14328,7 +15836,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Rush",
@@ -14347,7 +15857,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Scrounge",
@@ -14366,7 +15878,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Cheap",
@@ -14383,7 +15897,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Cursed",
@@ -14402,7 +15918,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Fated",
@@ -14419,7 +15937,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Fawning",
@@ -14436,7 +15956,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Friendly",
@@ -14453,7 +15975,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Hasty",
@@ -14470,7 +15994,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Inherited",
@@ -14487,7 +16013,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Inspiring",
@@ -14504,7 +16032,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Nearby",
@@ -14523,7 +16053,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Patient",
@@ -14540,7 +16072,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Pious",
@@ -14559,7 +16093,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Reckless",
@@ -14578,7 +16114,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Rich",
@@ -14595,7 +16133,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Shy",
@@ -14614,7 +16154,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Tireless",
@@ -14631,7 +16173,9 @@
     "potion": false,
     "sets": [
       "Plunder"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Alley",
@@ -14651,7 +16195,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Aristocrat",
@@ -14671,7 +16217,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Artist",
@@ -14690,7 +16238,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Change",
@@ -14707,7 +16257,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Craftsman",
@@ -14724,7 +16276,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Daimyo",
@@ -14745,7 +16299,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Fishmonger",
@@ -14765,7 +16321,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Gold Mine",
@@ -14785,7 +16343,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Imperial Envoy",
@@ -14805,7 +16365,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Kitsune",
@@ -14827,7 +16389,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Litter",
@@ -14847,7 +16411,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Mountain Shrine",
@@ -14868,7 +16434,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Ninja",
@@ -14890,7 +16458,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Poet",
@@ -14912,7 +16482,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Rice",
@@ -14931,7 +16503,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Rice Broker",
@@ -14951,7 +16525,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "River Shrine",
@@ -14971,7 +16547,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Riverboat",
@@ -14989,7 +16567,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Ronin",
@@ -15009,7 +16589,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Root Cellar",
@@ -15028,7 +16610,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Rustic Village",
@@ -15048,7 +16632,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Samurai",
@@ -15069,7 +16655,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Snake Witch",
@@ -15090,7 +16678,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Tanuki",
@@ -15108,7 +16698,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Tea House",
@@ -15126,7 +16718,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Amass",
@@ -15143,7 +16737,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Asceticism",
@@ -15162,7 +16758,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Continue",
@@ -15181,7 +16779,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Credit",
@@ -15198,7 +16798,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Foresight",
@@ -15215,7 +16817,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Gather",
@@ -15232,7 +16836,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Kintsugi",
@@ -15249,7 +16855,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Practice",
@@ -15268,7 +16876,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Receive Tribute",
@@ -15285,7 +16895,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sea Trade",
@@ -15304,7 +16916,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Approaching Army",
@@ -15321,7 +16935,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Biding Time",
@@ -15338,7 +16954,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Bureaucracy",
@@ -15355,7 +16973,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Divine Wind",
@@ -15372,7 +16992,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Enlightenment",
@@ -15389,7 +17011,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Flourishing Trade",
@@ -15408,7 +17032,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Good Harvest",
@@ -15427,7 +17053,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Great Leader",
@@ -15444,7 +17072,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Growth",
@@ -15461,7 +17091,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Harsh Winter",
@@ -15478,7 +17110,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Kind Emperor",
@@ -15495,7 +17129,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Panic",
@@ -15514,7 +17150,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Progress",
@@ -15531,7 +17169,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Rapid Expansion",
@@ -15548,7 +17188,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sickness",
@@ -15567,7 +17209,9 @@
     "potion": false,
     "sets": [
       "Rising_Sun"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Avanto",
@@ -15586,7 +17230,9 @@
     "potion": false,
     "sets": [
       "Promo"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Black Market",
@@ -15603,7 +17249,9 @@
     "potion": false,
     "sets": [
       "Promo"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Captain",
@@ -15622,7 +17270,9 @@
     "potion": false,
     "sets": [
       "Promo"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Church",
@@ -15642,7 +17292,9 @@
     "potion": false,
     "sets": [
       "Promo"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Dismantle",
@@ -15659,7 +17311,9 @@
     "potion": false,
     "sets": [
       "Promo"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Envoy",
@@ -15678,7 +17332,9 @@
     "potion": false,
     "sets": [
       "Promo"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Governor",
@@ -15697,7 +17353,9 @@
     "potion": false,
     "sets": [
       "Promo"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Marchland",
@@ -15717,7 +17375,9 @@
     "potion": false,
     "sets": [
       "Promo"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Prince",
@@ -15738,7 +17398,9 @@
     "potion": false,
     "sets": [
       "Promo"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Sauna",
@@ -15758,7 +17420,9 @@
     "potion": false,
     "sets": [
       "Promo"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Stash",
@@ -15775,7 +17439,9 @@
     "potion": false,
     "sets": [
       "Promo"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Summon",
@@ -15792,7 +17458,9 @@
     "potion": false,
     "sets": [
       "Promo"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Walled Village",
@@ -15811,7 +17479,9 @@
     "potion": false,
     "sets": [
       "Promo"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Knights",
@@ -15830,7 +17500,9 @@
     "potion": false,
     "sets": [
       "Dark_Ages"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Castles",
@@ -15848,7 +17520,9 @@
     "potion": false,
     "sets": [
       "Empires"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Harem",
@@ -15866,7 +17540,9 @@
     "potion": false,
     "sets": [
       "Intrigue_1E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Farm",
@@ -15886,7 +17562,9 @@
     "potion": false,
     "sets": [
       "Intrigue_2E"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Boon pile",
@@ -15903,7 +17581,9 @@
     "potion": false,
     "sets": [
       "PLACEHOLDER"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Hex pile",
@@ -15920,7 +17600,9 @@
     "potion": false,
     "sets": [
       "PLACEHOLDER"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Loot pile",
@@ -15937,7 +17619,9 @@
     "potion": false,
     "sets": [
       "PLACEHOLDER"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Ruins pile",
@@ -15954,7 +17638,9 @@
     "potion": false,
     "sets": [
       "PLACEHOLDER"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Prizes",
@@ -15971,7 +17657,9 @@
     "potion": false,
     "sets": [
       "PLACEHOLDER"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Rewards",
@@ -15988,7 +17676,9 @@
     "potion": false,
     "sets": [
       "PLACEHOLDER"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   },
   {
     "name": "Trash Mat",
@@ -16003,6 +17693,8 @@
     "potion": false,
     "sets": [
       "PLACEHOLDER"
-    ]
+    ],
+    "overpay": false,
+    "special_cost": false
   }
 ]

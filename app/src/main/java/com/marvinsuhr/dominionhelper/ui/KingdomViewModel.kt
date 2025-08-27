@@ -24,6 +24,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 enum class KingdomUiState {
+    KINGDOM_LIST,
     LOADING,
     SHOWING_KINGDOM,
     SHOWING_CARD_DETAIL
@@ -40,7 +41,6 @@ class KingdomViewModel @Inject constructor(
     // Variable for tracking the current state
     private val _kingdomUiState = MutableStateFlow(KingdomUiState.LOADING)
     val kingdomUiState: StateFlow<KingdomUiState> = _kingdomUiState.asStateFlow()
-    private var lastState: KingdomUiState = KingdomUiState.SHOWING_KINGDOM
 
     private val _kingdom = MutableStateFlow(Kingdom())
     val kingdom: StateFlow<Kingdom> = _kingdom.asStateFlow()
@@ -79,16 +79,36 @@ class KingdomViewModel @Inject constructor(
 
     // TopBarTitle stuff
 
+    fun handleBackNavigation() {
+        when (_kingdomUiState.value) {
+
+            KingdomUiState.KINGDOM_LIST -> {
+
+            }
+
+            KingdomUiState.LOADING -> {
+
+            }
+
+            KingdomUiState.SHOWING_KINGDOM -> {
+
+            }
+
+            KingdomUiState.SHOWING_CARD_DETAIL -> {
+                clearSelectedCard()
+            }
+        }
+    }
+
     fun selectCard(card: Card) {
         _selectedCard.value = card
-        lastState = _kingdomUiState.value
         _kingdomUiState.value = KingdomUiState.SHOWING_CARD_DETAIL
         Log.d("LibraryViewModel", "Selected card ${card.name}")
     }
 
     fun clearSelectedCard() {
         _selectedCard.value = null
-        _kingdomUiState.value = lastState
+        _kingdomUiState.value = KingdomUiState.SHOWING_KINGDOM
         Log.d("LibraryViewModel", "Cleared selected card")
     }
 
@@ -144,11 +164,12 @@ class KingdomViewModel @Inject constructor(
     private fun sortCards(cards: LinkedHashMap<Card, Int>): LinkedHashMap<Card, Int> {
         if (cards.isEmpty()) return linkedMapOf()
 
+        // TODO: Does that even make sense here?
         val sortedEntries = when (_sortType.value) {
-            // This does not work correctly
             SortType.EXPANSION -> cards.entries.sortedBy { it.key.sets.first().name.take(3) }
             SortType.ALPHABETICAL -> cards.entries.sortedBy { it.key.name }
             SortType.COST -> cards.entries.sortedBy { it.key.cost }
+            SortType.ENABLED -> cards.entries.sortedBy { it.key.cost }
         }
 
         val sortedCards = LinkedHashMap<Card, Int>()

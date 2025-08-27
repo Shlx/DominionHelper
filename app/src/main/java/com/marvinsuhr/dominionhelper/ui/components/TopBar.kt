@@ -2,16 +2,13 @@ package com.marvinsuhr.dominionhelper.ui.components
 
 import android.util.Log
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -23,6 +20,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -33,7 +31,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -43,13 +40,16 @@ import com.marvinsuhr.dominionhelper.ui.SortType
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(
+    showBackButton: Boolean,
+    onBackButtonClicked: () -> Unit,
     isSearchActive: Boolean,
     onSearchClicked: () -> Unit,
     searchText: String,
     onSearchTextChange: (String) -> Unit,
     onSortTypeSelected: (SortType) -> Unit,
     selectedSortType: SortType,
-    topBarTitle: String,
+    title: String,
+    scrollBehavior: TopAppBarScrollBehavior? = null,
     showSearch: Boolean = true
 ) {
     val focusRequester = remember { FocusRequester() }
@@ -86,17 +86,18 @@ fun TopBar(
                     )
                 )
             } else {
-                Text(topBarTitle)
+                Text(title)
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            containerColor = Color.Transparent,//MaterialTheme.colorScheme.primaryContainer,
+            scrolledContainerColor = Color.Transparent,
             titleContentColor = MaterialTheme.colorScheme.primary,
         ),
         navigationIcon = {
             // Conditionally show the back button
-            if (isSearchActive) {
-                IconButton(onClick = { onSearchClicked() }) {
+            if (showBackButton) {
+                IconButton(onClick = { onBackButtonClicked() }) {
                     Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
                 }
             }
@@ -128,7 +129,8 @@ fun TopBar(
                 selectedSortType = selectedSortType,
                 onSortTypeSelected = onSortTypeSelected
             )
-        }
+        },
+        scrollBehavior = scrollBehavior
     )
     LaunchedEffect(key1 = isSearchActive) {
         if (isSearchActive) {

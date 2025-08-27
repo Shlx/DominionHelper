@@ -89,7 +89,7 @@ import kotlin.math.sin
 // TODO: Check Box contentAlignment vs contents Modifier.align (first is better)
 // Displays a list of cards
 @Composable
-fun CardList(
+fun LibraryCardList(
     modifier: Modifier,
     cardList: List<Card>,
     includeEditionSelection: Boolean = false,
@@ -114,6 +114,17 @@ fun CardList(
             }
         }
 
+        // Sort card list
+
+        // Header?
+        // Display "normal" cards
+
+        // Loot header
+        // Display special cards like loot
+
+        // Landscape header
+        // Display lanscape cards
+
         items(cardList) { card ->
             CardView(
                 card,
@@ -128,7 +139,7 @@ fun CardList(
 @Composable
 fun EditionSelectionButtons(
     onEditionSelected: (Int, OwnedEdition) -> Unit,
-    selectedEdition: OwnedEdition = OwnedEdition.FIRST
+    selectedEdition: OwnedEdition = OwnedEdition.BOTH
 ) {
     Row(
         modifier = Modifier
@@ -244,7 +255,13 @@ fun KingdomList(
             if (isDismissEnabled)
                 DismissableCard(card, onCardDismissed, onCardClick, Modifier.animateItem())
             else {
-                CardView(card, onCardClick, enabled = true, showIcon = true, kingdom.randomCards[card]!!)
+                CardView(
+                    card,
+                    onCardClick,
+                    enabled = true,
+                    showIcon = true,
+                    kingdom.randomCards[card]!!
+                )
             }
         }
 
@@ -260,7 +277,13 @@ fun KingdomList(
                 if (isDismissEnabled)
                     DismissableCard(card, onCardDismissed, onCardClick, Modifier.animateItem())
                 else {
-                    CardView(card, onCardClick, enabled = true, showIcon = true, kingdom.landscapeCards[card]!!)
+                    CardView(
+                        card,
+                        onCardClick,
+                        enabled = true,
+                        showIcon = true,
+                        kingdom.landscapeCards[card]!!
+                    )
                 }
             }
         }
@@ -271,7 +294,13 @@ fun KingdomList(
                 CardSpacer("Additional Cards")
             }
             items(kingdom.dependentCards.keys.toList()) { card ->
-                CardView(card, onCardClick, enabled = true, showIcon = true, kingdom.dependentCards[card]!!)
+                CardView(
+                    card,
+                    onCardClick,
+                    enabled = true,
+                    showIcon = true,
+                    kingdom.dependentCards[card]!!
+                )
             }
         }
 
@@ -294,7 +323,13 @@ fun KingdomList(
             CardSpacer("Starting Cards")
         }
         items(kingdom.startingCards.keys.toList()) { card ->
-            CardView(card, onCardClick, enabled = true, showIcon = true, kingdom.startingCards[card]!!)
+            CardView(
+                card,
+                onCardClick,
+                enabled = true,
+                showIcon = true,
+                kingdom.startingCards[card]!!
+            )
         }
     }
 }
@@ -546,17 +581,21 @@ fun CardLabels(card: Card, amount: Int, modifier: Modifier) {
                 }
             }
 
-            if (card.cost > 0) {
-                NumberCircle(number = card.cost)
+            // Cost
+            if (card.cost != null) {
+                val modifier = if (card.overpay) "+" else if (card.specialCost) "*" else ""
+                NumberCircle(card.cost.toString() + modifier)
                 previousElementExists = true
             }
 
+            // Debt
             if (card.debt > 0) {
                 ConditionalSpacer(Constants.PADDING_MINI)
                 NumberHexagon(number = card.debt)
                 previousElementExists = true
             }
 
+            // Potion cost
             if (card.potion) {
                 ConditionalSpacer(Constants.PADDING_MINI)
                 Image(
@@ -570,47 +609,23 @@ fun CardLabels(card: Card, amount: Int, modifier: Modifier) {
                 previousElementExists = true
             }
 
-            if (card.landscape) {
-                ConditionalSpacer(Constants.PADDING_SMALL)
-                LandscapeCardTypeText(card)
-            }
+            // Special card types
+            ConditionalSpacer(Constants.PADDING_SMALL)
+            val text: String? = card.types.firstNotNullOfOrNull { it.displayText }
+
+            Text(
+                text = text ?: "",
+                fontSize = Constants.TEXT_SMALL,
+                color = MaterialTheme.colorScheme.secondary,
+                fontStyle = Italic
+            )
         }
     }
-}
-
-// Display the type of landscape cards
-@Composable
-fun LandscapeCardTypeText(card: Card) {
-
-    val text = card.types.firstNotNullOfOrNull { type ->
-        when (type) {
-            Type.PROPHECY -> "Prophecy"
-            Type.LANDMARK -> "Landmark"
-            Type.TRAIT -> "Trait"
-            Type.ALLY -> "Ally"
-            Type.WAY -> "Way"
-            Type.ARTIFACT -> "Artifact"
-            Type.STATE -> "State"
-            Type.HEX -> "Hex"
-            Type.BOON -> "Boon"
-            Type.LOOT -> "Loot"
-            Type.EVENT -> "Event"
-            Type.PROJECT -> "Project"
-            else -> ""
-        }
-    }
-
-    Text(
-        text = text ?: "",
-        fontSize = Constants.TEXT_SMALL,
-        color = MaterialTheme.colorScheme.secondary,
-        fontStyle = Italic
-    )
 }
 
 // Display a number in a circle (Used for card costs)
 @Composable
-fun NumberCircle(number: Int) {
+fun NumberCircle(number: String) {
     val circleColor = MaterialTheme.colorScheme.primaryContainer
     val textColor = MaterialTheme.colorScheme.onSurface.toArgb()
 
@@ -636,10 +651,10 @@ fun NumberCircle(number: Int) {
                 }
 
                 val textBounds = Rect()
-                paint.getTextBounds(number.toString(), 0, number.toString().length, textBounds)
+                paint.getTextBounds(number, 0, number.length, textBounds)
 
                 canvas.nativeCanvas.drawText(
-                    number.toString(),
+                    number,
                     size.width / 2,
                     (size.height / 2) - (textBounds.top + textBounds.bottom) / 2,
                     paint
@@ -743,7 +758,7 @@ fun CardIcon(card: Card, showIcon: Boolean, onToggleEnable: () -> Unit) {
                     .size(Constants.ICON_SIZE)
             )
             // TODO: Check which landscape cards make sense to be disableable
-            // (Card that are not a whole stack, like hexes and boons)
+            // (Cards that are not a whole stack, like hexes and boons)
         } else if (card.landscape || (card.supply && !card.basic)) {
 
             // En- / Disable button

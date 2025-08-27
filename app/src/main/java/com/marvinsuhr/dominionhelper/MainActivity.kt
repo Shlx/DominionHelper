@@ -38,6 +38,8 @@ import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -47,10 +49,10 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.font.FontWeight
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.marvinsuhr.dominionhelper.ui.components.CardDetailPager
-import com.marvinsuhr.dominionhelper.ui.components.CardList
 import com.marvinsuhr.dominionhelper.ui.LibraryViewModel
 import com.marvinsuhr.dominionhelper.ui.KingdomViewModel
 import com.marvinsuhr.dominionhelper.ui.LibraryUiState
@@ -59,6 +61,7 @@ import com.marvinsuhr.dominionhelper.ui.KingdomUiState
 import com.marvinsuhr.dominionhelper.ui.SortType
 import com.marvinsuhr.dominionhelper.ui.components.ExpansionList
 import com.marvinsuhr.dominionhelper.ui.components.KingdomList
+import com.marvinsuhr.dominionhelper.ui.components.LibraryCardList
 import com.marvinsuhr.dominionhelper.ui.components.SearchResultsCardList
 import com.marvinsuhr.dominionhelper.ui.components.SettingsList
 import com.marvinsuhr.dominionhelper.ui.components.TopBar
@@ -122,6 +125,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainView(
     libraryViewModel: LibraryViewModel,
@@ -137,6 +141,7 @@ fun MainView(
     val errorMessagex by kingdomViewModel.errorMessage.collectAsStateWithLifecycle()
     val topBarTitle by libraryViewModel.topBarTitle.collectAsStateWithLifecycle()
 
+    val kingdomUiState by kingdomViewModel.kingdomUiState.collectAsStateWithLifecycle()
     val kingdom by kingdomViewModel.kingdom.collectAsStateWithLifecycle()
     val kingdomSortType by kingdomViewModel.sortType.collectAsStateWithLifecycle()
 
@@ -159,6 +164,9 @@ fun MainView(
     }
 
     val snackbarHostState = remember { SnackbarHostState() }
+
+    val topAppBarState = rememberTopAppBarState()
+    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(topAppBarState)
 
     // TODO: Center this message?
     // To display error messages
@@ -188,10 +196,42 @@ fun MainView(
     var selectedScreenRoute by rememberSaveable { mutableStateOf(bottomNavItems[0].screenRoute) }
     var selectedBottomNavItem = bottomNavItems.first { it.screenRoute == selectedScreenRoute }
 
+    val backButtonEnabled =
+        when (selectedScreenRoute) {
+            "library" -> {
+                when (libraryUiState) {
+                    LibraryUiState.SHOWING_EXPANSIONS -> {
+                        false
+                    }
+
+                    else -> true
+                }
+            }
+
+            "kingdoms" -> {
+                when (kingdomUiState) {
+                    KingdomUiState.SHOWING_CARD_DETAIL -> true
+                    else -> false
+                }
+            }
+
+            else -> false
+        }
+
     Scaffold(
+        modifier = Modifier
+            .fillMaxSize()
+            .nestedScroll(scrollBehavior.nestedScrollConnection),
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             TopBar(
+                showBackButton = backButtonEnabled,
+                onBackButtonClicked = {
+                    when (selectedScreenRoute) {
+                        "library" -> libraryViewModel.handleBackNavigation()
+                        "kingdoms" -> kingdomViewModel.handleBackNavigation()
+                    }
+                },
                 isSearchActive = isSearchActive,
                 onSearchClicked = { libraryViewModel.toggleSearch() },
                 searchText = searchText,
@@ -219,7 +259,8 @@ fun MainView(
 
                         else -> SortType.ALPHABETICAL
                     },
-                topBarTitle = topBarTitle,
+                title = topBarTitle,
+                scrollBehavior = scrollBehavior,
                 showSearch = selectedScreenRoute == "library"
             )
         },
@@ -309,7 +350,6 @@ fun MainView(
             "library" -> {
                 LibraryScreen(
                     libraryViewModel,
-                    libraryUiState,
                     libraryListState,
                     cardListState,
                     innerPadding
@@ -331,11 +371,11 @@ fun MainView(
 @Composable
 fun LibraryScreen(
     libraryViewModel: LibraryViewModel,
-    uiState: LibraryUiState,
     libraryListState: LazyListState,
     cardListState: LazyListState,
     innerPadding: PaddingValues
 ) {
+    val uiState by libraryViewModel.libraryUiState.collectAsStateWithLifecycle()
     val expansionsWithEditions by libraryViewModel.expansionsWithEditions.collectAsStateWithLifecycle()
     val selectedExpansion by libraryViewModel.selectedExpansion.collectAsStateWithLifecycle()
     val selectedEdition by libraryViewModel.selectedEdition.collectAsStateWithLifecycle()
@@ -344,30 +384,7 @@ fun LibraryScreen(
     val selectedCard by libraryViewModel.selectedCard.collectAsStateWithLifecycle()
 
     BackHandler(enabled = true) {
-        when (uiState) {
-
-            LibraryUiState.SHOWING_EXPANSIONS -> {
-                Log.i("BackHandler", "Leave expansion list -> Exit app")
-                // Exit app
-            }
-
-            LibraryUiState.SHOWING_EXPANSION_CARDS -> {
-                Log.i("BackHandler", "Leave expansion list -> Return to expansion list")
-                libraryViewModel.clearSelectedExpansion()
-            }
-
-            LibraryUiState.SHOWING_SEARCH_RESULTS -> {
-                Log.i("BackHandler", "Deactivate search")
-                libraryViewModel.toggleSearch() // -> Deactivate search?
-                libraryViewModel.changeSearchText("")
-                libraryViewModel.clearAllCards()
-            }
-
-            LibraryUiState.SHOWING_CARD_DETAIL -> {
-                Log.i("BackHandler", "Deselect card -> Return to card list")
-                libraryViewModel.clearSelectedCard()
-            }
-        }
+        libraryViewModel.handleBackNavigation()
     }
 
     when (uiState) {
@@ -400,7 +417,7 @@ fun LibraryScreen(
                 "MainView",
                 "View card list of expansion ${selectedExpansion!!.name} (${cardsToShow.size})"
             )
-            CardList(
+            LibraryCardList(
                 modifier = Modifier.padding(innerPadding),
                 cardList = cardsToShow,
                 includeEditionSelection = libraryViewModel.expansionHasTwoEditions(
@@ -438,7 +455,8 @@ fun LibraryScreen(
                 modifier = Modifier.padding(innerPadding),
                 cardList = cardsToShow,
                 initialCard = selectedCard!!,
-                onClick = { libraryViewModel.clearSelectedCard() }
+                onClick = { libraryViewModel.clearSelectedCard() },
+                onPageChanged = { libraryViewModel.selectCard(it) }
             )
         }
     }
@@ -459,22 +477,15 @@ fun KingdomScreen(
     val selectedCard by kingdomViewModel.selectedCard.collectAsStateWithLifecycle()
 
     BackHandler(enabled = true) {
-        when (uiState) {
-
-            KingdomUiState.LOADING -> {
-
-            }
-
-            KingdomUiState.SHOWING_KINGDOM -> {
-            }
-
-            KingdomUiState.SHOWING_CARD_DETAIL -> {
-                kingdomViewModel.clearSelectedCard()
-            }
-        }
+        kingdomViewModel.handleBackNavigation()
     }
 
     when (uiState) {
+
+        KingdomUiState.KINGDOM_LIST -> {
+            // Generate Kingdom button
+            // List of old kingdoms (db)
+        }
 
         KingdomUiState.LOADING -> {
             //KingdomListSkeleton()
@@ -509,7 +520,8 @@ fun KingdomScreen(
                 modifier = Modifier.padding(innerPadding),
                 cardList = kingdom.getAllCards(),
                 initialCard = selectedCard!!,
-                onClick = { kingdomViewModel.clearSelectedCard() }
+                onClick = { kingdomViewModel.clearSelectedCard() },
+                onPageChanged = { kingdomViewModel.selectCard(it) }
             )
         }
     }
@@ -528,6 +540,10 @@ fun SettingsScreen(
     }
 
     val uiState by settingsViewModel.uiState.collectAsStateWithLifecycle()
-    SettingsList(uiState.settings, modifier = Modifier.padding(innerPadding), settingsListState)
+    SettingsList(
+        uiState.settings,
+        modifier = Modifier.padding(innerPadding),
+        settingsListState
+    )
 }
 

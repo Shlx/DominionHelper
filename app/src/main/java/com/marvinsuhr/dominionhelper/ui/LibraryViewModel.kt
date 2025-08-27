@@ -31,8 +31,7 @@ enum class LibraryUiState {
 @HiltViewModel
 class LibraryViewModel @Inject constructor(
     private val cardDao: CardDao,
-    private val expansionDao: ExpansionDao,
-    private val userPrefsRepository: UserPrefsRepository
+    private val expansionDao: ExpansionDao
 ) : ViewModel() {
 
     // Variable for tracking the current state
@@ -96,6 +95,32 @@ class LibraryViewModel @Inject constructor(
 
     init {
         loadExpansionsWithEditions()
+    }
+
+    fun handleBackNavigation() {
+        when (_libraryUiState.value) {
+            LibraryUiState.SHOWING_EXPANSIONS -> {
+                Log.i("BackHandler", "Leave expansion list -> Exit app")
+                // Exit app
+            }
+
+            LibraryUiState.SHOWING_EXPANSION_CARDS -> {
+                Log.i("BackHandler", "Leave expansion list -> Return to expansion list")
+                clearSelectedExpansion()
+            }
+
+            LibraryUiState.SHOWING_SEARCH_RESULTS -> {
+                Log.i("BackHandler", "Deactivate search")
+                toggleSearch() // -> Deactivate search?
+                changeSearchText("")
+                clearAllCards()
+            }
+
+            LibraryUiState.SHOWING_CARD_DETAIL -> {
+                Log.i("BackHandler", "Deselect card -> Return to card list")
+                clearSelectedCard()
+            }
+        }
     }
 
     // Load all expansions and their editions, grouped by name
@@ -348,7 +373,9 @@ class LibraryViewModel @Inject constructor(
 
     fun selectCard(card: Card) {
         _selectedCard.value = card
-        lastState = libraryUiState.value
+        if (libraryUiState.value != LibraryUiState.SHOWING_CARD_DETAIL) {
+            lastState = libraryUiState.value // Saving whether we come from search results or expansion cards
+        }
         _libraryUiState.value = LibraryUiState.SHOWING_CARD_DETAIL
         Log.d("LibraryViewModel", "Selected card ${card.name}")
     }
@@ -357,6 +384,7 @@ class LibraryViewModel @Inject constructor(
         _selectedCard.value = null
         _libraryUiState.value = lastState
         Log.d("LibraryViewModel", "Cleared selected card")
+        Log.d("LibraryViewModel", "Returned to state: $lastState")
     }
 
     fun clearAllCards() {
@@ -372,6 +400,7 @@ class LibraryViewModel @Inject constructor(
             SortType.EXPANSION -> cards.sortedBy { it.sets.first() }
             SortType.ALPHABETICAL -> cards.sortedBy { it.name }
             SortType.COST -> cards.sortedBy { it.cost }
+            SortType.ENABLED -> cards.sortedBy { !it.isEnabled }
         }
         Log.d("LibraryViewModel", "Sorted ${sortedCards.size} cards by ${_sortType.value}")
         return sortedCards
@@ -452,6 +481,11 @@ class LibraryViewModel @Inject constructor(
                 }
             }
 
+            // TODO does this make sense? When SortType == ENABLED, changing cards makes them jump
+            if (sortType.value == SortType.ENABLED) {
+                _cardsToShow.value = sortCards(_cardsToShow.value)
+            }
+
             Log.d("LibraryViewModel", "Toggled card ${card.name} to $newIsEnabledState")
         }
     }
@@ -465,6 +499,7 @@ private fun getEnabledCardAmount(cards: List<Card>): String {
 enum class SortType(val text: String) {
     ALPHABETICAL("Sort alphabetically"),
     COST("Sort by cost"),
-    EXPANSION("Sort by expansion")
+    EXPANSION("Sort by expansion"),
+    ENABLED("Sort by enabled")
     // TODO Sort by edition for library
 }
