@@ -64,7 +64,7 @@ class LibraryViewModel @Inject constructor(
     private val _searchText = MutableStateFlow("")
     val searchText: StateFlow<String> = _searchText.asStateFlow()
 
-    private val _sortType = MutableStateFlow(SortType.ALPHABETICAL)
+    private val _sortType = MutableStateFlow(SortType.TYPE)
     val sortType: StateFlow<SortType> = _sortType.asStateFlow()
 
     // Error message
@@ -263,6 +263,8 @@ class LibraryViewModel @Inject constructor(
 
             val ownedEditions = whichEditionIsOwned(expansion)
             val set = getCardsFromOwnedEditions(expansion, ownedEditions)
+            _selectedExpansion.value = expansion
+            _selectedEdition.value = ownedEditions
             _cardsToShow.value = sortCards(set.toList())
 
             Log.d(
@@ -270,8 +272,6 @@ class LibraryViewModel @Inject constructor(
                 "Loaded ${_cardsToShow.value.size} cards for expansion ${expansion.name}"
             )
 
-            _selectedExpansion.value = expansion
-            _selectedEdition.value = ownedEditions
             _libraryUiState.value = LibraryUiState.SHOWING_EXPANSION_CARDS
             Log.d("LibraryViewModel", "Selected ${expansion.name}")
         }
@@ -397,6 +397,17 @@ class LibraryViewModel @Inject constructor(
         if (cards.isEmpty()) return cards
 
         val sortedCards = when (_sortType.value) {
+
+            SortType.TYPE -> {
+                // String comparison sucks
+                val name = _selectedExpansion.value?.name
+                if (name == "Base" || name == "Empires") {
+                    cards.sortedWith(Card.CardTypeComparator(sortByCostAsTieBreaker = true))
+                } else {
+                    cards.sortedWith(Card.CardTypeComparator())
+                }
+            }
+
             SortType.EXPANSION -> cards.sortedBy { it.sets.first() }
             SortType.ALPHABETICAL -> cards.sortedBy { it.name }
             SortType.COST -> cards.sortedBy { it.cost }
@@ -436,7 +447,8 @@ class LibraryViewModel @Inject constructor(
     fun searchCards(newText: String) {
         viewModelScope.launch {
 
-            _cardsToShow.value = sortCards(cardDao.getFilteredCards("%$newText%"))
+            // TODO: Sort? Type sort is broken here
+            _cardsToShow.value = cardDao.getFilteredCards("%$newText%")
             _libraryUiState.value = LibraryUiState.SHOWING_SEARCH_RESULTS
 
             Log.d(
@@ -497,6 +509,7 @@ private fun getEnabledCardAmount(cards: List<Card>): String {
 }
 
 enum class SortType(val text: String) {
+    TYPE ("Sort by type"),
     ALPHABETICAL("Sort alphabetically"),
     COST("Sort by cost"),
     EXPANSION("Sort by expansion"),

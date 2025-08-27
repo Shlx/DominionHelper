@@ -51,6 +51,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.rememberSwipeToDismissBoxState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -71,6 +72,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle.Companion.Italic
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
@@ -78,9 +80,11 @@ import androidx.compose.ui.unit.sp
 import com.marvinsuhr.dominionhelper.Kingdom
 import com.marvinsuhr.dominionhelper.R
 import com.marvinsuhr.dominionhelper.model.Card
+import com.marvinsuhr.dominionhelper.model.CardDisplayCategory
 import com.marvinsuhr.dominionhelper.model.OwnedEdition
 import com.marvinsuhr.dominionhelper.model.Set
 import com.marvinsuhr.dominionhelper.model.Type
+import com.marvinsuhr.dominionhelper.ui.SortType
 import com.marvinsuhr.dominionhelper.utils.Constants
 import com.marvinsuhr.dominionhelper.utils.getDrawableId
 import kotlin.math.cos
@@ -92,6 +96,7 @@ import kotlin.math.sin
 fun LibraryCardList(
     modifier: Modifier,
     cardList: List<Card>,
+    sortType: SortType,
     includeEditionSelection: Boolean = false,
     selectedEdition: OwnedEdition,
     onEditionSelected: (Int, OwnedEdition) -> Unit,
@@ -100,6 +105,18 @@ fun LibraryCardList(
     listState: LazyListState = rememberLazyListState(),
 ) {
     Log.i("CardList", "${cardList.size} cards")
+
+    val supplyCards = remember(cardList) {
+        cardList.filter { it.getDisplayCategory() == CardDisplayCategory.SUPPLY }
+    }
+
+    val specialCards = remember(cardList) {
+        cardList.filter { it.getDisplayCategory() == CardDisplayCategory.SPECIAL }
+    }
+
+    val landscapeCards = remember(cardList) {
+        cardList.filter { it.getDisplayCategory() == CardDisplayCategory.LANDSCAPE }
+    }
 
     LazyColumn(
         modifier = modifier,
@@ -114,24 +131,62 @@ fun LibraryCardList(
             }
         }
 
-        // Sort card list
+        if (sortType != SortType.TYPE) {
+            items(cardList) { card ->
+                CardView(
+                    card,
+                    onCardClick,
+                    card.isEnabled,
+                    showIcon = false,
+                    onToggleEnable = { onToggleEnable(card) })
+            }
+        } else {
 
-        // Header?
-        // Display "normal" cards
+            if (supplyCards.isNotEmpty()) {
+                item {
+                    CardSpacer("Kingdom Cards (${supplyCards.size})")
+                }
+                items(supplyCards, key = { card -> "supply_${card.id}" }) { card ->
+                    CardView(
+                        card = card,
+                        onCardClick = { onCardClick(card) }, // Pass the clicked card
+                        enabled = card.isEnabled,
+                        showIcon = false,
+                        onToggleEnable = { onToggleEnable(card) }
+                    )
+                }
+            }
 
-        // Loot header
-        // Display special cards like loot
+            if (specialCards.isNotEmpty()) {
+                item {
+                    CardSpacer("Other Cards (${specialCards.size})")
+                }
+                items(
+                    specialCards, key = { card -> "special_supply_${card.id}" }) { card ->
+                    CardView(
+                        card = card,
+                        onCardClick = { onCardClick(card) },
+                        enabled = card.isEnabled,
+                        showIcon = false,
+                        onToggleEnable = { onToggleEnable(card) }
+                    )
+                }
+            }
 
-        // Landscape header
-        // Display lanscape cards
-
-        items(cardList) { card ->
-            CardView(
-                card,
-                onCardClick,
-                card.isEnabled,
-                showIcon = false,
-                onToggleEnable = { onToggleEnable(card) })
+            if (landscapeCards.isNotEmpty()) {
+                item {
+                    CardSpacer("Landscape Cards (${landscapeCards.size})")
+                }
+                items(landscapeCards, key = { card -> "landscape_${card.id}" }) { card ->
+                    CardView(
+                        card = card,
+                        onCardClick = { onCardClick(card) },
+                        enabled = card.isEnabled,
+                        showIcon = false,
+                        onToggleEnable = { onToggleEnable(card) }
+                    )
+                }
+            }
         }
     }
 }
@@ -464,8 +519,12 @@ fun CardView(
             // Card name and price
             CardLabels(card, amount, modifier = Modifier.weight(1f))
 
-            // Expansion or enable / disable icon
-            CardIcon(card, showIcon, onToggleEnable)
+
+            if (showIcon) {
+                CardIcon(card.expansionImageId, card.sets[0].name)
+            } else if (!card.basic && card.supply) {
+                CardButton(card.isEnabled, onToggleEnable)
+            }
         }
     }
 }
@@ -563,12 +622,15 @@ fun CardLabels(card: Card, amount: Int, modifier: Modifier) {
     Column(
         modifier = modifier
             .fillMaxHeight()
-            .padding(horizontal = 4.dp, vertical = 12.dp)
+            .padding(horizontal = Constants.PADDING_MINI, vertical = 12.dp)
     ) {
         Text(
-            text = card.name + if (amount > 1) " x$amount" else "",
+            text = card.name + if (amount > 1) " ($amount)" else "",
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
             fontSize = Constants.CARD_NAME_FONT_SIZE
         )
+
         Spacer(modifier = Modifier.weight(1f))
 
         Row {
@@ -598,23 +660,18 @@ fun CardLabels(card: Card, amount: Int, modifier: Modifier) {
             // Potion cost
             if (card.potion) {
                 ConditionalSpacer(Constants.PADDING_MINI)
-                Image(
-                    painter = painterResource(id = R.drawable.set_alchemy),
-                    contentDescription = "Tinted Image",
-                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.secondaryContainer),
-                    modifier = Modifier
-                        .size(22.dp)
-                        .offset(y = 1.dp)
-                )
+                PotionIcon()
                 previousElementExists = true
             }
 
             // Special card types
             ConditionalSpacer(Constants.PADDING_SMALL)
-            val text: String? = card.types.firstNotNullOfOrNull { it.displayText }
+            val text: String = card.types.mapNotNull { it.displayText }.joinToString(", ")
 
             Text(
-                text = text ?: "",
+                text = text,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
                 fontSize = Constants.TEXT_SMALL,
                 color = MaterialTheme.colorScheme.secondary,
                 fontStyle = Italic
@@ -737,41 +794,50 @@ fun NumberHexagon(number: Int) {
 }
 
 @Composable
-fun CardIcon(card: Card, showIcon: Boolean, onToggleEnable: () -> Unit) {
-
-    val isToggleIconVisible = !showIcon && !card.basic
-
-    Box(
+fun PotionIcon() {
+    Image(
+        painter = painterResource(id = R.drawable.set_alchemy),
+        contentDescription = "Potion icon",
+        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.secondaryContainer),
         modifier = Modifier
-            .fillMaxHeight()
+            .size(22.dp)
+            .offset(y = 1.dp)
+    )
+}
+
+@Composable
+fun CardIcon(imageId: Int, setName: String) {
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier
             .aspectRatio(1f)
-            .then(if (isToggleIconVisible) Modifier.clickable { onToggleEnable() } else Modifier),
-        contentAlignment = Alignment.Center
     ) {
-        if (showIcon) {
+        Image(
+            painter = painterResource(imageId),
+            contentDescription = "$setName icon",
+            modifier = Modifier
+                .size(Constants.ICON_SIZE)
+        )
+    }
+}
 
-            // Expansion Icon
-            Image(
-                painter = painterResource(card.expansionImageId),
-                contentDescription = "Unknown Image",
-                modifier = Modifier
-                    .size(Constants.ICON_SIZE)
-            )
-            // TODO: Check which landscape cards make sense to be disableable
-            // (Cards that are not a whole stack, like hexes and boons)
-        } else if (card.landscape || (card.supply && !card.basic)) {
-
-            // En- / Disable button
-            Icon(
-                imageVector = if (card.isEnabled) {
-                    Icons.Filled.CheckCircle // Checkmark if owned / allowed
-                } else {
-                    Icons.Outlined.Circle // Circle if unowned / banned
-                },
-                contentDescription = if (card.isEnabled) "Allowed" else "Banned",
-                modifier = Modifier
-                    .size(Constants.ICON_SIZE)
-            )
-        }
+@Composable
+fun CardButton(isEnabled: Boolean, onToggleEnable: () -> Unit) {
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier
+            .aspectRatio(1f)
+            .clickable { onToggleEnable() }
+    ) {
+        Icon(
+            imageVector = if (isEnabled) {
+                Icons.Filled.CheckCircle
+            } else {
+                Icons.Outlined.Circle
+            },
+            contentDescription = if (isEnabled) "Allowed" else "Banned",
+            modifier = Modifier
+                .size(Constants.ICON_SIZE)
+        )
     }
 }

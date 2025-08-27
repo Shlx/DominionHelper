@@ -382,10 +382,13 @@ fun LibraryScreen(
 
     val cardsToShow by libraryViewModel.cardsToShow.collectAsStateWithLifecycle()
     val selectedCard by libraryViewModel.selectedCard.collectAsStateWithLifecycle()
+    val sortType by libraryViewModel.sortType.collectAsStateWithLifecycle()
 
     BackHandler(enabled = true) {
         libraryViewModel.handleBackNavigation()
     }
+
+    val applicationScope = rememberCoroutineScope()
 
     when (uiState) {
 
@@ -399,6 +402,9 @@ fun LibraryScreen(
                 expansions = expansionsWithEditions,
                 onExpansionClick = {
                     libraryViewModel.selectExpansion(it)
+                    applicationScope.launch {
+                        cardListState.scrollToItem(0)
+                    }
                 },
                 onEditionClick = { libraryViewModel.selectEdition(it) },
                 ownershipText = { libraryViewModel.getOwnershipText(it) },
@@ -420,6 +426,7 @@ fun LibraryScreen(
             LibraryCardList(
                 modifier = Modifier.padding(innerPadding),
                 cardList = cardsToShow,
+                sortType = sortType,
                 includeEditionSelection = libraryViewModel.expansionHasTwoEditions(
                     selectedExpansion!!
                 ),

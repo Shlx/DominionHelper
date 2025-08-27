@@ -4206,7 +4206,7 @@
   },
   {
     "name": "Princess",
-    "cost": null,
+    "cost": 0,
     "supply": false,
     "landscape": false,
     "types": [
@@ -4224,7 +4224,7 @@
       "Cornucopia"
     ],
     "overpay": false,
-    "special_cost": false
+    "special_cost": true
   },
   {
     "name": "Renown",
@@ -7019,7 +7019,7 @@
   },
   {
     "name": "Alms",
-    "cost": null,
+    "cost": 0,
     "supply": true,
     "landscape": true,
     "types": [
@@ -7078,7 +7078,7 @@
   },
   {
     "name": "Borrow",
-    "cost": null,
+    "cost": 0,
     "supply": true,
     "landscape": true,
     "types": [
@@ -7257,7 +7257,7 @@
   },
   {
     "name": "Quest",
-    "cost": null,
+    "cost": 0,
     "supply": true,
     "landscape": true,
     "types": [
@@ -7553,7 +7553,7 @@
   },
   {
     "name": "City Quarter",
-    "cost": 0,
+    "cost": null,
     "supply": true,
     "landscape": false,
     "types": [
@@ -7683,7 +7683,7 @@
   },
   {
     "name": "Engineer",
-    "cost": 0,
+    "cost": null,
     "supply": true,
     "landscape": false,
     "types": [
@@ -7944,7 +7944,7 @@
   },
   {
     "name": "Overlord",
-    "cost": 0,
+    "cost": null,
     "supply": true,
     "landscape": false,
     "types": [
@@ -8027,7 +8027,7 @@
   },
   {
     "name": "Royal Blacksmith",
-    "cost": 0,
+    "cost": null,
     "supply": true,
     "landscape": false,
     "types": [
@@ -8206,7 +8206,7 @@
   },
   {
     "name": "Advance",
-    "cost": null,
+    "cost": 0,
     "supply": true,
     "landscape": true,
     "types": [
@@ -8227,7 +8227,7 @@
   },
   {
     "name": "Annex",
-    "cost": 0,
+    "cost": null,
     "supply": true,
     "landscape": true,
     "types": [
@@ -8328,7 +8328,7 @@
   },
   {
     "name": "Donate",
-    "cost": 0,
+    "cost": null,
     "supply": true,
     "landscape": true,
     "types": [
@@ -8413,7 +8413,7 @@
   },
   {
     "name": "Triumph",
-    "cost": 0,
+    "cost": null,
     "supply": true,
     "landscape": true,
     "types": [
@@ -8550,7 +8550,7 @@
   },
   {
     "name": "Baths",
-    "cost": 2,
+    "cost": null,
     "supply": false,
     "landscape": true,
     "types": [
@@ -8565,7 +8565,7 @@
       "Empires"
     ],
     "overpay": false,
-    "special_cost": true
+    "special_cost": false
   },
   {
     "name": "Battlefield",
@@ -9571,7 +9571,7 @@
   },
   {
     "name": "Bat",
-    "cost": null,
+    "cost": 2,
     "supply": false,
     "landscape": false,
     "types": [
@@ -9588,7 +9588,7 @@
       "Nocturne"
     ],
     "overpay": false,
-    "special_cost": false
+    "special_cost": true
   },
   {
     "name": "Cursed Gold",
@@ -9659,7 +9659,7 @@
   },
   {
     "name": "Haunted Mirror",
-    "cost": null,
+    "cost": 0,
     "supply": false,
     "landscape": false,
     "types": [
@@ -9721,7 +9721,7 @@
   },
   {
     "name": "Magic Lamp",
-    "cost": null,
+    "cost": 0,
     "supply": false,
     "landscape": false,
     "types": [
@@ -12890,7 +12890,7 @@
   {
     "name": "Acolyte",
     "cost": 4,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -12912,7 +12912,7 @@
   {
     "name": "Archer",
     "cost": 4,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -12925,6 +12925,26 @@
     "categories": [
       "Handsize_attack"
     ],
+    "potion": false,
+    "sets": [
+      "Allies"
+    ],
+    "overpay": false,
+    "special_cost": false
+  },
+  {
+    "name": "Augurs",
+    "cost": 3,
+    "supply": true,
+    "landscape": false,
+    "types": [
+      "Action",
+      "Augur"
+    ],
+    "image_name": "augurs",
+    "basic": false,
+    "debt": 0,
+    "categories": [],
     "potion": false,
     "sets": [
       "Allies"
@@ -12957,7 +12977,7 @@
   {
     "name": "Battle Plan",
     "cost": 3,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -13002,7 +13022,7 @@
   {
     "name": "Blacksmith",
     "cost": 3,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -13087,9 +13107,29 @@
     "special_cost": false
   },
   {
+    "name": "Clashes",
+    "cost": 3,
+    "supply": true,
+    "landscape": false,
+    "types": [
+      "Action",
+      "Clash"
+    ],
+    "image_name": "clashes",
+    "basic": false,
+    "debt": 0,
+    "categories": [],
+    "potion": false,
+    "sets": [
+      "Allies"
+    ],
+    "overpay": false,
+    "special_cost": false
+  },
+  {
     "name": "Conjurer",
     "cost": 4,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -13150,7 +13190,7 @@
   {
     "name": "Distant Shore",
     "cost": 6,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -13174,7 +13214,7 @@
   {
     "name": "Elder",
     "cost": 5,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -13216,6 +13256,26 @@
     "special_cost": false
   },
   {
+    "name": "Forts",
+    "cost": 3,
+    "supply": true,
+    "landscape": false,
+    "types": [
+      "Action",
+      "Fort"
+    ],
+    "image_name": "forts",
+    "basic": false,
+    "debt": 0,
+    "categories": [],
+    "potion": false,
+    "sets": [
+      "Allies"
+    ],
+    "overpay": false,
+    "special_cost": false
+  },
+  {
     "name": "Galleria",
     "cost": 5,
     "supply": true,
@@ -13239,7 +13299,7 @@
   {
     "name": "Garrison",
     "cost": 4,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -13280,7 +13340,7 @@
   {
     "name": "Herb Gatherer",
     "cost": 3,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -13325,7 +13385,7 @@
   {
     "name": "Hill Fort",
     "cost": 5,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -13410,7 +13470,7 @@
   {
     "name": "Lich",
     "cost": 6,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -13475,7 +13535,7 @@
   {
     "name": "Miller",
     "cost": 4,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -13516,9 +13576,29 @@
     "special_cost": false
   },
   {
-    "name": "Old Map",
+    "name": "Odysseys",
     "cost": 3,
     "supply": true,
+    "landscape": false,
+    "types": [
+      "Action",
+      "Odyssey"
+    ],
+    "image_name": "odysseys",
+    "basic": false,
+    "debt": 0,
+    "categories": [],
+    "potion": false,
+    "sets": [
+      "Allies"
+    ],
+    "overpay": false,
+    "special_cost": false
+  },
+  {
+    "name": "Old Map",
+    "cost": 3,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -13584,7 +13664,7 @@
   {
     "name": "Sibyl",
     "cost": 6,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -13628,7 +13708,7 @@
   {
     "name": "Sorcerer",
     "cost": 5,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -13652,7 +13732,7 @@
   {
     "name": "Sorceress",
     "cost": 5,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -13697,7 +13777,7 @@
   {
     "name": "Stronghold",
     "cost": 6,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -13722,7 +13802,7 @@
   {
     "name": "Student",
     "cost": 3,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -13745,7 +13825,7 @@
   {
     "name": "Sunken Treasure",
     "cost": 5,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Treasure",
@@ -13806,7 +13886,7 @@
   {
     "name": "Tent",
     "cost": 3,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -13826,7 +13906,7 @@
   {
     "name": "Territory",
     "cost": 6,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Victory",
@@ -13870,7 +13950,7 @@
   {
     "name": "Town Crier",
     "cost": 2,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -13882,6 +13962,26 @@
     "categories": [
       "Cantrip"
     ],
+    "potion": false,
+    "sets": [
+      "Allies"
+    ],
+    "overpay": false,
+    "special_cost": false
+  },
+  {
+    "name": "Townsfolk",
+    "cost": 2,
+    "supply": true,
+    "landscape": false,
+    "types": [
+      "Action",
+      "Townsfolk"
+    ],
+    "image_name": "townsfolk",
+    "basic": false,
+    "debt": 0,
+    "categories": [],
     "potion": false,
     "sets": [
       "Allies"
@@ -13914,7 +14014,7 @@
   {
     "name": "Voyage",
     "cost": 4,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -13935,7 +14035,7 @@
   {
     "name": "Warlord",
     "cost": 5,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -13944,6 +14044,27 @@
       "Clash"
     ],
     "image_name": "warlord",
+    "basic": false,
+    "debt": 0,
+    "categories": [],
+    "potion": false,
+    "sets": [
+      "Allies"
+    ],
+    "overpay": false,
+    "special_cost": false
+  },
+  {
+    "name": "Wizards",
+    "cost": 3,
+    "supply": true,
+    "landscape": false,
+    "types": [
+      "Action",
+      "Wizard",
+      "Liaison"
+    ],
+    "image_name": "wizards",
     "basic": false,
     "debt": 0,
     "categories": [],
@@ -15536,7 +15657,7 @@
   },
   {
     "name": "Staff",
-    "cost": 0,
+    "cost": 7,
     "supply": false,
     "landscape": false,
     "types": [
@@ -16223,7 +16344,7 @@
   },
   {
     "name": "Artist",
-    "cost": 0,
+    "cost": null,
     "supply": true,
     "landscape": false,
     "types": [
@@ -16282,7 +16403,7 @@
   },
   {
     "name": "Daimyo",
-    "cost": 0,
+    "cost": null,
     "supply": true,
     "landscape": false,
     "types": [
@@ -16417,7 +16538,7 @@
   },
   {
     "name": "Mountain Shrine",
-    "cost": 0,
+    "cost": null,
     "supply": true,
     "landscape": false,
     "types": [

@@ -40,6 +40,59 @@ data class Card(
     @Ignore
     var expansionImageId: Int = if (sets.size >= 2) sets[1].imageId else sets[0].imageId
 
+    // TODO Might be able to simplify / remove second condition?
+    fun getDisplayCategory(): CardDisplayCategory {
+        return when {
+            this.landscape -> CardDisplayCategory.LANDSCAPE
+            //this.types.any { it == Type.LOOT || it == Type.RUINS || it == Type.SHELTER || it == Type.PRIZE || it == Type.REWARD } -> CardDisplayCategory.SPECIAL
+            !this.supply || this.basic -> CardDisplayCategory.SPECIAL
+            else -> CardDisplayCategory.SUPPLY
+        }
+    }
+
+    class CardTypeComparator(
+        private val sortByCostAsTieBreaker: Boolean = false
+    ) : Comparator<Card> {
+
+        override fun compare(card1: Card, card2: Card): Int {
+            val displayCategory1 = card1.getDisplayCategory()
+            val displayCategory2 = card2.getDisplayCategory()
+
+            // 1. Compare by main display category's ordinal (ensures SUPPLY < SPECIAL < LANDSCAPE)
+            val categoryComparison = displayCategory1.ordinal.compareTo(displayCategory2.ordinal)
+            if (categoryComparison != 0) {
+                return categoryComparison
+            }
+
+            // 2. Both cards are in the same DisplayCategory -> sort by sortPriority
+            if (displayCategory1 != CardDisplayCategory.SUPPLY) {
+
+                    // Find the minimum sortPriority for each card's types
+                    val priority1 = card1.types.minOf { it.sortPriority }
+                    val priority2 = card2.types.minOf { it.sortPriority }
+
+                    val typePriorityComparison = priority1.compareTo(priority2)
+                    if (typePriorityComparison != 0) {
+                        return typePriorityComparison
+                    }
+            }
+
+            // 3. If this flag is set to true (Empires), sort by cost as a tie breaker
+            if (sortByCostAsTieBreaker) {
+                val cost1 = card1.cost ?: Int.MAX_VALUE
+                val cost2 = card2.cost ?: Int.MAX_VALUE
+
+                val costComparison = cost1.compareTo(cost2)
+                if (costComparison != 0) {
+                    return cost1.compareTo(cost2)
+                }
+            }
+
+            // 4. Sort by name as the final tie breaker
+            return card1.name.compareTo(card2.name, ignoreCase = true)
+        }
+    }
+
     fun getColorByTypes(): List<Color> {
         val colors = mutableListOf<Color>()
         if (types.contains(Type.TREASURE)) {

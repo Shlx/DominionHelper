@@ -9,6 +9,7 @@ import com.marvinsuhr.dominionhelper.data.CardDao
 import com.marvinsuhr.dominionhelper.data.ExpansionDao
 import com.marvinsuhr.dominionhelper.data.UserPrefsRepository
 import com.marvinsuhr.dominionhelper.model.Card
+import com.marvinsuhr.dominionhelper.model.CardNames
 import com.marvinsuhr.dominionhelper.utils.Constants
 import com.marvinsuhr.dominionhelper.utils.insertOrReplaceAtKeyPosition
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -169,7 +170,9 @@ class KingdomViewModel @Inject constructor(
             SortType.EXPANSION -> cards.entries.sortedBy { it.key.sets.first().name.take(3) }
             SortType.ALPHABETICAL -> cards.entries.sortedBy { it.key.name }
             SortType.COST -> cards.entries.sortedBy { it.key.cost }
+            // Rouse
             SortType.ENABLED -> cards.entries.sortedBy { it.key.cost }
+            SortType.TYPE -> cards.entries.sortedBy { it.key.cost }
         }
 
         val sortedCards = LinkedHashMap<Card, Int>()
@@ -202,25 +205,32 @@ class KingdomViewModel @Inject constructor(
 
         cards.forEach { card, amount ->
             val amount = when (card.name) {
-                "Copper" -> when (playerCount) {
+                CardNames.COPPER -> when (playerCount) {
                     2 -> 46
                     3 -> 39
                     4 -> 32
                     else -> throw IllegalArgumentException("Invalid player count: $playerCount")
                 }
 
-                "Silver" -> 40
-                "Gold" -> 30
-                "Curse" -> when (playerCount) {
+                CardNames.SILVER -> 40
+                CardNames.GOLD -> 30
+                CardNames.CURSE -> when (playerCount) {
                     2 -> 10
                     3 -> 20
                     4 -> 30
                     else -> throw IllegalArgumentException("Invalid player count: $playerCount")
                 }
 
-                "Estate" -> if (playerCount == 2) 8 else 12
-                "Duchy" -> if (playerCount == 2) 8 else 12
-                "Province" -> if (playerCount == 2) 8 else 12
+                CardNames.ESTATE -> if (playerCount == 2) 8 else 12
+                CardNames.DUCHY -> if (playerCount == 2) 8 else 12
+                CardNames.PROVINCE -> if (playerCount == 2) 8 else 12
+
+                CardNames.RUINS_PILE -> when (playerCount) {
+                    2 -> 10
+                    3 -> 20
+                    4 -> 30
+                    else -> throw IllegalArgumentException("Invalid player count: $playerCount")
+                }
                 else -> 1
             }
             cardAmounts[card] = amount

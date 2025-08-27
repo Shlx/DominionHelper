@@ -11,6 +11,10 @@
 // adb pair <ip>:<port>
 // adb tcpip 5555
 
+// Actual split piles have supply set to false. This means they will not be randomized
+// and they do not have a disable button next to them in the library. In a way, split
+// piles are part of the supply, but for all intents and purposes, the "main" card suffices
+
 /*
 ProGuard/R8 (for Release Builds):
 •The Firebase Crashlytics plugin automatically adds the necessary ProGuard/R8 rules to keep Crashlytics symbols.
@@ -24,27 +28,25 @@ ProGuard/R8 (for Release Builds):
 onClick > Modifier.clickable
 
 RELEASE
+Guilds second edition doesnt have cornucopia, but cornucopia second edition has guilds (?)
+1st edition of Cornucopia has 2nd edition cards (at least Rewards) (?)
+
 - NEXT:
     // UI
     Floating tool bar vs floating app bar?
     -> Oben durchsichtige / moderne bar (flexible navigation bar)
     // - Invisible top bar / only when header is relevant? (See Auth app)
 
-    - Split expansion cards in normal and landscape cards
-    - "Reward" unter rewards? Oder wie Landscapes getrennt von restlichen Karten? Knights, Ruins etc-
-- NAME: Kingdom(s), Domgen, Vassal, Province, 10 cards
+    - NAME: Kingdom(s), Domgen, Vassal, Province, 10 cards
 - RELOAD ADDITIONAL CARDS AFTER VETO
 
 // TODO Master list
 // Rethink database scheme, especially expansions and editions suck
 // Firebase logs etc?
-// Split piles!!
-// Coffers?
 // Check if loading card by name throws exception if card doesn't exist
-// Add player count to prefs(?)
+// Add player count to prefs(?), sortType too?
 
 // UI
-// - Some cards' text is too long (League of Shopkeepers, Way of the Chameleon)
 // - Remove search from expansions / search expansion only?
 // - Kingdom landscape view to show all cards images (5x2)? Slider, option
 // - Add (banned) card count to expansion list items
@@ -57,9 +59,9 @@ RELEASE
 // - Owned expansions färben
 
 // UX
+// - Show card count option
+// - Show 5/6 player selector option
 // - Wegswipen besser machen (zu leicht getriggert) / edit mode?
-// - 2 players, 3-4 players, 5-6 players??
-// - Ruins pile count
 // - Warning when navigating back from generated kingom (or kingdom history)?
 // - Make stuff like debt searchable
 // - In expansion view: if both edition are shown, show icon or text on each card
@@ -72,21 +74,22 @@ RELEASE
 // - Animate nav bar blob
 // - 3d card switch effect? In detail view
 // - Titel ändern wenn man Karten swiped
+// - Side swipe to switch expansion?
 
 // Generation
 // - Only generate landscape cards of selected expansions? Or allow mixing? Option?
 // - Always use 2 different landscape cards (at least prophecies). When rerolling, be sure to take the same type AND same expansion
 // - When randomizing, check for 10 ENABLED cards
 // - Advanced generation (include 2 / 3 cost, attack, attack when reaction, etc
+// - Traits attached to cards
+// - Promo cards? allow randomly
+// - Black market
+// - ADD ONE ALLY IF ONE OR MORE LIAISON IS PRESENT
 
 // Code
 // - Use _somethingFromViewModel.update {} instead of setting _something.value
 // - Check logs for redundancy
-// - When scrolling through detail cards in search, every index is the same
-// - Changing search text reloads expansion list
 // - I think 'set' property can be removed from sets.json
-// - Wenn man auf Basic geht sind Copper etc mittendrin. Wenn man ein kingdom generated und dann noch mal reingeht, sind die basic cards unten
-// - 1st edition of Cornucopia has 2nd edition cards (at least Rewards) (?)
 
 // TODO LOW(er) PRIO
 // Code
@@ -105,17 +108,19 @@ RELEASE
 // - Rating a kingdom afterwards (+ uploading)
 // - Other languages
 
-// Design
-// - Show behind top + nav bar?
+// Design / UX
+// - System nav bar kleiner machen (Abstand)
 // - Check image sizes, turn placeholders to webp
 // - Font: Princeps
 // - Search bar: Not aligned with title, show hamburger instead of <-
-// - Curse money card bei wunderheilerin
-// - Check all cards / expansions
 // - Charlatan Cursetreasure
+// - Attack, Prize -> Prize, attack (order)=? Clash, Augur, Wizard same
+// move way of chameleon graphic
+Library view bei dependent cards die quelle schreiben
+Adventures special sort for upgraded cards:
+Soldier > Fugitive > Disciple > Teacher
+Treasure Hunter > Warrior > Hero > Champion
+Non supply cards priorisieren bei TYPE sort? "Non-supply" als displayText?
 
 // Bugs
 // - Nothing happens when clicking an edition
-// - I think list state is shared between search / expansion and random cards (doesn't reset)
-// -> Seems fine between expansion and random cards, expansion to search needs to reset
-// Going back from expansion list resets even though it shouldn't

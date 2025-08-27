@@ -30,53 +30,60 @@ enum class Set (val imageId: Int = R.drawable.ic_launcher_foreground) {
     PLACEHOLDER() // TODO
 }
 
-enum class Type(val displayText: String? = null) { // Add nullable displayText property
+enum class Type(
+    val sortPriority: Int = Int.MAX_VALUE,
+    val displayText: String? = null
+) {
+    // Basic Types (sortPriority here is only needed for base game)
+    TREASURE(sortPriority = 100),
+    VICTORY(sortPriority = 101),
+    CURSE(sortPriority = 102),
     ACTION,
-    ATTACK,
+    ATTACK(displayText = "Attack"),
     REACTION,
-    CURSE,
     DURATION,
-    TREASURE,
-    VICTORY,
     NIGHT,
-    PRIZE("Prize"),
-    RUINS("Ruins"),
-    TRAVELLER("Traveller"),
-    GATHERING("Gathering"),
-    LIAISON("Liaison"),
-    DOOM("Doom"),
-    HEIRLOOM("Heirloom"),
-    CASTLE("Castle"),
-    SHELTER("Shelter"),
-    SPIRIT("Spirit"),
-    FATE("Fate"),
-    REWARD("Reward"),
     COMMAND,
-    LOOTER("Looter"),
-    KNIGHT("Knight"),
-    RESERVE("Reserve"),
-    EVENT("Event"),
-    LANDMARK("Landmark"),
-    ZOMBIE,
-    BOON("Boon"),
-    HEX("Hex"),
-    STATE("State"),
-    PROJECT("Project"),
-    PLUNDER("Plunder"),
-    TRAIT("Trait"),
-    SHADOW("Shadow"),
-    LOOT("Loot"),
-    ALLY("Ally"),
-    TOWNSFOLK("Townsfolk"),
-    ODYSSEY("Odyssey"),
-    CLASH("Clash"),
-    FORT("Fort"),
-    WIZARD("Wizard"),
-    AUGUR("Augur"),
-    WAY("Way"),
-    ARTIFACT("Artifact"),
-    OMEN("Omen"),
-    PROPHECY("Prophecy")
+
+    // --- Non-Landscape Card Types ---
+    PRIZE(sortPriority = 0, displayText = "Prize"),             // Cornucopia 1E
+    KNIGHT(sortPriority = 1, displayText = "Knight"),           // Dark Ages
+    LOOTER(sortPriority = 2, displayText = "Looter"),           // Dark Ages
+    RUINS(sortPriority = 3, displayText = "Ruins"),             // Dark Ages
+    SHELTER(sortPriority = 4, displayText = "Shelter"),         // Dark Ages
+    RESERVE(sortPriority = 6, displayText = "Reserve"),         // Adventures
+    TRAVELLER(sortPriority = 5, displayText = "Traveller"),     // Adventures
+    CASTLE(sortPriority = 7, displayText = "Castle"),           // Empires
+    GATHERING(sortPriority = 8, displayText = "Gathering"),     // Empires
+    DOOM(sortPriority = 9, displayText = "Doom"),               // Nocturne
+    FATE(sortPriority = 10, displayText = "Fate"),              // Nocturne
+    HEIRLOOM(sortPriority = 11, displayText = "Heirloom"),      // Nocturne
+    SPIRIT(sortPriority = 12, displayText = "Spirit"),          // Nocturne
+    ZOMBIE(sortPriority = 13, displayText = "Zombie"),          // Nocturne
+    AUGUR(sortPriority = 14, displayText = "Augur"),            // Allies
+    CLASH(sortPriority = 15, displayText = "Clash"),            // Allies
+    FORT(sortPriority = 16, displayText = "Fort"),              // Allies
+    ODYSSEY(sortPriority = 17, displayText = "Odyssey"),        // Allies
+    TOWNSFOLK(sortPriority = 18, displayText = "Townsfolk"),    // Allies
+    WIZARD(sortPriority = 19, displayText = "Wizard"),          // Allies
+    LIAISON(sortPriority = 20, displayText = "Liaison"),        // Allies
+    LOOT(sortPriority = 21, displayText = "Loot"),              // Plunder
+    REWARD(sortPriority = 22, displayText = "Reward"),          // Cornucopia & Guilds 2E -> Move up?
+    OMEN(sortPriority = 23, displayText = "Omen"),              // Rising Sun
+    SHADOW(sortPriority = 24, displayText = "Shadow"),          // Rising Sun
+
+    // --- Landscape Card Types ---
+    EVENT(sortPriority = 25, displayText = "Event"),            // Adventures
+    LANDMARK(sortPriority = 26, displayText = "Landmark"),      // Empires
+    BOON(sortPriority = 27, displayText = "Boon"),              // Nocturne
+    HEX(sortPriority = 28, displayText = "Hex"),                // Nocturne
+    STATE(sortPriority = 29, displayText = "State"),            // Nocturne
+    ARTIFACT(sortPriority = 30, displayText = "Artifact"),      // Renaissance
+    PROJECT(sortPriority = 31, displayText = "Project"),        // Renaissance
+    WAY(sortPriority = 32, displayText = "Way"),                // Menagerie
+    ALLY(sortPriority = 33, displayText = "Ally"),              // Allies
+    TRAIT(sortPriority = 34, displayText = "Trait"),            // Plunder
+    PROPHECY(sortPriority = 35, displayText = "Prophecy"),      // Rising Sun
 }
 
 enum class Category {
@@ -120,4 +127,10 @@ enum class Category {
     TOP_DECKER,
     VANILLA, // ?
     EXTRA_TURN // ?
+}
+
+enum class CardDisplayCategory {
+    SUPPLY, // Normal kingdom cards
+    SPECIAL, // Additional cards dependent on other cards
+    LANDSCAPE // Landscape cards
 }
