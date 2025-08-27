@@ -15,9 +15,9 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
-val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = Constants.USER_PREFERENCES_NAME) // Renamed for clarity if you have another "settings"
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = Constants.USER_PREFERENCES_NAME)
 
-object UserPreferencesKeys { // Renamed from SettingsKeys to avoid confusion with the ViewModel's SettingItem
+object UserPreferencesKeys {
     val IS_DARK_MODE = booleanPreferencesKey("is_dark_mode_preference")
 
     val RANDOM_MODE = stringPreferencesKey("random_mode_preference")

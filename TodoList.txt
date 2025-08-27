@@ -11,34 +11,55 @@
 // adb pair <ip>:<port>
 // adb tcpip 5555
 
+.padding().size() -> Padding INSIDE (Smaller element)
+.size().padding() -> Padding OUTSIDE
+onClick > Modifier.clickable
+
+------------------
+
+// Decisions:
 // Actual split piles have supply set to false. This means they will not be randomized
 // and they do not have a disable button next to them in the library. In a way, split
 // piles are part of the supply, but for all intents and purposes, the "main" card suffices
 
-/*
 ProGuard/R8 (for Release Builds):
 •The Firebase Crashlytics plugin automatically adds the necessary ProGuard/R8 rules to keep Crashlytics symbols.
 •However, to get deobfuscated crash reports, you need to ensure that symbolication files (mapping files) are uploaded.
 •The com.google.firebase.crashlytics plugin handles uploading these mapping files automatically for release builds if you have minifyEnabled true and Crashlytics configured.
 •Make sure you don't explicitly add firebase-crashlytics-ndk unless you need NDK crash reporting, as it might interfere with Java/Kotlin symbol uploading if not configured correctly.
-*/
 
-.padding().size() -> Padding INSIDE (Smaller element)
-.size().padding() -> Padding OUTSIDE
-onClick > Modifier.clickable
+------------------------------
 
-RELEASE
+RANDOM
 Guilds second edition doesnt have cornucopia, but cornucopia second edition has guilds (?)
 1st edition of Cornucopia has 2nd edition cards (at least Rewards) (?)
 
+Do I take two events from rising sun if there are no other options?
+generation option: pull random cards and only take landscapes if they were among the pulls
+
+Basic cards from base set are sorted by price instead of name!! -> comparator
+Empires too!
+
+------------------------------
+
 - NEXT:
+    - make VETO SYSTEM work with constraints
+    - Load card numbers before changing player count
+    - Add card numbers for reward and prize!!
+    - Reload additional cards after veto
+    - Constraint settings: (include 2 / 3 cost, attack, attack when reaction, etc
+    - Landscapes to generate setting
+    - Never generate same landscape type twice setting
+    - Promo cards? allow randomly (Setting)
+
     // UI
     Floating tool bar vs floating app bar?
     -> Oben durchsichtige / moderne bar (flexible navigation bar)
     // - Invisible top bar / only when header is relevant? (See Auth app)
 
     - NAME: Kingdom(s), Domgen, Vassal, Province, 10 cards
-- RELOAD ADDITIONAL CARDS AFTER VETO
+
+------------------------------
 
 // TODO Master list
 // Rethink database scheme, especially expansions and editions suck
@@ -79,17 +100,16 @@ Guilds second edition doesnt have cornucopia, but cornucopia second edition has 
 // Generation
 // - Only generate landscape cards of selected expansions? Or allow mixing? Option?
 // - Always use 2 different landscape cards (at least prophecies). When rerolling, be sure to take the same type AND same expansion
-// - When randomizing, check for 10 ENABLED cards
-// - Advanced generation (include 2 / 3 cost, attack, attack when reaction, etc
 // - Traits attached to cards
-// - Promo cards? allow randomly
-// - Black market
-// - ADD ONE ALLY IF ONE OR MORE LIAISON IS PRESENT
+// - Black market, young witch (mark bane!), divine wind, ferryman, riverboat
+// - Do not pull landscape option (prefer physical)
 
 // Code
 // - Use _somethingFromViewModel.update {} instead of setting _something.value
 // - Check logs for redundancy
 // - I think 'set' property can be removed from sets.json
+
+------------------------------
 
 // TODO LOW(er) PRIO
 // Code
@@ -97,11 +117,11 @@ Guilds second edition doesnt have cornucopia, but cornucopia second edition has 
 // - Applicationscope vs LifecycleScope vs CoroutineScope vs whatever
 // - Flows instead of lists from DAO?
 // - Save sort type between sessions
-// - Icons.Filled.??
 // - Try to thin out some parameters (TopBar)
 // - After generating kingdom and changing sort type, it is reset after generating a new kingdom
 // - Add modifier parameter to all Composables?
 // - Reset scroll state when selecting different expansion -> Liststatemanager hash map für jede expansion
+// - kotlin.collections.Set -> MutableSet / SET UMBENENNEN
 
 // Features
 // - VP counter
@@ -120,7 +140,33 @@ Library view bei dependent cards die quelle schreiben
 Adventures special sort for upgraded cards:
 Soldier > Fugitive > Disciple > Teacher
 Treasure Hunter > Warrior > Hero > Champion
+Sauna > Avanto, Gladiator > Fortune, Catapult > Rocks, Settlers > Bustling Village, Patrician / Emporium, Encampment / Plunder
 Non supply cards priorisieren bei TYPE sort? "Non-supply" als displayText?
 
 // Bugs
 // - Nothing happens when clicking an edition
+
+
+old requirements backup:
+
+        // Add Ally if Liaison cards are present
+        if (cardList.any { it.types.contains(Type.LIAISON) }) {
+            val allyCards = landscapePool.filter { it.types.contains(Type.ALLY) }
+            Log.d("Kingdom Generator", "Ally cards: ${allyCards.size}")
+            if (allyCards.isEmpty()) {
+                // Error
+            } else {
+                landscapeList.add(allyCards.random())
+            }
+        }
+
+        // Add Prophecy if Omen cards are present
+        if (cardList.any { it.types.contains(Type.OMEN) }) {
+            val prohpecyCards = landscapePool.filter { it.types.contains(Type.PROPHECY) }
+            Log.d("Kingdom Generator", "Prophecy cards: ${prohpecyCards.size}")
+            if (prohpecyCards.isEmpty()) {
+                // Error
+            } else {
+                landscapeList.add(prohpecyCards.random())
+            }
+        }

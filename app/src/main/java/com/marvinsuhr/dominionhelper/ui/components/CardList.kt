@@ -359,20 +359,6 @@ fun KingdomList(
             }
         }
 
-        // BASIC CARDS
-        item {
-            CardSpacer("Basic Cards")
-        }
-        item {
-            PlayerSelectionButtons(
-                selectedPlayers = selectedPlayers,
-                onPlayerSelected = { onPlayerCountChange(it) }
-            )
-        }
-        items(kingdom.basicCards.keys.toList()) { card ->
-            CardView(card, onCardClick, enabled = true, showIcon = true, kingdom.basicCards[card]!!)
-        }
-
         // STARTING CARDS
         item {
             CardSpacer("Starting Cards")
@@ -385,6 +371,20 @@ fun KingdomList(
                 showIcon = true,
                 kingdom.startingCards[card]!!
             )
+        }
+
+        // BASIC CARDS
+        item {
+            CardSpacer("Basic Cards")
+        }
+        item {
+            PlayerSelectionButtons(
+                selectedPlayers = selectedPlayers,
+                onPlayerSelected = { onPlayerCountChange(it) }
+            )
+        }
+        items(kingdom.basicCards.keys.toList()) { card ->
+            CardView(card, onCardClick, enabled = true, showIcon = true, kingdom.basicCards[card]!!)
         }
     }
 }

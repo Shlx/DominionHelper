@@ -68,7 +68,6 @@ enum class RandomMode(val displayName: String) {
 
 enum class VetoMode(val displayName: String) {
     REROLL_SAME("Reroll from the same expansion"),
-    // TODO: This rerolls from any OWNED expansion, but we need to reroll from any SELECTED expansion probably
     REROLL_ANY("Reroll from any owned expansion"),
     NO_REROLL("Don't reroll")
 }

@@ -8,6 +8,7 @@ import com.marvinsuhr.dominionhelper.data.UserPrefsRepository
 import com.marvinsuhr.dominionhelper.model.CardDependencies
 import com.marvinsuhr.dominionhelper.model.CardNames
 import com.marvinsuhr.dominionhelper.model.Set
+import com.marvinsuhr.dominionhelper.model.Type
 import com.marvinsuhr.dominionhelper.ui.DarkAgesMode
 import com.marvinsuhr.dominionhelper.ui.ProsperityMode
 import com.marvinsuhr.dominionhelper.ui.RandomMode
@@ -19,10 +20,16 @@ import javax.inject.Singleton
 
 // Class representing a randomly generated round of Dominion
 data class Kingdom(
-    val randomCards: LinkedHashMap<Card, Int> = linkedMapOf(), // Do I need an amount here? -> YES, victory cards are dependent on player amount!!
+
+    // Amount is needed because of victory cards like Garden
+    val randomCards: LinkedHashMap<Card, Int> = linkedMapOf(),
+    // Amount is needed for basic victory cards
     val basicCards: LinkedHashMap<Card, Int> = linkedMapOf(),
+    // Amount is needed for cards like Ruins
     val dependentCards: LinkedHashMap<Card, Int> = linkedMapOf(),
+    // Copper and Estate can have varying amounts
     val startingCards: LinkedHashMap<Card, Int> = linkedMapOf(),
+    // Amount not really needed
     val landscapeCards: LinkedHashMap<Card, Int> = linkedMapOf()
 ) {
 
@@ -50,58 +57,85 @@ class KingdomGenerator @Inject constructor(
     private val userPrefsRepository: UserPrefsRepository
 ) {
 
-    suspend fun generateKingdom2(): Kingdom {
-        // Select x expansions randomly
-        //expansionDao.getRandomOwnedExpansion(x)
-
-        // Initial load of all candidates
-        //cardPool = cardDao.getEnabledCards()
-
-        // Constraint satisfaction
-        /*If (ATTACK_REQUIRED) {
-            card = cardPool.filter(it.type.contains("Attack"))
-        }*/
-
-        // Oder ne Rule Klasse? foreach (rule)...
-
-        // Exclusion rules?
-
-        // Landscapes
-
-        // Fill remaining slots
-        //cardList = cardPool.pickRandomElements(y)
-        return Kingdom()
-    }
-
-    // Main function to generate a Kingdom based on user preferences
     suspend fun generateKingdom(): Kingdom {
 
-        // TODO add 2 landscape cards first. They might affect the rest of the cards (for example Trait: Cursed)
-        // Problem: Prophecy card depends on Omen. So maybe...
-        // 1. Generate landscape cards
-        // 2. Generate random cards
-        // 3. Exchange 1 landscape for prophecy if there is an omen
-        // 4. Recheck dependencies?
-
-        // Or (this is better? Since landscape cards also have dependencies)
-        // 1. Generate random cards
-        // 2. Generate landscape cards, including omen if there is a prophecy
-        // 3. Check dependencies
+        val cardList = mutableSetOf<Card>()
+        val landscapeList = mutableSetOf<Card>()
 
         val randomMode = userPrefsRepository.randomMode.first()
         val totalCardsToGenerate = userPrefsRepository.numberOfCardsToGenerate.first()
+        val totalLandscapesToGenerate = 2
 
-        val randomCards = getRandomCards(randomMode, totalCardsToGenerate)
+        // Load candidate cards
+        val (cardPool, landscapePool) = getCandidates(randomMode)
+        Log.d("Kingdom Generator", "Portrait candidates: ${cardPool.size}")
+        Log.d("Kingdom Generator", "Landscape candidates: ${landscapePool.size}")
 
-        val landscapeCards = getLandscapeCards()
+        val requireAttack = true
+        val require2cost = true
+
+        // Make list / map of predicates for each setting, then iterate those
+        val predicate: (Card) -> Boolean = { it.types.contains(Type.ATTACK) }
+        val predicate2: (Card) -> Boolean = { it.cost == 2 }
+        val predicate3: (Card) -> Boolean = {it.types.contains(Type.ALLY)}
+        val predicate4: (Card) -> Boolean = {it.types.contains(Type.PROPHECY)}
+
+        if (requireAttack) {
+            val success = satisfyRequirement("Attack", cardPool, cardList, predicate)
+            if (!success) {
+                Log.w("KingdomGenerator", "Failed to add required Attack card.")
+            }
+        }
+
+        if (require2cost) {
+            val success = satisfyRequirement("Cost 2", cardPool, cardList, predicate2)
+            if (!success) {
+                Log.w("KingdomGenerator", "Failed to add required Cost 2 card.")
+            }
+        }
+
+        // Fill remaining slots
+        val cardsLeft = totalCardsToGenerate - cardList.size
+        val cardsToFill = cardPool.shuffled().take(cardsLeft)
+        Log.d("Kingdom Generator", "Cards to fill: ${cardsToFill.joinToString { it.name }}")
+        cardList.addAll(cardsToFill)
+        // TODO Shuffle list? Otherwise constraint cards are always on top
+
+        if (cardList.any { it.types.contains(Type.LIAISON) }) {
+            val success = satisfyRequirement("Ally", landscapePool, landscapeList, predicate3)
+            if (!success) {
+                Log.w("KingdomGenerator", "Failed to add required Ally card.")
+            }
+        }
+
+        if (cardList.any { it.types.contains(Type.OMEN) }) {
+            val success = satisfyRequirement("Prophecy", landscapePool, landscapeList, predicate4)
+            if (!success) {
+                Log.w("KingdomGenerator", "Failed to add required Prophecy card.")
+            }
+        }
+
+        // Ignore Ally and Prophecy cards, those depend on Liaison and Omen respectively
+        val landscapesLeft = totalLandscapesToGenerate - landscapeList.size
+        val landscapesToFill = landscapePool
+            .filter { it.types.none { type -> type == Type.ALLY || type == Type.PROPHECY } }
+            .shuffled()
+            .take(landscapesLeft)
+        // TODO Log if no landscapes found
+        Log.d("Kingdom Generator", "Landscapes to fill: ${landscapesToFill.joinToString { it.name }}")
+        landscapeList.addAll(landscapesToFill)
+        // TODO: Generate 2 different landscapes if possible
 
         val basicCards = loadCards(CardNames.BASIC_CARDS.associateWith { 1 })
 
-        val dependentCardsToLoad = getDependentCards(randomCards.keys)
+        val dependentCardsToLoad = getDependentCards(cardList)
         val dependentCards = loadCards(dependentCardsToLoad)
 
-        val startingCardsToLoad = getStartingCards(randomCards.keys)
+        val startingCardsToLoad = getStartingCards(cardList)
         val startingCards = loadCards(startingCardsToLoad)
+
+        val randomCards = listToMap(cardList.toList())
+        val landscapeCards = listToMap(landscapeList.toList())
 
         Log.i(
             "Kingdom Generator",
@@ -111,7 +145,85 @@ class KingdomGenerator @Inject constructor(
         return Kingdom(randomCards, basicCards, dependentCards, startingCards, landscapeCards)
     }
 
+    // Helper function to satisfy a requirement
+    // Returns true if a card was successfully added, false otherwise
+    private fun satisfyRequirement(
+        predicateName: String,
+        cardPool: MutableSet<Card>,
+        cardList: MutableSet<Card>,
+        predicate: (Card) -> Boolean
+    ): Boolean {
+        val candidates = cardPool.filter(predicate)
+        Log.d(
+            "Kingdom Generator",
+            "$predicateName candidates: ${candidates.joinToString { it.name }}"
+        )
+
+        if (candidates.isEmpty()) {
+            Log.e("Kingdom Generator", "No $predicateName cards found in card pool!")
+            return false
+        } else {
+            val cardToAdd = candidates.random()
+            Log.d("Kingdom Generator", "Selected $predicateName card: ${cardToAdd.name}")
+            cardList.add(cardToAdd)
+            cardPool.remove(cardToAdd)
+            return true
+        }
+    }
+
+    suspend fun getCandidates(randomMode: RandomMode): Pair<MutableSet<Card>, MutableSet<Card>> {
+
+        val portraitCandidates = mutableSetOf<Card>()
+        val landscapeCandidates = mutableSetOf<Card>()
+
+        when (randomMode) {
+
+            RandomMode.FULL_RANDOM -> {
+                Log.i("Kingdom Generator", "Full random selected")
+                portraitCandidates.addAll(cardDao.getEnabledOwnedCards())
+                landscapeCandidates.addAll(cardDao.getEnabledOwnedLandscapes())
+                return Pair(portraitCandidates, landscapeCandidates)
+            }
+
+            RandomMode.EVEN_AMOUNTS -> {
+                Log.i("Kingdom Generator", "Even amounts selected")
+
+                val numberOfExpansions = userPrefsRepository.randomExpansionAmount.first()
+
+                if (numberOfExpansions <= 0) {
+                    Log.w("Kingdom Generator", "Number of expansions was 0")
+                    // Error?
+                }
+
+                val randomExpansions =
+                    expansionDao.getFixedAmountOfOwnedExpansions(numberOfExpansions)
+
+                if (randomExpansions.isEmpty()) {
+                    Log.w(
+                        "KingdomGenerator",
+                        "Even amounts selected, but no owned expansions found or selected."
+                    )
+                    // Error?
+                }
+
+                for (expansion in randomExpansions) {
+                    portraitCandidates.addAll(
+                        cardDao.getPortraitsByExpansion(expansion.id)
+                    )
+                    landscapeCandidates.addAll(
+                        cardDao.getLandscapesByExpansion(expansion.id)
+                    )
+                }
+
+                return Pair(portraitCandidates, landscapeCandidates)
+            }
+        }
+    }
+
+    //---------
+
     // Pass List here?
+    // TODO: Review this
     suspend fun loadCards(cardsToLoad: Map<String, Int>): LinkedHashMap<Card, Int> {
 
         val cardNames = cardsToLoad.keys.toList()
@@ -138,91 +250,6 @@ class KingdomGenerator @Inject constructor(
         return result
     }
 
-    suspend fun getRandomCards(
-        randomMode: RandomMode,
-        totalCardsToGenerate: Int
-    ): LinkedHashMap<Card, Int> {
-
-        val generatedCardList: List<Card> = when (randomMode) {
-
-            RandomMode.FULL_RANDOM -> {
-                Log.i("Kingdom Generator", "Full random selected")
-
-                cardDao.getRandomCardsFromOwnedExpansions(totalCardsToGenerate)
-            }
-
-            RandomMode.EVEN_AMOUNTS -> {
-                Log.i("Kingdom Generator", "Even amounts selected")
-
-                val generatedCards = mutableListOf<Card>()
-                val numberOfExpansions = userPrefsRepository.randomExpansionAmount.first()
-
-                if (numberOfExpansions > 0) {
-                    val randomExpansions =
-                        expansionDao.getFixedAmountOfOwnedExpansions(numberOfExpansions)
-
-
-
-
-                    if (randomExpansions.isEmpty()) {
-                        Log.w(
-                            "KingdomGenerator",
-                            "Even amounts selected, but no owned expansions found or selected."
-                        )
-                        return linkedMapOf() // Return empty map if no expansions to pick from
-                    }
-
-                    // Ensure we don't try to pick from more expansions than we actually got
-                    // (e.g., user wants 3 expansions, but only owns 2)
-                    // TODO: Trigger error message
-                    val expansionsToUse = randomExpansions.take(numberOfExpansions)
-                    if (expansionsToUse.isEmpty()) {
-                        Log.w(
-                            "KingdomGenerator",
-                            "Even amounts selected, but expansionsToUse is empty after take()."
-                        )
-                        return linkedMapOf()
-                    }
-
-                    if (totalCardsToGenerate == 0) {
-                        Log.i("KingdomGenerator", "totalCardsToGenerate is 0, returning empty map.")
-                        return linkedMapOf()
-                    }
-
-
-                    // TODO: Check for division by zero to be safe
-                    val baseAmountPerExpansion = totalCardsToGenerate / expansionsToUse.size
-                    var remainingCardsToDistribute = totalCardsToGenerate % expansionsToUse.size
-
-                    for (expansion in expansionsToUse) {
-                        var cardsFromThisExpansion = baseAmountPerExpansion
-                        if (remainingCardsToDistribute > 0) {
-                            cardsFromThisExpansion++
-                            remainingCardsToDistribute--
-                        }
-                        if (cardsFromThisExpansion > 0) {
-                            generatedCards.addAll(
-                                cardDao.getRandomCardsFromExpansion(
-                                    expansion.id,
-                                    cardsFromThisExpansion
-                                )
-                            )
-                        }
-                    }
-                }
-                generatedCards
-            }
-        }
-
-        return listToMap(generatedCardList)
-    }
-
-    suspend fun getLandscapeCards(): LinkedHashMap<Card, Int> {
-        // TODO Find way to generate DIFFERENT landscape types (from the same expansion), also when dismissing
-        val cards = cardDao.getRandomLandscapeCardsFromOwnedExpansions(2)
-        return listToMap(cards)
-    }
-
     suspend fun replaceCardInKingdom(
         cardToRemove: Card,
         cardsToExclude: kotlin.collections.Set<Card>
@@ -232,6 +259,7 @@ class KingdomGenerator @Inject constructor(
         val newCard: Card? = when (userPrefsRepository.vetoMode.first()) {
 
             // Reroll from the same expansion
+            // TODO: This rerolls from any OWNED expansion, but we need to reroll from any SELECTED expansion probably
             VetoMode.REROLL_SAME -> {
                 Log.i("KingdomGenerator", "Rerolling from the same expansion.")
                 generateSingleRandomCardFromExpansion(
@@ -419,8 +447,9 @@ class KingdomGenerator @Inject constructor(
 
         // Add Heirlooms
         var heirloomCount = 0
-        CardNames.cardPairs.forEach { (cardName, dependentCardName) ->
+        CardNames.heirloomPairs.forEach { (cardName, dependentCardName) ->
             if (randomCards.any { it.name == cardName }) {
+                Log.d("Kingdom Generator", "Adding Heirloom: $cardName")
                 cards[dependentCardName] = 1
                 heirloomCount++
             }
@@ -428,13 +457,6 @@ class KingdomGenerator @Inject constructor(
 
         // 1 less Copper per Heirloom
         cards["Copper"] = 7 - heirloomCount
-
         return cards
     }
-
-    // Data class to represent a dependency rule
-    data class DependencyRule(
-        val condition: (Card) -> Boolean,
-        val dependentCardNames: List<String>
-    )
 }

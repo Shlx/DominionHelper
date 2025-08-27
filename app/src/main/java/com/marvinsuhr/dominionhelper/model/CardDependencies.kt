@@ -1,8 +1,12 @@
 package com.marvinsuhr.dominionhelper.model
 
-import com.marvinsuhr.dominionhelper.KingdomGenerator.DependencyRule
-
 class CardDependencies {
+
+    // Data class to represent a dependency rule
+    data class DependencyRule(
+        val condition: (Card) -> Boolean,
+        val dependentCardNames: List<String>
+    )
 
     val dependencyRules = listOf(
 
@@ -67,12 +71,12 @@ class CardDependencies {
             dependentCardNames = listOf(CardNames.RUINS_PILE)
         ),
 
-        // Tournament -> add Prize (TODO Amount depends on players!)
+        // Tournament -> add Prizes
         DependencyRule(
             condition = { it.name == CardNames.TOURNAMENT },
             dependentCardNames = listOf(CardNames.PRIZE_PILE)
         ),
-        // Joust -> Add Reward (TODO Amount depends on players!)
+        // Joust -> Add Rewards
         DependencyRule(
             condition = { it.name == CardNames.JOUST },
             dependentCardNames = listOf(CardNames.REWARD_PILE)
@@ -108,21 +112,6 @@ class CardDependencies {
         DependencyRule(
             condition = { it.name == CardNames.TREASURER },
             dependentCardNames = listOf(CardNames.KEY)
-        ),
-
-        // Watch out here that there is truly only ONE card added
-        // This might not even make sense since people will probably prefer to pull a physical card
-
-        // If there is a Liaison card present, add a random Ally card
-        DependencyRule(
-            condition = { it.types.contains(Type.LIAISON) },
-            dependentCardNames = listOf(CardNames.KEY) // TODO: Add ONE random Ally card (Key is a placeholder)
-        ),
-
-        // If there is an Omen card present, add a random Prophecy card
-        DependencyRule(
-            condition = { it.types.contains(Type.OMEN) },
-            dependentCardNames = listOf(CardNames.KEY) // TODO: Add ONE random Prophecy card (Key is a placeholder)
         ),
 
         // Travellers

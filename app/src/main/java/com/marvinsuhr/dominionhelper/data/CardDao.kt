@@ -33,6 +33,26 @@ interface CardDao {
     @Query("SELECT * FROM cards WHERE sets LIKE '%' || :id || '%'")
     suspend fun getCardsByExpansion(id: String): List<Card>
 
+
+    @Query("""
+        SELECT * FROM cards AS c
+        WHERE sets LIKE '%' || :id || '%'
+        AND c.landscape = 0
+        AND c.supply = 1
+        AND c.isEnabled = 1
+        """
+    )
+    suspend fun getPortraitsByExpansion(id: String): List<Card>
+
+    @Query("""
+        SELECT * FROM cards AS c
+        WHERE sets LIKE '%' || :id || '%'
+        AND c.landscape = 1
+        AND c.isEnabled = 1
+        """
+    )
+    suspend fun getLandscapesByExpansion(id: String): List<Card>
+
     @Query("SELECT * FROM cards ORDER BY RANDOM() LIMIT :amount")
     suspend fun getRandomCards(amount: Int): List<Card>
 
@@ -79,6 +99,34 @@ interface CardDao {
     """
     )
     suspend fun getRandomCardsFromExpansion(expansionId: String, amount: Int): List<Card>
+
+    @Query(
+        """
+        SELECT c.* FROM cards AS c
+        INNER JOIN expansions AS e ON c.sets LIKE '%' || e.id || '%'
+        WHERE e.isOwned
+        AND c.isEnabled = 1
+        AND c.landscape = 0
+        AND c.basic = 0
+        AND c.supply = 1
+        ORDER BY RANDOM()
+    """
+    )
+    suspend fun getEnabledOwnedCards(): List<Card>
+
+    @Query(
+        """
+        SELECT c.* FROM cards AS c
+        INNER JOIN expansions AS e ON c.sets LIKE '%' || e.id || '%'
+        WHERE e.isOwned
+        AND c.isEnabled = 1
+        AND c.landscape = 1
+        AND c.basic = 0
+        AND c.supply = 1 -- TODO Huh, are landscape cards considered in the supply?
+        ORDER BY RANDOM()
+    """
+    )
+    suspend fun getEnabledOwnedLandscapes(): List<Card>
 
     @Query(
         """

@@ -7444,7 +7444,7 @@
   {
     "name": "Bustling Village",
     "cost": 5,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action"
@@ -7487,7 +7487,7 @@
   {
     "name": "Catapult",
     "cost": 3,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action",
@@ -7502,6 +7502,26 @@
       "Trash_for_benefit",
       "Handsize_attack"
     ],
+    "potion": false,
+    "sets": [
+      "Empires"
+    ],
+    "overpay": false,
+    "special_cost": false
+  },
+  {
+    "name": "Catapult / Rocks",
+    "cost": 3,
+    "supply": true,
+    "landscape": false,
+    "types": [
+      "Action",
+      "Attack"
+    ],
+    "image_name": "catapult_rocks",
+    "basic": false,
+    "debt": 0,
+    "categories": [],
     "potion": false,
     "sets": [
       "Empires"
@@ -7620,7 +7640,7 @@
   {
     "name": "Emporium",
     "cost": 5,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action"
@@ -7641,7 +7661,7 @@
   {
     "name": "Encampment",
     "cost": 2,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action"
@@ -7653,6 +7673,25 @@
       "Nonterminal_draw",
       "Village"
     ],
+    "potion": false,
+    "sets": [
+      "Empires"
+    ],
+    "overpay": false,
+    "special_cost": false
+  },
+  {
+    "name": "Encampment / Plunder",
+    "cost": 2,
+    "supply": true,
+    "landscape": false,
+    "types": [
+      "Action"
+    ],
+    "image_name": "encampment_plunder",
+    "basic": false,
+    "debt": 0,
+    "categories": [],
     "potion": false,
     "sets": [
       "Empires"
@@ -7726,7 +7765,7 @@
   {
     "name": "Fortune",
     "cost": 8,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Treasure"
@@ -7768,7 +7807,7 @@
   {
     "name": "Gladiator",
     "cost": 3,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action"
@@ -7779,6 +7818,25 @@
     "categories": [
       "Trasher"
     ],
+    "potion": false,
+    "sets": [
+      "Empires"
+    ],
+    "overpay": false,
+    "special_cost": false
+  },
+  {
+    "name": "Gladiator / Fortune",
+    "cost": 3,
+    "supply": true,
+    "landscape": false,
+    "types": [
+      "Action"
+    ],
+    "image_name": "gladiator_fortune",
+    "basic": false,
+    "debt": 0,
+    "categories": [],
     "potion": false,
     "sets": [
       "Empires"
@@ -7965,7 +8023,7 @@
   {
     "name": "Patrician",
     "cost": 2,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action"
@@ -7986,9 +8044,28 @@
     "special_cost": false
   },
   {
+    "name": "Patrician / Emporium",
+    "cost": 2,
+    "supply": true,
+    "landscape": false,
+    "types": [
+      "Action"
+    ],
+    "image_name": "patrician_emporium",
+    "basic": false,
+    "debt": 0,
+    "categories": [],
+    "potion": false,
+    "sets": [
+      "Empires"
+    ],
+    "overpay": false,
+    "special_cost": false
+  },
+  {
     "name": "Plunder",
     "cost": 5,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Treasure"
@@ -8009,7 +8086,7 @@
   {
     "name": "Rocks",
     "cost": 4,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Treasure"
@@ -8071,7 +8148,7 @@
   {
     "name": "Settlers",
     "cost": 2,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action"
@@ -8083,6 +8160,25 @@
       "Cantrip",
       "Nonterminal_draw"
     ],
+    "potion": false,
+    "sets": [
+      "Empires"
+    ],
+    "overpay": false,
+    "special_cost": false
+  },
+  {
+    "name": "Settlers / Bustling Village",
+    "cost": 2,
+    "supply": true,
+    "landscape": false,
+    "types": [
+      "Action"
+    ],
+    "image_name": "settlers_bustling_village",
+    "basic": false,
+    "debt": 0,
+    "categories": [],
     "potion": false,
     "sets": [
       "Empires"
@@ -17337,7 +17433,7 @@
   {
     "name": "Avanto",
     "cost": 5,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action"
@@ -17526,7 +17622,7 @@
   {
     "name": "Sauna",
     "cost": 4,
-    "supply": true,
+    "supply": false,
     "landscape": false,
     "types": [
       "Action"
@@ -17538,6 +17634,25 @@
       "Cantrip",
       "Trasher"
     ],
+    "potion": false,
+    "sets": [
+      "Promo"
+    ],
+    "overpay": false,
+    "special_cost": false
+  },
+  {
+    "name": "Sauna / Avanto",
+    "cost": 4,
+    "supply": true,
+    "landscape": false,
+    "types": [
+      "Action"
+    ],
+    "image_name": "sauna_avanto",
+    "basic": false,
+    "debt": 0,
+    "categories": [],
     "potion": false,
     "sets": [
       "Promo"

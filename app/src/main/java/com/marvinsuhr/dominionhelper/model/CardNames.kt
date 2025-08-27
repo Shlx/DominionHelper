@@ -2,7 +2,7 @@ package com.marvinsuhr.dominionhelper.model
 
 object CardNames {
 
-    val cardPairs = listOf(
+    val heirloomPairs = listOf(
         "Fool" to "Lucky Coin",
         "Cemetery" to "Haunted Mirror", // TODO: ADD GHOST AS WELL
         "Secret Cave" to "Magic Lamp", // TODO: ADD WISH AS WELL
