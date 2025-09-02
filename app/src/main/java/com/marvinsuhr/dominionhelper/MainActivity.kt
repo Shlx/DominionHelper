@@ -337,8 +337,7 @@ fun MainView(
 
         // Hoch zum anderen LaunchedEffect?
         LaunchedEffect(key1 = searchText, key2 = isSearchActive) {
-            if (isSearchActive && searchText.length >= 2) {
-                Log.i("LaunchedEffect", "Getting cards by search text $searchText")
+            if (isSearchActive) {
                 libraryViewModel.searchCards(searchText)
             }
         }

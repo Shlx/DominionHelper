@@ -39,12 +39,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import com.marvinsuhr.dominionhelper.model.Expansion
 import com.marvinsuhr.dominionhelper.model.ExpansionWithEditions
 import com.marvinsuhr.dominionhelper.utils.Constants
@@ -186,8 +186,8 @@ fun ExpansionImage(expansion: ExpansionWithEditions) {
         expansion.firstEdition?.imageName ?: expansion.secondEdition?.imageName ?: ""
     )
 
-    Image(
-        painter = painterResource(id = drawableId),
+    AsyncImage(
+        model = drawableId,
         contentDescription = "${expansion.name} Expansion Image",
         modifier = Modifier
             .aspectRatio(1f)
@@ -207,14 +207,16 @@ fun ExpansionLabels(
     ) {
         Text(
             text = expansion.name,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
             fontSize = Constants.CARD_NAME_FONT_SIZE,
         )
         // TODO
         Text(
-            text = ownershipText, // Display the actual ownership text
-            // if hasMultipleEditions
-            //text = "Release date unknown", // Use actual data if available
-            fontSize = Constants.TEXT_SMALL, //12.sp?
+            text = ownershipText + " - " + expansion.firstEdition?.size?.text + " Expansion",
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            fontSize = Constants.TEXT_SMALL,
             color = LocalContentColor.current.copy(alpha = 0.6f)
         )
     }
@@ -294,13 +296,14 @@ fun EditionListItem(
             verticalAlignment = Alignment.CenterVertically
         ) {
             // Edition image (Smaller square space)
-            Image(
-                painter = painterResource(id = drawableId),
+            AsyncImage(
+                model = drawableId,
                 contentDescription = "${expansion.name} Edition Image",
                 modifier = Modifier
                     .fillMaxHeight()
                     .aspectRatio(1f)
-                    .padding(12.dp) // Smaller padding for nested image
+                    .padding(12.dp), // Smaller padding for nested image
+                colorFilter = ColorFilter.tint(LocalContentColor.current)
             )
 
             // Edition name and additional text

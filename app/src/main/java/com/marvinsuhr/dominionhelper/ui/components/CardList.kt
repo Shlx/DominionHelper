@@ -44,6 +44,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SwipeToDismissBox
 import androidx.compose.material3.SwipeToDismissBoxValue
@@ -77,6 +78,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import com.marvinsuhr.dominionhelper.Kingdom
 import com.marvinsuhr.dominionhelper.R
 import com.marvinsuhr.dominionhelper.model.Card
@@ -532,7 +534,7 @@ fun CardView(
 @Composable
 fun ColoredBar(barColors: List<Color>) {
     if (barColors.size > 2) {
-        Log.e("ColoredBar", "barColors list must contain at most two colors.")
+        Log.w("ColoredBar", "barColors list must contain at most two colors.")
         barColors.dropLast(barColors.size - 2)
     }
 
@@ -576,11 +578,11 @@ fun CardImage(card: Card) {
             .width(Constants.CARD_IMAGE_WIDTH)
     ) {
 
-        Image(
-            painter = painterResource(id = drawableId),
+        AsyncImage(
+            model = drawableId,
             contentDescription = stringResource(
                 id = R.string.card_image_content_description,
-                card.name
+                card.name,
             ),
             modifier = Modifier
                 .fillMaxSize()
@@ -795,8 +797,8 @@ fun NumberHexagon(number: Int) {
 
 @Composable
 fun PotionIcon() {
-    Image(
-        painter = painterResource(id = R.drawable.set_alchemy),
+    AsyncImage(
+        model = R.drawable.set_alchemy,
         contentDescription = "Potion icon",
         colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.secondaryContainer),
         modifier = Modifier
@@ -812,11 +814,12 @@ fun CardIcon(imageId: Int, setName: String) {
         modifier = Modifier
             .aspectRatio(1f)
     ) {
-        Image(
-            painter = painterResource(imageId),
+        AsyncImage(
+            model = imageId,
             contentDescription = "$setName icon",
             modifier = Modifier
-                .size(Constants.ICON_SIZE)
+                .size(Constants.ICON_SIZE),
+            colorFilter = ColorFilter.tint(LocalContentColor.current)
         )
     }
 }

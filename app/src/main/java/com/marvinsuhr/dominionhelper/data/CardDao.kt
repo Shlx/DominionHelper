@@ -27,7 +27,14 @@ interface CardDao {
     @Query("SELECT * FROM cards")
     suspend fun getAll(): List<Card>
 
-    @Query("SELECT * FROM cards WHERE name LIKE :filter")
+    @Query("""
+    SELECT * FROM cards
+    WHERE name LIKE '%' || :filter || '%'
+       OR sets LIKE '%' || :filter || '%'
+       OR types LIKE '%' || :filter || '%'
+       OR categories LIKE '%' || :filter || '%'
+       OR CAST(cost AS TEXT) LIKE '%' || :filter || '%'
+""")
     suspend fun getFilteredCards(filter: String): List<Card>
 
     @Query("SELECT * FROM cards WHERE sets LIKE '%' || :id || '%'")
@@ -37,9 +44,10 @@ interface CardDao {
     @Query("""
         SELECT * FROM cards AS c
         WHERE sets LIKE '%' || :id || '%'
+        AND c.isEnabled = 1
+        AND c.basic = 0
         AND c.landscape = 0
         AND c.supply = 1
-        AND c.isEnabled = 1
         """
     )
     suspend fun getPortraitsByExpansion(id: String): List<Card>

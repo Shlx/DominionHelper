@@ -126,9 +126,8 @@ class KingdomViewModel @Inject constructor(
             }
 
             _kingdomUiState.value = KingdomUiState.LOADING
-            _kingdom.value = kingdomGenerator.generateKingdom()
-            updateSortType(SortType.EXPANSION)
-            updatePlayerCount(_kingdom.value, 2)
+            val generatedKingdom = kingdomGenerator.generateKingdom()
+            _kingdom.value = updatePlayerCount(generatedKingdom, 2)
             clearSelectedCard()
             _kingdomUiState.value = KingdomUiState.SHOWING_KINGDOM
         }
@@ -167,12 +166,12 @@ class KingdomViewModel @Inject constructor(
 
         // TODO: Does that even make sense here?
         val sortedEntries = when (_sortType.value) {
-            SortType.EXPANSION -> cards.entries.sortedBy { it.key.sets.first().name.take(3) }
+            SortType.EXPANSION -> cards.entries.sortedBy { it.key.sets.first().name }
             SortType.ALPHABETICAL -> cards.entries.sortedBy { it.key.name }
             SortType.COST -> cards.entries.sortedBy { it.key.cost }
             // Rouse
-            SortType.ENABLED -> cards.entries.sortedBy { it.key.cost }
-            SortType.TYPE -> cards.entries.sortedBy { it.key.cost }
+            SortType.ENABLED -> cards.entries.sortedBy { it.key.sets.first().name }
+            SortType.TYPE -> cards.entries.sortedBy { it.key.sets.first().name }
         }
 
         val sortedCards = LinkedHashMap<Card, Int>()
@@ -181,18 +180,18 @@ class KingdomViewModel @Inject constructor(
         return sortedCards
     }
 
-    fun updatePlayerCount(kingdom: Kingdom, count: Int) {
+    fun updatePlayerCount(kingdom: Kingdom, count: Int): Kingdom {
         _playerCount.value = count
         val updatedRandomCards = getCardAmounts(kingdom.randomCards, count)
         val updatedDependentCards = getCardAmounts(kingdom.dependentCards, count)
         val updatedBasicCards = getCardAmounts(kingdom.basicCards, count)
 
-        _kingdom.value = kingdom.copy(
+        Log.d("LibraryViewModel", "Selected player count $count")
+        return kingdom.copy(
             randomCards = updatedRandomCards,
             dependentCards = updatedDependentCards,
             basicCards = updatedBasicCards
         )
-        Log.d("LibraryViewModel", "Selected player count $count")
     }
 
     fun getCardAmounts(
@@ -231,6 +230,9 @@ class KingdomViewModel @Inject constructor(
                     4 -> 30
                     else -> throw IllegalArgumentException("Invalid player count: $playerCount")
                 }
+
+                CardNames.REWARD_PILE -> if (playerCount == 2) 6 else 12
+
                 else -> 1
             }
             cardAmounts[card] = amount

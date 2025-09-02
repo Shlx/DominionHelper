@@ -12,12 +12,12 @@ enum class Set (val imageId: Int = R.drawable.ic_launcher_foreground) {
     ALCHEMY(R.drawable.set_alchemy),
     PROSPERITY_1E(R.drawable.set_prosperity_1e),
     PROSPERITY_2E(R.drawable.set_prosperity_2e),
-    CORNUCOPIA(R.drawable.set_cornucopia),
+    CORNUCOPIA_1E(R.drawable.set_cornucopia),
     CORNUCOPIA_GUILDS_2E(R.drawable.set_cornucopia_guilds_2e),
     HINTERLANDS_1E(R.drawable.set_hinterlands_1e),
     HINTERLANDS_2E(R.drawable.set_hinterlands_2e),
     DARK_AGES(R.drawable.set_dark_ages),
-    GUILDS(R.drawable.set_guilds),
+    GUILDS_1E(R.drawable.set_guilds),
     ADVENTURES(R.drawable.set_adventures),
     EMPIRES(R.drawable.set_empires),
     NOCTURNE(R.drawable.set_nocturne),
@@ -35,15 +35,15 @@ enum class Type(
     val displayText: String? = null
 ) {
     // Basic Types (sortPriority here is only needed for base game)
-    TREASURE(sortPriority = 100),
-    VICTORY(sortPriority = 101),
-    CURSE(sortPriority = 102),
-    ACTION,
+    TREASURE(sortPriority = 100, displayText = "Treasure"),
+    VICTORY(sortPriority = 101, displayText = "Victory"),
+    CURSE(sortPriority = 102, displayText = "Curse"),
+    ACTION(displayText = "Action"),
     ATTACK(displayText = "Attack"),
-    REACTION,
-    DURATION,
-    NIGHT,
-    COMMAND,
+    REACTION(displayText = "Reaction"),
+    DURATION(displayText = "Duration"),
+    NIGHT(displayText = "Night"),
+    COMMAND(displayText = "Command"),
 
     // --- Non-Landscape Card Types ---
     PRIZE(sortPriority = 0, displayText = "Prize"),             // Cornucopia 1E

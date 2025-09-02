@@ -55,43 +55,36 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
-    // Icons
+    // Jetpack Compose
+    implementation(platform(libs.androidx.compose.bom)) // Handles versioning
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.foundation)// try rem
+    implementation(libs.androidx.ui.graphics)// try rem
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.animation)// try rem
     implementation(libs.androidx.material.icons.extended)
 
-    // Jetpack Compose
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.foundation)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
-    implementation(libs.material3)
-    implementation(libs.androidx.animation)
+    // Data Management
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.datastore.preferences.core) // try rem
+    implementation(libs.gson)
 
-    // Image loading // TODO
+    // Networking and Image Loading
     implementation(libs.coil.compose)
 
-    // Data persistence
-    implementation(libs.androidx.room.runtime)
-    ksp(libs.androidx.room.compiler)
-    implementation(libs.androidx.room.ktx)
-    implementation(libs.androidx.cardview)
-    implementation(libs.androidx.room.common.jvm)
-    implementation(libs.androidx.room.runtime.android)
-    implementation(libs.androidx.sqlite.android)
-
-    // DataStore
-    implementation(libs.androidx.datastore.preferences)
-    implementation(libs.androidx.datastore.preferences.core)
-
-    // Dependency Injection, Hilt
+    // Dependency Injection
     implementation(libs.hilt.android)
-    ksp(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
+    ksp(libs.hilt.android.compiler)
 
-    // Gson
-    implementation(libs.gson)
+    // Firebase / (Crashlytics)
+    implementation(platform(libs.firebase.bom))
+    //implementation(libs.firebase.crashlytics.ktx) // This doesn't work tho
+    implementation(libs.firebase.crashlytics.ndk) // Only needed for native C code??
+    implementation(libs.firebase.analytics)
 
     // Testing
     testImplementation(libs.junit)
@@ -100,12 +93,8 @@ dependencies {
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
 
-    // Debugging
+    // Debugging Tools
     debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.tooling.preview)
     debugImplementation(libs.androidx.ui.test.manifest)
-
-    // Firebase
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.crashlytics.ndk)
-    implementation(libs.firebase.analytics)
 }

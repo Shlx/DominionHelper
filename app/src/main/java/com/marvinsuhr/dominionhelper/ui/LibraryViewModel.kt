@@ -20,6 +20,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.text.first
 
 enum class LibraryUiState {
     SHOWING_EXPANSIONS,
@@ -78,7 +79,7 @@ class LibraryViewModel @Inject constructor(
         cardsToShow
     ) { uiScreenState, selectedExpansion, selectedCard, cardsToShow ->
         when (uiScreenState) {
-            LibraryUiState.SHOWING_EXPANSIONS -> "Dominion Helper"
+            LibraryUiState.SHOWING_EXPANSIONS -> "Library"
             LibraryUiState.SHOWING_EXPANSION_CARDS -> {
                 selectedExpansion?.let { expansion ->
                     "${expansion.name} ${getEnabledCardAmount(cardsToShow)}"
@@ -90,7 +91,7 @@ class LibraryViewModel @Inject constructor(
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
-        initialValue = "Dominion Helper"
+        initialValue = "Kingdoms"
     )
 
     init {
@@ -306,14 +307,13 @@ class LibraryViewModel @Inject constructor(
 
             else -> {
                 if (expansion.firstEdition != null) {
-                    set.addAll(cardDao.getCardsByExpansion(expansion.firstEdition!!.id))
+                    set.addAll(cardDao.getCardsByExpansion(expansion.firstEdition.id))
                 }
                 if (expansion.secondEdition != null) {
                     set.addAll(cardDao.getCardsByExpansion(expansion.secondEdition.id))
                 }
             }
         }
-
         return set
     }
 
@@ -447,8 +447,14 @@ class LibraryViewModel @Inject constructor(
     fun searchCards(newText: String) {
         viewModelScope.launch {
 
-            // TODO: Sort? Type sort is broken here
-            _cardsToShow.value = cardDao.getFilteredCards("%$newText%")
+            if (newText.isEmpty()) {
+                _cardsToShow.value = emptyList()
+            } else if (newText.length >= 2 || newText.first().isDigit()) {
+
+                 // TODO: Sort? Type sort is broken here
+                 _cardsToShow.value = cardDao.getFilteredCards("%$newText%")
+             }
+
             _libraryUiState.value = LibraryUiState.SHOWING_SEARCH_RESULTS
 
             Log.d(

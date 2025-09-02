@@ -2,7 +2,6 @@ package com.marvinsuhr.dominionhelper.ui.components
 
 import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -17,14 +16,19 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.distinctUntilChanged
+import coil.compose.AsyncImage
 import com.marvinsuhr.dominionhelper.model.Card
 import com.marvinsuhr.dominionhelper.utils.findIndexOfReference
 import com.marvinsuhr.dominionhelper.utils.getDrawableId
@@ -94,6 +98,9 @@ fun CardDetailPager(
 fun CardDetail(card: Card, onClick: () -> Unit) {
     val drawableId = getDrawableId(LocalContext.current, card.imageName)
 
+    var scale by remember { mutableFloatStateOf(1f) }
+    var offset by remember { mutableStateOf(Offset.Zero) }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -104,17 +111,43 @@ fun CardDetail(card: Card, onClick: () -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
+
+        // ZOOMABLE IMAGE
+        /*BoxWithConstraints {
+            val boxScope = this
+            val state = rememberTransformableState { zoomChange, offsetChange, rotationChange ->
+                scale *= zoomChange
+                offset += offsetChange
+                // You can also handle rotationChange if needed
+            }
+            AsyncImage(
+                model = /*rememberAsyncImagePainter(model = */drawableId,//),
+                contentDescription = "Zoomable Image",
+                contentScale = ContentScale.Fit, // Or ContentScale.Crop, etc.
+                modifier = Modifier
+                    //.align(Alignment.Center) // Or other alignment
+                    .fillMaxSize() // Fill the constraints of the BoxWithConstraints
+                    .graphicsLayer(
+                        scaleX = scale,
+                        scaleY = scale,
+                        translationX = offset.x,
+                        translationY = offset.y
+                    )
+                    .transformable(state = state)
+            )
+         */
         Box(
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            Image(
-                painter = painterResource(id = drawableId),
+            AsyncImage(
+                model = drawableId,
                 contentDescription = "Card Image",
                 modifier = Modifier.fillMaxWidth(),
                 contentScale = ContentScale.FillWidth
             )
         }
+
         LazyColumn(
             modifier = Modifier
                 .fillMaxWidth()

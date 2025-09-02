@@ -3319,7 +3319,7 @@
     ],
     "potion": false,
     "sets": [
-      "Guilds",
+      "Guilds_1E",
       "Cornucopia_Guilds_2E"
     ],
     "overpay": false,
@@ -3339,7 +3339,7 @@
     "categories": [],
     "potion": false,
     "sets": [
-      "Guilds",
+      "Guilds_1E",
       "Cornucopia_Guilds_2E"
     ],
     "overpay": false,
@@ -3359,7 +3359,7 @@
     "categories": [],
     "potion": false,
     "sets": [
-      "Guilds",
+      "Guilds_1E",
       "Cornucopia_Guilds_2E"
     ],
     "overpay": false,
@@ -3381,7 +3381,7 @@
     ],
     "potion": false,
     "sets": [
-      "Guilds",
+      "Guilds_1E",
       "Cornucopia_Guilds_2E"
     ],
     "overpay": false,
@@ -3425,7 +3425,7 @@
     ],
     "potion": false,
     "sets": [
-      "Guilds"
+      "Guilds_1E"
     ],
     "overpay": true,
     "special_cost": false
@@ -3446,7 +3446,7 @@
     ],
     "potion": false,
     "sets": [
-      "Cornucopia",
+      "Cornucopia_1E",
       "Cornucopia_Guilds_2E"
     ],
     "overpay": false,
@@ -3489,7 +3489,7 @@
     ],
     "potion": false,
     "sets": [
-      "Cornucopia"
+      "Cornucopia_1E"
     ],
     "overpay": false,
     "special_cost": false
@@ -3572,7 +3572,7 @@
     "categories": [],
     "potion": false,
     "sets": [
-      "Cornucopia"
+      "Cornucopia_1E"
     ],
     "overpay": false,
     "special_cost": false
@@ -3595,7 +3595,7 @@
     ],
     "potion": false,
     "sets": [
-      "Cornucopia",
+      "Cornucopia_1E",
       "Cornucopia_Guilds_2E"
     ],
     "overpay": false,
@@ -3615,7 +3615,7 @@
     "categories": [],
     "potion": false,
     "sets": [
-      "Cornucopia"
+      "Cornucopia_1E"
     ],
     "overpay": false,
     "special_cost": false
@@ -3637,7 +3637,7 @@
     ],
     "potion": false,
     "sets": [
-      "Guilds",
+      "Guilds_1E",
       "Cornucopia_Guilds_2E"
     ],
     "overpay": true,
@@ -3657,7 +3657,7 @@
     "categories": [],
     "potion": false,
     "sets": [
-      "Cornucopia",
+      "Cornucopia_1E",
       "Cornucopia_Guilds_2E"
     ],
     "overpay": false,
@@ -3680,7 +3680,7 @@
     ],
     "potion": false,
     "sets": [
-      "Cornucopia"
+      "Cornucopia_1E"
     ],
     "overpay": false,
     "special_cost": false
@@ -3701,7 +3701,7 @@
     ],
     "potion": false,
     "sets": [
-      "Cornucopia",
+      "Cornucopia_1E",
       "Cornucopia_Guilds_2E"
     ],
     "overpay": false,
@@ -3745,7 +3745,7 @@
     ],
     "potion": false,
     "sets": [
-      "Cornucopia",
+      "Cornucopia_1E",
       "Cornucopia_Guilds_2E"
     ],
     "overpay": false,
@@ -3767,7 +3767,7 @@
     ],
     "potion": false,
     "sets": [
-      "Guilds",
+      "Guilds_1E",
       "Cornucopia_Guilds_2E"
     ],
     "overpay": false,
@@ -3806,7 +3806,7 @@
     "categories": [],
     "potion": false,
     "sets": [
-      "Guilds"
+      "Guilds_1E"
     ],
     "overpay": true,
     "special_cost": false
@@ -3828,7 +3828,7 @@
     ],
     "potion": false,
     "sets": [
-      "Cornucopia",
+      "Cornucopia_1E",
       "Cornucopia_Guilds_2E"
     ],
     "overpay": false,
@@ -3850,7 +3850,7 @@
     ],
     "potion": false,
     "sets": [
-      "Guilds",
+      "Guilds_1E",
       "Cornucopia_Guilds_2E"
     ],
     "overpay": false,
@@ -3872,7 +3872,7 @@
     ],
     "potion": false,
     "sets": [
-      "Guilds",
+      "Guilds_1E",
       "Cornucopia_Guilds_2E"
     ],
     "overpay": false,
@@ -3894,7 +3894,7 @@
     ],
     "potion": false,
     "sets": [
-      "Cornucopia",
+      "Cornucopia_1E",
       "Cornucopia_Guilds_2E"
     ],
     "overpay": false,
@@ -3938,7 +3938,7 @@
     ],
     "potion": false,
     "sets": [
-      "Guilds",
+      "Guilds_1E",
       "Cornucopia_Guilds_2E"
     ],
     "overpay": false,
@@ -3958,7 +3958,7 @@
     "categories": [],
     "potion": false,
     "sets": [
-      "Guilds",
+      "Guilds_1E",
       "Cornucopia_Guilds_2E"
     ],
     "overpay": true,
@@ -3981,7 +3981,7 @@
     ],
     "potion": false,
     "sets": [
-      "Guilds"
+      "Guilds_1E"
     ],
     "overpay": false,
     "special_cost": false
@@ -4000,7 +4000,7 @@
     "categories": [],
     "potion": false,
     "sets": [
-      "Cornucopia"
+      "Cornucopia_1E"
     ],
     "overpay": false,
     "special_cost": false
@@ -4022,7 +4022,7 @@
     ],
     "potion": false,
     "sets": [
-      "Cornucopia",
+      "Cornucopia_1E",
       "Cornucopia_Guilds_2E"
     ],
     "overpay": false,
@@ -4043,7 +4043,7 @@
     "categories": [],
     "potion": false,
     "sets": [
-      "Cornucopia"
+      "Cornucopia_1E"
     ],
     "overpay": false,
     "special_cost": true
@@ -4132,7 +4132,7 @@
     "categories": [],
     "potion": false,
     "sets": [
-      "Cornucopia"
+      "Cornucopia_1E"
     ],
     "overpay": false,
     "special_cost": true
@@ -4157,7 +4157,7 @@
     ],
     "potion": false,
     "sets": [
-      "Cornucopia"
+      "Cornucopia_1E"
     ],
     "overpay": false,
     "special_cost": true
@@ -4221,7 +4221,7 @@
     ],
     "potion": false,
     "sets": [
-      "Cornucopia"
+      "Cornucopia_1E"
     ],
     "overpay": false,
     "special_cost": true
@@ -4265,7 +4265,7 @@
     ],
     "potion": false,
     "sets": [
-      "Cornucopia"
+      "Cornucopia_1E"
     ],
     "overpay": false,
     "special_cost": true

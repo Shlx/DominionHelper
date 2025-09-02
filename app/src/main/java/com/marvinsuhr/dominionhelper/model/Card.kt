@@ -65,6 +65,7 @@ data class Card(
             }
 
             // 2. Both cards are in the same DisplayCategory -> sort by sortPriority
+            // This is only for non-supply cards. Other categories are sorted by name
             if (displayCategory1 != CardDisplayCategory.SUPPLY) {
 
                     // Find the minimum sortPriority for each card's types
@@ -75,16 +76,17 @@ data class Card(
                     if (typePriorityComparison != 0) {
                         return typePriorityComparison
                     }
-            }
 
-            // 3. If this flag is set to true (Empires), sort by cost as a tie breaker
-            if (sortByCostAsTieBreaker) {
-                val cost1 = card1.cost ?: Int.MAX_VALUE
-                val cost2 = card2.cost ?: Int.MAX_VALUE
+                // 3. If this flag is set to true, sort by cost as a tie breaker
+                // This is so that special cards in Base and Empires have a neat order
+                if (sortByCostAsTieBreaker) {
+                    val cost1 = card1.cost ?: Int.MAX_VALUE
+                    val cost2 = card2.cost ?: Int.MAX_VALUE
 
-                val costComparison = cost1.compareTo(cost2)
-                if (costComparison != 0) {
-                    return cost1.compareTo(cost2)
+                    val costComparison = cost1.compareTo(cost2)
+                    if (costComparison != 0) {
+                        return costComparison
+                    }
                 }
             }
 
@@ -108,6 +110,9 @@ data class Card(
             colors.add(Color(0xFFD7BC86))
         }
         if (types.contains(Type.VICTORY)) {
+            if (types.contains(Type.ACTION)) {
+                colors.add(Color(0xFFF3EEE2))
+            }
             colors.add(Color(0xFFA2CB85))
         }
         if (types.contains(Type.CURSE)) {
