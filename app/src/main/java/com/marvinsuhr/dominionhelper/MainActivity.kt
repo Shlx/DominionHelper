@@ -14,13 +14,11 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -57,64 +55,38 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             DominionHelperTheme {
-                val navController = rememberNavController() // Create NavController
-
-                // State for managing the current top bar title, updated by screens
-                var currentTopBarTitle by rememberSaveable { mutableStateOf("Library") } // Initial default
+                val navController = rememberNavController()
 
                 val snackbarHostState = remember { SnackbarHostState() }
                 val topAppBarState = rememberTopAppBarState()
                 val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(topAppBarState)
 
-                // Get current route to determine selected bottom nav item and back button logic
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentRoute = navBackStackEntry?.destination?.route
 
+                var currentTopBarTitle by rememberSaveable { mutableStateOf("Library") }
                 val onTitleChangedLambda = { newTitle: String ->
                     currentTopBarTitle = newTitle
                 }
 
                 val libraryUiState by libraryViewModel.libraryUiState.collectAsStateWithLifecycle()
                 val kingdomUiState by kingdomViewModel.kingdomUiState.collectAsStateWithLifecycle()
-                // Add searchActive state from LibraryViewModel if it influences back button visibility in LIBRARY_ROUTE
                 val isSearchActive by libraryViewModel.searchActive.collectAsStateWithLifecycle()
 
-                // Error message handling (can stay similar)
-                val errorMessageLibrary by libraryViewModel.errorMessage.collectAsStateWithLifecycle()
-                val errorMessageKingdom by kingdomViewModel.errorMessage.collectAsStateWithLifecycle()
-                val applicationScope = rememberCoroutineScope() // Keep this
-
-                LaunchedEffect(errorMessageLibrary) {
-                    errorMessageLibrary?.let { message ->
-                        applicationScope.launch {
-                            snackbarHostState.showSnackbar(message = message, duration = SnackbarDuration.Short)
-                            libraryViewModel.clearError()
-                        }
-                    }
-                }
-                LaunchedEffect(errorMessageKingdom) {
-                    errorMessageKingdom?.let { message ->
-                        applicationScope.launch {
-                            snackbarHostState.showSnackbar(message = message, duration = SnackbarDuration.Short)
-                            kingdomViewModel.clearError()
-                        }
-                    }
-                }
+                val applicationScope = rememberCoroutineScope()
 
                 val showBackButton = remember(currentRoute, libraryUiState, kingdomUiState, isSearchActive) {
                     when (currentRoute) {
                         AppDestinations.LIBRARY_ROUTE -> {
-                            // Show back button in Library if viewing details, expansion cards, or active search results
                             libraryUiState == LibraryUiState.SHOWING_CARD_DETAIL ||
                                     libraryUiState == LibraryUiState.SHOWING_EXPANSION_CARDS ||
-                                    (libraryUiState == LibraryUiState.SHOWING_SEARCH_RESULTS && isSearchActive) // Or just isSearchActive if search always implies a back action
+                                    (libraryUiState == LibraryUiState.SHOWING_SEARCH_RESULTS)// && isSearchActive)
                         }
                         AppDestinations.KINGDOMS_ROUTE -> {
-                            // Show back button in Kingdoms if viewing details
                             kingdomUiState == KingdomUiState.SHOWING_CARD_DETAIL
                         }
-                        AppDestinations.SETTINGS_ROUTE -> false // Settings is always top-level for back button
-                        else -> true // For any other distinct route (like a dedicated CardDetailScreen route), show back
+                        AppDestinations.SETTINGS_ROUTE -> false
+                        else -> true
                     }
                 }
 
@@ -128,18 +100,8 @@ class MainActivity : ComponentActivity() {
                             title = currentTopBarTitle,
                             showBackButton = showBackButton,
                             onBackButtonClicked = {
-                                // ViewModel specific back handling might still be needed for internal states
-                                // before NavController pops.
-                                // Or, NavController handles pop, and screens use BackHandler for internal state.
-                                when (currentRoute) {
-                                    // TODO? handleBackNavigation from VM
-                                    // If LibraryScreen's SHOWING_CARD_DETAIL was handled *within* LibraryScreen
-                                    // and not by navigating to a separate CardDetailScreen route, then:
-                                    // AppDestinations.LIBRARY_ROUTE -> if (libraryViewModel.libraryUiState.value == LibraryUiState.SHOWING_CARD_DETAIL) libraryViewModel.handleBackNavigation() else navController.popBackStack()
-                                    // AppDestinations.KINGDOMS_ROUTE -> if (kingdomViewModel.kingdomUiState.value == KingdomUiState.SHOWING_CARD_DETAIL) kingdomViewModel.handleBackNavigation() else navController.popBackStack()
-                                    // However, with separate CardDetailScreen, NavController handles it.
-                                    else -> navController.popBackStack()
-                                }
+                                // TODO VM.handle back
+                                navController.popBackStack()
                             },
                             isSearchActive = libraryViewModel.searchActive.collectAsStateWithLifecycle().value, // Assuming search is still library specific
                             onSearchClicked = { libraryViewModel.toggleSearch() },
@@ -157,7 +119,7 @@ class MainActivity : ComponentActivity() {
                                 else -> SortType.ALPHABETICAL // Default
                             },
                             scrollBehavior = scrollBehavior,
-                            showSearch = currentRoute == AppDestinations.LIBRARY_ROUTE // Show search only on library
+                            showSearch = currentRoute == AppDestinations.LIBRARY_ROUTE
                         )
                     },
                     bottomBar = {
@@ -226,6 +188,7 @@ class MainActivity : ComponentActivity() {
                         navController = navController,
                         paddingValues = innerPadding,
                         onTitleChanged = onTitleChangedLambda,
+                        snackbarHostState = snackbarHostState,
                         libraryViewModel = libraryViewModel,
                         kingdomViewModel = kingdomViewModel,
                         settingsViewModel = settingsViewModel

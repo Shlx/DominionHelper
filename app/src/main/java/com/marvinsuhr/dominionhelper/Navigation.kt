@@ -17,6 +17,8 @@ import androidx.compose.material.icons.outlined.Collections
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -43,15 +45,10 @@ import com.marvinsuhr.dominionhelper.ui.components.SettingsList
 import com.marvinsuhr.dominionhelper.utils.Constants
 import kotlinx.coroutines.launch
 
-// Define all your routes (constants are good practice)
 object AppDestinations {
     const val LIBRARY_ROUTE = "library"
     const val KINGDOMS_ROUTE = "kingdoms"
     const val SETTINGS_ROUTE = "settings"
-    const val CARD_DETAIL_ROUTE_PREFIX = "cardDetail" // If it takes an argument
-    const val CARD_DETAIL_ARG_ID = "cardId"
-    const val CARD_DETAIL_ROUTE = "$CARD_DETAIL_ROUTE_PREFIX/{$CARD_DETAIL_ARG_ID}" // Example: "cardDetail/{cardId}"
-    // Add other routes as needed, e.g., for expansion details if that's a separate screen
 }
 
 data class BottomNavItem(
@@ -89,6 +86,7 @@ fun AppNavigation(
     navController: NavHostController,
     paddingValues: PaddingValues,
     onTitleChanged: (String) -> Unit,
+    snackbarHostState: SnackbarHostState,
     libraryViewModel: LibraryViewModel,
     kingdomViewModel: KingdomViewModel,
     settingsViewModel: SettingsViewModel
@@ -99,33 +97,33 @@ fun AppNavigation(
         startDestination = Constants.START_DESTINATION,
         modifier = Modifier.padding(paddingValues)
     ) {
-        // Library Route and its sub-states (handled within LibraryScreen or via NavHost if complex)
+
+        // Library
         composable(AppDestinations.LIBRARY_ROUTE) {
-            // LibraryScreen now manages its internal UI state changes (SHOWING_EXPANSIONS, SHOWING_EXPANSION_CARDS etc.)
-            // If one of these sub-states should be a distinct navigable destination,
-            // you'd define separate routes for them and navigate using navController.
-            // For now, let's assume LibraryScreen handles its internal states.
             LibraryScreen(
                 navController = navController,
+                snackbarHostState = snackbarHostState,
                 onTitleChanged = onTitleChanged,
                 viewModel = libraryViewModel
             )
         }
 
-        // Kingdoms Route
+        // Kingdoms
         composable(AppDestinations.KINGDOMS_ROUTE) {
             KingdomsScreen(
                 navController = navController,
                 onTitleChanged = onTitleChanged,
+                snackbarHostState = snackbarHostState,
                 viewModel = kingdomViewModel
             )
         }
 
-        // Settings Route
+        // Settings
         composable(AppDestinations.SETTINGS_ROUTE) {
             SettingsScreen(
                 navController = navController,
                 onTitleChanged = onTitleChanged,
+                snackbarHostState = snackbarHostState,
                 viewModel = settingsViewModel
             )
         }
@@ -143,9 +141,6 @@ fun AppNavigation(
                 onTitleChanged = onTitleChanged
             )
         }*/
-
-        // Add more composable() destinations for other screens if needed
-        // e.g., an ExpansionDetailScreen, SearchResultsScreen as separate routes
     }
 
     // --- Handle complex sub-navigation that's not just a new screen ---
@@ -183,6 +178,7 @@ fun AppNavigation(
 fun LibraryScreen(
     navController: NavHostController,
     onTitleChanged: (String) -> Unit,
+    snackbarHostState: SnackbarHostState,
     viewModel: LibraryViewModel
 ) {
 
@@ -205,6 +201,18 @@ fun LibraryScreen(
 
     val searchText by viewModel.searchText.collectAsStateWithLifecycle()
     val isSearchActive by viewModel.searchActive.collectAsStateWithLifecycle()
+
+    val errorMessage by viewModel.errorMessage.collectAsStateWithLifecycle()
+    val coroutineScope = rememberCoroutineScope()
+
+    LaunchedEffect(errorMessage) {
+        errorMessage?.let { message ->
+            coroutineScope.launch {
+                snackbarHostState.showSnackbar(message = message, duration = SnackbarDuration.Short)
+                viewModel.clearError()
+            }
+        }
+    }
 
     LaunchedEffect(key1 = searchText, key2 = isSearchActive) {
         if (isSearchActive) {
@@ -298,6 +306,7 @@ fun LibraryScreen(
 fun KingdomsScreen(
     navController: NavHostController,
     onTitleChanged: (String) -> Unit,
+    snackbarHostState: SnackbarHostState,
     viewModel: KingdomViewModel
 ) {
     LaunchedEffect(Unit) { onTitleChanged("Kingdoms") }
@@ -309,8 +318,20 @@ fun KingdomsScreen(
     val playerCount by viewModel.playerCount.collectAsStateWithLifecycle()
     val isDismissEnabled by viewModel.isCardDismissalEnabled.collectAsState()
     val selectedCard by viewModel.selectedCard.collectAsStateWithLifecycle()
+    val errorMessage by viewModel.errorMessage.collectAsStateWithLifecycle()
+
+    val coroutineScope = rememberCoroutineScope()
 
     Log.i("MainActivity", "Kingdom Screen Content. UI State: ${viewModel.kingdomUiState.collectAsState().value}")
+
+    LaunchedEffect(errorMessage) {
+        errorMessage?.let { message ->
+            coroutineScope.launch {
+                snackbarHostState.showSnackbar(message = message, duration = SnackbarDuration.Short)
+                viewModel.clearError()
+            }
+        }
+    }
 
     BackHandler(enabled = uiState != KingdomUiState.SHOWING_KINGDOM) {
         viewModel.handleBackNavigation()
@@ -373,6 +394,7 @@ fun KingdomsScreen(
 fun SettingsScreen(
     navController: NavHostController,
     onTitleChanged: (String) -> Unit,
+    snackbarHostState: SnackbarHostState,
     viewModel: SettingsViewModel
 ) {
 
@@ -381,6 +403,15 @@ fun SettingsScreen(
     LaunchedEffect(Unit) { onTitleChanged("Settings") }
 
     val settingsListState = rememberLazyListState()
+
+    /*LaunchedEffect(errorMessage) {
+        errorMessage?.let { message ->
+            applicationScope.launch {
+                snackbarHostState.showSnackbar(message = message, duration = SnackbarDuration.Short)
+                viewModel.clearError()
+            }
+        }
+    }*/
 
     BackHandler(enabled = false) {
     }

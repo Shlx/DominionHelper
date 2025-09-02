@@ -3,13 +3,13 @@ package com.marvinsuhr.dominionhelper.ui
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.marvinsuhr.dominionhelper.Kingdom
 import com.marvinsuhr.dominionhelper.KingdomGenerator
 import com.marvinsuhr.dominionhelper.data.CardDao
 import com.marvinsuhr.dominionhelper.data.ExpansionDao
 import com.marvinsuhr.dominionhelper.data.UserPrefsRepository
 import com.marvinsuhr.dominionhelper.model.Card
 import com.marvinsuhr.dominionhelper.model.CardNames
+import com.marvinsuhr.dominionhelper.model.Kingdom
 import com.marvinsuhr.dominionhelper.utils.Constants
 import com.marvinsuhr.dominionhelper.utils.insertOrReplaceAtKeyPosition
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -127,6 +127,7 @@ class KingdomViewModel @Inject constructor(
 
             _kingdomUiState.value = KingdomUiState.LOADING
             val generatedKingdom = kingdomGenerator.generateKingdom()
+            // TODO: Sort by expansion
             _kingdom.value = updatePlayerCount(generatedKingdom, 2)
             clearSelectedCard()
             _kingdomUiState.value = KingdomUiState.SHOWING_KINGDOM
