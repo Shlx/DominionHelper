@@ -40,6 +40,7 @@ import com.marvinsuhr.dominionhelper.ui.SortType
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(
+    title: String,
     showBackButton: Boolean,
     onBackButtonClicked: () -> Unit,
     isSearchActive: Boolean,
@@ -48,7 +49,6 @@ fun TopBar(
     onSearchTextChange: (String) -> Unit,
     onSortTypeSelected: (SortType) -> Unit,
     selectedSortType: SortType,
-    title: String,
     scrollBehavior: TopAppBarScrollBehavior? = null,
     showSearch: Boolean = true
 ) {

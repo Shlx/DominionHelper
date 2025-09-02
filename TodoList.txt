@@ -45,14 +45,15 @@ CORNUCOPIA / GUILDS: Don't switch ownership at the same time, not all regions me
 ---
 
 TODO NEXT:
-- AppNavigation, NavHost
 - Even amounts bugged?
-- Search "1" finds BASE_1E
+- Search "1" finds BASE_1E, rethink search in general
+    (when to stop viewing expansions)
 
 - Detail view top bar ist hidden
 - Skeleton while loading kingdom?
 - Rethink sorting? Maybe always split by categories, then by name / cost
 - Nothing happens when clicking an edition
+- Save kingdom etc when putting app in background
 
 GENERATION
 

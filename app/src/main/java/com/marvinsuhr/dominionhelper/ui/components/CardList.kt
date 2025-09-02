@@ -96,7 +96,7 @@ import kotlin.math.sin
 // Displays a list of cards
 @Composable
 fun LibraryCardList(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     cardList: List<Card>,
     sortType: SortType,
     includeEditionSelection: Boolean = false,
@@ -241,7 +241,7 @@ fun EditionSelectionButtons(
 // Displays a list of cards
 @Composable
 fun SearchResultsCardList(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     cardList: List<Card>,
     onCardClick: (Card) -> Unit,
     onToggleEnable: (Card) -> Unit,
@@ -276,14 +276,15 @@ fun SearchResultsCardList(
 )
 @Composable
 fun KingdomList(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     kingdom: Kingdom,
     onCardClick: (Card) -> Unit,
     selectedPlayers: Int,
     onPlayerCountChange: (Int) -> Unit,
     listState: LazyListState = rememberLazyListState(),
     isDismissEnabled: Boolean,
-    onCardDismissed: (Card) -> Unit
+    onCardDismissed: (Card) -> Unit,
+    onRandomClick: () -> Unit
 ) {
     Log.i(
         "KingdomList",
@@ -299,8 +300,12 @@ fun KingdomList(
 
         // RANDOM CARDS
         item {
-            Text("Reroll")
-            Icon(imageVector = Icons.Outlined.Casino, contentDescription = "asd")
+            Box(
+                modifier = Modifier.clickable { onRandomClick() }
+            ) {
+                Text("Reroll")
+                Icon(imageVector = Icons.Outlined.Casino, contentDescription = "Dice")
+            }
         }
         item {
             CardSpacer("Supply Cards")

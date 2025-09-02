@@ -63,6 +63,8 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.animation)// try rem
     implementation(libs.androidx.material.icons.extended)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.hilt.navigation.compose) // Potentially for Hilt integration with Navigtaion ViewModels
 
     // Data Management
     implementation(libs.androidx.room.runtime)
