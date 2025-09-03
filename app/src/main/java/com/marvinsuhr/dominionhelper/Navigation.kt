@@ -182,7 +182,10 @@ fun LibraryScreen(
     viewModel: LibraryViewModel
 ) {
 
-    Log.i("MainActivity", "Library Screen Content. UI State: ${viewModel.libraryUiState.collectAsState().value}")
+    Log.i(
+        "MainActivity",
+        "Library Screen Content. UI State: ${viewModel.libraryUiState.collectAsState().value}"
+    )
 
     val title by viewModel.topBarTitle.collectAsState()
     LaunchedEffect(title) { onTitleChanged(title) }
@@ -322,7 +325,10 @@ fun KingdomsScreen(
 
     val coroutineScope = rememberCoroutineScope()
 
-    Log.i("MainActivity", "Kingdom Screen Content. UI State: ${viewModel.kingdomUiState.collectAsState().value}")
+    Log.i(
+        "MainActivity",
+        "Kingdom Screen Content. UI State: ${viewModel.kingdomUiState.collectAsState().value}"
+    )
 
     LaunchedEffect(errorMessage) {
         errorMessage?.let { message ->
@@ -365,10 +371,7 @@ fun KingdomsScreen(
                 onCardClick = { viewModel.selectCard(it) },
                 selectedPlayers = playerCount,
                 onPlayerCountChange = {
-                    viewModel.updatePlayerCount(
-                        kingdom,
-                        it
-                    )
+                    viewModel.userChangedPlayerCount(it)
                 },
                 listState = kingdomListState,
                 isDismissEnabled = isDismissEnabled,

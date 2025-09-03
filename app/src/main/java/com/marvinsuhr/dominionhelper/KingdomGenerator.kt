@@ -19,6 +19,8 @@ import com.marvinsuhr.dominionhelper.utils.isPercentChance
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlin.math.max
+import kotlin.math.min
 import kotlin.math.roundToInt
 
 val predicateMapSettings: Map<String, (Card) -> Boolean> = mapOf(
@@ -26,7 +28,7 @@ val predicateMapSettings: Map<String, (Card) -> Boolean> = mapOf(
     "Cost 2" to { it.cost == 2 }
 )
 
-val predicateMap: Map<String, (Card) -> Boolean> = mapOf(
+val predicateMapLandscape: Map<String, (Card) -> Boolean> = mapOf(
     "Ally" to { it.types.contains(Type.ALLY) },
     "Prophecy" to { it.types.contains(Type.PROPHECY) }
 )
@@ -39,255 +41,240 @@ class KingdomGenerator @Inject constructor(
 ) {
 
     suspend fun generateKingdom(): Kingdom {
-
         val randomMode = userPrefsRepository.randomMode.first()
 
         when (randomMode) {
             RandomMode.FULL_RANDOM -> {
-                Log.i("Kingdom Generator", "Full random selected")
+                Log.i("Kingdom Generator", "Starting generation - Full random selected")
                 return generateKingdomFullRandom()
             }
 
             RandomMode.EVEN_AMOUNTS -> {
-                Log.i("Kingdom Generator", "Even amounts selected")
+                Log.i("Kingdom Generator", "Starting generation - Even amounts selected")
                 return generateKingdomEvenAmounts()
             }
         }
     }
 
     private suspend fun generateKingdomFullRandom(): Kingdom {
-
         val cardList = mutableSetOf<Card>()
-        val landscapeList = mutableSetOf<Card>()
-
         val totalCardsToGenerate = userPrefsRepository.numberOfCardsToGenerate.first()
-        val totalLandscapesToGenerate = 2
 
-        // Load candidate cards
         val (cardPool, landscapePool) = getCandidatesFullRandom()
         Log.d("Kingdom Generator", "Portrait candidates: ${cardPool.size}")
         Log.d("Kingdom Generator", "Landscape candidates: ${landscapePool.size}")
 
-        // TODO: For each predicate, check if it is enabled
-        for (predicate in predicateMapSettings) {
-            val success = satisfyRequirement(predicate.key, cardPool, cardList, predicate.value)
-            if (!success) {
-                Log.w("KingdomGenerator", "Failed to add required ${predicate.key} card.")
-            }
-        }
+        applyPortraitPredicates(cardPool, cardList, predicateMapSettings)
 
         // Fill remaining portrait slots
         val cardsLeft = totalCardsToGenerate - cardList.size
-        val cardsToFill = cardPool.shuffled().take(cardsLeft)
-        Log.d("Kingdom Generator", "Cards to fill: ${cardsToFill.joinToString { it.name }}")
-        cardList.addAll(cardsToFill)
+        if (cardsLeft > 0) { // Check if we need to add more
+            val cardsToFill = cardPool.shuffled().take(cardsLeft)
+            Log.d("Kingdom Generator", "Cards to fill: ${cardsToFill.joinToString { it.name }}")
+            cardList.addAll(cardsToFill)
+        }
 
-        for (predicate in predicateMap) {
-            val success =
-                satisfyRequirement(predicate.key, landscapePool, landscapeList, predicate.value)
+        val landscapeList = generateLandscapeCards(landscapePool)
+
+        return finalizeKingdom(cardList, landscapeList)
+    }
+
+    private suspend fun generateKingdomEvenAmounts(): Kingdom {
+        val cardList = mutableSetOf<Card>()
+        val totalCardsToGenerate = userPrefsRepository.numberOfCardsToGenerate.first()
+
+        val numberOfExpansions = userPrefsRepository.randomExpansionAmount.first()
+        if (numberOfExpansions <= 0) {
+            Log.w("Kingdom Generator", "Number of expansions was 0, may result in empty kingdom or fallback behavior.")
+            // Consider returning an empty/error Kingdom or throwing an exception if this is invalid state
+        }
+
+        val randomExpansions = expansionDao.getFixedAmountOfOwnedExpansions(numberOfExpansions)
+        if (randomExpansions.isEmpty() && numberOfExpansions > 0) {
+            Log.w("Kingdom Generator", "Requested $numberOfExpansions expansions, but no owned expansions found/selected.")
+            // Consider fallback or error
+        }
+
+
+        val (cardPool, landscapePoolCandidates) = getCandidatesEvenAmounts(randomExpansions)
+        Log.d("Kingdom Generator", "Portrait candidates: ${cardPool.size}")
+        Log.d("Kingdom Generator", "Landscape candidates: ${landscapePoolCandidates.size}")
+
+        applyPortraitPredicates(cardPool, cardList, predicateMapSettings)
+
+        // Fill remaining portrait slots according to even amounts logic
+        fillPortraitsEvenly(
+            totalCardsToGenerate,
+            cardList,
+            cardPool, // This should be the remaining candidates after predicates
+            randomExpansions
+        )
+
+        // Shuffle the final list of kingdom cards
+        val finalKingdomCards = cardList.shuffled().toMutableSet()
+
+        val landscapeList = generateLandscapeCards(landscapePoolCandidates)
+
+        return finalizeKingdom(finalKingdomCards, landscapeList)
+    }
+
+    private fun applyPortraitPredicates(
+        cardPool: MutableSet<Card>,
+        cardList: MutableSet<Card>,
+        predicates: Map<String, (Card) -> Boolean>
+    ) {
+        // TODO: For each predicate, check if it is enabled
+        for ((predicateName, predicate) in predicates) {
+            val success = satisfyRequirement(predicateName, cardPool, cardList, predicate)
             if (!success) {
-                Log.w("KingdomGenerator", "Failed to add required ${predicate.key} card.")
+                Log.w("KingdomGenerator", "Failed to add required $predicateName card.")
+            }
+        }
+    }
+
+    private fun fillPortraitsEvenly(
+        totalCardsToGenerate: Int,
+        cardList: MutableSet<Card>, // cards already selected by predicates
+        initialCardPool: MutableSet<Card>, // remaining candidates after predicates
+        randomExpansions: List<Expansion>
+    ) {
+        val cardsStillToSelectGlobally = totalCardsToGenerate - cardList.size
+
+        if (cardsStillToSelectGlobally <= 0) {
+            Log.d("Kingdom Generator", "All portrait card slots already filled by predicates.")
+            return
+        }
+
+        if (randomExpansions.isEmpty()) {
+            Log.w("Kingdom Generator", "Even amounts: No expansions to draw from. Filling remaining $cardsStillToSelectGlobally slots randomly from available pool.")
+            val cardsToFill = initialCardPool.shuffled().take(cardsStillToSelectGlobally)
+            cardList.addAll(cardsToFill)
+            if (cardList.size < totalCardsToGenerate){
+                Log.w("Kingdom Generator", "Could not fill all $totalCardsToGenerate cards with random fallback. Only found ${cardList.size - (totalCardsToGenerate - cardsStillToSelectGlobally)} additional cards.")
+            }
+            return
+        }
+
+        val targetTotalCardsPerExpansion = (totalCardsToGenerate.toDouble() / randomExpansions.size).roundToInt()
+        var actualCardsSelectedInThisPhase = 0
+        val mutableCardPool = initialCardPool.toMutableSet() // Work with a copy
+
+        Log.d("Kingdom Generator", "Targeting $targetTotalCardsPerExpansion total cards per expansion for the remaining $cardsStillToSelectGlobally slots.")
+
+        for (expansion in randomExpansions) {
+            if (actualCardsSelectedInThisPhase >= cardsStillToSelectGlobally) break
+
+            val cardsAlreadySelectedFromThisExpansion = cardList.count { card ->
+                card.sets.any { set -> set.name == expansion.id }
+            }
+            var cardsNeededFromThisExpansion = targetTotalCardsPerExpansion - cardsAlreadySelectedFromThisExpansion
+            cardsNeededFromThisExpansion =
+                max(0, cardsNeededFromThisExpansion)
+            cardsNeededFromThisExpansion =
+                min(cardsNeededFromThisExpansion, cardsStillToSelectGlobally - actualCardsSelectedInThisPhase)
+
+            if (cardsNeededFromThisExpansion <= 0) {
+                Log.d("Kingdom Generator", "Expansion ${expansion.name} already has enough cards (${cardsAlreadySelectedFromThisExpansion} / $targetTotalCardsPerExpansion) or no more cards needed globally for this phase.")
+                continue
+            }
+
+            val candidateCardsFromThisExpansion = mutableCardPool
+                .filter { card -> card.sets.any { set -> set.name == expansion.id } }
+                .shuffled() // Shuffle before taking
+
+            val takeAmount = min(candidateCardsFromThisExpansion.size, cardsNeededFromThisExpansion)
+
+            if (takeAmount > 0) {
+                val selectedFromExpansion = candidateCardsFromThisExpansion.take(takeAmount)
+                Log.d("Kingdom Generator", "Selected an additional ${selectedFromExpansion.size} cards from ${expansion.name} (already had $cardsAlreadySelectedFromThisExpansion, needed $cardsNeededFromThisExpansion, took $takeAmount): ${selectedFromExpansion.joinToString { it.name }}")
+                cardList.addAll(selectedFromExpansion)
+                mutableCardPool.removeAll(selectedFromExpansion.toSet())
+                actualCardsSelectedInThisPhase += selectedFromExpansion.size
+            } else {
+                Log.d("Kingdom Generator", "No additional cards to select from ${expansion.name} (needed $cardsNeededFromThisExpansion, found ${candidateCardsFromThisExpansion.size}).")
             }
         }
 
-        // Fill remaining landscape slots
-        // Ignore Ally and Prophecy cards, those depend on Liaison and Omen respectively
+        val finalRemainingToDistribute = cardsStillToSelectGlobally - actualCardsSelectedInThisPhase
+        if (finalRemainingToDistribute > 0 && mutableCardPool.isNotEmpty()) {
+            Log.d("Kingdom Generator", "Even distribution phase completed. Filling remaining $finalRemainingToDistribute slots from the general pool of ${mutableCardPool.size} available cards.")
+            val fillFromTheRest = mutableCardPool.shuffled().take(finalRemainingToDistribute)
+            Log.d("Kingdom Generator", "Filling with: ${fillFromTheRest.joinToString { it.name }}")
+            cardList.addAll(fillFromTheRest)
+            actualCardsSelectedInThisPhase += fillFromTheRest.size
+        }
+
+        if (totalCardsToGenerate - cardList.size > 0) { // Check final count against original total
+            val stillMissing = totalCardsToGenerate - cardList.size
+            Log.w("Kingdom Generator", "Could not select all $totalCardsToGenerate cards. Still need $stillMissing. This might happen if expansions have too few cards or pool was exhausted.")
+        }
+    }
+
+    private fun generateLandscapeCards(
+        landscapePoolCandidates: MutableSet<Card>
+    ): MutableSet<Card> {
+        val landscapeList = mutableSetOf<Card>()
+        val totalLandscapesToGenerate = 2 // Assuming this is fixed or from userPrefs
+
+        // TODO: For each predicate in landscapePredicateMap, check if it is enabled
+        for ((predicateName, predicate) in predicateMapLandscape) {
+            val success = satisfyRequirement(predicateName, landscapePoolCandidates, landscapeList, predicate)
+            if (!success) {
+                Log.w("KingdomGenerator", "Failed to add required $predicateName landscape card.")
+            }
+        }
+
         val landscapesLeft = totalLandscapesToGenerate - landscapeList.size
-        val landscapesToFill = landscapePool
-            .filter { it.types.none { type -> type == Type.ALLY || type == Type.PROPHECY } }
-            .shuffled()
-            .take(landscapesLeft)
-        // TODO Log if no landscapes found
-        Log.d(
-            "Kingdom Generator",
-            "Landscapes to fill: ${landscapesToFill.joinToString { it.name }}"
-        )
-        landscapeList.addAll(landscapesToFill)
-        // TODO: Generate 2 different landscapes if possible
+        if (landscapesLeft > 0) { // Check if we need to add more
+            val landscapesToFill = landscapePoolCandidates
+                .filter { card -> card.types.none { type -> type == Type.ALLY || type == Type.PROPHECY } || landscapeList.any { selected -> selected.name == card.name } } // Allow re-selection if it was already chosen by predicate
+                .shuffled()
+                .distinctBy { it.name } // Ensure we don't add the same landscape twice in this step if it wasn't a predicate
+                .take(landscapesLeft)
 
+            if (landscapesToFill.isEmpty() && landscapesLeft > 0) {
+                Log.w("KingdomGenerator", "Could not find $landscapesLeft unique, non-dependent landscapes to fill remaining slots. Pool size: ${landscapePoolCandidates.size}")
+            } else {
+                Log.d("Kingdom Generator", "Landscapes to fill: ${landscapesToFill.joinToString { it.name }}")
+            }
+            landscapeList.addAll(landscapesToFill)
+        }
+        // TODO: Generate 2 *different* landscapes if possible and desired. Current logic might pick same one if predicates forced one type.
+        // The distinctBy helps but if predicate already picked 'Ally X', it could pick 'Ally X' again if it's the only one left.
+        // This might require more complex logic if strictly two different named landscapes are required.
+        // For now, it will ensure at most 'totalLandscapesToGenerate' are in the list.
+        return landscapeList
+    }
+
+    private suspend fun finalizeKingdom(
+        randomCardsSet: kotlin.collections.Set<Card>, // Use Set to avoid duplicates if any logic above slips
+        landscapeCardsSet: kotlin.collections.Set<Card>
+    ): Kingdom {
         val basicCards = loadCards(CardNames.BASIC_CARDS.associateWith { 1 })
-
-        val dependentCardsToLoad = getDependentCards(cardList)
+        val dependentCardsToLoad = getDependentCards(randomCardsSet) // Pass Set
         val dependentCards = loadCards(dependentCardsToLoad)
-
-        val startingCardsToLoad = getStartingCards(cardList)
+        val startingCardsToLoad = getStartingCards(randomCardsSet) // Pass Set
         val startingCards = loadCards(startingCardsToLoad)
 
-        val randomCards = listToMap(cardList.toList())
-        val landscapeCards = listToMap(landscapeList.toList())
+        val randomCardsMap = listToMap(randomCardsSet.toList())
+        val landscapeCardsMap = listToMap(landscapeCardsSet.toList())
 
         Log.i(
             "Kingdom Generator",
-            "Generated ${randomCards.size} random cards, ${basicCards.size} basic cards, ${dependentCards.size} dependent cards, ${startingCards.size} starting cards, and ${landscapeCards.size} landscape cards."
+            "Generated ${randomCardsMap.size} random cards, ${basicCards.size} basic cards, ${dependentCards.size} dependent cards, ${startingCards.size} starting cards, and ${landscapeCardsMap.size} landscape cards."
         )
-
-        return Kingdom(randomCards, basicCards, dependentCards, startingCards, landscapeCards)
+        return Kingdom(randomCardsMap, basicCards, dependentCards, startingCards, landscapeCardsMap)
     }
 
-    suspend fun getCandidatesFullRandom(): Pair<MutableSet<Card>, MutableSet<Card>> {
+    private suspend fun getCandidatesFullRandom(): Pair<MutableSet<Card>, MutableSet<Card>> {
 
         val portraitCandidates = mutableSetOf<Card>()
         val landscapeCandidates = mutableSetOf<Card>()
 
         // Gets all owned cards
-        Log.i("Kingdom Generator", "Full random selected")
         portraitCandidates.addAll(cardDao.getEnabledOwnedCards())
         landscapeCandidates.addAll(cardDao.getEnabledOwnedLandscapes())
         return Pair(portraitCandidates, landscapeCandidates)
-    }
-
-    private suspend fun generateKingdomEvenAmounts(): Kingdom {
-
-        val cardList = mutableSetOf<Card>()
-        val landscapeList = mutableSetOf<Card>()
-
-        val totalCardsToGenerate = userPrefsRepository.numberOfCardsToGenerate.first()
-        val totalLandscapesToGenerate = 2
-
-        val numberOfExpansions = userPrefsRepository.randomExpansionAmount.first()
-        if (numberOfExpansions <= 0) {
-            Log.w("Kingdom Generator", "Number of expansions was 0")
-            // Error?
-        }
-
-        val randomExpansions =
-            expansionDao.getFixedAmountOfOwnedExpansions(numberOfExpansions)
-        // Check !empty
-
-        // Load candidate cards
-        val (cardPool, landscapePool) = getCandidatesEvenAmounts(randomExpansions)
-        Log.d("Kingdom Generator", "Portrait candidates: ${cardPool.size}")
-        Log.d("Kingdom Generator", "Landscape candidates: ${landscapePool.size}")
-
-        // TODO: For each predicate, check if it is enabled
-        for (predicate in predicateMapSettings) {
-            val success = satisfyRequirement(predicate.key, cardPool, cardList, predicate.value)
-            if (!success) {
-                Log.w("KingdomGenerator", "Failed to add required ${predicate.key} card.")
-            }
-        }
-
-        // Fill remaining portrait slots
-        val cardsStillToSelectGlobally = totalCardsToGenerate - cardList.size
-
-        if (cardsStillToSelectGlobally > 0) {
-            val targetTotalCardsPerExpansion = (totalCardsToGenerate.toDouble() / randomExpansions.size).roundToInt()
-            var actualCardsSelectedInThisPhase = 0 // Tracks cards selected specifically in this even distribution loop
-
-            Log.d("Kingdom Generator", "Targeting $targetTotalCardsPerExpansion total cards per expansion.")
-
-            // Create a mutable copy of the cardPool to allow removal as cards are selected
-            val mutableCardPool = cardPool.toMutableSet()
-
-            for (expansion in randomExpansions) {
-                if (actualCardsSelectedInThisPhase >= cardsStillToSelectGlobally) break // Stop if we've filled all globally needed slots
-
-                // 1. How many cards from THIS expansion are ALREADY in cardList (from predicates)?
-                val cardsAlreadySelectedFromThisExpansion = cardList.count { card ->
-                    card.sets.any { set -> set.name == expansion.id } // Or your card.expansionId == expansion.id
-                }
-
-                // 2. How many more cards do we ideally NEED from THIS expansion to reach the target?
-                var cardsNeededFromThisExpansion = targetTotalCardsPerExpansion - cardsAlreadySelectedFromThisExpansion
-                cardsNeededFromThisExpansion = maxOf(0, cardsNeededFromThisExpansion) // Ensure it's not negative
-
-                // 3. But we can't select more than what's globally left to select
-                cardsNeededFromThisExpansion = minOf(cardsNeededFromThisExpansion, cardsStillToSelectGlobally - actualCardsSelectedInThisPhase)
-
-                if (cardsNeededFromThisExpansion <= 0) {
-                    Log.d("Kingdom Generator", "Expansion ${expansion.name} already has enough cards (${
-                        cardsAlreadySelectedFromThisExpansion} / ${targetTotalCardsPerExpansion}) or no more cards needed globally.")
-                    continue // Move to the next expansion
-                }
-
-                // 4. Get available candidate cards from THIS expansion (that are not already in cardList)
-                val candidateCardsFromThisExpansion = mutableCardPool
-                    .filter { card: Card ->
-                        card.sets.any { set -> set.name == expansion.id }
-                    }
-                // ^ this might go bad. When Base2 is owned, and a card from both is selected,
-                // TODO No I THINK it's fine
-
-                // 5. Determine actual number to take
-                val takeAmount = minOf(candidateCardsFromThisExpansion.size, cardsNeededFromThisExpansion)
-
-                if (takeAmount > 0) {
-                    val selectedFromExpansion = candidateCardsFromThisExpansion.take(takeAmount)
-                    Log.d(
-                        "Kingdom Generator",
-                        "Selected an additional ${selectedFromExpansion.size} cards from ${expansion.name} (already had $cardsAlreadySelectedFromThisExpansion, needed $cardsNeededFromThisExpansion, took $takeAmount): ${selectedFromExpansion.joinToString { it.name }}"
-                    )
-                    cardList.addAll(selectedFromExpansion)
-                    mutableCardPool.removeAll(selectedFromExpansion.toSet())
-                    actualCardsSelectedInThisPhase += selectedFromExpansion.size
-                } else {
-                    Log.d("Kingdom Generator", "No additional cards to select from ${expansion.name} (needed $cardsNeededFromThisExpansion, found ${candidateCardsFromThisExpansion.size}).")
-                }
-            }
-
-            // Fill any remaining slots if the per-expansion logic didn't perfectly fill all cardsStillToSelectGlobally
-            // (e.g., due to rounding, or specific expansions not having enough cards to meet their adjusted target)
-            val finalRemainingToDistribute = cardsStillToSelectGlobally - actualCardsSelectedInThisPhase
-            if (finalRemainingToDistribute > 0 && mutableCardPool.isNotEmpty()) {
-                Log.d("Kingdom Generator", "Even distribution phase completed. Filling remaining $finalRemainingToDistribute slots from the general pool of available cards.")
-                val fillFromTheRest = mutableCardPool.shuffled().take(finalRemainingToDistribute)
-                Log.d("Kingdom Generator", "Filling with: ${fillFromTheRest.joinToString { it.name }}")
-                cardList.addAll(fillFromTheRest)
-                actualCardsSelectedInThisPhase += fillFromTheRest.size // Though not strictly needed to track anymore
-            }
-
-            if (cardsStillToSelectGlobally - actualCardsSelectedInThisPhase > 0) {
-                val stillMissing = cardsStillToSelectGlobally - actualCardsSelectedInThisPhase
-                Log.w("Kingdom Generator", "Could not select all $totalCardsToGenerate cards. Still need $stillMissing. This might happen if expansions have too few cards.")
-            }
-
-        } else if (cardsStillToSelectGlobally > 0) {
-            // Fallback if no expansions were selected OR if all predicate cards filled the list (unlikely for this specific issue)
-            Log.w("Kingdom Generator", "No expansions to draw from for even amounts, or no more cards needed after predicates. Filling remaining $cardsStillToSelectGlobally slots randomly if applicable.")
-            val cardsToFill = cardPool.shuffled().take(cardsStillToSelectGlobally) // cardPool here should be mutableCardPool if predicates were applied
-            cardList.addAll(cardsToFill)
-        }
-
-        for (predicate in predicateMap) {
-            val success =
-                satisfyRequirement(predicate.key, landscapePool, landscapeList, predicate.value)
-            if (!success) {
-                Log.w("KingdomGenerator", "Failed to add required ${predicate.key} card.")
-            }
-        }
-
-        // Fill remaining landscape slots
-        // Ignore Ally and Prophecy cards, those depend on Liaison and Omen respectively
-        val landscapesLeft = totalLandscapesToGenerate - landscapeList.size
-        val landscapesToFill = landscapePool
-            .filter { it.types.none { type -> type == Type.ALLY || type == Type.PROPHECY } }
-            .shuffled()
-            .take(landscapesLeft)
-        // TODO Log if no landscapes found
-        Log.d(
-            "Kingdom Generator",
-            "Landscapes to fill: ${landscapesToFill.joinToString { it.name }}"
-        )
-        landscapeList.addAll(landscapesToFill)
-        // TODO: Generate 2 different landscapes if possible
-
-        val basicCards = loadCards(CardNames.BASIC_CARDS.associateWith { 1 })
-
-        val dependentCardsToLoad = getDependentCards(cardList)
-        val dependentCards = loadCards(dependentCardsToLoad)
-
-        val startingCardsToLoad = getStartingCards(cardList)
-        val startingCards = loadCards(startingCardsToLoad)
-
-        val randomCards = listToMap(cardList.toList())
-        val landscapeCards = listToMap(landscapeList.toList())
-
-        Log.i(
-            "Kingdom Generator",
-            "Generated ${randomCards.size} random cards, ${basicCards.size} basic cards, ${dependentCards.size} dependent cards, ${startingCards.size} starting cards, and ${landscapeCards.size} landscape cards."
-        )
-
-        return Kingdom(randomCards, basicCards, dependentCards, startingCards, landscapeCards)
     }
 
     suspend fun getCandidatesEvenAmounts(
@@ -296,8 +283,6 @@ class KingdomGenerator @Inject constructor(
 
         val portraitCandidates = mutableSetOf<Card>()
         val landscapeCandidates = mutableSetOf<Card>()
-
-        Log.i("Kingdom Generator", "Even amounts selected")
 
         if (randomExpansions.isEmpty()) {
             Log.w(
@@ -327,7 +312,7 @@ class KingdomGenerator @Inject constructor(
         cardList: MutableSet<Card>,
         predicate: (Card) -> Boolean
     ): Boolean {
-        val candidates = cardPool.filter(predicate)
+        val candidates = cardPool.filter(predicate).shuffled()
         Log.d(
             "Kingdom Generator",
             "$predicateName candidates: ${candidates.joinToString { it.name }}"

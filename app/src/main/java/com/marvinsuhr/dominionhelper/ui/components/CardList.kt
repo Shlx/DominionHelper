@@ -10,7 +10,6 @@ import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -69,7 +68,6 @@ import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle.Companion.Italic
 import androidx.compose.ui.text.style.TextAlign
@@ -79,14 +77,14 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.marvinsuhr.dominionhelper.Kingdom
 import com.marvinsuhr.dominionhelper.R
 import com.marvinsuhr.dominionhelper.model.Card
 import com.marvinsuhr.dominionhelper.model.CardDisplayCategory
+import com.marvinsuhr.dominionhelper.model.Kingdom
 import com.marvinsuhr.dominionhelper.model.OwnedEdition
 import com.marvinsuhr.dominionhelper.model.Set
 import com.marvinsuhr.dominionhelper.model.Type
-import com.marvinsuhr.dominionhelper.ui.SortType
+import com.marvinsuhr.dominionhelper.ui.LibraryViewModel
 import com.marvinsuhr.dominionhelper.utils.Constants
 import com.marvinsuhr.dominionhelper.utils.getDrawableId
 import kotlin.math.cos
@@ -98,7 +96,7 @@ import kotlin.math.sin
 fun LibraryCardList(
     modifier: Modifier = Modifier,
     cardList: List<Card>,
-    sortType: SortType,
+    sortType: LibraryViewModel.SortType,
     includeEditionSelection: Boolean = false,
     selectedEdition: OwnedEdition,
     onEditionSelected: (Int, OwnedEdition) -> Unit,
@@ -133,7 +131,7 @@ fun LibraryCardList(
             }
         }
 
-        if (sortType != SortType.TYPE) {
+        if (sortType != LibraryViewModel.SortType.TYPE) {
             items(cardList) { card ->
                 CardView(
                     card,
@@ -525,7 +523,6 @@ fun CardView(
 
             // Card name and price
             CardLabels(card, amount, modifier = Modifier.weight(1f))
-
 
             if (showIcon) {
                 CardIcon(card.expansionImageId, card.sets[0].name)

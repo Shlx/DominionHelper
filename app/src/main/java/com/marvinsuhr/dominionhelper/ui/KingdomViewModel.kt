@@ -7,6 +7,7 @@ import com.marvinsuhr.dominionhelper.KingdomGenerator
 import com.marvinsuhr.dominionhelper.data.CardDao
 import com.marvinsuhr.dominionhelper.data.ExpansionDao
 import com.marvinsuhr.dominionhelper.data.UserPrefsRepository
+import com.marvinsuhr.dominionhelper.model.AppSortType
 import com.marvinsuhr.dominionhelper.model.Card
 import com.marvinsuhr.dominionhelper.model.CardNames
 import com.marvinsuhr.dominionhelper.model.Kingdom
@@ -22,6 +23,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.util.UUID
 import javax.inject.Inject
 
 enum class KingdomUiState {
@@ -39,6 +41,12 @@ class KingdomViewModel @Inject constructor(
     private val userPrefsRepository: UserPrefsRepository
 ) : ViewModel() {
 
+    enum class SortType(val text: String) {
+        EXPANSION("Sort by expansion"),
+        ALPHABETICAL("Sort alphabetically"),
+        COST("Sort by cost")
+    }
+
     // Variable for tracking the current state
     private val _kingdomUiState = MutableStateFlow(KingdomUiState.LOADING)
     val kingdomUiState: StateFlow<KingdomUiState> = _kingdomUiState.asStateFlow()
@@ -53,7 +61,7 @@ class KingdomViewModel @Inject constructor(
     private val _playerCount = MutableStateFlow(2)
     val playerCount: StateFlow<Int> = _playerCount.asStateFlow()
 
-    private val _sortType = MutableStateFlow(SortType.ALPHABETICAL)
+    private val _sortType = MutableStateFlow(SortType.EXPANSION)
     val sortType: StateFlow<SortType> = _sortType.asStateFlow()
 
     // Error message
@@ -127,52 +135,49 @@ class KingdomViewModel @Inject constructor(
 
             _kingdomUiState.value = KingdomUiState.LOADING
             val generatedKingdom = kingdomGenerator.generateKingdom()
-            // TODO: Sort by expansion
-            _kingdom.value = updatePlayerCount(generatedKingdom, 2)
+            val kingdomWithPlayerCount = applyPlayerCountToKingdom(generatedKingdom, 2)
+            val sortedKingdom =
+                applySortTypeToKingdom(kingdomWithPlayerCount, _sortType.value)
+
+            _kingdom.value = sortedKingdom
             clearSelectedCard()
             _kingdomUiState.value = KingdomUiState.SHOWING_KINGDOM
         }
     }
 
-    fun updateSortType(newSortType: SortType) {
-        _sortType.value = newSortType
-        val kingdom = _kingdom.value
+    private fun applySortTypeToKingdom(
+        kingdom: Kingdom,
+        newSortType: SortType
+    ): Kingdom {
 
         // Sort kingdom lists
-        val sortedRandomCards = sortCards(kingdom.randomCards)
-        val sortedBasicCards = sortCards(kingdom.basicCards)
-        val sortedDependentCards = sortCards(kingdom.dependentCards)
-        val sortedStartingCards = sortCards(kingdom.startingCards)
-        val sortedLandscapeCards = sortCards(kingdom.landscapeCards)
+        val sortedRandomCards = sortCards(kingdom.randomCards, newSortType)
+        //val sortedDependentCards = sortCards(kingdom.dependentCards, newSortType)
+        //val sortedBasicCards = sortCards(kingdom.basicCards, newSortType)
+        //val sortedStartingCards = sortCards(kingdom.startingCards, newSortType)
+        //val sortedLandscapeCards = sortCards(kingdom.landscapeCards, newSortType)
 
-        viewModelScope.launch {
-
-            // TODO: Figure this out
-            // Why the hell is this necessary huh
-            _kingdom.value.randomCards[cardDao.getCardByName("Copper")!!] = 3
-            _kingdom.value = kingdom.copy(
-                randomCards = sortedRandomCards,
-                dependentCards = sortedDependentCards,
-                basicCards = sortedBasicCards,
-                startingCards = sortedStartingCards,
-                landscapeCards = sortedLandscapeCards
-            )
-        }
-
-        Log.d("LibraryViewModel", "Updated sort type to ${_sortType.value}")
+        return kingdom.copy(
+            randomCards = sortedRandomCards,
+            //dependentCards = sortedDependentCards,
+            //basicCards = sortedBasicCards,
+            //startingCards = sortedStartingCards,
+            //landscapeCards = sortedLandscapeCards,
+            // Generate new UUID. Otherwise recomposition isn't triggered
+            id = UUID.randomUUID().toString()
+        )
     }
 
-    private fun sortCards(cards: LinkedHashMap<Card, Int>): LinkedHashMap<Card, Int> {
+    private fun sortCards(
+        cards: LinkedHashMap<Card, Int>,
+        sortType: SortType
+    ): LinkedHashMap<Card, Int> {
         if (cards.isEmpty()) return linkedMapOf()
 
-        // TODO: Does that even make sense here?
-        val sortedEntries = when (_sortType.value) {
+        val sortedEntries = when (sortType) {
             SortType.EXPANSION -> cards.entries.sortedBy { it.key.sets.first().name }
             SortType.ALPHABETICAL -> cards.entries.sortedBy { it.key.name }
             SortType.COST -> cards.entries.sortedBy { it.key.cost }
-            // Rouse
-            SortType.ENABLED -> cards.entries.sortedBy { it.key.sets.first().name }
-            SortType.TYPE -> cards.entries.sortedBy { it.key.sets.first().name }
         }
 
         val sortedCards = LinkedHashMap<Card, Int>()
@@ -181,18 +186,34 @@ class KingdomViewModel @Inject constructor(
         return sortedCards
     }
 
-    fun updatePlayerCount(kingdom: Kingdom, count: Int): Kingdom {
-        _playerCount.value = count
+    private fun applyPlayerCountToKingdom(kingdom: Kingdom, count: Int): Kingdom {
         val updatedRandomCards = getCardAmounts(kingdom.randomCards, count)
         val updatedDependentCards = getCardAmounts(kingdom.dependentCards, count)
         val updatedBasicCards = getCardAmounts(kingdom.basicCards, count)
 
-        Log.d("LibraryViewModel", "Selected player count $count")
         return kingdom.copy(
             randomCards = updatedRandomCards,
             dependentCards = updatedDependentCards,
             basicCards = updatedBasicCards
         )
+    }
+
+    fun userChangedPlayerCount(newPlayerCount: Int) {
+        Log.d("KingdomViewModel", "Selected player count $newPlayerCount")
+
+        _playerCount.value = newPlayerCount
+        _kingdom.update { currentGlobalKingdom ->
+            applyPlayerCountToKingdom(currentGlobalKingdom, newPlayerCount)
+        }
+    }
+
+    fun userChangedSortType(newSortType: AppSortType.Kingdom) {
+        Log.d("KingdomViewModel", "Selected sort type $newSortType")
+
+        _sortType.value = newSortType.sortType
+        _kingdom.update { currentGlobalKingdom ->
+            applySortTypeToKingdom(currentGlobalKingdom, newSortType.sortType)
+        }
     }
 
     fun getCardAmounts(

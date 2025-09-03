@@ -17,7 +17,6 @@ import com.google.gson.stream.JsonWriter
 import com.google.gson.stream.JsonReader
 import com.google.gson.stream.JsonToken
 
-
 @Entity(tableName = "cards")
 data class Card(
     @PrimaryKey(autoGenerate = true) val id: Int,

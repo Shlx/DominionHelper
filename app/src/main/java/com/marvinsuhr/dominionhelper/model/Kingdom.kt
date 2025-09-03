@@ -1,5 +1,7 @@
 package com.marvinsuhr.dominionhelper.model
 
+import java.util.UUID
+
 // Class representing a randomly generated round of Dominion
 data class Kingdom(
 
@@ -12,7 +14,8 @@ data class Kingdom(
     // Copper and Estate can have varying amounts
     val startingCards: LinkedHashMap<Card, Int> = linkedMapOf(),
     // Amount not really needed
-    val landscapeCards: LinkedHashMap<Card, Int> = linkedMapOf()
+    val landscapeCards: LinkedHashMap<Card, Int> = linkedMapOf(),
+    val id: String = UUID.randomUUID().toString()
 ) {
 
     fun hasDependentCards(): Boolean {

@@ -3,12 +3,11 @@ package com.marvinsuhr.dominionhelper.ui
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.marvinsuhr.dominionhelper.Kingdom
 import com.marvinsuhr.dominionhelper.model.Card
 import com.marvinsuhr.dominionhelper.data.CardDao
 import com.marvinsuhr.dominionhelper.model.Expansion
 import com.marvinsuhr.dominionhelper.data.ExpansionDao
-import com.marvinsuhr.dominionhelper.data.UserPrefsRepository
+import com.marvinsuhr.dominionhelper.model.AppSortType
 import com.marvinsuhr.dominionhelper.model.ExpansionWithEditions
 import com.marvinsuhr.dominionhelper.model.OwnedEdition
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -34,6 +33,15 @@ class LibraryViewModel @Inject constructor(
     private val cardDao: CardDao,
     private val expansionDao: ExpansionDao
 ) : ViewModel() {
+
+    enum class SortType(val text: String) {
+        TYPE ("Sort by type"),
+        ALPHABETICAL("Sort alphabetically"),
+        COST("Sort by cost"),
+        EXPANSION("Sort by expansion"),
+        ENABLED("Sort by enabled");
+        // TODO Sort by edition for library
+    }
 
     // Variable for tracking the current state
     private val _libraryUiState = MutableStateFlow(LibraryUiState.SHOWING_EXPANSIONS)
@@ -417,8 +425,8 @@ class LibraryViewModel @Inject constructor(
         return sortedCards
     }
 
-    fun updateSortType(newSortType: SortType) {
-        _sortType.value = newSortType
+    fun updateSortType(newSortType: AppSortType.Library) {
+        _sortType.value = newSortType.sortType
 
         // Sort expansion list
         _cardsToShow.value = sortCards(_cardsToShow.value)
@@ -512,13 +520,4 @@ class LibraryViewModel @Inject constructor(
 private fun getEnabledCardAmount(cards: List<Card>): String {
     val enabledCount = cards.count { it.isEnabled }
     return "(${enabledCount}/${cards.size})"
-}
-
-enum class SortType(val text: String) {
-    TYPE ("Sort by type"),
-    ALPHABETICAL("Sort alphabetically"),
-    COST("Sort by cost"),
-    EXPANSION("Sort by expansion"),
-    ENABLED("Sort by enabled")
-    // TODO Sort by edition for library
 }

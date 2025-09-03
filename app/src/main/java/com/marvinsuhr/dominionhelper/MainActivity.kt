@@ -7,8 +7,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.ui.Modifier
-import com.marvinsuhr.dominionhelper.ui.theme.DominionHelperTheme
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -25,20 +23,24 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.font.FontWeight
+import androidx.core.view.WindowCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.marvinsuhr.dominionhelper.ui.LibraryViewModel
+import com.marvinsuhr.dominionhelper.model.AppSortType
+import com.marvinsuhr.dominionhelper.ui.KingdomUiState
 import com.marvinsuhr.dominionhelper.ui.KingdomViewModel
 import com.marvinsuhr.dominionhelper.ui.LibraryUiState
+import com.marvinsuhr.dominionhelper.ui.LibraryViewModel
 import com.marvinsuhr.dominionhelper.ui.SettingsViewModel
-import com.marvinsuhr.dominionhelper.ui.KingdomUiState
-import com.marvinsuhr.dominionhelper.ui.SortType
 import com.marvinsuhr.dominionhelper.ui.components.TopBar
+import com.marvinsuhr.dominionhelper.ui.theme.DominionHelperTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -51,7 +53,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
-        //WindowCompat.setDecorFitsSystemWindows(window, false)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
             DominionHelperTheme {
@@ -72,6 +74,21 @@ class MainActivity : ComponentActivity() {
                 val libraryUiState by libraryViewModel.libraryUiState.collectAsStateWithLifecycle()
                 val kingdomUiState by kingdomViewModel.kingdomUiState.collectAsStateWithLifecycle()
                 val isSearchActive by libraryViewModel.searchActive.collectAsStateWithLifecycle()
+
+                val currentLibrarySortValue by libraryViewModel.sortType.collectAsStateWithLifecycle()
+                val currentKingdomSortValue by kingdomViewModel.sortType.collectAsStateWithLifecycle()
+
+                val actualSelectedSortTypeForMenu: AppSortType? = remember(currentRoute, currentLibrarySortValue, currentKingdomSortValue) {
+                    when (currentRoute) {
+                        AppDestinations.LIBRARY_ROUTE -> {
+                            AppSortType.Library(currentLibrarySortValue)
+                        }
+                        AppDestinations.KINGDOMS_ROUTE -> {
+                            AppSortType.Kingdom(currentKingdomSortValue)
+                        }
+                        else -> null
+                    }
+                }
 
                 val applicationScope = rememberCoroutineScope()
 
@@ -107,17 +124,14 @@ class MainActivity : ComponentActivity() {
                             onSearchClicked = { libraryViewModel.toggleSearch() },
                             searchText = libraryViewModel.searchText.collectAsStateWithLifecycle().value,
                             onSearchTextChange = { libraryViewModel.changeSearchText(it) },
+                            currentRoute = currentRoute,
                             onSortTypeSelected = { sortType ->
-                                when (currentRoute) {
-                                    AppDestinations.LIBRARY_ROUTE -> libraryViewModel.updateSortType(sortType)
-                                    AppDestinations.KINGDOMS_ROUTE -> kingdomViewModel.updateSortType(sortType)
+                                when (sortType) {
+                                    is AppSortType.Library -> libraryViewModel.updateSortType(sortType)
+                                    is AppSortType.Kingdom -> kingdomViewModel.userChangedSortType(sortType)
                                 }
                             },
-                            selectedSortType = when (currentRoute) {
-                                AppDestinations.LIBRARY_ROUTE -> libraryViewModel.sortType.collectAsStateWithLifecycle().value
-                                AppDestinations.KINGDOMS_ROUTE -> kingdomViewModel.sortType.collectAsStateWithLifecycle().value
-                                else -> SortType.ALPHABETICAL // Default
-                            },
+                            selectedSortType = actualSelectedSortTypeForMenu,
                             scrollBehavior = scrollBehavior,
                             showSearch = currentRoute == AppDestinations.LIBRARY_ROUTE
                         )
@@ -183,7 +197,7 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                 ) { innerPadding ->
-                    // Pass navController and padding to your AppNavigation composable
+
                     AppNavigation(
                         navController = navController,
                         paddingValues = innerPadding,

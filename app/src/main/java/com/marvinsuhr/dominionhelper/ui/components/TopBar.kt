@@ -1,6 +1,8 @@
 package com.marvinsuhr.dominionhelper.ui.components
 
 import android.util.Log
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -35,9 +37,11 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.sp
-import com.marvinsuhr.dominionhelper.ui.SortType
+import com.marvinsuhr.dominionhelper.model.AppSortType
+import com.marvinsuhr.dominionhelper.ui.KingdomViewModel
+import com.marvinsuhr.dominionhelper.ui.LibraryViewModel
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 fun TopBar(
     title: String,
@@ -47,8 +51,9 @@ fun TopBar(
     onSearchClicked: () -> Unit,
     searchText: String,
     onSearchTextChange: (String) -> Unit,
-    onSortTypeSelected: (SortType) -> Unit,
-    selectedSortType: SortType,
+    currentRoute: String?, // TODO: Needed?
+    onSortTypeSelected: (AppSortType) -> Unit,
+    selectedSortType: AppSortType?,
     scrollBehavior: TopAppBarScrollBehavior? = null,
     showSearch: Boolean = true
 ) {
@@ -90,12 +95,11 @@ fun TopBar(
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = Color.Transparent,//MaterialTheme.colorScheme.primaryContainer,
-            scrolledContainerColor = Color.Transparent,
-            titleContentColor = MaterialTheme.colorScheme.primary,
+            containerColor = MaterialTheme.colorScheme.surface,
+            scrolledContainerColor = MaterialTheme.colorScheme.surface,
+            titleContentColor = MaterialTheme.colorScheme.onSurface,
         ),
         navigationIcon = {
-            // Conditionally show the back button
             if (showBackButton) {
                 IconButton(onClick = { onBackButtonClicked() }) {
                     Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
@@ -107,11 +111,13 @@ fun TopBar(
                 IconButton(onClick = {
                     onSearchClicked()
                 }) {
-                    Icon( if (!isSearchActive) {
-                        Icons.Filled.Search
-                    } else {
-                        Icons.Filled.Close
-                    }, contentDescription = "Localized description")
+                    Icon(
+                        if (!isSearchActive) {
+                            Icons.Filled.Search
+                        } else {
+                            Icons.Filled.Close
+                        }, contentDescription = "Localized description"
+                    )
                 }
             }
 
@@ -127,7 +133,8 @@ fun TopBar(
                 expanded = expanded,
                 onDismissRequest = { expanded = false },
                 selectedSortType = selectedSortType,
-                onSortTypeSelected = onSortTypeSelected
+                onSortTypeSelected = onSortTypeSelected,
+                currentRoute = currentRoute
             )
         },
         scrollBehavior = scrollBehavior
@@ -144,30 +151,47 @@ fun TopBar(
 fun SortDropdownMenu(
     expanded: Boolean,
     onDismissRequest: () -> Unit,
-    selectedSortType: SortType,
-    onSortTypeSelected: (SortType) -> Unit
+    selectedSortType: AppSortType?,
+    onSortTypeSelected: (AppSortType) -> Unit,
+    currentRoute: String?
 ) {
 
     DropdownMenu(
         expanded = expanded,
         onDismissRequest = onDismissRequest
     ) {
-        SortType.entries.forEach { sortOption ->
-            SortDropdownMenuItem(
-                sortType = sortOption,
-                selectedSortType = selectedSortType,
-                onSortTypeSelected = onSortTypeSelected,
-                onDismissRequest = onDismissRequest
-            )
+        if  (selectedSortType != null) {
+
+            if (currentRoute == "library") {
+                LibraryViewModel.SortType.entries.forEach { sortOption ->
+                    val appSortType = AppSortType.Library(sortOption)
+                    SortDropdownMenuItem(
+                        sortType = appSortType,
+                        selectedSortType = selectedSortType,
+                        onSortTypeSelected = onSortTypeSelected,
+                        onDismissRequest = onDismissRequest
+                    )
+                }
+            } else if (currentRoute == "kingdoms") {
+                KingdomViewModel.SortType.entries.forEach { sortOption ->
+                    val appSortType = AppSortType.Kingdom(sortOption)
+                    SortDropdownMenuItem(
+                        sortType = appSortType,
+                        selectedSortType = selectedSortType,
+                        onSortTypeSelected = onSortTypeSelected,
+                        onDismissRequest = onDismissRequest
+                    )
+                }
+            }
         }
     }
 }
 
 @Composable
 fun SortDropdownMenuItem(
-    sortType: SortType,
-    selectedSortType: SortType,
-    onSortTypeSelected: (SortType) -> Unit,
+    sortType: AppSortType,
+    selectedSortType: AppSortType,
+    onSortTypeSelected: (AppSortType) -> Unit,
     onDismissRequest: () -> Unit
 ) {
     DropdownMenuItem(
@@ -176,6 +200,10 @@ fun SortDropdownMenuItem(
             onSortTypeSelected(sortType)
             onDismissRequest()
         },
+        modifier = Modifier.background(
+            if (sortType == selectedSortType) MaterialTheme.colorScheme.primaryContainer
+            else Color.Transparent
+        ),
         trailingIcon = {
             if (selectedSortType == sortType) {
                 Icon(

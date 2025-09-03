@@ -17,6 +17,8 @@ Bom: Bill of materials - ensure all compose versions are compatible
 .size().padding() -> Padding OUTSIDE
 onClick > Modifier.clickable
 
+When you change the order of a LinkedHashMap, the hashcode stay THE SAME
+
 ------------------
 
 // Decisions:
@@ -53,6 +55,7 @@ TODO NEXT:
 - Rethink sorting? Maybe always split by categories, then by name / cost
 - Nothing happens when clicking an edition
 - Save kingdom etc when putting app in background
+- Landscape cards color bar
 
 - Make complex routes to link to speciofic kingdoms? kingdoms://kingdom/1,2,3,4 ... list of card IDs
 
@@ -147,7 +150,6 @@ CODE
 - Flows instead of lists from DAO?
 - Try to thin out some parameters (TopBar)
 - Add Modifier to Compostable.parameters
-- After generating kingdom and changing sort type, it is reset after generating a new kingdom
 - Reset scroll state only when selecting different expansion -> oder Liststatemanager hash map für jede expansion
 - kotlin.collections.Set -> MutableSet / SET UMBENENNEN
 

@@ -1,6 +1,8 @@
 package com.marvinsuhr.dominionhelper.model
 
 import com.marvinsuhr.dominionhelper.R
+import com.marvinsuhr.dominionhelper.ui.KingdomViewModel
+import com.marvinsuhr.dominionhelper.ui.LibraryViewModel
 
 enum class Set (val imageId: Int = R.drawable.ic_launcher_foreground) {
     BASE_1E(R.drawable.set_dominion_1e),
@@ -133,4 +135,9 @@ enum class CardDisplayCategory {
     SUPPLY, // Normal kingdom cards
     SPECIAL, // Additional cards dependent on other cards
     LANDSCAPE // Landscape cards
+}
+
+sealed class AppSortType(val text: String) {
+    data class Kingdom(val sortType: KingdomViewModel.SortType) : AppSortType(sortType.text)
+    data class Library(val sortType: LibraryViewModel.SortType) : AppSortType(sortType.text)
 }
