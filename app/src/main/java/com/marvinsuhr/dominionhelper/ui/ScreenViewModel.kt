@@ -12,4 +12,5 @@ interface ScreenViewModel {
 
     val currentAppSortType: StateFlow<AppSortType?>
     val showBackButton: StateFlow<Boolean>
+    val showTopAppBar: StateFlow<Boolean>
 }

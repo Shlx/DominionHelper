@@ -8,9 +8,12 @@ import com.marvinsuhr.dominionhelper.model.Kingdom
 // Convert Kingdom to KingdomEntity
 fun Kingdom.toEntity(): KingdomEntity {
     return KingdomEntity(
-        id = this.id ?: 0,
+        uuid = this.uuid,
         randomCardIds = this.randomCards.keys.map { it.id },
-        landscapeCardIds = this.landscapeCards.keys.map { it.id }
+        landscapeCardIds = this.landscapeCards.keys.map { it.id },
+        isFavorite = this.isFavorite,
+        creationTimeStamp = this.creationTimeStamp,
+        name = this.name
     )
 }
 
@@ -29,6 +32,9 @@ suspend fun KingdomEntity.toDomainModel(cardDao: CardDao): Kingdom {
     return Kingdom(
         randomCards = randomCardsMap,
         landscapeCards = landscapeCardsMap,
-        id = this.id
+        uuid = this.uuid,
+        isFavorite = this.isFavorite,
+        creationTimeStamp = this.creationTimeStamp,
+        name = this.name
     )
 }

@@ -53,6 +53,10 @@ TODO NEXT:
     In search: Arrow back vs cross
     Dismiss Snackbar when switching Screens
 
+    sort kingdom list items by cost like in app
+
+    old name flashes when renaming
+
     Make sure theres only 10 cards per saved kingdom? Or only show 10?
 
 - Detail view top bar ist hidden

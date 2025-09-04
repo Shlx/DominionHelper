@@ -74,6 +74,7 @@ class MainActivity : ComponentActivity() {
 
                 val actualSelectedSortTypeForMenu by currentViewModel.currentAppSortType.collectAsStateWithLifecycle()
                 val showBackButton by currentViewModel.showBackButton.collectAsStateWithLifecycle()
+                val showTopAppBar by currentViewModel.showTopAppBar.collectAsStateWithLifecycle()
 
                 val performBackNavigation = {
                     if (!currentViewModel.handleBackNavigation()) {
@@ -90,20 +91,22 @@ class MainActivity : ComponentActivity() {
                         .nestedScroll(scrollBehavior.nestedScrollConnection),
                     snackbarHost = { SnackbarHost(snackbarHostState) },
                     topBar = {
-                        TopBar(
-                            title = currentTopBarTitle,
-                            showBackButton = showBackButton,
-                            onBackButtonClicked = { performBackNavigation() },
-                            isSearchActive = libraryViewModel.searchActive.collectAsStateWithLifecycle().value, // Assuming search is still library specific
-                            onSearchClicked = { libraryViewModel.toggleSearch() },
-                            searchText = libraryViewModel.searchText.collectAsStateWithLifecycle().value,
-                            onSearchTextChange = { libraryViewModel.changeSearchText(it) },
-                            currentScreen = currentScreen,
-                            onSortTypeSelected = { currentViewModel.onSortTypeSelected(it) },
-                            selectedSortType = actualSelectedSortTypeForMenu,
-                            scrollBehavior = scrollBehavior,
-                            showSearch = currentScreen == CurrentScreen.Library
-                        )
+                        if (showTopAppBar) {
+                            TopBar(
+                                title = currentTopBarTitle,
+                                showBackButton = showBackButton,
+                                onBackButtonClicked = { performBackNavigation() },
+                                isSearchActive = libraryViewModel.searchActive.collectAsStateWithLifecycle().value, // Assuming search is still library specific
+                                onSearchClicked = { libraryViewModel.toggleSearch() },
+                                searchText = libraryViewModel.searchText.collectAsStateWithLifecycle().value,
+                                onSearchTextChange = { libraryViewModel.changeSearchText(it) },
+                                currentScreen = currentScreen,
+                                onSortTypeSelected = { currentViewModel.onSortTypeSelected(it) },
+                                selectedSortType = actualSelectedSortTypeForMenu,
+                                scrollBehavior = scrollBehavior,
+                                showSearch = currentScreen == CurrentScreen.Library
+                            )
+                        }
                     },
                     bottomBar = {
                         NavigationBar {

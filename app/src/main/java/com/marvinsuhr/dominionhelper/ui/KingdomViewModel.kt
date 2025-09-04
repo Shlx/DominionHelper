@@ -25,7 +25,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import java.util.UUID
 import javax.inject.Inject
 
 enum class KingdomUiState {
@@ -103,6 +102,11 @@ class KingdomViewModel @Inject constructor(
             uiState == KingdomUiState.SINGLE_KINGDOM || uiState == KingdomUiState.CARD_DETAIL
         }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
 
+    override val showTopAppBar: StateFlow<Boolean> =
+        uiState.map { uiState ->
+            uiState != KingdomUiState.KINGDOM_LIST
+        }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
+
     // Fields
 
     private val _kingdom = MutableStateFlow(Kingdom())
@@ -173,10 +177,10 @@ class KingdomViewModel @Inject constructor(
             val sortedKingdom =
                 applySortTypeToKingdom(kingdomWithPlayerCount, _sortType.value)
 
-            _kingdom.value = sortedKingdom
+            //_kingdom.value = sortedKingdom
             clearSelectedCard()
             kingdomRepository.saveKingdom(sortedKingdom)
-            _uiState.value = KingdomUiState.SINGLE_KINGDOM
+            //switchUiStateTo(KingdomUiState.SINGLE_KINGDOM)
         }
     }
 
@@ -198,8 +202,8 @@ class KingdomViewModel @Inject constructor(
             //basicCards = sortedBasicCards,
             //startingCards = sortedStartingCards,
             //landscapeCards = sortedLandscapeCards,
-            // Generate new UUID. Otherwise recomposition isn't triggered
-            uuid = UUID.randomUUID().toString()
+            // TODO think of sth else
+            creationTimeStamp = kingdom.creationTimeStamp + 1
         )
     }
 
@@ -414,20 +418,31 @@ class KingdomViewModel @Inject constructor(
 
     // In its own class?
 
-    suspend fun fetchKingdomDetails(kingdomId: Int): Kingdom? {
-        return kingdomRepository.getKingdomById(kingdomId)
+    suspend fun fetchKingdomDetails(uuid: String): Kingdom? {
+        return kingdomRepository.getKingdomById(uuid)
     }
 
-    fun deleteKingdom(kingdomId: Int?) {
-        if (kingdomId == null) return
+    fun deleteKingdom(uuid: String) {
         viewModelScope.launch {
-            kingdomRepository.deleteKingdomById(kingdomId)
+            kingdomRepository.deleteKingdomById(uuid)
 
             // If selected kingdom was deleted
-            if (_kingdom.value.id == kingdomId) {
+            if (_kingdom.value.uuid == uuid) {
                 _kingdom.value = Kingdom()
                 switchUiStateTo(KingdomUiState.KINGDOM_LIST)
             }
+        }
+    }
+
+    fun toggleFavorite(kingdom: Kingdom) {
+        viewModelScope.launch {
+            kingdomRepository.favoriteKingdomById(kingdom.uuid, !kingdom.isFavorite)
+        }
+    }
+
+    fun updateKingdomName(uuid: String, newName: String) {
+        viewModelScope.launch {
+            kingdomRepository.changeKingdomName(uuid, newName)
         }
     }
 }

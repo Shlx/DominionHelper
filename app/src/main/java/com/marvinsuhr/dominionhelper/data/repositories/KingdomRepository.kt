@@ -43,10 +43,10 @@ class KingdomRepository @Inject constructor(
      * @param kingdomId The Int ID of the kingdom in the database.
      * @return The Kingdom domain model if found, null otherwise.
      */
-    suspend fun getKingdomById(kingdomId: Int): Kingdom? {
+    suspend fun getKingdomById(uuid: String): Kingdom? {
         // Perform DB operations on the injected dispatcher (e.g., Dispatchers.IO)
         return withContext(defaultDispatcher) {
-            val kingdomEntity = kingdomDao.getKingdomById(kingdomId)
+            val kingdomEntity = kingdomDao.getKingdomById(uuid)
             kingdomEntity?.toDomainModel(cardDao)
         }
     }
@@ -68,9 +68,21 @@ class KingdomRepository @Inject constructor(
      * Deletes a kingdom from the database by its ID.
      * @param kingdomId The Int ID of the kingdom to delete.
      */
-    suspend fun deleteKingdomById(kingdomId: Int) {
+    suspend fun deleteKingdomById(uuid: String) {
         withContext(defaultDispatcher) {
-            kingdomDao.deleteKingdomById(kingdomId)
+            kingdomDao.deleteKingdomById(uuid)
+        }
+    }
+
+    suspend fun favoriteKingdomById(uuid: String, newIsFavorite: Boolean) {
+        withContext(defaultDispatcher) {
+            kingdomDao.toggleFavoriteKingdomById(uuid, newIsFavorite)
+        }
+    }
+
+    suspend fun changeKingdomName(uuid: String, newName: String) {
+        withContext(defaultDispatcher) {
+            kingdomDao.changeKingdomName(uuid, newName)
         }
     }
 }

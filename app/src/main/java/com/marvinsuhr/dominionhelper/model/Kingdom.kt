@@ -16,7 +16,9 @@ data class Kingdom(
     // Amount not really needed
     val landscapeCards: LinkedHashMap<Card, Int> = linkedMapOf(),
     val uuid: String = UUID.randomUUID().toString(),
-    var id: Int? = null
+    val creationTimeStamp: Long = System.currentTimeMillis(),
+    var isFavorite: Boolean = false,
+    var name: String = "Unnamed Kingdom"
 ) {
 
     fun hasDependentCards(): Boolean {
