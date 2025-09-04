@@ -243,13 +243,15 @@ fun SearchResultsCardList(
     cardList: List<Card>,
     onCardClick: (Card) -> Unit,
     onToggleEnable: (Card) -> Unit,
+    listState: LazyListState = rememberLazyListState()
 ) {
     Log.i("CardList", "${cardList.size} cards")
 
     LazyColumn(
         modifier = modifier,
         contentPadding = PaddingValues(Constants.PADDING_SMALL),
-        verticalArrangement = Arrangement.spacedBy(Constants.PADDING_SMALL)
+        verticalArrangement = Arrangement.spacedBy(Constants.PADDING_SMALL),
+        state = listState
     ) {
 
         item {
@@ -297,14 +299,6 @@ fun KingdomList(
     ) {
 
         // RANDOM CARDS
-        item {
-            Box(
-                modifier = Modifier.clickable { onRandomClick() }
-            ) {
-                Text("Reroll")
-                Icon(imageVector = Icons.Outlined.Casino, contentDescription = "Dice")
-            }
-        }
         item {
             CardSpacer("Supply Cards")
         }

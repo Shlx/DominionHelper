@@ -2,7 +2,7 @@ package com.marvinsuhr.dominionhelper.utils
 
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.marvinsuhr.dominionhelper.AppDestinations
+import com.marvinsuhr.dominionhelper.CurrentScreen
 import com.marvinsuhr.dominionhelper.ui.DarkAgesMode
 import com.marvinsuhr.dominionhelper.ui.ProsperityMode
 import com.marvinsuhr.dominionhelper.ui.RandomMode
@@ -40,6 +40,6 @@ object Constants {
 
     const val DEFAULT_IS_DARK_MODE = false
 
-    const val START_DESTINATION = AppDestinations.KINGDOMS_ROUTE
+    val START_DESTINATION = CurrentScreen.Kingdoms
 
 }

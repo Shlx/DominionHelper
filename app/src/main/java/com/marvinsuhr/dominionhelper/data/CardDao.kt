@@ -27,21 +27,33 @@ interface CardDao {
     @Query("SELECT * FROM cards")
     suspend fun getAll(): List<Card>
 
-    @Query("""
+    @Query(
+        """
+            SELECT * FROM cards
+            WHERE supply = 1
+            ORDER BY RANDOM() LIMIT :count
+            """
+    )
+    suspend fun getRandomSupplyCards(count: Int): List<Card>
+
+    @Query(
+        """
     SELECT * FROM cards
     WHERE name LIKE '%' || :filter || '%'
        OR sets LIKE '%' || :filter || '%'
        OR types LIKE '%' || :filter || '%'
        OR categories LIKE '%' || :filter || '%'
        OR CAST(cost AS TEXT) LIKE '%' || :filter || '%'
-""")
+    """
+    )
     suspend fun getFilteredCards(filter: String): List<Card>
 
     @Query("SELECT * FROM cards WHERE sets LIKE '%' || :id || '%'")
     suspend fun getCardsByExpansion(id: String): List<Card>
 
 
-    @Query("""
+    @Query(
+        """
         SELECT * FROM cards AS c
         WHERE sets LIKE '%' || :id || '%'
         AND c.isEnabled = 1
@@ -52,7 +64,8 @@ interface CardDao {
     )
     suspend fun getPortraitsByExpansion(id: String): List<Card>
 
-    @Query("""
+    @Query(
+        """
         SELECT * FROM cards AS c
         WHERE sets LIKE '%' || :id || '%'
         AND c.landscape = 1
@@ -150,7 +163,10 @@ interface CardDao {
         LIMIT 1
     """
     )
-    suspend fun getSingleCardFromOwnedExpansionsWithExceptions(excludedCards: Set<Int>, isLandscape: Boolean): Card?
+    suspend fun getSingleCardFromOwnedExpansionsWithExceptions(
+        excludedCards: Set<Int>,
+        isLandscape: Boolean
+    ): Card?
 
     @Query(
         """
@@ -193,6 +209,9 @@ interface CardDao {
 
     @Query("SELECT * FROM cards WHERE name IN (:names)")
     suspend fun getCardsByNameList(names: List<String>): List<Card>
+
+    @Query("SELECT * FROM cards WHERE id IN (:ids)")
+    suspend fun getCardsByIds(ids: List<Int>): List<Card>
 
     @Query("SELECT COUNT(*) FROM cards")
     suspend fun count(): Int

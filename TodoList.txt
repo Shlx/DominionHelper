@@ -50,6 +50,11 @@ TODO NEXT:
 - Search "1" finds BASE_1E, rethink search in general
     (when to stop viewing expansions)
 
+    In search: Arrow back vs cross
+    Dismiss Snackbar when switching Screens
+
+    Make sure theres only 10 cards per saved kingdom? Or only show 10?
+
 - Detail view top bar ist hidden
 - Skeleton while loading kingdom?
 - Rethink sorting? Maybe always split by categories, then by name / cost

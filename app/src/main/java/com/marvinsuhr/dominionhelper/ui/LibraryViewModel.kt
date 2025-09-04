@@ -11,31 +11,34 @@ import com.marvinsuhr.dominionhelper.model.AppSortType
 import com.marvinsuhr.dominionhelper.model.ExpansionWithEditions
 import com.marvinsuhr.dominionhelper.model.OwnedEdition
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.text.first
 
 enum class LibraryUiState {
-    SHOWING_EXPANSIONS,
-    SHOWING_EXPANSION_CARDS,
-    SHOWING_SEARCH_RESULTS,
-    SHOWING_CARD_DETAIL
- }
+    EXPANSIONS,
+    EXPANSION_CARDS,
+    SEARCH_RESULTS,
+    CARD_DETAIL
+}
 
 @HiltViewModel
 class LibraryViewModel @Inject constructor(
     private val cardDao: CardDao,
     private val expansionDao: ExpansionDao
-) : ViewModel() {
+) : ViewModel(), ScreenViewModel {
 
     enum class SortType(val text: String) {
-        TYPE ("Sort by type"),
+        TYPE("Sort by type"),
         ALPHABETICAL("Sort alphabetically"),
         COST("Sort by cost"),
         EXPANSION("Sort by expansion"),
@@ -43,10 +46,70 @@ class LibraryViewModel @Inject constructor(
         // TODO Sort by edition for library
     }
 
-    // Variable for tracking the current state
-    private val _libraryUiState = MutableStateFlow(LibraryUiState.SHOWING_EXPANSIONS)
-    val libraryUiState: StateFlow<LibraryUiState> = _libraryUiState.asStateFlow()
-    private var lastState: LibraryUiState = LibraryUiState.SHOWING_EXPANSIONS
+    // Interface stuff
+
+    override fun handleBackNavigation(): Boolean {
+        when (_uiState.value) {
+            LibraryUiState.EXPANSIONS -> {
+                Log.i("BackHandler", "Leave expansion list -> Exit app")
+                return false
+            }
+
+            LibraryUiState.EXPANSION_CARDS -> {
+                Log.i("BackHandler", "Leave expansion list -> Return to expansion list")
+                clearSelectedExpansion()
+                switchUiStateTo(LibraryUiState.EXPANSIONS)
+                return true
+            }
+
+            LibraryUiState.SEARCH_RESULTS -> {
+                Log.i("BackHandler", "Deactivate search")
+                toggleSearch() // -> Deactivate search?
+                changeSearchText("")
+                clearAllCards()
+                switchUiStateTo(LibraryUiState.EXPANSIONS)
+                return true
+            }
+
+            LibraryUiState.CARD_DETAIL -> {
+                Log.i("BackHandler", "Deselect card -> Return to card list")
+                clearSelectedCard()
+                switchUiStateTo(lastState)
+                return true
+            }
+        }
+    }
+
+    override fun onSortTypeSelected(sortType: AppSortType) {
+        Log.d("LibraryViewModel", "Selected sort type $sortType")
+        updateSortType(sortType as AppSortType.Library)
+    }
+
+    private val _scrollToTopEvent = MutableSharedFlow<Unit>(extraBufferCapacity = 1)
+    val scrollToTopEvent = _scrollToTopEvent.asSharedFlow()
+
+    override fun triggerScrollToTop() {
+        _scrollToTopEvent.tryEmit(Unit)
+    }
+
+    private val _sortType = MutableStateFlow(SortType.TYPE)
+    val sortType: StateFlow<SortType> = _sortType.asStateFlow()
+
+    override val currentAppSortType: StateFlow<AppSortType?> =
+        sortType.map { AppSortType.Library(it) }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
+
+    private val _uiState = MutableStateFlow(LibraryUiState.EXPANSIONS)
+    val uiState: StateFlow<LibraryUiState> = _uiState.asStateFlow()
+
+    override val showBackButton: StateFlow<Boolean> =
+        uiState.map { uiState ->
+            uiState != LibraryUiState.EXPANSIONS // && !isSearch?
+        }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
+
+    // Fields
+
+    private var lastState: LibraryUiState = LibraryUiState.EXPANSIONS
 
     // Expansion variables
     private val _expansionsWithEditions = MutableStateFlow<List<ExpansionWithEditions>>(emptyList())
@@ -73,28 +136,26 @@ class LibraryViewModel @Inject constructor(
     private val _searchText = MutableStateFlow("")
     val searchText: StateFlow<String> = _searchText.asStateFlow()
 
-    private val _sortType = MutableStateFlow(SortType.TYPE)
-    val sortType: StateFlow<SortType> = _sortType.asStateFlow()
-
     // Error message
     private val _errorMessage = MutableStateFlow<String?>(null)
     val errorMessage: StateFlow<String?> = _errorMessage.asStateFlow()
 
     val topBarTitle: StateFlow<String> = combine(
-        libraryUiState,
+        uiState,
         selectedExpansion,
         selectedCard,
         cardsToShow
     ) { uiScreenState, selectedExpansion, selectedCard, cardsToShow ->
         when (uiScreenState) {
-            LibraryUiState.SHOWING_EXPANSIONS -> "Library"
-            LibraryUiState.SHOWING_EXPANSION_CARDS -> {
+            LibraryUiState.EXPANSIONS -> "Library"
+            LibraryUiState.EXPANSION_CARDS -> {
                 selectedExpansion?.let { expansion ->
                     "${expansion.name} ${getEnabledCardAmount(cardsToShow)}"
                 } ?: "Cards"
             }
-            LibraryUiState.SHOWING_SEARCH_RESULTS -> "Search Results" // I think this isn't shown
-            LibraryUiState.SHOWING_CARD_DETAIL -> selectedCard?.name ?: "Details"
+
+            LibraryUiState.SEARCH_RESULTS -> "Search Results" // I think this isn't shown
+            LibraryUiState.CARD_DETAIL -> selectedCard?.name ?: "Details"
         }
     }.stateIn(
         scope = viewModelScope,
@@ -106,30 +167,9 @@ class LibraryViewModel @Inject constructor(
         loadExpansionsWithEditions()
     }
 
-    fun handleBackNavigation() {
-        when (_libraryUiState.value) {
-            LibraryUiState.SHOWING_EXPANSIONS -> {
-                Log.i("BackHandler", "Leave expansion list -> Exit app")
-                // Exit app
-            }
-
-            LibraryUiState.SHOWING_EXPANSION_CARDS -> {
-                Log.i("BackHandler", "Leave expansion list -> Return to expansion list")
-                clearSelectedExpansion()
-            }
-
-            LibraryUiState.SHOWING_SEARCH_RESULTS -> {
-                Log.i("BackHandler", "Deactivate search")
-                toggleSearch() // -> Deactivate search?
-                changeSearchText("")
-                clearAllCards()
-            }
-
-            LibraryUiState.SHOWING_CARD_DETAIL -> {
-                Log.i("BackHandler", "Deselect card -> Return to card list")
-                clearSelectedCard()
-            }
-        }
+    private fun switchUiStateTo(newState: LibraryUiState) {
+        _uiState.value = newState
+        Log.d("LibraryViewModel", "Switched UI state to $newState")
     }
 
     // Load all expansions and their editions, grouped by name
@@ -281,7 +321,7 @@ class LibraryViewModel @Inject constructor(
                 "Loaded ${_cardsToShow.value.size} cards for expansion ${expansion.name}"
             )
 
-            _libraryUiState.value = LibraryUiState.SHOWING_EXPANSION_CARDS
+            _uiState.value = LibraryUiState.EXPANSION_CARDS
             Log.d("LibraryViewModel", "Selected ${expansion.name}")
         }
     }
@@ -300,7 +340,10 @@ class LibraryViewModel @Inject constructor(
         }
     }
 
-    private suspend fun getCardsFromOwnedEditions(expansion: ExpansionWithEditions, ownedEdition: OwnedEdition): Set<Card> {
+    private suspend fun getCardsFromOwnedEditions(
+        expansion: ExpansionWithEditions,
+        ownedEdition: OwnedEdition
+    ): Set<Card> {
 
         val set = mutableSetOf<Card>()
 
@@ -309,7 +352,7 @@ class LibraryViewModel @Inject constructor(
                 set.addAll(cardDao.getCardsByExpansion(expansion.firstEdition!!.id))
             }
 
-            OwnedEdition.SECOND ->  {
+            OwnedEdition.SECOND -> {
                 set.addAll(cardDao.getCardsByExpansion(expansion.secondEdition!!.id))
             }
 
@@ -328,12 +371,15 @@ class LibraryViewModel @Inject constructor(
     fun clearSelectedExpansion() {
         _selectedExpansion.value = null
         _cardsToShow.value = emptyList()
-        _libraryUiState.value = LibraryUiState.SHOWING_EXPANSIONS
         Log.d("LibraryViewModel", "Cleared selected expansion")
     }
 
     // When edition selector in CardList is pressed
-    fun selectEdition(expansion: ExpansionWithEditions, clickedEditionNumber: Int, currentOwnedEdition: OwnedEdition) {
+    fun selectEdition(
+        expansion: ExpansionWithEditions,
+        clickedEditionNumber: Int,
+        currentOwnedEdition: OwnedEdition
+    ) {
         viewModelScope.launch {
 
             val newSelectedEdition: OwnedEdition
@@ -358,7 +404,10 @@ class LibraryViewModel @Inject constructor(
             val set = getCardsFromOwnedEditions(expansion, newSelectedEdition)
             _cardsToShow.value = sortCards(set.toList())
             _selectedEdition.value = newSelectedEdition
-            Log.d("LibraryViewModel", "Selected edition $clickedEditionNumber for ${expansion.name} -> $currentOwnedEdition")
+            Log.d(
+                "LibraryViewModel",
+                "Selected edition $clickedEditionNumber for ${expansion.name} -> $currentOwnedEdition"
+            )
         }
     }
 
@@ -369,7 +418,7 @@ class LibraryViewModel @Inject constructor(
             // We need to set these, so we need ExpansionWithEditions here. But also an int for the clicked edition
             //_selectedExpansion.value = expansion
             //_selectedEdition.value = whichEditionIsOwned(expansion)
-            //_uiScreenState.value = UiScreenState.SHOWING_EXPANSION_CARDS
+            //_uiScreenState.value = UiScreenState.EXPANSION_CARDS
 
             Log.d("LibraryViewModel", "Selected edition ${expansion.name}")
         }
@@ -381,23 +430,21 @@ class LibraryViewModel @Inject constructor(
 
     fun selectCard(card: Card) {
         _selectedCard.value = card
-        if (libraryUiState.value != LibraryUiState.SHOWING_CARD_DETAIL) {
-            lastState = libraryUiState.value // Saving whether we come from search results or expansion cards
+        if (uiState.value != LibraryUiState.CARD_DETAIL) {
+            lastState =
+                uiState.value // Saving whether we come from search results or expansion cards
         }
-        _libraryUiState.value = LibraryUiState.SHOWING_CARD_DETAIL
+        _uiState.value = LibraryUiState.CARD_DETAIL
         Log.d("LibraryViewModel", "Selected card ${card.name}")
     }
 
     fun clearSelectedCard() {
         _selectedCard.value = null
-        _libraryUiState.value = lastState
         Log.d("LibraryViewModel", "Cleared selected card")
-        Log.d("LibraryViewModel", "Returned to state: $lastState")
     }
 
     fun clearAllCards() {
         _cardsToShow.value = emptyList()
-        _libraryUiState.value = LibraryUiState.SHOWING_EXPANSIONS
         Log.d("LibraryViewModel", "Cleared all cards")
     }
 
@@ -459,11 +506,11 @@ class LibraryViewModel @Inject constructor(
                 _cardsToShow.value = emptyList()
             } else if (newText.length >= 2 || newText.first().isDigit()) {
 
-                 // TODO: Sort? Type sort is broken here
-                 _cardsToShow.value = cardDao.getFilteredCards("%$newText%")
-             }
+                // TODO: Sort? Type sort is broken here
+                _cardsToShow.value = cardDao.getFilteredCards("%$newText%")
+            }
 
-            _libraryUiState.value = LibraryUiState.SHOWING_SEARCH_RESULTS
+            _uiState.value = LibraryUiState.SEARCH_RESULTS
 
             Log.d(
                 "LibraryViewModel",

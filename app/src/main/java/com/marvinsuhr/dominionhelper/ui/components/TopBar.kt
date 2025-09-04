@@ -37,6 +37,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.sp
+import com.marvinsuhr.dominionhelper.CurrentScreen
 import com.marvinsuhr.dominionhelper.model.AppSortType
 import com.marvinsuhr.dominionhelper.ui.KingdomViewModel
 import com.marvinsuhr.dominionhelper.ui.LibraryViewModel
@@ -51,7 +52,7 @@ fun TopBar(
     onSearchClicked: () -> Unit,
     searchText: String,
     onSearchTextChange: (String) -> Unit,
-    currentRoute: String?, // TODO: Needed?
+    currentScreen: CurrentScreen, // TODO: Needed?
     onSortTypeSelected: (AppSortType) -> Unit,
     selectedSortType: AppSortType?,
     scrollBehavior: TopAppBarScrollBehavior? = null,
@@ -134,7 +135,7 @@ fun TopBar(
                 onDismissRequest = { expanded = false },
                 selectedSortType = selectedSortType,
                 onSortTypeSelected = onSortTypeSelected,
-                currentRoute = currentRoute
+                currentScreen = currentScreen
             )
         },
         scrollBehavior = scrollBehavior
@@ -153,7 +154,7 @@ fun SortDropdownMenu(
     onDismissRequest: () -> Unit,
     selectedSortType: AppSortType?,
     onSortTypeSelected: (AppSortType) -> Unit,
-    currentRoute: String?
+    currentScreen: CurrentScreen
 ) {
 
     DropdownMenu(
@@ -162,7 +163,7 @@ fun SortDropdownMenu(
     ) {
         if  (selectedSortType != null) {
 
-            if (currentRoute == "library") {
+            if (currentScreen == CurrentScreen.Library) {
                 LibraryViewModel.SortType.entries.forEach { sortOption ->
                     val appSortType = AppSortType.Library(sortOption)
                     SortDropdownMenuItem(
@@ -172,7 +173,7 @@ fun SortDropdownMenu(
                         onDismissRequest = onDismissRequest
                     )
                 }
-            } else if (currentRoute == "kingdoms") {
+            } else if (currentScreen == CurrentScreen.Kingdoms) {
                 KingdomViewModel.SortType.entries.forEach { sortOption ->
                     val appSortType = AppSortType.Kingdom(sortOption)
                     SortDropdownMenuItem(

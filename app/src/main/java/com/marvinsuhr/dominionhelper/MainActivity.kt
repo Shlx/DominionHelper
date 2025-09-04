@@ -6,7 +6,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -20,7 +19,6 @@ import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -30,17 +28,13 @@ import androidx.core.view.WindowCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.marvinsuhr.dominionhelper.model.AppSortType
-import com.marvinsuhr.dominionhelper.ui.KingdomUiState
 import com.marvinsuhr.dominionhelper.ui.KingdomViewModel
-import com.marvinsuhr.dominionhelper.ui.LibraryUiState
 import com.marvinsuhr.dominionhelper.ui.LibraryViewModel
+import com.marvinsuhr.dominionhelper.ui.ScreenViewModel
 import com.marvinsuhr.dominionhelper.ui.SettingsViewModel
 import com.marvinsuhr.dominionhelper.ui.components.TopBar
 import com.marvinsuhr.dominionhelper.ui.theme.DominionHelperTheme
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
-
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -57,89 +51,64 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             DominionHelperTheme {
+
                 val navController = rememberNavController()
+                val navBackStackEntry by navController.currentBackStackEntryAsState()
+                val currentRoute = navBackStackEntry?.destination?.route
+                val currentScreen = CurrentScreen.fromRoute(currentRoute)
+
+                val currentViewModel = when (currentScreen) {
+                    CurrentScreen.Library -> libraryViewModel
+                    CurrentScreen.Kingdoms -> kingdomViewModel
+                    CurrentScreen.Settings -> settingsViewModel
+                } as ScreenViewModel
 
                 val snackbarHostState = remember { SnackbarHostState() }
                 val topAppBarState = rememberTopAppBarState()
                 val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(topAppBarState)
 
-                val navBackStackEntry by navController.currentBackStackEntryAsState()
-                val currentRoute = navBackStackEntry?.destination?.route
-
-                var currentTopBarTitle by rememberSaveable { mutableStateOf("Library") }
+                var currentTopBarTitle by rememberSaveable { mutableStateOf("") }
                 val onTitleChangedLambda = { newTitle: String ->
                     currentTopBarTitle = newTitle
                 }
 
-                val libraryUiState by libraryViewModel.libraryUiState.collectAsStateWithLifecycle()
-                val kingdomUiState by kingdomViewModel.kingdomUiState.collectAsStateWithLifecycle()
-                val isSearchActive by libraryViewModel.searchActive.collectAsStateWithLifecycle()
+                val actualSelectedSortTypeForMenu by currentViewModel.currentAppSortType.collectAsStateWithLifecycle()
+                val showBackButton by currentViewModel.showBackButton.collectAsStateWithLifecycle()
 
-                val currentLibrarySortValue by libraryViewModel.sortType.collectAsStateWithLifecycle()
-                val currentKingdomSortValue by kingdomViewModel.sortType.collectAsStateWithLifecycle()
-
-                val actualSelectedSortTypeForMenu: AppSortType? = remember(currentRoute, currentLibrarySortValue, currentKingdomSortValue) {
-                    when (currentRoute) {
-                        AppDestinations.LIBRARY_ROUTE -> {
-                            AppSortType.Library(currentLibrarySortValue)
+                val performBackNavigation = {
+                    if (!currentViewModel.handleBackNavigation()) {
+                        if (navController.previousBackStackEntry != null) {
+                            navController.popBackStack()
+                        } else {
+                            finish()
                         }
-                        AppDestinations.KINGDOMS_ROUTE -> {
-                            AppSortType.Kingdom(currentKingdomSortValue)
-                        }
-                        else -> null
-                    }
-                }
-
-                val applicationScope = rememberCoroutineScope()
-
-                val showBackButton = remember(currentRoute, libraryUiState, kingdomUiState, isSearchActive) {
-                    when (currentRoute) {
-                        AppDestinations.LIBRARY_ROUTE -> {
-                            libraryUiState == LibraryUiState.SHOWING_CARD_DETAIL ||
-                                    libraryUiState == LibraryUiState.SHOWING_EXPANSION_CARDS ||
-                                    (libraryUiState == LibraryUiState.SHOWING_SEARCH_RESULTS)// && isSearchActive)
-                        }
-                        AppDestinations.KINGDOMS_ROUTE -> {
-                            kingdomUiState == KingdomUiState.SHOWING_CARD_DETAIL
-                        }
-                        AppDestinations.SETTINGS_ROUTE -> false
-                        else -> true
                     }
                 }
 
                 Scaffold(
                     modifier = Modifier
-                        .fillMaxSize()
                         .nestedScroll(scrollBehavior.nestedScrollConnection),
                     snackbarHost = { SnackbarHost(snackbarHostState) },
                     topBar = {
                         TopBar(
                             title = currentTopBarTitle,
                             showBackButton = showBackButton,
-                            onBackButtonClicked = {
-                                // TODO VM.handle back
-                                navController.popBackStack()
-                            },
+                            onBackButtonClicked = { performBackNavigation() },
                             isSearchActive = libraryViewModel.searchActive.collectAsStateWithLifecycle().value, // Assuming search is still library specific
                             onSearchClicked = { libraryViewModel.toggleSearch() },
                             searchText = libraryViewModel.searchText.collectAsStateWithLifecycle().value,
                             onSearchTextChange = { libraryViewModel.changeSearchText(it) },
-                            currentRoute = currentRoute,
-                            onSortTypeSelected = { sortType ->
-                                when (sortType) {
-                                    is AppSortType.Library -> libraryViewModel.updateSortType(sortType)
-                                    is AppSortType.Kingdom -> kingdomViewModel.userChangedSortType(sortType)
-                                }
-                            },
+                            currentScreen = currentScreen,
+                            onSortTypeSelected = { currentViewModel.onSortTypeSelected(it) },
                             selectedSortType = actualSelectedSortTypeForMenu,
                             scrollBehavior = scrollBehavior,
-                            showSearch = currentRoute == AppDestinations.LIBRARY_ROUTE
+                            showSearch = currentScreen == CurrentScreen.Library
                         )
                     },
                     bottomBar = {
                         NavigationBar {
                             bottomNavItems.forEach { item ->
-                                val isSelected = item.screenRoute == currentRoute // Simpler selection logic
+                                val isSelected = item.screenRoute == currentRoute
 
                                 NavigationBarItem(
                                     selected = isSelected,
@@ -150,42 +119,26 @@ class MainActivity : ComponentActivity() {
                                             "Selected ${item.label} (Previous: $currentRoute)"
                                         )
 
+                                        // New item selected
                                         if (currentRoute != item.screenRoute) {
                                             navController.navigate(item.screenRoute) {
 
-                                                // Pop up to the start destination of the graph to
-                                                // avoid building up a large stack of destinations
-                                                // on the back stack as users select items
                                                 popUpTo(navController.graph.startDestinationId) {
                                                     saveState = true
                                                 }
-                                                // Avoid multiple copies of the same destination when
-                                                // reselecting the same item
                                                 launchSingleTop = true
-                                                // Restore state when reselecting a previously selected item
                                                 restoreState = true
                                             }
-                                        } else {
-                                            // Handle re-selection of the current item (e.g., scroll to top)
-                                            when (item.screenRoute) {
-                                                AppDestinations.LIBRARY_ROUTE -> {
-                                                    // libraryViewModel.scrollToTop() or similar
-                                                    // This part needs specific implementation for scroll states
-                                                    applicationScope.launch {
-                                                        // TODO ScrollToTop
-                                                        // kingdomListState.animateScrollToItem(0)
-                                                        // Example: Reset or scroll to top for library list states
-                                                        // This depends on how your libraryListState and cardListState are managed
-                                                        // and if they are accessible here or if ViewModel handles it.
-                                                    }
-                                                }
-                                                AppDestinations.KINGDOMS_ROUTE -> {
-                                                    // kingdomViewModel.scrollToTop()
-                                                }
-                                            }
+                                        } else { // Same item selected: scroll up
+                                            currentViewModel.triggerScrollToTop()
                                         }
                                     },
-                                    icon = { Icon(if (isSelected) item.selectedIcon else item.unselectedIcon, contentDescription = item.label) },
+                                    icon = {
+                                        Icon(
+                                            if (isSelected) item.selectedIcon else item.unselectedIcon,
+                                            contentDescription = item.label
+                                        )
+                                    },
                                     label = {
                                         Text(
                                             text = item.label,
@@ -205,24 +158,11 @@ class MainActivity : ComponentActivity() {
                         snackbarHostState = snackbarHostState,
                         libraryViewModel = libraryViewModel,
                         kingdomViewModel = kingdomViewModel,
-                        settingsViewModel = settingsViewModel
+                        settingsViewModel = settingsViewModel,
+                        performBackNavigation = performBackNavigation
                     )
                 }
             }
         }
     }
 }
-
-/*@Composable
-fun CardDetailScreen( // Example for a screen that takes arguments
-    navController: NavHostController,
-    cardId: String?, // Argument passed via navigation
-    onTitleChanged: (String) -> Unit
-    // Potentially a CardDetailViewModel = hiltViewModel()
-) {
-    // You'd likely fetch card details using cardId in a ViewModel
-    val title = "Card Details for: ${cardId ?: "Unknown"}"
-    LaunchedEffect(title) { onTitleChanged(title) }
-    Text("Displaying details for card ID: $cardId")
-    BackHandler { navController.popBackStack() } // Example of handling back
-}*/

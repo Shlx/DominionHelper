@@ -6,12 +6,16 @@ import com.marvinsuhr.dominionhelper.R
 import com.marvinsuhr.dominionhelper.data.AppDatabase
 import com.marvinsuhr.dominionhelper.data.CardDao
 import com.marvinsuhr.dominionhelper.data.ExpansionDao
+import com.marvinsuhr.dominionhelper.data.KingdomDao
+import com.marvinsuhr.dominionhelper.data.repositories.KingdomRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Module
@@ -46,5 +50,19 @@ object AppModule {
     @Provides
     fun provideExpansionDao(appDatabase: AppDatabase): ExpansionDao {
         return appDatabase.expansionDao()
+    }
+
+    @Provides
+    fun provideKingdomDao(appDatabase: AppDatabase): KingdomDao {
+        return appDatabase.kingdomDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideKingdomRepository(
+        kingdomDao: KingdomDao,
+        cardDao: CardDao
+    ): KingdomRepository {
+        return KingdomRepository(kingdomDao, cardDao, Dispatchers.IO)
     }
 }

@@ -3,10 +3,13 @@ package com.marvinsuhr.dominionhelper.ui
 import com.marvinsuhr.dominionhelper.data.UserPrefsRepository
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.marvinsuhr.dominionhelper.model.AppSortType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.update
@@ -88,7 +91,7 @@ enum class ProsperityMode(val displayName: String) {
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
     private val userPrefsRepository: UserPrefsRepository
-) : ViewModel() {
+) : ViewModel(), ScreenViewModel {
 
     data class SettingsUiState(
         val settings: List<SettingItem> = emptyList()
@@ -240,4 +243,23 @@ class SettingsViewModel @Inject constructor(
             userPrefsRepository.setProsperityBasicCardsMode(mode)
         }
     }
+
+    override fun handleBackNavigation(): Boolean {
+        return false
+    }
+
+    private val _scrollToTopEvent = MutableSharedFlow<Unit>(extraBufferCapacity = 1)
+    val scrollToTopEvent = _scrollToTopEvent.asSharedFlow()
+
+    override fun triggerScrollToTop() {
+        _scrollToTopEvent.tryEmit(Unit)
+    }
+
+    override fun onSortTypeSelected(sortType: AppSortType) {
+        // Stub
+    }
+
+    override val currentAppSortType: StateFlow<AppSortType?> = MutableStateFlow(null).asStateFlow()
+
+    override val showBackButton: StateFlow<Boolean> = MutableStateFlow(false).asStateFlow()
 }

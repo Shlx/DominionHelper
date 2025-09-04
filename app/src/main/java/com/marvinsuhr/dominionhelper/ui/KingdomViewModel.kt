@@ -4,22 +4,24 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.marvinsuhr.dominionhelper.KingdomGenerator
-import com.marvinsuhr.dominionhelper.data.CardDao
 import com.marvinsuhr.dominionhelper.data.ExpansionDao
 import com.marvinsuhr.dominionhelper.data.UserPrefsRepository
 import com.marvinsuhr.dominionhelper.model.AppSortType
 import com.marvinsuhr.dominionhelper.model.Card
 import com.marvinsuhr.dominionhelper.model.CardNames
 import com.marvinsuhr.dominionhelper.model.Kingdom
-import com.marvinsuhr.dominionhelper.utils.Constants
+import com.marvinsuhr.dominionhelper.data.repositories.KingdomRepository
 import com.marvinsuhr.dominionhelper.utils.insertOrReplaceAtKeyPosition
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -29,17 +31,17 @@ import javax.inject.Inject
 enum class KingdomUiState {
     KINGDOM_LIST,
     LOADING,
-    SHOWING_KINGDOM,
-    SHOWING_CARD_DETAIL
+    SINGLE_KINGDOM,
+    CARD_DETAIL
 }
 
 @HiltViewModel
 class KingdomViewModel @Inject constructor(
-    private val cardDao: CardDao,
+    private val kingdomRepository: KingdomRepository,
     private val expansionDao: ExpansionDao,
     private val kingdomGenerator: KingdomGenerator,
     private val userPrefsRepository: UserPrefsRepository
-) : ViewModel() {
+) : ViewModel(), ScreenViewModel {
 
     enum class SortType(val text: String) {
         EXPANSION("Sort by expansion"),
@@ -47,9 +49,61 @@ class KingdomViewModel @Inject constructor(
         COST("Sort by cost")
     }
 
-    // Variable for tracking the current state
-    private val _kingdomUiState = MutableStateFlow(KingdomUiState.LOADING)
-    val kingdomUiState: StateFlow<KingdomUiState> = _kingdomUiState.asStateFlow()
+    // Interface stuff
+
+    override fun handleBackNavigation(): Boolean {
+        when (_uiState.value) {
+
+            KingdomUiState.KINGDOM_LIST -> {
+                return false
+            }
+
+            KingdomUiState.LOADING -> {
+                return false
+            }
+
+            KingdomUiState.SINGLE_KINGDOM -> {
+                switchUiStateTo(KingdomUiState.KINGDOM_LIST)
+                // Clear kingdom?
+                return true
+            }
+
+            KingdomUiState.CARD_DETAIL -> {
+                clearSelectedCard()
+                switchUiStateTo(KingdomUiState.SINGLE_KINGDOM)
+                return true
+            }
+        }
+    }
+
+    override fun onSortTypeSelected(sortType: AppSortType) {
+        Log.d("LibraryViewModel", "Selected sort type $sortType")
+        userChangedSortType(sortType as AppSortType.Kingdom)
+    }
+
+    private val _scrollToTopEvent = MutableSharedFlow<Unit>(extraBufferCapacity = 1)
+    val scrollToTopEvent = _scrollToTopEvent.asSharedFlow()
+
+    override fun triggerScrollToTop() {
+        _scrollToTopEvent.tryEmit(Unit)
+    }
+
+    private val _sortType = MutableStateFlow(SortType.EXPANSION)
+    val sortType: StateFlow<SortType> = _sortType.asStateFlow()
+
+    override val currentAppSortType: StateFlow<AppSortType?> =
+        sortType.map { AppSortType.Kingdom(it) }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
+
+    private val _uiState = MutableStateFlow(KingdomUiState.KINGDOM_LIST)
+    val uiState: StateFlow<KingdomUiState> = _uiState.asStateFlow()
+
+    override val showBackButton: StateFlow<Boolean> =
+        uiState.map { uiState ->
+            uiState == KingdomUiState.SINGLE_KINGDOM || uiState == KingdomUiState.CARD_DETAIL
+        }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
+
+    // Fields
 
     private val _kingdom = MutableStateFlow(Kingdom())
     val kingdom: StateFlow<Kingdom> = _kingdom.asStateFlow()
@@ -61,22 +115,19 @@ class KingdomViewModel @Inject constructor(
     private val _playerCount = MutableStateFlow(2)
     val playerCount: StateFlow<Int> = _playerCount.asStateFlow()
 
-    private val _sortType = MutableStateFlow(SortType.EXPANSION)
-    val sortType: StateFlow<SortType> = _sortType.asStateFlow()
-
     // Error message
     private val _errorMessage = MutableStateFlow<String?>(null)
     val errorMessage: StateFlow<String?> = _errorMessage.asStateFlow()
 
-    val vetoMode: StateFlow<VetoMode> = userPrefsRepository.vetoMode
+    val allKingdoms: StateFlow<List<Kingdom>> = kingdomRepository.getAllKingdoms()
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000),
-            initialValue = Constants.DEFAULT_VETO_MODE
+            initialValue = emptyList()
         )
 
     val isCardDismissalEnabled: StateFlow<Boolean> = combine(
-        vetoMode,
+        userPrefsRepository.vetoMode,
         _kingdom
     ) { currentVetoMode, currentKingdom ->
         currentVetoMode != VetoMode.NO_REROLL || currentKingdom.randomCards.size > 10
@@ -88,36 +139,19 @@ class KingdomViewModel @Inject constructor(
 
     // TopBarTitle stuff
 
-    fun handleBackNavigation() {
-        when (_kingdomUiState.value) {
-
-            KingdomUiState.KINGDOM_LIST -> {
-
-            }
-
-            KingdomUiState.LOADING -> {
-
-            }
-
-            KingdomUiState.SHOWING_KINGDOM -> {
-
-            }
-
-            KingdomUiState.SHOWING_CARD_DETAIL -> {
-                clearSelectedCard()
-            }
-        }
+    private fun switchUiStateTo(newState: KingdomUiState) {
+        _uiState.value = newState
+        Log.d("KingdomViewModel", "Switched UI state to $newState")
     }
 
     fun selectCard(card: Card) {
         _selectedCard.value = card
-        _kingdomUiState.value = KingdomUiState.SHOWING_CARD_DETAIL
+        _uiState.value = KingdomUiState.CARD_DETAIL
         Log.d("LibraryViewModel", "Selected card ${card.name}")
     }
 
     fun clearSelectedCard() {
         _selectedCard.value = null
-        _kingdomUiState.value = KingdomUiState.SHOWING_KINGDOM
         Log.d("LibraryViewModel", "Cleared selected card")
     }
 
@@ -133,7 +167,7 @@ class KingdomViewModel @Inject constructor(
                 return@launch
             }
 
-            _kingdomUiState.value = KingdomUiState.LOADING
+            //_kingdomUiState.value = KingdomUiState.LOADING
             val generatedKingdom = kingdomGenerator.generateKingdom()
             val kingdomWithPlayerCount = applyPlayerCountToKingdom(generatedKingdom, 2)
             val sortedKingdom =
@@ -141,7 +175,8 @@ class KingdomViewModel @Inject constructor(
 
             _kingdom.value = sortedKingdom
             clearSelectedCard()
-            _kingdomUiState.value = KingdomUiState.SHOWING_KINGDOM
+            kingdomRepository.saveKingdom(sortedKingdom)
+            _uiState.value = KingdomUiState.SINGLE_KINGDOM
         }
     }
 
@@ -164,7 +199,7 @@ class KingdomViewModel @Inject constructor(
             //startingCards = sortedStartingCards,
             //landscapeCards = sortedLandscapeCards,
             // Generate new UUID. Otherwise recomposition isn't triggered
-            id = UUID.randomUUID().toString()
+            uuid = UUID.randomUUID().toString()
         )
     }
 
@@ -200,7 +235,6 @@ class KingdomViewModel @Inject constructor(
 
     fun userChangedPlayerCount(newPlayerCount: Int) {
         Log.d("KingdomViewModel", "Selected player count $newPlayerCount")
-
         _playerCount.value = newPlayerCount
         _kingdom.update { currentGlobalKingdom ->
             applyPlayerCountToKingdom(currentGlobalKingdom, newPlayerCount)
@@ -209,7 +243,6 @@ class KingdomViewModel @Inject constructor(
 
     fun userChangedSortType(newSortType: AppSortType.Kingdom) {
         Log.d("KingdomViewModel", "Selected sort type $newSortType")
-
         _sortType.value = newSortType.sortType
         _kingdom.update { currentGlobalKingdom ->
             applySortTypeToKingdom(currentGlobalKingdom, newSortType.sortType)
@@ -262,6 +295,16 @@ class KingdomViewModel @Inject constructor(
         return cardAmounts
     }
 
+    fun selectKingdom(kingdom: Kingdom) {
+        _kingdom.value = kingdom
+        switchUiStateTo(KingdomUiState.SINGLE_KINGDOM)
+    }
+
+    fun clearKingdom() {
+        _kingdom.value = Kingdom()
+        switchUiStateTo(KingdomUiState.KINGDOM_LIST)
+    }
+
     fun triggerError(message: String) {
         _errorMessage.value = message
     }
@@ -269,6 +312,8 @@ class KingdomViewModel @Inject constructor(
     fun clearError() {
         _errorMessage.value = null
     }
+
+    // Card dismissal / reroll
 
     fun onCardDismissed(dismissedCard: Card) {
 
@@ -289,8 +334,7 @@ class KingdomViewModel @Inject constructor(
         Log.i("LibraryViewModel", "Dismissing card '${dismissedCard.name}' from the kingdom.")
 
         viewModelScope.launch {
-
-            if (vetoMode.first() == VetoMode.NO_REROLL) {
+            if (userPrefsRepository.vetoMode.first() == VetoMode.NO_REROLL) {
                 handleNoRerollDismissal(dismissedCard, dismissedCard.landscape)
             } else {
                 handleRerollDismissal(dismissedCard, currentKingdom, dismissedCard.landscape)
@@ -364,6 +408,25 @@ class KingdomViewModel @Inject constructor(
                         newValue = 1
                     )
                 )
+            }
+        }
+    }
+
+    // In its own class?
+
+    suspend fun fetchKingdomDetails(kingdomId: Int): Kingdom? {
+        return kingdomRepository.getKingdomById(kingdomId)
+    }
+
+    fun deleteKingdom(kingdomId: Int?) {
+        if (kingdomId == null) return
+        viewModelScope.launch {
+            kingdomRepository.deleteKingdomById(kingdomId)
+
+            // If selected kingdom was deleted
+            if (_kingdom.value.id == kingdomId) {
+                _kingdom.value = Kingdom()
+                switchUiStateTo(KingdomUiState.KINGDOM_LIST)
             }
         }
     }
