@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -21,10 +23,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.font.FontWeight
-import androidx.core.view.WindowCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -32,7 +31,6 @@ import com.marvinsuhr.dominionhelper.ui.KingdomViewModel
 import com.marvinsuhr.dominionhelper.ui.LibraryViewModel
 import com.marvinsuhr.dominionhelper.ui.ScreenViewModel
 import com.marvinsuhr.dominionhelper.ui.SettingsViewModel
-import com.marvinsuhr.dominionhelper.ui.components.TopBar
 import com.marvinsuhr.dominionhelper.ui.theme.DominionHelperTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -45,9 +43,9 @@ class MainActivity : ComponentActivity() {
 
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
+        //enableEdgeToEdge()
+        //WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
-        WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
             DominionHelperTheme {
@@ -87,10 +85,8 @@ class MainActivity : ComponentActivity() {
                 }
 
                 Scaffold(
-                    modifier = Modifier
-                        .nestedScroll(scrollBehavior.nestedScrollConnection),
                     snackbarHost = { SnackbarHost(snackbarHostState) },
-                    topBar = {
+                    /*topBar = {
                         if (showTopAppBar) {
                             TopBar(
                                 title = currentTopBarTitle,
@@ -106,6 +102,20 @@ class MainActivity : ComponentActivity() {
                                 scrollBehavior = scrollBehavior,
                                 showSearch = currentScreen == CurrentScreen.Library
                             )
+                        }
+                    },*/
+                    floatingActionButton = {
+                        if (currentScreen == CurrentScreen.Kingdoms) {
+                            FloatingActionButton(
+                                onClick = {
+                                    (currentViewModel as KingdomViewModel).getRandomKingdom()
+                                },
+                            ) {
+                                Icon(
+                                    Icons.Filled.Add,
+                                    contentDescription = "FAB to generate a new kingdom"
+                                )
+                            }
                         }
                     },
                     bottomBar = {
@@ -156,13 +166,13 @@ class MainActivity : ComponentActivity() {
 
                     AppNavigation(
                         navController = navController,
-                        paddingValues = innerPadding,
                         onTitleChanged = onTitleChangedLambda,
                         snackbarHostState = snackbarHostState,
                         libraryViewModel = libraryViewModel,
                         kingdomViewModel = kingdomViewModel,
                         settingsViewModel = settingsViewModel,
-                        performBackNavigation = performBackNavigation
+                        performBackNavigation = performBackNavigation,
+                        innerPadding = innerPadding
                     )
                 }
             }

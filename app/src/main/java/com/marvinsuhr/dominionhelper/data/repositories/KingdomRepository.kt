@@ -2,6 +2,7 @@ package com.marvinsuhr.dominionhelper.data.repositories
 
 import com.marvinsuhr.dominionhelper.data.CardDao
 import com.marvinsuhr.dominionhelper.data.KingdomDao
+import com.marvinsuhr.dominionhelper.data.entities.KingdomEntity
 import com.marvinsuhr.dominionhelper.data.mappers.toDomainModel
 import com.marvinsuhr.dominionhelper.data.mappers.toEntity
 import com.marvinsuhr.dominionhelper.model.Kingdom
@@ -59,10 +60,17 @@ class KingdomRepository @Inject constructor(
      */
     suspend fun saveKingdom(kingdom: Kingdom): Long {
         return withContext(defaultDispatcher) {
-            val kingdomEntity = kingdom.toEntity() // Assumes toEntity() correctly sets id=0 for auto-generation
-            kingdomDao.insertKingdom(kingdomEntity) // insertKingdom should return the Long rowId
+            val kingdomEntity = kingdom.toEntity()
+            kingdomDao.insertKingdom(kingdomEntity)
         }
     }
+
+    suspend fun saveKingdomEntity(kingdom: KingdomEntity): Long {
+        return withContext(defaultDispatcher) {
+            kingdomDao.insertKingdom(kingdom)
+        }
+    }
+
 
     /**
      * Deletes a kingdom from the database by its ID.

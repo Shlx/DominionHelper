@@ -7,7 +7,6 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -39,6 +38,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -63,14 +63,15 @@ fun ExpansionList(
     onOwnershipToggle: (Expansion, Boolean) -> Unit, // Callback for ownership changes
     onToggleExpansion: (ExpansionWithEditions) -> Unit, // Callback to toggle the isExpanded flag for a given expansion name
     modifier: Modifier = Modifier,
-    listState: LazyListState = rememberLazyListState()
+    listState: LazyListState = rememberLazyListState(),
+    paddingValues: PaddingValues = PaddingValues(0.dp)
 ) {
 
     LazyColumn(
         modifier = modifier,
         state = listState,
-        contentPadding = PaddingValues(Constants.PADDING_SMALL),
-        verticalArrangement = Arrangement.spacedBy(Constants.PADDING_SMALL)
+        verticalArrangement = Arrangement.spacedBy(Constants.PADDING_SMALL),
+        contentPadding = paddingValues
     ) {
         items(
             items = expansions,

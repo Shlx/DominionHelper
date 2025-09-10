@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -71,36 +72,27 @@ import kotlin.text.ifEmpty
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun KingdomList2(
+fun KingdomList(
     kingdomList: List<Kingdom>,
     onGenerateKingdom: () -> Unit,
     onKingdomClicked: (Kingdom) -> Unit,
     onDeleteClick: (Kingdom) -> Unit,
     onFavoriteClick: (Kingdom) -> Unit,
     onKingdomNameChange: (kingdomUuid: String, newName: String) -> Unit,
-    listState: LazyListState = rememberLazyListState()
+    listState: LazyListState = rememberLazyListState(),
+    paddingValues: PaddingValues
 ) {
     LazyColumn(
-        contentPadding = PaddingValues(Constants.PADDING_SMALL),
+        contentPadding = paddingValues,
         state = listState,
         verticalArrangement = Arrangement.spacedBy(Constants.PADDING_SMALL),
         modifier = Modifier.fillMaxSize()
     ) {
-        item {
-            Box(
-                modifier = Modifier.fillMaxWidth(), // To center the button within the available width
-                contentAlignment = Alignment.Center
-            ) {
-                Button(
-                    onClick = { onGenerateKingdom() },
-                ) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text("Generate a new kingdom ")
-                    }
-                }
-            }
-        }
 
+        item {
+            //GenerateKingdomButton(onGenerateKingdom)
+            Spacer(Modifier) // This forces the list to stay on top
+        }
         items(
             items = kingdomList,
             key = { kingdom -> kingdom.uuid }
@@ -113,6 +105,25 @@ fun KingdomList2(
                 onKingdomNameChange = { uuid, newName -> onKingdomNameChange(uuid, newName) },
                 modifier = Modifier.animateItem()
             )
+        }
+    }
+}
+
+
+@Composable
+fun GenerateKingdomButton(
+    onGenerateKingdom: () -> Unit
+) {
+    Box(
+        modifier = Modifier.fillMaxWidth(), // To center the button within the available width
+        contentAlignment = Alignment.Center
+    ) {
+        Button(
+            onClick = { onGenerateKingdom() },
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text("Generate a new kingdom ")
+            }
         }
     }
 }
@@ -142,8 +153,6 @@ fun KingdomCard(
     ) {
         Column {
             Row(
-                modifier = Modifier
-                    .padding(horizontal = 8.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -214,8 +223,8 @@ fun EditableKingdomName(
         val newName = textField.text
         if (newName.isNotBlank() && newName != oldName) {
             onNameChange(uuid, newName)
+            displayName = newName
         }
-        displayName = newName
         isEditingName = false
         focusManager.clearFocus()
     }
@@ -227,12 +236,16 @@ fun EditableKingdomName(
         modifier = modifier
             .padding(horizontal = 8.dp)
             .height(IntrinsicSize.Min),
-        contentAlignment = Alignment.CenterStart
+        contentAlignment = Alignment.Center
     ) {
         if (isEditingName) {
             BasicTextField(
                 value = textField,
-                onValueChange = { textField = it },
+                onValueChange = { newValue ->
+                    if (newValue.text.length <= Constants.KINGDOM_NAME_MAX_LENGTH) {
+                        textField = newValue
+                    }
+                },
                 textStyle = LocalTextStyle.current.copy(
                     textAlign = TextAlign.Center,
                     color = MaterialTheme.colorScheme.onSurface
@@ -285,9 +298,7 @@ fun EditableKingdomName(
                 style = MaterialTheme.typography.titleMedium,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
-                    .fillMaxWidth()
                     .clickable { isEditingName = true }
-                    .padding(vertical = 8.dp) // Add some padding for easier clicking
             )
         }
     }

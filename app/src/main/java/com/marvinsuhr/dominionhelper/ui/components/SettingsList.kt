@@ -41,7 +41,8 @@ import com.marvinsuhr.dominionhelper.ui.SettingItem
 fun SettingsList(
     settings: List<SettingItem>,
     modifier: Modifier = Modifier,
-    listState: LazyListState = rememberLazyListState()
+    listState: LazyListState = rememberLazyListState(),
+    paddingValues: PaddingValues = PaddingValues(0.dp)
 ) {
 
     Log.i("SettingsList", "settings: $settings")
@@ -49,6 +50,7 @@ fun SettingsList(
     LazyColumn(
         modifier = modifier,
         state = listState,
+        contentPadding = paddingValues
     ) {
         items(settings) { setting ->
             when (setting) {

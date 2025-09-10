@@ -35,7 +35,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.outlined.Casino
 import androidx.compose.material.icons.outlined.Circle
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -103,6 +102,7 @@ fun LibraryCardList(
     onCardClick: (Card) -> Unit,
     onToggleEnable: (Card) -> Unit,
     listState: LazyListState = rememberLazyListState(),
+    paddingValues: PaddingValues
 ) {
     Log.i("CardList", "${cardList.size} cards")
 
@@ -121,7 +121,7 @@ fun LibraryCardList(
     LazyColumn(
         modifier = modifier,
         state = listState,
-        contentPadding = PaddingValues(Constants.PADDING_SMALL),
+        contentPadding = paddingValues,
         verticalArrangement = Arrangement.spacedBy(Constants.PADDING_SMALL)
     ) {
 
@@ -243,13 +243,14 @@ fun SearchResultsCardList(
     cardList: List<Card>,
     onCardClick: (Card) -> Unit,
     onToggleEnable: (Card) -> Unit,
-    listState: LazyListState = rememberLazyListState()
+    listState: LazyListState = rememberLazyListState(),
+    paddingValues: PaddingValues
 ) {
     Log.i("CardList", "${cardList.size} cards")
 
     LazyColumn(
         modifier = modifier,
-        contentPadding = PaddingValues(Constants.PADDING_SMALL),
+        contentPadding = paddingValues,
         verticalArrangement = Arrangement.spacedBy(Constants.PADDING_SMALL),
         state = listState
     ) {
@@ -275,7 +276,7 @@ fun SearchResultsCardList(
     ExperimentalSharedTransitionApi::class
 )
 @Composable
-fun KingdomList(
+fun KingdomCardList(
     modifier: Modifier = Modifier,
     kingdom: Kingdom,
     onCardClick: (Card) -> Unit,
@@ -284,7 +285,7 @@ fun KingdomList(
     listState: LazyListState = rememberLazyListState(),
     isDismissEnabled: Boolean,
     onCardDismissed: (Card) -> Unit,
-    onRandomClick: () -> Unit
+    paddingValues: PaddingValues
 ) {
     Log.i(
         "KingdomList",
@@ -294,7 +295,7 @@ fun KingdomList(
     LazyColumn(
         modifier = modifier,
         state = listState,
-        contentPadding = PaddingValues(Constants.PADDING_SMALL),
+        contentPadding = paddingValues,
         verticalArrangement = Arrangement.spacedBy(Constants.PADDING_SMALL)
     ) {
 

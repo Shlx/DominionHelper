@@ -5,17 +5,12 @@ import com.marvinsuhr.dominionhelper.model.Card
 import com.marvinsuhr.dominionhelper.data.CardDao
 import com.marvinsuhr.dominionhelper.data.ExpansionDao
 import com.marvinsuhr.dominionhelper.data.UserPrefsRepository
-import com.marvinsuhr.dominionhelper.model.CardDependencies
-import com.marvinsuhr.dominionhelper.model.CardNames
+import com.marvinsuhr.dominionhelper.data.entities.KingdomEntity
 import com.marvinsuhr.dominionhelper.model.Expansion
-import com.marvinsuhr.dominionhelper.model.Kingdom
 import com.marvinsuhr.dominionhelper.model.Set
 import com.marvinsuhr.dominionhelper.model.Type
-import com.marvinsuhr.dominionhelper.ui.DarkAgesMode
-import com.marvinsuhr.dominionhelper.ui.ProsperityMode
 import com.marvinsuhr.dominionhelper.ui.RandomMode
 import com.marvinsuhr.dominionhelper.ui.VetoMode
-import com.marvinsuhr.dominionhelper.utils.isPercentChance
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -37,10 +32,11 @@ val predicateMapLandscape: Map<String, (Card) -> Boolean> = mapOf(
 class KingdomGenerator @Inject constructor(
     private val cardDao: CardDao,
     private val expansionDao: ExpansionDao,
-    private val userPrefsRepository: UserPrefsRepository
+    private val userPrefsRepository: UserPrefsRepository,
+    private val cardDependencyResolver: CardDependencyResolver
 ) {
 
-    suspend fun generateKingdom(): Kingdom {
+    suspend fun generateKingdom(): KingdomEntity {
         val randomMode = userPrefsRepository.randomMode.first()
 
         when (randomMode) {
@@ -56,7 +52,7 @@ class KingdomGenerator @Inject constructor(
         }
     }
 
-    private suspend fun generateKingdomFullRandom(): Kingdom {
+    private suspend fun generateKingdomFullRandom(): KingdomEntity {
         val cardList = mutableSetOf<Card>()
         val totalCardsToGenerate = userPrefsRepository.numberOfCardsToGenerate.first()
 
@@ -76,10 +72,11 @@ class KingdomGenerator @Inject constructor(
 
         val landscapeList = generateLandscapeCards(landscapePool)
 
-        return finalizeKingdom(cardList, landscapeList)
+        // TODO: Check if it makes sense to just load ids instead of the whole card
+        return KingdomEntity(randomCardIds = cardList.map { it.id }, landscapeCardIds = landscapeList.map { it.id })
     }
 
-    private suspend fun generateKingdomEvenAmounts(): Kingdom {
+    private suspend fun generateKingdomEvenAmounts(): KingdomEntity {
         val cardList = mutableSetOf<Card>()
         val totalCardsToGenerate = userPrefsRepository.numberOfCardsToGenerate.first()
 
@@ -110,12 +107,10 @@ class KingdomGenerator @Inject constructor(
             randomExpansions
         )
 
-        // Shuffle the final list of kingdom cards
-        val finalKingdomCards = cardList.shuffled().toMutableSet()
-
         val landscapeList = generateLandscapeCards(landscapePoolCandidates)
 
-        return finalizeKingdom(finalKingdomCards, landscapeList)
+        // TODO: Check if it makes sense to just load ids instead of the whole card
+        return KingdomEntity(randomCardIds = cardList.map { it.id }, landscapeCardIds = landscapeList.map { it.id })
     }
 
     private fun applyPortraitPredicates(
@@ -246,26 +241,6 @@ class KingdomGenerator @Inject constructor(
         return landscapeList
     }
 
-    private suspend fun finalizeKingdom(
-        randomCardsSet: kotlin.collections.Set<Card>, // Use Set to avoid duplicates if any logic above slips
-        landscapeCardsSet: kotlin.collections.Set<Card>
-    ): Kingdom {
-        val basicCards = loadCards(CardNames.BASIC_CARDS.associateWith { 1 })
-        val dependentCardsToLoad = getDependentCards(randomCardsSet) // Pass Set
-        val dependentCards = loadCards(dependentCardsToLoad)
-        val startingCardsToLoad = getStartingCards(randomCardsSet) // Pass Set
-        val startingCards = loadCards(startingCardsToLoad)
-
-        val randomCardsMap = listToMap(randomCardsSet.toList())
-        val landscapeCardsMap = listToMap(landscapeCardsSet.toList())
-
-        Log.i(
-            "Kingdom Generator",
-            "Generated ${randomCardsMap.size} random cards, ${basicCards.size} basic cards, ${dependentCards.size} dependent cards, ${startingCards.size} starting cards, and ${landscapeCardsMap.size} landscape cards."
-        )
-        return Kingdom(randomCardsMap, basicCards, dependentCards, startingCards, landscapeCardsMap)
-    }
-
     private suspend fun getCandidatesFullRandom(): Pair<MutableSet<Card>, MutableSet<Card>> {
 
         val portraitCandidates = mutableSetOf<Card>()
@@ -334,31 +309,6 @@ class KingdomGenerator @Inject constructor(
 
     // Pass List here?
     // TODO: Review this
-    suspend fun loadCards(cardsToLoad: Map<String, Int>): LinkedHashMap<Card, Int> {
-
-        val cardNames = cardsToLoad.keys.toList()
-        val loadedCardsList = cardDao.getCardsByNameList(cardNames)
-
-        if (loadedCardsList.size != cardNames.size) {
-            val missingNames =
-                cardNames.filterNot { name -> loadedCardsList.any { it.name == name } }
-            Log.e(
-                "KingdomGenerator",
-                "Critical error: Not all cards found in DB! Missing: $missingNames"
-            )
-            throw IllegalStateException("Failed to load some cards. Missing: $missingNames")
-        }
-
-        // Reconstruct the map with Card objects as keys and original Int values
-        val result = LinkedHashMap<Card, Int>()
-        loadedCardsList.forEach { card ->
-            // Find the original amount from the input map.
-            // The !! is safe here because of the size check above, ensuring card.name was in cardsToLoad.keys
-            // Hmm
-            result[card] = cardsToLoad[card.name]!!
-        }
-        return result
-    }
 
     suspend fun replaceCardInKingdom(
         cardToRemove: Card,
@@ -435,144 +385,5 @@ class KingdomGenerator @Inject constructor(
             Log.w("Kingdom Generator", "Cannot generate card: No valid sets provided.")
             null
         }
-    }
-
-    private fun listToMap(list: List<Card>): LinkedHashMap<Card, Int> {
-        val map = linkedMapOf<Card, Int>()
-        list.forEach { card ->
-            map[card] = 1 // Default value of 1
-        }
-        return map
-    }
-
-    private suspend fun getDependentCards(cards: kotlin.collections.Set<Card>): LinkedHashMap<String, Int> {
-
-        // TODO: If a trait is present, choose a random card
-
-        val dependencyRules = CardDependencies().dependencyRules
-        val dependentCardNames = mutableSetOf<String>()
-
-        // TODO Efficiency: When a dependencyRule is met, the other ones are still checked.
-        // We should not check further rules when one is found, as this is just a waste of resources.
-        // We can change this by using any().
-        // -> Is this true?
-        dependencyRules.forEach { rule ->
-            cards.forEach { card ->
-                if (rule.condition(card)) {
-                    dependentCardNames.addAll(rule.dependentCardNames)
-                }
-            }
-        }
-
-        dependentCardNames.addAll(checkProsperityBasicCards(cards))
-
-        val dependentCardMap = LinkedHashMap<String, Int>()
-        dependentCardNames.forEach { cardName ->
-            dependentCardMap[cardName] = 1 // Default 1
-        }
-
-        return dependentCardMap
-    }
-
-    private suspend fun checkProsperityBasicCards(randomCards: kotlin.collections.Set<Card>): List<String> {
-
-        val prosperityCardsToAdd = mutableListOf<String>()
-        val prosperityMode = userPrefsRepository.prosperityBasicCardsMode.first()
-
-        val prosperityCount = randomCards.count {
-            it.sets.contains(Set.PROSPERITY_1E) || it.sets.contains(Set.PROSPERITY_2E)
-        }
-
-        when (prosperityMode) {
-
-            // Don't add in any case
-            ProsperityMode.NEVER -> {
-                return emptyList()
-            }
-
-            // 10% chance per prosperity card
-            ProsperityMode.TEN_PERCENT_PER_CARD -> {
-                if (prosperityCount > 0) {
-                    if (isPercentChance(prosperityCount * 10.0)) {
-                        Log.i(
-                            "KingdomGenerator",
-                            "Adding Platinum and Colony - 10% per card ($prosperityCount)"
-                        )
-                        prosperityCardsToAdd.add("Platinum")
-                        prosperityCardsToAdd.add("Colony")
-                    }
-                }
-            }
-
-            // Always add Platinum and Colony if at least one Prosperity card is in the 10 random kingdom cards
-            ProsperityMode.IF_PRESENT -> {
-                if (prosperityCount > 0) {
-                    Log.i(
-                        "KingdomGenerator",
-                        "Adding Platinum and Colony (Prosperity card present in Kingdom rule)"
-                    )
-                    prosperityCardsToAdd.add("Platinum")
-                    prosperityCardsToAdd.add("Colony")
-                }
-            }
-        }
-
-        return prosperityCardsToAdd
-    }
-
-    private suspend fun getStartingCards(randomCards: kotlin.collections.Set<Card>): Map<String, Int> {
-
-        val cards = mutableMapOf<String, Int>()
-        val darkAgesMode = userPrefsRepository.darkAgesStarterCardsMode.first()
-        val darkAgesCount = randomCards.count { it.sets.contains(Set.DARK_AGES) }
-
-        when (darkAgesMode) {
-
-            // Don't add in any case
-            DarkAgesMode.NEVER -> {
-                cards["Estate"] = 3
-            }
-
-            // 10% per Dark Ages card to use Shelters instead of Estates
-            DarkAgesMode.TEN_PERCENT_PER_CARD -> {
-                if (isPercentChance(darkAgesCount * 10.0)) {
-                    Log.i("KingdomGenerator", "Adding Shelters - 10% per card ($darkAgesCount)")
-                    cards["Overgrown Estate"] = 1
-                    cards["Hovel"] = 1
-                    cards["Necropolis"] = 1
-                } else {
-                    cards["Estate"] = 3
-                }
-            }
-
-            // Always add Shelters if at least one Dark Ages card is in the 10 random kingdom cards
-            DarkAgesMode.IF_PRESENT -> {
-                if (darkAgesCount > 0) {
-                    Log.i(
-                        "KingdomGenerator",
-                        "Adding Shelters because Dark Ages cards are present"
-                    )
-                    cards["Overgrown Estate"] = 1
-                    cards["Hovel"] = 1
-                    cards["Necropolis"] = 1
-                } else {
-                    cards["Estate"] = 3
-                }
-            }
-        }
-
-        // Add Heirlooms
-        var heirloomCount = 0
-        CardNames.heirloomPairs.forEach { (cardName, dependentCardName) ->
-            if (randomCards.any { it.name == cardName }) {
-                Log.d("Kingdom Generator", "Adding Heirloom: $cardName")
-                cards[dependentCardName] = 1
-                heirloomCount++
-            }
-        }
-
-        // 1 less Copper per Heirloom
-        cards["Copper"] = 7 - heirloomCount
-        return cards
     }
 }

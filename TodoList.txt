@@ -46,7 +46,22 @@ CORNUCOPIA / GUILDS: Don't switch ownership at the same time, not all regions me
 
 ---
 
+Statt TopAppBar: Custom element mit Größe (x + status bar padding) und dann nestedScrolling?
+First item in list spacer?
+UI bounds pass
+
+Generate button runter -> FAB?
+
+Color kingdom list buttons?
+
+On back: end editing card
+
+"Unnamed kingdom (x)"
+Expansion list: portrait / landscape amount
+
 TODO NEXT:
+LinkedHashSets?
+
 - Search "1" finds BASE_1E, rethink search in general
     (when to stop viewing expansions)
 
@@ -55,9 +70,9 @@ TODO NEXT:
 
     sort kingdom list items by cost like in app
 
-    old name flashes when renaming
-
     Make sure theres only 10 cards per saved kingdom? Or only show 10?
+
+    when generating kingdom, the old one is selected first
 
 - Detail view top bar ist hidden
 - Skeleton while loading kingdom?

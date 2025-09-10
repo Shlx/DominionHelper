@@ -156,4 +156,10 @@ fun <K, V> insertOrReplaceAtKeyPosition(
     return result
 }
 
-
+fun listToMap(list: List<Card>): LinkedHashMap<Card, Int> {
+    val map = linkedMapOf<Card, Int>()
+    list.forEach { card ->
+        map[card] = 1 // Default value of 1
+    }
+    return map
+}

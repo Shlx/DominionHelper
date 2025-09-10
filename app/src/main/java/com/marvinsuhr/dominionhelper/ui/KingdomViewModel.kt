@@ -3,6 +3,7 @@ package com.marvinsuhr.dominionhelper.ui
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.marvinsuhr.dominionhelper.CardDependencyResolver
 import com.marvinsuhr.dominionhelper.KingdomGenerator
 import com.marvinsuhr.dominionhelper.data.ExpansionDao
 import com.marvinsuhr.dominionhelper.data.UserPrefsRepository
@@ -39,6 +40,7 @@ class KingdomViewModel @Inject constructor(
     private val kingdomRepository: KingdomRepository,
     private val expansionDao: ExpansionDao,
     private val kingdomGenerator: KingdomGenerator,
+    private val cardDependencyResolver: CardDependencyResolver,
     private val userPrefsRepository: UserPrefsRepository
 ) : ViewModel(), ScreenViewModel {
 
@@ -156,6 +158,8 @@ class KingdomViewModel @Inject constructor(
 
     fun clearSelectedCard() {
         _selectedCard.value = null
+        // TODO I'd rather not have this here
+        switchUiStateTo(KingdomUiState.SINGLE_KINGDOM)
         Log.d("LibraryViewModel", "Cleared selected card")
     }
 
@@ -171,16 +175,8 @@ class KingdomViewModel @Inject constructor(
                 return@launch
             }
 
-            //_kingdomUiState.value = KingdomUiState.LOADING
             val generatedKingdom = kingdomGenerator.generateKingdom()
-            val kingdomWithPlayerCount = applyPlayerCountToKingdom(generatedKingdom, 2)
-            val sortedKingdom =
-                applySortTypeToKingdom(kingdomWithPlayerCount, _sortType.value)
-
-            //_kingdom.value = sortedKingdom
-            clearSelectedCard()
-            kingdomRepository.saveKingdom(sortedKingdom)
-            //switchUiStateTo(KingdomUiState.SINGLE_KINGDOM)
+            kingdomRepository.saveKingdomEntity(generatedKingdom)
         }
     }
 
@@ -189,7 +185,7 @@ class KingdomViewModel @Inject constructor(
         newSortType: SortType
     ): Kingdom {
 
-        // Sort kingdom lists
+        // Sort kingdom lists (only random makes sense right?)
         val sortedRandomCards = sortCards(kingdom.randomCards, newSortType)
         //val sortedDependentCards = sortCards(kingdom.dependentCards, newSortType)
         //val sortedBasicCards = sortCards(kingdom.basicCards, newSortType)
@@ -253,6 +249,7 @@ class KingdomViewModel @Inject constructor(
         }
     }
 
+    // TODO: Move elsewherre
     fun getCardAmounts(
         cards: LinkedHashMap<Card, Int>,
         playerCount: Int
@@ -300,8 +297,21 @@ class KingdomViewModel @Inject constructor(
     }
 
     fun selectKingdom(kingdom: Kingdom) {
-        _kingdom.value = kingdom
-        switchUiStateTo(KingdomUiState.SINGLE_KINGDOM)
+        // At this point the kingdoms are fully loaded? But without dependencies!
+        // Consider displaying KingdomEntities at this stage! TODO
+        // Problem: KingdomEntity needs to know images of card ids. -> Manageable
+        // Furthermore: Should Kingdom contain card IDs or whole cards?
+        // KingdomListUiItem
+        viewModelScope.launch {
+            val fullKingdom = cardDependencyResolver.addDependentCards(
+                kingdom.randomCards.keys,
+                kingdom.landscapeCards.keys
+            )
+            // player count
+            // sort
+            _kingdom.value = fullKingdom
+            switchUiStateTo(KingdomUiState.SINGLE_KINGDOM)
+        }
     }
 
     fun clearKingdom() {

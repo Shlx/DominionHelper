@@ -442,6 +442,8 @@ class LibraryViewModel @Inject constructor(
 
     fun clearSelectedCard() {
         _selectedCard.value = null
+        // TODO I'd rather not have this here
+        switchUiStateTo(LibraryUiState.EXPANSION_CARDS)
         Log.d("LibraryViewModel", "Cleared selected card")
     }
 

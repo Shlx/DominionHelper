@@ -2,8 +2,10 @@ package com.marvinsuhr.dominionhelper
 
 import android.util.Log
 import androidx.activity.compose.BackHandler
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Castle
@@ -20,7 +22,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
@@ -33,8 +34,8 @@ import com.marvinsuhr.dominionhelper.ui.LibraryViewModel
 import com.marvinsuhr.dominionhelper.ui.SettingsViewModel
 import com.marvinsuhr.dominionhelper.ui.components.CardDetailPager
 import com.marvinsuhr.dominionhelper.ui.components.ExpansionList
+import com.marvinsuhr.dominionhelper.ui.components.KingdomCardList
 import com.marvinsuhr.dominionhelper.ui.components.KingdomList
-import com.marvinsuhr.dominionhelper.ui.components.KingdomList2
 import com.marvinsuhr.dominionhelper.ui.components.LibraryCardList
 import com.marvinsuhr.dominionhelper.ui.components.SearchResultsCardList
 import com.marvinsuhr.dominionhelper.ui.components.SettingsList
@@ -93,51 +94,52 @@ val bottomNavItems = listOf(
 @Composable
 fun AppNavigation(
     navController: NavHostController,
-    paddingValues: PaddingValues,
     onTitleChanged: (String) -> Unit,
     snackbarHostState: SnackbarHostState,
     libraryViewModel: LibraryViewModel,
     kingdomViewModel: KingdomViewModel,
     settingsViewModel: SettingsViewModel,
-    performBackNavigation: () -> Unit
+    performBackNavigation: () -> Unit,
+    innerPadding: PaddingValues
 ) {
-
     NavHost(
         navController = navController,
         startDestination = Constants.START_DESTINATION.route,
-        modifier = Modifier.padding(paddingValues)
+        enterTransition = { fadeIn(animationSpec = tween(100)) },
+        exitTransition = { fadeOut(animationSpec = tween(100)) }
     ) {
 
+        // TODO: Find a way to not pass innerPadding to each screen (rough)
         // Library
         composable(CurrentScreen.Library.route) {
             LibraryScreen(
-                navController = navController,
                 snackbarHostState = snackbarHostState,
                 onTitleChanged = onTitleChanged,
                 viewModel = libraryViewModel,
-                performBackNavigation = performBackNavigation
+                performBackNavigation = performBackNavigation,
+                innerPadding = innerPadding
             )
         }
 
         // Kingdoms
         composable(CurrentScreen.Kingdoms.route) {
             KingdomsScreen(
-                navController = navController,
                 onTitleChanged = onTitleChanged,
                 snackbarHostState = snackbarHostState,
                 viewModel = kingdomViewModel,
-                performBackNavigation = performBackNavigation
+                performBackNavigation = performBackNavigation,
+                innerPadding
             )
         }
 
         // Settings
         composable(CurrentScreen.Settings.route) {
             SettingsScreen(
-                navController = navController,
                 onTitleChanged = onTitleChanged,
                 snackbarHostState = snackbarHostState,
                 viewModel = settingsViewModel,
-                performBackNavigation = performBackNavigation
+                performBackNavigation = performBackNavigation,
+                innerPadding
             )
         }
 
@@ -189,11 +191,11 @@ fun AppNavigation(
 
 @Composable
 fun LibraryScreen(
-    navController: NavHostController,
     onTitleChanged: (String) -> Unit,
     snackbarHostState: SnackbarHostState,
     viewModel: LibraryViewModel,
-    performBackNavigation: () -> Unit
+    performBackNavigation: () -> Unit,
+    innerPadding: PaddingValues
 ) {
 
     Log.i(
@@ -277,7 +279,8 @@ fun LibraryScreen(
                     viewModel.updateExpansionOwnership(expansion, newOwned)
                 },
                 onToggleExpansion = { viewModel.toggleExpansion(it) },
-                listState = libraryListState
+                listState = libraryListState,
+                paddingValues = calculatePadding(innerPadding)
             )
         }
 
@@ -303,7 +306,8 @@ fun LibraryScreen(
                 },
                 onCardClick = { viewModel.selectCard(it) },
                 onToggleEnable = { viewModel.toggleCardEnabled(it) },
-                listState = cardListState
+                listState = cardListState,
+                paddingValues = calculatePadding(innerPadding)
             )
         }
 
@@ -314,7 +318,8 @@ fun LibraryScreen(
                 cardList = cardsToShow,
                 onCardClick = { viewModel.selectCard(it) },
                 onToggleEnable = { viewModel.toggleCardEnabled(it) },
-                listState = searchListState
+                listState = searchListState,
+                paddingValues = calculatePadding(innerPadding)
             )
         }
 
@@ -333,11 +338,11 @@ fun LibraryScreen(
 
 @Composable
 fun KingdomsScreen(
-    navController: NavHostController,
     onTitleChanged: (String) -> Unit,
     snackbarHostState: SnackbarHostState,
     viewModel: KingdomViewModel,
-    performBackNavigation: () -> Unit
+    performBackNavigation: () -> Unit,
+    innerPadding: PaddingValues
 ) {
     LaunchedEffect(Unit) { onTitleChanged("Kingdoms") }
 
@@ -382,13 +387,14 @@ fun KingdomsScreen(
 
         KingdomUiState.KINGDOM_LIST -> {
 
-            KingdomList2(
+            KingdomList(
                 kingdomList = allKingdoms,
                 onGenerateKingdom = { viewModel.getRandomKingdom() },
                 onKingdomClicked = { viewModel.selectKingdom(it) },
                 onDeleteClick = { viewModel.deleteKingdom(it.uuid) },
                 onFavoriteClick = { viewModel.toggleFavorite(it) },
-                onKingdomNameChange = { uuid, newName -> viewModel.updateKingdomName(uuid, newName) }
+                onKingdomNameChange = { uuid, newName -> viewModel.updateKingdomName(uuid, newName) },
+                paddingValues = calculatePadding(innerPadding)
             )
         }
 
@@ -402,7 +408,7 @@ fun KingdomsScreen(
                 "MainView",
                 "View card list (Random: ${kingdom.randomCards.size}, Dependent: ${kingdom.dependentCards.size}, Basic: ${kingdom.basicCards.size} cards, Landscape: ${kingdom.landscapeCards.size})"
             )
-            KingdomList(
+            KingdomCardList(
                 kingdom = kingdom,
                 onCardClick = { viewModel.selectCard(it) },
                 selectedPlayers = playerCount,
@@ -412,7 +418,7 @@ fun KingdomsScreen(
                 listState = kingdomListState,
                 isDismissEnabled = isDismissEnabled,
                 onCardDismissed = { viewModel.onCardDismissed(it) },
-                onRandomClick = { viewModel.getRandomKingdom() }
+                paddingValues = calculatePadding(innerPadding)
             )
         }
 
@@ -422,7 +428,8 @@ fun KingdomsScreen(
                 cardList = kingdom.getAllCards(),
                 initialCard = selectedCard!!,
                 onClick = { viewModel.clearSelectedCard() },
-                onPageChanged = { viewModel.selectCard(it) }
+                onPageChanged = { viewModel.selectCard(it) },
+                //paddingValues = getPad()
             )
         }
     }
@@ -431,11 +438,11 @@ fun KingdomsScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
-    navController: NavHostController,
     onTitleChanged: (String) -> Unit,
     snackbarHostState: SnackbarHostState,
     viewModel: SettingsViewModel,
-    performBackNavigation: () -> Unit
+    performBackNavigation: () -> Unit,
+    innerPadding: PaddingValues
 ) {
 
     Log.i("MainActivity", "Settings Screen Content. UI State: not implemented")
@@ -466,6 +473,18 @@ fun SettingsScreen(
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     SettingsList(
         uiState.settings,
-        listState = settingsListState
+        listState = settingsListState,
+        paddingValues = calculatePadding(innerPadding)
     )
 }
+
+@Composable
+fun calculatePadding(paddingValues: PaddingValues): PaddingValues {
+    return PaddingValues(
+        top = Constants.PADDING_SMALL + paddingValues.calculateTopPadding(),
+        start = Constants.PADDING_SMALL,
+        end = Constants.PADDING_SMALL,
+        bottom = Constants.PADDING_SMALL + paddingValues.calculateBottomPadding()
+    )
+}
+

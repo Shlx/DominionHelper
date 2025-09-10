@@ -61,12 +61,12 @@ fun DominionHelperTheme(
         SideEffect {
             val window = (view.context as Activity).window
 
-            window.statusBarColor = Color.Transparent.toArgb()
-            window.navigationBarColor = Color.Transparent.toArgb()
+            //window.statusBarColor = Color.Transparent.toArgb()
+            //window.navigationBarColor = Color.Transparent.toArgb()
 
-            val insetsController = WindowInsetsControllerCompat(window, view)
-            insetsController.isAppearanceLightStatusBars = !darkTheme
-            insetsController.isAppearanceLightNavigationBars = !darkTheme
+            //val insetsController = WindowInsetsControllerCompat(window, view)
+            //insetsController.isAppearanceLightStatusBars = !darkTheme
+            //insetsController.isAppearanceLightNavigationBars = !darkTheme
         }
     }
 
