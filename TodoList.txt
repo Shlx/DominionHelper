@@ -1,0 +1,225 @@
+Random info:
+Prop drilling: passing lots of data down through multiple levels (bad)
+by lazy: loading data only when needed (good)
+Flows: automatically updates UI elements when data changes
+mutableStateOf automatically updates UI elements reliant on the values when they change
+When passing a lambda function like (Card) -> Unit down to another function, should you put in the parameter as early as possible?
+-> As early as possible is good for clarity and separation of concerns. Capture card as early as possible
+
+It's a strong convention in Jetpack Compose that most non-trivial composables accept a modifier: Modifier = Modifier as their first optional parameter.
+
+Bom: Bill of materials - ensure all compose versions are compatible
+
+// adb pair <ip>:<port>
+// adb tcpip 5555
+
+.padding().size() -> Padding INSIDE (Smaller element)
+.size().padding() -> Padding OUTSIDE
+onClick > Modifier.clickable
+
+When you change the order of a LinkedHashMap, the hashcode stay THE SAME
+
+------------------
+
+// Decisions:
+// Actual split piles have supply set to false. This means they will not be randomized
+// and they do not have a disable button next to them in the library. In a way, split
+// piles are part of the supply, but for all intents and purposes, the "main" card suffices
+
+ProGuard/R8 (for Release Builds):
+•The Firebase Crashlytics plugin automatically adds the necessary ProGuard/R8 rules to keep Crashlytics symbols.
+•However, to get deobfuscated crash reports, you need to ensure that symbolication files (mapping files) are uploaded.
+•The com.google.firebase.crashlytics plugin handles uploading these mapping files automatically for release builds if you have minifyEnabled true and Crashlytics configured.
+•Make sure you don't explicitly add firebase-crashlytics-ndk unless you need NDK crash reporting, as it might interfere with Java/Kotlin symbol uploading if not configured correctly.
+
+------------------------------
+
+Name: Kingdom(s)!!, Vassal, Province
+
+// Remove touch effect from nav bar
+// List card types in detail view pretty
+// Tutorial screen (https://developer.android.com/develop/ui/compose/components/tooltip)
+// top system bar transparent
+// Kingdoms as default route
+
+CORNUCOPIA / GUILDS: Don't switch ownership at the same time, not all regions merged them (?)
+
+---
+
+Statt TopAppBar: Custom element mit Größe (x + status bar padding) und dann nestedScrolling?
+First item in list spacer?
+UI bounds pass
+
+Generate button runter -> FAB?
+
+Color kingdom list buttons?
+
+On back: end editing card
+
+"Unnamed kingdom (x)"
+Expansion list: portrait / landscape amount
+
+TODO NEXT:
+LinkedHashSets?
+
+- Search "1" finds BASE_1E, rethink search in general
+    (when to stop viewing expansions)
+
+    In search: Arrow back vs cross
+    Dismiss Snackbar when switching Screens
+
+    sort kingdom list items by cost like in app
+
+    Make sure theres only 10 cards per saved kingdom? Or only show 10?
+
+    when generating kingdom, the old one is selected first
+
+- Detail view top bar ist hidden
+- Skeleton while loading kingdom?
+- Rethink sorting? Maybe always split by categories, then by name / cost
+- Nothing happens when clicking an edition
+- Save kingdom etc when putting app in background
+- Landscape cards color bar
+
+- Make complex routes to link to speciofic kingdoms? kingdoms://kingdom/1,2,3,4 ... list of card IDs
+
+GENERATION
+
+- Reload additional cards after veto, constraints berücksichtigen
+- Landscape veto
+- Traits attached to cards
+- Black market, young witch (mark bane!), divine wind, ferryman, riverboat, approaching army
+
+SETTINGS
+
+- Allow promo cards randomly
+- Allow generating same type of landscape cards twice (never 2 prophecies / allies?)
+- Only pick landscapes when they were drawn randomly
+- Landscapes to generate setting? Quick way to disable all landscape types
+- Don’t generate any landscape / prefer physical
+- Allow pulling landscapes from expansions that are owned but not selected?
+- Constraint settings: include 2 / 3 cost, attack, attack when reaction, etc
+- Show expansion icon / toggle button in search
+
+UI
+
+- REWORK SETTINGS
+- Floating tool bar vs floating app bar?
+-> Oben durchsichtige / moderne bar (flexible navigation bar)
+- Invisible top bar / only when header is relevant? (See Auth app)
+- Search pill
+- M3 hierarchical list items
+
+---
+---
+
+TODO RELEASE
+FEATURES
+
+- Kingdom history
+
+CODE
+
+- Rethink database scheme, especially expansions and editions suck
+- Firebase logs etc
+- Check if loading card by name throws exception if card doesn't exist
+- Use coil, glide or fresco to load images to avoid "image decoding logging dropped" warnings and increase performance
+- Split Kingdom list / library list
+
+UI
+
+- Remove search from expansions / search expansion only?
+- Kingdom landscape view to show all cards images (5x2)? Slider, option
+- Add (enabled) card count to expansion list items?
+- Enable all cards button (settings?) / list blacklisted cards somewhere (”expansion”)
+- Make search results header pretty
+- Add sorting for expansions?
+- Try "invisible" list items
+- Owned expansions färben
+- Check image sizes and formats. Landscapes are low res
+- Non-supply als Card Type mit sortprio
+
+UX
+
+- Show card count option
+- Show 5/6 player selector option
+- Wegswipen besser machen (zu leicht getriggert) / edit mode?
+- Make more stuff searchable: debt, landscape, supply, potion, overpay?
+- Show icon or text on second edition / removed cards
+- Swap icon in expansion list depending on expansion owned (Also in kingdom list)
+- Pin cards so they don't get rerolled (swipe left)
+- Karten in Kingdom abhaken? Zum gemeinsamen Karten suchen
+- Side swipe to switch expansion?
+
+CODE
+
+- Use _somethingFromViewModel.update {} instead of setting _something.value
+- Check logs for redundancy
+- I think 'set' property can be removed from sets.json
+
+---
+---
+
+TODO AFTERWARDS
+
+FEATURES
+
+- VP Counter - attached to kingdom
+- Rating kingdoms, uploading
+- Other languages
+
+CODE
+
+- Applicationscope vs LifecycleScope vs CoroutineScope vs whatever
+- Flows instead of lists from DAO?
+- Try to thin out some parameters (TopBar)
+- Add Modifier to Compostable.parameters
+- Reset scroll state only when selecting different expansion -> oder Liststatemanager hash map für jede expansion
+- kotlin.collections.Set -> MutableSet / SET UMBENENNEN
+
+---
+---
+
+TODO LOW PRIO
+
+- Enchantress Farbe zu hell??
+- Move Way of Chameleon thumbnail
+- Add curse treasure when charlatan
+- Special sort for upgrade / split piles:
+    - Soldier > Fugitive > Disciple > Teacher
+    - Treasure Hunter > Warrior > Hero > Champion
+    - Sauna > Avanto, Gladiator > Fortune, Catapult > Rocks, Settlers > Bustling Village, Patrician > Emporium, Encampment > Plunder
+- Make system nav bar smaller
+- Animate clicking on a card -> detail
+- Animate nav bar blob
+- Detail view: 3d card switch effect? Or popup instead of fullscreen
+- Add player count to prefs(?), sortType too?
+- Explanation (i) icon for some stuff
+- Font: Princeps
+- Attack, Prize -> Prize, attack (order)=? Clash, Augur, Wizard too
+- Add source card to dependent cards in library
+
+
+old requirements backup:
+
+        // Add Ally if Liaison cards are present
+        if (cardList.any { it.types.contains(Type.LIAISON) }) {
+            val allyCards = landscapePool.filter { it.types.contains(Type.ALLY) }
+            Log.d("Kingdom Generator", "Ally cards: ${allyCards.size}")
+            if (allyCards.isEmpty()) {
+                // Error
+            } else {
+                landscapeList.add(allyCards.random())
+            }
+        }
+
+        // Add Prophecy if Omen cards are present
+        if (cardList.any { it.types.contains(Type.OMEN) }) {
+            val prohpecyCards = landscapePool.filter { it.types.contains(Type.PROPHECY) }
+            Log.d("Kingdom Generator", "Prophecy cards: ${prohpecyCards.size}")
+            if (prohpecyCards.isEmpty()) {
+                // Error
+            } else {
+                landscapeList.add(prohpecyCards.random())
+            }
+        }
