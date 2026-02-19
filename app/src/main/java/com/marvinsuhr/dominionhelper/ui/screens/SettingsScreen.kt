@@ -2,18 +2,25 @@ package com.marvinsuhr.dominionhelper.ui.screens
 
 import android.util.Log
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.marvinsuhr.dominionhelper.ui.SettingsViewModel
-import com.marvinsuhr.dominionhelper.utils.calculatePadding
 import com.marvinsuhr.dominionhelper.ui.components.SettingsList
-import androidx.compose.runtime.getValue
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -57,9 +64,28 @@ fun SettingsScreen(
     }
 
     val uiState by viewModel.uiState.collectAsState()
-    SettingsList(
-        uiState.settings,
-        listState = settingsListState,
-        paddingValues = calculatePadding(innerPadding)
-    )
+    Column(
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        SettingsList(
+            uiState.settings,
+            listState = settingsListState,
+            paddingValues = PaddingValues(
+                top = innerPadding.calculateTopPadding() + 8.dp,
+                start = 8.dp,
+                end = 8.dp,
+                bottom = 8.dp
+            )
+        )
+
+        // Version info at the bottom
+        Text(
+            text = "v1.0",
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .padding(horizontal = 8.dp, vertical = 16.dp)
+        )
+    }
 }

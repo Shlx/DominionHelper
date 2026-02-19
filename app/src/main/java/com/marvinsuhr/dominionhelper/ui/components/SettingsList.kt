@@ -225,7 +225,7 @@ fun <E : Enum<E>> ChoiceSettingItem(setting: SettingItem.ChoiceSetting<E>) {
         }
 
         HorizontalDivider(
-            modifier = Modifier.padding(start = 16.dp),
+            //modifier = Modifier.padding(start = 16.dp),
             thickness = DividerDefaults.Thickness,
             color = DividerDefaults.color
         )
