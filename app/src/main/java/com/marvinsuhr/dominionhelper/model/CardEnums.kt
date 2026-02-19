@@ -88,47 +88,47 @@ enum class Type(
     PROPHECY(sortPriority = 35, displayText = "Prophecy"),      // Rising Sun
 }
 
-enum class Category {
-    CANTRIP,
-    NONTERMINAL_DRAW,
-    TERMINAL_DRAW,
-    CURSER,
-    NONTERMINAL, // Skipped: Cantrips, Villages, Non-terminal draw, peddlers, disappearing money
-    TERMINAL, // Skipped: Way too many cards
-    THRONEROOM_VARIANT,
-    VILLAGE,
-    TRASHER,
-    ALT_VP,
-    PLUSBUY,
-    DECK_INSPECTOR,
-    TRASH_FOR_BENEFIT,
-    HANDSIZE_ATTACK,
+enum class Category(val displayName: String) {
+    CANTRIP("Cantrip"),
+    NONTERMINAL_DRAW("Non-terminal Draw"),
+    TERMINAL_DRAW("Terminal Draw"),
+    CURSER("Curser"),
+    NONTERMINAL("Non-terminal"), // Skipped: Cantrips, Villages, Non-terminal draw, peddlers, disappearing money
+    TERMINAL("Terminal"), // Skipped: Way too many cards
+    THRONEROOM_VARIANT("Throne Room Variant"),
+    VILLAGE("Village"),
+    TRASHER("Trasher"),
+    ALT_VP("Alt VP"),
+    PLUSBUY("Plus Buy"),
+    DECK_INSPECTOR("Deck Inspector"),
+    TRASH_FOR_BENEFIT("Trash for Benefit"),
+    HANDSIZE_ATTACK("Handsize Attack"),
     // ^done
-    DIGGING,
-    DISCARD, // For benefit
-    SIFTERS, // ?
-    COST_REDUCTION,
-    DISAPPEARING_MONEY,
-    PEDDLER,
-    TERMINAL_SILVER, // ?
-    VIRTUAL_COIN,
-    VIRTUAL_BUY, // ?
-    ATTACK_IMMUNITY,
-    DECK_INSPECTION,
-    DECK_ORDER_ATTACK,
-    JUNKING_ATTACK,
-    TRASHING_ATTACK,
-    TURN_WORSENING_ATTACK, // ?
-    DURATION_DRAW,
-    COMMAND_VARIANT,
-    GAINER,
-    NON_ATTACK_INTERACTION,
-    ONE_SHOT,
-    REMODELER,
-    SPLIT_PILE,
-    TOP_DECKER,
-    VANILLA, // ?
-    EXTRA_TURN // ?
+    DIGGING("Digging"),
+    DISCARD("Discard"), // For benefit
+    SIFTERS("Sifter"), // ?
+    COST_REDUCTION("Cost Reduction"),
+    DISAPPEARING_MONEY("Disappearing Money"),
+    PEDDLER("Peddler"),
+    TERMINAL_SILVER("Terminal Silver"), // ?
+    VIRTUAL_COIN("Virtual Coin"),
+    VIRTUAL_BUY("Virtual Buy"), // ?
+    ATTACK_IMMUNITY("Attack Immunity"),
+    DECK_INSPECTION("Deck Inspection"),
+    DECK_ORDER_ATTACK("Deck Order Attack"),
+    JUNKING_ATTACK("Junking Attack"),
+    TRASHING_ATTACK("Trashing Attack"),
+    TURN_WORSENING_ATTACK("Turn Worsening Attack"), // ?
+    DURATION_DRAW("Duration Draw"),
+    COMMAND_VARIANT("Command Variant"),
+    GAINER("Gainer"),
+    NON_ATTACK_INTERACTION("Non-attack Interaction"),
+    ONE_SHOT("One-shot"),
+    REMODELER("Remodeler"),
+    SPLIT_PILE("Split Pile"),
+    TOP_DECKER("Top Deckecker"),
+    VANILLA("Vanilla"), // ?
+    EXTRA_TURN("Extra Turn") // ?
 }
 
 enum class CardDisplayCategory {
