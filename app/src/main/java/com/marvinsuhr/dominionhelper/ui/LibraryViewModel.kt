@@ -332,7 +332,6 @@ class LibraryViewModel @Inject constructor(
     }
 
     private fun whichEditionIsOwned(expansion: ExpansionWithEditions): OwnedEdition {
-
         if (expansion.firstEdition?.isOwned == true) {
             if (expansion.secondEdition?.isOwned == true) {
                 return OwnedEdition.BOTH
@@ -341,7 +340,8 @@ class LibraryViewModel @Inject constructor(
         } else if (expansion.secondEdition?.isOwned == true) {
             return OwnedEdition.SECOND
         } else {
-            return OwnedEdition.NONE
+            // Neither owned - default to 2nd edition as fallback
+            return OwnedEdition.SECOND
         }
     }
 
@@ -380,30 +380,17 @@ class LibraryViewModel @Inject constructor(
     }
 
     // When edition selector in CardList is pressed
+    // Clicking an edition toggles it, but always ensures at least one edition is selected
     fun selectEdition(
         expansion: ExpansionWithEditions,
         clickedEditionNumber: Int,
         currentOwnedEdition: OwnedEdition
     ) {
         viewModelScope.launch {
-
-            val newSelectedEdition: OwnedEdition
-
-            if (clickedEditionNumber == 1) {
-                newSelectedEdition = when (currentOwnedEdition) {
-                    OwnedEdition.NONE -> OwnedEdition.FIRST
-                    OwnedEdition.FIRST -> OwnedEdition.FIRST
-                    OwnedEdition.SECOND -> OwnedEdition.BOTH
-                    OwnedEdition.BOTH -> OwnedEdition.SECOND
-                }
-
-            } else {
-                newSelectedEdition = when (currentOwnedEdition) {
-                    OwnedEdition.NONE -> OwnedEdition.SECOND
-                    OwnedEdition.FIRST -> OwnedEdition.BOTH
-                    OwnedEdition.SECOND -> OwnedEdition.SECOND
-                    OwnedEdition.BOTH -> OwnedEdition.FIRST
-                }
+            val newSelectedEdition = when (clickedEditionNumber) {
+                1 -> toggleFirstEdition(currentOwnedEdition)
+                2 -> toggleSecondEdition(currentOwnedEdition)
+                else -> currentOwnedEdition
             }
 
             val set = getCardsFromOwnedEditions(expansion, newSelectedEdition)
@@ -411,8 +398,28 @@ class LibraryViewModel @Inject constructor(
             _selectedEdition.value = newSelectedEdition
             Log.d(
                 "LibraryViewModel",
-                "Selected edition $clickedEditionNumber for ${expansion.name} -> $currentOwnedEdition"
+                "Selected edition $clickedEditionNumber for ${expansion.name}: $currentOwnedEdition -> $newSelectedEdition"
             )
+        }
+    }
+
+    private fun toggleFirstEdition(current: OwnedEdition): OwnedEdition {
+        return when (current) {
+            OwnedEdition.FIRST -> OwnedEdition.SECOND     // First only → Switch to Second
+            OwnedEdition.SECOND -> OwnedEdition.BOTH       // Second only → Add First
+            OwnedEdition.BOTH -> OwnedEdition.SECOND       // Both → Remove First, keep Second
+            // NONE should never happen, but if it does, default to FIRST
+            OwnedEdition.NONE -> OwnedEdition.FIRST
+        }
+    }
+
+    private fun toggleSecondEdition(current: OwnedEdition): OwnedEdition {
+        return when (current) {
+            OwnedEdition.FIRST -> OwnedEdition.BOTH       // First only → Add Second
+            OwnedEdition.SECOND -> OwnedEdition.FIRST      // Second only → Switch to First
+            OwnedEdition.BOTH -> OwnedEdition.FIRST        // Both → Remove Second, keep First
+            // NONE should never happen, but if it does, default to SECOND
+            OwnedEdition.NONE -> OwnedEdition.SECOND
         }
     }
 
