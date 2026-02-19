@@ -55,7 +55,7 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
-    // Jetpack Compose test
+    // Jetpack Compose
     implementation(platform(libs.androidx.compose.bom)) // Handles versioning
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.foundation)// try rem
