@@ -118,7 +118,7 @@ class KingdomViewModel @Inject constructor(
 
     override val showTopAppBar: StateFlow<Boolean> =
         uiState.map { uiState ->
-            uiState != KingdomUiState.KINGDOM_LIST
+            uiState != KingdomUiState.KINGDOM_LIST && uiState != KingdomUiState.CARD_DETAIL
         }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
 
     // Top bar title that shows kingdom name when viewing a kingdom

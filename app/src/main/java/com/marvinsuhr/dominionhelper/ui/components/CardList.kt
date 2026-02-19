@@ -124,7 +124,6 @@ fun LibraryCardList(
         contentPadding = paddingValues,
         verticalArrangement = Arrangement.spacedBy(Constants.PADDING_SMALL)
     ) {
-
         if (includeEditionSelection) {
             item {
                 EditionSelectionButtons(onEditionSelected, selectedEdition)
@@ -244,7 +243,9 @@ fun SearchResultsCardList(
     onCardClick: (Card) -> Unit,
     onToggleEnable: (Card) -> Unit,
     listState: LazyListState = rememberLazyListState(),
-    paddingValues: PaddingValues
+    paddingValues: PaddingValues,
+    searchText: String = "",
+    onSearchTextChange: (String) -> Unit = {}
 ) {
     Log.i("CardList", "${cardList.size} cards")
 
@@ -254,6 +255,13 @@ fun SearchResultsCardList(
         verticalArrangement = Arrangement.spacedBy(Constants.PADDING_SMALL),
         state = listState
     ) {
+        // Search bar
+        item {
+            SearchBar(
+                searchText = searchText,
+                onSearchTextChange = onSearchTextChange
+            )
+        }
 
         item {
             Text("Search results ${cardList.size}")

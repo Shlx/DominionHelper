@@ -38,7 +38,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -64,7 +63,9 @@ fun ExpansionList(
     onToggleExpansion: (ExpansionWithEditions) -> Unit, // Callback to toggle the isExpanded flag for a given expansion name
     modifier: Modifier = Modifier,
     listState: LazyListState = rememberLazyListState(),
-    paddingValues: PaddingValues = PaddingValues(0.dp)
+    paddingValues: PaddingValues = PaddingValues(0.dp),
+    searchText: String = "",
+    onSearchTextChange: (String) -> Unit = {}
 ) {
 
     LazyColumn(
@@ -73,6 +74,14 @@ fun ExpansionList(
         verticalArrangement = Arrangement.spacedBy(Constants.PADDING_SMALL),
         contentPadding = paddingValues
     ) {
+        // Search bar as first item
+        item {
+            SearchBar(
+                searchText = searchText,
+                onSearchTextChange = onSearchTextChange
+            )
+        }
+
         items(
             items = expansions,
             key = { it.name }

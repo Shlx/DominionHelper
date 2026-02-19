@@ -109,12 +109,13 @@ class LibraryViewModel @Inject constructor(
 
     override val showTopAppBar: StateFlow<Boolean> =
         uiState.map { uiState ->
-            uiState != LibraryUiState.EXPANSIONS
+            uiState != LibraryUiState.EXPANSIONS && uiState != LibraryUiState.SEARCH_RESULTS && uiState != LibraryUiState.CARD_DETAIL
         }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
 
     // Fields
 
     private var lastState: LibraryUiState = LibraryUiState.EXPANSIONS
+    private var stateBeforeSearch: LibraryUiState = LibraryUiState.EXPANSIONS
 
     // Expansion variables
     private val _expansionsWithEditions = MutableStateFlow<List<ExpansionWithEditions>>(emptyList())
@@ -340,8 +341,13 @@ class LibraryViewModel @Inject constructor(
         } else if (expansion.secondEdition?.isOwned == true) {
             return OwnedEdition.SECOND
         } else {
-            // Neither owned - default to 2nd edition as fallback
-            return OwnedEdition.SECOND
+            // Neither owned - default to available edition
+            // If second edition exists, default to it, otherwise use first edition
+            return if (expansion.secondEdition != null) {
+                OwnedEdition.SECOND
+            } else {
+                OwnedEdition.FIRST
+            }
         }
     }
 
@@ -354,11 +360,15 @@ class LibraryViewModel @Inject constructor(
 
         when (ownedEdition) {
             OwnedEdition.FIRST -> {
-                set.addAll(cardDao.getCardsByExpansion(expansion.firstEdition!!.id))
+                expansion.firstEdition?.let { firstEdition ->
+                    set.addAll(cardDao.getCardsByExpansion(firstEdition.id))
+                }
             }
 
             OwnedEdition.SECOND -> {
-                set.addAll(cardDao.getCardsByExpansion(expansion.secondEdition!!.id))
+                expansion.secondEdition?.let { secondEdition ->
+                    set.addAll(cardDao.getCardsByExpansion(secondEdition.id))
+                }
             }
 
             else -> {
@@ -511,8 +521,32 @@ class LibraryViewModel @Inject constructor(
     fun changeSearchText(newText: String) {
         _searchText.value = newText
         Log.d("LibraryViewModel", "Updated search text to $newText")
+
+        // Automatically trigger search when text changes
+        viewModelScope.launch {
+            if (newText.isEmpty()) {
+                // Clear search results and go back to previous state
+                _cardsToShow.value = emptyList()
+                // Return to the state we were in before searching
+                _uiState.value = stateBeforeSearch
+            } else if (newText.length >= 2 || newText.first().isDigit()) {
+                // Save current state before switching to search results
+                if (_uiState.value != LibraryUiState.SEARCH_RESULTS) {
+                    stateBeforeSearch = _uiState.value
+                }
+                // Perform search
+                _cardsToShow.value = cardDao.getFilteredCards("%$newText%")
+                _uiState.value = LibraryUiState.SEARCH_RESULTS
+            }
+
+            Log.d(
+                "LibraryViewModel",
+                "Searched for $newText, search results: ${_cardsToShow.value.size}"
+            )
+        }
     }
 
+    // TODO Remove?
     fun searchCards(newText: String) {
         viewModelScope.launch {
 

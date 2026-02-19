@@ -36,7 +36,6 @@ import com.marvinsuhr.dominionhelper.ui.SettingsViewModel
 import com.marvinsuhr.dominionhelper.ui.ScreenViewModel
 import com.marvinsuhr.dominionhelper.ui.KingdomUiState
 import com.marvinsuhr.dominionhelper.ui.components.TopBar
-import com.marvinsuhr.dominionhelper.ui.DarkModeSetting
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -129,7 +128,8 @@ class MainActivity : ComponentActivity() {
                                 onSortTypeSelected = { currentViewModel?.onSortTypeSelected(it) },
                                 selectedSortType = currentViewModel?.currentAppSortType?.collectAsState()?.value,
                                 scrollBehavior = scrollBehavior,
-                                showSearch = currentScreen == CurrentScreen.Library
+                                showSearch = currentScreen == CurrentScreen.Library &&
+                                    currentLibraryViewModel?.uiState?.collectAsState()?.value == com.marvinsuhr.dominionhelper.ui.LibraryUiState.EXPANSIONS
                             )
                         }
                     },

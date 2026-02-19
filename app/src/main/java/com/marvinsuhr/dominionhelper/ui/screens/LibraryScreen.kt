@@ -52,7 +52,6 @@ fun LibraryScreen(
     val sortType by viewModel.sortType.collectAsState()
 
     val searchText by viewModel.searchText.collectAsState()
-    val isSearchActive by viewModel.searchActive.collectAsState()
 
     val errorMessage by viewModel.errorMessage.collectAsState()
     val coroutineScope = rememberCoroutineScope()
@@ -74,12 +73,6 @@ fun LibraryScreen(
                 snackbarHostState.showSnackbar(message = message, duration = SnackbarDuration.Short)
                 viewModel.clearError()
             }
-        }
-    }
-
-    LaunchedEffect(key1 = searchText, key2 = isSearchActive) {
-        if (isSearchActive) {
-            viewModel.searchCards(searchText)
         }
     }
 
@@ -118,7 +111,9 @@ fun LibraryScreen(
                 },
                 onToggleExpansion = { viewModel.toggleExpansion(it) },
                 listState = libraryListState,
-                paddingValues = calculatePadding(innerPadding)
+                paddingValues = calculatePadding(innerPadding),
+                searchText = searchText,
+                onSearchTextChange = { viewModel.changeSearchText(it) }
             )
         }
 
@@ -157,7 +152,9 @@ fun LibraryScreen(
                 onCardClick = { viewModel.selectCard(it) },
                 onToggleEnable = { viewModel.toggleCardEnabled(it) },
                 listState = searchListState,
-                paddingValues = calculatePadding(innerPadding)
+                paddingValues = calculatePadding(innerPadding),
+                searchText = searchText,
+                onSearchTextChange = { viewModel.changeSearchText(it) }
             )
         }
 

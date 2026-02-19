@@ -42,7 +42,6 @@ interface CardDao {
     WHERE name LIKE '%' || :filter || '%'
        OR sets LIKE '%' || :filter || '%'
        OR types LIKE '%' || :filter || '%'
-       OR categories LIKE '%' || :filter || '%'
        OR CAST(cost AS TEXT) LIKE '%' || :filter || '%'
     """
     )
