@@ -1,5 +1,7 @@
 package com.marvinsuhr.dominionhelper.utils
 
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.marvinsuhr.dominionhelper.CurrentScreen
@@ -7,6 +9,7 @@ import com.marvinsuhr.dominionhelper.ui.DarkAgesMode
 import com.marvinsuhr.dominionhelper.ui.ProsperityMode
 import com.marvinsuhr.dominionhelper.ui.RandomMode
 import com.marvinsuhr.dominionhelper.ui.VetoMode
+import com.marvinsuhr.dominionhelper.utils.Constants.PADDING_SMALL
 
 object Constants {
 
@@ -44,4 +47,14 @@ object Constants {
 
     const val KINGDOM_NAME_MAX_LENGTH = 80
 
+}
+
+@Composable
+fun calculatePadding(paddingValues: PaddingValues): PaddingValues {
+    return PaddingValues(
+        top = PADDING_SMALL + paddingValues.calculateTopPadding(),
+        start = PADDING_SMALL,
+        end = PADDING_SMALL,
+        bottom = PADDING_SMALL + paddingValues.calculateBottomPadding()
+    )
 }
