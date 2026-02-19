@@ -38,14 +38,19 @@ class UserPrefsRepository @Inject constructor(
     @ApplicationContext private val context: Context
 ) {
 
-    val isDarkMode: Flow<Boolean> = context.dataStore.data
+    // Dark mode: null means use system default, true = dark, false = light
+    val isDarkMode: Flow<Boolean?> = context.dataStore.data
         .map { preferences ->
-            preferences[UserPreferencesKeys.IS_DARK_MODE] ?: Constants.DEFAULT_IS_DARK_MODE
+            preferences[UserPreferencesKeys.IS_DARK_MODE]
         }
 
-    suspend fun setDarkMode(isDarkMode: Boolean) {
+    suspend fun setDarkMode(isDarkMode: Boolean?) {
         context.dataStore.edit { settings ->
-            settings[UserPreferencesKeys.IS_DARK_MODE] = isDarkMode
+            if (isDarkMode == null) {
+                settings.remove(UserPreferencesKeys.IS_DARK_MODE)
+            } else {
+                settings[UserPreferencesKeys.IS_DARK_MODE] = isDarkMode
+            }
         }
     }
 

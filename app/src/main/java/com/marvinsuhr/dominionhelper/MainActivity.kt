@@ -23,10 +23,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.collectAsState
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.marvinsuhr.dominionhelper.data.UserPrefsRepository
 import com.marvinsuhr.dominionhelper.ui.theme.DominionHelperTheme
 import com.marvinsuhr.dominionhelper.ui.KingdomViewModel
 import com.marvinsuhr.dominionhelper.ui.LibraryViewModel
@@ -34,17 +36,28 @@ import com.marvinsuhr.dominionhelper.ui.SettingsViewModel
 import com.marvinsuhr.dominionhelper.ui.ScreenViewModel
 import com.marvinsuhr.dominionhelper.ui.KingdomUiState
 import com.marvinsuhr.dominionhelper.ui.components.TopBar
+import com.marvinsuhr.dominionhelper.ui.DarkModeSetting
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var userPrefsRepository: UserPrefsRepository
 
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            DominionHelperTheme {
+            val isSystemDarkMode = isSystemInDarkTheme()
+            val darkModePreference by userPrefsRepository.isDarkMode.collectAsState(
+                initial = null
+            )
+            val darkTheme = darkModePreference ?: isSystemDarkMode
+
+            DominionHelperTheme(darkTheme = darkTheme) {
 
                 val navController = rememberNavController()
                 val navBackStackEntry by navController.currentBackStackEntryAsState()

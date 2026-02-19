@@ -41,8 +41,6 @@ object Constants {
     val DEFAULT_DARK_AGES_STARTER_CARDS = DarkAgesMode.TEN_PERCENT_PER_CARD
     val DEFAULT_PROSPERITY_BASIC_CARDS = ProsperityMode.TEN_PERCENT_PER_CARD
 
-    const val DEFAULT_IS_DARK_MODE = false
-
     val START_DESTINATION = CurrentScreen.Kingdoms
 
     const val KINGDOM_NAME_MAX_LENGTH = 80

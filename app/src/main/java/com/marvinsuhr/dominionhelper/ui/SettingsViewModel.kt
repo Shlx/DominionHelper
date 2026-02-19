@@ -88,6 +88,12 @@ enum class ProsperityMode(val displayName: String) {
     // ALWAYS_IF_PROSPERITY_OWNED ??
 }
 
+enum class DarkModeSetting(val displayName: String) {
+    SYSTEM("System default"),
+    DARK("Dark"),
+    LIGHT("Light")
+}
+
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
     private val userPrefsRepository: UserPrefsRepository
@@ -122,7 +128,7 @@ class SettingsViewModel @Inject constructor(
             userPrefsRepository.darkAgesStarterCardsMode,
             userPrefsRepository.prosperityBasicCardsMode
         ) { values ->
-            val isDarkMode = values[0] as Boolean
+            val darkModePreference = values[0] as Boolean?
             val currentRandomMode = values[1] as RandomMode
             val currentRandomExpAmount = values[2] as Int
             val currentVetoMode = values[3] as VetoMode
@@ -133,10 +139,20 @@ class SettingsViewModel @Inject constructor(
             val currentProsperityMode = values[8] as ProsperityMode
 
             listOfNotNull( // Use listOfNotNull if some settings might be conditionally absent
-                SettingItem.SwitchSetting(
-                    title = "Dark Mode",
-                    isChecked = isDarkMode,
-                    onCheckedChange = { setDarkMode(it) }
+                SettingItem.ChoiceSetting(
+                    title = "Dark mode",
+                    selectedOption = if (darkModePreference == null) DarkModeSetting.SYSTEM
+                                   else if (darkModePreference) DarkModeSetting.DARK
+                                   else DarkModeSetting.LIGHT,
+                    allOptions = DarkModeSetting.entries.toList(),
+                    optionDisplayFormatter = { it.displayName },
+                    onOptionSelected = { newMode ->
+                        when (newMode) {
+                            DarkModeSetting.SYSTEM -> setDarkMode(null)
+                            DarkModeSetting.DARK -> setDarkMode(true)
+                            DarkModeSetting.LIGHT -> setDarkMode(false)
+                        }
+                    }
                 ),
                 SettingItem.ChoiceSetting(
                     title = "Random mode",
@@ -190,7 +206,7 @@ class SettingsViewModel @Inject constructor(
         }
     }
 
-    fun setDarkMode(isDarkMode: Boolean) {
+    fun setDarkMode(isDarkMode: Boolean?) {
         viewModelScope.launch {
             userPrefsRepository.setDarkMode(isDarkMode)
         }
