@@ -1,28 +1,33 @@
 package com.marvinsuhr.dominionhelper.ui.components
 
 import android.util.Log
-import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.shape.CornerBasedShape
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
-import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Circle
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.icons.outlined.Circle
+import androidx.compose.material3.DividerDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -33,7 +38,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import com.marvinsuhr.dominionhelper.ui.SettingItem
 
 
@@ -105,143 +115,223 @@ fun NumberSettingItem(setting: SettingItem.NumberSetting) {
 
     var textFieldValue by remember(setting.number) { mutableStateOf(setting.number.toString()) }
 
-    Column(
+    Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)
+            .padding(horizontal = 16.dp, vertical = 16.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(text = setting.title)
-        TextField(
-            value = textFieldValue,
-            onValueChange = { newText ->
-                textFieldValue = newText // Update the local text state immediately
-                // Try to parse the integer, only call onNumberChange if valid
-                // Allow empty string for temporary clearing of the field
-                if (newText.isEmpty()) {
-                    // Decide how to handle empty:
-                    // Option 1: Call with a default (e.g., 0)
-                    // setting.onNumberChange(0)
-                    // Option 2: Do nothing yet, wait for valid number or blur
-                    // Option 3: If your SettingItem allows nullable numbers, pass null
-                } else {
-                    newText.toIntOrNull()?.let { number ->
-                        // Pass the parsed integer to the callback
-                        // This assumes your onNumberChange expects an Int
-                        setting.onNumberChange(number)
-                    }
-                }
-            },
-            modifier = Modifier.fillMaxWidth()
+        Text(
+            text = setting.title,
+            modifier = Modifier.weight(1f),
+            style = MaterialTheme.typography.bodyLarge
         )
+
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            IconButton(
+                onClick = {
+                    val newValue = (setting.number + 1).coerceAtMost(maximumValueForSetting(setting.title))
+                    textFieldValue = newValue.toString()
+                    setting.onNumberChange(newValue)
+                },
+                enabled = setting.number < maximumValueForSetting(setting.title)
+            ) {
+                Icon(Icons.Filled.KeyboardArrowUp, contentDescription = "Increase")
+            }
+
+            OutlinedTextField(
+                value = textFieldValue,
+                onValueChange = { newText ->
+                    textFieldValue = newText
+                    newText.toIntOrNull()?.let { number ->
+                        val clampedValue = number.coerceIn(
+                            minimumValueForSetting(setting.title),
+                            maximumValueForSetting(setting.title)
+                        )
+                        setting.onNumberChange(clampedValue)
+                    }
+                },
+                modifier = Modifier.width(64.dp),
+                textStyle = TextStyle(
+                    textAlign = TextAlign.Center,
+                    fontSize = 16.sp
+                ),
+                singleLine = true,
+                readOnly = false,
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedContainerColor = MaterialTheme.colorScheme.surface,
+                    unfocusedContainerColor = MaterialTheme.colorScheme.surface
+                )
+            )
+
+            IconButton(
+                onClick = {
+                    val newValue = (setting.number - 1).coerceAtLeast(minimumValueForSetting(setting.title))
+                    textFieldValue = newValue.toString()
+                    setting.onNumberChange(newValue)
+                },
+                enabled = setting.number > minimumValueForSetting(setting.title)
+            ) {
+                Icon(Icons.Filled.KeyboardArrowDown, contentDescription = "Decrease")
+            }
+        }
+    }
+}
+
+private fun minimumValueForSetting(title: String): Int {
+    return when (title) {
+        "Expansions for random cards" -> 1
+        "Number of cards to generate" -> 10
+        "Landscape categories to include" -> 0
+        else -> 0
+    }
+}
+
+private fun maximumValueForSetting(title: String): Int {
+    return when (title) {
+        "Expansions for random cards" -> 10
+        "Number of cards to generate" -> 20
+        "Landscape categories to include" -> 2
+        else -> 99
     }
 }
 
 @Composable
 fun <E : Enum<E>> ChoiceSettingItem(setting: SettingItem.ChoiceSetting<E>) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 8.dp, horizontal = 16.dp)
-    ) {
-        Text(
-            text = setting.title,
-            style = MaterialTheme.typography.titleMedium,
-            modifier = Modifier.padding(bottom = 8.dp)
+    var showDialog by remember { mutableStateOf(false) }
+
+    Column {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { showDialog = true }
+                .padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    text = setting.title,
+                    style = MaterialTheme.typography.bodyLarge
+                )
+                Text(
+                    text = setting.optionDisplayFormatter(setting.selectedOption),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.primary
+                )
+            }
+        }
+
+        HorizontalDivider(
+            modifier = Modifier.padding(start = 16.dp),
+            thickness = DividerDefaults.Thickness,
+            color = DividerDefaults.color
         )
 
-        SegmentedButtonRow(
-            options = setting.allOptions,
-            selectedOption = setting.selectedOption,
-            optionDisplayFormatter = setting.optionDisplayFormatter,
-            onOptionSelected = setting.onOptionSelected,
-            modifier = Modifier.fillMaxWidth()
-        )
+        if (showDialog) {
+            EnumSelectionDialog(
+                title = setting.title,
+                options = setting.allOptions,
+                selectedOption = setting.selectedOption,
+                optionDisplayFormatter = setting.optionDisplayFormatter,
+                onOptionSelected = { option ->
+                    setting.onOptionSelected(option)
+                    showDialog = false
+                },
+                onDismiss = { showDialog = false }
+            )
+        }
     }
 }
 
-/**
- * A custom composable that mimics a row of segmented buttons for single choice selection.
- *
- * @param E The enum type for the choices.
- * @param options List of all available enum options.
- * @param selectedOption The currently selected option.
- * @param optionDisplayFormatter Function to get the display string for each option.
- * @param onOptionSelected Callback when an option is selected.
- * @param modifier Modifier for this composable.
- */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun <E : Enum<E>> SegmentedButtonRow(
+fun <E : Enum<E>> EnumSelectionDialog(
+    title: String,
     options: List<E>,
     selectedOption: E,
     optionDisplayFormatter: (E) -> String,
     onOptionSelected: (E) -> Unit,
-    modifier: Modifier = Modifier,
-    // Optional: Allow customization of colors and shapes
-    selectedButtonColors: ButtonColors = ButtonDefaults.buttonColors(
-        containerColor = MaterialTheme.colorScheme.primary,
-        contentColor = MaterialTheme.colorScheme.onPrimary
-    ),
-    unselectedButtonColors: ButtonColors = ButtonDefaults.outlinedButtonColors(
-        contentColor = MaterialTheme.colorScheme.primary
-    ),
-    buttonBorder: BorderStroke = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
+    onDismiss: () -> Unit
 ) {
-    if (options.isEmpty()) return // Don't render if no options
-
-    Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .height(IntrinsicSize.Min), // Ensures all buttons in the row have the same height
-        horizontalArrangement = Arrangement.spacedBy(0.dp) // No space between buttons
+    Dialog(
+        onDismissRequest = onDismiss,
+        properties = DialogProperties(
+            dismissOnBackPress = true,
+            dismissOnClickOutside = true,
+            usePlatformDefaultWidth = false
+        )
     ) {
-        options.forEachIndexed { index, option ->
-            val isSelected = option == selectedOption
-
-            // Determine the shape for rounded corners on the ends
-            val shape: CornerBasedShape = when (index) {
-                0 -> RoundedCornerShape(
-                    topStartPercent = 50,
-                    bottomStartPercent = 50,
-                    topEndPercent = 0,
-                    bottomEndPercent = 0
-                )
-
-                options.lastIndex -> RoundedCornerShape(
-                    topStartPercent = 0,
-                    bottomStartPercent = 0,
-                    topEndPercent = 50,
-                    bottomEndPercent = 50
-                )
-
-                else -> androidx.compose.foundation.shape.RoundedCornerShape(0.dp) // Square shape for middle buttons
-            }
-
-            // For middle buttons, we only want the top/bottom border
-            // For end buttons, they get their respective side border too.
-            // A simpler approach for border is to let OutlinedButton handle it and adjust padding.
-            // Or draw custom borders. This example uses standard Button/OutlinedButton styling.
-
-            val currentButtonColors =
-                if (isSelected) selectedButtonColors else unselectedButtonColors
-
-            Button( // Or OutlinedButton, TextButton depending on the desired base style
-                onClick = { onOptionSelected(option) },
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 48.dp)
+                .widthIn(max = 400.dp),
+            shape = MaterialTheme.shapes.large,
+            color = MaterialTheme.colorScheme.surface,
+            tonalElevation = 5.dp
+        ) {
+            Column(
                 modifier = Modifier
-                    .weight(1f) // Each button takes equal width
-                    .fillMaxHeight(),
-                shape = shape,
-                colors = currentButtonColors,
-                border = if (!isSelected) buttonBorder else null, // Show border for unselected
-                contentPadding = PaddingValues(
-                    horizontal = 8.dp,
-                    vertical = 8.dp
-                ) // Adjust padding as needed
+                    .fillMaxWidth()
+                    .padding(16.dp)
             ) {
                 Text(
-                    text = optionDisplayFormatter(option),
-                    style = MaterialTheme.typography.labelLarge // Or bodyMedium etc.
+                    text = title,
+                    style = MaterialTheme.typography.titleLarge,
+                    modifier = Modifier.padding(bottom = 16.dp)
                 )
+
+                HorizontalDivider(
+                    modifier = Modifier.padding(bottom = 8.dp),
+                    thickness = DividerDefaults.Thickness,
+                    color = DividerDefaults.color
+                )
+
+                options.forEach { option ->
+                    val isSelected = option == selectedOption
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable {
+                                onOptionSelected(option)
+                            }
+                            .padding(vertical = 12.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        RadioButton(
+                            selected = isSelected,
+                            onClick = { onOptionSelected(option) }
+                        )
+                        Text(
+                            text = optionDisplayFormatter(option),
+                            modifier = Modifier.padding(start = 12.dp),
+                            style = MaterialTheme.typography.bodyLarge
+                        )
+                    }
+                }
             }
         }
     }
+}
+
+@Composable
+private fun RadioButton(
+    selected: Boolean,
+    onClick: () -> Unit
+) {
+    Icon(
+        imageVector = if (selected) {
+            Icons.Filled.Circle
+        } else {
+            Icons.Outlined.Circle
+        },
+        contentDescription = null,
+        tint = MaterialTheme.colorScheme.primary,
+        modifier = Modifier
+            .padding(8.dp)
+            .clickable(onClick = onClick)
+    )
 }
