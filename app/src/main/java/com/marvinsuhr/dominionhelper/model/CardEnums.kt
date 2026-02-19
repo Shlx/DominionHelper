@@ -4,32 +4,32 @@ import com.marvinsuhr.dominionhelper.R
 import com.marvinsuhr.dominionhelper.ui.KingdomViewModel
 import com.marvinsuhr.dominionhelper.ui.LibraryViewModel
 
-enum class Set (val imageId: Int = R.drawable.ic_launcher_foreground) {
-    BASE_1E(R.drawable.set_dominion_1e),
-    BASE_2E(R.drawable.set_dominion_2e),
-    INTRIGUE_1E(R.drawable.set_intrigue_1e),
-    INTRIGUE_2E(R.drawable.set_intrigue_2e),
-    SEASIDE_1E(R.drawable.set_seaside_1e),
-    SEASIDE_2E(R.drawable.set_seaside_2e),
-    ALCHEMY(R.drawable.set_alchemy),
-    PROSPERITY_1E(R.drawable.set_prosperity_1e),
-    PROSPERITY_2E(R.drawable.set_prosperity_2e),
-    CORNUCOPIA_1E(R.drawable.set_cornucopia),
-    CORNUCOPIA_GUILDS_2E(R.drawable.set_cornucopia_guilds_2e),
-    HINTERLANDS_1E(R.drawable.set_hinterlands_1e),
-    HINTERLANDS_2E(R.drawable.set_hinterlands_2e),
-    DARK_AGES(R.drawable.set_dark_ages),
-    GUILDS_1E(R.drawable.set_guilds),
-    ADVENTURES(R.drawable.set_adventures),
-    EMPIRES(R.drawable.set_empires),
-    NOCTURNE(R.drawable.set_nocturne),
-    RENAISSANCE(R.drawable.set_renaissance),
-    MENAGERIE(R.drawable.set_menagerie),
-    ALLIES(R.drawable.set_allies),
-    PLUNDER(R.drawable.set_plunder),
-    RISING_SUN(R.drawable.set_rising_sun),
-    PROMO(R.drawable.set_promo),
-    PLACEHOLDER() // TODO
+enum class Set (val imageId: Int = R.drawable.ic_launcher_foreground, val displayName: String = "") {
+    BASE_1E(R.drawable.set_dominion_1e, "Dominion"),
+    BASE_2E(R.drawable.set_dominion_2e, "Dominion"),
+    INTRIGUE_1E(R.drawable.set_intrigue_1e, "Intrigue"),
+    INTRIGUE_2E(R.drawable.set_intrigue_2e, "Intrigue"),
+    SEASIDE_1E(R.drawable.set_seaside_1e, "Seaside"),
+    SEASIDE_2E(R.drawable.set_seaside_2e, "Seaside"),
+    ALCHEMY(R.drawable.set_alchemy, "Alchemy"),
+    PROSPERITY_1E(R.drawable.set_prosperity_1e, "Prosperity"),
+    PROSPERITY_2E(R.drawable.set_prosperity_2e, "Prosperity"),
+    CORNUCOPIA_1E(R.drawable.set_cornucopia, "Cornucopia"),
+    CORNUCOPIA_GUILDS_2E(R.drawable.set_cornucopia_guilds_2e, "Cornucopia"),
+    HINTERLANDS_1E(R.drawable.set_hinterlands_1e, "Hinterlands"),
+    HINTERLANDS_2E(R.drawable.set_hinterlands_2e, "Hinterlands"),
+    DARK_AGES(R.drawable.set_dark_ages, "Dark Ages"),
+    GUILDS_1E(R.drawable.set_guilds, "Guilds"),
+    ADVENTURES(R.drawable.set_adventures, "Adventures"),
+    EMPIRES(R.drawable.set_empires, "Empires"),
+    NOCTURNE(R.drawable.set_nocturne, "Nocturne"),
+    RENAISSANCE(R.drawable.set_renaissance, "Renaissance"),
+    MENAGERIE(R.drawable.set_menagerie, "Menagerie"),
+    ALLIES(R.drawable.set_allies, "Allies"),
+    PLUNDER(R.drawable.set_plunder, "Plunder"),
+    RISING_SUN(R.drawable.set_rising_sun, "Rising Sun"),
+    PROMO(R.drawable.set_promo, "Promo"),
+    PLACEHOLDER(displayName = "Placeholder") // TODO
 }
 
 enum class Type(

@@ -25,7 +25,8 @@ class CardDependencyResolver @Inject constructor(
 
     suspend fun addDependentCards(
         randomCardsSet: kotlin.collections.Set<Card>,
-        landscapeCardsSet: kotlin.collections.Set<Card>
+        landscapeCardsSet: kotlin.collections.Set<Card>,
+        kingdomName: String? = null
     ): Kingdom {
 
         val basicCards = loadCards(CardNames.BASIC_CARDS.associateWith { 1 })
@@ -43,7 +44,14 @@ class CardDependencyResolver @Inject constructor(
             "Card Dependency Resolver",
             "Generated ${randomCardsMap.size} random cards, ${basicCards.size} basic cards, ${dependentCards.size} dependent cards, ${startingCards.size} starting cards, and ${landscapeCardsMap.size} landscape cards."
         )
-        return Kingdom(randomCardsMap, basicCards, dependentCards, startingCards, landscapeCardsMap)
+        return Kingdom(
+            randomCardsMap,
+            basicCards,
+            dependentCards,
+            startingCards,
+            landscapeCardsMap,
+            name = kingdomName ?: "Unnamed Kingdom"
+        )
     }
 
     private suspend fun getDependentCards(cards: kotlin.collections.Set<Card>): LinkedHashMap<String, Int> {

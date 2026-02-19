@@ -72,9 +72,14 @@ class KingdomGenerator @Inject constructor(
 
         val landscapeList = generateLandscapeCards(landscapePool)
 
+        // For FULL_RANDOM, we need to figure out which expansions the cards came from
+        val expansionNames = cardList.mapNotNull { it.sets.firstOrNull()?.displayName }.distinct()
+        val kingdomName = generateKingdomNameFromExpansionsList(expansionNames)
+        Log.i("Kingdom Generator", "Generated kingdom name: $kingdomName from expansions: $expansionNames")
+
         // TODO: Check if it makes sense to just load ids instead of the whole card
         // Use cardDependencyResolver to build the full Kingdom with all dependent cards
-        return cardDependencyResolver.addDependentCards(cardList, landscapeList)
+        return cardDependencyResolver.addDependentCards(cardList, landscapeList, kingdomName)
     }
 
     private suspend fun generateKingdomEvenAmounts(): Kingdom {
@@ -110,9 +115,27 @@ class KingdomGenerator @Inject constructor(
 
         val landscapeList = generateLandscapeCards(landscapePoolCandidates)
 
+        // Generate kingdom name from selected expansions
+        val kingdomName = generateKingdomNameFromExpansions(randomExpansions)
+        Log.i("Kingdom Generator", "Generated kingdom name: $kingdomName from ${randomExpansions.size} expansions")
+
         // TODO: Check if it makes sense to just load ids instead of the whole card/
         // Use cardDependencyResolver to build the full Kingdom with all dependent cards
-        return cardDependencyResolver.addDependentCards(cardList, landscapeList)
+        return cardDependencyResolver.addDependentCards(cardList, landscapeList, kingdomName)
+    }
+
+    private fun generateKingdomNameFromExpansions(expansions: List<Expansion>): String {
+        val expansionNames = expansions.map { it.name }
+        return generateKingdomNameFromExpansionsList(expansionNames)
+    }
+
+    private fun generateKingdomNameFromExpansionsList(expansionNames: List<String>): String {
+        return when {
+            expansionNames.isEmpty() -> "Unnamed Kingdom"
+            expansionNames.size == 1 -> expansionNames[0]
+            expansionNames.size == 2 -> "${expansionNames[0]}, ${expansionNames[1]}"
+            else -> "${expansionNames[0]}, ${expansionNames[1]}, ..."
+        }
     }
 
     private fun applyPortraitPredicates(
