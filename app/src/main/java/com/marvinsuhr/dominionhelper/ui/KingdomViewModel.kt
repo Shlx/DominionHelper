@@ -64,6 +64,8 @@ class KingdomViewModel @Inject constructor(
             }
 
             KingdomUiState.SINGLE_KINGDOM -> {
+                // Save kingdom if it's newly created
+                saveKingdomIfNeeded()
                 switchUiStateTo(KingdomUiState.KINGDOM_LIST)
                 // Clear kingdom?
                 return true
@@ -101,6 +103,10 @@ class KingdomViewModel @Inject constructor(
 
     private val _kingdom = MutableStateFlow(Kingdom())
     val kingdom: StateFlow<Kingdom> = _kingdom.asStateFlow()
+
+    // Track if the current kingdom is newly created (not yet saved) or previously saved
+    private val _isNewKingdom = MutableStateFlow(false)
+    val isNewKingdom: StateFlow<Boolean> = _isNewKingdom.asStateFlow()
 
     private val _selectedCard = MutableStateFlow<Card?>(null)
     val selectedCard: StateFlow<Card?> = _selectedCard.asStateFlow()
@@ -144,13 +150,17 @@ class KingdomViewModel @Inject constructor(
 
     val isCardDismissalEnabled: StateFlow<Boolean> = combine(
         userPrefsRepository.vetoMode,
-        _kingdom
-    ) { currentVetoMode, currentKingdom ->
-        currentVetoMode != VetoMode.NO_REROLL || currentKingdom.randomCards.size > 10
+        _kingdom,
+        _isNewKingdom
+    ) { currentVetoMode, currentKingdom, isNew ->
+        // Only allow vetoing if:
+        // 1. It's a newly created kingdom (not previously saved), AND
+        // 2. Either veto mode is enabled OR we have more than 10 cards
+        isNew && (currentVetoMode != VetoMode.NO_REROLL || currentKingdom.randomCards.size > 10)
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
-        initialValue = true
+        initialValue = false
     )
 
     // TopBarTitle stuff
@@ -186,7 +196,11 @@ class KingdomViewModel @Inject constructor(
             }
 
             val generatedKingdom = kingdomGenerator.generateKingdom()
-            kingdomRepository.saveKingdomEntity(generatedKingdom)
+
+            // The generator now returns a full Kingdom with all dependencies resolved
+            _kingdom.value = generatedKingdom
+            _isNewKingdom.value = true // Mark as new kingdom
+            switchUiStateTo(KingdomUiState.SINGLE_KINGDOM)
         }
     }
 
@@ -329,6 +343,7 @@ class KingdomViewModel @Inject constructor(
             // player count
             // sort
             _kingdom.value = kingdomWithMetadata
+            _isNewKingdom.value = false // This is a previously saved kingdom
             switchUiStateTo(KingdomUiState.SINGLE_KINGDOM)
         }
     }
@@ -472,6 +487,20 @@ class KingdomViewModel @Inject constructor(
     fun updateKingdomName(uuid: String, newName: String) {
         viewModelScope.launch {
             kingdomRepository.changeKingdomName(uuid, newName)
+        }
+    }
+
+    private fun saveKingdomIfNeeded() {
+        viewModelScope.launch {
+            val isNew = _isNewKingdom.value
+            val currentKingdom = _kingdom.value
+
+            if (isNew && currentKingdom.uuid.isNotEmpty()) {
+                // Save the newly created kingdom
+                Log.i("KingdomViewModel", "Saving newly created kingdom: ${currentKingdom.name}")
+                kingdomRepository.saveKingdom(currentKingdom)
+                _isNewKingdom.value = false
+            }
         }
     }
 }

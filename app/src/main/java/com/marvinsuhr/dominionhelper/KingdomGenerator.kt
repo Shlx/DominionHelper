@@ -5,8 +5,8 @@ import com.marvinsuhr.dominionhelper.model.Card
 import com.marvinsuhr.dominionhelper.data.CardDao
 import com.marvinsuhr.dominionhelper.data.ExpansionDao
 import com.marvinsuhr.dominionhelper.data.UserPrefsRepository
-import com.marvinsuhr.dominionhelper.data.entities.KingdomEntity
 import com.marvinsuhr.dominionhelper.model.Expansion
+import com.marvinsuhr.dominionhelper.model.Kingdom
 import com.marvinsuhr.dominionhelper.model.Set
 import com.marvinsuhr.dominionhelper.model.Type
 import com.marvinsuhr.dominionhelper.ui.RandomMode
@@ -36,7 +36,7 @@ class KingdomGenerator @Inject constructor(
     private val cardDependencyResolver: CardDependencyResolver
 ) {
 
-    suspend fun generateKingdom(): KingdomEntity {
+    suspend fun generateKingdom(): Kingdom {
         val randomMode = userPrefsRepository.randomMode.first()
 
         when (randomMode) {
@@ -52,7 +52,7 @@ class KingdomGenerator @Inject constructor(
         }
     }
 
-    private suspend fun generateKingdomFullRandom(): KingdomEntity {
+    private suspend fun generateKingdomFullRandom(): Kingdom {
         val cardList = mutableSetOf<Card>()
         val totalCardsToGenerate = userPrefsRepository.numberOfCardsToGenerate.first()
 
@@ -73,10 +73,11 @@ class KingdomGenerator @Inject constructor(
         val landscapeList = generateLandscapeCards(landscapePool)
 
         // TODO: Check if it makes sense to just load ids instead of the whole card
-        return KingdomEntity(randomCardIds = cardList.map { it.id }, landscapeCardIds = landscapeList.map { it.id })
+        // Use cardDependencyResolver to build the full Kingdom with all dependent cards
+        return cardDependencyResolver.addDependentCards(cardList, landscapeList)
     }
 
-    private suspend fun generateKingdomEvenAmounts(): KingdomEntity {
+    private suspend fun generateKingdomEvenAmounts(): Kingdom {
         val cardList = mutableSetOf<Card>()
         val totalCardsToGenerate = userPrefsRepository.numberOfCardsToGenerate.first()
 
@@ -109,8 +110,9 @@ class KingdomGenerator @Inject constructor(
 
         val landscapeList = generateLandscapeCards(landscapePoolCandidates)
 
-        // TODO: Check if it makes sense to just load ids instead of the whole card
-        return KingdomEntity(randomCardIds = cardList.map { it.id }, landscapeCardIds = landscapeList.map { it.id })
+        // TODO: Check if it makes sense to just load ids instead of the whole card/
+        // Use cardDependencyResolver to build the full Kingdom with all dependent cards
+        return cardDependencyResolver.addDependentCards(cardList, landscapeList)
     }
 
     private fun applyPortraitPredicates(
