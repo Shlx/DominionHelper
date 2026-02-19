@@ -197,9 +197,12 @@ class KingdomViewModel @Inject constructor(
 
             val generatedKingdom = kingdomGenerator.generateKingdom()
 
+            // Save the kingdom to database immediately (with its initial state)
+            kingdomRepository.saveKingdom(generatedKingdom)
+
             // The generator now returns a full Kingdom with all dependencies resolved
             _kingdom.value = generatedKingdom
-            _isNewKingdom.value = true // Mark as new kingdom
+            _isNewKingdom.value = true // Mark as new kingdom for UI purposes (vetoing)
             switchUiStateTo(KingdomUiState.SINGLE_KINGDOM)
         }
     }
@@ -399,7 +402,7 @@ class KingdomViewModel @Inject constructor(
             "VetoMode is NO_REROLL. Removing '${dismissedCard.name}' without replacement."
         )
         _kingdom.update { currentKingdom ->
-            when {
+            val updatedKingdom = when {
                 wasLandscape -> currentKingdom.copy(
                     landscapeCards = LinkedHashMap(
                         currentKingdom.landscapeCards.toMutableMap()
@@ -412,6 +415,13 @@ class KingdomViewModel @Inject constructor(
                             .apply { remove(dismissedCard) })
                 )
             }
+
+            // Save the updated kingdom to database immediately
+            viewModelScope.launch {
+                kingdomRepository.saveKingdom(updatedKingdom)
+            }
+
+            updatedKingdom
         }
     }
 
@@ -438,7 +448,7 @@ class KingdomViewModel @Inject constructor(
 
         Log.i("LibraryViewModel", "Replaced '${dismissedCard.name}' with '${newCard.name}'.")
         _kingdom.update { currentKingdom ->
-            if (newCard.landscape) {
+            val updatedKingdom = if (newCard.landscape) {
                 currentKingdom.copy(
                     landscapeCards = insertOrReplaceAtKeyPosition(
                         map = kingdomSnapshot.landscapeCards,
@@ -457,6 +467,13 @@ class KingdomViewModel @Inject constructor(
                     )
                 )
             }
+
+            // Save the updated kingdom to database immediately
+            viewModelScope.launch {
+                kingdomRepository.saveKingdom(updatedKingdom)
+            }
+
+            updatedKingdom
         }
     }
 
@@ -491,16 +508,8 @@ class KingdomViewModel @Inject constructor(
     }
 
     private fun saveKingdomIfNeeded() {
-        viewModelScope.launch {
-            val isNew = _isNewKingdom.value
-            val currentKingdom = _kingdom.value
-
-            if (isNew && currentKingdom.uuid.isNotEmpty()) {
-                // Save the newly created kingdom
-                Log.i("KingdomViewModel", "Saving newly created kingdom: ${currentKingdom.name}")
-                kingdomRepository.saveKingdom(currentKingdom)
-                _isNewKingdom.value = false
-            }
-        }
+        // Reset the new kingdom flag when navigating back
+        // The kingdom is already saved continuously after each veto
+        _isNewKingdom.value = false
     }
 }
