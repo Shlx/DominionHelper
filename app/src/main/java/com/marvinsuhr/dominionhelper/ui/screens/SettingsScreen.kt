@@ -22,8 +22,7 @@ fun SettingsScreen(
     snackbarHostState: SnackbarHostState,
     viewModel: SettingsViewModel,
     navController: NavHostController,
-    innerPadding: PaddingValues,
-    onScrollToTop: () -> Unit = {}
+    innerPadding: PaddingValues
 ) {
 
     Log.i("MainActivity", "Settings Screen Content. UI State: not implemented")

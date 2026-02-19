@@ -26,9 +26,7 @@ fun KingdomsScreen(
     snackbarHostState: SnackbarHostState,
     viewModel: KingdomViewModel,
     navController: NavHostController,
-    innerPadding: PaddingValues,
-    onGenerateKingdom: () -> Unit = {},
-    onScrollToTop: () -> Unit = {}
+    innerPadding: PaddingValues
 ) {
     LaunchedEffect(Unit) { onTitleChanged("Kingdoms") }
 
@@ -86,6 +84,7 @@ fun KingdomsScreen(
                 onDeleteClick = { viewModel.deleteKingdom(it.uuid) },
                 onFavoriteClick = { viewModel.toggleFavorite(it) },
                 onKingdomNameChange = { uuid, newName -> viewModel.updateKingdomName(uuid, newName) },
+                listState = kingdomListState,
                 paddingValues = calculatePadding(innerPadding)
             )
         }

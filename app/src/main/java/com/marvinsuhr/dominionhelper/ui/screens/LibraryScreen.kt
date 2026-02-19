@@ -27,8 +27,7 @@ fun LibraryScreen(
     snackbarHostState: SnackbarHostState,
     viewModel: LibraryViewModel,
     navController: NavHostController,
-    innerPadding: PaddingValues,
-    onScrollToTop: () -> Unit = {}
+    innerPadding: PaddingValues
 ) {
 
     Log.i(

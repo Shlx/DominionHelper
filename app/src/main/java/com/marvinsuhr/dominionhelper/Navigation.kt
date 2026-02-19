@@ -80,9 +80,7 @@ fun AppNavigation(
     navController: NavHostController,
     onTitleChanged: (String) -> Unit,
     snackbarHostState: SnackbarHostState,
-    innerPadding: PaddingValues,
-    onGenerateKingdom: () -> Unit = {},
-    onScrollToTop: () -> Unit = {}
+    innerPadding: PaddingValues
 ) {
     NavHost(
         navController = navController,
@@ -100,8 +98,7 @@ fun AppNavigation(
                 onTitleChanged = onTitleChanged,
                 viewModel = viewModel,
                 navController = navController,
-                innerPadding = innerPadding,
-                onScrollToTop = onScrollToTop
+                innerPadding = innerPadding
             )
         }
 
@@ -113,9 +110,7 @@ fun AppNavigation(
                 snackbarHostState = snackbarHostState,
                 viewModel = viewModel,
                 navController = navController,
-                innerPadding = innerPadding,
-                onGenerateKingdom = onGenerateKingdom,
-                onScrollToTop = onScrollToTop
+                innerPadding = innerPadding
             )
         }
 
@@ -127,8 +122,7 @@ fun AppNavigation(
                 snackbarHostState = snackbarHostState,
                 viewModel = viewModel,
                 navController = navController,
-                innerPadding = innerPadding,
-                onScrollToTop = onScrollToTop
+                innerPadding = innerPadding
             )
         }
 

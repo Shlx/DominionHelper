@@ -37,8 +37,6 @@ class MainActivity : ComponentActivity() {
 
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
-        //enableEdgeToEdge()
-        //WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
 
         setContent {
@@ -58,26 +56,24 @@ class MainActivity : ComponentActivity() {
                     currentTopBarTitle = newTitle
                 }
 
-                // Get ViewModels for FAB and scroll-to-top functionality
-                val kingdomViewModel: KingdomViewModel = hiltViewModel()
-                val libraryViewModel: LibraryViewModel = hiltViewModel()
-                val settingsViewModel: SettingsViewModel = hiltViewModel()
-
-                val onGenerateKingdom = {
-                    kingdomViewModel.getRandomKingdom()
-                }
-
-                val onScrollToTop = {
+                // Get ViewModels for the current screen using the navBackStackEntry
+                // This ensures we get the same instances as in the navigation composables
+                val currentLibraryViewModel: LibraryViewModel? = navBackStackEntry?.let {
                     when (currentScreen) {
-                        CurrentScreen.Library -> {
-                            libraryViewModel.triggerScrollToTop()
-                        }
-                        CurrentScreen.Kingdoms -> {
-                            kingdomViewModel.triggerScrollToTop()
-                        }
-                        CurrentScreen.Settings -> {
-                            settingsViewModel.triggerScrollToTop()
-                        }
+                        CurrentScreen.Library -> hiltViewModel(it)
+                        else -> null
+                    }
+                }
+                val currentKingdomViewModel: KingdomViewModel? = navBackStackEntry?.let {
+                    when (currentScreen) {
+                        CurrentScreen.Kingdoms -> hiltViewModel(it)
+                        else -> null
+                    }
+                }
+                val currentSettingsViewModel: SettingsViewModel? = navBackStackEntry?.let {
+                    when (currentScreen) {
+                        CurrentScreen.Settings -> hiltViewModel(it)
+                        else -> null
                     }
                 }
 
@@ -104,7 +100,7 @@ class MainActivity : ComponentActivity() {
                     floatingActionButton = {
                         if (currentScreen == CurrentScreen.Kingdoms) {
                             FloatingActionButton(
-                                onClick = onGenerateKingdom,
+                                onClick = { currentKingdomViewModel?.getRandomKingdom() },
                             ) {
                                 Icon(
                                     Icons.Filled.Add,
@@ -138,7 +134,12 @@ class MainActivity : ComponentActivity() {
                                                 restoreState = true
                                             }
                                         } else { // Same item selected: scroll up
-                                            onScrollToTop()
+                                            // Use the pre-fetched ViewModels to trigger scroll to top
+                                            when (currentScreen) {
+                                                CurrentScreen.Library -> currentLibraryViewModel?.triggerScrollToTop()
+                                                CurrentScreen.Kingdoms -> currentKingdomViewModel?.triggerScrollToTop()
+                                                CurrentScreen.Settings -> currentSettingsViewModel?.triggerScrollToTop()
+                                            }
                                         }
                                     },
                                     icon = {
@@ -163,9 +164,7 @@ class MainActivity : ComponentActivity() {
                         navController = navController,
                         onTitleChanged = onTitleChangedLambda,
                         snackbarHostState = snackbarHostState,
-                        innerPadding = innerPadding,
-                        onGenerateKingdom = onGenerateKingdom,
-                        onScrollToTop = onScrollToTop
+                        innerPadding = innerPadding
                     )
                 }
             }
