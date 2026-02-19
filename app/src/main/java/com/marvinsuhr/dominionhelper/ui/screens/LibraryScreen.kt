@@ -168,7 +168,8 @@ fun LibraryScreen(
                 cardList = cardsToShow,
                 initialCard = selectedCard!!,
                 onClick = { viewModel.clearSelectedCard() },
-                onPageChanged = { viewModel.selectCard(it) }
+                onPageChanged = { viewModel.selectCard(it) },
+                paddingValues = calculatePadding(innerPadding)
             )
         }
     }

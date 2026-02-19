@@ -22,6 +22,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -30,6 +31,9 @@ import com.marvinsuhr.dominionhelper.ui.theme.DominionHelperTheme
 import com.marvinsuhr.dominionhelper.ui.KingdomViewModel
 import com.marvinsuhr.dominionhelper.ui.LibraryViewModel
 import com.marvinsuhr.dominionhelper.ui.SettingsViewModel
+import com.marvinsuhr.dominionhelper.ui.ScreenViewModel
+import com.marvinsuhr.dominionhelper.ui.KingdomUiState
+import com.marvinsuhr.dominionhelper.ui.components.TopBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -77,35 +81,58 @@ class MainActivity : ComponentActivity() {
                     }
                 }
 
+                // Get the current ViewModel to determine top bar visibility
+                val currentViewModel: ScreenViewModel? = when (currentScreen) {
+                    CurrentScreen.Library -> currentLibraryViewModel
+                    CurrentScreen.Kingdoms -> currentKingdomViewModel
+                    CurrentScreen.Settings -> currentSettingsViewModel
+                }
+                val showTopAppBar by currentViewModel?.showTopAppBar?.collectAsState() ?: remember { mutableStateOf(false) }
+                val showBackButton by currentViewModel?.showBackButton?.collectAsState() ?: remember { mutableStateOf(false) }
+
                 Scaffold(
                     snackbarHost = { SnackbarHost(snackbarHostState) },
-                    /*topBar = {
+                    topBar = {
                         if (showTopAppBar) {
                             TopBar(
                                 title = currentTopBarTitle,
                                 showBackButton = showBackButton,
-                                onBackButtonClicked = { performBackNavigation() },
-                                isSearchActive = libraryViewModel.searchActive.collectAsStateWithLifecycle().value, // Assuming search is still library specific
-                                onSearchClicked = { libraryViewModel.toggleSearch() },
-                                searchText = libraryViewModel.searchText.collectAsStateWithLifecycle().value,
-                                onSearchTextChange = { libraryViewModel.changeSearchText(it) },
+                                onBackButtonClicked = {
+                                    // Let the current ViewModel handle back navigation first
+                                    if (currentViewModel?.handleBackNavigation() != true) {
+                                        // If ViewModel didn't handle it, navigate at app level
+                                        if (navController.previousBackStackEntry != null) {
+                                            navController.popBackStack()
+                                        } else {
+                                            finish()
+                                        }
+                                    }
+                                },
+                                isSearchActive = currentLibraryViewModel?.searchActive?.collectAsState()?.value ?: false,
+                                onSearchClicked = { currentLibraryViewModel?.toggleSearch() },
+                                searchText = currentLibraryViewModel?.searchText?.collectAsState()?.value ?: "",
+                                onSearchTextChange = { currentLibraryViewModel?.changeSearchText(it) },
                                 currentScreen = currentScreen,
-                                onSortTypeSelected = { currentViewModel.onSortTypeSelected(it) },
-                                selectedSortType = actualSelectedSortTypeForMenu,
+                                onSortTypeSelected = { currentViewModel?.onSortTypeSelected(it) },
+                                selectedSortType = currentViewModel?.currentAppSortType?.collectAsState()?.value,
                                 scrollBehavior = scrollBehavior,
                                 showSearch = currentScreen == CurrentScreen.Library
                             )
                         }
-                    },*/
+                    },
                     floatingActionButton = {
+                        // Only show FAB when on Kingdoms screen AND in KINGDOM_LIST state (not viewing a specific kingdom)
                         if (currentScreen == CurrentScreen.Kingdoms) {
-                            FloatingActionButton(
-                                onClick = { currentKingdomViewModel?.getRandomKingdom() },
-                            ) {
-                                Icon(
-                                    Icons.Filled.Add,
-                                    contentDescription = "FAB to generate a new kingdom"
-                                )
+                            val kingdomUiState by currentKingdomViewModel?.uiState?.collectAsState() ?: remember { mutableStateOf(null) }
+                            if (kingdomUiState == KingdomUiState.KINGDOM_LIST) {
+                                FloatingActionButton(
+                                    onClick = { currentKingdomViewModel?.getRandomKingdom() },
+                                ) {
+                                    Icon(
+                                        Icons.Filled.Add,
+                                        contentDescription = "FAB to generate a new kingdom"
+                                    )
+                                }
                             }
                         }
                     },

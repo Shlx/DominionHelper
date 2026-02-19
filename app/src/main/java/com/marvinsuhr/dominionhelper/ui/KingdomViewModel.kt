@@ -99,6 +99,12 @@ class KingdomViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(KingdomUiState.KINGDOM_LIST)
     val uiState: StateFlow<KingdomUiState> = _uiState.asStateFlow()
 
+    private val _kingdom = MutableStateFlow(Kingdom())
+    val kingdom: StateFlow<Kingdom> = _kingdom.asStateFlow()
+
+    private val _selectedCard = MutableStateFlow<Card?>(null)
+    val selectedCard: StateFlow<Card?> = _selectedCard.asStateFlow()
+
     override val showBackButton: StateFlow<Boolean> =
         uiState.map { uiState ->
             uiState == KingdomUiState.SINGLE_KINGDOM || uiState == KingdomUiState.CARD_DETAIL
@@ -109,13 +115,17 @@ class KingdomViewModel @Inject constructor(
             uiState != KingdomUiState.KINGDOM_LIST
         }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
 
+    // Top bar title that shows kingdom name when viewing a kingdom
+    val topBarTitle: StateFlow<String> =
+        combine(uiState, kingdom, selectedCard) { uiState, kingdom, selectedCard ->
+            when (uiState) {
+                KingdomUiState.SINGLE_KINGDOM -> kingdom.name
+                KingdomUiState.CARD_DETAIL -> selectedCard?.name?: "Card Detail"
+                else -> "Kingdoms"
+            }
+        }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), "Kingdoms")
+
     // Fields
-
-    private val _kingdom = MutableStateFlow(Kingdom())
-    val kingdom: StateFlow<Kingdom> = _kingdom.asStateFlow()
-
-    private val _selectedCard = MutableStateFlow<Card?>(null)
-    val selectedCard: StateFlow<Card?> = _selectedCard.asStateFlow()
 
     // Player count
     private val _playerCount = MutableStateFlow(2)
@@ -302,14 +312,23 @@ class KingdomViewModel @Inject constructor(
         // Problem: KingdomEntity needs to know images of card ids. -> Manageable
         // Furthermore: Should Kingdom contain card IDs or whole cards?
         // KingdomListUiItem
+
+        Log.i("KingdomViewModel", "Selected kingdom ${kingdom.name}")
         viewModelScope.launch {
             val fullKingdom = cardDependencyResolver.addDependentCards(
                 kingdom.randomCards.keys,
                 kingdom.landscapeCards.keys
             )
+            // Preserve the original kingdom's metadata (name, uuid, favorites, etc.)
+            val kingdomWithMetadata = fullKingdom.copy(
+                uuid = kingdom.uuid,
+                creationTimeStamp = kingdom.creationTimeStamp,
+                isFavorite = kingdom.isFavorite,
+                name = kingdom.name
+            )
             // player count
             // sort
-            _kingdom.value = fullKingdom
+            _kingdom.value = kingdomWithMetadata
             switchUiStateTo(KingdomUiState.SINGLE_KINGDOM)
         }
     }

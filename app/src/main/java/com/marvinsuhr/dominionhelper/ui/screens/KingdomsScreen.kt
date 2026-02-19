@@ -28,7 +28,8 @@ fun KingdomsScreen(
     navController: NavHostController,
     innerPadding: PaddingValues
 ) {
-    LaunchedEffect(Unit) { onTitleChanged("Kingdoms") }
+    val topBarTitle by viewModel.topBarTitle.collectAsState()
+    LaunchedEffect(topBarTitle) { onTitleChanged(topBarTitle) }
 
     val kingdomListState = rememberLazyListState()
 
@@ -120,7 +121,7 @@ fun KingdomsScreen(
                 initialCard = selectedCard!!,
                 onClick = { viewModel.clearSelectedCard() },
                 onPageChanged = { viewModel.selectCard(it) },
-                //paddingValues = getPad()
+                paddingValues = calculatePadding(innerPadding)
             )
         }
     }

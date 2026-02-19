@@ -262,5 +262,5 @@ class SettingsViewModel @Inject constructor(
     override val currentAppSortType: StateFlow<AppSortType?> = MutableStateFlow(null).asStateFlow()
 
     override val showBackButton: StateFlow<Boolean> = MutableStateFlow(false).asStateFlow()
-    override val showTopAppBar: StateFlow<Boolean> = MutableStateFlow(true)
+    override val showTopAppBar: StateFlow<Boolean> = MutableStateFlow(false)
 }

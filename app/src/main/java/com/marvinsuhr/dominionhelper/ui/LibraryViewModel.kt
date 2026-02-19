@@ -107,7 +107,10 @@ class LibraryViewModel @Inject constructor(
             uiState != LibraryUiState.EXPANSIONS // && !isSearch?
         }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
 
-    override val showTopAppBar: StateFlow<Boolean> = MutableStateFlow(true)
+    override val showTopAppBar: StateFlow<Boolean> =
+        uiState.map { uiState ->
+            uiState != LibraryUiState.EXPANSIONS
+        }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
 
     // Fields
 
