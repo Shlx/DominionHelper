@@ -9,6 +9,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.navigation.NavHostController
 import com.marvinsuhr.dominionhelper.ui.SettingsViewModel
 import com.marvinsuhr.dominionhelper.utils.calculatePadding
 import com.marvinsuhr.dominionhelper.ui.components.SettingsList
@@ -20,8 +21,9 @@ fun SettingsScreen(
     onTitleChanged: (String) -> Unit,
     snackbarHostState: SnackbarHostState,
     viewModel: SettingsViewModel,
-    performBackNavigation: () -> Unit,
-    innerPadding: PaddingValues
+    navController: NavHostController,
+    innerPadding: PaddingValues,
+    onScrollToTop: () -> Unit = {}
 ) {
 
     Log.i("MainActivity", "Settings Screen Content. UI State: not implemented")
@@ -46,7 +48,13 @@ fun SettingsScreen(
     }
 
     BackHandler {
-        performBackNavigation()
+        // First, let the ViewModel handle back navigation
+        if (!viewModel.handleBackNavigation()) {
+            // If ViewModel didn't handle it, navigate at the app level
+            if (navController.previousBackStackEntry != null) {
+                navController.popBackStack()
+            }
+        }
     }
 
     val uiState by viewModel.uiState.collectAsState()

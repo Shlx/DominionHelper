@@ -11,6 +11,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.navigation.NavHostController
 import com.marvinsuhr.dominionhelper.ui.KingdomUiState
 import com.marvinsuhr.dominionhelper.utils.calculatePadding
 import com.marvinsuhr.dominionhelper.ui.KingdomViewModel
@@ -24,8 +25,10 @@ fun KingdomsScreen(
     onTitleChanged: (String) -> Unit,
     snackbarHostState: SnackbarHostState,
     viewModel: KingdomViewModel,
-    performBackNavigation: () -> Unit,
-    innerPadding: PaddingValues
+    navController: NavHostController,
+    innerPadding: PaddingValues,
+    onGenerateKingdom: () -> Unit = {},
+    onScrollToTop: () -> Unit = {}
 ) {
     LaunchedEffect(Unit) { onTitleChanged("Kingdoms") }
 
@@ -63,7 +66,13 @@ fun KingdomsScreen(
     }
 
     BackHandler {
-        performBackNavigation()
+        // First, let the ViewModel handle back navigation (e.g., from card detail to kingdom list)
+        if (!viewModel.handleBackNavigation()) {
+            // If ViewModel didn't handle it, navigate at the app level
+            if (navController.previousBackStackEntry != null) {
+                navController.popBackStack()
+            }
+        }
     }
 
     when (uiState) {

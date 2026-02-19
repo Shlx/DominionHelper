@@ -14,6 +14,7 @@ import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -79,11 +80,9 @@ fun AppNavigation(
     navController: NavHostController,
     onTitleChanged: (String) -> Unit,
     snackbarHostState: SnackbarHostState,
-    libraryViewModel: LibraryViewModel,
-    kingdomViewModel: KingdomViewModel,
-    settingsViewModel: SettingsViewModel,
-    performBackNavigation: () -> Unit,
-    innerPadding: PaddingValues
+    innerPadding: PaddingValues,
+    onGenerateKingdom: () -> Unit = {},
+    onScrollToTop: () -> Unit = {}
 ) {
     NavHost(
         navController = navController,
@@ -95,34 +94,41 @@ fun AppNavigation(
         // TODO: Find a way to not pass innerPadding to each screen (rough)
         // Library
         composable(CurrentScreen.Library.route) {
+            val viewModel: LibraryViewModel = hiltViewModel()
             LibraryScreen(
                 snackbarHostState = snackbarHostState,
                 onTitleChanged = onTitleChanged,
-                viewModel = libraryViewModel,
-                performBackNavigation = performBackNavigation,
-                innerPadding = innerPadding
+                viewModel = viewModel,
+                navController = navController,
+                innerPadding = innerPadding,
+                onScrollToTop = onScrollToTop
             )
         }
 
         // Kingdoms
         composable(CurrentScreen.Kingdoms.route) {
+            val viewModel: KingdomViewModel = hiltViewModel()
             KingdomsScreen(
                 onTitleChanged = onTitleChanged,
                 snackbarHostState = snackbarHostState,
-                viewModel = kingdomViewModel,
-                performBackNavigation = performBackNavigation,
-                innerPadding = innerPadding
+                viewModel = viewModel,
+                navController = navController,
+                innerPadding = innerPadding,
+                onGenerateKingdom = onGenerateKingdom,
+                onScrollToTop = onScrollToTop
             )
         }
 
         // Settings
         composable(CurrentScreen.Settings.route) {
+            val viewModel: SettingsViewModel = hiltViewModel()
             SettingsScreen(
                 onTitleChanged = onTitleChanged,
                 snackbarHostState = snackbarHostState,
-                viewModel = settingsViewModel,
-                performBackNavigation = performBackNavigation,
-                innerPadding = innerPadding
+                viewModel = viewModel,
+                navController = navController,
+                innerPadding = innerPadding,
+                onScrollToTop = onScrollToTop
             )
         }
 

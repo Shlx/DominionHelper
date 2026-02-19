@@ -11,6 +11,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.navigation.NavHostController
 import com.marvinsuhr.dominionhelper.ui.LibraryUiState
 import com.marvinsuhr.dominionhelper.utils.calculatePadding
 import com.marvinsuhr.dominionhelper.ui.LibraryViewModel
@@ -25,8 +26,9 @@ fun LibraryScreen(
     onTitleChanged: (String) -> Unit,
     snackbarHostState: SnackbarHostState,
     viewModel: LibraryViewModel,
-    performBackNavigation: () -> Unit,
-    innerPadding: PaddingValues
+    navController: NavHostController,
+    innerPadding: PaddingValues,
+    onScrollToTop: () -> Unit = {}
 ) {
 
     Log.i(
@@ -83,7 +85,13 @@ fun LibraryScreen(
     }
 
     BackHandler {
-        performBackNavigation()
+        // First, let the ViewModel handle back navigation (e.g., from card list to expansion list)
+        if (!viewModel.handleBackNavigation()) {
+            // If ViewModel didn't handle it, navigate at the app level
+            if (navController.previousBackStackEntry != null) {
+                navController.popBackStack()
+            }
+        }
     }
 
     val applicationScope = rememberCoroutineScope()

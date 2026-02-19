@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -24,22 +23,17 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.text.font.FontWeight
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.marvinsuhr.dominionhelper.ui.theme.DominionHelperTheme
 import com.marvinsuhr.dominionhelper.ui.KingdomViewModel
 import com.marvinsuhr.dominionhelper.ui.LibraryViewModel
-import com.marvinsuhr.dominionhelper.ui.ScreenViewModel
 import com.marvinsuhr.dominionhelper.ui.SettingsViewModel
-import com.marvinsuhr.dominionhelper.ui.theme.DominionHelperTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
-    private val libraryViewModel: LibraryViewModel by viewModels()
-    private val kingdomViewModel: KingdomViewModel by viewModels()
-    private val settingsViewModel: SettingsViewModel by viewModels()
 
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,12 +49,6 @@ class MainActivity : ComponentActivity() {
                 val currentRoute = navBackStackEntry?.destination?.route
                 val currentScreen = CurrentScreen.fromRoute(currentRoute)
 
-                val currentViewModel = when (currentScreen) {
-                    CurrentScreen.Library -> libraryViewModel
-                    CurrentScreen.Kingdoms -> kingdomViewModel
-                    CurrentScreen.Settings -> settingsViewModel
-                } as ScreenViewModel
-
                 val snackbarHostState = remember { SnackbarHostState() }
                 val topAppBarState = rememberTopAppBarState()
                 val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(topAppBarState)
@@ -70,16 +58,25 @@ class MainActivity : ComponentActivity() {
                     currentTopBarTitle = newTitle
                 }
 
-                val actualSelectedSortTypeForMenu by currentViewModel.currentAppSortType.collectAsStateWithLifecycle()
-                val showBackButton by currentViewModel.showBackButton.collectAsStateWithLifecycle()
-                val showTopAppBar by currentViewModel.showTopAppBar.collectAsStateWithLifecycle()
+                // Get ViewModels for FAB and scroll-to-top functionality
+                val kingdomViewModel: KingdomViewModel = hiltViewModel()
+                val libraryViewModel: LibraryViewModel = hiltViewModel()
+                val settingsViewModel: SettingsViewModel = hiltViewModel()
 
-                val performBackNavigation = {
-                    if (!currentViewModel.handleBackNavigation()) {
-                        if (navController.previousBackStackEntry != null) {
-                            navController.popBackStack()
-                        } else {
-                            finish()
+                val onGenerateKingdom = {
+                    kingdomViewModel.getRandomKingdom()
+                }
+
+                val onScrollToTop = {
+                    when (currentScreen) {
+                        CurrentScreen.Library -> {
+                            libraryViewModel.triggerScrollToTop()
+                        }
+                        CurrentScreen.Kingdoms -> {
+                            kingdomViewModel.triggerScrollToTop()
+                        }
+                        CurrentScreen.Settings -> {
+                            settingsViewModel.triggerScrollToTop()
                         }
                     }
                 }
@@ -107,9 +104,7 @@ class MainActivity : ComponentActivity() {
                     floatingActionButton = {
                         if (currentScreen == CurrentScreen.Kingdoms) {
                             FloatingActionButton(
-                                onClick = {
-                                    (currentViewModel as KingdomViewModel).getRandomKingdom()
-                                },
+                                onClick = onGenerateKingdom,
                             ) {
                                 Icon(
                                     Icons.Filled.Add,
@@ -143,7 +138,7 @@ class MainActivity : ComponentActivity() {
                                                 restoreState = true
                                             }
                                         } else { // Same item selected: scroll up
-                                            currentViewModel.triggerScrollToTop()
+                                            onScrollToTop()
                                         }
                                     },
                                     icon = {
@@ -168,11 +163,9 @@ class MainActivity : ComponentActivity() {
                         navController = navController,
                         onTitleChanged = onTitleChangedLambda,
                         snackbarHostState = snackbarHostState,
-                        libraryViewModel = libraryViewModel,
-                        kingdomViewModel = kingdomViewModel,
-                        settingsViewModel = settingsViewModel,
-                        performBackNavigation = performBackNavigation,
-                        innerPadding = innerPadding
+                        innerPadding = innerPadding,
+                        onGenerateKingdom = onGenerateKingdom,
+                        onScrollToTop = onScrollToTop
                     )
                 }
             }
