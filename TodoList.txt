@@ -1,3 +1,7 @@
+git branch -d master
+git push origin --delete master
+git branch -a
+
 Random info:
 Prop drilling: passing lots of data down through multiple levels (bad)
 by lazy: loading data only when needed (good)
