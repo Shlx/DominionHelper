@@ -270,38 +270,34 @@ fun ExpansionIcon(
             .fillMaxHeight()
             .aspectRatio(1f)
             .clickable(
-                /*interactionSource = null,
-                indication = null,*/
-                // TODO I don't like this
                 onClick = {
                     if (hasMultipleEditions) {
                         Log.i("ExpansionListItem", "Clicking arrow")
-                        onToggleExpansion() // Click arrow to expand/collapse
+                        onToggleExpansion()
                     } else {
                         Log.i("ExpansionListItem", "Clicking ownership icon")
-                        onOwnershipToggle() // Click icon to toggle ownership (single edition)
+                        onOwnershipToggle()
                     }
                 }
             ),
         contentAlignment = Alignment.Center
     ) {
         if (hasMultipleEditions) {
-            // Show arrow if multiple editions exist
             Icon(
                 imageVector = if (isExpanded) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown,
                 contentDescription = if (isExpanded) "Collapse" else "Expand",
-                modifier = Modifier.size(Constants.ICON_SIZE) // Adjust icon size
+                modifier = Modifier.size(Constants.ICON_SIZE),
+                // Arrows are usually secondary information, so mute them
+                tint = MaterialTheme.colorScheme.onSurfaceVariant
             )
         } else {
-            // Show ownership icon for single editions
+            val isOwned = expansion.firstEdition?.isOwned == true || expansion.secondEdition?.isOwned == true
             Icon(
-                imageVector = if (expansion.firstEdition?.isOwned == true || expansion.secondEdition?.isOwned == true) {
-                    Icons.Filled.CheckCircle // Checkmark if owned
-                } else {
-                    Icons.Outlined.Circle // Empty circle if unowned
-                },
-                contentDescription = if (expansion.firstEdition?.isOwned == true || expansion.secondEdition?.isOwned == true) "Owned" else "Unowned",
-                modifier = Modifier.size(Constants.ICON_SIZE)
+                imageVector = if (isOwned) Icons.Filled.CheckCircle else Icons.Outlined.Circle,
+                contentDescription = if (isOwned) "Owned" else "Unowned",
+                modifier = Modifier.size(Constants.ICON_SIZE),
+                // Apply the active primary color when owned, and a muted grey when unowned
+                tint = if (isOwned) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
             )
         }
     }

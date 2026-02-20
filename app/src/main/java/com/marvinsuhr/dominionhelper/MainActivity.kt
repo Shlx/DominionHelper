@@ -24,6 +24,8 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.collectAsState
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -166,24 +168,14 @@ class MainActivity : ComponentActivity() {
                                 NavigationBarItem(
                                     selected = isSelected,
                                     onClick = {
-
-                                        Log.i(
-                                            "NavigationBarItem",
-                                            "Selected ${item.label} (Previous: $currentRoute)"
-                                        )
-
-                                        // New item selected
+                                        Log.i("NavigationBarItem", "Selected ${item.label} (Previous: $currentRoute)")
                                         if (currentRoute != item.screenRoute) {
                                             navController.navigate(item.screenRoute) {
-
-                                                popUpTo(navController.graph.startDestinationId) {
-                                                    saveState = true
-                                                }
+                                                popUpTo(navController.graph.startDestinationId) { saveState = true }
                                                 launchSingleTop = true
                                                 restoreState = true
                                             }
-                                        } else { // Same item selected: scroll up
-                                            // Use the pre-fetched ViewModels to trigger scroll to top
+                                        } else {
                                             when (currentScreen) {
                                                 CurrentScreen.Library -> currentLibraryViewModel?.triggerScrollToTop()
                                                 CurrentScreen.Kingdoms -> currentKingdomViewModel?.triggerScrollToTop()
@@ -193,7 +185,7 @@ class MainActivity : ComponentActivity() {
                                     },
                                     icon = {
                                         Icon(
-                                            if (isSelected) item.selectedIcon else item.unselectedIcon,
+                                            imageVector = if (isSelected) item.selectedIcon else item.unselectedIcon,
                                             contentDescription = item.label
                                         )
                                     },
@@ -202,7 +194,15 @@ class MainActivity : ComponentActivity() {
                                             text = item.label,
                                             fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
                                         )
-                                    }
+                                    },
+                                    // Explicitly define the colors to ensure perfect contrast inside the active pill
+                                    colors = NavigationBarItemDefaults.colors(
+                                        indicatorColor = MaterialTheme.colorScheme.primary, // The gold pill background
+                                        selectedIconColor = MaterialTheme.colorScheme.onPrimary, // The dark icon inside the gold pill
+                                        selectedTextColor = MaterialTheme.colorScheme.primary, // The gold text under the pill
+                                        unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant, // Muted grey for inactive icons
+                                        unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant // Muted grey for inactive text
+                                    )
                                 )
                             }
                         }

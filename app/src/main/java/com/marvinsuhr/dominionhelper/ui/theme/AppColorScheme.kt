@@ -80,11 +80,16 @@ object AppColorScheme {
 
     // Light Mode Colors
     val lightCustomColors = createColorScheme(
-        primary = Color(0xFF2563EB),
+        /*primary = Color(0xFF2563EB),
         onPrimary = Color(0xFFFFFFFF),
         primaryContainer = Color(0xFFD3E4FF),
         onPrimaryContainer = Color(0xFF001C3F),
-        inversePrimary = Color(0xFF9CBAFF),
+        inversePrimary = Color(0xFF9CBAFF),*/
+        primary = Color(0xFFE5C158),
+        onPrimary = Color(0xFF3A2D00),
+        primaryContainer = Color(0xFF554300),
+        onPrimaryContainer = Color(0xFFFFE187),
+        inversePrimary = Color(0xFF755B00),
 
         secondary = Color(0xFFB77E1F),
         onSecondary = Color(0xFFFFFFFF),
@@ -101,12 +106,12 @@ object AppColorScheme {
         errorContainer = Color(0xFFFFDAD6),
         onErrorContainer = Color(0xFF410002),
 
-        background = Color(0xFFFAF8F5),
+        background = Color(0xFFF2F2F7),//background = Color(0xFFFAF8F5),
         onBackground = Color(0xFF1B1B1F),
-        surface = Color(0xFFFAF8F5),
+        surface = Color(0xFFFFFFFF),//surface = Color(0xFFFAF8F5),
         onSurface = Color(0xFF1B1B1F),
-        surfaceVariant = Color(0xFFEBE1DD),
-        onSurfaceVariant = Color(0xFF47474F),
+        surfaceVariant = Color(0xFFE5E5EA),//surfaceVariant = Color(0xFFEBE1DD),
+        onSurfaceVariant = Color(0xFF3C3C43),//onSurfaceVariant = Color(0xFF47474F),
 
         outline = Color(0xFF787680),
         outlineVariant = Color(0xFFC8C6CF),
@@ -119,11 +124,16 @@ object AppColorScheme {
 
     // Dark Mode Colors
     val darkCustomColors = createColorScheme(
-        primary = Color(0xFF9CBAFF),
+        /*primary = Color(0xFF9CBAFF),
         onPrimary = Color(0xFF002F66),
         primaryContainer = Color(0xFF00468E),
         onPrimaryContainer = Color(0xFFD3E4FF),
-        inversePrimary = Color(0xFF2563EB),
+        inversePrimary = Color(0xFF2563EB),*/
+        primary = Color(0xFFE5C158),
+        onPrimary = Color(0xFF3A2D00),
+        primaryContainer = Color(0xFF554300),
+        onPrimaryContainer = Color(0xFFFFE187),
+        inversePrimary = Color(0xFF755B00),
 
         secondary = Color(0xFFFFB972),
         onSecondary = Color(0xFF4B2800),

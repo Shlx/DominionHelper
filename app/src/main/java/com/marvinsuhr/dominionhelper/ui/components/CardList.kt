@@ -850,7 +850,15 @@ fun PotionIcon() {
     AsyncImage(
         model = R.drawable.set_alchemy,
         contentDescription = "Potion icon",
-        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.secondaryContainer),
+        colorFilter = ColorFilter.tint(Color(0xFF1666A8)),
+        modifier = Modifier
+            .size(22.dp)
+            .offset(y = 1.dp)
+    )
+    AsyncImage(
+        model = R.drawable.set_alchemy,
+        contentDescription = "Potion icon",
+        colorFilter = ColorFilter.tint(Color(0xFF3B8CD6)),
         modifier = Modifier
             .size(22.dp)
             .offset(y = 1.dp)
@@ -883,14 +891,10 @@ fun CardButton(isEnabled: Boolean, onToggleEnable: () -> Unit) {
             .clickable { onToggleEnable() }
     ) {
         Icon(
-            imageVector = if (isEnabled) {
-                Icons.Filled.CheckCircle
-            } else {
-                Icons.Outlined.Circle
-            },
+            imageVector = if (isEnabled) Icons.Filled.CheckCircle else Icons.Outlined.Circle,
             contentDescription = if (isEnabled) "Allowed" else "Banned",
-            modifier = Modifier
-                .size(Constants.ICON_SIZE)
+            modifier = Modifier.size(Constants.ICON_SIZE),
+            tint = if (isEnabled) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
         )
     }
 }
