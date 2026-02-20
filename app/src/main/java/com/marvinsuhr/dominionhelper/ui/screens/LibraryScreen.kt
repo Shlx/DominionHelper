@@ -172,7 +172,7 @@ fun LibraryScreen(
                 onEditionSelected = { _, _ -> },
                 onCardClick = { viewModel.selectCard(it) },
                 onToggleEnable = { viewModel.toggleCardEnabled(it) },
-                listState = libraryListState,
+                listState = cardListState,
                 paddingValues = calculatePadding(innerPadding)
             )
         }

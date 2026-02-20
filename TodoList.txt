@@ -1,34 +1,23 @@
+FOR RELEASE:
+
+Split piles:
+Actual split piles have supply set to false. This means they will not be randomized
+and they do not have a disable button next to them in the library. In a way, split
+piles are part of the supply, but for all intents and purposes, the "main" card suffices
+
+-----
+
+Delete branches:
 git branch -d master
 git push origin --delete master
 git branch -a
 
-Random info:
-Prop drilling: passing lots of data down through multiple levels (bad)
-by lazy: loading data only when needed (good)
-Flows: automatically updates UI elements when data changes
-mutableStateOf automatically updates UI elements reliant on the values when they change
-When passing a lambda function like (Card) -> Unit down to another function, should you put in the parameter as early as possible?
--> As early as possible is good for clarity and separation of concerns. Capture card as early as possible
 
-It's a strong convention in Jetpack Compose that most non-trivial composables accept a modifier: Modifier = Modifier as their first optional parameter.
+NEW
+Expansions for random cards is only respected when random mode is set to even amounts
+Blacklisted cards UI
 
-Bom: Bill of materials - ensure all compose versions are compatible
 
-// adb pair <ip>:<port>
-// adb tcpip 5555
-
-.padding().size() -> Padding INSIDE (Smaller element)
-.size().padding() -> Padding OUTSIDE
-onClick > Modifier.clickable
-
-When you change the order of a LinkedHashMap, the hashcode stay THE SAME
-
-------------------
-
-// Decisions:
-// Actual split piles have supply set to false. This means they will not be randomized
-// and they do not have a disable button next to them in the library. In a way, split
-// piles are part of the supply, but for all intents and purposes, the "main" card suffices
 
 ProGuard/R8 (for Release Builds):
 •The Firebase Crashlytics plugin automatically adds the necessary ProGuard/R8 rules to keep Crashlytics symbols.
@@ -37,8 +26,6 @@ ProGuard/R8 (for Release Builds):
 •Make sure you don't explicitly add firebase-crashlytics-ndk unless you need NDK crash reporting, as it might interfere with Java/Kotlin symbol uploading if not configured correctly.
 
 ------------------------------
-
-Name: Kingdom(s)!!, Vassal, Province
 
 // Remove touch effect from nav bar
 // List card types in detail view pretty
@@ -50,15 +37,7 @@ CORNUCOPIA / GUILDS: Don't switch ownership at the same time, not all regions me
 
 ---
 
-Statt TopAppBar: Custom element mit Größe (x + status bar padding) und dann nestedScrolling?
-First item in list spacer?
 UI bounds pass
-
-Generate button runter -> FAB?
-
-Color kingdom list buttons?
-
-On back: end editing card
 
 "Unnamed kingdom (x)"
 Expansion list: portrait / landscape amount
@@ -78,11 +57,9 @@ LinkedHashSets?
 
     when generating kingdom, the old one is selected first
 
-- Detail view top bar ist hidden
 - Skeleton while loading kingdom?
 - Rethink sorting? Maybe always split by categories, then by name / cost
 - Nothing happens when clicking an edition
-- Save kingdom etc when putting app in background
 - Landscape cards color bar
 
 - Make complex routes to link to speciofic kingdoms? kingdoms://kingdom/1,2,3,4 ... list of card IDs
@@ -107,8 +84,6 @@ SETTINGS
 
 UI
 
-- REWORK SETTINGS
-- Floating tool bar vs floating app bar?
 -> Oben durchsichtige / moderne bar (flexible navigation bar)
 - Invisible top bar / only when header is relevant? (See Auth app)
 - Search pill
@@ -120,8 +95,6 @@ UI
 TODO RELEASE
 FEATURES
 
-- Kingdom history
-
 CODE
 
 - Rethink database scheme, especially expansions and editions suck
@@ -132,7 +105,6 @@ CODE
 
 UI
 
-- Remove search from expansions / search expansion only?
 - Kingdom landscape view to show all cards images (5x2)? Slider, option
 - Add (enabled) card count to expansion list items?
 - Enable all cards button (settings?) / list blacklisted cards somewhere (”expansion”)
@@ -145,7 +117,6 @@ UI
 
 UX
 
-- Show card count option
 - Show 5/6 player selector option
 - Wegswipen besser machen (zu leicht getriggert) / edit mode?
 - Make more stuff searchable: debt, landscape, supply, potion, overpay?
@@ -153,7 +124,6 @@ UX
 - Swap icon in expansion list depending on expansion owned (Also in kingdom list)
 - Pin cards so they don't get rerolled (swipe left)
 - Karten in Kingdom abhaken? Zum gemeinsamen Karten suchen
-- Side swipe to switch expansion?
 
 CODE
 
@@ -202,28 +172,3 @@ TODO LOW PRIO
 - Font: Princeps
 - Attack, Prize -> Prize, attack (order)=? Clash, Augur, Wizard too
 - Add source card to dependent cards in library
-
-
-old requirements backup:
-
-        // Add Ally if Liaison cards are present
-        if (cardList.any { it.types.contains(Type.LIAISON) }) {
-            val allyCards = landscapePool.filter { it.types.contains(Type.ALLY) }
-            Log.d("Kingdom Generator", "Ally cards: ${allyCards.size}")
-            if (allyCards.isEmpty()) {
-                // Error
-            } else {
-                landscapeList.add(allyCards.random())
-            }
-        }
-
-        // Add Prophecy if Omen cards are present
-        if (cardList.any { it.types.contains(Type.OMEN) }) {
-            val prohpecyCards = landscapePool.filter { it.types.contains(Type.PROPHECY) }
-            Log.d("Kingdom Generator", "Prophecy cards: ${prohpecyCards.size}")
-            if (prohpecyCards.isEmpty()) {
-                // Error
-            } else {
-                landscapeList.add(prohpecyCards.random())
-            }
-        }

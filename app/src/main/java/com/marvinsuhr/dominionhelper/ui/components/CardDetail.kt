@@ -148,12 +148,12 @@ fun CategoryBubble(categoryName: String) {
     Surface(
         color = MaterialTheme.colorScheme.primaryContainer,
         shape = MaterialTheme.shapes.small,
-        modifier = Modifier.padding(4.dp)
+        modifier = Modifier.padding(6.dp)
     ) {
         Text(
             text = categoryName,
-            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
-            style = MaterialTheme.typography.bodySmall,
+            modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
+            style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onPrimaryContainer
         )
     }
