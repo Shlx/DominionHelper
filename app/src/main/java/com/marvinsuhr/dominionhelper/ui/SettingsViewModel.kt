@@ -50,10 +50,12 @@ sealed class SettingItem {
     data class NumberSetting(
         val title: String,
         val number: Int,
+        val min: Int,
+        val max: Int,
         val onNumberChange: (Int) -> Unit
     ) : SettingItem() {
         override fun toString(): String {
-            return "NumberSetting(title='$title', number=$number)"
+            return "NumberSetting(title='$title', number=$number, min=$min, max=$max)"
         }
     }
 
@@ -80,19 +82,19 @@ enum class RandomMode(val displayName: String) {
 
 enum class VetoMode(val displayName: String) {
     REROLL_SAME("Reroll from the same expansion"),
-    REROLL_ANY("Reroll from any owned expansion"),
-    NO_REROLL("Don't reroll")
+    REROLL_ANY("Reroll from any selected expansion"),
+    NO_REROLL("Don't reroll (10 cards minimum)")
 }
 
 enum class DarkAgesMode(val displayName: String) {
-    TEN_PERCENT_PER_CARD("10% per card"),
-    IF_PRESENT("Always when present"),
+    TEN_PERCENT_PER_CARD("10% per Dark Ages card"),
+    IF_PRESENT("When at least one card is present"),
     NEVER("Never")
 }
 
 enum class ProsperityMode(val displayName: String) {
-    TEN_PERCENT_PER_CARD("10% per card"),
-    IF_PRESENT("Always when present"),
+    TEN_PERCENT_PER_CARD("10% per Prosperity card"),
+    IF_PRESENT("When at least 1 card is present"),
     NEVER("Never")
     // ALWAYS_IF_PROSPERITY_OWNED ??
 }
@@ -153,7 +155,7 @@ class SettingsViewModel @Inject constructor(
                 // Interface Section
                 SettingItem.SectionHeader("Interface"),
                 SettingItem.ChoiceSetting(
-                    title = "Dark mode",
+                    title = "App theme",
                     selectedOption = if (darkModePreference == null) DarkModeSetting.SYSTEM
                                    else if (darkModePreference) DarkModeSetting.DARK
                                    else DarkModeSetting.LIGHT,
@@ -170,13 +172,13 @@ class SettingsViewModel @Inject constructor(
                 // Only show "Use system theme" on Android 12+ (API 31+)
                 // where dynamic colors are available
                 SettingItem.SwitchSetting(
-                    title = "Use system theme",
+                    title = "Dynamic color",
                     isChecked = useSystemTheme,
                     onCheckedChange = { setUseSystemTheme(it) }
                 ).takeIf { Build.VERSION.SDK_INT >= Build.VERSION_CODES.S },
 
                 // Generation Section
-                SettingItem.SectionHeader("Generation"),
+                SettingItem.SectionHeader("Card generation"),
                 SettingItem.ChoiceSetting(
                     title = "Random mode",
                     selectedOption = currentRandomMode,
@@ -185,13 +187,17 @@ class SettingsViewModel @Inject constructor(
                     onOptionSelected = { setRandomMode(it) }
                 ),
                 SettingItem.NumberSetting(
-                    title = "Expansions for random cards",
+                    title = "Number of expansions to choose from",
                     number = currentRandomExpAmount,
+                    min = 1,
+                    max = 10,
                     onNumberChange = { setRandomExpansionAmount(it) }
                 ),
                 SettingItem.NumberSetting(
                     title = "Number of cards to generate",
                     number = currentNumCardsToGen,
+                    min = 10,
+                    max = 20,
                     onNumberChange = { setNumberOfCardsToGenerate(it) }
                 ),
                 SettingItem.ChoiceSetting(
@@ -203,10 +209,12 @@ class SettingsViewModel @Inject constructor(
                 ),
 
                 // Landscapes Section
-                SettingItem.SectionHeader("Landscapes"),
+                SettingItem.SectionHeader("Landscape cards"),
                 SettingItem.NumberSetting(
                     title = "Landscape categories to include",
                     number = currentLandscapeCategories,
+                    min = 0,
+                    max = 2,
                     onNumberChange = { setLandscapeCategories(it) }
                 ),
                 SettingItem.SwitchSetting(
@@ -216,7 +224,7 @@ class SettingsViewModel @Inject constructor(
                 ),
 
                 // Expansions Section
-                SettingItem.SectionHeader("Expansions"),
+                SettingItem.SectionHeader("Dark Ages and Prosperity cards"),
                 SettingItem.ChoiceSetting(
                     title = "Dark Ages starter cards",
                     selectedOption = currentDarkAgesMode,
@@ -225,7 +233,7 @@ class SettingsViewModel @Inject constructor(
                     onOptionSelected = { setDarkAgesStarterCardsMode(it) }
                 ),
                 SettingItem.ChoiceSetting(
-                    title = "Prosperity basic cards",
+                    title = "Platinum and Colony",
                     selectedOption = currentProsperityMode,
                     allOptions = ProsperityMode.entries.toList(),
                     optionDisplayFormatter = { it.displayName },

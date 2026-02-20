@@ -16,12 +16,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Circle
-import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.outlined.Circle
-import androidx.compose.material3.DividerDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -94,7 +90,8 @@ fun SectionHeaderItem(setting: SettingItem.SectionHeader) {
         text = setting.title,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 24.dp),
+            // Asymmetric padding: larger top gap, smaller bottom gap
+            .padding(start = 16.dp, end = 16.dp, top = 24.dp, bottom = 8.dp),
         style = MaterialTheme.typography.titleMedium,
         color = MaterialTheme.colorScheme.primary
     )
@@ -145,7 +142,7 @@ fun NumberSettingItem(setting: SettingItem.NumberSetting) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 16.dp),
+            .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
@@ -156,17 +153,21 @@ fun NumberSettingItem(setting: SettingItem.NumberSetting) {
 
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(4.dp)
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
+            // Minus button
             IconButton(
                 onClick = {
-                    val newValue = (setting.number + 1).coerceAtMost(maximumValueForSetting(setting.title))
+                    val newValue = (setting.number - 1).coerceAtLeast(setting.min)
                     textFieldValue = newValue.toString()
                     setting.onNumberChange(newValue)
                 },
-                enabled = setting.number < maximumValueForSetting(setting.title)
+                enabled = setting.number > setting.min
             ) {
-                Icon(Icons.Filled.KeyboardArrowUp, contentDescription = "Increase")
+                Text(
+                    text = "-",
+                    style = MaterialTheme.typography.titleLarge
+                )
             }
 
             OutlinedTextField(
@@ -174,10 +175,7 @@ fun NumberSettingItem(setting: SettingItem.NumberSetting) {
                 onValueChange = { newText ->
                     textFieldValue = newText
                     newText.toIntOrNull()?.let { number ->
-                        val clampedValue = number.coerceIn(
-                            minimumValueForSetting(setting.title),
-                            maximumValueForSetting(setting.title)
-                        )
+                        val clampedValue = number.coerceIn(setting.min, setting.max)
                         setting.onNumberChange(clampedValue)
                     }
                 },
@@ -194,35 +192,21 @@ fun NumberSettingItem(setting: SettingItem.NumberSetting) {
                 )
             )
 
+            // Plus button
             IconButton(
                 onClick = {
-                    val newValue = (setting.number - 1).coerceAtLeast(minimumValueForSetting(setting.title))
+                    val newValue = (setting.number + 1).coerceAtMost(setting.max)
                     textFieldValue = newValue.toString()
                     setting.onNumberChange(newValue)
                 },
-                enabled = setting.number > minimumValueForSetting(setting.title)
+                enabled = setting.number < setting.max
             ) {
-                Icon(Icons.Filled.KeyboardArrowDown, contentDescription = "Decrease")
+                Text(
+                    text = "+",
+                    style = MaterialTheme.typography.titleLarge
+                )
             }
         }
-    }
-}
-
-private fun minimumValueForSetting(title: String): Int {
-    return when (title) {
-        "Expansions for random cards" -> 1
-        "Number of cards to generate" -> 10
-        "Landscape categories to include" -> 0
-        else -> 0
-    }
-}
-
-private fun maximumValueForSetting(title: String): Int {
-    return when (title) {
-        "Expansions for random cards" -> 10
-        "Number of cards to generate" -> 20
-        "Landscape categories to include" -> 2
-        else -> 99
     }
 }
 
@@ -250,12 +234,6 @@ fun <E : Enum<E>> ChoiceSettingItem(setting: SettingItem.ChoiceSetting<E>) {
                 )
             }
         }
-
-        HorizontalDivider(
-            //modifier = Modifier.padding(start = 16.dp),
-            thickness = DividerDefaults.Thickness,
-            color = DividerDefaults.color
-        )
 
         if (showDialog) {
             EnumSelectionDialog(
@@ -311,12 +289,6 @@ fun <E : Enum<E>> EnumSelectionDialog(
                     modifier = Modifier.padding(bottom = 16.dp)
                 )
 
-                HorizontalDivider(
-                    modifier = Modifier.padding(bottom = 8.dp),
-                    thickness = DividerDefaults.Thickness,
-                    color = DividerDefaults.color
-                )
-
                 options.forEach { option ->
                     val isSelected = option == selectedOption
                     Row(
@@ -330,7 +302,7 @@ fun <E : Enum<E>> EnumSelectionDialog(
                     ) {
                         RadioButton(
                             selected = isSelected,
-                            onClick = { onOptionSelected(option) }
+                            onClick = { }
                         )
                         Text(
                             text = optionDisplayFormatter(option),

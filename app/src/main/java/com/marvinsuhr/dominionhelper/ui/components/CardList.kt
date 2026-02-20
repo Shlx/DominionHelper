@@ -264,7 +264,15 @@ fun SearchResultsCardList(
         }
 
         item {
-            Text("Search results ${cardList.size}")
+            Text(
+                text = "Search results (${cardList.size})", // Adding parentheses makes the number look a bit neater
+                style = MaterialTheme.typography.labelLarge, // labelLarge or titleSmall look great for list subheaders
+                color = MaterialTheme.colorScheme.primary, // Matches your other section headers
+                modifier = Modifier
+                    .fillMaxWidth()
+                    // Asymmetric padding: more space on top to separate from the search bar, less on bottom to hug the list
+                    .padding(start = 16.dp, end = 16.dp, top = 24.dp, bottom = 8.dp)
+            )
         }
 
         items(cardList) { card ->
@@ -680,7 +688,7 @@ fun CardLabels(card: Card, amount: Int, modifier: Modifier) {
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 fontSize = Constants.TEXT_SMALL,
-                color = MaterialTheme.colorScheme.secondary,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 fontStyle = Italic
             )
         }
@@ -690,8 +698,8 @@ fun CardLabels(card: Card, amount: Int, modifier: Modifier) {
 // Display a number in a circle (Used for card costs)
 @Composable
 fun NumberCircle(number: String) {
-    val circleColor = MaterialTheme.colorScheme.primaryContainer
-    val textColor = MaterialTheme.colorScheme.onSurface.toArgb()
+    val circleColor = Color(0xFFE5C158)
+    val textColor = Color.Black.toArgb()
 
     Box(
         contentAlignment = Alignment.Center
@@ -731,8 +739,8 @@ fun NumberCircle(number: String) {
 // Display a number in a hexagon (Used for card debt)
 @Composable
 fun NumberHexagon(number: Int) {
-    val hexagonColor = MaterialTheme.colorScheme.secondaryContainer
-    val textColor = MaterialTheme.colorScheme.onSecondaryContainer.toArgb()
+    val hexagonColor = Color(0xFF965F33)
+    val textColor = Color.White.toArgb()
 
     Box(
         contentAlignment = Alignment.Center,

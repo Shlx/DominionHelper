@@ -424,7 +424,7 @@ fun BlacklistedCardsListItem(
                     }
                 )
                 Text(
-                    text = "$disabledCardCount disabled",
+                    text = "You have disabled $disabledCardCount cards",
                     fontSize = Constants.TEXT_SMALL,
                     color = LocalContentColor.current.copy(alpha = 0.6f)
                 )
