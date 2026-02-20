@@ -1,5 +1,6 @@
 package com.marvinsuhr.dominionhelper.ui
 
+import android.os.Build
 import com.marvinsuhr.dominionhelper.data.UserPrefsRepository
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,6 +18,14 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 sealed class SettingItem {
+    data class SectionHeader(
+        val title: String
+    ) : SettingItem() {
+        override fun toString(): String {
+            return "SectionHeader(title='$title')"
+        }
+    }
+
     data class SwitchSetting(
         //val key: String,
         val title: String,
@@ -119,6 +128,7 @@ class SettingsViewModel @Inject constructor(
     private fun getSettings(): Flow<List<SettingItem>> {
         return combine(
             userPrefsRepository.isDarkMode,
+            userPrefsRepository.useSystemTheme,
             userPrefsRepository.randomMode,
             userPrefsRepository.randomExpansionAmount,
             userPrefsRepository.vetoMode,
@@ -129,16 +139,19 @@ class SettingsViewModel @Inject constructor(
             userPrefsRepository.prosperityBasicCardsMode
         ) { values ->
             val darkModePreference = values[0] as Boolean?
-            val currentRandomMode = values[1] as RandomMode
-            val currentRandomExpAmount = values[2] as Int
-            val currentVetoMode = values[3] as VetoMode
-            val currentNumCardsToGen = values[4] as Int
-            val currentLandscapeCategories = values[5] as Int
-            val currentLandscapeDiffCat = values[6] as Boolean
-            val currentDarkAgesMode = values[7] as DarkAgesMode
-            val currentProsperityMode = values[8] as ProsperityMode
+            val useSystemTheme = values[1] as Boolean
+            val currentRandomMode = values[2] as RandomMode
+            val currentRandomExpAmount = values[3] as Int
+            val currentVetoMode = values[4] as VetoMode
+            val currentNumCardsToGen = values[5] as Int
+            val currentLandscapeCategories = values[6] as Int
+            val currentLandscapeDiffCat = values[7] as Boolean
+            val currentDarkAgesMode = values[8] as DarkAgesMode
+            val currentProsperityMode = values[9] as ProsperityMode
 
             listOfNotNull( // Use listOfNotNull if some settings might be conditionally absent
+                // Interface Section
+                SettingItem.SectionHeader("Interface"),
                 SettingItem.ChoiceSetting(
                     title = "Dark mode",
                     selectedOption = if (darkModePreference == null) DarkModeSetting.SYSTEM
@@ -154,6 +167,16 @@ class SettingsViewModel @Inject constructor(
                         }
                     }
                 ),
+                // Only show "Use system theme" on Android 12+ (API 31+)
+                // where dynamic colors are available
+                SettingItem.SwitchSetting(
+                    title = "Use system theme",
+                    isChecked = useSystemTheme,
+                    onCheckedChange = { setUseSystemTheme(it) }
+                ).takeIf { Build.VERSION.SDK_INT >= Build.VERSION_CODES.S },
+
+                // Generation Section
+                SettingItem.SectionHeader("Generation"),
                 SettingItem.ChoiceSetting(
                     title = "Random mode",
                     selectedOption = currentRandomMode,
@@ -166,6 +189,11 @@ class SettingsViewModel @Inject constructor(
                     number = currentRandomExpAmount,
                     onNumberChange = { setRandomExpansionAmount(it) }
                 ),
+                SettingItem.NumberSetting(
+                    title = "Number of cards to generate",
+                    number = currentNumCardsToGen,
+                    onNumberChange = { setNumberOfCardsToGenerate(it) }
+                ),
                 SettingItem.ChoiceSetting(
                     title = "Veto mode",
                     selectedOption = currentVetoMode,
@@ -173,11 +201,9 @@ class SettingsViewModel @Inject constructor(
                     optionDisplayFormatter = { it.displayName },
                     onOptionSelected = { setVetoMode(it) }
                 ),
-                SettingItem.NumberSetting(
-                    title = "Number of cards to generate",
-                    number = currentNumCardsToGen,
-                    onNumberChange = { setNumberOfCardsToGenerate(it) }
-                ),
+
+                // Landscapes Section
+                SettingItem.SectionHeader("Landscapes"),
                 SettingItem.NumberSetting(
                     title = "Landscape categories to include",
                     number = currentLandscapeCategories,
@@ -188,6 +214,9 @@ class SettingsViewModel @Inject constructor(
                     isChecked = currentLandscapeDiffCat,
                     onCheckedChange = { setLandscapeDifferentCategories(it) }
                 ),
+
+                // Expansions Section
+                SettingItem.SectionHeader("Expansions"),
                 SettingItem.ChoiceSetting(
                     title = "Dark Ages starter cards",
                     selectedOption = currentDarkAgesMode,
@@ -227,6 +256,12 @@ class SettingsViewModel @Inject constructor(
     fun setVetoMode(mode: VetoMode) {
         viewModelScope.launch {
             userPrefsRepository.setVetoMode(mode)
+        }
+    }
+
+    fun setUseSystemTheme(useSystem: Boolean) {
+        viewModelScope.launch {
+            userPrefsRepository.setUseSystemTheme(useSystem)
         }
     }
 

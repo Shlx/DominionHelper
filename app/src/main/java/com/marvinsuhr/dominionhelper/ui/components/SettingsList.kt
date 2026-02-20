@@ -64,6 +64,7 @@ fun SettingsList(
     ) {
         items(settings) { setting ->
             when (setting) {
+                is SettingItem.SectionHeader -> SectionHeaderItem(setting)
                 is SettingItem.SwitchSetting -> SwitchSettingItem(setting)
                 is SettingItem.TextSetting -> TextSettingItem(setting)
                 is SettingItem.NumberSetting -> NumberSettingItem(setting)
@@ -71,6 +72,18 @@ fun SettingsList(
             }
         }
     }
+}
+
+@Composable
+fun SectionHeaderItem(setting: SettingItem.SectionHeader) {
+    Text(
+        text = setting.title,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 24.dp),
+        style = MaterialTheme.typography.titleMedium,
+        color = MaterialTheme.colorScheme.primary
+    )
 }
 
 @Composable

@@ -30,6 +30,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.marvinsuhr.dominionhelper.data.UserPrefsRepository
 import com.marvinsuhr.dominionhelper.ui.theme.DominionHelperTheme
+import com.marvinsuhr.dominionhelper.ui.theme.ThemeColorProvider
 import com.marvinsuhr.dominionhelper.ui.KingdomViewModel
 import com.marvinsuhr.dominionhelper.ui.LibraryViewModel
 import com.marvinsuhr.dominionhelper.ui.SettingsViewModel
@@ -56,7 +57,21 @@ class MainActivity : ComponentActivity() {
             )
             val darkTheme = darkModePreference ?: isSystemDarkMode
 
-            DominionHelperTheme(darkTheme = darkTheme) {
+            val useSystemTheme by userPrefsRepository.useSystemTheme.collectAsState(initial = true)
+
+            // Get the appropriate color scheme
+            // Pass the actual resolved dark mode (not null) so ThemeColorProvider
+            // can correctly select between dark/light colors
+            val colorScheme = ThemeColorProvider.getColorScheme(
+                useSystemTheme = useSystemTheme,
+                isDarkMode = darkModePreference,
+                activity = this
+            )
+
+            DominionHelperTheme(
+                darkTheme = darkTheme,
+                colorScheme = colorScheme
+            ) {
 
                 val navController = rememberNavController()
                 val navBackStackEntry by navController.currentBackStackEntryAsState()

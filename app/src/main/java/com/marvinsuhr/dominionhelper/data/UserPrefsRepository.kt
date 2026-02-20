@@ -20,6 +20,8 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = Con
 object UserPreferencesKeys {
     val IS_DARK_MODE = booleanPreferencesKey("is_dark_mode_preference")
 
+    val USE_SYSTEM_THEME = booleanPreferencesKey("use_system_theme_preference")
+
     val RANDOM_MODE = stringPreferencesKey("random_mode_preference")
     val RANDOM_EXPANSION_AMOUNT = intPreferencesKey("random_expansion_amount_preference")
 
@@ -51,6 +53,18 @@ class UserPrefsRepository @Inject constructor(
             } else {
                 settings[UserPreferencesKeys.IS_DARK_MODE] = isDarkMode
             }
+        }
+    }
+
+    // Use system theme: true = use system colors, false = use custom app colors
+    val useSystemTheme: Flow<Boolean> = context.dataStore.data
+        .map { preferences ->
+            preferences[UserPreferencesKeys.USE_SYSTEM_THEME] ?: true // Default to true
+        }
+
+    suspend fun setUseSystemTheme(useSystem: Boolean) {
+        context.dataStore.edit { settings ->
+            settings[UserPreferencesKeys.USE_SYSTEM_THEME] = useSystem
         }
     }
 
