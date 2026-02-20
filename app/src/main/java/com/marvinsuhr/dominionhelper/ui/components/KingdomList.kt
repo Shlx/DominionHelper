@@ -1,5 +1,6 @@
 package com.marvinsuhr.dominionhelper.ui.components
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -227,6 +228,11 @@ fun EditableKingdomName(
         }
         isEditingName = false
         focusManager.clearFocus()
+    }
+
+    // Handle back navigation while editing
+    BackHandler(enabled = isEditingName) {
+        commitNameChange()
     }
 
     FavoriteButton(onFavoriteClick, kingdom.isFavorite)
