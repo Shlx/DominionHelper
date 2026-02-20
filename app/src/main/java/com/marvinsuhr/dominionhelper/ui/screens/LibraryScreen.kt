@@ -157,7 +157,9 @@ fun LibraryScreen(
                 listState = searchListState,
                 paddingValues = calculatePadding(innerPadding),
                 searchText = searchText,
-                onSearchTextChange = { viewModel.changeSearchText(it) }
+                onSearchTextChange = { viewModel.changeSearchText(it) },
+                sortType = sortType,
+                onSortTypeSelected = { viewModel.updateSortType(com.marvinsuhr.dominionhelper.model.AppSortType.Library(it)) }
             )
         }
 

@@ -65,8 +65,7 @@ class LibraryViewModel @Inject constructor(
 
             LibraryUiState.SEARCH_RESULTS -> {
                 Log.i("BackHandler", "Deactivate search")
-                toggleSearch() // -> Deactivate search?
-                changeSearchText("")
+                changeSearchText("") // This handles clearing search and returning to previous state
                 clearAllCards()
                 switchUiStateTo(LibraryUiState.EXPANSIONS)
                 return true
@@ -144,9 +143,6 @@ class LibraryViewModel @Inject constructor(
     val selectedCard: StateFlow<Card?> = _selectedCard.asStateFlow()
 
     // Search related
-    private val _searchActive = MutableStateFlow(false)
-    val searchActive: StateFlow<Boolean> = _searchActive.asStateFlow()
-
     private val _searchText = MutableStateFlow("")
     val searchText: StateFlow<String> = _searchText.asStateFlow()
 
@@ -511,20 +507,6 @@ class LibraryViewModel @Inject constructor(
         // Sort expansion list
         _cardsToShow.value = sortCards(_cardsToShow.value)
         Log.d("LibraryViewModel", "Updated sort type to ${_sortType.value}")
-    }
-
-    fun toggleSearch() {
-        _searchActive.value = !_searchActive.value
-        if (!_searchActive.value) {
-            clearSelectedExpansion()
-            clearSearchText()
-        }
-        Log.d("LibraryViewModel", "Toggled search to ${_searchActive.value}")
-    }
-
-    fun clearSearchText() {
-        _searchText.value = ""
-        Log.d("LibraryViewModel", "Cleared search text")
     }
 
     fun changeSearchText(newText: String) {

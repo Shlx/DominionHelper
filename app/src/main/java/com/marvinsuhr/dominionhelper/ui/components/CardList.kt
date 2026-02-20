@@ -27,30 +27,39 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Sort
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.outlined.Circle
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
+import androidx.compose.material3.DividerDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.SwipeToDismissBox
 import androidx.compose.material3.SwipeToDismissBoxValue
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberSwipeToDismissBoxState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -245,9 +254,13 @@ fun SearchResultsCardList(
     listState: LazyListState = rememberLazyListState(),
     paddingValues: PaddingValues,
     searchText: String = "",
-    onSearchTextChange: (String) -> Unit = {}
+    onSearchTextChange: (String) -> Unit = {},
+    sortType: LibraryViewModel.SortType = LibraryViewModel.SortType.TYPE,
+    onSortTypeSelected: (LibraryViewModel.SortType) -> Unit = {}
 ) {
     Log.i("CardList", "${cardList.size} cards")
+
+    var showSortDialog by remember { mutableStateOf(false) }
 
     LazyColumn(
         modifier = modifier,
@@ -264,15 +277,28 @@ fun SearchResultsCardList(
         }
 
         item {
-            Text(
-                text = "Search results (${cardList.size})", // Adding parentheses makes the number look a bit neater
-                style = MaterialTheme.typography.labelLarge, // labelLarge or titleSmall look great for list subheaders
-                color = MaterialTheme.colorScheme.primary, // Matches your other section headers
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    // Asymmetric padding: more space on top to separate from the search bar, less on bottom to hug the list
-                    .padding(start = 16.dp, end = 16.dp, top = 24.dp, bottom = 8.dp)
-            )
+                    .padding(horizontal = 16.dp, vertical = 8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = "${cardList.size} cards found",
+                    style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+
+                // Sort button
+                IconButton(onClick = { showSortDialog = true }) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.Sort,
+                        contentDescription = "Sort results",
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
         }
 
         items(cardList) { card ->
@@ -282,6 +308,17 @@ fun SearchResultsCardList(
                 showIcon = false,
                 onToggleEnable = { onToggleEnable(card) })
         }
+    }
+
+    if (showSortDialog) {
+        SortTypeDialog(
+            sortType = sortType,
+            onSortTypeSelected = {
+                onSortTypeSelected(it)
+                showSortDialog = false
+            },
+            onDismiss = { showSortDialog = false }
+        )
     }
 }
 
@@ -856,4 +893,90 @@ fun CardButton(isEnabled: Boolean, onToggleEnable: () -> Unit) {
                 .size(Constants.ICON_SIZE)
         )
     }
+}
+
+@Composable
+fun SortTypeDialog(
+    sortType: LibraryViewModel.SortType,
+    onSortTypeSelected: (LibraryViewModel.SortType) -> Unit,
+    onDismiss: () -> Unit
+) {
+    Dialog(
+        onDismissRequest = onDismiss,
+        properties = DialogProperties(
+            dismissOnBackPress = true,
+            dismissOnClickOutside = true,
+            usePlatformDefaultWidth = false
+        )
+    ) {
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 48.dp)
+                .widthIn(max = 400.dp),
+            shape = MaterialTheme.shapes.large,
+            color = MaterialTheme.colorScheme.surface,
+            tonalElevation = 5.dp
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
+                Text(
+                    text = "Sort by",
+                    style = MaterialTheme.typography.titleLarge,
+                    modifier = Modifier.padding(bottom = 16.dp)
+                )
+
+                HorizontalDivider(
+                    modifier = Modifier.padding(bottom = 8.dp),
+                    thickness = DividerDefaults.Thickness,
+                    color = DividerDefaults.color
+                )
+
+                LibraryViewModel.SortType.entries.forEach { sortOption ->
+                    val isSelected = sortOption == sortType
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable {
+                                onSortTypeSelected(sortOption)
+                            }
+                            .padding(vertical = 12.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        RadioButton(
+                            selected = isSelected,
+                            onClick = { onSortTypeSelected(sortOption) }
+                        )
+                        Text(
+                            text = sortOption.text,
+                            modifier = Modifier.padding(start = 12.dp),
+                            style = MaterialTheme.typography.bodyLarge
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun RadioButton(
+    selected: Boolean,
+    onClick: () -> Unit
+) {
+    Icon(
+        imageVector = if (selected) {
+            Icons.Filled.CheckCircle
+        } else {
+            Icons.Outlined.Circle
+        },
+        contentDescription = null,
+        tint = MaterialTheme.colorScheme.primary,
+        modifier = Modifier
+            .padding(8.dp)
+            .clickable(onClick = onClick)
+    )
 }

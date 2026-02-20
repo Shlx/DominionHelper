@@ -25,13 +25,16 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.outlined.Circle
+import androidx.compose.material.icons.outlined.VisibilityOff
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -145,12 +148,24 @@ fun ExpansionList(
             }
         }
 
-        // Blacklisted cards item at the bottom
+        // Section header and blacklisted cards item at the bottom
         item {
-            BlacklistedCardsListItem(
-                disabledCardCount = disabledCardCount,
-                onClick = onBlacklistedCardsClick
-            )
+            Column {
+                // Section header for visual separation
+                Text(
+                    text = "Manage",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 16.dp, end = 16.dp, top = 24.dp, bottom = 8.dp),
+                    style = MaterialTheme.typography.titleMedium,
+                    color = LocalContentColor.current.copy(alpha = 0.6f)
+                )
+
+                BlacklistedCardsListItem(
+                    disabledCardCount = disabledCardCount,
+                    onClick = onBlacklistedCardsClick
+                )
+            }
         }
     }
 }
@@ -392,27 +407,28 @@ fun BlacklistedCardsListItem(
     ) {
         Row(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(Constants.PADDING_MEDIUM),
+                .fillMaxSize(),
             verticalAlignment = Alignment.CenterVertically
         ) {
             // Icon
             Icon(
-                imageVector = Icons.Outlined.Circle,
+                imageVector = Icons.Outlined.VisibilityOff,
                 contentDescription = "Blacklisted Cards",
                 tint = if (disabledCardCount > 0) {
                     LocalContentColor.current
                 } else {
                     LocalContentColor.current.copy(alpha = 0.38f)
                 },
-                modifier = Modifier.size(Constants.ICON_SIZE)
+                modifier = Modifier
+                    .aspectRatio(1f)
+                    .padding(Constants.PADDING_MEDIUM)
             )
 
             // Text
             Column(
                 modifier = Modifier
                     .weight(1f)
-                    .padding(start = Constants.PADDING_SMALL)
+                    .padding(Constants.PADDING_SMALL)
             ) {
                 Text(
                     text = "Blacklisted Cards",
@@ -424,9 +440,28 @@ fun BlacklistedCardsListItem(
                     }
                 )
                 Text(
-                    text = "You have disabled $disabledCardCount cards",
+                    text = "$disabledCardCount disabled cards",
                     fontSize = Constants.TEXT_SMALL,
                     color = LocalContentColor.current.copy(alpha = 0.6f)
+                )
+            }
+
+            // Trailing chevron icon
+            Box(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .aspectRatio(1f),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                    contentDescription = "View blacklisted cards",
+                    tint = if (disabledCardCount > 0) {
+                        LocalContentColor.current
+                    } else {
+                        LocalContentColor.current.copy(alpha = 0.38f)
+                    },
+                    modifier = Modifier.size(Constants.ICON_SIZE)
                 )
             }
         }

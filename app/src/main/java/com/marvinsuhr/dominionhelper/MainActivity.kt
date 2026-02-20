@@ -135,16 +135,10 @@ class MainActivity : ComponentActivity() {
                                         }
                                     }
                                 },
-                                isSearchActive = currentLibraryViewModel?.searchActive?.collectAsState()?.value ?: false,
-                                onSearchClicked = { currentLibraryViewModel?.toggleSearch() },
-                                searchText = currentLibraryViewModel?.searchText?.collectAsState()?.value ?: "",
-                                onSearchTextChange = { currentLibraryViewModel?.changeSearchText(it) },
                                 currentScreen = currentScreen,
                                 onSortTypeSelected = { currentViewModel?.onSortTypeSelected(it) },
                                 selectedSortType = currentViewModel?.currentAppSortType?.collectAsState()?.value,
-                                scrollBehavior = scrollBehavior,
-                                showSearch = currentScreen == CurrentScreen.Library &&
-                                    currentLibraryViewModel?.uiState?.collectAsState()?.value == com.marvinsuhr.dominionhelper.ui.LibraryUiState.EXPANSIONS
+                                scrollBehavior = scrollBehavior
                             )
                         }
                     },
