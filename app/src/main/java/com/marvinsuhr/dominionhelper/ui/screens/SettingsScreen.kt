@@ -65,7 +65,9 @@ fun SettingsScreen(
 
     val uiState by viewModel.uiState.collectAsState()
     Column(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(bottom = innerPadding.calculateBottomPadding())
     ) {
         SettingsList(
             uiState.settings,
@@ -76,16 +78,6 @@ fun SettingsScreen(
                 end = 8.dp,
                 bottom = 8.dp
             )
-        )
-
-        // Version info at the bottom
-        Text(
-            text = "v1.0",
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-                .padding(horizontal = 8.dp, vertical = 16.dp)
         )
     }
 }

@@ -71,6 +71,20 @@ fun SettingsList(
                 is SettingItem.ChoiceSetting<*> -> ChoiceSettingItem(setting)
             }
         }
+
+        item {
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = "v1.0",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 16.dp)
+                )
+            }
+        }
     }
 }
 
