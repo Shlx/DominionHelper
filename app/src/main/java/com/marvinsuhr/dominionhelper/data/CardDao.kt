@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.marvinsuhr.dominionhelper.model.Card
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CardDao {
@@ -214,4 +215,10 @@ interface CardDao {
 
     @Query("SELECT COUNT(*) FROM cards")
     suspend fun count(): Int
+
+    @Query("SELECT * FROM cards WHERE isEnabled = 0")
+    suspend fun getDisabledCards(): List<Card>
+
+    @Query("SELECT COUNT(*) FROM cards WHERE isEnabled = 0")
+    fun getDisabledCardCount(): Flow<Int>
 }

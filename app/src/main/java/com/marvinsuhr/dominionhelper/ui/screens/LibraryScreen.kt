@@ -52,6 +52,7 @@ fun LibraryScreen(
     val sortType by viewModel.sortType.collectAsState()
 
     val searchText by viewModel.searchText.collectAsState()
+    val disabledCardCount by viewModel.disabledCardCount.collectAsState()
 
     val errorMessage by viewModel.errorMessage.collectAsState()
     val coroutineScope = rememberCoroutineScope()
@@ -113,7 +114,9 @@ fun LibraryScreen(
                 listState = libraryListState,
                 paddingValues = calculatePadding(innerPadding),
                 searchText = searchText,
-                onSearchTextChange = { viewModel.changeSearchText(it) }
+                onSearchTextChange = { viewModel.changeSearchText(it) },
+                onBlacklistedCardsClick = { viewModel.showBlacklistedCards() },
+                disabledCardCount = disabledCardCount
             )
         }
 
@@ -155,6 +158,22 @@ fun LibraryScreen(
                 paddingValues = calculatePadding(innerPadding),
                 searchText = searchText,
                 onSearchTextChange = { viewModel.changeSearchText(it) }
+            )
+        }
+
+        // Show blacklisted cards
+        LibraryUiState.BLACKLISTED_CARDS -> {
+            Log.i("MainView", "Showing blacklisted cards (${cardsToShow.size})")
+            LibraryCardList(
+                cardList = cardsToShow,
+                sortType = sortType,
+                includeEditionSelection = false,
+                selectedEdition = com.marvinsuhr.dominionhelper.model.OwnedEdition.NONE,
+                onEditionSelected = { _, _ -> },
+                onCardClick = { viewModel.selectCard(it) },
+                onToggleEnable = { viewModel.toggleCardEnabled(it) },
+                listState = libraryListState,
+                paddingValues = calculatePadding(innerPadding)
             )
         }
 

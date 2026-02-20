@@ -65,7 +65,9 @@ fun ExpansionList(
     listState: LazyListState = rememberLazyListState(),
     paddingValues: PaddingValues = PaddingValues(0.dp),
     searchText: String = "",
-    onSearchTextChange: (String) -> Unit = {}
+    onSearchTextChange: (String) -> Unit = {},
+    onBlacklistedCardsClick: () -> Unit = {},
+    disabledCardCount: Int = 0
 ) {
 
     LazyColumn(
@@ -141,6 +143,14 @@ fun ExpansionList(
                     }
                 }
             }
+        }
+
+        // Blacklisted cards item at the bottom
+        item {
+            BlacklistedCardsListItem(
+                disabledCardCount = disabledCardCount,
+                onClick = onBlacklistedCardsClick
+            )
         }
     }
 }
@@ -358,6 +368,65 @@ fun EditionListItem(
                     },
                     contentDescription = if (expansion.isOwned) "Owned" else "Unowned",
                     modifier = Modifier.size(25.dp) // Slightly smaller icon for nested items
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun BlacklistedCardsListItem(
+    disabledCardCount: Int,
+    onClick: () -> Unit
+) {
+    Card(
+        modifier = Modifier
+            .height(Constants.CARD_HEIGHT)
+            .then(
+                if (disabledCardCount > 0) {
+                    Modifier.clickable { onClick() }
+                } else {
+                    Modifier
+                }
+            )
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(Constants.PADDING_MEDIUM),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            // Icon
+            Icon(
+                imageVector = Icons.Outlined.Circle,
+                contentDescription = "Blacklisted Cards",
+                tint = if (disabledCardCount > 0) {
+                    LocalContentColor.current
+                } else {
+                    LocalContentColor.current.copy(alpha = 0.38f)
+                },
+                modifier = Modifier.size(Constants.ICON_SIZE)
+            )
+
+            // Text
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(start = Constants.PADDING_SMALL)
+            ) {
+                Text(
+                    text = "Blacklisted Cards",
+                    fontSize = Constants.CARD_NAME_FONT_SIZE,
+                    color = if (disabledCardCount > 0) {
+                        LocalContentColor.current
+                    } else {
+                        LocalContentColor.current.copy(alpha = 0.38f)
+                    }
+                )
+                Text(
+                    text = "$disabledCardCount disabled",
+                    fontSize = Constants.TEXT_SMALL,
+                    color = LocalContentColor.current.copy(alpha = 0.6f)
                 )
             }
         }

@@ -28,7 +28,8 @@ enum class LibraryUiState {
     EXPANSIONS,
     EXPANSION_CARDS,
     SEARCH_RESULTS,
-    CARD_DETAIL
+    CARD_DETAIL,
+    BLACKLISTED_CARDS
 }
 
 @HiltViewModel
@@ -67,6 +68,13 @@ class LibraryViewModel @Inject constructor(
                 toggleSearch() // -> Deactivate search?
                 changeSearchText("")
                 clearAllCards()
+                switchUiStateTo(LibraryUiState.EXPANSIONS)
+                return true
+            }
+
+            LibraryUiState.BLACKLISTED_CARDS -> {
+                Log.i("BackHandler", "Leave blacklisted cards -> Return to expansion list")
+                clearSelectedExpansion()
                 switchUiStateTo(LibraryUiState.EXPANSIONS)
                 return true
             }
@@ -161,6 +169,7 @@ class LibraryViewModel @Inject constructor(
             }
 
             LibraryUiState.SEARCH_RESULTS -> "Search Results" // I think this isn't shown
+            LibraryUiState.BLACKLISTED_CARDS -> "Blacklisted Cards"
             LibraryUiState.CARD_DETAIL -> selectedCard?.name ?: "Details"
         }
     }.stateIn(
@@ -584,6 +593,18 @@ class LibraryViewModel @Inject constructor(
     fun clearError() {
         _errorMessage.value = null
     }
+
+    fun showBlacklistedCards() {
+        viewModelScope.launch {
+            val disabledCards = cardDao.getDisabledCards()
+            _cardsToShow.value = sortCards(disabledCards)
+            _uiState.value = LibraryUiState.BLACKLISTED_CARDS
+            Log.d("LibraryViewModel", "Showing ${disabledCards.size} disabled cards")
+        }
+    }
+
+    val disabledCardCount: StateFlow<Int> = cardDao.getDisabledCardCount()
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
 
     fun toggleCardEnabled(card: Card) {
         viewModelScope.launch {
