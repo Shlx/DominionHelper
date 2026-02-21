@@ -35,8 +35,15 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Sort
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.CheckCircleOutline
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.DisabledVisible
+import androidx.compose.material.icons.filled.Remove
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material.icons.outlined.Circle
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -253,8 +260,6 @@ fun SearchResultsCardList(
     onToggleEnable: (Card) -> Unit,
     listState: LazyListState = rememberLazyListState(),
     paddingValues: PaddingValues,
-    searchText: String = "",
-    onSearchTextChange: (String) -> Unit = {},
     sortType: LibraryViewModel.SortType = LibraryViewModel.SortType.TYPE,
     onSortTypeSelected: (LibraryViewModel.SortType) -> Unit = {}
 ) {
@@ -268,14 +273,6 @@ fun SearchResultsCardList(
         verticalArrangement = Arrangement.spacedBy(Constants.PADDING_SMALL),
         state = listState
     ) {
-        // Search bar
-        item {
-            SearchBar(
-                searchText = searchText,
-                onSearchTextChange = onSearchTextChange
-            )
-        }
-
         item {
             Row(
                 modifier = Modifier
@@ -850,14 +847,6 @@ fun PotionIcon() {
     AsyncImage(
         model = R.drawable.set_alchemy,
         contentDescription = "Potion icon",
-        colorFilter = ColorFilter.tint(Color(0xFF1666A8)),
-        modifier = Modifier
-            .size(22.dp)
-            .offset(y = 1.dp)
-    )
-    AsyncImage(
-        model = R.drawable.set_alchemy,
-        contentDescription = "Potion icon",
         colorFilter = ColorFilter.tint(Color(0xFF3B8CD6)),
         modifier = Modifier
             .size(22.dp)
@@ -891,10 +880,10 @@ fun CardButton(isEnabled: Boolean, onToggleEnable: () -> Unit) {
             .clickable { onToggleEnable() }
     ) {
         Icon(
-            imageVector = if (isEnabled) Icons.Filled.CheckCircle else Icons.Outlined.Circle,
+            imageVector = if (isEnabled) Icons.Filled.Remove else Icons.Default.Add,
             contentDescription = if (isEnabled) "Allowed" else "Banned",
             modifier = Modifier.size(Constants.ICON_SIZE),
-            tint = if (isEnabled) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
+            tint = if (isEnabled) MaterialTheme.colorScheme.error.copy(alpha = 0.3f) else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.3f)
         )
     }
 }
@@ -931,12 +920,6 @@ fun SortTypeDialog(
                     text = "Sort by",
                     style = MaterialTheme.typography.titleLarge,
                     modifier = Modifier.padding(bottom = 16.dp)
-                )
-
-                HorizontalDivider(
-                    modifier = Modifier.padding(bottom = 8.dp),
-                    thickness = DividerDefaults.Thickness,
-                    color = DividerDefaults.color
                 )
 
                 LibraryViewModel.SortType.entries.forEach { sortOption ->

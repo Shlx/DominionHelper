@@ -85,7 +85,7 @@ object AppColorScheme {
         primaryContainer = Color(0xFFD3E4FF),
         onPrimaryContainer = Color(0xFF001C3F),
         inversePrimary = Color(0xFF9CBAFF),*/
-        primary = Color(0xFFE5C158),
+        primary = Color(0xFFB77E1F),
         onPrimary = Color(0xFF3A2D00),
         primaryContainer = Color(0xFF554300),
         onPrimaryContainer = Color(0xFFFFE187),
@@ -129,7 +129,7 @@ object AppColorScheme {
         primaryContainer = Color(0xFF00468E),
         onPrimaryContainer = Color(0xFFD3E4FF),
         inversePrimary = Color(0xFF2563EB),*/
-        primary = Color(0xFFE5C158),
+        primary = Color(0xAAE5C158),
         onPrimary = Color(0xFF3A2D00),
         primaryContainer = Color(0xFF554300),
         onPrimaryContainer = Color(0xFFFFE187),

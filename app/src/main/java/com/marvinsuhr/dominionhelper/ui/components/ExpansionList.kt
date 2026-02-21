@@ -9,6 +9,7 @@ import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -18,7 +19,6 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
@@ -37,6 +37,7 @@ import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
@@ -61,14 +62,11 @@ fun ExpansionList(
     expansions: List<ExpansionWithEditions>,
     onExpansionClick: (ExpansionWithEditions) -> Unit, // Click on the whole parent item
     onEditionClick: (Expansion) -> Unit,
-    ownershipText: (ExpansionWithEditions) -> String,
     onOwnershipToggle: (Expansion, Boolean) -> Unit, // Callback for ownership changes
     onToggleExpansion: (ExpansionWithEditions) -> Unit, // Callback to toggle the isExpanded flag for a given expansion name
     modifier: Modifier = Modifier,
     listState: LazyListState = rememberLazyListState(),
     paddingValues: PaddingValues = PaddingValues(0.dp),
-    searchText: String = "",
-    onSearchTextChange: (String) -> Unit = {},
     onBlacklistedCardsClick: () -> Unit = {},
     disabledCardCount: Int = 0
 ) {
@@ -79,14 +77,6 @@ fun ExpansionList(
         verticalArrangement = Arrangement.spacedBy(Constants.PADDING_SMALL),
         contentPadding = paddingValues
     ) {
-        // Search bar as first item
-        item {
-            SearchBar(
-                searchText = searchText,
-                onSearchTextChange = onSearchTextChange
-            )
-        }
-
         items(
             items = expansions,
             key = { it.name }
@@ -96,7 +86,6 @@ fun ExpansionList(
             ExpansionListItem(
                 expansion = expansion,
                 onClick = { onExpansionClick(expansion) },
-                ownershipText = ownershipText(expansion),
                 // Handle the click on the ownership toggle for single editions
                 onOwnershipToggle = {
                     // Only trigger toggle for single edition items
@@ -147,26 +136,6 @@ fun ExpansionList(
                 }
             }
         }
-
-        // Section header and blacklisted cards item at the bottom
-        item {
-            Column {
-                // Section header for visual separation
-                Text(
-                    text = "Manage",
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 16.dp, end = 16.dp, top = 24.dp, bottom = 8.dp),
-                    style = MaterialTheme.typography.titleMedium,
-                    color = LocalContentColor.current.copy(alpha = 0.6f)
-                )
-
-                BlacklistedCardsListItem(
-                    disabledCardCount = disabledCardCount,
-                    onClick = onBlacklistedCardsClick
-                )
-            }
-        }
     }
 }
 
@@ -175,7 +144,6 @@ fun ExpansionList(
 fun ExpansionListItem(
     expansion: ExpansionWithEditions,
     onClick: () -> Unit, // Click on the whole item goes to detail
-    ownershipText: String,
     onOwnershipToggle: () -> Unit, // Callback for single edition toggle click
     hasMultipleEditions: Boolean,
     isExpanded: Boolean, // Use the flag from the data class
@@ -187,15 +155,14 @@ fun ExpansionListItem(
             .clickable { onClick() }
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxSize()
+            modifier = Modifier.fillMaxSize()
         ) {
             // Expansion image
             ExpansionImage(expansion)
 
             // Expansion name and additional text
             ExpansionLabels(
-                expansion, ownershipText, Modifier
+                expansion, Modifier
                     .weight(1f)
                     .align(Alignment.CenterVertically)
             )
@@ -234,7 +201,6 @@ fun ExpansionImage(expansion: ExpansionWithEditions) {
 @Composable
 fun ExpansionLabels(
     expansion: ExpansionWithEditions,
-    ownershipText: String,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -248,7 +214,7 @@ fun ExpansionLabels(
         )
         // TODO
         Text(
-            text = ownershipText + " - " + expansion.firstEdition?.size?.text + " Expansion",
+            text = expansion.firstEdition?.size?.text + " expansion",
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             fontSize = Constants.TEXT_SMALL,
@@ -265,40 +231,43 @@ fun ExpansionIcon(
     onOwnershipToggle: () -> Unit,
     isExpanded: Boolean
 ) {
-    Box(
+    androidx.compose.material3.Surface(
         modifier = Modifier
             .fillMaxHeight()
-            .aspectRatio(1f)
-            .clickable(
-                onClick = {
-                    if (hasMultipleEditions) {
-                        Log.i("ExpansionListItem", "Clicking arrow")
-                        onToggleExpansion()
-                    } else {
-                        Log.i("ExpansionListItem", "Clicking ownership icon")
-                        onOwnershipToggle()
-                    }
-                }
-            ),
-        contentAlignment = Alignment.Center
+            .aspectRatio(1f),
+        onClick = {
+            if (hasMultipleEditions) {
+                Log.i("ExpansionListItem", "Clicking arrow")
+                onToggleExpansion()
+            } else {
+                Log.i("ExpansionListItem", "Clicking ownership icon")
+                onOwnershipToggle()
+            }
+        },
+        color = androidx.compose.ui.graphics.Color.Transparent
     ) {
-        if (hasMultipleEditions) {
-            Icon(
-                imageVector = if (isExpanded) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown,
-                contentDescription = if (isExpanded) "Collapse" else "Expand",
-                modifier = Modifier.size(Constants.ICON_SIZE),
-                // Arrows are usually secondary information, so mute them
-                tint = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-        } else {
-            val isOwned = expansion.firstEdition?.isOwned == true || expansion.secondEdition?.isOwned == true
-            Icon(
-                imageVector = if (isOwned) Icons.Filled.CheckCircle else Icons.Outlined.Circle,
-                contentDescription = if (isOwned) "Owned" else "Unowned",
-                modifier = Modifier.size(Constants.ICON_SIZE),
-                // Apply the active primary color when owned, and a muted grey when unowned
-                tint = if (isOwned) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
-            )
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            if (hasMultipleEditions) {
+                Icon(
+                    imageVector = if (isExpanded) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown,
+                    contentDescription = if (isExpanded) "Collapse" else "Expand",
+                    modifier = Modifier.size(Constants.ICON_SIZE),
+                    // Arrows are usually secondary information, so mute them
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            } else {
+                val isOwned = expansion.firstEdition?.isOwned == true || expansion.secondEdition?.isOwned == true
+                Icon(
+                    imageVector = if (isOwned) Icons.Filled.CheckCircle else Icons.Outlined.Circle,
+                    contentDescription = if (isOwned) "Owned" else "Unowned",
+                    modifier = Modifier.size(Constants.ICON_SIZE),
+                    // Apply the active primary color when owned, and a muted grey when unowned
+                    tint = if (isOwned) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
         }
     }
 }
